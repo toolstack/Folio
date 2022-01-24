@@ -1,0 +1,13 @@
+<interface>
+  <template class="PaperNotebookIcon" parent="GtkBox">
+    <style>
+      <class name="notebook"/>
+    </style>
+    <property name="halign">center</property>
+    <child>
+      <object class="GtkLabel" id="label">
+        <property name="hexpand">1</property>
+      </object>
+    </child>
+  </template>
+</interface>

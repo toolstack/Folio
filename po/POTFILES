@@ -1,0 +1,9 @@
+data/io.posidon.gnome.Notebook.desktop.in
+data/io.posidon.gnome.Notebook.appdata.xml.in
+data/io.posidon.gnome.Notebook.gschema.xml
+src/main.vala
+src/window.vala
+src/preferences.vala
+src/res/window.ui
+src/res/preferences.ui
+

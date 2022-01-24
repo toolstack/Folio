@@ -1,0 +1,14 @@
+[Desktop Entry]
+Type=Application
+Terminal=false
+Exec=io.posidon.Paper
+Name=Paper
+Keywords=notebook;note;school;paper;
+Icon=io.posidon.gnome.Notebook
+Categories=Notebook;School;Notes;
+StartupNotify=true
+Actions=NewNote;
+
+[Desktop Action NewNote]
+Exec=io.posidon.Paper --new-note
+Name=New note

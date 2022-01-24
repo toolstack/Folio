@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+	<id>io.posidon.Paper.desktop</id>
+	<metadata_license>CC0-1.0</metadata_license>
+	<project_license>GPL-3.0-or-later</project_license>
+  <name>Paper</name>
+  <summary>Note-taking app</summary>
+	<description>
+	  <p>No description</p>
+	</description>
+  <launchable type="desktop-id">io.posidon.Paper.desktop</launchable>
+  <developer_name>posidon</developer_name>
+  <kudos>
+    <kudo>libadwaita</kudo>
+  </kudos>
+</component>

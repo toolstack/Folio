@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+  <requires lib="gtk" version="4.0"/>
+  <requires lib="libadwaita" version="1.0"/>
+  <requires lib="gtksourceview" version="5.0"/>
+  <template class="PaperWindow" parent="AdwApplicationWindow">
+    <property name="default-width">640</property>
+    <property name="default-height">400</property>
+    <child>
+      <object class="AdwToastOverlay" id="toast_overlay">
+        <child>
+          <object class="AdwLeaflet" id="leaf">
+            <property name="can-navigate-back">1</property>
+            <property name="can-navigate-forward">1</property>
+            <child>
+              <object class="AdwLeafletPage">
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="orientation">horizontal</property>
+                    <property name="hexpand">0</property>
+                    <property name="vexpand">1</property>
+                    <child>
+                      <object class="GtkWindowHandle">
+                        <property name="hexpand">0</property>
+                        <property name="vexpand">1</property>
+                        <child>
+                          <object class="GtkScrolledWindow">
+                            <property name="hexpand">0</property>
+                            <property name="vexpand">1</property>
+                            <property name="vscrollbar_policy">external</property>
+                            <property name="hscrollbar_policy">never</property>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="orientation">vertical</property>
+                                <property name="hexpand">0</property>
+                                <property name="vexpand">0</property>
+                                <child>
+                                  <object class="GtkMenuButton">
+                                    <property name="icon-name">open-menu-symbolic</property>
+                                    <property name="menu-model">primary_menu</property>
+                                    <property name="hexpand">0</property>
+                                    <property name="vexpand">0</property>
+                                    <style>
+                                      <class name="flat"/>
+                                    </style>
+                                  </object>
+                                </child>
+                                <child>
+                                  <object class="GtkListView" id="notebooks_list">
+                                    <property name="hexpand">0</property>
+                                    <property name="vexpand">1</property>
+                                  </object>
+                                </child>
+                                <style>
+                                  <class name="notebooks-bar"/>
+                                </style>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox">
+                        <style>
+                          <class name="notebook-sidebar"/>
+                        </style>
+                        <property name="hexpand">1</property>
+                        <property name="vexpand">1</property>
+                        <property name="width-request">200</property>
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="AdwHeaderBar">
+                            <property name="show-end-title-buttons" bind-source="leaf" bind-property="folded" bind-flags="sync-create"/>
+                            <child type="title">
+                              <object class="AdwWindowTitle" id="notebook_title">
+                              </object>
+                            </child>
+                            <child type="start">
+                              <object class="GtkButton">
+                                <property name="halign">center</property>
+                                <property name="icon-name">document-edit-symbolic</property>
+                                <property name="action_name">app.edit-notebook</property>
+                                <property name="tooltip_text">Edit Notebook</property>
+                              </object>
+                            </child>
+                            <child type="end">
+                              <object class="GtkButton">
+                                <property name="halign">center</property>
+                                <property name="icon-name">list-add-symbolic</property>
+                                <property name="action_name">app.new-note</property>
+                                <property name="tooltip_text">New Note</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkScrolledWindow">
+                            <property name="hexpand">1</property>
+                            <property name="vexpand">1</property>
+                            <property name="vscrollbar_policy">external</property>
+                            <property name="hscrollbar_policy">never</property>
+                              <child>
+                                <object class="GtkListView" id="notebook_notes_list">
+                                </object>
+                              </child>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwLeafletPage">
+                <property name="child">
+                  <object class="GtkBox">
+                    <property name="hexpand">1</property>
+                    <property name="vexpand">1</property>
+                    <property name="orientation">vertical</property>
+                    <property name="width-request">220</property>
+                    <child>
+                      <object class="AdwHeaderBar">
+                        <property name="show-start-title-buttons" bind-source="leaf" bind-property="folded" bind-flags="sync-create"/>
+                        <property name="hexpand">1</property>
+                        <property name="vexpand">0</property>
+                        <property name="visible">1</property>
+                        <property name="valign">start</property>
+                        <child type="title">
+                          <object class="AdwWindowTitle" id="note_title">
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkScrolledWindow">
+                        <property name="hexpand">1</property>
+                        <property name="vexpand">1</property>
+                        <child>
+                          <object class="GtkSourceView" id="text_view">
+                            <property name="tab-width">4</property>
+                            <property name="auto-indent">true</property>
+                            <property name="wrap-mode">word-char</property>
+                            <property name="bottom-margin">18</property>
+                            <property name="left-margin">18</property>
+                            <property name="right-margin">18</property>
+                            <property name="top-margin">18</property>
+                            <property name="hexpand">1</property>
+                            <property name="vexpand">1</property>
+                            <property name="visible">0</property>
+                            <style>
+                              <class name="note-font"/>
+                            </style>
+                          </object>
+                        </child>
+                      </object>
+                    </child>
+                  </object>
+                </property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+  <menu id="primary_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_New Note</attribute>
+        <attribute name="action">app.new-note</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Edit Note</attribute>
+        <attribute name="action">app.edit-note</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Delete Note</attribute>
+        <attribute name="action">app.delete-note</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_New Notebook</attribute>
+        <attribute name="action">app.new-notebook</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Edit Notebook</attribute>
+        <attribute name="action">app.edit-notebook</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Delete Notebook</attribute>
+        <attribute name="action">app.delete-notebook</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Preferences</attribute>
+        <attribute name="action">app.preferences</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
+        <attribute name="action">win.show-help-overlay</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">_About</attribute>
+        <attribute name="action">app.about</attribute>
+      </item>
+    </section>
+  </menu>
+</interface>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/io/posidon/Paper/">
+    <file>window.ui</file>
+    <file>preferences.ui</file>
+    <file>notebook_icon.ui</file>
+    <file>note_card.ui</file>
+    <file>popup/confirmation_popup.ui</file>
+    <file>popup/notebook_create_popup.ui</file>
+    <file>popup/note_create_popup.ui</file>
+    <file>popup/context/note_menu.ui</file>
+    <file>popup/context/notebook_menu.ui</file>
+    <file>gtk/help-overlay.ui</file>
+    <file alias="style.css">css/style.css</file>
+    <file alias="style-dark.css">css/style-dark.css</file>
+    <file preprocess="xml-stripblanks">graphics/entry-clear-symbolic.svg</file>
+  </gresource>
+</gresources>

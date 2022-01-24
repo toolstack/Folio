@@ -1,0 +1,14 @@
+<interface>
+  <template class="PaperNoteCard" parent="GtkBox">
+    <property name="hexpand">1</property>
+    <child>
+      <object class="GtkLabel" id="label">
+        <property name="ellipsize">end</property>
+        <property name="halign">start</property>
+        <style>
+          <class name="heading"/>
+        </style>
+      </object>
+    </child>
+  </template>
+</interface>

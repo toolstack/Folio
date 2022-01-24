@@ -1,0 +1,32 @@
+<interface>
+  <template class="PaperNotebookMenuPopover" parent="GtkPopover">
+    <child>
+      <object class="GtkBox">
+        <style>
+          <class name="menu"/>
+        </style>
+        <property name="orientation">vertical</property>
+        <child>
+          <object class="GtkButton" id="button_edit">
+            <property name="label">Rename</property>
+            <property name="icon-name">document-edit-symbolic</property>
+            <property name="tooltip_text">Edit Note</property>
+            <style>
+              <class name ="flat"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="button_delete">
+            <property name="label">Delete</property>
+            <property name="icon-name">user-trash-symbolic</property>
+            <property name="tooltip_text">Delete Note</property>
+            <style>
+              <class name ="flat"/>
+            </style>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
