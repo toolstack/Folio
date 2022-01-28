@@ -4,8 +4,8 @@
   <requires lib="libadwaita" version="1.0"/>
   <requires lib="gtksourceview" version="5.0"/>
   <template class="PaperWindow" parent="AdwApplicationWindow">
-    <property name="default-width">640</property>
-    <property name="default-height">400</property>
+    <property name="default-width">720</property>
+    <property name="default-height">512</property>
     <child>
       <object class="AdwToastOverlay" id="toast_overlay">
         <child>
@@ -150,6 +150,13 @@
                             <property name="icon-name">format-text-strikethrough-symbolic</property>
                             <property name="tooltip_text">Strikethrough</property>
                             <property name="action_name">app.format-strikethough</property>
+                          </object>
+                        </child>
+                        <child type="start">
+                          <object class="GtkButton" id="button_format_highlight">
+                            <property name="has_frame">false</property>
+                            <property name="tooltip_text">Highlight</property>
+                            <property name="action_name">app.format-highlight</property>
                           </object>
                         </child>
                         <child type="end">

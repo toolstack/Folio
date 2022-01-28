@@ -3,39 +3,66 @@
   <author>Zagura</author>
   <_description>The style scheme for paper</_description>
 
-  <color name="hyperlink"                       value="#4ba0f3"/>
-  <color name="escape"                          value="#7bb972"/>
-  <color name="fade"                            value="#bababa"/>
-  <color name="xml_tags"                        value="#3388ff"/>
+  <color name="hyperlink"                   value="#4ba0f3"/>
+  <color name="hyperlink_label"             value="#0c3eaa"/>
+
+  <color name="escape"                      value="#7bb972"/>
+
+  <color name="fade"                        value="#bababa"/>
+
+  <color name="block"                       value="#eeeeee"/>
+
+  <color name="quote"                       value="#0de28e"/>
+  <color name="literal"                     value="#176744"/>
+
+  <color name="highlight"                   value="#fff4aa"/>
+
 
 	<style name="markdown:backslash-escape"   foreground="escape" bold="true"/>
-	<style name="markdown:blockquote-marker"  foreground="fade"/>
 
+	<style name="markdown:blockquote-marker"  foreground="quote" background="quote" scale="0.5"/>
+	<style name="markdownpp:blockquote"       foreground="literal"/>
 
-	<style name="markdown:attribute-value"    foreground="#C7C283"/>
-	<style name="markdown:code"               foreground="#7FA8D4"/>
-	<style name="markdown:horizontal-rule"    foreground="#70B1E0" background="#2F3436"/>
-	<style name="markdown:image-marker"       foreground="#86CAD9" bold="true"/>
-	<style name="markdown:label"              foreground="#B698E6"/>
-	<style name="markdown:link-text"          foreground="#B698E6"/>
-	<style name="markdown:list-marker"        foreground="#86CAD9"/>
-	<style name="markdown:url"                foreground="#6BB88A"/>
+	<style name="markdown:horizontal-rule"    foreground="fade"/>
+	<style name="markdown:list-marker"        foreground="fade"/>
+	<style name="markdown:image-marker"       foreground="fade" bold="true"/>
 
-  <style name="markdown:emphasis"            italic="true"/>
-  <style name="markdown:strong-emphasis"     bold="true"/>
-  <style name="markdownpp:strikethrough"     strikethrough="true"/>
+	<style name="markdown:attribute-value"    foreground="literal"/>
+
+	<style name="markdown:code-block"         foreground="literal"/>
+	<style name="markdown:code-span"          foreground="literal" background="block"/>
+
+	<style name="markdown:label"              foreground="hyperlink_label"/>
+	<style name="markdown:link-text"          foreground="hyperlink_label"/>
+	<style name="markdown:url"                foreground="hyperlink"/>
+
+  <style name="markdown:emphasis"           italic="true"/>
+  <style name="markdown:strong-emphasis"    bold="true"/>
+  <style name="markdownpp:strikethrough"    strikethrough="true"/>
+  <style name="markdownpp:highlight"        background="highlight"/>
+
+  <style
+    name="markdownpp:marker"
+    foreground="fade"
+    strikethrough="false"
+    bold="false"
+    scale="0.7"/>
+
+  <style
+    name="markdownpp:long_marker"
+    foreground="fade"
+    strikethrough="false"
+    bold="false"
+    scale="0.5"/>
 
   <!-- Heading styles -->
-  <style name="markdownpp:h1"                bold="true" scale="3.2"/>
-  <style name="markdownpp:h2"                bold="true" scale="2.6"/>
-  <style name="markdownpp:h3"                bold="true" scale="2.1"/>
-  <style name="markdownpp:h4"                bold="true" scale="1.5"/>
-  <style name="markdownpp:h5"                bold="true" scale="1.2"/>
-  <style name="markdownpp:h6"                bold="true"/>
+  <style name="markdownpp:h1"               bold="true" scale="3.2"/>
+  <style name="markdownpp:h2"               bold="true" scale="2.6"/>
+  <style name="markdownpp:h3"               bold="true" scale="2.1"/>
+  <style name="markdownpp:h4"               bold="true" scale="1.5"/>
+  <style name="markdownpp:h5"               bold="true" scale="1.2"/>
+  <style name="markdownpp:h6"               bold="true"/>
 
-  <style name="markdownpp:heading-hash"      bold="false" foreground="fade"/>
-
-  <style name="xml:tags"                    foreground="xml_tags"/>
-  <style name="xml:namespace"               bold="true"/>
+  <style name="markdownpp:heading-hash"     foreground="fade" bold="false" scale="0.5"/>
 </style-scheme>
 

@@ -28,6 +28,7 @@ namespace Paper {
 			{ "format-bold", on_format_bold },
 			{ "format-italic", on_format_italic },
 			{ "format-strikethough", on_format_strikethough },
+			{ "format-highlight", on_format_highlight },
 			{ "markdown-cheatsheet", on_markdown_cheatsheet },
 			{ "about", on_about_action },
 			{ "preferences", on_preferences_action },
@@ -61,6 +62,7 @@ namespace Paper {
 			set_accels_for_action ("app.format-bold", {"<primary>b"});
 			set_accels_for_action ("app.format-italic", {"<primary>i"});
 			set_accels_for_action ("app.format-strikethough", {"<primary>s"});
+			set_accels_for_action ("app.format-highlight", {"<primary>h"});
 		}
 
 		public override void activate () {
@@ -82,8 +84,8 @@ namespace Paper {
 
 		private void on_preferences_action () {
             var w = new PreferencesWindow (this);
-			w.transient_for = active_window;
             w.destroy_with_parent = true;
+			w.transient_for = active_window;
             w.modal = true;
             w.present ();
 		}
@@ -98,6 +100,10 @@ namespace Paper {
 
 		private void on_format_strikethough () {
 		    window.format_selection_strikethough ();
+		}
+
+		private void on_format_highlight () {
+		    window.format_selection_highlight ();
 		}
 
 		private void on_markdown_cheatsheet () {

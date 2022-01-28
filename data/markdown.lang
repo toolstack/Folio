@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
- Author: Jean-Philippe Fleury
- Copyright (C) 2011 Jean-Philippe Fleury <contact@jpfleury.net>
- GtkSourceView is free software; you can redistribute it and/or
- modify it under the terms of the GNU Lesser General Public
- License as published by the Free Software Foundation; either
- version 2.1 of the License, or (at your option) any later version.
- GtkSourceView is distributed in the hope that it will be useful,
- but WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- Lesser General Public License for more details.
- You should have received a copy of the GNU Lesser General Public
- License along with this library; if not, write to the Free Software
- Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+  Author: Jean-Philippe Fleury
+  Copyright (C) 2011 Jean-Philippe Fleury <contact@jpfleury.net>
+  GtkSourceView is free software; you can redistribute it and/or
+  modify it under the terms of the GNU Lesser General Public
+  License as published by the Free Software Foundation; either
+  version 2.1 of the License, or (at your option) any later version.
+  GtkSourceView is distributed in the hope that it will be useful,
+  but WITHOUT ANY WARRANTY; without even the implied warranty of
+  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+  Lesser General Public License for more details.
+  You should have received a copy of the GNU Lesser General Public
+  License along with this library; if not, write to the Free Software
+  Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 -->
 <!-- Note: this language definition file adds support for Markdown syntax,
      described in the following websites:
      * (fr) <http://michelf.com/projets/php-markdown/syntaxe/>
      * (en) <http://daringfireball.net/projects/markdown/syntax> -->
+
 <language id="markdownpp" _name="Markdown" version="2.0" _section="Markup">
   <metadata>
     <property name="mimetypes">text/x-markdown</property>
@@ -33,8 +34,17 @@
     <style id="h4" _name="Heading 4" map-to="def:heading4"/>
     <style id="h5" _name="Heading 5" map-to="def:heading5"/>
     <style id="h6" _name="Heading 6" map-to="def:heading6"/>
-    <style id="heading-hash" _name="Heading hash" map-to="def:text"/>
+    <style id="heading-hash" _name="Heading Hash" map-to="def:text"/>
+
     <style id="strikethrough" _name="Strikethrough" map-to="def:text"/>
+    <style id="highlight" _name="Highlight" map-to="def:text"/>
+    <style id="italic" _name="Italic" map-to="markdown:emphasis"/>
+    <style id="bold" _name="Bold" map-to="markdown:strong-emphasis"/>
+
+    <style id="blockquote" _name="Blockquote" map-to="def:text"/>
+
+    <style id="marker" _name="Marker" map-to="def:text"/>
+    <style id="long_marker" _name="Long Marker" map-to="markdownpp:marker"/>
   </styles>
 
   <definitions>
@@ -44,53 +54,121 @@
          ###Header 3###
     -->
     <context id="h1" style-ref="h1">
-      <match>^(#)[^#].*</match>
+      <match>^(#[ ]*)[^#].*</match>
       <include>
         <context id="heading-hash" sub-pattern="1" style-ref="heading-hash"/>
       </include>
     </context>
 
     <context id="h2" style-ref="h2">
-      <match>^(##)[^#].*</match>
+      <match>^(##[ ]*)[^#].*</match>
       <include>
         <context id="heading-hash" sub-pattern="1" style-ref="heading-hash"/>
       </include>
     </context>
 
     <context id="h3" style-ref="h3">
-      <match>^(#{3})[^#].*</match>
+      <match>^(#{3}[ ]*)[^#].*</match>
       <include>
         <context id="heading-hash" sub-pattern="1" style-ref="heading-hash"/>
       </include>
     </context>
 
     <context id="h4" style-ref="h4">
-      <match>^(#{4})[^#].*</match>
+      <match>^(#{4}[ ]*)[^#].*</match>
       <include>
         <context id="heading-hash" sub-pattern="1" style-ref="heading-hash"/>
       </include>
     </context>
 
     <context id="h5" style-ref="h5">
-      <match>^(#{5})[^#].*</match>
+      <match>^(#{5}[ ]*)[^#].*</match>
       <include>
         <context id="heading-hash" sub-pattern="1" style-ref="heading-hash"/>
       </include>
     </context>
 
     <context id="h6" style-ref="h6">
-      <match>^(#{6})[^#].*</match>
+      <match>^(#{6}[ ]*)[^#].*</match>
       <include>
         <context id="heading-hash" sub-pattern="1" style-ref="heading-hash"/>
       </include>
     </context>
 
+
     <context id="strikethrough-1" style-ref="strikethrough">
-      <match>(?&lt;!\~)\~[^\~ \t].*?(?&lt;!\\|\~| |\t)\~(?!\~)</match>
+      <match>((?&lt;!\~)\~)([^\~ \t].*?(?&lt;!\\|\~| |\t))(\~(?!\~))</match>
+      <include>
+        <context id="marker" sub-pattern="1" style-ref="marker"/>
+        <context id="marker" sub-pattern="3" style-ref="marker"/>
+      </include>
     </context>
 
     <context id="strikethrough-2" style-ref="strikethrough">
-      <match>~~[^~ \t].*?(?&lt;!\\|~| |\t)~~</match>
+      <match>(~~)([^~ \t].*?(?&lt;!\\|~| |\t))(~~)</match>
+      <include>
+        <context id="long_marker" sub-pattern="1" style-ref="long_marker"/>
+        <context id="long_marker" sub-pattern="3" style-ref="long_marker"/>
+      </include>
+    </context>
+
+
+    <!-- Examples:
+         Lorem _ipsum dolor_ sit amet.
+         Here's an _emphasized text containing an underscore (\_)_.
+    -->
+    <context id="underscores-emphasis" style-ref="italic">
+      <match>((?&lt;!_)_)([^_ \t].*?(?&lt;!\\|_| |\t))(_(?!_))</match>
+      <include>
+        <context id="marker" sub-pattern="1" style-ref="marker"/>
+        <context id="marker" sub-pattern="3" style-ref="marker"/>
+      </include>
+    </context>
+
+    <!-- Examples:
+         Lorem *ipsum dolor* sit amet.
+         Here's an *emphasized text containing an asterisk (\*)*.
+    -->
+    <context id="asterisks-emphasis" style-ref="italic">
+      <match>((?&lt;!\*)\*)([^\* \t].*?(?&lt;!\\|\*| |\t))(\*(?!\*))</match>
+      <include>
+        <context id="marker" sub-pattern="1" style-ref="marker"/>
+        <context id="marker" sub-pattern="3" style-ref="marker"/>
+      </include>
+    </context>
+
+
+    <!-- Examples:
+         Lorem __ipsum dolor__ sit amet.
+         Here's a __strongly emphasized text containing an underscore (\_)__.
+    -->
+    <context id="underscores-strong-emphasis" style-ref="bold">
+      <match>(__)([^_ \t].*?(?&lt;!\\|_| |\t))(__)</match>
+      <include>
+        <context id="long_marker" sub-pattern="1" style-ref="long_marker"/>
+        <context id="long_marker" sub-pattern="3" style-ref="long_marker"/>
+      </include>
+    </context>
+
+    <!-- Examples:
+         Lorem **ipsum dolor** sit amet.
+         Here's a **strongly emphasized text containing an asterisk (\*).**
+    -->
+    <context id="asterisks-strong-emphasis" style-ref="bold">
+      <match>(\*\*)([^\* \t].*?(?&lt;!\\|\*| |\t))(\*\*)</match>
+      <include>
+        <context id="long_marker" sub-pattern="1" style-ref="long_marker"/>
+        <context id="long_marker" sub-pattern="3" style-ref="long_marker"/>
+      </include>
+    </context>
+
+    <context id="highlight-whole">
+      <match>(\=\=)([^\= \t].*?(?&lt;!\\|\=| |\t))(\=\=)</match>
+      <include>
+        <context id="long_marker" sub-pattern="1" style-ref="long_marker"/>
+        <context id="highlight" sub-pattern="2" style-ref="highlight"/>
+        <context id="long_marker" sub-pattern="3" style-ref="long_marker"/>
+      </include>
     </context>
 
     <context id="markdownpp">
@@ -103,6 +181,12 @@
         <context ref="h6"/>
         <context ref="strikethrough-1"/>
         <context ref="strikethrough-2"/>
+        <context ref="underscores-emphasis"/>
+        <context ref="asterisks-emphasis"/>
+        <context ref="underscores-strong-emphasis"/>
+        <context ref="asterisks-strong-emphasis"/>
+        <context ref="highlight-whole"/>
+        <context ref="markdown:blockquote" style-ref="blockquote"/>
         <context ref="markdown:markdown"/>
       </include>
     </context>

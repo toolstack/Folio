@@ -39,6 +39,9 @@ namespace Paper {
 		unowned Adw.WindowTitle note_title;
 
 		[GtkChild]
+		unowned Gtk.Button button_format_highlight;
+
+		[GtkChild]
 		unowned GtkSource.View text_view;
 
 
@@ -52,6 +55,11 @@ namespace Paper {
 			    title: "Paper",
 			    icon_name: Config.APP_ID
 		    );
+
+            {
+                var image = new Gtk.Image.from_resource ("/io/posidon/Paper/graphics/format-text-highlight-symbolic.svg");
+		        button_format_highlight.child = image;
+            }
 
 		    var settings = new Settings (Config.APP_ID);
 			var note_font = settings.get_string ("note-font");
@@ -200,6 +208,15 @@ namespace Paper {
 		    b.get_iter_at_mark (out iter, mark);
 		    b.insert (ref iter, "~~", 2);
 		    b.insert_at_cursor ("~~", 2);
+		}
+
+		public void format_selection_highlight () {
+		    var b = text_view.buffer;
+		    var mark = b.get_selection_bound ();
+		    Gtk.TextIter iter;
+		    b.get_iter_at_mark (out iter, mark);
+		    b.insert (ref iter, "==", 2);
+		    b.insert_at_cursor ("==", 2);
 		}
 	}
 }
