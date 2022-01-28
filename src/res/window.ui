@@ -131,6 +131,34 @@
                           <object class="AdwWindowTitle" id="note_title">
                           </object>
                         </child>
+                        <child type="start">
+                          <object class="GtkButton">
+                            <property name="icon-name">format-text-bold-symbolic</property>
+                            <property name="tooltip_text">Bold</property>
+                            <property name="action_name">app.format-bold</property>
+                          </object>
+                        </child>
+                        <child type="start">
+                          <object class="GtkButton">
+                            <property name="icon-name">format-text-italic-symbolic</property>
+                            <property name="tooltip_text">Italic</property>
+                            <property name="action_name">app.format-italic</property>
+                          </object>
+                        </child>
+                        <child type="start">
+                          <object class="GtkButton">
+                            <property name="icon-name">format-text-strikethrough-symbolic</property>
+                            <property name="tooltip_text">Strikethrough</property>
+                            <property name="action_name">app.format-strikethough</property>
+                          </object>
+                        </child>
+                        <child type="end">
+                          <object class="GtkButton">
+                            <property name="icon-name">dialog-information-symbolic</property>
+                            <property name="tooltip_text">Markdown cheatsheet</property>
+                            <property name="action_name">app.markdown-cheatsheet</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child>

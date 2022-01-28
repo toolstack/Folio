@@ -40,4 +40,11 @@ if compile_schemas.found()
   )
 endif
 
+install_data('paper_markdown.xml',
+  install_dir: join_paths(get_option('datadir'), 'gtksourceview-5/styles/')
+)
+install_data('markdown.lang',
+  install_dir: join_paths(get_option('datadir'), 'gtksourceview-5/language-specs/')
+)
+
 subdir('icons')

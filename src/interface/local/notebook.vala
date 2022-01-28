@@ -79,9 +79,9 @@ namespace Paper {
             load ();
             if (note.name != name) {
                 var n = (LocalNote) note;
-                var path = n.path;
-                var origina_path = @"$path/$(note.name)";
-                var original_file = File.new_for_path (origina_path);
+                var original_path = n.path;
+                var original_file = File.new_for_path (original_path);
+                var path = @"$path/$name";
                 var file = File.new_for_path (path);
                 if (file.query_exists ()) {
                     throw new ProviderError.ALREADY_EXISTS (@"Note at $path already exists");
@@ -89,7 +89,7 @@ namespace Paper {
                 try {
                     original_file.set_display_name(name);
                 } catch (Error e) {
-                    throw new ProviderError.COULDNT_CREATE_FILE (@"Couldn't change $origina_path to $path: $(e.message)");
+                    throw new ProviderError.COULDNT_CREATE_FILE (@"Couldn't change $original_path to $path: $(e.message)");
                 }
 
                 n.change (name, this);

@@ -174,5 +174,32 @@ namespace Paper {
             var toast = new Adw.Toast (text);
             toast_overlay.add_toast (toast);
 		}
+
+		public void format_selection_bold () {
+		    var b = text_view.buffer;
+		    var mark = b.get_selection_bound ();
+		    Gtk.TextIter iter;
+		    b.get_iter_at_mark (out iter, mark);
+		    b.insert (ref iter, "**", 2);
+		    b.insert_at_cursor ("**", 2);
+		}
+
+		public void format_selection_italic () {
+		    var b = text_view.buffer;
+		    var mark = b.get_selection_bound ();
+		    Gtk.TextIter iter;
+		    b.get_iter_at_mark (out iter, mark);
+		    b.insert (ref iter, "_", 1);
+		    b.insert_at_cursor ("_", 1);
+		}
+
+		public void format_selection_strikethough () {
+		    var b = text_view.buffer;
+		    var mark = b.get_selection_bound ();
+		    Gtk.TextIter iter;
+		    b.get_iter_at_mark (out iter, mark);
+		    b.insert (ref iter, "~~", 2);
+		    b.insert_at_cursor ("~~", 2);
+		}
 	}
 }

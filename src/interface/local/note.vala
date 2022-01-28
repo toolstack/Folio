@@ -33,9 +33,13 @@ namespace Paper {
         }
 
         public void load () {
-            var language_manager = GtkSource.LanguageManager.get_default ();
-            var language = language_manager.get_language ("markdown");
+            var language = GtkSource.LanguageManager.get_default ().get_language ("markdownpp");
             _text = new GtkSource.Buffer.with_language (language);
+	        {
+	            var manager = new GtkSource.StyleSchemeManager ();
+	            var scheme = manager.get_scheme ("paper");
+	            _text.style_scheme = scheme;
+	        }
             try {
                 var file = File.new_for_path (path);
                 if (!file.query_exists ()) {

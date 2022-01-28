@@ -5,6 +5,7 @@
     <file>preferences.ui</file>
     <file>notebook_icon.ui</file>
     <file>note_card.ui</file>
+    <file>markdown_cheatsheet.ui</file>
     <file>popup/confirmation_popup.ui</file>
     <file>popup/notebook_create_popup.ui</file>
     <file>popup/note_create_popup.ui</file>

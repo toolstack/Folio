@@ -5,6 +5,7 @@ paper_sources = [
   'application.vala',
   'notebook_icon.vala',
   'note_card.vala',
+  'markdown_cheatsheet.vala',
   'popup/confirmation_popup.vala',
   'popup/notebook_create_popup.vala',
   'popup/note_create_popup.vala',

@@ -25,6 +25,10 @@ namespace Paper {
 			{ "new-notebook", on_new_notebook },
 			{ "edit-notebook", on_edit_notebook },
 			{ "delete-notebook", on_delete_notebook },
+			{ "format-bold", on_format_bold },
+			{ "format-italic", on_format_italic },
+			{ "format-strikethough", on_format_strikethough },
+			{ "markdown-cheatsheet", on_markdown_cheatsheet },
 			{ "about", on_about_action },
 			{ "preferences", on_preferences_action },
 			{ "quit", quit }
@@ -53,6 +57,10 @@ namespace Paper {
 
 			set_accels_for_action ("app.edit-note", {"<primary>e"});
 			set_accels_for_action ("app.edit-notebook", {"<primary><shift>e"});
+
+			set_accels_for_action ("app.format-bold", {"<primary>b"});
+			set_accels_for_action ("app.format-italic", {"<primary>i"});
+			set_accels_for_action ("app.format-strikethough", {"<primary>s"});
 		}
 
 		public override void activate () {
@@ -74,7 +82,28 @@ namespace Paper {
 
 		private void on_preferences_action () {
             var w = new PreferencesWindow (this);
+			w.transient_for = active_window;
             w.destroy_with_parent = true;
+            w.modal = true;
+            w.present ();
+		}
+
+		private void on_format_bold () {
+		    window.format_selection_bold ();
+		}
+
+		private void on_format_italic () {
+		    window.format_selection_italic ();
+		}
+
+		private void on_format_strikethough () {
+		    window.format_selection_strikethough ();
+		}
+
+		private void on_markdown_cheatsheet () {
+            var w = new MarkdownCheatsheet ();
+            w.destroy_with_parent = true;
+			w.transient_for = active_window;
             w.modal = true;
             w.present ();
 		}
@@ -192,6 +221,7 @@ namespace Paper {
 		        } else {
 		            window.toast ("Unknown error");
 		        }
+		        println (e.message);
 		    }
 		}
 
