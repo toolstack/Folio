@@ -12,10 +12,10 @@
 
   <color name="block"                       value="#eeeeee"/>
 
-  <color name="quote"                       value="#0de28e"/>
-  <color name="literal"                     value="#176744"/>
+  <color name="quote"                       value="#0ee463"/>
+  <color name="literal"                     value="#074228"/>
 
-  <color name="highlight"                   value="#fff4aa"/>
+  <color name="highlight"                   value="#9cffc4"/>
 
 
 	<style name="markdown:backslash-escape"   foreground="escape" bold="true"/>
@@ -34,7 +34,7 @@
 
 	<style name="markdown:label"              foreground="hyperlink_label"/>
 	<style name="markdown:link-text"          foreground="hyperlink_label"/>
-	<style name="markdown:url"                foreground="hyperlink"/>
+	<style name="markdown:url"                foreground="hyperlink" scale="0.7"/>
 
   <style name="markdown:emphasis"           italic="true"/>
   <style name="markdown:strong-emphasis"    bold="true"/>
@@ -63,6 +63,6 @@
   <style name="markdownpp:h5"               bold="true" scale="1.2"/>
   <style name="markdownpp:h6"               bold="true"/>
 
-  <style name="markdownpp:heading-hash"     foreground="fade" bold="false" scale="0.5"/>
+  <style name="markdownpp:heading-hash"     foreground="fade" bold="false" scale="0.4"/>
 </style-scheme>
 
