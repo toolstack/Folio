@@ -1,60 +1,62 @@
 
 namespace Color {
-    class HSL {
+    public struct HSL {
         public float h;
         public float s;
         public float l;
-
-        public HSL from_rgb (RGB rgb) {
-            float s, v;
-            Gtk.rgb_to_hsv(rgb.r, rgb.g, rgb.b, out h, out s, out v);
-            this.l = v - v * s / 2;
-            float m = float.min (l, 1 - l);
-            this.s = (m != 0) ? (v-l)/m : 0;
-            return this;
-        }
-
-        public inline HSL from_oklab (Oklab oklab) {
-            return from_rgb (new RGB ().from_oklab (oklab));
-        }
     }
 
-    class RGB {
+    public struct RGB {
         public float r;
         public float g;
         public float b;
-
-        public RGB from_hsl (HSL hsl) {
-            float v = hsl.s * float.min (hsl.l, 1 - hsl.l) + hsl.l;
-            float s = (v != 0) ? 2-2*hsl.l/v : 0;
-            Gtk.hsv_to_rgb(hsl.h, s, v, out r, out g, out b);
-            return this;
-        }
-
-        public RGB from_oklab (Oklab oklab) {
-            return this;
-        }
-
-        public RGB from_RGBA (Gdk.RGBA rgba) {
-            this.r = rgba.red;
-            this.g = rgba.green;
-            this.b = rgba.blue;
-            return this;
-        }
     }
 
-    class Oklab {
+    public struct Oklab {
         public double l;
         public double a;
         public double b;
+    }
 
-        public Oklab from_rgb (RGB rgb) {
-            return this;
-        }
+    public HSL rgb_to_hsl (RGB rgb, out HSL hsl = null) {
+        float s, v;
+        Gtk.rgb_to_hsv(rgb.r, rgb.g, rgb.b, out hsl.h, out s, out v);
+        hsl.l = v - v * s / 2;
+        float m = float.min (hsl.l, 1 - hsl.l);
+        hsl.s = (m != 0) ? (v-hsl.l)/m : 0;
+        return hsl;
+    }
 
-        public inline Oklab from_hsl (HSL hsl) {
-            return from_rgb (new RGB ().from_hsl (hsl));
-        }
+    public inline HSL oklab_to_hsl (Oklab oklab, out HSL hsl = null) {
+        var rgb = RGB ();
+        return rgb_to_hsl (oklab_to_rgb (oklab, out rgb), out hsl);
+    }
+
+    public RGB hsl_to_rgb (HSL hsl, out RGB rgb = null) {
+        float v = hsl.s * float.min (hsl.l, 1 - hsl.l) + hsl.l;
+        float s = (v != 0) ? 2-2*hsl.l/v : 0;
+        Gtk.hsv_to_rgb(hsl.h, s, v, out rgb.r, out rgb.g, out rgb.b);
+        return rgb;
+    }
+
+    public RGB oklab_to_rgb (Oklab oklab, out RGB rgb = null) {
+        return rgb;
+    }
+
+    public RGB RGBA_to_rgb (Gdk.RGBA rgba, out RGB rgb = null) {
+        rgb.r = rgba.red;
+        rgb.g = rgba.green;
+        rgb.b = rgba.blue;
+        return rgb;
+    }
+
+    public Oklab rgb_to_oklab (RGB rgb, out Oklab oklab = null) {
+        return oklab;
+    }
+
+    public inline Oklab hsl_to_oklab (HSL hsl, out Oklab oklab = null) {
+        var rgb = RGB ();
+        return rgb_to_oklab (hsl_to_rgb (hsl, out rgb), out oklab);
     }
 
     public float get_luminance (float r, float g, float b) {

@@ -23,22 +23,25 @@ namespace Paper {
 		    label.label = notebook.name.slice (0, 1);
 		    tooltip_text = notebook.name;
 
+		    recolor (notebook);
+		}
+
+		private void recolor (Notebook notebook) {
 	        var fg_rgba = Gdk.RGBA ();
 	        {
-                var rgb = new Color.RGB ().from_RGBA (notebook.color);
-                var hsl = new Color.HSL ().from_rgb (rgb);
+                var rgb = Color.RGBA_to_rgb (notebook.color);
+                var hsl = Color.rgb_to_hsl (rgb);
 	            var l = Color.get_luminance(rgb.r, rgb.g, rgb.b);
 	            var is_notebook_light = l > 0.7f;
 	            hsl.l = is_notebook_light ? 0.1f : 0.645f;
 	            hsl.s = 1.0f;
 	            var m = is_notebook_light ? 1.0f : 3.0f;
-                rgb.from_hsl (hsl);
+                Color.hsl_to_rgb (hsl, out rgb);
 	            fg_rgba.alpha = 1f;
 	            fg_rgba.red = rgb.r * m;
 	            fg_rgba.green = rgb.g * m;
 	            fg_rgba.blue = rgb.b * m;
 	        }
-
 			var css = new Gtk.CssProvider ();
 			css.load_from_data (@"@define-color notebook_color $(notebook.color);@define-color notebook_fg_color $fg_rgba;".data);
 			get_style_context ().add_provider (css, -1);

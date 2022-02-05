@@ -70,6 +70,8 @@ namespace Paper {
 			    text_view.get_style_context ().add_provider (css, -1);
 			}
 
+            set_notebook (null);
+
             var factory = new Gtk.SignalListItemFactory ();
             factory.setup.connect (list_item => {
                 var widget = new NotebookIcon (app);
@@ -95,42 +97,35 @@ namespace Paper {
 			}
 		}
 
+		private void recolor (Notebook? notebook) {
+            var rgba = Gdk.RGBA ();
+            var light_rgba = Gdk.RGBA ();
+            var rgb = (notebook == null) ? Color.RGB () : Color.RGBA_to_rgb (notebook.color);
+            var hsl = Color.rgb_to_hsl (rgb);
+            {
+                hsl.l = 0.5f;
+                Color.hsl_to_rgb (hsl, out rgb);
+                rgba.alpha = 1f;
+                rgba.red = rgb.r;
+                rgba.green = rgb.g;
+                rgba.blue = rgb.b;
+                hsl.l = 0.7f;
+                Color.hsl_to_rgb (hsl, out rgb);
+                light_rgba.alpha = 1f;
+                light_rgba.red = rgb.r;
+                light_rgba.green = rgb.g;
+                light_rgba.blue = rgb.b;
+            }
+            var css = new Gtk.CssProvider ();
+            css.load_from_data (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;".data);
+            Gtk.StyleContext.add_provider_for_display (display, css, -1);
+		}
+
 		public void set_notebook (Notebook? notebook) {
 		    if (notebook != null) {
 		        notebook.load ();
 		        notebook_title.title = notebook.name;
 		        //notebook_title.subtitle = @"$(notebook.get_n_items ()) notes";
-
-                {
-		            var rgba = Gdk.RGBA ();
-		            var light_rgba = Gdk.RGBA ();
-		            {
-                        var rgb = new Color.RGB ().from_RGBA (notebook.color);
-		                var hsl = new Color.HSL ().from_rgb (rgb);
-		                hsl.l = 0.5f;
-		                rgb.from_hsl (hsl);
-		                rgba.alpha = 1f;
-		                rgba.red = rgb.r;
-		                rgba.green = rgb.g;
-		                rgba.blue = rgb.b;
-                        hsl.l = 0.7f;
-		                rgb.from_hsl (hsl);
-                        light_rgba.alpha = 1f;
-                        light_rgba.red = rgb.r;
-                        light_rgba.green = rgb.g;
-                        light_rgba.blue = rgb.b;
-		            }
-		            {
-			            var css = new Gtk.CssProvider ();
-			            css.load_from_data (@"@define-color theme_color $rgba;".data);
-			            Gtk.StyleContext.add_provider_for_display (display, css, -1);
-			        }
-			        {
-		                var css = new Gtk.CssProvider ();
-		                css.load_from_data (@"@define-color notebook_light_color $light_rgba;".data);
-		                Gtk.StyleContext.add_provider_for_display (display, css, -1);
-			        }
-			    }
 
                 var factory = new Gtk.SignalListItemFactory ();
                 factory.setup.connect (list_item => {
@@ -158,10 +153,12 @@ namespace Paper {
 			        notebook_notes_model.selection_changed (0, 1);
 			    }
 		    }
+            recolor (notebook);
 		}
 
 		public void select_notebook (uint i) {
 		    notebooks_model.selected = i;
+		    this.notebooks_model.selection_changed (i, 1);
 		}
 
 		public void set_note (Note? note) {
