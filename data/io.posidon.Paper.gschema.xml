@@ -7,7 +7,7 @@
       <description>The font notes will be displayed in</description>
     </key>
     <key name="notes-dir" type="s">
-      <default>'Documents/Notes'</default>
+      <default>'.var/app/io.posidon.Paper/data'</default>
       <summary>Notes directory</summary>
       <description>Where the notebooks are stored</description>
     </key>
