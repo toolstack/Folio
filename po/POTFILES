@@ -1,5 +1,5 @@
 data/io.posidon.gnome.Notebook.desktop.in
-data/io.posidon.gnome.Notebook.appdata.xml.in
+data/io.posidon.gnome.Notebook.metainfo.xml.in
 data/io.posidon.gnome.Notebook.gschema.xml
 src/main.vala
 src/window.vala

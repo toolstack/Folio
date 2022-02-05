@@ -1,6 +1,15 @@
+conf = configuration_data()
+conf.set('app_id', app_id)
+
+desktop_conf = configure_file(
+  input: meson.project_name() + '.desktop.in',
+  output: '@0@.desktop.in'.format(app_id),
+  configuration: conf
+)
+
 desktop_file = i18n.merge_file(
-  input: 'io.posidon.Paper.desktop.in',
-  output: 'io.posidon.Paper.desktop',
+  input: desktop_conf,
+  output: '@0@.desktop'.format(app_id),
   type: 'desktop',
   po_dir: '../po',
   install: true,
@@ -14,9 +23,15 @@ if desktop_utils.found()
   )
 endif
 
+appstream_conf = configure_file(
+  input: meson.project_name() + '.metainfo.xml.in',
+  output: '@0@.metainfo.xml.in'.format(app_id),
+  configuration: conf
+)
+
 appstream_file = i18n.merge_file(
-  input: 'io.posidon.Paper.metainfo.xml.in',
-  output: 'io.posidon.Paper.metainfo.xml',
+  input: appstream_conf,
+  output: '@0@.appdata.xml'.format(app_id),
   po_dir: '../po',
   install: true,
   install_dir: join_paths(get_option('datadir'), 'metainfo')
@@ -25,11 +40,12 @@ appstream_file = i18n.merge_file(
 appstream_util = find_program('appstream-util', required: false)
 if appstream_util.found()
   test('Validate appstream file', appstream_util,
-    args: ['validate', appstream_file]
+    args: ['validate', '--nonet', appstream_file]
   )
 endif
 
-install_data('io.posidon.Paper.gschema.xml',
+install_data(
+  meson.project_name() + '.gschema.xml',
   install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
 )
 

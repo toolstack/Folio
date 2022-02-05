@@ -3,9 +3,10 @@ Type=Application
 Terminal=false
 Exec=io.posidon.Paper
 Name=Paper
-Keywords=notebook;note;school;paper;
-Icon=io.posidon.gnome.Notebook
-Categories=Notebook;School;Notes;
+
+Keywords=notebook;note;school;paper;text;markdown;notepad;post-it;sticky;notes;
+Icon=@app_id@
+Categories=GTK;Utility;
 StartupNotify=true
 Actions=NewNote;
 

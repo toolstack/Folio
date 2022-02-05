@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<component type="desktop">
-	<id>io.posidon.Paper.desktop</id>
-	<metadata_license>CC0-1.0</metadata_license>
-	<project_license>GPL-3.0-or-later</project_license>
-  <name>Paper</name>
+<component type="desktop-application">
+	<id>@app_id@</id>
+  <name translatable="no">Paper</name>
   <summary>Note-taking app</summary>
 	<description>
-	  <p>No description</p>
+	  <p>Create notebooks, take notes in markdown</p>
 	</description>
-  <launchable type="desktop-id">io.posidon.Paper.desktop</launchable>
-  <developer_name>posidon</developer_name>
-  <kudos>
-    <kudo>libadwaita</kudo>
-  </kudos>
+
+  <launchable type="desktop-id">@app_id@.desktop</launchable>
+
+  <releases>
+    <release version="22" date="2022-02-05" />
+  </releases>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://posidon.io/paper/screenshot/recursos-retoricos.png</image>
+      <caption>Markdown document</caption>
+    </screenshot>
+  </screenshots>
+
+	<metadata_license>CC0-1.0</metadata_license>
+	<project_license>GPL-3.0+</project_license>
+  <content_rating type="oars-1.1"/>
+
+  <developer_name translatable="no">Zagura</developer_name>
+  <project_group translatable="no">posidon</project_group>
+
+  <url type="homepage">https://gitlab.com/posidon_software/paper/</url>
+  <url type="bugtracker">https://gitlab.com/posidon_software/paper/issues</url>
+
+  <translation type="gettext">@app_id@</translation>
 </component>

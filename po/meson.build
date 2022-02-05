@@ -1,1 +1,1 @@
-i18n.gettext('paper', preset: 'glib')
+i18n.gettext(app_id, preset: 'glib')
