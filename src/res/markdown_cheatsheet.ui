@@ -6,18 +6,38 @@
     <property name="default-width">500</property>
     <property name="default-height">440</property>
     <child>
-      <object class="GtkWindowHandle">
-        <property name="hexpand">0</property>
-        <property name="vexpand">1</property>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
         <child>
           <object class="AdwHeaderBar">
             <property name="hexpand">1</property>
             <property name="vexpand">0</property>
             <property name="visible">1</property>
             <property name="valign">start</property>
-            <style>
-              <class name="flat"/>
-            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="hexpand">1</property>
+            <property name="vexpand">1</property>
+            <child>
+              <object class="GtkSourceView" id="text_view">
+                <property name="tab-width">4</property>
+                <property name="auto-indent">true</property>
+                <property name="wrap-mode">word-char</property>
+                <property name="bottom-margin">18</property>
+                <property name="left-margin">18</property>
+                <property name="right-margin">18</property>
+                <property name="top-margin">18</property>
+                <property name="hexpand">1</property>
+                <property name="vexpand">1</property>
+                <property name="editable">0</property>
+                <property name="cursor_visible">0</property>
+                <style>
+                  <class name="note-font"/>
+                </style>
+              </object>
+            </child>
           </object>
         </child>
       </object>

@@ -20,12 +20,25 @@ namespace Paper {
 	[GtkTemplate (ui = "/io/posidon/Paper/markdown_cheatsheet.ui")]
 	public class MarkdownCheatsheet : Adw.Window {
 
+        [GtkChild]
+        GtkSource.View text_view;
 
 		public MarkdownCheatsheet () {
 			Object (
 			    title: "Markdown cheatsheet",
 			    icon_name: Config.APP_ID
 		    );
+
+            var language = GtkSource.LanguageManager.get_default ().get_language ("markdownpp");
+	        var scheme = new GtkSource.StyleSchemeManager ().get_scheme ("paper");
+
+            var buffer = new GtkSource.Buffer.with_language (language);
+            buffer.style_scheme = scheme;
+            buffer.text = (string) resources_lookup_data (
+                "/io/posidon/Paper/markdown_cheatsheet.md",
+                ResourceLookupFlags.NONE
+            ).get_data ();
+            text_view.buffer = buffer;
 		}
 	}
 }
