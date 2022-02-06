@@ -122,26 +122,31 @@ row.activatable:hover .notebook label {
 }
 
 .notebook-sidebar listview row > box {
+  transition: box-shadow .4s, background-color .3s;
   padding: 16px 15px;
 }
 
 .notebook-sidebar listview row:hover:not(:selected):not(:active) > box {
+  transition: box-shadow .2s, background-color .1s;
   background-color: rgba(0, 0, 0, .05);
 }
 
 .notebook-sidebar listview row:active > box {
+  transition: box-shadow .3s, background-color .3s;
   background-color: rgba(0, 0, 0, .12);
 }
 
 .notebook-sidebar listview row:selected > box {
+  transition: box-shadow .2s, background-color 0;
   background-color: @card_bg_color;
   color: @card_fg_color;
   box-shadow:
-    0 3px  8px 1px  alpha(@card_shade_color, 0.03),
-    0 -1px 2px -1px @borders,
-    0 1px  1px 0    @borders;
+    0 1px  4px 2px  alpha(@card_shade_color, 0.05),
+    0 -1px 3px -1px @borders,
+    0 1px 3px -1px @borders,
+    0 1px 0 0    alpha(@borders, 0.5),
+    inset 0  1px #fff;
 }
-
 
 /*
  *

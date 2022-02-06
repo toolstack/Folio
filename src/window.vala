@@ -57,8 +57,7 @@ namespace Paper {
 		    );
 
             {
-                var image = new Gtk.Image.from_resource ("/io/posidon/Paper/graphics/format-text-highlight-symbolic.svg");
-		        button_format_highlight.child = image;
+                Gtk.IconTheme.get_for_display (display).add_resource_path ("/io/posidon/Paper/graphics/");
             }
 
 		    var settings = new Settings (Config.APP_ID);

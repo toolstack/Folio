@@ -154,7 +154,7 @@
                         </child>
                         <child type="start">
                           <object class="GtkButton" id="button_format_highlight">
-                            <property name="has_frame">false</property>
+                            <property name="icon-name">format-text-highlight-symbolic</property>
                             <property name="tooltip_text">Highlight</property>
                             <property name="action_name">app.format-highlight</property>
                           </object>
