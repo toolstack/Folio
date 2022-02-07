@@ -21,7 +21,7 @@ namespace Paper {
 	public class MarkdownCheatsheet : Adw.Window {
 
         [GtkChild]
-        GtkSource.View text_view;
+        unowned GtkSource.View text_view;
 
 		public MarkdownCheatsheet () {
 			Object (

@@ -7,12 +7,18 @@ namespace Paper {
             get { return _notebooks; }
         }
 
+        public override Trash trash {
+            get { return _trash; }
+        }
+
+        Trash _trash;
         ArrayList<Notebook> _notebooks = new ArrayList<Notebook> ();
 
         public string notes_dir;
 
         public LocalProvider.from_directory (string notes_dir) throws ProviderError {
             this.notes_dir = notes_dir;
+            this._trash = new LocalTrash (this);
 
             var file = File.new_for_path (notes_dir);
 
@@ -84,10 +90,33 @@ namespace Paper {
             if (!file.query_exists ()) {
                 throw new ProviderError.COULDNT_DELETE (@"Couldn't delete notebook at $path");
             }
-            try {
+            var enumerator = file.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+            bool can_delete = false;
+            var file_info = enumerator.next_file ();
+            if (file_info != null) {
+                if (file_info.get_name () == ".color") {
+                    if (enumerator.next_file () == null) {
+                        enumerator.get_child (file_info).@delete ();
+                        can_delete = true;
+                    }
+                }
+            } else can_delete = true;
+            if (can_delete) try {
+                message (@"$(enumerator.has_pending ()) $can_delete aaa");
                 file.@delete ();
             } catch (Error e) {
+                message (e.message);
                 throw new ProviderError.COULDNT_DELETE (@"Couldn't delete notebook at $path");
+            }
+            else {
+                var trashed_path = @"$(notes_dir)/.trash/$(notebook.name)";
+                try {
+                    var trashed_file = File.new_for_path (trashed_path);
+                    file.move (trashed_file, FileCopyFlags.OVERWRITE);
+                    trash.unload ();
+                } catch (Error e) {
+                    throw new ProviderError.COULDNT_DELETE (@"Couldn't move notebook from $path, to $trashed_path");
+                }
             }
 	        int i = _notebooks.index_of (notebook);
 	        _notebooks.remove_at (i);
@@ -103,11 +132,7 @@ namespace Paper {
         }
 
         public Object? get_item (uint i) {
-            if (i >= _notebooks.size || i < 0) {
-                stderr.printf (@"Index out of bounds of \"_notebooks\": $i for [0..$(_notebooks.size))\n");
-                return null;
-            }
-            return _notebooks.@get((int) i);
+            return (i >= _notebooks.size) ? null : _notebooks.@get((int) i);
         }
 
         private void list_directory (string notes_dir) {

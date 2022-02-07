@@ -24,38 +24,47 @@
                         <property name="hexpand">0</property>
                         <property name="vexpand">1</property>
                         <child>
-                          <object class="GtkScrolledWindow">
-                            <property name="hexpand">0</property>
-                            <property name="vexpand">1</property>
-                            <property name="vscrollbar_policy">external</property>
-                            <property name="hscrollbar_policy">never</property>
+                          <object class="GtkBox">
+                            <property name="orientation">vertical</property>
                             <child>
-                              <object class="GtkBox">
-                                <property name="orientation">vertical</property>
+                              <object class="GtkMenuButton">
+                                <property name="icon-name">open-menu-symbolic</property>
+                                <property name="menu-model">primary_menu</property>
                                 <property name="hexpand">0</property>
                                 <property name="vexpand">0</property>
-                                <child>
-                                  <object class="GtkMenuButton">
-                                    <property name="icon-name">open-menu-symbolic</property>
-                                    <property name="menu-model">primary_menu</property>
-                                    <property name="hexpand">0</property>
-                                    <property name="vexpand">0</property>
-                                    <style>
-                                      <class name="flat"/>
-                                    </style>
-                                  </object>
-                                </child>
+                                <style>
+                                  <class name="flat"/>
+                                </style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkScrolledWindow">
+                                <property name="hexpand">0</property>
+                                <property name="vexpand">1</property>
+                                <property name="vscrollbar_policy">external</property>
+                                <property name="hscrollbar_policy">never</property>
                                 <child>
                                   <object class="GtkListView" id="notebooks_list">
                                     <property name="hexpand">0</property>
                                     <property name="vexpand">1</property>
                                   </object>
                                 </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkToggleButton" id="trash_button">
+                                <property name="icon-name">user-trash-symbolic</property>
+                                <property name="hexpand">0</property>
+                                <property name="vexpand">0</property>
                                 <style>
-                                  <class name="notebooks-bar"/>
+                                  <class name="flat"/>
+                                  <class name="trash-button"/>
                                 </style>
                               </object>
                             </child>
+                            <style>
+                              <class name="notebooks-bar"/>
+                            </style>
                           </object>
                         </child>
                       </object>
@@ -77,19 +86,24 @@
                               </object>
                             </child>
                             <child type="start">
-                              <object class="GtkButton">
-                                <property name="halign">center</property>
+                              <object class="GtkButton" id="button_edit_notebook">
                                 <property name="icon-name">document-edit-symbolic</property>
                                 <property name="action_name">app.edit-notebook</property>
                                 <property name="tooltip_text">Edit Notebook</property>
                               </object>
                             </child>
                             <child type="end">
-                              <object class="GtkButton">
-                                <property name="halign">center</property>
+                              <object class="GtkButton" id="button_create_note">
                                 <property name="icon-name">list-add-symbolic</property>
                                 <property name="action_name">app.new-note</property>
                                 <property name="tooltip_text">New Note</property>
+                              </object>
+                            </child>
+                            <child type="end">
+                              <object class="GtkButton" id="button_empty_trash">
+                                <property name="icon-name">empty-trash-symbolic</property>
+                                <property name="action_name">app.empty-trash</property>
+                                <property name="tooltip_text">Empty Trash</property>
                               </object>
                             </child>
                           </object>
@@ -132,35 +146,39 @@
                           </object>
                         </child>
                         <child type="start">
-                          <object class="GtkButton">
-                            <property name="icon-name">format-text-bold-symbolic</property>
-                            <property name="tooltip_text">Bold</property>
-                            <property name="action_name">app.format-bold</property>
-                          </object>
-                        </child>
-                        <child type="start">
-                          <object class="GtkButton">
-                            <property name="icon-name">format-text-italic-symbolic</property>
-                            <property name="tooltip_text">Italic</property>
-                            <property name="action_name">app.format-italic</property>
-                          </object>
-                        </child>
-                        <child type="start">
-                          <object class="GtkButton">
-                            <property name="icon-name">format-text-strikethrough-symbolic</property>
-                            <property name="tooltip_text">Strikethrough</property>
-                            <property name="action_name">app.format-strikethough</property>
-                          </object>
-                        </child>
-                        <child type="start">
-                          <object class="GtkButton" id="button_format_highlight">
-                            <property name="icon-name">format-text-highlight-symbolic</property>
-                            <property name="tooltip_text">Highlight</property>
-                            <property name="action_name">app.format-highlight</property>
+                          <object class="GtkBox" id="format_box">
+                            <child>
+                              <object class="GtkButton">
+                                <property name="icon-name">format-text-bold-symbolic</property>
+                                <property name="tooltip_text">Bold</property>
+                                <property name="action_name">app.format-bold</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="icon-name">format-text-italic-symbolic</property>
+                                <property name="tooltip_text">Italic</property>
+                                <property name="action_name">app.format-italic</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="icon-name">format-text-strikethrough-symbolic</property>
+                                <property name="tooltip_text">Strikethrough</property>
+                                <property name="action_name">app.format-strikethough</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton" id="button_format_highlight">
+                                <property name="icon-name">format-text-highlight-symbolic</property>
+                                <property name="tooltip_text">Highlight</property>
+                                <property name="action_name">app.format-highlight</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                         <child type="end">
-                          <object class="GtkButton">
+                          <object class="GtkButton" id="button_markdown_cheatsheet">
                             <property name="icon-name">dialog-information-symbolic</property>
                             <property name="tooltip_text">Markdown cheatsheet</property>
                             <property name="action_name">app.markdown-cheatsheet</property>

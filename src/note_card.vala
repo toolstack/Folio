@@ -6,7 +6,14 @@ namespace Paper {
 		[GtkChild]
 		unowned Gtk.Label label;
 
-		public NoteCard () {
+		[GtkChild]
+		unowned Gtk.Label subtitle;
+
+		private bool is_in_trash;
+
+		public NoteCard (bool is_in_trash) {
+		    this.is_in_trash = is_in_trash;
+		    subtitle.visible = is_in_trash;
 		    var long_press = new Gtk.GestureLongPress ();
 		    long_press.pressed.connect (show_popup);
 		    add_controller (long_press);
@@ -23,6 +30,7 @@ namespace Paper {
 		public void set_note (Note note) {
 		    this.note = note;
 		    label.label = note.name;
+		    subtitle.label = note.notebook.name;
 		    tooltip_text = note.name;
 		}
 
@@ -34,7 +42,7 @@ namespace Paper {
 		    if (current_popover != null) {
 		        current_popover.popdown();
 		    }
-		    var popover = new NoteMenuPopover (get_app (), note);
+		    var popover = new NoteMenuPopover (get_app (), note, is_in_trash);
 		    popover.closed.connect (() => {
 		        current_popover.unparent ();
 		        current_popover = null;

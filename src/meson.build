@@ -14,9 +14,13 @@ paper_sources = [
   'interface/note.vala',
   'interface/notebook.vala',
   'interface/provider.vala',
+  'interface/trash.vala',
   'interface/local/note.vala',
   'interface/local/provider.vala',
   'interface/local/notebook.vala',
+  'interface/local/trash/trash.vala',
+  'interface/local/trash/trashed_note.vala',
+  'interface/local/trash/trashed_notebook.vala',
   'color.vala',
 ]
 

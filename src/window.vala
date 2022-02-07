@@ -25,6 +25,9 @@ namespace Paper {
 
 		Gtk.SingleSelection notebooks_model;
 
+		[GtkChild]
+		unowned Gtk.ToggleButton trash_button;
+
 
 		[GtkChild]
 		unowned Adw.WindowTitle notebook_title;
@@ -34,6 +37,18 @@ namespace Paper {
 
 		Gtk.SingleSelection notebook_notes_model;
 
+		[GtkChild]
+		unowned Gtk.Button button_edit_notebook;
+
+		[GtkChild]
+		unowned Gtk.Button button_create_note;
+
+		[GtkChild]
+		unowned Gtk.Button button_empty_trash;
+
+		[GtkChild]
+		unowned Gtk.Button button_markdown_cheatsheet;
+
 
 		[GtkChild]
 		unowned Adw.WindowTitle note_title;
@@ -42,11 +57,16 @@ namespace Paper {
 		unowned Gtk.Button button_format_highlight;
 
 		[GtkChild]
+		unowned Gtk.Box format_box;
+
+		[GtkChild]
 		unowned GtkSource.View text_view;
 
 
 		[GtkChild]
 		unowned Adw.ToastOverlay toast_overlay;
+
+		public bool is_editable = false;
 
 
 		public Window (Application app) {
@@ -56,9 +76,7 @@ namespace Paper {
 			    icon_name: Config.APP_ID
 		    );
 
-            {
-                Gtk.IconTheme.get_for_display (display).add_resource_path ("/io/posidon/Paper/graphics/");
-            }
+            Gtk.IconTheme.get_for_display (display).add_resource_path ("/io/posidon/Paper/graphics/");
 
 		    var settings = new Settings (Config.APP_ID);
 			var note_font = settings.get_string ("note-font");
@@ -84,9 +102,15 @@ namespace Paper {
             this.notebooks_model = new Gtk.SingleSelection (
                 app.notebook_provider
             );
-			this.notebooks_model.selection_changed.connect ((i, n) => {
-			    var notebook = app.notebook_provider.notebooks[(int) notebooks_model.selected];
-			    app.set_active_notebook (notebook);
+            this.notebooks_model.can_unselect = true;
+			this.notebooks_model.selection_changed.connect (() => {
+			    uint i = notebooks_model.selected;
+			    var notebooks = app.notebook_provider.notebooks;
+			    if (i <= notebooks.size) {
+			        var notebook = notebooks[(int) i];
+			        app.set_active_notebook (notebook);
+			        trash_button.active = false;
+			    }
 			});
 			notebooks_list.factory = factory;
 			notebooks_list.model = notebooks_model;
@@ -94,41 +118,35 @@ namespace Paper {
 			if (app.notebook_provider.notebooks.size != 0) {
 			    notebooks_model.selection_changed (0, 1);
 			}
-		}
 
-		private void recolor (Notebook? notebook) {
-            var rgba = Gdk.RGBA ();
-            var light_rgba = Gdk.RGBA ();
-            var rgb = (notebook == null) ? Color.RGB () : Color.RGBA_to_rgb (notebook.color);
-            var hsl = Color.rgb_to_hsl (rgb);
-            {
-                hsl.l = 0.5f;
-                Color.hsl_to_rgb (hsl, out rgb);
-                rgba.alpha = 1f;
-                rgba.red = rgb.r;
-                rgba.green = rgb.g;
-                rgba.blue = rgb.b;
-                hsl.l = 0.7f;
-                Color.hsl_to_rgb (hsl, out rgb);
-                light_rgba.alpha = 1f;
-                light_rgba.red = rgb.r;
-                light_rgba.green = rgb.g;
-                light_rgba.blue = rgb.b;
-            }
-            var css = new Gtk.CssProvider ();
-            css.load_from_data (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;".data);
-            Gtk.StyleContext.add_provider_for_display (display, css, -1);
+			trash_button.toggled.connect (() => {
+		        trash_button.sensitive = !trash_button.active;
+			    if (trash_button.active) {
+			        notebooks_model.unselect_item (notebooks_model.selected);
+
+			        // will call set_notebook (null) as a side effect
+			        app.set_active_notebook (null);
+
+			        set_trash (app.notebook_provider.trash);
+			    }
+			});
 		}
 
 		public void set_notebook (Notebook? notebook) {
+		    is_editable = notebook != null;
+		    text_view.sensitive = is_editable;
+            recolor (notebook);
+            button_edit_notebook.visible = notebook != null;
+            button_create_note.visible = notebook != null;
+            button_empty_trash.visible = false;
 		    if (notebook != null) {
 		        notebook.load ();
 		        notebook_title.title = notebook.name;
-		        //notebook_title.subtitle = @"$(notebook.get_n_items ()) notes";
+		        notebook_title.subtitle = null;
 
                 var factory = new Gtk.SignalListItemFactory ();
                 factory.setup.connect (list_item => {
-                    var widget = new NoteCard ();
+                    var widget = new NoteCard (false);
                     widget.set_window (this);
                     list_item.child = widget;
                 });
@@ -140,8 +158,9 @@ namespace Paper {
                 this.notebook_notes_model = new Gtk.SingleSelection (
                     notebook
                 );
-			    this.notebook_notes_model.selection_changed.connect ((i, n) => {
-			        var note = notebook.loaded_notes[(int) notebook_notes_model.selected];
+			    this.notebook_notes_model.selection_changed.connect (() => {
+		            var i = notebook_notes_model.selected;
+			        var note = notebook.loaded_notes[(int) i];
                     var app = application as Application;
 			        app.set_active_note (note);
 			    });
@@ -151,8 +170,10 @@ namespace Paper {
 			    if (notebook.loaded_notes.size != 0) {
 			        notebook_notes_model.selection_changed (0, 1);
 			    }
+		    } else {
+			    notebook_notes_list.factory = null;
+			    notebook_notes_list.model = null;
 		    }
-            recolor (notebook);
 		}
 
 		public void select_notebook (uint i) {
@@ -161,12 +182,16 @@ namespace Paper {
 		}
 
 		public void set_note (Note? note) {
+	        format_box.visible = note != null && is_editable;
+	        button_markdown_cheatsheet.visible = note != null && is_editable;
 		    if (note != null) {
 		        note_title.title = note.name;
 		        text_view.show ();
 		        text_view.buffer = note.text;
 		    } else {
+		        note_title.title = null;
 		        text_view.hide ();
+		        text_view.buffer = null;
 	        }
 		}
 
@@ -213,6 +238,64 @@ namespace Paper {
 		    b.get_iter_at_mark (out iter, mark);
 		    b.insert (ref iter, "==", 2);
 		    b.insert_at_cursor ("==", 2);
+		}
+
+		private void set_trash (Trash trash) {
+	        trash.load ();
+	        notebook_title.title = "Trash";
+	        notebook_title.subtitle = @"$(trash.get_n_items ()) notes";
+            button_empty_trash.visible = true;
+
+            var factory = new Gtk.SignalListItemFactory ();
+            factory.setup.connect (list_item => {
+                var widget = new NoteCard (true);
+                widget.set_window (this);
+                list_item.child = widget;
+            });
+            factory.bind.connect (list_item => {
+                var widget = list_item.child as NoteCard;
+                var item = list_item.item as Note;
+                widget.set_note (item);
+            });
+            this.notebook_notes_model = new Gtk.SingleSelection (
+                trash
+            );
+		    this.notebook_notes_model.selection_changed.connect (() => {
+		        var i = notebook_notes_model.selected;
+                var app = application as Application;
+	            var note = trash.loaded_notes[(int) i];
+	            app.set_active_note (note);
+		    });
+		    notebook_notes_list.factory = factory;
+		    notebook_notes_list.model = notebook_notes_model;
+
+		    if (trash.loaded_notes.size != 0) {
+		        notebook_notes_model.selection_changed (0, 1);
+		    }
+		}
+
+		private void recolor (Notebook? notebook) {
+            var rgba = Gdk.RGBA ();
+            var light_rgba = Gdk.RGBA ();
+            var rgb = (notebook == null) ? Color.RGB () : Color.RGBA_to_rgb (notebook.color);
+            var hsl = Color.rgb_to_hsl (rgb);
+            {
+                hsl.l = 0.5f;
+                Color.hsl_to_rgb (hsl, out rgb);
+                rgba.alpha = 1f;
+                rgba.red = rgb.r;
+                rgba.green = rgb.g;
+                rgba.blue = rgb.b;
+                hsl.l = 0.7f;
+                Color.hsl_to_rgb (hsl, out rgb);
+                light_rgba.alpha = 1f;
+                light_rgba.red = rgb.r;
+                light_rgba.green = rgb.g;
+                light_rgba.blue = rgb.b;
+            }
+            var css = new Gtk.CssProvider ();
+            css.load_from_data (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;".data);
+            Gtk.StyleContext.add_provider_for_display (display, css, -1);
 		}
 	}
 }

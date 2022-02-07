@@ -51,6 +51,10 @@ namespace Paper {
             }
         }
 
+        public void unload () {
+            _loaded_notes = null;
+        }
+
         public void change (LocalProvider provider, string name, Gdk.RGBA color) {
             this.provider = provider;
             this._name = name;
@@ -106,10 +110,18 @@ namespace Paper {
             if (!file.query_exists ()) {
                 throw new ProviderError.COULDNT_DELETE (@"Couldn't delete note at $path");
             }
+            var trashed_dir_path = @"$(provider.notes_dir)/.trash/$(n.notebook.name)";
+            var trashed_path = @"$trashed_dir_path/$(n.name)";
             try {
-                file.@delete ();
+                var trashed_dir = File.new_for_path (trashed_dir_path);
+                if (!trashed_dir.query_exists ()) {
+                    trashed_dir.make_directory_with_parents ();
+                }
+                var trashed_file = File.new_for_path (trashed_path);
+                file.move (trashed_file, FileCopyFlags.OVERWRITE);
+                provider.trash.unload ();
             } catch (Error e) {
-                throw new ProviderError.COULDNT_DELETE (@"Couldn't delete note at $path");
+                throw new ProviderError.COULDNT_DELETE (@"Couldn't move note from $path, to $trashed_path");
             }
 	        int i = _loaded_notes.index_of (note);
 	        _loaded_notes.remove_at (i);
@@ -127,11 +139,7 @@ namespace Paper {
 
         public Object? get_item (uint i) {
             check_notes_loaded ();
-            if (i >= _loaded_notes.size || i < 0) {
-                stderr.printf (@"Index out of bounds of \"_loaded_notes\": $i for [0..$(_loaded_notes.size))\n");
-                return null;
-            }
-            return _loaded_notes.@get((int) i);
+            return (i >= _loaded_notes.size) ? null : _loaded_notes.@get((int) i);
         }
 
         private inline void check_notes_loaded () {

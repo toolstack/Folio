@@ -8,6 +8,7 @@ namespace Paper {
         public abstract Gee.List<Note>? loaded_notes { get; }
 
         public abstract void load ();
+        public abstract void unload ();
 
         public abstract Note new_note (string name) throws ProviderError;
         public abstract void change_note (Note note, string name) throws ProviderError;

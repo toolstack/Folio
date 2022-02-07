@@ -2,17 +2,24 @@
   <template class="PaperNoteMenuPopover" parent="GtkPopover">
     <child>
       <object class="GtkBox">
-        <style>
-          <class name="menu"/>
-        </style>
         <property name="orientation">horizontal</property>
+        <child>
+          <object class="GtkButton" id="button_recover">
+            <property name="label">Recover</property>
+            <property name="icon-name">restore-from-trash-symbolic</property>
+            <property name="tooltip_text">Recover Note</property>
+            <style>
+              <class name="flat"/>
+            </style>
+          </object>
+        </child>
         <child>
           <object class="GtkButton" id="button_edit">
             <property name="label">Rename</property>
             <property name="icon-name">document-edit-symbolic</property>
             <property name="tooltip_text">Edit Note</property>
             <style>
-              <class name ="flat"/>
+              <class name="flat"/>
             </style>
           </object>
         </child>
@@ -22,10 +29,13 @@
             <property name="icon-name">user-trash-symbolic</property>
             <property name="tooltip_text">Delete Note</property>
             <style>
-              <class name ="flat"/>
+              <class name="flat"/>
             </style>
           </object>
         </child>
+        <style>
+          <class name="linked"/>
+        </style>
       </object>
     </child>
   </template>

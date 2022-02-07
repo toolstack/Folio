@@ -30,6 +30,7 @@ namespace Paper {
 			{ "format-strikethough", on_format_strikethough },
 			{ "format-highlight", on_format_highlight },
 			{ "markdown-cheatsheet", on_markdown_cheatsheet },
+			{ "empty-trash", on_empty_trash },
 			{ "about", on_about_action },
 			{ "preferences", on_preferences_action },
 			{ "quit", quit }
@@ -112,6 +113,16 @@ namespace Paper {
 			w.transient_for = active_window;
             w.modal = true;
             w.present ();
+		}
+
+		private void on_empty_trash () {
+			var popup = new ConfirmationPopup (
+			    @"Are you sure you want to delete everything in the trash?",
+			    "Empty trash",
+			    () => notebook_provider.trash.delete_all ()
+		    );
+			popup.transient_for = active_window;
+			popup.present ();
 		}
 
 		private void on_new_note () {
@@ -243,6 +254,20 @@ namespace Paper {
 		    }
 		}
 
+		public void try_restore_note (Note note) {
+			try {
+		        notebook_provider.trash.restore_note (note);
+		    } catch (ProviderError e) {
+		        if (e is ProviderError.COULDNT_MOVE) {
+		            window.toast (@"Couldn't restore note");
+		        } else if (e is ProviderError.ALREADY_EXISTS) {
+		            window.toast (@"Note called '$(note.name)' already exists in notebook '$(note.notebook.name)'");
+		        } else {
+		            window.toast ("Unknown error");
+		        }
+		    }
+		}
+
 		public void try_create_notebook (string name, Gdk.RGBA color) {
 		    if (name.contains (".") || name.contains ("/")) {
 	            window.toast (@"Notebook name shouldn't contain '.' or '/'");
@@ -295,9 +320,13 @@ namespace Paper {
 
 		public void set_active_notebook (Notebook? notebook) {
 		    if (active_notebook == notebook) return;
+		    var old_notebook = active_notebook;
 		    set_active_note (null);
 		    active_notebook = notebook;
 	        window.set_notebook (notebook);
+	        if (old_notebook != null) {
+		        old_notebook.unload ();
+		    }
 		}
 
 		public void select_notebook (Notebook notebook) {
@@ -308,7 +337,7 @@ namespace Paper {
 		public void set_active_note (Note? note) {
 		    if (current_note == note) return;
 		    if (current_note != null) {
-		        current_note.save ();
+		        if (window.is_editable) current_note.save ();
 		        current_note.unload ();
 		    }
 	        current_note = note;
