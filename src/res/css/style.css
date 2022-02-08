@@ -80,8 +80,21 @@ listview {
 }
 
 .notebook {
-  background-image: linear-gradient(mix(@notebook_color, #fff, 0.2), @notebook_color);
-  border-radius: 3px;
+  transition: transform .2s, box-shadow .2s;
+  background-image:
+    linear-gradient(
+      mix(@notebook_color, #fff, 0.25) 0%,
+      mix(@notebook_color, #fff, 0.1) 50%,
+      alpha(mix(@notebook_color, #fff, 0.05), 0.6) 75%,
+      alpha(@notebook_color, 0) 100%
+    ),
+    radial-gradient(shade(mix(@notebook_color, #fff, 0.2), 1) 30%, transparent 31%),
+    radial-gradient(shade(mix(@notebook_color, #fff, 0.28), 1) 30%, transparent 31%),
+    linear-gradient(mix(@notebook_color, #fff, 0.2), @notebook_color);
+  background-position: 0 0, 0 0, 2px 2px, 0 0;
+  background-size: auto auto, 4px 4px, 4px 4px, auto auto;
+
+  border-radius: 0 3px 3px 0;
 
   min-width: 26px;
   min-height: 34px;
@@ -89,17 +102,16 @@ listview {
   color: @notebook_fg_color;
 
   box-shadow:
-    inset 125px 0 0 -120px rgba(0, 0, 0, .2),
+    inset 0 0px 0px .5px rgba(255, 255, 255, 0.2),
+    inset 0 .5px 0px 0px rgba(255, 255, 255, 0.2),
 
-    inset 0 0px 0px 1px rgba(255, 255, 255, 0.1),
-    inset 0 1px 0px 0px rgba(255, 255, 255, 0.2),
+    inset 0 -2px 0px 0px #f0f3f8,
 
-    inset 0 -3px 0px 0px rgba(0, 0, 0, 0.1),
-    inset 0 -2px 0px 0px #f6f5f4,
+    inset 1px 0 0 0 shade(@notebook_color, 0.8),
+    inset 0 -3px 0px 0px rgba(0, 0, 0, 0.2),
 
-    0 0px 2px 0px rgba(0, 0, 0, .1),
-    0 6px 7px -2px rgba(0, 0, 0, .2),
-    0 4px 8px 2px rgba(0, 0, 0, .2);
+    0 1px 3px 1px rgba(0, 0, 0, .1),
+    0 1px 1px 0px rgba(0, 0, 0, .2);
 }
 
 .notebooks-bar > .trash-button image {
@@ -107,8 +119,8 @@ listview {
 }
 
 .notebook > label {
-  margin-left: 3px;
-  margin-bottom: 1px;
+  margin-left: 1px;
+  margin-bottom: 2px;
   text-shadow:
     0 0px 1px rgba(0, 0, 0, .2),
     0 1px 1px rgba(0, 0, 0, .3);
@@ -116,20 +128,19 @@ listview {
   font-weight: 700;
 }
 
-.notebook {
-  transition: transform .2s;
-}
-.notebook > label {
-  transition: transform .22s;
-}
-
 row.activatable:hover .notebook {
   transform: scale(1.16, 1.16);
-}
+  box-shadow:
+    inset 0 0px 0px .5px rgba(255, 255, 255, 0.2),
+    inset 0 .5px 0px 0px rgba(255, 255, 255, 0.2),
 
-.notebooks-bar > .trash-button:hover image,
-row.activatable:hover .notebook > label {
-  transform: scale(1.16, 1.16);
+    inset 0 -2px 0px 0px #f0f3f8,
+
+    inset 1px 0 0 0 shade(@notebook_color, 0.8),
+    inset 0 -3px 0px 0px rgba(0, 0, 0, 0.2),
+
+    0 7px 7px -4px rgba(0, 0, 0, .3),
+    0 4px 8px 2px rgba(0, 0, 0, .0);
 }
 
 

@@ -17,6 +17,7 @@
         <property name="halign">start</property>
         <style>
           <class name="caption"/>
+          <class name="dim-label"/>
         </style>
       </object>
     </child>

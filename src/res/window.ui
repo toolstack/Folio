@@ -156,6 +156,7 @@
                         </child>
                         <child type="start">
                           <object class="GtkBox" id="format_box">
+                            <property name="orientation">horizontal</property>
                             <child>
                               <object class="GtkButton">
                                 <property name="icon-name">format-text-bold-symbolic</property>
@@ -184,6 +185,9 @@
                                 <property name="action_name">app.format-highlight</property>
                               </object>
                             </child>
+                            <style>
+                              <class name="toolbar"/>
+                            </style>
                           </object>
                         </child>
                         <child type="end">
@@ -230,30 +234,8 @@
   <menu id="primary_menu">
     <section>
       <item>
-        <attribute name="label" translatable="yes">_New Note</attribute>
-        <attribute name="action">app.new-note</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Edit Note</attribute>
-        <attribute name="action">app.edit-note</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Delete Note</attribute>
-        <attribute name="action">app.delete-note</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
         <attribute name="label" translatable="yes">_New Notebook</attribute>
         <attribute name="action">app.new-notebook</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Edit Notebook</attribute>
-        <attribute name="action">app.edit-notebook</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Delete Notebook</attribute>
-        <attribute name="action">app.delete-notebook</attribute>
       </item>
     </section>
     <section>
