@@ -23,18 +23,26 @@ namespace Paper {
                 button_create.label = "Apply";
 		        button_color.rgba = notebook.color;
 		        entry.text = notebook.name;
-                button_create.clicked.connect (() => {
-			        var name = entry.text;
-			        var color = button_color.rgba;
-			        close ();
-			        app.try_change_notebook (notebook, name, color);
-			    });
-            } else button_create.clicked.connect (() => {
-			    var name = entry.text;
-			    var color = button_color.rgba;
-			    close ();
-			    app.try_create_notebook (name, color);
-			});
+			    entry.activate.connect (() => change (app, notebook));
+                button_create.clicked.connect (() => change (app, notebook));
+            } else {
+                entry.activate.connect (() => create (app));
+                button_create.clicked.connect (() => create (app));
+            }
 		}
+
+        private void create (Application app) {
+		    var name = entry.text;
+		    var color = button_color.rgba;
+		    close ();
+		    app.try_create_notebook (name, color);
+		}
+
+		private void change (Application app, Notebook notebook) {
+            var name = entry.text;
+            var color = button_color.rgba;
+            close ();
+            app.try_change_notebook (notebook, name, color);
+        }
 	}
 }
