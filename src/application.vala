@@ -355,7 +355,11 @@ namespace Paper {
 		}
 
 		public override void shutdown () {
-		    set_active_notebook (null);
+		    if (current_note != null) {
+		        current_note.save ();
+		        current_note.unload ();
+	            current_note = null;
+		    }
 		    base.shutdown ();
 		}
 	}
