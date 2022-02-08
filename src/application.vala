@@ -119,7 +119,10 @@ namespace Paper {
 			var popup = new ConfirmationPopup (
 			    @"Are you sure you want to delete everything in the trash?",
 			    "Empty trash",
-			    () => notebook_provider.trash.delete_all ()
+			    () => {
+			        set_active_note (null);
+			        notebook_provider.trash.delete_all ();
+		        }
 		    );
 			popup.transient_for = active_window;
 			popup.present ();
@@ -244,7 +247,9 @@ namespace Paper {
 
 		public void try_delete_note (Note note) {
 			try {
+		        if (current_note == note) set_active_note (null);
 		        note.notebook.delete_note (note);
+		        window.update_selected_note ();
 		    } catch (ProviderError e) {
 		        if (e is ProviderError.COULDNT_DELETE) {
 		            window.toast (@"Couldn't delete note");

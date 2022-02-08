@@ -160,9 +160,11 @@ namespace Paper {
                 );
 			    this.notebook_notes_model.selection_changed.connect (() => {
 		            var i = notebook_notes_model.selected;
-			        var note = notebook.loaded_notes[(int) i];
-                    var app = application as Application;
-			        app.set_active_note (note);
+		            if (i < notebook.loaded_notes.size) {
+			            var note = notebook.loaded_notes[(int) i];
+                        var app = application as Application;
+			            app.set_active_note (note);
+			        }
 			    });
 			    notebook_notes_list.factory = factory;
 			    notebook_notes_list.model = notebook_notes_model;
@@ -178,7 +180,7 @@ namespace Paper {
 
 		public void select_notebook (uint i) {
 		    notebooks_model.selected = i;
-		    this.notebooks_model.selection_changed (i, 1);
+		    notebooks_model.selection_changed (i, 1);
 		}
 
 		public void set_note (Note? note) {
@@ -197,6 +199,11 @@ namespace Paper {
 
 		public void select_note (uint i) {
 		    notebook_notes_model.selected = i;
+		    notebook_notes_model.selection_changed (i, (int) i == -1 ? 0 : 1);
+		}
+
+		public void update_selected_note () {
+		    select_note (notebook_notes_model.selected);
 		}
 
 		public void toast (string text) {
@@ -260,11 +267,16 @@ namespace Paper {
             this.notebook_notes_model = new Gtk.SingleSelection (
                 trash
             );
+            this.notebook_notes_model.items_changed.connect (() => {
+	            notebook_title.subtitle = @"$(trash.get_n_items ()) notes";
+            });
 		    this.notebook_notes_model.selection_changed.connect (() => {
 		        var i = notebook_notes_model.selected;
-                var app = application as Application;
-	            var note = trash.loaded_notes[(int) i];
-	            app.set_active_note (note);
+		        if (i < trash.loaded_notes.size) {
+                    var app = application as Application;
+	                var note = trash.loaded_notes[(int) i];
+	                app.set_active_note (note);
+	            }
 		    });
 		    notebook_notes_list.factory = factory;
 		    notebook_notes_list.model = notebook_notes_model;
