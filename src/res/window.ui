@@ -9,11 +9,11 @@
     <child>
       <object class="AdwToastOverlay" id="toast_overlay">
         <child>
-          <object class="AdwLeaflet" id="leaf">
-            <property name="can-navigate-back">1</property>
-            <property name="can-navigate-forward">1</property>
+          <object class="AdwLeaflet" id="leaflet">
+            <property name="visible_child_name">edit_view</property>
             <child>
-              <object class="AdwLeafletPage">
+              <object class="AdwLeafletPage" id="sidebar">
+                <property name="navigatable">0</property>
                 <property name="child">
                   <object class="GtkBox">
                     <property name="orientation">horizontal</property>
@@ -80,7 +80,7 @@
                         <property name="orientation">vertical</property>
                         <child>
                           <object class="AdwHeaderBar">
-                            <property name="show-end-title-buttons" bind-source="leaf" bind-property="folded" bind-flags="sync-create"/>
+                            <property name="show-end-title-buttons" bind-source="leaflet" bind-property="folded" bind-flags="sync-create"/>
                             <child type="title">
                               <object class="AdwWindowTitle" id="notebook_title">
                               </object>
@@ -127,7 +127,9 @@
               </object>
             </child>
             <child>
-              <object class="AdwLeafletPage">
+              <object class="AdwLeafletPage" id="edit_view">
+                <property name="navigatable">1</property>
+                <property name="name">edit_view</property>
                 <property name="child">
                   <object class="GtkBox">
                     <property name="hexpand">1</property>
@@ -136,13 +138,20 @@
                     <property name="width-request">220</property>
                     <child>
                       <object class="AdwHeaderBar">
-                        <property name="show-start-title-buttons" bind-source="leaf" bind-property="folded" bind-flags="sync-create"/>
+                        <property name="show-start-title-buttons" bind-source="leaflet" bind-property="folded" bind-flags="sync-create"/>
                         <property name="hexpand">1</property>
                         <property name="vexpand">0</property>
                         <property name="visible">1</property>
                         <property name="valign">start</property>
                         <child type="title">
                           <object class="AdwWindowTitle" id="note_title">
+                          </object>
+                        </child>
+                        <child type="start">
+                          <object class="GtkToggleButton" id="button_toggle_sidebar">
+                            <property name="icon-name">sidebar-show-symbolic</property>
+                            <property name="tooltip_text">Toggle sidebar</property>
+                            <property name="active">1</property>
                           </object>
                         </child>
                         <child type="start">

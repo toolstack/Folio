@@ -21,6 +21,15 @@ namespace Paper {
 	public class Window : Adw.ApplicationWindow {
 
 		[GtkChild]
+		unowned Adw.Leaflet leaflet;
+
+		[GtkChild]
+		unowned Adw.LeafletPage sidebar;
+
+		[GtkChild]
+		unowned Adw.LeafletPage edit_view;
+
+		[GtkChild]
 		unowned Gtk.ListView notebooks_list;
 
 		Gtk.SingleSelection notebooks_model;
@@ -48,6 +57,9 @@ namespace Paper {
 
 		[GtkChild]
 		unowned Gtk.Button button_markdown_cheatsheet;
+
+		[GtkChild]
+		unowned Gtk.ToggleButton button_toggle_sidebar;
 
 
 		[GtkChild]
@@ -130,6 +142,8 @@ namespace Paper {
 			        set_trash (app.notebook_provider.trash);
 			    }
 			});
+
+            button_toggle_sidebar.toggled.connect (() => set_sidebar_visibility (button_toggle_sidebar.active));
 		}
 
 		public void set_notebook (Notebook? notebook) {
@@ -158,20 +172,31 @@ namespace Paper {
                 this.notebook_notes_model = new Gtk.SingleSelection (
                     notebook
                 );
+                this.notebook_notes_model.can_unselect = true;
 			    this.notebook_notes_model.selection_changed.connect (() => {
 		            var i = notebook_notes_model.selected;
 		            if (i < notebook.loaded_notes.size) {
 			            var note = notebook.loaded_notes[(int) i];
                         var app = application as Application;
 			            app.set_active_note (note);
+		                if (leaflet.folded)
+		                    navigate_to_edit_view ();
 			        }
+		            else if (leaflet.folded)
+		                navigate_to_notes ();
 			    });
 			    notebook_notes_list.factory = factory;
 			    notebook_notes_list.model = notebook_notes_model;
 
 			    if (notebook.loaded_notes.size != 0) {
-			        notebook_notes_model.selection_changed (0, 1);
+		            var i = notebook_notes_model.selected;
+		            if (i < notebook.loaded_notes.size) {
+		                var note = notebook.loaded_notes[(int) i];
+                        var app = application as Application;
+		                app.set_active_note (note);
+	                }
 			    }
+                navigate_to_notes ();
 		    } else {
 			    notebook_notes_list.factory = null;
 			    notebook_notes_list.model = null;
@@ -270,20 +295,32 @@ namespace Paper {
             this.notebook_notes_model.items_changed.connect (() => {
 	            notebook_title.subtitle = @"$(trash.get_n_items ()) notes";
             });
+            this.notebook_notes_model.can_unselect = true;
 		    this.notebook_notes_model.selection_changed.connect (() => {
 		        var i = notebook_notes_model.selected;
 		        if (i < trash.loaded_notes.size) {
                     var app = application as Application;
 	                var note = trash.loaded_notes[(int) i];
 	                app.set_active_note (note);
+	                if (leaflet.folded)
+	                    navigate_to_edit_view ();
 	            }
+	            else if (leaflet.folded)
+	                navigate_to_notes ();
 		    });
 		    notebook_notes_list.factory = factory;
 		    notebook_notes_list.model = notebook_notes_model;
 
 		    if (trash.loaded_notes.size != 0) {
-		        notebook_notes_model.selection_changed (0, 1);
+	            var i = notebook_notes_model.selected;
+	            if (i < trash.loaded_notes.size) {
+	                var note = trash.loaded_notes[(int) i];
+                    var app = application as Application;
+	                app.set_active_note (note);
+                }
 		    }
+
+            navigate_to_notes ();
 		}
 
 		private void recolor (Notebook? notebook) {
@@ -308,6 +345,30 @@ namespace Paper {
             var css = new Gtk.CssProvider ();
             css.load_from_data (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;".data);
             Gtk.StyleContext.add_provider_for_display (display, css, -1);
+		}
+
+		public void set_sidebar_visibility (bool visibility) {
+	        if (visibility) {
+	            navigate_to_notes ();
+	        } else {
+	            navigate_to_edit_view ();
+	        }
+		    if (!leaflet.folded) {
+		        sidebar.child.visible = visibility;
+		    }
+		}
+
+		public void navigate_to_notes () {
+            button_toggle_sidebar.active = true;
+		    leaflet.visible_child = sidebar.child;
+		    if (leaflet.folded) {
+		        notebook_notes_model.unselect_item (notebook_notes_model.selected);
+		    }
+		}
+
+		public void navigate_to_edit_view () {
+            button_toggle_sidebar.active = false;
+		    leaflet.visible_child = edit_view.child;
 		}
 	}
 }
