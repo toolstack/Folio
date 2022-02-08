@@ -8,8 +8,3 @@ Keywords=notebook;note;school;paper;text;markdown;notepad;post-it;sticky;notes;
 Icon=@app_id@
 Categories=GTK;Utility;
 StartupNotify=true
-Actions=NewNote;
-
-[Desktop Action NewNote]
-Exec=io.posidon.Paper --new-note
-Name=New note

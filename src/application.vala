@@ -241,7 +241,6 @@ namespace Paper {
 		        } else {
 		            window.toast ("Unknown error");
 		        }
-		        println (e.message);
 		    }
 		}
 

@@ -30,7 +30,3 @@ int array_search<G> (G needle, G[] haystack) {
     }
     return result;
 }
-public void println (string text) {
-    print (text);
-    print ("\n");
-}
