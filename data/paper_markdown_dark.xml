@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<style-scheme id="paper" name="Paper" version="1.0">
+<style-scheme id="paper-dark" name="Paper dark" version="1.0">
   <author>Zagura</author>
   <_description>The style scheme for paper</_description>
 
   <metadata>
-    <property name="variant">light</property>
-    <property name="dark-variant">paper-dark</property>
+    <property name="variant">dark</property>
+    <property name="light-variant">paper</property>
   </metadata>
 
-  <color name="hyperlink"                   value="#4ba0f3"/>
-  <color name="hyperlink_label"             value="#0c3eaa"/>
+  <color name="hyperlink"                   value="#4d7194"/>
+  <color name="hyperlink_label"             value="#4ba0f3"/>
 
   <color name="escape"                      value="#7bb972"/>
 
-  <color name="quote"                       value="#0ee463"/>
-  <color name="literal"                     value="#074228"/>
+  <color name="quote"                       value="#11af50"/>
+  <color name="literal"                     value="#87fcc8"/>
 
 	<style name="markdown:backslash-escape"   foreground="escape" bold="true"/>
 
 	<style name="markdown:blockquote-marker"  foreground="quote" background="quote" scale="0.5"/>
 	<style name="markdownpp:blockquote"       foreground="literal"/>
 
-	<style name="markdown:horizontal-rule"    foreground="#rgba(0,0,0,0.2)"/>
-	<style name="markdown:list-marker"        foreground="#rgba(0,0,0,0.3)"/>
-	<style name="markdown:image-marker"       foreground="#rgba(0,0,0,0.3)" bold="true"/>
+	<style name="markdown:horizontal-rule"    foreground="#rgba(255,255,255,0.2)"/>
+	<style name="markdown:list-marker"        foreground="#rgba(255,255,255,0.3)"/>
+	<style name="markdown:image-marker"       foreground="#rgba(255,255,255,0.3)" bold="true"/>
 
 	<style name="markdown:attribute-value"    foreground="literal"/>
 
 	<style name="markdown:code-block"         foreground="literal"/>
-	<style name="markdown:code-span"          foreground="literal" background="#rgba(96,100,150,0.08)"/>
+	<style name="markdown:code-span"          foreground="literal" background="#rgba(200,255,220,0.04)"/>
 
 	<style name="markdown:label"              foreground="hyperlink_label"/>
 	<style name="markdown:link-text"          foreground="hyperlink_label"/>
@@ -37,18 +37,18 @@
   <style name="markdown:emphasis"           italic="true"/>
   <style name="markdown:strong-emphasis"    bold="true"/>
   <style name="markdownpp:strikethrough"    strikethrough="true"/>
-  <style name="markdownpp:highlight"        background="#rgba(0,255,103,0.32)"/>
+  <style name="markdownpp:highlight"        background="#rgba(0,255,103,0.3)"/>
 
   <style
     name="markdownpp:marker"
-    foreground="#rgba(0,0,0,0.3)"
+    foreground="#rgba(255,255,255,0.3)"
     strikethrough="false"
     bold="false"
     scale="0.7"/>
 
   <style
     name="markdownpp:long_marker"
-    foreground="#rgba(0,0,0,0.3)"
+    foreground="#rgba(255,255,255,0.3)"
     strikethrough="false"
     bold="false"
     scale="0.5"/>
@@ -61,6 +61,6 @@
   <style name="markdownpp:h5"               bold="true" scale="1.2"/>
   <style name="markdownpp:h6"               bold="true"/>
 
-  <style name="markdownpp:heading-hash"     foreground="#rgba(0,0,0,0.2)" bold="false" scale="0.4"/>
+  <style name="markdownpp:heading-hash"     foreground="#rgba(255,255,255,0.2)" bold="false" scale="0.4"/>
 </style-scheme>
 

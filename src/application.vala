@@ -108,7 +108,7 @@ namespace Paper {
 		}
 
 		private void on_markdown_cheatsheet () {
-            var w = new MarkdownCheatsheet ();
+            var w = new MarkdownCheatsheet (this);
             w.destroy_with_parent = true;
 			w.transient_for = active_window;
             w.modal = true;

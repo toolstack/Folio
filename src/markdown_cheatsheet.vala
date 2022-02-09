@@ -23,7 +23,7 @@ namespace Paper {
         [GtkChild]
         unowned GtkSource.View text_view;
 
-		public MarkdownCheatsheet () {
+		public MarkdownCheatsheet (Application app) {
 			Object (
 			    title: "Markdown cheatsheet",
 			    icon_name: Config.APP_ID
@@ -39,6 +39,19 @@ namespace Paper {
                 ResourceLookupFlags.NONE
             ).get_data ();
             text_view.buffer = buffer;
+
+            app.style_manager.notify["dark"].connect (() => update_color_scheme(app.style_manager.dark));
+            update_color_scheme (app.style_manager.dark);
+		}
+
+        private GtkSource.StyleScheme current_style_scheme;
+		private void update_color_scheme (bool dark) {
+		    message (@"update color scheme: dark = $dark");
+		    current_style_scheme = GtkSource.StyleSchemeManager.get_default ().get_scheme (dark ? "paper-dark" : "paper");
+	        var buffer = text_view.buffer as GtkSource.Buffer?;
+	        if (buffer != null) {
+                buffer.style_scheme = current_style_scheme;
+	        }
 		}
 	}
 }

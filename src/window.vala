@@ -152,6 +152,19 @@ namespace Paper {
 		            button_toggle_sidebar.active = sidebar.child.visible;
                 }
             });
+
+            app.style_manager.notify["dark"].connect (() => update_color_scheme(app.style_manager.dark));
+            update_color_scheme (app.style_manager.dark);
+		}
+
+        private GtkSource.StyleScheme current_style_scheme;
+		private void update_color_scheme (bool dark) {
+		    message (@"update color scheme: dark = $dark");
+		    current_style_scheme = GtkSource.StyleSchemeManager.get_default ().get_scheme (dark ? "paper-dark" : "paper");
+	        var buffer = text_view.buffer as GtkSource.Buffer?;
+	        if (buffer != null) {
+                buffer.style_scheme = current_style_scheme;
+	        }
 		}
 
 		public void set_notebook (Notebook? notebook) {
@@ -223,6 +236,7 @@ namespace Paper {
 		        note_title.title = note.name;
 		        text_view.show ();
 		        text_view.buffer = note.text;
+                note.text.style_scheme = current_style_scheme;
 		    } else {
 		        note_title.title = null;
 		        text_view.hide ();
