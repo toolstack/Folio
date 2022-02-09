@@ -8,10 +8,6 @@
 
   <color name="escape"                      value="#7bb972"/>
 
-  <color name="fade"                        value="#bababa"/>
-
-  <color name="block"                       value="#eeeeee"/>
-
   <color name="quote"                       value="#0ee463"/>
   <color name="literal"                     value="#074228"/>
 
@@ -23,14 +19,14 @@
 	<style name="markdown:blockquote-marker"  foreground="quote" background="quote" scale="0.5"/>
 	<style name="markdownpp:blockquote"       foreground="literal"/>
 
-	<style name="markdown:horizontal-rule"    foreground="fade"/>
-	<style name="markdown:list-marker"        foreground="fade"/>
-	<style name="markdown:image-marker"       foreground="fade" bold="true"/>
+	<style name="markdown:horizontal-rule"    foreground="#rgba(0,0,0,0.2)"/>
+	<style name="markdown:list-marker"        foreground="#rgba(0,0,0,0.3)"/>
+	<style name="markdown:image-marker"       foreground="#rgba(0,0,0,0.3)" bold="true"/>
 
 	<style name="markdown:attribute-value"    foreground="literal"/>
 
 	<style name="markdown:code-block"         foreground="literal"/>
-	<style name="markdown:code-span"          foreground="literal" background="block"/>
+	<style name="markdown:code-span"          foreground="literal" background="#rgba(0,0,0,0.05)"/>
 
 	<style name="markdown:label"              foreground="hyperlink_label"/>
 	<style name="markdown:link-text"          foreground="hyperlink_label"/>
@@ -43,14 +39,14 @@
 
   <style
     name="markdownpp:marker"
-    foreground="fade"
+    foreground="#rgba(0,0,0,0.3)"
     strikethrough="false"
     bold="false"
     scale="0.7"/>
 
   <style
     name="markdownpp:long_marker"
-    foreground="fade"
+    foreground="#rgba(0,0,0,0.3)"
     strikethrough="false"
     bold="false"
     scale="0.5"/>
@@ -63,6 +59,6 @@
   <style name="markdownpp:h5"               bold="true" scale="1.2"/>
   <style name="markdownpp:h6"               bold="true"/>
 
-  <style name="markdownpp:heading-hash"     foreground="fade" bold="false" scale="0.4"/>
+  <style name="markdownpp:heading-hash"     foreground="#rgba(0,0,0,0.2)" bold="false" scale="0.4"/>
 </style-scheme>
 

@@ -10,7 +10,6 @@
       <object class="AdwToastOverlay" id="toast_overlay">
         <child>
           <object class="AdwLeaflet" id="leaflet">
-            <property name="visible_child_name">edit_view</property>
             <child>
               <object class="AdwLeafletPage" id="sidebar">
                 <property name="navigatable">0</property>
@@ -129,7 +128,6 @@
             <child>
               <object class="AdwLeafletPage" id="edit_view">
                 <property name="navigatable">1</property>
-                <property name="name">edit_view</property>
                 <property name="child">
                   <object class="GtkBox">
                     <property name="hexpand">1</property>
