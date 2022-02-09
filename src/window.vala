@@ -144,6 +144,14 @@ namespace Paper {
 			});
 
             button_toggle_sidebar.toggled.connect (() => set_sidebar_visibility (button_toggle_sidebar.active));
+
+            leaflet.notify["folded"].connect (() => {
+                if (leaflet.folded) {
+		            notebook_notes_model.unselect_item (notebook_notes_model.selected);
+                } else {
+		            button_toggle_sidebar.active = sidebar.child.visible;
+                }
+            });
 		}
 
 		public void set_notebook (Notebook? notebook) {
