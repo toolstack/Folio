@@ -16,7 +16,7 @@ namespace Paper {
             font_button.level = Gtk.FontChooserLevel.FEATURES;
             font_button.font = note_font;
             font_button.font_set.connect (
-                () => settings.set_string ("note-font", font_button.font)
+                () => settings.set_string ("note-font", font_button.get_font_family ().get_name ())
             );
 		}
 	}

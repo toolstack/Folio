@@ -213,9 +213,6 @@
                             <property name="hexpand">1</property>
                             <property name="vexpand">1</property>
                             <property name="visible">0</property>
-                            <style>
-                              <class name="note-font"/>
-                            </style>
                           </object>
                         </child>
                       </object>
