@@ -30,6 +30,7 @@ namespace Paper {
 			{ "format-strikethough", on_format_strikethough },
 			{ "format-highlight", on_format_highlight },
 			{ "markdown-cheatsheet", on_markdown_cheatsheet },
+			{ "toggle-sidebar", on_toggle_sidebar },
 			{ "empty-trash", on_empty_trash },
 			{ "about", on_about_action },
 			{ "preferences", on_preferences_action },
@@ -64,6 +65,8 @@ namespace Paper {
 			set_accels_for_action ("app.format-italic", {"<primary>i"});
 			set_accels_for_action ("app.format-strikethough", {"<primary>s"});
 			set_accels_for_action ("app.format-highlight", {"<primary>h"});
+
+			set_accels_for_action ("app.toggle-sidebar", {"F9"});
 		}
 
 		public override void activate () {
@@ -113,6 +116,10 @@ namespace Paper {
 			w.transient_for = active_window;
             w.modal = true;
             w.present ();
+		}
+
+		private void on_toggle_sidebar () {
+		    window.toggle_sidebar_visibility ();
 		}
 
 		private void on_empty_trash () {

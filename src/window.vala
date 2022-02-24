@@ -380,6 +380,10 @@ namespace Paper {
 		    }
 		}
 
+		public void toggle_sidebar_visibility () {
+	        button_toggle_sidebar.active = !button_toggle_sidebar.active;
+		}
+
 		public void navigate_to_notes () {
             button_toggle_sidebar.active = true;
 		    leaflet.visible_child = sidebar.child;

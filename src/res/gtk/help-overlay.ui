@@ -80,6 +80,12 @@
             </child>
             <child>
               <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Toggle sidebar</property>
+                <property name="action-name">app.toggle-sidebar</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Quit</property>
                 <property name="action-name">app.quit</property>
               </object>
