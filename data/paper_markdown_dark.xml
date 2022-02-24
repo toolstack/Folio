@@ -55,9 +55,9 @@
 
   <!-- Heading styles -->
   <style name="markdownpp:h1"               bold="true" scale="3.2"/>
-  <style name="markdownpp:h2"               bold="true" scale="2.6"/>
-  <style name="markdownpp:h3"               bold="true" scale="2.1"/>
-  <style name="markdownpp:h4"               bold="true" scale="1.5"/>
+  <style name="markdownpp:h2"               bold="true" scale="2.4"/>
+  <style name="markdownpp:h3"               bold="true" scale="1.7"/>
+  <style name="markdownpp:h4"               bold="true" scale="1.4"/>
   <style name="markdownpp:h5"               bold="true" scale="1.2"/>
   <style name="markdownpp:h6"               bold="true"/>
 
