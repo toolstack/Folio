@@ -31,6 +31,7 @@ namespace Paper {
 			{ "format-highlight", on_format_highlight },
 			{ "markdown-cheatsheet", on_markdown_cheatsheet },
 			{ "toggle-sidebar", on_toggle_sidebar },
+			{ "search-notes", on_search_notes },
 			{ "empty-trash", on_empty_trash },
 			{ "about", on_about_action },
 			{ "preferences", on_preferences_action },
@@ -67,6 +68,7 @@ namespace Paper {
 			set_accels_for_action ("app.format-highlight", {"<primary>h"});
 
 			set_accels_for_action ("app.toggle-sidebar", {"F9"});
+			set_accels_for_action ("app.search-notes", {"<primary>F"});
 		}
 
 		public override void activate () {
@@ -120,6 +122,10 @@ namespace Paper {
 
 		private void on_toggle_sidebar () {
 		    window.toggle_sidebar_visibility ();
+		}
+
+		private void on_search_notes () {
+		    window.toggle_search ();
 		}
 
 		private void on_empty_trash () {

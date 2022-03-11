@@ -108,6 +108,14 @@
                           </object>
                         </child>
                         <child>
+                          <object class="GtkSearchBar" id="notes_search_bar">
+                            <child>
+                              <object class="GtkSearchEntry" id="notes_search_entry">
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
                           <object class="GtkScrolledWindow">
                             <property name="hexpand">1</property>
                             <property name="vexpand">1</property>

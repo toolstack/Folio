@@ -44,6 +44,12 @@ namespace Paper {
 		[GtkChild]
 		unowned Gtk.ListView notebook_notes_list;
 
+		[GtkChild]
+		unowned Gtk.SearchBar notes_search_bar;
+
+		[GtkChild]
+		unowned Gtk.SearchEntry notes_search_entry;
+
 		Gtk.SingleSelection notebook_notes_model;
 
 		[GtkChild]
@@ -78,7 +84,10 @@ namespace Paper {
 		[GtkChild]
 		unowned Adw.ToastOverlay toast_overlay;
 
+
 		public bool is_editable = false;
+
+		private Gtk.StringFilter search_filter;
 
 
 		public Window (Application app) {
@@ -100,6 +109,9 @@ namespace Paper {
 			}
 
             set_notebook (null);
+
+            search_filter = new Gtk.StringFilter (new Gtk.PropertyExpression (typeof (Note), null, "name"));
+            notes_search_entry.search_changed.connect (() => search_filter.search = notes_search_entry.text);
 
             var factory = new Gtk.SignalListItemFactory ();
             factory.setup.connect (list_item => {
@@ -191,7 +203,7 @@ namespace Paper {
                     widget.set_note (item);
                 });
                 this.notebook_notes_model = new Gtk.SingleSelection (
-                    notebook
+                    new Gtk.FilterListModel (notebook, search_filter)
                 );
                 this.notebook_notes_model.can_unselect = true;
 			    this.notebook_notes_model.selection_changed.connect (() => {
@@ -382,6 +394,10 @@ namespace Paper {
 
 		public void toggle_sidebar_visibility () {
 	        button_toggle_sidebar.active = !button_toggle_sidebar.active;
+		}
+
+		public void toggle_search () {
+		    notes_search_bar.search_mode_enabled = !notes_search_bar.search_mode_enabled;
 		}
 
 		public void navigate_to_notes () {
