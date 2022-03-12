@@ -20,7 +20,7 @@ namespace Paper {
 
 		public void set_notebook (Notebook notebook) {
 		    this.notebook = notebook;
-		    label.label = notebook.name.slice (0, 1);
+		    label.label = notebook.name.slice (0, 2);
 		    tooltip_text = notebook.name;
 
 		    recolor (notebook);

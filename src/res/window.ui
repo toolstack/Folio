@@ -242,6 +242,9 @@
                         <property name="orientation">vertical</property>
                         <property name="halign">center</property>
                         <property name="valign">center</property>
+                        <style>
+                          <class name="welcome-screen"/>
+                        </style>
                         <child>
                           <object class="GtkLabel">
                             <property name="label">Get started writing</property>
