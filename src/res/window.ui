@@ -6,6 +6,9 @@
   <template class="PaperWindow" parent="AdwApplicationWindow">
     <property name="default-width">720</property>
     <property name="default-height">512</property>
+    <style>
+      <class name="transparent"/>
+    </style>
     <child>
       <object class="AdwToastOverlay" id="toast_overlay">
         <child>
@@ -113,6 +116,9 @@
                               <object class="GtkSearchEntry" id="notes_search_entry">
                               </object>
                             </child>
+                            <style>
+                              <class name="inline"/>
+                            </style>
                           </object>
                         </child>
                         <child>
@@ -206,9 +212,10 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkScrolledWindow">
+                      <object class="GtkScrolledWindow" id="text_view_scroll">
                         <property name="hexpand">1</property>
                         <property name="vexpand">1</property>
+                        <property name="visible">0</property>
                         <child>
                           <object class="GtkSourceView" id="text_view">
                             <property name="tab-width">4</property>
@@ -220,11 +227,130 @@
                             <property name="top-margin">18</property>
                             <property name="hexpand">1</property>
                             <property name="vexpand">1</property>
-                            <property name="visible">0</property>
+                          </object>
+                        </child>
+                        <style>
+                          <class name="text-area"/>
+                        </style>
+                      </object>
+                    </child>
+                    <child>
+                      <object class="GtkBox" id="text_view_empty">
+                        <property name="hexpand">1</property>
+                        <property name="vexpand">1</property>
+                        <property name="visible">1</property>
+                        <property name="orientation">vertical</property>
+                        <property name="halign">center</property>
+                        <property name="valign">center</property>
+                        <child>
+                          <object class="GtkLabel">
+                            <property name="label">Get started writing</property>
+                            <style>
+                              <class name="large-title"/>
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="margin-bottom">18</property>
+                            <property name="margin-top">18</property>
+                            <property name="orientation">vertical</property>
+                            <style>
+                              <class name="linked"/>
+                            </style>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="action_name">app.new-notebook</property>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="margin-bottom">8</property>
+                                    <property name="margin-top">8</property>
+                                    <property name="margin-start">10</property>
+                                    <property name="margin-end">10</property>
+                                    <property name="orientation">horizontal</property>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="margin-end">18</property>
+                                        <property name="icon_name">document-new-symbolic</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <property name="orientation">vertical</property>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="halign">start</property>
+                                            <property name="label">Create Notebook</property>
+                                            <style>
+                                              <class name="heading"/>
+                                            </style>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="halign">start</property>
+                                            <property name="label">Create a new notebook</property>
+                                            <style>
+                                              <class name="caption"/>
+                                            </style>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="action_name">app.new-note</property>
+                                <child>
+                                  <object class="GtkBox">
+                                    <property name="margin-bottom">8</property>
+                                    <property name="margin-top">8</property>
+                                    <property name="margin-start">10</property>
+                                    <property name="margin-end">10</property>
+                                    <property name="orientation">horizontal</property>
+                                    <child>
+                                      <object class="GtkImage">
+                                        <property name="margin-end">18</property>
+                                        <property name="icon_name">document-new-symbolic</property>
+                                      </object>
+                                    </child>
+                                    <child>
+                                      <object class="GtkBox">
+                                        <property name="orientation">vertical</property>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="halign">start</property>
+                                            <property name="label">Start Writing</property>
+                                            <style>
+                                              <class name="heading"/>
+                                            </style>
+                                          </object>
+                                        </child>
+                                        <child>
+                                          <object class="GtkLabel">
+                                            <property name="halign">start</property>
+                                            <property name="label">Create a new note</property>
+                                            <style>
+                                              <class name="caption"/>
+                                            </style>
+                                          </object>
+                                        </child>
+                                      </object>
+                                    </child>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
                     </child>
+                    <style>
+                      <class name="text-area"/>
+                    </style>
                   </object>
                 </property>
               </object>

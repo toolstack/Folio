@@ -80,6 +80,12 @@ namespace Paper {
 		[GtkChild]
 		unowned GtkSource.View text_view;
 
+		[GtkChild]
+		unowned Gtk.ScrolledWindow text_view_scroll;
+
+		[GtkChild]
+		unowned Gtk.Box text_view_empty;
+
 
 		[GtkChild]
 		unowned Adw.ToastOverlay toast_overlay;
@@ -246,12 +252,14 @@ namespace Paper {
 	        button_markdown_cheatsheet.visible = note != null && is_editable;
 		    if (note != null) {
 		        note_title.title = note.name;
-		        text_view.show ();
+		        text_view_scroll.show ();
+		        text_view_empty.hide ();
 		        text_view.buffer = note.text;
                 note.text.style_scheme = current_style_scheme;
 		    } else {
 		        note_title.title = null;
-		        text_view.hide ();
+		        text_view_scroll.hide ();
+		        text_view_empty.show ();
 		        text_view.buffer = null;
 	        }
 		}

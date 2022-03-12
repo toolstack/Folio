@@ -28,7 +28,7 @@ window, headerbar {
   transition: color .3s, background-color .3s;
 }
 
-listview {
+listview, window.transparent {
   background-color: transparent;
 }
 
@@ -39,7 +39,8 @@ listview {
  */
 
 .notebooks-bar {
-  background-color: @notebooks_bar_color;
+  background-color: transparent;
+  background-image: linear-gradient(alpha(mix(@notebooks_bar_color, #000, 0.2), 0.9), alpha(shade(@notebooks_bar_color, 1.2), 0.9));
   color: @notebooks_bar_icon_color;
 }
 
@@ -151,9 +152,16 @@ row.activatable:hover .notebook {
  */
 
 
+
+searchbar.inline box {
+  background-color: @view_bg_color;
+  border-bottom: solid 1px @borders;
+}
+
 .notebook-sidebar {
   border-right: solid 1px @borders;
   border-left: solid 1px @borders;
+  background-color: @window_bg_color;
 }
 
 .notebook-sidebar listview row {
@@ -194,6 +202,6 @@ row.activatable:hover .notebook {
  *
  */
 
-textview text {
+.text-area {
   background-color: @view_bg_color;
 }
