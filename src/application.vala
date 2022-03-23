@@ -83,9 +83,12 @@ namespace Paper {
 		private void on_about_action () {
 			string[] authors = {"Zagura"};
 			Gtk.show_about_dialog(this.active_window,
-				                  "program-name", "Notebook",
+			                      "logo-icon-name", "io.posidon.Paper",
+				                  "program-name", "Paper",
 				                  "authors", authors,
-				                  "version", "2022.0.0");
+				                  "version", "22.0",
+				                  "license-type", Gtk.License.GPL_3_0,
+				                  "website", "https://posidon.io/paper");
 		}
 
 		private void on_preferences_action () {
