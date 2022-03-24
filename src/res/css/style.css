@@ -2,7 +2,7 @@
 @define-color window_bg_color shade(@theme_color, 1.96);
 @define-color window_fg_color shade(@theme_color, 0.3);
 
-@define-color view_bg_color shade(@window_bg_color, 1.1);
+@define-color view_bg_color #fff;
 @define-color view_fg_color @window_fg_color;
 
 @define-color card_bg_color @view_bg_color;
@@ -18,11 +18,14 @@
 @define-color popover_bg_color @notebooks_bar_color;
 @define-color popover_fg_color @notebooks_bar_icon_color;
 
-@define-color headerbar_bg_color shade(@theme_color, 1.8);
+@define-color headerbar_bg_color shade(@theme_color, 1.9);
 @define-color headerbar_fg_color shade(@theme_color, 0.3);
 
 @define-color suggest_button_bg_color alpha(shade(@theme_color, 1.5), 0.2);
 @define-color suggest_button_bg_color_hover shade(@suggest_button_bg_color, 0.85);
+
+@define-color selected_bg_color shade(@theme_color, 1.8);
+
 
 .notebooks-bar {
   transition: color .5s, background-color .5s;
@@ -35,6 +38,7 @@ listview, window.transparent {
   background-color: transparent;
 }
 
+
 /*
  *
  *   NOTEBOOKS BAR
@@ -45,6 +49,16 @@ listview, window.transparent {
   background-color: transparent;
   background-image: linear-gradient(alpha(mix(@notebooks_bar_color, #000, 0.2), 0.9), alpha(shade(@notebooks_bar_color, 1.2), 0.9));
   color: @notebooks_bar_icon_color;
+}
+
+window.tiled .notebooks-bar,
+window.tiled-left .notebooks-bar,
+window.tiled-right .notebooks-bar,
+window.tiled-top .notebooks-bar,
+window.tiled-bottom .notebooks-bar,
+window.fullscreen .notebooks-bar,
+window.maximized .notebooks-bar {
+  background-color: #000;
 }
 
 .notebooks-bar > button,
@@ -61,8 +75,8 @@ listview, window.transparent {
 }
 
 .notebooks-bar > scrolledwindow {
-  box-shadow: inset 0 1px 0 0 @borders,
-              inset 0 -1px 0 0 @borders;
+  border-top: solid 1px @borders;
+  border-bottom: solid 1px @borders;
 }
 
 .trash-button,
@@ -75,12 +89,10 @@ listview, window.transparent {
 .trash-button:checked,
 .notebooks-bar listview row.activatable:selected {
   box-shadow:
-    inset 0px 1px 0 0 rgba(0, 0, 0, .2),
-    0px 1px 0 0px rgba(255, 255, 255, .1),
-    inset 5px 0px 4px 0 rgba(0, 0, 0, .3),
-    inset 3px 0px 0 0 @notebook_light_color;
-  background-color: transparent;
-  background-image: linear-gradient(rgba(0, 0, 0, .4), rgba(0, 0, 0, .2));
+    0 1px 0 0 @borders,
+    0 -1px 0 0 @borders,
+    inset 4px 0 0 0 @theme_color;
+  background-color: rgba(0, 0, 0, .4);
 }
 
 .notebook {
@@ -161,8 +173,6 @@ row.activatable:hover .notebook {
  *
  */
 
-
-
 searchbar.inline box {
   background-color: @view_bg_color;
   border-bottom: solid 1px @borders;
@@ -174,37 +184,55 @@ searchbar.inline box {
   background-color: @window_bg_color;
 }
 
+.notebook-sidebar listview {
+  padding: 3px 0;
+}
+
 .notebook-sidebar listview row {
   padding: 0;
   background: 0;
 }
 
+.notebook-sidebar listview row:focus {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
 .notebook-sidebar listview row > box {
-  transition: box-shadow .4s, background-color .3s;
-  padding: 16px 15px;
+  transition: box-shadow .1s, background-color .2s, outline .1s, outline-offset .1s;
+  outline: 3px solid transparent;
+  outline-offset: 5px;
+  padding: 11px 10px;
+  margin: 3px 6px;
+  border-radius: 4px;
 }
 
 .notebook-sidebar listview row:hover:not(:selected):not(:active) > box {
-  transition: box-shadow .2s, background-color .1s;
+  transition: box-shadow .2s, background-color .1s, outline .1s, outline-offset .1s;
   background-color: rgba(0, 0, 0, .05);
 }
 
 .notebook-sidebar listview row:active > box {
-  transition: box-shadow .3s, background-color .3s;
+  transition: box-shadow .3s, background-color .4s, outline .1s, outline-offset .1s;
   background-color: rgba(0, 0, 0, .12);
 }
 
 .notebook-sidebar listview row:selected > box {
-  transition: box-shadow .2s, background-color 0;
-  background-color: @card_bg_color;
-  color: @card_fg_color;
+  transition: box-shadow .2s, background-color 0, outline .1s, outline-offset .1s;
+  background-color: @selected_bg_color;
   box-shadow:
-    0 1px  4px 2px  alpha(@card_shade_color, 0.05),
-    0 -1px 3px -1px @borders,
-    0 1px 3px -1px @borders,
-    0 1px 0 0    alpha(@borders, 0.5),
-    inset 0  1px #fff;
+    0 7px 11px -4px  alpha(@card_shade_color, 0.2),
+    inset 0 0 0 1px @accent_color,
+    inset 0 0 0 1px @borders;
 }
+
+.notebook-sidebar listview row:focus:not(:selected):not(:active) > box {
+  transition: box-shadow .1s, background-color .2s, outline .2s, outline-offset .2s;
+  outline: 2px solid alpha(@accent_color, .5);
+  outline-offset: -1px;
+}
+
 
 /*
  *
