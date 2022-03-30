@@ -72,10 +72,10 @@ namespace Paper {
 		unowned Adw.WindowTitle note_title;
 
 		[GtkChild]
-		unowned Gtk.Button button_format_highlight;
+		unowned Gtk.Box format_box;
 
 		[GtkChild]
-		unowned Gtk.Box format_box;
+		unowned Gtk.Box format_box_mobile;
 
 		[GtkChild]
 		unowned GtkSource.View text_view;
@@ -165,14 +165,23 @@ namespace Paper {
 
             leaflet.notify["folded"].connect (() => {
                 if (leaflet.folded) {
+                    update_format_box_visibility ();
+                    button_toggle_sidebar.icon_name = "go-previous-symbolic";
 		            notebook_notes_model.unselect_item (notebook_notes_model.selected);
                 } else {
+                    update_format_box_visibility ();
+                    button_toggle_sidebar.icon_name = "sidebar-show-symbolic";
 		            button_toggle_sidebar.active = sidebar.child.visible;
                 }
             });
 
             app.style_manager.notify["dark"].connect (() => update_color_scheme(app.style_manager.dark));
             update_color_scheme (app.style_manager.dark);
+		}
+
+		private void update_format_box_visibility () {
+	        format_box.visible = current_note != null && is_editable && !leaflet.folded;
+	        format_box_mobile.visible = current_note != null && is_editable && leaflet.folded;
 		}
 
         private GtkSource.StyleScheme current_style_scheme;
@@ -247,8 +256,10 @@ namespace Paper {
 		    notebooks_model.selection_changed (i, 1);
 		}
 
+        private Note? current_note = null;
 		public void set_note (Note? note) {
-	        format_box.visible = note != null && is_editable;
+		    current_note = note;
+		    update_format_box_visibility ();
 	        button_markdown_cheatsheet.visible = note != null && is_editable;
 		    if (note != null) {
 		        note_title.title = note.name;

@@ -244,6 +244,12 @@ searchbar.inline box {
   background-color: @view_bg_color;
 }
 
+.bottom-toolbar {
+  background-color: @headerbar_bg_color;
+  color: @headerbar_fg_color;
+  box-shadow: inset 0 0 0 1px @borders;
+}
+
 .welcome-screen button {
   background-color: @suggest_button_bg_color;
 }
