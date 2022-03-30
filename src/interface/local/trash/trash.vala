@@ -52,16 +52,19 @@ namespace Paper {
 
         private void load_notebook (LocalTrashedNotebook notebook) {
             var dir = File.new_for_path (notebook.path);
-            var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+            var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.TIME_MODIFIED, 0);
             FileInfo file_info;
             while ((file_info = enumerator.next_file ()) != null) {
                 var name = file_info.get_name ();
                 if (name[0] == '.') continue;
+	            var mod_time = (!) file_info.get_modification_date_time ();
                 _loaded_notes.add (new LocalTrashedNote (
                     name,
-                    notebook
+                    notebook,
+                    mod_time
                 ));
             }
+            _loaded_notes.sort ((a, b) => b.time_modified.compare(a.time_modified));
         }
 
         public void delete_note (Note note) throws ProviderError {

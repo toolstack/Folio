@@ -36,19 +36,22 @@ namespace Paper {
             _loaded_notes = new ArrayList<Note> ();
             var dir = File.new_for_path (path);
             try {
-                var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+                var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.TIME_MODIFIED, 0);
                 FileInfo file_info;
                 while ((file_info = enumerator.next_file ()) != null) {
                     var name = file_info.get_name ();
                     if (name[0] == '.') continue;
+		            var mod_time = (!) file_info.get_modification_date_time ();
                     _loaded_notes.add (new LocalNote (
                         name,
-                        this
+                        this,
+                        mod_time
                     ));
                 }
             } catch (Error e) {
                 error (@"Notebook loading failed: $(e.message)\n");
             }
+            _loaded_notes.sort ((a, b) => b.time_modified.compare(a.time_modified));
         }
 
         public void unload () {
@@ -73,7 +76,7 @@ namespace Paper {
             } catch (Error e) {
                  throw new ProviderError.COULDNT_CREATE_FILE("Couldn't create note at \"$path\"");
             }
-            var note = new LocalNote (name, this);
+            var note = new LocalNote (name, this, new DateTime.now ());
             _loaded_notes.insert (0, note);
             items_changed (0, 0, 1);
             return note;
@@ -96,7 +99,7 @@ namespace Paper {
                     throw new ProviderError.COULDNT_CREATE_FILE (@"Couldn't change $original_path to $path: $(e.message)");
                 }
 
-                n.change (name, this);
+                n.change (name, this, new DateTime.now ());
 	            int i = _loaded_notes.index_of (note);
                 items_changed (i, 1, 1);
             }

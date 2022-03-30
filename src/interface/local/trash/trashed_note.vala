@@ -13,6 +13,10 @@ namespace Paper {
             owned get { return @"$(_notebook.path)/$name"; }
         }
 
+        public DateTime time_modified {
+            get { return _time_modified; }
+        }
+
         public Notebook notebook {
             get { return _notebook; }
         }
@@ -20,16 +24,19 @@ namespace Paper {
         public LocalTrashedNotebook _notebook;
 
         string _name;
+        DateTime _time_modified;
         GtkSource.Buffer? _text = null;
 
-        public LocalTrashedNote (string name, LocalTrashedNotebook notebook) {
+        public LocalTrashedNote (string name, LocalTrashedNotebook notebook, DateTime time_modified) {
             this._name = name;
             this._notebook = notebook;
+            this._time_modified = time_modified;
         }
 
-        public void change (string name, LocalTrashedNotebook notebook) {
+        public void change (string name, LocalTrashedNotebook notebook, DateTime time_modified) {
             this._name = name;
             this._notebook = notebook;
+            this._time_modified = time_modified;
         }
 
         public void load () {

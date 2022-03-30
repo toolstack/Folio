@@ -13,7 +13,7 @@ namespace Paper {
 
 		public NoteCard (bool is_in_trash) {
 		    this.is_in_trash = is_in_trash;
-		    subtitle.visible = is_in_trash;
+		    //subtitle.visible = is_in_trash;
 		    var long_press = new Gtk.GestureLongPress ();
 		    long_press.pressed.connect (show_popup);
 		    add_controller (long_press);
@@ -30,7 +30,7 @@ namespace Paper {
 		public void set_note (Note note) {
 		    this.note = note;
 		    label.label = note.name;
-		    subtitle.label = note.notebook.name;
+		    subtitle.label = is_in_trash ? note.time_modified.format (@"%e %b, %H:%m - $(note.notebook.name)") : note.time_modified.format ("%e %b, %H:%m");
 		    tooltip_text = note.name;
 		}
 
