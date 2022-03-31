@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/io/posidon/Paper/">
+    <file alias="style.css">css/style.css</file>
+    <file alias="style-dark.css">css/style-dark.css</file>
+    <file preprocess="xml-stripblanks">gtk/help-overlay.ui</file>
+
+    <file alias="window.ui">ui/window.ui</file>
+    <file alias="preferences.ui">ui/preferences.ui</file>
+
+    <file alias="notebooks_bar.ui">ui/notebooks_bar/notebooks_bar.ui</file>
+    <file alias="notebooks_bar/icon.ui">ui/notebooks_bar/icon.ui</file>
+    <file alias="notebooks_bar/notebook_menu.ui">ui/notebooks_bar/notebook_menu.ui</file>
+
+    <file alias="notebook_sidebar/note_card.ui">ui/notebook_sidebar/note_card.ui</file>
+    <file alias="notebook_sidebar/note_menu.ui">ui/notebook_sidebar/note_menu.ui</file>
+
+    <file alias="markdown_cheatsheet.ui">ui/markdown_cheatsheet/markdown_cheatsheet.ui</file>
+    <file alias="markdown_cheatsheet.md">ui/markdown_cheatsheet/markdown_cheatsheet.md</file>
+
+    <file alias="popup/confirmation_popup.ui">ui/popup/confirmation_popup.ui</file>
+    <file alias="popup/notebook_create_popup.ui">ui/popup/notebook_create_popup.ui</file>
+    <file alias="popup/note_create_popup.ui">ui/popup/note_create_popup.ui</file>
+
+    <file preprocess="xml-stripblanks">graphics/scalable/actions/format-text-highlight-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">graphics/scalable/actions/restore-from-trash-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">graphics/scalable/actions/empty-trash-symbolic.svg</file>
+  </gresource>
+</gresources>

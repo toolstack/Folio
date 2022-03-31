@@ -1,26 +1,32 @@
 paper_sources = [
   'main.vala',
-  'window.vala',
-  'preferences.vala',
   'application.vala',
-  'notebook_icon.vala',
-  'note_card.vala',
-  'markdown_cheatsheet.vala',
-  'popup/confirmation_popup.vala',
-  'popup/notebook_create_popup.vala',
-  'popup/note_create_popup.vala',
-  'popup/context/note_menu.vala',
-  'popup/context/notebook_menu.vala',
+
+  'ui/window.vala',
+  'ui/preferences.vala',
+
+  'ui/notebooks_bar/notebooks_bar.vala',
+  'ui/notebooks_bar/icon.vala',
+  'ui/notebooks_bar/notebook_menu.vala',
+
+  'ui/notebook_sidebar/note_card.vala',
+  'ui/notebook_sidebar/note_menu.vala',
+
+  'ui/markdown_cheatsheet/markdown_cheatsheet.vala',
+
+  'ui/popup/confirmation_popup.vala',
+  'ui/popup/notebook_create_popup.vala',
+  'ui/popup/note_create_popup.vala',
+
   'interface/note.vala',
   'interface/notebook.vala',
   'interface/provider.vala',
   'interface/trash.vala',
-  'interface/local/note.vala',
   'interface/local/provider.vala',
   'interface/local/notebook.vala',
   'interface/local/trash/trash.vala',
-  'interface/local/trash/trashed_note.vala',
   'interface/local/trash/trashed_notebook.vala',
+
   'color.vala',
 ]
 
@@ -43,8 +49,8 @@ gnome = import('gnome')
 
 paper_sources += gnome.compile_resources(
   'paper-resources',
-  join_paths('res', 'paper.gresource.xml'),
-  source_dir: 'res',
+  'paper.gresource.xml',
+  source_dir: 'src',
   c_name: 'paper'
 )
 

@@ -22,54 +22,7 @@
                     <property name="hexpand">0</property>
                     <property name="vexpand">1</property>
                     <child>
-                      <object class="GtkWindowHandle">
-                        <property name="hexpand">0</property>
-                        <property name="vexpand">1</property>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="orientation">vertical</property>
-                            <child>
-                              <object class="GtkMenuButton">
-                                <property name="icon-name">open-menu-symbolic</property>
-                                <property name="menu-model">primary_menu</property>
-                                <property name="hexpand">0</property>
-                                <property name="vexpand">0</property>
-                                <style>
-                                  <class name="flat"/>
-                                </style>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkScrolledWindow">
-                                <property name="hexpand">0</property>
-                                <property name="vexpand">1</property>
-                                <property name="vscrollbar_policy">external</property>
-                                <property name="hscrollbar_policy">never</property>
-                                <child>
-                                  <object class="GtkListView" id="notebooks_list">
-                                    <property name="hexpand">0</property>
-                                    <property name="vexpand">1</property>
-                                  </object>
-                                </child>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkToggleButton" id="trash_button">
-                                <property name="icon-name">user-trash-symbolic</property>
-                                <property name="hexpand">0</property>
-                                <property name="vexpand">0</property>
-                                <style>
-                                  <class name="flat"/>
-                                  <class name="trash-button"/>
-                                </style>
-                              </object>
-                            </child>
-                            <style>
-                              <class name="notebooks-bar"/>
-                            </style>
-                          </object>
-                        </child>
-                      </object>
+                      <object class="PaperNotebooksBar" id="notebooks_bar"/>
                     </child>
                     <child>
                       <object class="GtkBox">
@@ -401,26 +354,4 @@
       </object>
     </child>
   </template>
-  <menu id="primary_menu">
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_New Notebook</attribute>
-        <attribute name="action">app.new-notebook</attribute>
-      </item>
-    </section>
-    <section>
-      <item>
-        <attribute name="label" translatable="yes">_Preferences</attribute>
-        <attribute name="action">app.preferences</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_Keyboard Shortcuts</attribute>
-        <attribute name="action">win.show-help-overlay</attribute>
-      </item>
-      <item>
-        <attribute name="label" translatable="yes">_About</attribute>
-        <attribute name="action">app.about</attribute>
-      </item>
-    </section>
-  </menu>
 </interface>
