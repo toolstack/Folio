@@ -119,49 +119,6 @@
                             <property name="active">1</property>
                           </object>
                         </child>
-                        <child type="start">
-                          <object class="GtkBox" id="format_box">
-                            <property name="orientation">horizontal</property>
-                            <child>
-                              <object class="GtkButton">
-                                <property name="icon-name">format-text-bold-symbolic</property>
-                                <property name="tooltip_text">Bold</property>
-                                <property name="action_name">app.format-bold</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkButton">
-                                <property name="icon-name">format-text-italic-symbolic</property>
-                                <property name="tooltip_text">Italic</property>
-                                <property name="action_name">app.format-italic</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkButton">
-                                <property name="icon-name">format-text-strikethrough-symbolic</property>
-                                <property name="tooltip_text">Strikethrough</property>
-                                <property name="action_name">app.format-strikethough</property>
-                              </object>
-                            </child>
-                            <child>
-                              <object class="GtkButton">
-                                <property name="icon-name">format-text-highlight-symbolic</property>
-                                <property name="tooltip_text">Highlight</property>
-                                <property name="action_name">app.format-highlight</property>
-                              </object>
-                            </child>
-                            <style>
-                              <class name="toolbar"/>
-                            </style>
-                          </object>
-                        </child>
-                        <child type="end">
-                          <object class="GtkButton" id="button_markdown_cheatsheet">
-                            <property name="icon-name">dialog-information-symbolic</property>
-                            <property name="tooltip_text">Markdown cheatsheet</property>
-                            <property name="action_name">app.markdown-cheatsheet</property>
-                          </object>
-                        </child>
                       </object>
                     </child>
                     <child>
@@ -188,7 +145,7 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkBox" id="format_box_mobile">
+                      <object class="GtkBox" id="toolbar">
                         <property name="orientation">horizontal</property>
                         <property name="hexpand">1</property>
                         <child>
@@ -217,6 +174,18 @@
                             <property name="icon-name">format-text-highlight-symbolic</property>
                             <property name="tooltip_text">Highlight</property>
                             <property name="action_name">app.format-highlight</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkBox">
+                            <property name="hexpand">1</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="icon-name">dialog-information-symbolic</property>
+                            <property name="tooltip_text">Markdown cheatsheet</property>
+                            <property name="action_name">app.markdown-cheatsheet</property>
                           </object>
                         </child>
                         <style>

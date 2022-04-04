@@ -3,54 +3,50 @@
   <template class="PaperNotebooksBar" parent="GtkBox">
     <property name="hexpand">0</property>
     <property name="vexpand">1</property>
+    <property name="orientation">vertical</property>
+    <style>
+      <class name="notebooks-bar"/>
+    </style>
     <child>
-      <object class="GtkWindowHandle">
-        <property name="hexpand">0</property>
-        <property name="vexpand">1</property>
-        <child>
-          <object class="GtkBox">
-            <property name="orientation">vertical</property>
-            <child>
-              <object class="GtkMenuButton">
-                <property name="icon-name">open-menu-symbolic</property>
-                <property name="menu-model">primary_menu</property>
-                <property name="hexpand">0</property>
-                <property name="vexpand">0</property>
-                <style>
-                  <class name="flat"/>
-                </style>
-              </object>
-            </child>
-            <child>
-              <object class="GtkScrolledWindow">
-                <property name="hexpand">0</property>
-                <property name="vexpand">1</property>
-                <property name="vscrollbar_policy">external</property>
-                <property name="hscrollbar_policy">never</property>
-                <child>
-                  <object class="GtkListView" id="list">
-                    <property name="hexpand">0</property>
-                    <property name="vexpand">1</property>
-                  </object>
-                </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkToggleButton" id="trash_button">
-                <property name="icon-name">user-trash-symbolic</property>
-                <property name="hexpand">0</property>
-                <property name="vexpand">0</property>
-                <style>
-                  <class name="flat"/>
-                  <class name="trash-button"/>
-                </style>
-              </object>
-            </child>
-            <style>
-              <class name="notebooks-bar"/>
-            </style>
+      <object class="AdwHeaderBar">
+        <property name="show-start-title-buttons">0</property>
+        <property name="show-end-title-buttons">0</property>
+        <child type="title">
+          <object class="GtkMenuButton">
+            <property name="icon-name">open-menu-symbolic</property>
+            <property name="menu-model">primary_menu</property>
+            <property name="hexpand">0</property>
+            <property name="vexpand">0</property>
           </object>
         </child>
+        <child type="start">
+          <object class="GtkBox"/>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkScrolledWindow">
+        <property name="hexpand">0</property>
+        <property name="vexpand">1</property>
+        <property name="vscrollbar_policy">external</property>
+        <property name="hscrollbar_policy">never</property>
+        <child>
+          <object class="GtkListView" id="list">
+            <property name="hexpand">0</property>
+            <property name="vexpand">1</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkToggleButton" id="trash_button">
+        <property name="icon-name">user-trash-symbolic</property>
+        <property name="hexpand">0</property>
+        <property name="vexpand">0</property>
+        <style>
+          <class name="flat"/>
+          <class name="trash-button"/>
+        </style>
       </object>
     </child>
   </template>

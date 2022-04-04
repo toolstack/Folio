@@ -1,24 +1,15 @@
 
-@define-color window_bg_color shade(@theme_color, 0.24);
-@define-color window_fg_color shade(@theme_color, 1.9);
-
-@define-color view_bg_color shade(@window_bg_color, 1.3);
-@define-color view_fg_color #ffffff;
-
-@define-color card_bg_color @view_bg_color;
-@define-color card_fg_color @window_fg_color;
-@define-color card_shade_color shade(@theme_color, 0.1);
-
 @define-color accent_color shade(@theme_color, 1.2);
 @define-color accent_bg_color shade(@theme_color, 0.8);
 
-@define-color notebooks_bar_color shade(@theme_color, 0.3);
-@define-color notebooks_bar_icon_color shade(@theme_color, 1.84);
+@define-color notebooks_bar_bg_color shade(@window_bg_color, 1.2);
+@define-color notebooks_bar_fg_color shade(@window_fg_color, 1.2);
 
-@define-color headerbar_bg_color shade(@theme_color, 0.42);
-@define-color headerbar_fg_color shade(@theme_color, 1.9);
+@define-color headerbar_bg_color mix(#27303a, @theme_color, 0.3);
+@define-color headerbar_fg_color shade(@theme_color, 1.96);
+@define-color headerbar_backdrop_color mix(@window_bg_color, @headerbar_bg_color, 0.6);
 
-@define-color selected_bg_color alpha(@theme_color, 0.15);
+@define-color selected_bg_color alpha(@theme_color, 0.14);
 
 .notebook-sidebar listview row:hover:not(:selected):not(:active) > box {
   background-color: alpha(@accent_color, .05);

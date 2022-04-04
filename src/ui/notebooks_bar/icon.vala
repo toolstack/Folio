@@ -43,6 +43,7 @@ public class Paper.NotebookIcon : Gtk.Box {
         }
 		var css = new Gtk.CssProvider ();
 		css.load_from_data (@"@define-color notebook_color $(notebook.color);@define-color notebook_fg_color $fg_rgba;".data);
+		parent.get_style_context ().add_provider (css, -1);
 		get_style_context ().add_provider (css, -1);
 	}
 

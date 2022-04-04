@@ -56,9 +56,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 	unowned Gtk.Button button_empty_trash;
 
 	[GtkChild]
-	unowned Gtk.Button button_markdown_cheatsheet;
-
-	[GtkChild]
 	unowned Gtk.ToggleButton button_toggle_sidebar;
 
 
@@ -66,10 +63,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 	unowned Adw.WindowTitle note_title;
 
 	[GtkChild]
-	unowned Gtk.Box format_box;
-
-	[GtkChild]
-	unowned Gtk.Box format_box_mobile;
+	unowned Gtk.Box toolbar;
 
 	[GtkChild]
 	unowned GtkSource.View text_view;
@@ -119,11 +113,11 @@ public class Paper.Window : Adw.ApplicationWindow {
 
         leaflet.notify["folded"].connect (() => {
             if (leaflet.folded) {
-                update_format_box_visibility ();
+                update_toolbar_visibility ();
                 button_toggle_sidebar.icon_name = "go-previous-symbolic";
 	            notebook_notes_model.unselect_item (notebook_notes_model.selected);
             } else {
-                update_format_box_visibility ();
+                update_toolbar_visibility ();
                 button_toggle_sidebar.icon_name = "sidebar-show-symbolic";
 	            button_toggle_sidebar.active = sidebar.child.visible;
             }
@@ -133,9 +127,8 @@ public class Paper.Window : Adw.ApplicationWindow {
         update_color_scheme (app.style_manager.dark);
 	}
 
-	private void update_format_box_visibility () {
-        format_box.visible = current_note != null && is_editable && !leaflet.folded;
-        format_box_mobile.visible = current_note != null && is_editable && leaflet.folded;
+	private void update_toolbar_visibility () {
+        toolbar.visible = current_note != null && is_editable;
 	}
 
     private GtkSource.StyleScheme current_style_scheme;
@@ -212,8 +205,7 @@ public class Paper.Window : Adw.ApplicationWindow {
     private Note? current_note = null;
 	public void set_note (Note? note) {
 	    current_note = note;
-	    update_format_box_visibility ();
-        button_markdown_cheatsheet.visible = note != null && is_editable;
+	    update_toolbar_visibility ();
 	    if (note != null) {
 	        note_title.title = note.name;
 	        text_view_scroll.show ();
