@@ -133,7 +133,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 
     private GtkSource.StyleScheme current_style_scheme;
 	private void update_color_scheme (bool dark) {
-	    message (@"update color scheme: dark = $dark");
 	    current_style_scheme = GtkSource.StyleSchemeManager.get_default ().get_scheme (dark ? "paper-dark" : "paper");
         var buffer = text_view.buffer as GtkSource.Buffer?;
         if (buffer != null) {

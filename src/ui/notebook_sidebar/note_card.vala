@@ -29,7 +29,7 @@ public class Paper.NoteCard : Gtk.Box {
 	public void set_note (Note note) {
 	    this.note = note;
 	    label.label = note.name;
-	    subtitle.label = is_in_trash ? note.time_modified.format (@"%e %b, %H:%m - $(note.notebook.name)") : note.time_modified.format ("%e %b, %H:%m");
+	    subtitle.label = (is_in_trash ? note.time_modified.format (@"%e %b, %H:%m - $(note.notebook.name)") : note.time_modified.format ("%e %b, %H:%m")).strip ();
 	    tooltip_text = note.name;
 	}
 
