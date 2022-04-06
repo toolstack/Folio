@@ -19,7 +19,7 @@ public class Paper.NotebooksBar : Gtk.Box {
         factory.bind.connect (list_item => {
             var widget = list_item.child as NotebookIcon;
             var item = list_item.item as Notebook;
-            widget.set_notebook (item);
+            widget.notebook = item;
         });
         this.model = new Gtk.SingleSelection (
             app.notebook_provider

@@ -6,8 +6,10 @@ paper_sources = [
   'ui/preferences.vala',
 
   'ui/notebooks_bar/notebooks_bar.vala',
+  'ui/notebooks_bar/notebook_preview.vala',
   'ui/notebooks_bar/icon.vala',
   'ui/notebooks_bar/notebook_menu.vala',
+  'ui/notebooks_bar/create_popup.vala',
 
   'ui/notebook_sidebar/note_card.vala',
   'ui/notebook_sidebar/note_menu.vala',
@@ -15,7 +17,6 @@ paper_sources = [
   'ui/markdown_cheatsheet/markdown_cheatsheet.vala',
 
   'ui/popup/confirmation_popup.vala',
-  'ui/popup/notebook_create_popup.vala',
   'ui/popup/note_create_popup.vala',
 
   'interface/note.vala',

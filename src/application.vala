@@ -226,6 +226,10 @@ public class Paper.Application : Adw.Application {
             window.toast (@"Note name shouldn't contain '.' or '/'");
             return;
 	    }
+	    if (name.replace(" ", "").length == 0) {
+            window.toast (@"Note name shouldn't be blank");
+            return;
+	    }
 		try {
 		    active_notebook.new_note (name);
 	        window.select_note (0);
@@ -243,6 +247,10 @@ public class Paper.Application : Adw.Application {
 	public void try_change_note (Note note, string name) {
 	    if (name.contains (".") || name.contains ("/")) {
             window.toast (@"Note name shouldn't contain '.' or '/'");
+            return;
+	    }
+	    if (name.replace(" ", "").length == 0) {
+            window.toast (@"Note name shouldn't be blank");
             return;
 	    }
 		try {
@@ -292,6 +300,10 @@ public class Paper.Application : Adw.Application {
             window.toast (@"Notebook name shouldn't contain '.' or '/'");
             return;
 	    }
+	    if (name.replace(" ", "").length == 0) {
+            window.toast (@"Notebook name shouldn't be blank");
+            return;
+	    }
 		try {
 	        var notebook = notebook_provider.new_notebook (name, color);
 	        select_notebook (notebook);
@@ -309,6 +321,10 @@ public class Paper.Application : Adw.Application {
 	public void try_change_notebook (Notebook notebook, string name, Gdk.RGBA color) {
 	    if (name.contains (".") || name.contains ("/")) {
             window.toast (@"Notebook name shouldn't contain '.' or '/'");
+            return;
+	    }
+	    if (name.replace(" ", "").length == 0) {
+            window.toast (@"Notebook name shouldn't be blank");
             return;
 	    }
 		try {

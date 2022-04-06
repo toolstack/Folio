@@ -139,6 +139,11 @@ listview, window.transparent {
   font-size: 14px;
 }
 
+.notebook-preview {
+  transform: scale(2.4);
+  margin: 32px;
+}
+
 
 /*
  *

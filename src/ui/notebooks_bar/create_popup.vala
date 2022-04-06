@@ -1,5 +1,5 @@
 
-[GtkTemplate (ui = "/io/posidon/Paper/popup/notebook_create_popup.ui")]
+[GtkTemplate (ui = "/io/posidon/Paper/notebooks_bar/create_popup.ui")]
 public class Paper.CreatePopup : Adw.Window {
 
 	[GtkChild]
@@ -9,14 +9,13 @@ public class Paper.CreatePopup : Adw.Window {
 	unowned Gtk.ColorButton button_color;
 
 	[GtkChild]
-	unowned Gtk.Button button_cancel;
+	unowned Gtk.Button button_create;
 
 	[GtkChild]
-	unowned Gtk.Button button_create;
+	unowned NotebookPreview preview;
 
 	public CreatePopup (Application app, Notebook? notebook = null) {
 		Object ();
-		button_cancel.clicked.connect (close);
 
         if (notebook != null) {
             button_create.label = "Apply";
@@ -28,6 +27,15 @@ public class Paper.CreatePopup : Adw.Window {
             entry.activate.connect (() => create (app));
             button_create.clicked.connect (() => create (app));
         }
+
+        entry.changed.connect (() => {
+            preview.notebook_name = entry.text;
+        });
+        button_color.color_set.connect (() => {
+            preview.color = button_color.rgba;
+        });
+        entry.changed ();
+        button_color.color_set ();
 	}
 
     private void create (Application app) {
