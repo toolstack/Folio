@@ -10,12 +10,12 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
-    <release version="22" date="2022-02-05" />
+    <release version="22.1" date="2022-04-06" />
   </releases>
 
   <screenshots>
     <screenshot type="default">
-      <image>https://posidon.io/paper/screenshot/recursos-retoricos.png</image>
+      <image>https://posidon.io/paper/screenshot/22_0407_recursos_retoricos.png</image>
       <caption>Markdown document</caption>
     </screenshot>
   </screenshots>
