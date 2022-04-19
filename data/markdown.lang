@@ -54,42 +54,42 @@
          ###Header 3###
     -->
     <context id="h1" style-ref="h1">
-      <match>^(#[ ]*)[^#].*</match>
+      <match>^(#[ ])[^#].*</match>
       <include>
         <context id="heading-hash" sub-pattern="1" style-ref="heading-hash"/>
       </include>
     </context>
 
     <context id="h2" style-ref="h2">
-      <match>^(##[ ]*)[^#].*</match>
+      <match>^(##[ ])[^#].*</match>
       <include>
         <context id="heading-hash" sub-pattern="1" style-ref="heading-hash"/>
       </include>
     </context>
 
     <context id="h3" style-ref="h3">
-      <match>^(#{3}[ ]*)[^#].*</match>
+      <match>^(#{3}[ ])[^#].*</match>
       <include>
         <context id="heading-hash" sub-pattern="1" style-ref="heading-hash"/>
       </include>
     </context>
 
     <context id="h4" style-ref="h4">
-      <match>^(#{4}[ ]*)[^#].*</match>
+      <match>^(#{4}[ ])[^#].*</match>
       <include>
         <context id="heading-hash" sub-pattern="1" style-ref="heading-hash"/>
       </include>
     </context>
 
     <context id="h5" style-ref="h5">
-      <match>^(#{5}[ ]*)[^#].*</match>
+      <match>^(#{5}[ ])[^#].*</match>
       <include>
         <context id="heading-hash" sub-pattern="1" style-ref="heading-hash"/>
       </include>
     </context>
 
     <context id="h6" style-ref="h6">
-      <match>^(#{6}[ ]*)[^#].*</match>
+      <match>^(#{6}[ ])[^#].*</match>
       <include>
         <context id="heading-hash" sub-pattern="1" style-ref="heading-hash"/>
       </include>

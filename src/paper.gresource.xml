@@ -17,6 +17,8 @@
     <file alias="notebook_sidebar/note_card.ui">ui/notebook_sidebar/note_card.ui</file>
     <file alias="notebook_sidebar/note_menu.ui">ui/notebook_sidebar/note_menu.ui</file>
 
+    <file alias="markdown/heading_popup.ui">ui/markdown/heading_popup.ui</file>
+
     <file alias="markdown_cheatsheet.ui">ui/markdown_cheatsheet/markdown_cheatsheet.ui</file>
     <file alias="markdown_cheatsheet.md">ui/markdown_cheatsheet/markdown_cheatsheet.md</file>
 

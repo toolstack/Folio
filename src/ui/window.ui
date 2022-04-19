@@ -131,17 +131,16 @@
                             <property name="tab-width">4</property>
                             <property name="auto-indent">true</property>
                             <property name="wrap-mode">word-char</property>
-                            <property name="bottom-margin">18</property>
-                            <property name="left-margin">18</property>
-                            <property name="right-margin">18</property>
-                            <property name="top-margin">18</property>
+                            <property name="top-margin">24</property>
+                            <property name="bottom-margin">64</property>
                             <property name="hexpand">1</property>
                             <property name="vexpand">1</property>
+                            <property name="show_gutter">1</property>
+                            <style>
+                              <class name="markdown-view"/>
+                            </style>
                           </object>
                         </child>
-                        <style>
-                          <class name="text-area"/>
-                        </style>
                       </object>
                     </child>
                     <child>

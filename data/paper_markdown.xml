@@ -8,8 +8,7 @@
     <property name="dark-variant">paper-dark</property>
   </metadata>
 
-  <color name="hyperlink"                   value="#4ba0f3"/>
-  <color name="hyperlink_label"             value="#0c3eaa"/>
+  <color name="hyperlink"                   value="#0c3eaa"/>
 
   <color name="escape"                      value="#7bb972"/>
 
@@ -30,9 +29,9 @@
 	<style name="markdown:code-block"         foreground="literal"/>
 	<style name="markdown:code-span"          foreground="literal" background="#rgba(96,100,150,0.08)"/>
 
-	<style name="markdown:label"              foreground="hyperlink_label"/>
-	<style name="markdown:link-text"          foreground="hyperlink_label"/>
-	<style name="markdown:url"                foreground="hyperlink" scale="0.7"/>
+	<style name="markdown:label"              foreground="hyperlink"/>
+	<style name="markdown:link-text"          foreground="hyperlink"/>
+	<style name="markdown:url"                foreground="hyperlink"/>
 
   <style name="markdown:emphasis"           italic="true"/>
   <style name="markdown:strong-emphasis"    bold="true"/>

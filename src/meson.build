@@ -19,6 +19,10 @@ paper_sources = [
   'ui/popup/confirmation_popup.vala',
   'ui/popup/note_create_popup.vala',
 
+  'ui/markdown/markdown_buffer.vala',
+  'ui/markdown/markdown_view.vala',
+  'ui/markdown/heading_popup.vala',
+
   'interface/note.vala',
   'interface/notebook.vala',
   'interface/provider.vala',
@@ -27,9 +31,6 @@ paper_sources = [
   'interface/local/notebook.vala',
   'interface/local/trash/trash.vala',
   'interface/local/trash/trashed_notebook.vala',
-
-  'markdown/markdown_buffer.vala',
-  'markdown/markdown_view.vala',
 
   'color.vala',
 ]

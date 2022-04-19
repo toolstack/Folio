@@ -62,11 +62,15 @@ public class Paper.Note : Object {
     public void save () {
         try {
             var file = File.new_for_path (path);
+            Gtk.TextIter start, end;
+            _text.get_start_iter (out start);
+            _text.get_end_iter (out end);
+            var save_text = _text.get_text(start, end, true);
             if (file.query_exists ()) {
                 string etag_out;
                 uint8[] text_data = {};
                 file.load_contents (null, out text_data, out etag_out);
-                if (_text.text == (string) text_data) {
+                if (save_text == (string) text_data) {
                     return;
                 }
                 file.delete ();
@@ -74,7 +78,7 @@ public class Paper.Note : Object {
             var data_stream = new DataOutputStream (
                 file.create (FileCreateFlags.REPLACE_DESTINATION)
             );
-            uint8[] data = _text.text.data;
+            uint8[] data = save_text.data;
             var l = data.length;
             long written = 0;
             while (written < l) {

@@ -332,6 +332,7 @@ public class Paper.Window : Adw.ApplicationWindow {
         var css = new Gtk.CssProvider ();
         css.load_from_data (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;".data);
         Gtk.StyleContext.add_provider_for_display (display, css, -1);
+        text_view.theme_color = rgba;
 	}
 
 	public void set_sidebar_visibility (bool visibility) {

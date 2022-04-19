@@ -222,6 +222,16 @@ searchbar.inline box {
   background-color: @view_bg_color;
 }
 
+.text-area gutterrenderer {
+  min-width: 32px;
+  color: rgba(0, 0, 0, 0.3);;
+  font-size: 12px;
+}
+
+.markdown-view {
+  margin-right: 8px;
+}
+
 .bottom-toolbar {
   background-color: @view_bg_color;
   color: @view_fg_color;
