@@ -21,7 +21,6 @@ paper_sources = [
 
   'ui/markdown/markdown_buffer.vala',
   'ui/markdown/markdown_view.vala',
-  'ui/markdown/heading_popup.vala',
   'ui/markdown/heading_popover.vala',
 
   'interface/note.vala',
