@@ -64,6 +64,12 @@ public class Paper.Note : Object {
         try {
             var file = File.new_for_path (path);
             if (file.query_exists ()) {
+                string etag_out;
+                uint8[] text_data = {};
+                file.load_contents (null, out text_data, out etag_out);
+                if (_text.text == (string) text_data) {
+                    return;
+                }
                 file.delete ();
             }
             var data_stream = new DataOutputStream (
