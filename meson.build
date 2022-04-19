@@ -11,6 +11,7 @@ project(
 i18n = import('i18n')
 
 app_id = 'io.posidon.Paper'
+version = '22.2'
 
 subdir('data')
 subdir('src')

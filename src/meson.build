@@ -55,9 +55,6 @@ paper_sources += gnome.compile_resources(
   c_name: 'paper'
 )
 
-app_id = 'io.posidon.Paper'
-version = '22.2'
-
 conf = configuration_data()
 conf.set_quoted('APP_ID', app_id)
 conf.set_quoted('VERSION', version)

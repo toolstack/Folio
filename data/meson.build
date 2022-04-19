@@ -1,5 +1,6 @@
 conf = configuration_data()
 conf.set('app_id', app_id)
+conf.set('version', version)
 
 desktop_conf = configure_file(
   input: meson.project_name() + '.desktop.in',

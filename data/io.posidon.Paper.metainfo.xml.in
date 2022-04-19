@@ -10,7 +10,7 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
-    <release version="22.1" date="2022-04-06" />
+    <release version="@version@" date="2022-04-06" />
   </releases>
 
   <screenshots>
