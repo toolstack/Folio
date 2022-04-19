@@ -66,7 +66,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 	unowned Gtk.Box toolbar;
 
 	[GtkChild]
-	unowned GtkSource.View text_view;
+	unowned GtkMarkdown.View text_view;
 
 	[GtkChild]
 	unowned Gtk.ScrolledWindow text_view_scroll;
@@ -123,21 +123,12 @@ public class Paper.Window : Adw.ApplicationWindow {
             }
         });
 
-        app.style_manager.notify["dark"].connect (() => update_color_scheme(app.style_manager.dark));
-        update_color_scheme (app.style_manager.dark);
+        app.style_manager.notify["dark"].connect (() => text_view.dark = app.style_manager.dark);
+        text_view.dark = app.style_manager.dark;
 	}
 
 	private void update_toolbar_visibility () {
         toolbar.visible = current_note != null && is_editable;
-	}
-
-    private GtkSource.StyleScheme current_style_scheme;
-	private void update_color_scheme (bool dark) {
-	    current_style_scheme = GtkSource.StyleSchemeManager.get_default ().get_scheme (dark ? "paper-dark" : "paper");
-        var buffer = text_view.buffer as GtkSource.Buffer?;
-        if (buffer != null) {
-            buffer.style_scheme = current_style_scheme;
-        }
 	}
 
 	public void set_notebook (Notebook? notebook) {
@@ -210,7 +201,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 	        text_view_scroll.show ();
 	        text_view_empty.hide ();
 	        text_view.buffer = note.text;
-            note.text.style_scheme = current_style_scheme;
 	    } else {
 	        note_title.title = null;
 	        text_view_scroll.hide ();

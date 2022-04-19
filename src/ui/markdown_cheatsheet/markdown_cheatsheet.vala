@@ -20,7 +20,7 @@
 public class Paper.MarkdownCheatsheet : Adw.Window {
 
     [GtkChild]
-    unowned GtkSource.View text_view;
+    unowned GtkMarkdown.View text_view;
 
 	public MarkdownCheatsheet (Application app) {
 		Object (
@@ -28,27 +28,14 @@ public class Paper.MarkdownCheatsheet : Adw.Window {
 		    icon_name: Config.APP_ID
 	    );
 
-        var language = GtkSource.LanguageManager.get_default ().get_language ("markdownpp");
-        var scheme = new GtkSource.StyleSchemeManager ().get_scheme ("paper");
-
-        var buffer = new GtkSource.Buffer.with_language (language);
-        buffer.style_scheme = scheme;
+        var buffer = new GtkMarkdown.Buffer ();
         buffer.text = (string) resources_lookup_data (
             "/io/posidon/Paper/markdown_cheatsheet.md",
             ResourceLookupFlags.NONE
         ).get_data ();
         text_view.buffer = buffer;
 
-        app.style_manager.notify["dark"].connect (() => update_color_scheme(app.style_manager.dark));
-        update_color_scheme (app.style_manager.dark);
-	}
-
-    private GtkSource.StyleScheme current_style_scheme;
-	private void update_color_scheme (bool dark) {
-	    current_style_scheme = GtkSource.StyleSchemeManager.get_default ().get_scheme (dark ? "paper-dark" : "paper");
-        var buffer = text_view.buffer as GtkSource.Buffer?;
-        if (buffer != null) {
-            buffer.style_scheme = current_style_scheme;
-        }
+        app.style_manager.notify["dark"].connect (() => text_view.dark = app.style_manager.dark);
+        text_view.dark = app.style_manager.dark;
 	}
 }

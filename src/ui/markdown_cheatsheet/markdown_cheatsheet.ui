@@ -21,7 +21,7 @@
             <property name="hexpand">1</property>
             <property name="vexpand">1</property>
             <child>
-              <object class="GtkSourceView" id="text_view">
+              <object class="GtkMarkdownView" id="text_view">
                 <property name="tab-width">4</property>
                 <property name="auto-indent">true</property>
                 <property name="wrap-mode">word-char</property>

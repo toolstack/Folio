@@ -5,7 +5,7 @@ public class Paper.Note : Object {
         get { return _name; }
     }
 
-    public GtkSource.Buffer text {
+    public GtkMarkdown.Buffer text {
         get { return (!) _text; }
     }
 
@@ -24,7 +24,7 @@ public class Paper.Note : Object {
     string _name;
     Notebook _notebook;
     DateTime _time_modified;
-    GtkSource.Buffer? _text = null;
+    GtkMarkdown.Buffer? _text = null;
 
     public Note (string name, Notebook notebook, DateTime time_modified) {
         this._name = name;
@@ -39,8 +39,7 @@ public class Paper.Note : Object {
     }
 
     public void load () {
-        var language = GtkSource.LanguageManager.get_default ().get_language ("markdownpp");
-        _text = new GtkSource.Buffer.with_language (language);
+        _text = new GtkMarkdown.Buffer();
         try {
             var file = File.new_for_path (path);
             if (!file.query_exists ()) {

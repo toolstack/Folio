@@ -28,6 +28,9 @@ paper_sources = [
   'interface/local/trash/trash.vala',
   'interface/local/trash/trashed_notebook.vala',
 
+  'markdown/markdown_buffer.vala',
+  'markdown/markdown_view.vala',
+
   'color.vala',
 ]
 
