@@ -32,6 +32,8 @@ public class Paper.LocalProvider : Object, ListModel, Provider {
         }
 
         list_directory(notes_dir);
+
+        update_data();
     }
 
     public Notebook new_notebook (string name, Gdk.RGBA color) throws ProviderError {
@@ -151,6 +153,29 @@ public class Paper.LocalProvider : Object, ListModel, Provider {
             }
         } catch (Error err) {
             stderr.printf ("Error: list_directory failed: %s\n", err.message);
+        }
+    }
+
+    private void update_data () {
+        var database_version_file = File.new_for_path (@"$notes_dir/.version");
+        if (!database_version_file.query_exists ()) {
+	        var stream = new DataOutputStream (database_version_file.create (0));
+	        stream.put_string (Config.VERSION);
+	        foreach (var notebook in _notebooks) {
+                var _loaded_notes = new ArrayList<Note> ();
+                var dir = File.new_for_path (notebook.path);
+                try {
+                    var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+                    FileInfo file_info;
+                    while ((file_info = enumerator.next_file ()) != null) {
+                        var name = file_info.get_name ();
+                        if (name[0] == '.') continue;
+                        File.new_for_path (@"$(notebook.path)/$name").set_display_name(@"$name.md");
+                    }
+                } catch (Error e) {
+                    error (@"Notebook loading failed: $(e.message)\n");
+                }
+	        }
         }
     }
 

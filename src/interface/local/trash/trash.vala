@@ -56,6 +56,9 @@ public class Paper.LocalTrash : Object, ListModel, Trash {
         while ((file_info = enumerator.next_file ()) != null) {
             var name = file_info.get_name ();
             if (name[0] == '.') continue;
+            if (name.has_suffix (".md"))
+                name = name.substring (0, name.length - 3);
+            else continue;
             var mod_time = (!) file_info.get_modification_date_time ();
             _loaded_notes.add (new Note (
                 name,

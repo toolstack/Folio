@@ -85,7 +85,7 @@ public class Paper.Application : Adw.Application {
 		                      "logo-icon-name", "io.posidon.Paper",
 			                  "program-name", "Paper",
 			                  "authors", authors,
-			                  "version", "22.0",
+			                  "version", Config.VERSION,
 			                  "license-type", Gtk.License.GPL_3_0,
 			                  "website", "https://posidon.io/paper");
 	}

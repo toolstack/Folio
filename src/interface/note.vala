@@ -10,7 +10,7 @@ public class Paper.Note : Object {
     }
 
     public string path {
-        owned get { return @"$(_notebook.path)/$name"; }
+        owned get { return @"$(_notebook.path)/$name.md"; }
     }
 
     public DateTime time_modified {
