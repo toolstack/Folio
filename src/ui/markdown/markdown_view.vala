@@ -35,7 +35,11 @@ public class GtkMarkdown.View : GtkSource.View {
                 var line = iter.get_line ();
                 var title_level = get_title_level (line);
                 if (title_level == 0) return;
+<<<<<<< HEAD
                 var popover = new HeadingPopup(this, line);
+=======
+                var popover = new HeadingPopover(this, line);
+>>>>>>> c982742 (WYSIWYG for hyperlinks & headings)
                 popover.autohide = true;
                 popover.has_arrow = true;
                 popover.position = Gtk.PositionType.LEFT;
