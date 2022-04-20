@@ -24,10 +24,7 @@ public class Paper.NotebookPreview : Gtk.Box {
                 hsl.s = 1.0f;
                 var m = is_notebook_light ? 1.0f : 3.0f;
                 Color.hsl_to_rgb (hsl, out rgb);
-                fg_rgba.alpha = 1f;
-                fg_rgba.red = rgb.r * m;
-                fg_rgba.green = rgb.g * m;
-                fg_rgba.blue = rgb.b * m;
+                Color.rgb_to_RGBA (rgb.multiply (m), out fg_rgba);
             }
 		    var css = new Gtk.CssProvider ();
 		    css.load_from_data (@"@define-color notebook_color $(value);@define-color notebook_fg_color $fg_rgba;".data);

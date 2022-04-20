@@ -318,16 +318,10 @@ public class Paper.Window : Adw.ApplicationWindow {
         {
             hsl.l = 0.5f;
             Color.hsl_to_rgb (hsl, out rgb);
-            rgba.alpha = 1f;
-            rgba.red = rgb.r;
-            rgba.green = rgb.g;
-            rgba.blue = rgb.b;
+            Color.rgb_to_RGBA (rgb, out rgba);
             hsl.l = 0.7f;
             Color.hsl_to_rgb (hsl, out rgb);
-            light_rgba.alpha = 1f;
-            light_rgba.red = rgb.r;
-            light_rgba.green = rgb.g;
-            light_rgba.blue = rgb.b;
+            Color.rgb_to_RGBA (rgb, out light_rgba);
         }
         var css = new Gtk.CssProvider ();
         css.load_from_data (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;".data);
