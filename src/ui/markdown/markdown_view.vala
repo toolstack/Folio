@@ -33,6 +33,7 @@ public class GtkMarkdown.View : GtkSource.View {
 	    is_escape = new Regex ("\\\\[\\\\`*_{}\\[\\]()#+-.!]", RegexCompileFlags.CASELESS, 0);
 
         notify["dark"].connect ((s, p) => update_color_scheme ());
+        notify["theme-color"].connect ((s, p) => update_color_scheme ());
         update_color_scheme ();
 
         {
@@ -111,17 +112,21 @@ public class GtkMarkdown.View : GtkSource.View {
         if (buffer is GtkSource.Buffer) {
             var buffer = buffer as GtkSource.Buffer;
             buffer.style_scheme = GtkSource.StyleSchemeManager.get_default ().get_scheme (dark ? "paper-dark" : "paper");
-            hidden = buffer.create_tag ("hidden-character");
+            hidden = get_or_create_tag ("hidden-character");
             hidden.invisible = true;
-            text_tag_url = buffer.create_tag ("markdown-link");
+            text_tag_url = get_or_create_tag ("markdown-link");
             text_tag_url.foreground_rgba = url_color;
             text_tag_url.underline = Pango.Underline.SINGLE;
-            text_tag_escaped = buffer.create_tag ("markdown-escaped-char");
+            text_tag_escaped = get_or_create_tag ("markdown-escaped-char");
             text_tag_escaped.foreground_rgba = escape_color;
             buffer.changed.connect (restyle_text);
             buffer.notify["cursor-position"].connect (restyle_text);
             restyle_text();
         }
+	}
+
+	private Gtk.TextTag get_or_create_tag (string name) {
+	    return buffer.tag_table.lookup (name) ?? buffer.create_tag (name);
 	}
 
 	private void restyle_text () {
