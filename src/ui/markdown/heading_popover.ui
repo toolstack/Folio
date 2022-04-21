@@ -4,26 +4,107 @@
       <object class="GtkBox">
         <property name="orientation">vertical</property>
         <child>
-          <object class="GtkAdjustment" id="adjustment">
-            <property name="lower">1</property>
-            <property name="upper">6</property>
-            <property name="step-increment">1</property>
-            <property name="page-increment">100</property>
+          <object class="GtkButton" id="button_heading_1">
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Heading 1</property>
+                <property name="halign">start</property>
+              </object>
+            </child>
+            <style>
+              <class name="flat"/>
+              <class name="modelbutton"/>
+            </style>
           </object>
         </child>
         <child>
-          <object class="GtkSpinButton" id="heading_level">
-            <property name="halign">start</property>
-            <property name="width-chars">1</property>
-            <property name="adjustment">adjustment</property>
-            <property name="climb-rate">0.5</property>
-            <property name="numeric">1</property>
+          <object class="GtkButton" id="button_heading_2">
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Heading 2</property>
+                <property name="halign">start</property>
+              </object>
+            </child>
+            <style>
+              <class name="flat"/>
+              <class name="modelbutton"/>
+            </style>
           </object>
         </child>
-        <style>
-          <class name="linked"/>
-        </style>
+        <child>
+          <object class="GtkButton" id="button_heading_3">
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Heading 3</property>
+                <property name="halign">start</property>
+              </object>
+            </child>
+            <style>
+              <class name="flat"/>
+              <class name="modelbutton"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="button_heading_4">
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Heading 4</property>
+                <property name="halign">start</property>
+              </object>
+            </child>
+            <style>
+              <class name="flat"/>
+              <class name="modelbutton"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="button_heading_5">
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Heading 5</property>
+                <property name="halign">start</property>
+              </object>
+            </child>
+            <style>
+              <class name="flat"/>
+              <class name="modelbutton"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="button_heading_6">
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Heading 6</property>
+                <property name="halign">start</property>
+              </object>
+            </child>
+            <style>
+              <class name="flat"/>
+              <class name="modelbutton"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="button_plain_text">
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Plain Text</property>
+                <property name="halign">start</property>
+              </object>
+            </child>
+            <style>
+              <class name="flat"/>
+              <class name="modelbutton"/>
+            </style>
+          </object>
+        </child>
       </object>
     </child>
+    <style>
+      <class name="custom-popover-menu"/>
+    </style>
   </template>
 </interface>

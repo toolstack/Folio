@@ -154,6 +154,22 @@
                         <property name="orientation">horizontal</property>
                         <property name="hexpand">1</property>
                         <child>
+                          <object class="GtkComboBoxText" id="format_heading_type">
+                            <items>
+                              <item translatable="yes" id="p">Plain Text</item>
+                              <item translatable="yes" id="h1">Heading 1</item>
+                              <item translatable="yes" id="h2">Heading 2</item>
+                              <item translatable="yes" id="h3">Heading 3</item>
+                              <item translatable="yes" id="h4">Heading 4</item>
+                              <item translatable="yes" id="h5">Heading 5</item>
+                              <item translatable="yes" id="h6">Heading 6</item>
+                            </items>
+                            <style>
+                              <class name="flat"/>
+                            </style>
+                          </object>
+                        </child>
+                        <child>
                           <object class="GtkButton">
                             <property name="icon-name">format-text-bold-symbolic</property>
                             <property name="tooltip_text">Bold</property>

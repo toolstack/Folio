@@ -69,6 +69,9 @@ public class Paper.Window : Adw.ApplicationWindow {
 	unowned Gtk.Box toolbar;
 
 	[GtkChild]
+	unowned Gtk.ComboBox format_heading_type;
+
+	[GtkChild]
 	unowned GtkMarkdown.View text_view;
 
 	[GtkChild]
@@ -105,6 +108,21 @@ public class Paper.Window : Adw.ApplicationWindow {
 		    text_view.get_style_context ().add_provider (css, -1);
 		}
 
+        app.style_manager.notify["dark"].connect (() => text_view.dark = app.style_manager.dark);
+        text_view.dark = app.style_manager.dark;
+        text_view.notify["buffer"].connect (() => text_view.buffer.notify["cursor-position"].connect (() => {
+            var ins = text_view.buffer.get_insert ();
+            Gtk.TextIter cur;
+            text_view.buffer.get_iter_at_mark (out cur, ins);
+            format_heading_type.active = (int) text_view.get_title_level (cur.get_line ());
+        }));
+        format_heading_type.changed.connect (() => {
+            var ins = text_view.buffer.get_insert ();
+            Gtk.TextIter cur;
+            text_view.buffer.get_iter_at_mark (out cur, ins);
+            text_view.set_title_level (cur.get_line (), format_heading_type.active);
+        });
+
         set_notebook (null);
 
         search_filter = new Gtk.StringFilter (new Gtk.PropertyExpression (typeof (Note), null, "name"));
@@ -126,8 +144,9 @@ public class Paper.Window : Adw.ApplicationWindow {
             }
         });
 
-        app.style_manager.notify["dark"].connect (() => text_view.dark = app.style_manager.dark);
-        text_view.dark = app.style_manager.dark;
+        Gtk.TextIter start;
+        text_view.buffer.get_start_iter (out start);
+        text_view.buffer.place_cursor (start);
 	}
 
 	private void update_toolbar_visibility () {

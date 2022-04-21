@@ -32,6 +32,64 @@ public class GtkMarkdown.View : GtkSource.View {
 
     public bool show_gutter { get; set; default = true; }
 
+    public new Gtk.TextBuffer? buffer {
+        get { return base.buffer; }
+        set {
+            base.buffer = value;
+            update_color_scheme ();
+        }
+    }
+
+	public uint get_title_level (uint line) {
+        Gtk.TextIter start;
+        Gtk.TextIter end;
+        buffer.get_iter_at_line (out start, (int) line);
+        buffer.get_iter_at_line (out end, (int) line + 1);
+        var str = start.get_text (end);
+        var i = 0;
+        while (i < 6 && i < str.length) {
+            if (str[i] != '#') break;
+            i++;
+        }
+        if (str[i] != ' ') return 0;
+        return i;
+	}
+
+	public void set_title_level (uint line, uint level) {
+        var old_title_level = get_title_level (line);
+        if (old_title_level == level) return;
+        if (level > old_title_level) {
+            if (old_title_level == 0) {
+                Gtk.TextIter start;
+                buffer.get_iter_at_line (out start, (int) line);
+                var end = start.copy ();
+                end.forward_chars (1);
+                var str = start.get_text (end);
+                if (str[0] != ' ') {
+                    buffer.insert (ref start, " ", 1);
+                }
+            }
+            Gtk.TextIter start;
+            buffer.get_iter_at_line (out start, (int) line);
+            var str = string.nfill(level - old_title_level, '#');
+            buffer.insert (ref start, str, str.length);
+        } else {
+            Gtk.TextIter start;
+            buffer.get_iter_at_line (out start, (int) line);
+            var end = start.copy ();
+            end.forward_chars ((int) (old_title_level - level));
+            buffer.@delete (ref start, ref end);
+            if (level == 0) {
+                var e = end.copy ();
+                e.forward_chars (1);
+                var str = end.get_text (e);
+                if (str[0] == ' ') {
+                    buffer.@delete (ref end, ref e);
+                }
+            }
+        }
+	}
+
     private GtkSource.GutterRendererText renderer;
 
 	private Regex is_link;
@@ -83,44 +141,6 @@ public class GtkMarkdown.View : GtkSource.View {
             gutter.insert (renderer, 0);
         }
     }
-
-    public new Gtk.TextBuffer? buffer {
-        get { return base.buffer; }
-        set {
-            base.buffer = value;
-            update_color_scheme ();
-        }
-    }
-
-	internal uint get_title_level (uint line) {
-        Gtk.TextIter start;
-        Gtk.TextIter end;
-        buffer.get_iter_at_line (out start, (int) line);
-        buffer.get_iter_at_line (out end, (int) line + 1);
-        var str = start.get_text (end);
-        var i = 0;
-        while (i < 6 && i < str.length) {
-            if (str[i] != '#') break;
-            i++;
-        }
-        if (str[i] != ' ') return 0;
-        return i;
-	}
-
-	internal void set_title_level (uint line, uint level) {
-        var old_title_level = get_title_level (line);
-        if (old_title_level == level) return;
-        Gtk.TextIter start;
-        buffer.get_iter_at_line (out start, (int) line);
-        if (level > old_title_level) {
-            var str = string.nfill(level - old_title_level, '#');
-            buffer.insert (ref start, str, str.length);
-        } else {
-            var end = start.copy ();
-            end.forward_chars ((int) (old_title_level - level));
-            buffer.@delete (ref start, ref end);
-        }
-	}
 
     private Gtk.TextTag text_tag_hidden;
     private Gtk.TextTag text_tag_invisible;
