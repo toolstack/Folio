@@ -21,12 +21,3 @@ int main (string[] args) {
 	var app = new Paper.Application ();
 	return app.run (args);
 }
-
-int array_search<G> (G needle, G[] haystack) {
-    int result = -1;
-    int l = haystack.length;
-    for (int i = 0; i < l; ++i) {
-        if (needle == haystack[i]) return i;
-    }
-    return result;
-}

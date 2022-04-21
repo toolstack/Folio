@@ -33,7 +33,9 @@ public class Paper.LocalProvider : Object, ListModel, Provider {
 
         list_directory(notes_dir);
 
-        update_data();
+        try {
+            update_data();
+        } catch (Error e) {}
     }
 
     public Notebook new_notebook (string name, Gdk.RGBA color) throws ProviderError {
@@ -156,13 +158,12 @@ public class Paper.LocalProvider : Object, ListModel, Provider {
         }
     }
 
-    private void update_data () {
+    private void update_data () throws Error {
         var database_version_file = File.new_for_path (@"$notes_dir/.version");
         if (!database_version_file.query_exists ()) {
 	        var stream = new DataOutputStream (database_version_file.create (0));
 	        stream.put_string (Config.VERSION);
 	        foreach (var notebook in _notebooks) {
-                var _loaded_notes = new ArrayList<Note> ();
                 var dir = File.new_for_path (notebook.path);
                 try {
                     var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME, 0);

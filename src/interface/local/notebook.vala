@@ -114,7 +114,7 @@ public class Paper.LocalNotebook : Object, ListModel, Notebook {
             throw new ProviderError.COULDNT_DELETE (@"Couldn't delete note at $path");
         }
         var trashed_dir_path = @"$(provider.notes_dir)/.trash/$(note.notebook.name)";
-        var trashed_path = @"$trashed_dir_path/$(note.name)";
+        var trashed_path = @"$trashed_dir_path/$(note.file_name)";
         try {
             var trashed_dir = File.new_for_path (trashed_dir_path);
             if (!trashed_dir.query_exists ()) {

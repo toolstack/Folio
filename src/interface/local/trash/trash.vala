@@ -113,7 +113,7 @@ public class Paper.LocalTrash : Object, ListModel, Trash {
             throw new ProviderError.COULDNT_MOVE (@"Couldn't restore note at $path");
         }
         var restore_dir_path = @"$(provider.notes_dir)/$(note.notebook.name)";
-        var restore_path = @"$restore_dir_path/$(note.name)";
+        var restore_path = @"$restore_dir_path/$(note.file_name)";
         var restore_file = File.new_for_path (restore_path);
         if (restore_file.query_exists ()) {
             throw new ProviderError.ALREADY_EXISTS (@"Couldn't move from $path, to $restore_path, file already axists");

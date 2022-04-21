@@ -28,12 +28,14 @@ public class Paper.MarkdownCheatsheet : Adw.Window {
 		    icon_name: Config.APP_ID
 	    );
 
-        var buffer = new GtkMarkdown.Buffer ();
-        buffer.text = (string) resources_lookup_data (
-            "/io/posidon/Paper/markdown_cheatsheet.md",
-            ResourceLookupFlags.NONE
-        ).get_data ();
-        text_view.buffer = buffer;
+        try {
+            var buffer = new GtkMarkdown.Buffer ();
+            buffer.text = (string) resources_lookup_data (
+                "/io/posidon/Paper/markdown_cheatsheet.md",
+                ResourceLookupFlags.NONE
+            ).get_data ();
+            text_view.buffer = buffer;
+        } catch (Error e) {}
 
         app.style_manager.notify["dark"].connect (() => text_view.dark = app.style_manager.dark);
         text_view.dark = app.style_manager.dark;

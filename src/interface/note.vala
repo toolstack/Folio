@@ -5,12 +5,16 @@ public class Paper.Note : Object {
         get { return _name; }
     }
 
+    public inline string file_name {
+        owned get { return @"$_name.md"; }
+    }
+
     public GtkMarkdown.Buffer text {
         get { return (!) _text; }
     }
 
     public string path {
-        owned get { return @"$(_notebook.path)/$name.md"; }
+        owned get { return @"$(_notebook.path)/$file_name"; }
     }
 
     public DateTime time_modified {

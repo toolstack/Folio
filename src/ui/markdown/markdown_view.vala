@@ -40,10 +40,14 @@ public class GtkMarkdown.View : GtkSource.View {
 	private Regex is_code_block;
 
     construct {
-	    is_link = new Regex ("\\[([^\\[]+?)\\](\\([^\\)\\n]+?\\))", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS, 0);
-	    is_escape = new Regex ("\\\\[\\\\`*_{}\\[\\]()#+-.!]", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS, 0);
-	    is_code_span = new Regex ("(?<!`)`[^`]+(`{2,}[^`]+)*`(?!`)", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS | RegexCompileFlags.MULTILINE, 0);
-	    is_code_block = new Regex ("(?<![^\\n])(```[^`\\n]*)\\n([^`]*)(```)(?=\\n)", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS, 0);
+        try {
+	        is_link = new Regex ("\\[([^\\[]+?)\\](\\([^\\)\\n]+?\\))", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS, 0);
+	        is_escape = new Regex ("\\\\[\\\\`*_{}\\[\\]()#+-.!]", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS, 0);
+	        is_code_span = new Regex ("(?<!`)`[^`]+(`{2,}[^`]+)*`(?!`)", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS | RegexCompileFlags.MULTILINE, 0);
+	        is_code_block = new Regex ("(?<![^\\n])(```[^`\\n]*)\\n([^`]*)(```)(?=\\n)", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS, 0);
+	    } catch (RegexError e) {
+	        error (e.message);
+	    }
 
         notify["dark"].connect ((s, p) => update_color_scheme ());
         notify["theme-color"].connect ((s, p) => update_color_scheme ());
@@ -196,160 +200,162 @@ public class GtkMarkdown.View : GtkSource.View {
             }
         }
 
-        // Check for links
-        MatchInfo matches;
-        if (is_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
-            do {
-                int start_text_pos, end_text_pos;
-                int start_url_pos, end_url_pos;
-                bool have_text = matches.fetch_pos (1, out start_text_pos, out end_text_pos);
-                bool have_url = matches.fetch_pos (2, out start_url_pos, out end_url_pos);
+        try {
+            // Check for links
+            MatchInfo matches;
+            if (is_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+                do {
+                    int start_text_pos, end_text_pos;
+                    int start_url_pos, end_url_pos;
+                    bool have_text = matches.fetch_pos (1, out start_text_pos, out end_text_pos);
+                    bool have_url = matches.fetch_pos (2, out start_url_pos, out end_url_pos);
 
-                if (have_text && have_url) {
-                    start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
-                    end_text_pos = buffer_text.char_count ((ssize_t) end_text_pos);
-                    start_url_pos = buffer_text.char_count ((ssize_t) start_url_pos);
-                    end_url_pos = buffer_text.char_count ((ssize_t) end_url_pos);
+                    if (have_text && have_url) {
+                        start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
+                        end_text_pos = buffer_text.char_count ((ssize_t) end_text_pos);
+                        start_url_pos = buffer_text.char_count ((ssize_t) start_url_pos);
+                        end_url_pos = buffer_text.char_count ((ssize_t) end_url_pos);
 
-                    // Convert the character offsets to TextIter's
-                    Gtk.TextIter start_text_iter, end_text_iter, start_url_iter, end_url_iter;
-                    buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
-                    buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
-                    buffer.get_iter_at_offset (out start_url_iter, start_url_pos);
-                    buffer.get_iter_at_offset (out end_url_iter, end_url_pos);
+                        // Convert the character offsets to TextIter's
+                        Gtk.TextIter start_text_iter, end_text_iter, start_url_iter, end_url_iter;
+                        buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
+                        buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
+                        buffer.get_iter_at_offset (out start_url_iter, start_url_pos);
+                        buffer.get_iter_at_offset (out end_url_iter, end_url_pos);
 
-                    // Skip if our cursor is inside the URL text
-                    if (cursor_location.in_range (start_text_iter, end_url_iter)) {
-                        continue;
+                        // Skip if our cursor is inside the URL text
+                        if (cursor_location.in_range (start_text_iter, end_url_iter)) {
+                            continue;
+                        }
+
+                        var start_bracket_iter = start_text_iter.copy ();
+                        start_bracket_iter.backward_char ();
+                        var end_bracket_iter = end_text_iter.copy ();
+                        end_bracket_iter.forward_char ();
+
+                        // Apply our styling
+                        buffer.apply_tag (text_tag_url, start_text_iter, end_text_iter);
+                        buffer.apply_tag (text_tag_hidden, start_url_iter, end_url_iter);
+                        buffer.apply_tag (text_tag_hidden, start_bracket_iter, start_text_iter);
+                        buffer.apply_tag (text_tag_hidden, end_text_iter, end_bracket_iter);
                     }
+                } while (matches.next ());
+            }
 
-                    var start_bracket_iter = start_text_iter.copy ();
-                    start_bracket_iter.backward_char ();
-                    var end_bracket_iter = end_text_iter.copy ();
-                    end_bracket_iter.forward_char ();
+            // Check for escapes
+            if (is_escape.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+                do {
+                    int start_text_pos, end_text_pos;
+                    bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
 
-                    // Apply our styling
-                    buffer.apply_tag (text_tag_url, start_text_iter, end_text_iter);
-                    buffer.apply_tag (text_tag_hidden, start_url_iter, end_url_iter);
-                    buffer.apply_tag (text_tag_hidden, start_bracket_iter, start_text_iter);
-                    buffer.apply_tag (text_tag_hidden, end_text_iter, end_bracket_iter);
-                }
-            } while (matches.next ());
-        }
+                    if (have_text) {
+                        start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
+                        end_text_pos = buffer_text.char_count ((ssize_t) end_text_pos);
 
-        // Check for escapes
-        if (is_escape.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
-            do {
-                int start_text_pos, end_text_pos;
-                bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
+                        // Convert the character offsets to TextIter's
+                        Gtk.TextIter start_text_iter, end_text_iter;
+                        buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
+                        buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
 
-                if (have_text) {
-                    start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
-                    end_text_pos = buffer_text.char_count ((ssize_t) end_text_pos);
+                        var start_escaped_char_iter = start_text_iter.copy ();
+                        start_escaped_char_iter.forward_char ();
 
-                    // Convert the character offsets to TextIter's
-                    Gtk.TextIter start_text_iter, end_text_iter;
-                    buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
-                    buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
+                        // Skip if our cursor is inside the URL text
+                        if (cursor_location.in_range (start_text_iter, end_text_iter)) {
+                            continue;
+                        }
 
-                    var start_escaped_char_iter = start_text_iter.copy ();
-                    start_escaped_char_iter.forward_char ();
-
-                    // Skip if our cursor is inside the URL text
-                    if (cursor_location.in_range (start_text_iter, end_text_iter)) {
-                        continue;
+                        // Apply our styling
+                        buffer.apply_tag (text_tag_escaped, start_escaped_char_iter, end_text_iter);
+                        buffer.apply_tag (text_tag_hidden, start_text_iter, start_escaped_char_iter);
                     }
+                } while (matches.next ());
+            }
 
-                    // Apply our styling
-                    buffer.apply_tag (text_tag_escaped, start_escaped_char_iter, end_text_iter);
-                    buffer.apply_tag (text_tag_hidden, start_text_iter, start_escaped_char_iter);
-                }
-            } while (matches.next ());
-        }
+            // Check for code spans
+            if (is_code_span.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+                do {
+                    int start_text_pos, end_text_pos;
+                    bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
 
-        // Check for code spans
-        if (is_code_span.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
-            do {
-                int start_text_pos, end_text_pos;
-                bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
+                    if (have_text) {
+                        start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
+                        end_text_pos = buffer_text.char_count ((ssize_t) end_text_pos);
 
-                if (have_text) {
-                    start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
-                    end_text_pos = buffer_text.char_count ((ssize_t) end_text_pos);
+                        // Convert the character offsets to TextIter's
+                        Gtk.TextIter start_text_iter, end_text_iter;
+                        buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
+                        buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
 
-                    // Convert the character offsets to TextIter's
-                    Gtk.TextIter start_text_iter, end_text_iter;
-                    buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
-                    buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
+                        var code_start_iter = start_text_iter.copy ();
+                        code_start_iter.forward_char ();
 
-                    var code_start_iter = start_text_iter.copy ();
-                    code_start_iter.forward_char ();
+                        var code_end_iter = end_text_iter.copy ();
+                        code_end_iter.backward_char ();
 
-                    var code_end_iter = end_text_iter.copy ();
-                    code_end_iter.backward_char ();
+                        buffer.remove_tag (text_tag_hidden, start_text_iter, end_text_iter);
+                        buffer.remove_tag (text_tag_escaped, start_text_iter, end_text_iter);
+                        buffer.remove_tag (text_tag_url, start_text_iter, end_text_iter);
 
-                    buffer.remove_tag (text_tag_hidden, start_text_iter, end_text_iter);
-                    buffer.remove_tag (text_tag_escaped, start_text_iter, end_text_iter);
-                    buffer.remove_tag (text_tag_url, start_text_iter, end_text_iter);
+                        // Apply our styling
+                        buffer.apply_tag (text_tag_code_span, code_start_iter, code_end_iter);
 
-                    // Apply our styling
-                    buffer.apply_tag (text_tag_code_span, code_start_iter, code_end_iter);
+                        // Skip if our cursor is inside the code
+                        if (cursor_location.in_range (start_text_iter, end_text_iter)) {
+                            continue;
+                        }
 
-                    // Skip if our cursor is inside the code
-                    if (cursor_location.in_range (start_text_iter, end_text_iter)) {
-                        continue;
+                        buffer.apply_tag (text_tag_hidden, start_text_iter, code_start_iter);
+                        buffer.apply_tag (text_tag_hidden, code_end_iter, end_text_iter);
                     }
+                } while (matches.next ());
+            }
 
-                    buffer.apply_tag (text_tag_hidden, start_text_iter, code_start_iter);
-                    buffer.apply_tag (text_tag_hidden, code_end_iter, end_text_iter);
-                }
-            } while (matches.next ());
-        }
+            // Check for code blocks
+            if (is_code_block.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+                do {
+                    int start_before_pos, end_before_pos;
+                    int start_code_pos,   end_code_pos;
+                    int start_after_pos,  end_after_pos;
+                    bool have_code_start = matches.fetch_pos (1, out start_before_pos, out end_before_pos);
+                    bool have_code = matches.fetch_pos (2, out start_code_pos, out end_code_pos);
+                    bool have_code_close = matches.fetch_pos (3, out start_after_pos, out end_after_pos);
 
-        // Check for code blocks
-        if (is_code_block.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
-            do {
-                int start_before_pos, end_before_pos;
-                int start_code_pos,   end_code_pos;
-                int start_after_pos,  end_after_pos;
-                bool have_code_start = matches.fetch_pos (1, out start_before_pos, out end_before_pos);
-                bool have_code = matches.fetch_pos (2, out start_code_pos, out end_code_pos);
-                bool have_code_close = matches.fetch_pos (3, out start_after_pos, out end_after_pos);
+                    if (have_code_start && have_code && have_code_close) {
+                        start_before_pos = buffer_text.char_count ((ssize_t) start_before_pos);
+                        end_before_pos = buffer_text.char_count ((ssize_t) end_before_pos);
+                        start_code_pos = buffer_text.char_count ((ssize_t) start_code_pos);
+                        end_code_pos = buffer_text.char_count ((ssize_t) end_code_pos);
+                        start_after_pos = buffer_text.char_count ((ssize_t) start_after_pos);
+                        end_after_pos = buffer_text.char_count ((ssize_t) end_after_pos);
 
-                if (have_code_start && have_code && have_code_close) {
-                    start_before_pos = buffer_text.char_count ((ssize_t) start_before_pos);
-                    end_before_pos = buffer_text.char_count ((ssize_t) end_before_pos);
-                    start_code_pos = buffer_text.char_count ((ssize_t) start_code_pos);
-                    end_code_pos = buffer_text.char_count ((ssize_t) end_code_pos);
-                    start_after_pos = buffer_text.char_count ((ssize_t) start_after_pos);
-                    end_after_pos = buffer_text.char_count ((ssize_t) end_after_pos);
+                        // Convert the character offsets to TextIter's
+                        Gtk.TextIter start_before_iter, end_before_iter;
+                        Gtk.TextIter start_code_iter,   end_code_iter;
+                        Gtk.TextIter start_after_iter,  end_after_iter;
+                        buffer.get_iter_at_offset (out start_before_iter, start_before_pos);
+                        buffer.get_iter_at_offset (out end_before_iter, end_before_pos);
+                        buffer.get_iter_at_offset (out start_code_iter, start_code_pos);
+                        buffer.get_iter_at_offset (out end_code_iter, end_code_pos);
+                        buffer.get_iter_at_offset (out start_after_iter, start_after_pos);
+                        buffer.get_iter_at_offset (out end_after_iter, end_after_pos);
 
-                    // Convert the character offsets to TextIter's
-                    Gtk.TextIter start_before_iter, end_before_iter;
-                    Gtk.TextIter start_code_iter,   end_code_iter;
-                    Gtk.TextIter start_after_iter,  end_after_iter;
-                    buffer.get_iter_at_offset (out start_before_iter, start_before_pos);
-                    buffer.get_iter_at_offset (out end_before_iter, end_before_pos);
-                    buffer.get_iter_at_offset (out start_code_iter, start_code_pos);
-                    buffer.get_iter_at_offset (out end_code_iter, end_code_pos);
-                    buffer.get_iter_at_offset (out start_after_iter, start_after_pos);
-                    buffer.get_iter_at_offset (out end_after_iter, end_after_pos);
+                        // Apply our styling
+                        buffer.apply_tag (text_tag_code_block, start_code_iter, end_code_iter);
+                        buffer.apply_tag (text_tag_code_block_around, start_before_iter, end_before_iter);
+                        buffer.apply_tag (text_tag_code_block_around, start_after_iter, end_after_iter);
 
-                    // Apply our styling
-                    buffer.apply_tag (text_tag_code_block, start_code_iter, end_code_iter);
-                    buffer.apply_tag (text_tag_code_block_around, start_before_iter, end_before_iter);
-                    buffer.apply_tag (text_tag_code_block_around, start_after_iter, end_after_iter);
+                        // Skip if our cursor is inside the code
+                        if (cursor_location.in_range (start_before_iter, end_after_iter)) {
+                            continue;
+                        }
 
-                    // Skip if our cursor is inside the code
-                    if (cursor_location.in_range (start_before_iter, end_after_iter)) {
-                        continue;
+                        buffer.apply_tag (text_tag_invisible, start_before_iter, end_before_iter);
+                        buffer.apply_tag (text_tag_invisible, start_after_iter, end_after_iter);
+
                     }
-
-                    buffer.apply_tag (text_tag_invisible, start_before_iter, end_before_iter);
-                    buffer.apply_tag (text_tag_invisible, start_after_iter, end_after_iter);
-
-                }
-            } while (matches.next ());
-        }
+                } while (matches.next ());
+            }
+        } catch (RegexError e) {}
     }
 }
