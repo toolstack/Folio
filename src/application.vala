@@ -29,6 +29,7 @@ public class Paper.Application : Adw.Application {
 		{ "format-italic", on_format_italic },
 		{ "format-strikethough", on_format_strikethough },
 		{ "format-highlight", on_format_highlight },
+		{ "insert-link", on_insert_link },
 		{ "markdown-cheatsheet", on_markdown_cheatsheet },
 		{ "toggle-sidebar", on_toggle_sidebar },
 		{ "search-notes", on_search_notes },
@@ -66,9 +67,10 @@ public class Paper.Application : Adw.Application {
 		set_accels_for_action ("app.format-italic", {"<primary>i"});
 		set_accels_for_action ("app.format-strikethough", {"<primary>s"});
 		set_accels_for_action ("app.format-highlight", {"<primary>h"});
+		set_accels_for_action ("app.insert-link", {"<primary>k"});
 
 		set_accels_for_action ("app.toggle-sidebar", {"F9"});
-		set_accels_for_action ("app.search-notes", {"<primary>F"});
+		set_accels_for_action ("app.search-notes", {"<primary>f"});
 	}
 
 	public override void activate () {
@@ -99,21 +101,15 @@ public class Paper.Application : Adw.Application {
         w.present ();
 	}
 
-	private void on_format_bold () {
-	    window.format_selection_bold ();
-	}
+	private void on_format_bold () { window.format_selection_bold (); }
 
-	private void on_format_italic () {
-	    window.format_selection_italic ();
-	}
+	private void on_format_italic () { window.format_selection_italic (); }
 
-	private void on_format_strikethough () {
-	    window.format_selection_strikethough ();
-	}
+	private void on_format_strikethough () { window.format_selection_strikethough (); }
 
-	private void on_format_highlight () {
-	    window.format_selection_highlight ();
-	}
+	private void on_format_highlight () { window.format_selection_highlight (); }
+
+	private void on_insert_link () { window.insert_link (); }
 
 	private void on_markdown_cheatsheet () {
         var w = new MarkdownCheatsheet (this);

@@ -164,9 +164,11 @@
                               <item translatable="yes" id="h5">Heading 5</item>
                               <item translatable="yes" id="h6">Heading 6</item>
                             </items>
-                            <style>
-                              <class name="flat"/>
-                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator">
+                            <style><class name="spacer"/></style>
                           </object>
                         </child>
                         <child>
@@ -195,6 +197,18 @@
                             <property name="icon-name">format-text-highlight-symbolic</property>
                             <property name="tooltip_text">Highlight</property>
                             <property name="action_name">app.format-highlight</property>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkSeparator">
+                            <style><class name="spacer"/></style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="icon-name">insert-link-symbolic</property>
+                            <property name="tooltip_text">Insert Link</property>
+                            <property name="action_name">app.insert-link</property>
                           </object>
                         </child>
                         <child>

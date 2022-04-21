@@ -249,38 +249,69 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 	public void format_selection_bold () {
 	    var b = text_view.buffer;
+	    b.begin_user_action ();
 	    var mark = b.get_selection_bound ();
 	    Gtk.TextIter iter;
 	    b.get_iter_at_mark (out iter, mark);
 	    b.insert (ref iter, "**", 2);
 	    b.insert_at_cursor ("**", 2);
+	    b.end_user_action ();
 	}
 
 	public void format_selection_italic () {
 	    var b = text_view.buffer;
+	    b.begin_user_action ();
 	    var mark = b.get_selection_bound ();
 	    Gtk.TextIter iter;
 	    b.get_iter_at_mark (out iter, mark);
 	    b.insert (ref iter, "_", 1);
 	    b.insert_at_cursor ("_", 1);
+	    b.end_user_action ();
 	}
 
 	public void format_selection_strikethough () {
 	    var b = text_view.buffer;
+	    b.begin_user_action ();
 	    var mark = b.get_selection_bound ();
 	    Gtk.TextIter iter;
 	    b.get_iter_at_mark (out iter, mark);
 	    b.insert (ref iter, "~~", 2);
 	    b.insert_at_cursor ("~~", 2);
+	    b.end_user_action ();
 	}
 
 	public void format_selection_highlight () {
 	    var b = text_view.buffer;
+	    b.begin_user_action ();
 	    var mark = b.get_selection_bound ();
 	    Gtk.TextIter iter;
 	    b.get_iter_at_mark (out iter, mark);
 	    b.insert (ref iter, "==", 2);
 	    b.insert_at_cursor ("==", 2);
+	    b.end_user_action ();
+	}
+
+	public void insert_link () {
+	    var b = text_view.buffer;
+	    b.begin_user_action ();
+	    Gtk.TextIter iter_a, iter_b, iter;
+	    {
+	        var mark = b.get_selection_bound ();
+	        b.get_iter_at_mark (out iter_a, mark);
+	        b.get_iter_at_offset (out iter_b, b.cursor_position);
+	        iter = iter_a.compare (iter_b) == -1 ? iter_a : iter_b;
+	        b.insert (ref iter, "[", 1);
+	    }
+	    {
+	        var mark = b.get_selection_bound ();
+	        b.get_iter_at_mark (out iter_a, mark);
+	        b.get_iter_at_offset (out iter_b, b.cursor_position);
+	        iter = iter_a.compare (iter_b) == 1 ? iter_a : iter_b;
+	        b.insert (ref iter, "]()", 3);
+	    }
+	    iter.backward_chars (3);
+	    b.place_cursor (iter);
+	    b.end_user_action ();
 	}
 
 	public void set_trash (Trash trash) {

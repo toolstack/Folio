@@ -67,6 +67,29 @@
                 <property name="action-name">app.format-highlight</property>
               </object>
             </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Insert Link</property>
+                <property name="action-name">app.insert-link</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="GtkShortcutsGroup">
+            <property name="title" translatable="yes" context="shortcut window">Navigation</property>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Toggle Sidebar</property>
+                <property name="action-name">app.toggle-sidebar</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkShortcutsShortcut">
+                <property name="title" translatable="yes" context="shortcut window">Search Notes</property>
+                <property name="action-name">app.search-notes</property>
+              </object>
+            </child>
           </object>
         </child>
         <child>
@@ -76,12 +99,6 @@
               <object class="GtkShortcutsShortcut">
                 <property name="title" translatable="yes" context="shortcut window">Show Keyboard Shortcuts</property>
                 <property name="action-name">win.show-help-overlay</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkShortcutsShortcut">
-                <property name="title" translatable="yes" context="shortcut window">Toggle sidebar</property>
-                <property name="action-name">app.toggle-sidebar</property>
               </object>
             </child>
             <child>

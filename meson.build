@@ -1,7 +1,7 @@
 project(
   'io.posidon.Paper',
   ['c', 'vala'],
-  version: '0.1.0',
+  version: '22.2',
   meson_version: '>= 0.59.0',
   default_options: [
     'warning_level=2',
@@ -11,7 +11,7 @@ project(
 i18n = import('i18n')
 
 app_id = 'io.posidon.Paper'
-version = '22.2'
+version = meson.project_version()
 
 subdir('data')
 subdir('src')
