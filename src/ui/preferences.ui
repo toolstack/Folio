@@ -16,6 +16,7 @@
                   <object class="GtkFontButton" id="font_button">
                     <property name="title" translatable="yes">Pick a font for displaying the notes' content</property>
                     <property name="use_size">0</property>
+                    <property name="valign">GTK_ALIGN_CENTER</property>
                   </object>
                 </child>
               </object>
