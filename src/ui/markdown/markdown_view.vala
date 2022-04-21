@@ -119,6 +119,7 @@ public class GtkMarkdown.View : GtkSource.View {
 	}
 
     private Gtk.TextTag text_tag_hidden;
+    private Gtk.TextTag text_tag_invisible;
     private Gtk.TextTag text_tag_url;
     private Gtk.TextTag text_tag_escaped;
     private Gtk.TextTag text_tag_code_span;
@@ -128,9 +129,6 @@ public class GtkMarkdown.View : GtkSource.View {
         if (buffer is GtkSource.Buffer) {
             var buffer = buffer as GtkSource.Buffer;
             buffer.style_scheme = GtkSource.StyleSchemeManager.get_default ().get_scheme (dark ? "paper-dark" : "paper");
-
-            text_tag_hidden = get_or_create_tag ("text_tag_hidden-character");
-            text_tag_hidden.invisible = true;
 
             text_tag_url = get_or_create_tag ("markdown-link");
             text_tag_url.foreground_rgba = url_color;
@@ -153,6 +151,12 @@ public class GtkMarkdown.View : GtkSource.View {
             around_block_color.alpha = 0.8f;
             text_tag_code_block_around.foreground_rgba = around_block_color;
 
+            text_tag_hidden = get_or_create_tag ("hidden-character");
+            text_tag_hidden.invisible = true;
+
+            text_tag_invisible = get_or_create_tag ("invisible-character");
+            text_tag_invisible.foreground = "rgba(0,0,0,0.001)";
+
             buffer.changed.connect (restyle_text);
             buffer.notify["cursor-position"].connect (restyle_text);
             restyle_text();
@@ -168,6 +172,7 @@ public class GtkMarkdown.View : GtkSource.View {
         Gtk.TextIter buffer_start, buffer_end, cursor_location;
         buffer.get_bounds (out buffer_start, out buffer_end);
         buffer.remove_tag (text_tag_hidden, buffer_start, buffer_end);
+        buffer.remove_tag (text_tag_invisible, buffer_start, buffer_end);
         buffer.remove_tag (text_tag_url, buffer_start, buffer_end);
         buffer.remove_tag (text_tag_escaped, buffer_start, buffer_end);
         buffer.remove_tag (text_tag_code_span, buffer_start, buffer_end);
@@ -331,10 +336,17 @@ public class GtkMarkdown.View : GtkSource.View {
                     buffer.get_iter_at_offset (out end_after_iter, end_after_pos);
 
                     // Apply our styling
-
                     buffer.apply_tag (text_tag_code_block, start_code_iter, end_code_iter);
                     buffer.apply_tag (text_tag_code_block_around, start_before_iter, end_before_iter);
                     buffer.apply_tag (text_tag_code_block_around, start_after_iter, end_after_iter);
+
+                    // Skip if our cursor is inside the code
+                    if (cursor_location.in_range (start_before_iter, end_after_iter)) {
+                        continue;
+                    }
+
+                    buffer.apply_tag (text_tag_invisible, start_before_iter, end_before_iter);
+                    buffer.apply_tag (text_tag_invisible, start_after_iter, end_after_iter);
 
                 }
             } while (matches.next ());
