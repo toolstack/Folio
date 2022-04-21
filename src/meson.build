@@ -13,11 +13,11 @@ paper_sources = [
 
   'ui/notebook_sidebar/note_card.vala',
   'ui/notebook_sidebar/note_menu.vala',
+  'ui/notebook_sidebar/create_popup.vala',
 
   'ui/markdown_cheatsheet/markdown_cheatsheet.vala',
 
   'ui/popup/confirmation_popup.vala',
-  'ui/popup/note_create_popup.vala',
 
   'ui/markdown/markdown_buffer.vala',
   'ui/markdown/markdown_view.vala',

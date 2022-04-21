@@ -21,6 +21,7 @@ public class Paper.Application : Adw.Application {
 		{ "new-note", on_new_note },
 		{ "edit-note", on_edit_note },
 		{ "delete-note", on_delete_note },
+		{ "export-note", on_export_note },
 		{ "new-notebook", on_new_notebook },
 		{ "edit-notebook", on_edit_notebook },
 		{ "delete-notebook", on_delete_notebook },
@@ -170,6 +171,20 @@ public class Paper.Application : Adw.Application {
 		}
 	}
 
+	private void on_export_note () {
+	    var chooser = new Gtk.FileChooserNative ("Export Note", active_window, Gtk.FileChooserAction.SAVE, "Export", null);
+	    chooser.response.connect ((response_id) => {
+	        var file = chooser.get_file ();
+	        chooser.unref ();
+	        if (file != null && current_note != null) {
+	            try_export_note (current_note, file);
+	        }
+	    });
+	    chooser.modal = true;
+	    chooser.ref ();
+	    chooser.show ();
+	}
+
 	private void on_new_notebook () {
 		var popup = new CreatePopup (this);
 		popup.transient_for = active_window;
@@ -190,7 +205,7 @@ public class Paper.Application : Adw.Application {
 	public void request_edit_note (Note note) {
 	    var popup = new NoteCreatePopup (this, note);
 	    popup.transient_for = active_window;
-	    popup.title = "Edit note";
+	    popup.title = "Rename note";
 	    popup.present ();
 	}
 
@@ -279,6 +294,11 @@ public class Paper.Application : Adw.Application {
 	            window.toast ("Unknown error");
 	        }
 	    }
+	}
+
+	private void try_export_note (Note note, File file) {
+	    note.save_to (file);
+        window.toast (@"Saved '$(note.name)' to $(file.get_path ())");
 	}
 
 	public void try_restore_note (Note note) {

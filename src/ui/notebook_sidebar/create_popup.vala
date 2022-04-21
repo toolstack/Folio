@@ -1,5 +1,5 @@
 
-[GtkTemplate (ui = "/io/posidon/Paper/popup/note_create_popup.ui")]
+[GtkTemplate (ui = "/io/posidon/Paper/notebook_sidebar/create_popup.ui")]
 public class Paper.NoteCreatePopup : Adw.Window {
 
 	[GtkChild]
@@ -16,7 +16,7 @@ public class Paper.NoteCreatePopup : Adw.Window {
 		button_cancel.clicked.connect (close);
 
         if (note != null) {
-            button_create.label = "Apply";
+            button_create.label = "Rename";
             entry.text = note.name;
 		    entry.activate.connect (() => change (app, note));
 		    button_create.clicked.connect (() => change (app, note));

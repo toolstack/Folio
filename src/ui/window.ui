@@ -119,6 +119,12 @@
                             <property name="active">1</property>
                           </object>
                         </child>
+                        <child type="end">
+                          <object class="GtkMenuButton" id="button_more_menu">
+                            <property name="icon-name">view-more-symbolic</property>
+                            <property name="menu-model">more_menu</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child>
@@ -322,4 +328,18 @@
       </object>
     </child>
   </template>
+  <menu id="more_menu">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Rename Note</attribute>
+        <attribute name="action">app.edit-note</attribute>
+      </item>
+    </section>
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">_Export Note</attribute>
+        <attribute name="action">app.export-note</attribute>
+      </item>
+    </section>
+  </menu>
 </interface>

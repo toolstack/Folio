@@ -58,6 +58,9 @@ public class Paper.Window : Adw.ApplicationWindow {
 	[GtkChild]
 	unowned Gtk.ToggleButton button_toggle_sidebar;
 
+	[GtkChild]
+	unowned Gtk.MenuButton button_more_menu;
+
 
 	[GtkChild]
 	unowned Adw.WindowTitle note_title;
@@ -199,11 +202,13 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    if (note != null) {
 	        note_title.title = note.name;
 	        text_view_scroll.show ();
+	        button_more_menu.show ();
 	        text_view_empty.hide ();
 	        text_view.buffer = note.text;
 	    } else {
 	        note_title.title = null;
 	        text_view_scroll.hide ();
+	        button_more_menu.hide ();
 	        text_view_empty.show ();
 	        text_view.buffer = null;
         }

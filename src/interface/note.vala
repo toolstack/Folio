@@ -60,8 +60,11 @@ public class Paper.Note : Object {
     }
 
     public void save () {
+        save_to (File.new_for_path (path));
+    }
+
+    public void save_to (File file) {
         try {
-            var file = File.new_for_path (path);
             Gtk.TextIter start, end;
             _text.get_start_iter (out start);
             _text.get_end_iter (out end);
