@@ -21,16 +21,29 @@ public class GtkMarkdown.View : GtkSource.View {
         }
     }
 
+    public Gdk.RGBA gen_block_color () {
+        var hsl = Color.rgb_to_hsl (Color.RGBA_to_rgb (theme_color));
+        hsl.l = dark ? 0.7f : 0.3f;
+        hsl.s *= 0.64f;
+        var rgba = Color.rgb_to_RGBA (Color.hsl_to_rgb (hsl));
+        rgba.alpha = 0.1f;
+        return rgba;
+    }
+
     public bool show_gutter { get; set; default = true; }
 
     private GtkSource.GutterRendererText renderer;
 
 	private Regex is_link;
 	private Regex is_escape;
+	private Regex is_code_span;
+	private Regex is_code_block;
 
     construct {
-	    is_link = new Regex ("\\[([^\\[]+?)\\](\\([^\\)\\n]+?\\))", RegexCompileFlags.CASELESS, 0);
-	    is_escape = new Regex ("\\\\[\\\\`*_{}\\[\\]()#+-.!]", RegexCompileFlags.CASELESS, 0);
+	    is_link = new Regex ("\\[([^\\[]+?)\\](\\([^\\)\\n]+?\\))", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS, 0);
+	    is_escape = new Regex ("\\\\[\\\\`*_{}\\[\\]()#+-.!]", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS, 0);
+	    is_code_span = new Regex ("(?<!`)`[^`]+(`{2,}[^`]+)*`(?!`)", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS | RegexCompileFlags.MULTILINE, 0);
+	    is_code_block = new Regex ("(?<![^\\n])(```[^`\\n]*)\\n([^`]*)(```)(?=\\n)", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS, 0);
 
         notify["dark"].connect ((s, p) => update_color_scheme ());
         notify["theme-color"].connect ((s, p) => update_color_scheme ());
@@ -105,20 +118,41 @@ public class GtkMarkdown.View : GtkSource.View {
         }
 	}
 
+    private Gtk.TextTag text_tag_hidden;
     private Gtk.TextTag text_tag_url;
     private Gtk.TextTag text_tag_escaped;
-    private Gtk.TextTag hidden;
+    private Gtk.TextTag text_tag_code_span;
+    private Gtk.TextTag text_tag_code_block;
+    private Gtk.TextTag text_tag_code_block_around;
 	private void update_color_scheme () {
         if (buffer is GtkSource.Buffer) {
             var buffer = buffer as GtkSource.Buffer;
             buffer.style_scheme = GtkSource.StyleSchemeManager.get_default ().get_scheme (dark ? "paper-dark" : "paper");
-            hidden = get_or_create_tag ("hidden-character");
-            hidden.invisible = true;
+
+            text_tag_hidden = get_or_create_tag ("text_tag_hidden-character");
+            text_tag_hidden.invisible = true;
+
             text_tag_url = get_or_create_tag ("markdown-link");
             text_tag_url.foreground_rgba = url_color;
             text_tag_url.underline = Pango.Underline.SINGLE;
+
             text_tag_escaped = get_or_create_tag ("markdown-escaped-char");
             text_tag_escaped.foreground_rgba = escape_color;
+
+            text_tag_code_span = get_or_create_tag ("markdown-code-span");
+            text_tag_code_span.family = "Monospace";
+
+            text_tag_code_block = get_or_create_tag ("markdown-code-block");
+            text_tag_code_block.family = "Monospace";
+            text_tag_code_block.indent = 16;
+
+            text_tag_code_block_around = get_or_create_tag ("markdown-code-block-around");
+            text_tag_code_block_around.family = "Monospace";
+            text_tag_code_block_around.scale = 0.7;
+            var around_block_color = gen_block_color ();
+            around_block_color.alpha = 0.8f;
+            text_tag_code_block_around.foreground_rgba = around_block_color;
+
             buffer.changed.connect (restyle_text);
             buffer.notify["cursor-position"].connect (restyle_text);
             restyle_text();
@@ -133,8 +167,12 @@ public class GtkMarkdown.View : GtkSource.View {
         renderer.queue_draw ();
         Gtk.TextIter buffer_start, buffer_end, cursor_location;
         buffer.get_bounds (out buffer_start, out buffer_end);
-        buffer.remove_tag (hidden, buffer_start, buffer_end);
+        buffer.remove_tag (text_tag_hidden, buffer_start, buffer_end);
         buffer.remove_tag (text_tag_url, buffer_start, buffer_end);
+        buffer.remove_tag (text_tag_escaped, buffer_start, buffer_end);
+        buffer.remove_tag (text_tag_code_span, buffer_start, buffer_end);
+        buffer.remove_tag (text_tag_code_block, buffer_start, buffer_end);
+        buffer.remove_tag (text_tag_code_block_around, buffer_start, buffer_end);
         var cursor = buffer.get_insert ();
         buffer.get_iter_at_mark (out cursor_location, cursor);
         string buffer_text = buffer.get_text (buffer_start, buffer_end, true);
@@ -148,7 +186,7 @@ public class GtkMarkdown.View : GtkSource.View {
                     buffer.get_iter_at_line (out start, line);
                     end = start.copy ();
                     end.forward_chars ((int) title_level + 1);
-                    buffer.apply_tag (hidden, start, end);
+                    buffer.apply_tag (text_tag_hidden, start, end);
                 }
             }
         }
@@ -185,12 +223,11 @@ public class GtkMarkdown.View : GtkSource.View {
                     var end_bracket_iter = end_text_iter.copy ();
                     end_bracket_iter.forward_char ();
 
-
                     // Apply our styling
                     buffer.apply_tag (text_tag_url, start_text_iter, end_text_iter);
-                    buffer.apply_tag (hidden, start_url_iter, end_url_iter);
-                    buffer.apply_tag (hidden, start_bracket_iter, start_text_iter);
-                    buffer.apply_tag (hidden, end_text_iter, end_bracket_iter);
+                    buffer.apply_tag (text_tag_hidden, start_url_iter, end_url_iter);
+                    buffer.apply_tag (text_tag_hidden, start_bracket_iter, start_text_iter);
+                    buffer.apply_tag (text_tag_hidden, end_text_iter, end_bracket_iter);
                 }
             } while (matches.next ());
         }
@@ -210,18 +247,95 @@ public class GtkMarkdown.View : GtkSource.View {
                     buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
                     buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
 
+                    var start_escaped_char_iter = start_text_iter.copy ();
+                    start_escaped_char_iter.forward_char ();
+
                     // Skip if our cursor is inside the URL text
                     if (cursor_location.in_range (start_text_iter, end_text_iter)) {
                         continue;
                     }
 
-                    var start_escaped_char_iter = start_text_iter.copy ();
-                    start_escaped_char_iter.forward_char ();
-
-
                     // Apply our styling
                     buffer.apply_tag (text_tag_escaped, start_escaped_char_iter, end_text_iter);
-                    buffer.apply_tag (hidden, start_text_iter, start_escaped_char_iter);
+                    buffer.apply_tag (text_tag_hidden, start_text_iter, start_escaped_char_iter);
+                }
+            } while (matches.next ());
+        }
+
+        // Check for code spans
+        if (is_code_span.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+            do {
+                int start_text_pos, end_text_pos;
+                bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
+
+                if (have_text) {
+                    start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
+                    end_text_pos = buffer_text.char_count ((ssize_t) end_text_pos);
+
+                    // Convert the character offsets to TextIter's
+                    Gtk.TextIter start_text_iter, end_text_iter;
+                    buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
+                    buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
+
+                    var code_start_iter = start_text_iter.copy ();
+                    code_start_iter.forward_char ();
+
+                    var code_end_iter = end_text_iter.copy ();
+                    code_end_iter.backward_char ();
+
+                    buffer.remove_tag (text_tag_hidden, start_text_iter, end_text_iter);
+                    buffer.remove_tag (text_tag_escaped, start_text_iter, end_text_iter);
+                    buffer.remove_tag (text_tag_url, start_text_iter, end_text_iter);
+
+                    // Apply our styling
+                    buffer.apply_tag (text_tag_code_span, code_start_iter, code_end_iter);
+
+                    // Skip if our cursor is inside the code
+                    if (cursor_location.in_range (start_text_iter, end_text_iter)) {
+                        continue;
+                    }
+
+                    buffer.apply_tag (text_tag_hidden, start_text_iter, code_start_iter);
+                    buffer.apply_tag (text_tag_hidden, code_end_iter, end_text_iter);
+                }
+            } while (matches.next ());
+        }
+
+        // Check for code blocks
+        if (is_code_block.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+            do {
+                int start_before_pos, end_before_pos;
+                int start_code_pos,   end_code_pos;
+                int start_after_pos,  end_after_pos;
+                bool have_code_start = matches.fetch_pos (1, out start_before_pos, out end_before_pos);
+                bool have_code = matches.fetch_pos (2, out start_code_pos, out end_code_pos);
+                bool have_code_close = matches.fetch_pos (3, out start_after_pos, out end_after_pos);
+
+                if (have_code_start && have_code && have_code_close) {
+                    start_before_pos = buffer_text.char_count ((ssize_t) start_before_pos);
+                    end_before_pos = buffer_text.char_count ((ssize_t) end_before_pos);
+                    start_code_pos = buffer_text.char_count ((ssize_t) start_code_pos);
+                    end_code_pos = buffer_text.char_count ((ssize_t) end_code_pos);
+                    start_after_pos = buffer_text.char_count ((ssize_t) start_after_pos);
+                    end_after_pos = buffer_text.char_count ((ssize_t) end_after_pos);
+
+                    // Convert the character offsets to TextIter's
+                    Gtk.TextIter start_before_iter, end_before_iter;
+                    Gtk.TextIter start_code_iter,   end_code_iter;
+                    Gtk.TextIter start_after_iter,  end_after_iter;
+                    buffer.get_iter_at_offset (out start_before_iter, start_before_pos);
+                    buffer.get_iter_at_offset (out end_before_iter, end_before_pos);
+                    buffer.get_iter_at_offset (out start_code_iter, start_code_pos);
+                    buffer.get_iter_at_offset (out end_code_iter, end_code_pos);
+                    buffer.get_iter_at_offset (out start_after_iter, start_after_pos);
+                    buffer.get_iter_at_offset (out end_after_iter, end_after_pos);
+
+                    // Apply our styling
+
+                    buffer.apply_tag (text_tag_code_block, start_code_iter, end_code_iter);
+                    buffer.apply_tag (text_tag_code_block_around, start_before_iter, end_before_iter);
+                    buffer.apply_tag (text_tag_code_block_around, start_after_iter, end_after_iter);
+
                 }
             } while (matches.next ());
         }
