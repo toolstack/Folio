@@ -137,7 +137,7 @@
                             <property name="tab-width">4</property>
                             <property name="auto-indent">true</property>
                             <property name="wrap-mode">word-char</property>
-                            <property name="top-margin">24</property>
+                            <property name="top-margin">32</property>
                             <property name="bottom-margin">64</property>
                             <property name="hexpand">1</property>
                             <property name="vexpand">1</property>
