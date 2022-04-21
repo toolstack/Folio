@@ -2,41 +2,67 @@
   <template class="PaperNoteMenuPopover" parent="GtkPopover">
     <child>
       <object class="GtkBox">
-        <property name="orientation">horizontal</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkButton" id="button_recover">
-            <property name="label">Recover</property>
-            <property name="icon-name">restore-from-trash-symbolic</property>
-            <property name="tooltip_text">Recover Note</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Restore from trash</property>
+                <property name="halign">start</property>
+              </object>
+            </child>
             <style>
               <class name="flat"/>
-            </style>
-          </object>
-        </child>
-        <child>
-          <object class="GtkButton" id="button_edit">
-            <property name="label">Rename</property>
-            <property name="icon-name">document-edit-symbolic</property>
-            <property name="tooltip_text">Edit Note</property>
-            <style>
-              <class name="flat"/>
+              <class name="modelbutton"/>
             </style>
           </object>
         </child>
         <child>
           <object class="GtkButton" id="button_delete">
-            <property name="label">Delete</property>
-            <property name="icon-name">user-trash-symbolic</property>
-            <property name="tooltip_text">Delete Note</property>
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Delete from Trash</property>
+                <property name="halign">start</property>
+              </object>
+            </child>
             <style>
               <class name="flat"/>
+              <class name="modelbutton"/>
             </style>
           </object>
         </child>
-        <style>
-          <class name="linked"/>
-        </style>
+        <child>
+          <object class="GtkButton" id="button_edit">
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Rename</property>
+                <property name="halign">start</property>
+              </object>
+            </child>
+            <style>
+              <class name="flat"/>
+              <class name="modelbutton"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkButton" id="button_trash">
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Move to Trash</property>
+                <property name="halign">start</property>
+              </object>
+            </child>
+            <style>
+              <class name="flat"/>
+              <class name="modelbutton"/>
+            </style>
+          </object>
+        </child>
       </object>
     </child>
+    <style>
+      <class name="custom-popover-menu"/>
+    </style>
   </template>
 </interface>
