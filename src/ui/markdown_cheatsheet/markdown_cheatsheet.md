@@ -1,35 +1,80 @@
-# Heading 1
-## Heading 2
-### Heading 3
-#### Heading 4
+# Markdown
+A lightweight markup language with plain text formatting syntax designed so that it can be converted to HTML
+
+## Headings
+
+##### Heading 1
+`# Heading`
+H1
+
+##### Heading 2
+`## Heading`
+H2
+
+##### Heading 3
+`### Heading`
+H3
+
+##### Heading 4
+`#### Heading`
+H4
+
 ##### Heading 5
-###### Heading 6
+`##### Heading`
+H5
 
-*Italic*
-_Italic_
+##### Heading 6
+`###### Heading`
+H6
 
-**Bold**
-__Bold__
+## Emphasis
 
-~~Strikethrough~~
+`**text**`
+`__text__`
+Displays text in **bold**
 
-==Highlight==
+`*text*`
+`_text_`
+Displays text in _italics_
 
-> quote
+`~~text~~`
+Adds ~~strikethrough~~ effect to the text
 
+`==text==`
+Adds ==highlight== effect to the text
+
+## Lists
+
+##### Unordered Lists
+`- list item`
+`- list item`
+
+##### Ordered Lists
+`1. list item`
+`2. list item`
+
+## Links
+
+##### Link
+`[link label](https://linkurl.io)`
+
+##### Image
+`![Image alt text](https://imageurl.io)`
+
+## Blockquotes
+
+`> quote`
+
+## Horizontal Rule
+
+`- - -`
+
+## Code
+
+##### Code span
 `code`
 
+##### Code block
+```language-name
+code
 ```
-code block
-```
-
-- list item
-- list item
-
-1. list item
-2. list item
-
-[link label](https://linkurl.io)
-![Image alt text](https://imageurl.io)
-
-- - - - - - - - - - - - - - - - -
