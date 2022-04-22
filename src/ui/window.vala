@@ -314,6 +314,17 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    b.end_user_action ();
 	}
 
+	public void insert_code_span () {
+	    var b = text_view.buffer;
+	    b.begin_user_action ();
+	    var mark = b.get_selection_bound ();
+	    Gtk.TextIter iter;
+	    b.get_iter_at_mark (out iter, mark);
+	    b.insert (ref iter, "`", 1);
+	    b.insert_at_cursor ("`", 1);
+	    b.end_user_action ();
+	}
+
 	public void set_trash (Trash trash) {
         trash.load ();
         notebook_title.title = "Trash";

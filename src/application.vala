@@ -30,6 +30,7 @@ public class Paper.Application : Adw.Application {
 		{ "format-strikethough", on_format_strikethough },
 		{ "format-highlight", on_format_highlight },
 		{ "insert-link", on_insert_link },
+		{ "insert-code-span", on_insert_code_span },
 		{ "markdown-cheatsheet", on_markdown_cheatsheet },
 		{ "toggle-sidebar", on_toggle_sidebar },
 		{ "search-notes", on_search_notes },
@@ -110,6 +111,8 @@ public class Paper.Application : Adw.Application {
 	private void on_format_highlight () { window.format_selection_highlight (); }
 
 	private void on_insert_link () { window.insert_link (); }
+
+	private void on_insert_code_span () { window.insert_code_span (); }
 
 	private void on_markdown_cheatsheet () {
         var w = new MarkdownCheatsheet (this);

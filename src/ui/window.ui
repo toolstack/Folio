@@ -125,6 +125,14 @@
                             <property name="menu-model">more_menu</property>
                           </object>
                         </child>
+                        <child type="end">
+                          <object class="GtkButton">
+                            <property name="visible" bind-source="leaflet" bind-property="folded" bind-flags="sync-create"/>
+                            <property name="icon-name">dialog-information-symbolic</property>
+                            <property name="tooltip_text">Markdown cheatsheet</property>
+                            <property name="action_name">app.markdown-cheatsheet</property>
+                          </object>
+                        </child>
                       </object>
                     </child>
                     <child>
@@ -150,81 +158,101 @@
                       </object>
                     </child>
                     <child>
-                      <object class="GtkBox" id="toolbar">
-                        <property name="orientation">horizontal</property>
+                      <object class="GtkScrolledWindow">
                         <property name="hexpand">1</property>
+                        <property name="vexpand">0</property>
+                        <property name="vscrollbar_policy">never</property>
+                        <property name="hscrollbar_policy">external</property>
                         <child>
-                          <object class="GtkComboBoxText" id="format_heading_type">
-                            <items>
-                              <item translatable="yes" id="p">Plain Text</item>
-                              <item translatable="yes" id="h1">Heading 1</item>
-                              <item translatable="yes" id="h2">Heading 2</item>
-                              <item translatable="yes" id="h3">Heading 3</item>
-                              <item translatable="yes" id="h4">Heading 4</item>
-                              <item translatable="yes" id="h5">Heading 5</item>
-                              <item translatable="yes" id="h6">Heading 6</item>
-                            </items>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkSeparator">
-                            <style><class name="spacer"/></style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkButton">
-                            <property name="icon-name">format-text-bold-symbolic</property>
-                            <property name="tooltip_text">Bold</property>
-                            <property name="action_name">app.format-bold</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkButton">
-                            <property name="icon-name">format-text-italic-symbolic</property>
-                            <property name="tooltip_text">Italic</property>
-                            <property name="action_name">app.format-italic</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkButton">
-                            <property name="icon-name">format-text-strikethrough-symbolic</property>
-                            <property name="tooltip_text">Strikethrough</property>
-                            <property name="action_name">app.format-strikethough</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkButton">
-                            <property name="icon-name">format-text-highlight-symbolic</property>
-                            <property name="tooltip_text">Highlight</property>
-                            <property name="action_name">app.format-highlight</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkSeparator">
-                            <style><class name="spacer"/></style>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkButton">
-                            <property name="icon-name">insert-link-symbolic</property>
-                            <property name="tooltip_text">Insert Link</property>
-                            <property name="action_name">app.insert-link</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkBox">
-                            <property name="hexpand">1</property>
-                          </object>
-                        </child>
-                        <child>
-                          <object class="GtkButton">
-                            <property name="icon-name">dialog-information-symbolic</property>
-                            <property name="tooltip_text">Markdown cheatsheet</property>
-                            <property name="action_name">app.markdown-cheatsheet</property>
+                          <object class="GtkBox" id="toolbar">
+                            <property name="orientation">horizontal</property>
+                            <child>
+                              <object class="GtkComboBoxText" id="format_heading_type">
+                                <property name="visible" bind-source="leaflet" bind-property="folded" bind-flags="sync-create|invert-boolean"/>
+                                <items>
+                                  <item translatable="yes" id="p">Plain Text</item>
+                                  <item translatable="yes" id="h1">Heading 1</item>
+                                  <item translatable="yes" id="h2">Heading 2</item>
+                                  <item translatable="yes" id="h3">Heading 3</item>
+                                  <item translatable="yes" id="h4">Heading 4</item>
+                                  <item translatable="yes" id="h5">Heading 5</item>
+                                  <item translatable="yes" id="h6">Heading 6</item>
+                                </items>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <property name="visible" bind-source="leaflet" bind-property="folded" bind-flags="sync-create|invert-boolean"/>
+                                <style><class name="spacer"/></style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="icon-name">format-text-bold-symbolic</property>
+                                <property name="tooltip_text">Bold</property>
+                                <property name="action_name">app.format-bold</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="icon-name">format-text-italic-symbolic</property>
+                                <property name="tooltip_text">Italic</property>
+                                <property name="action_name">app.format-italic</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="icon-name">format-text-strikethrough-symbolic</property>
+                                <property name="tooltip_text">Strikethrough</property>
+                                <property name="action_name">app.format-strikethough</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="icon-name">format-text-highlight-symbolic</property>
+                                <property name="tooltip_text">Highlight</property>
+                                <property name="action_name">app.format-highlight</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkSeparator">
+                                <style><class name="spacer"/></style>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="icon-name">insert-link-symbolic</property>
+                                <property name="tooltip_text">Insert Link</property>
+                                <property name="action_name">app.insert-link</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="icon-name">code-symbolic</property>
+                                <property name="tooltip_text">Insert Code</property>
+                                <property name="action_name">app.insert-code-span</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkBox">
+                                <property name="visible" bind-source="leaflet" bind-property="folded" bind-flags="sync-create|invert-boolean"/>
+                                <property name="hexpand">1</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="visible" bind-source="leaflet" bind-property="folded" bind-flags="sync-create|invert-boolean"/>
+                                <property name="icon-name">dialog-information-symbolic</property>
+                                <property name="tooltip_text">Markdown cheatsheet</property>
+                                <property name="action_name">app.markdown-cheatsheet</property>
+                              </object>
+                            </child>
+                            <style>
+                              <class name="toolbar"/>
+                            </style>
                           </object>
                         </child>
                         <style>
-                          <class name="toolbar"/>
                           <class name="bottom-toolbar"/>
                         </style>
                       </object>
