@@ -1,5 +1,4 @@
-# Markdown
-A lightweight markup language with plain text formatting syntax designed so that it can be converted to HTML
+# Markdown Syntax
 
 ## Headings
 
