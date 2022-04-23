@@ -10,7 +10,23 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
-    <release version="@version@" date="2022-04-23" />
+    <release version="@version@" date="2022-04-23">
+      <description>
+        - Made the heading hashtags invisible &amp; added controls to alter heading level
+        - WYSIWYG for links, character escapes &amp; code
+
+        - Added button &amp; shortcut to insert link
+        - Added button to insert code span
+        - Updated markdown cheatsheet
+
+        - Replaced icons in context menus with text
+        - Tweaked styling
+
+        - Notes are now saved with the .md extension
+        - Added option to export note as a markdown file
+        - Only write to file if text was changed
+      </description>
+    </release>
     <release version="22.1" date="2022-04-06" />
   </releases>
 
