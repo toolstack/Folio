@@ -32,5 +32,10 @@
   <url type="contribute">https://gitlab.com/posidon_software/paper/</url>
   <url type="bugtracker">https://gitlab.com/posidon_software/paper/issues</url>
 
+  <branding>
+    <color type="primary" scheme_preference="light">#c6eabf</color>
+    <color type="primary" scheme_preference="dark">#246c4d</color>
+  </branding>
+
   <translation type="gettext">@app_id@</translation>
 </component>
