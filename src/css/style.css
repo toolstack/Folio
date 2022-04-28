@@ -151,6 +151,19 @@ headerbar popover arrow {
   margin: 32px;
 }
 
+window.tiled-left .notebooks-bar > .trash-button,
+window.tiled-bottom .notebooks-bar > .trash-button {
+  border-radius: 0;
+}
+
+window.tiled-left .notebooks-bar > .trash-button:checked,
+window.tiled-bottom .notebooks-bar > .trash-button:checked {
+  box-shadow:
+    0 -1px 0 0 @borders,
+    0 1px 0 0 @borders,
+    inset 3px 0 0 0 @notebooks_bar_fg_color;
+}
+
 
 /*
  *
