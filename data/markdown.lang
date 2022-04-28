@@ -36,15 +36,7 @@
     <style id="h6" _name="Heading 6" map-to="def:heading6"/>
     <style id="heading-hash" _name="Heading Hash" map-to="def:text"/>
 
-    <style id="strikethrough" _name="Strikethrough" map-to="def:text"/>
-    <style id="highlight" _name="Highlight" map-to="def:text"/>
-    <style id="italic" _name="Italic" map-to="markdown:emphasis"/>
-    <style id="bold" _name="Bold" map-to="markdown:strong-emphasis"/>
-
     <style id="blockquote" _name="Blockquote" map-to="def:text"/>
-
-    <style id="marker" _name="Marker" map-to="def:text"/>
-    <style id="long_marker" _name="Long Marker" map-to="markdownpp:marker"/>
   </styles>
 
   <definitions>
@@ -95,82 +87,6 @@
       </include>
     </context>
 
-
-    <context id="strikethrough-1" style-ref="strikethrough">
-      <match>((?&lt;!\~)\~)([^\~ \t].*?(?&lt;!\\|\~| |\t))(\~(?!\~))</match>
-      <include>
-        <context id="marker" sub-pattern="1" style-ref="marker"/>
-        <context id="marker" sub-pattern="3" style-ref="marker"/>
-      </include>
-    </context>
-
-    <context id="strikethrough-2" style-ref="strikethrough">
-      <match>(~~)([^~ \t].*?(?&lt;!\\|~| |\t))(~~)</match>
-      <include>
-        <context id="long_marker" sub-pattern="1" style-ref="long_marker"/>
-        <context id="long_marker" sub-pattern="3" style-ref="long_marker"/>
-      </include>
-    </context>
-
-
-    <!-- Examples:
-         Lorem _ipsum dolor_ sit amet.
-         Here's an _emphasized text containing an underscore (\_)_.
-    -->
-    <context id="underscores-emphasis" style-ref="italic">
-      <match>((?&lt;!_)_)([^_ \t].*?(?&lt;!\\|_| |\t))(_(?!_))</match>
-      <include>
-        <context id="marker" sub-pattern="1" style-ref="marker"/>
-        <context id="marker" sub-pattern="3" style-ref="marker"/>
-      </include>
-    </context>
-
-    <!-- Examples:
-         Lorem *ipsum dolor* sit amet.
-         Here's an *emphasized text containing an asterisk (\*)*.
-    -->
-    <context id="asterisks-emphasis" style-ref="italic">
-      <match>((?&lt;!\*)\*)([^\* \t].*?(?&lt;!\\|\*| |\t))(\*(?!\*))</match>
-      <include>
-        <context id="marker" sub-pattern="1" style-ref="marker"/>
-        <context id="marker" sub-pattern="3" style-ref="marker"/>
-      </include>
-    </context>
-
-
-    <!-- Examples:
-         Lorem __ipsum dolor__ sit amet.
-         Here's a __strongly emphasized text containing an underscore (\_)__.
-    -->
-    <context id="underscores-strong-emphasis" style-ref="bold">
-      <match>(__)([^_ \t].*?(?&lt;!\\|_| |\t))(__)</match>
-      <include>
-        <context id="long_marker" sub-pattern="1" style-ref="long_marker"/>
-        <context id="long_marker" sub-pattern="3" style-ref="long_marker"/>
-      </include>
-    </context>
-
-    <!-- Examples:
-         Lorem **ipsum dolor** sit amet.
-         Here's a **strongly emphasized text containing an asterisk (\*).**
-    -->
-    <context id="asterisks-strong-emphasis" style-ref="bold">
-      <match>(\*\*)([^\* \t].*?(?&lt;!\\|\*| |\t))(\*\*)</match>
-      <include>
-        <context id="long_marker" sub-pattern="1" style-ref="long_marker"/>
-        <context id="long_marker" sub-pattern="3" style-ref="long_marker"/>
-      </include>
-    </context>
-
-    <context id="highlight-whole">
-      <match>(\=\=)([^\= \t].*?(?&lt;!\\|\=| |\t))(\=\=)</match>
-      <include>
-        <context id="long_marker" sub-pattern="1" style-ref="long_marker"/>
-        <context id="highlight" sub-pattern="2" style-ref="highlight"/>
-        <context id="long_marker" sub-pattern="3" style-ref="long_marker"/>
-      </include>
-    </context>
-
     <context id="markdownpp">
       <include>
         <context ref="h1"/>
@@ -179,13 +95,6 @@
         <context ref="h4"/>
         <context ref="h5"/>
         <context ref="h6"/>
-        <context ref="strikethrough-1"/>
-        <context ref="strikethrough-2"/>
-        <context ref="underscores-emphasis"/>
-        <context ref="asterisks-emphasis"/>
-        <context ref="underscores-strong-emphasis"/>
-        <context ref="asterisks-strong-emphasis"/>
-        <context ref="highlight-whole"/>
         <context ref="markdown:blockquote" style-ref="blockquote"/>
         <context ref="markdown:markdown"/>
       </include>

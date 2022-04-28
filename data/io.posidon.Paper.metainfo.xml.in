@@ -10,7 +10,7 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
-    <release version="@version@" date="2022-04-23">
+    <release version="22.2" date="2022-04-23">
       <description>
         - Made the heading hashtags invisible &amp; added controls to alter heading level
         - WYSIWYG for links, character escapes &amp; code
@@ -44,8 +44,7 @@
   <developer_name translatable="no">Zagura</developer_name>
   <project_group translatable="no">posidon</project_group>
 
-  <url type="homepage">https://posidon.io/paper/</url>
-  <url type="contribute">https://gitlab.com/posidon_software/paper/</url>
+  <url type="homepage">https://posidon.io/paper</url>
   <url type="bugtracker">https://gitlab.com/posidon_software/paper/issues</url>
 
   <branding>

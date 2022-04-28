@@ -33,25 +33,6 @@
 	<style name="markdown:link-text"          foreground="hyperlink"/>
 	<style name="markdown:url"                foreground="hyperlink"/>
 
-  <style name="markdown:emphasis"           italic="true"/>
-  <style name="markdown:strong-emphasis"    bold="true"/>
-  <style name="markdownpp:strikethrough"    strikethrough="true"/>
-  <style name="markdownpp:highlight"        background="#rgba(0,255,103,0.32)"/>
-
-  <style
-    name="markdownpp:marker"
-    foreground="#rgba(0,0,0,0.3)"
-    strikethrough="false"
-    bold="false"
-    scale="0.7"/>
-
-  <style
-    name="markdownpp:long_marker"
-    foreground="#rgba(0,0,0,0.3)"
-    strikethrough="false"
-    bold="false"
-    scale="0.5"/>
-
   <!-- Heading styles -->
   <style name="markdownpp:h1"               bold="true" scale="3.2"/>
   <style name="markdownpp:h2"               bold="true" scale="2.4"/>

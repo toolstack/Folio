@@ -12,6 +12,18 @@ public class GtkMarkdown.View : GtkSource.View {
         }
     }
 
+    public Gdk.RGBA highlight_color {
+        get {
+            var rgb = Color.RGBA_to_rgb (theme_color);
+            rgb.r = float.min(rgb.r * 1.8f, 1);
+            rgb.g = float.min(rgb.g * 2.0f, 1);
+            rgb.b = float.min(rgb.b * 1.4f, 1);
+            var hsl = Color.rgb_to_hsl (rgb);
+            hsl.l = 0.82f;
+            return Color.rgb_to_RGBA (Color.hsl_to_rgb (hsl));
+        }
+    }
+
     public Gdk.RGBA escape_color {
         get {
             var hsl = Color.rgb_to_hsl (Color.RGBA_to_rgb (theme_color));
@@ -96,13 +108,53 @@ public class GtkMarkdown.View : GtkSource.View {
 	private Regex is_escape;
 	private Regex is_code_span;
 	private Regex is_code_block;
+	private Regex is_bold_0;
+	private Regex is_bold_1;
+	private Regex is_italic_0;
+	private Regex is_italic_1;
+	private Regex is_strikethough_0;
+	private Regex is_strikethough_1;
+	private Regex is_highlight;
 
     construct {
         try {
-	        is_link = new Regex ("\\[([^\\[]+?)\\](\\([^\\)\\n]+?\\))", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS, 0);
-	        is_escape = new Regex ("\\\\[\\\\`*_{}\\[\\]()#+-.!]", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS, 0);
+            var f = RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS;
+	        is_link = new Regex ("\\[([^\\[]+?)\\](\\([^\\)\\n]+?\\))", f, 0);
+	        is_escape = new Regex ("\\\\[\\\\`*_{}\\[\\]()#+-.!]", f, 0);
 	        is_code_span = new Regex ("(?<!`)`[^`]+(`{2,}[^`]+)*`(?!`)", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS | RegexCompileFlags.MULTILINE, 0);
-	        is_code_block = new Regex ("(?<![^\\n])(```[^`\\n]*)\\n([^`]*)(```)(?=\\n)", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS, 0);
+	        is_code_block = new Regex ("(?<![^\\n])(```[^`\\n]*)\\n([^`]*)(```)(?=\\n)", f, 0);
+
+            /*
+             * Examples:
+             * Lorem *ipsum dolor* sit amet.
+             * Here's an *emphasized text containing an asterisk (\*)*.
+             */
+	        is_italic_0 = new Regex ("((?<!\\*)\\*)([^\\* \\t].*?(?<!\\\\|\\*| |\\t))(\\*(?!\\*))", f, 0);
+
+            /*
+             * Examples:
+             * Lorem _ipsum dolor_ sit amet.
+             * Here's an _emphasized text containing an underscore (\_)_.
+             */
+	        is_italic_1 = new Regex ("((?<!_)_)([^_ \\t].*?(?<!\\\\|_| |\\t))(_(?!_))", f, 0);
+
+            /*
+             * Examples:
+             * Lorem **ipsum dolor** sit amet.
+             * Here's a **strongly emphasized text containing an asterisk (\*).**
+             */
+	        is_bold_0 = new Regex ("(\\*\\*)([^\\* \\t].*?(?<!\\\\|\\*| |\\t))(\\*\\*)", f, 0);
+
+            /*
+             * Examples:
+             * Lorem __ipsum dolor__ sit amet.
+             * Here's a __strongly emphasized text containing an underscore (\_)__.
+             */
+	        is_bold_1 = new Regex ("(__)([^_ \\t].*?(?<!\\\\|_| |\\t))(__)", f, 0);
+
+	        is_strikethough_0 = new Regex ("((?<!\\~)\\~)([^\\~ \\t].*?(?<!\\\\|\\~| |\\t))(\\~(?!\\~))", f, 0);
+	        is_strikethough_1 = new Regex ("(~~)([^~ \\t].*?(?<!\\\\|~| |\\t))(~~)", f, 0);
+	        is_highlight = new Regex ("(\\=\\=)([^\\= \\t].*?(?<!\\\\|\\=| |\\t))(\\=\\=)", f, 0);
 	    } catch (RegexError e) {
 	        error (e.message);
 	    }
@@ -144,11 +196,15 @@ public class GtkMarkdown.View : GtkSource.View {
 
     private Gtk.TextTag text_tag_hidden;
     private Gtk.TextTag text_tag_invisible;
+    private Gtk.TextTag text_tag_around;
     private Gtk.TextTag text_tag_url;
     private Gtk.TextTag text_tag_escaped;
     private Gtk.TextTag text_tag_code_span;
     private Gtk.TextTag text_tag_code_block;
-    private Gtk.TextTag text_tag_code_block_around;
+    private Gtk.TextTag text_tag_bold;
+    private Gtk.TextTag text_tag_italic;
+    private Gtk.TextTag text_tag_strikethrough;
+    private Gtk.TextTag text_tag_highlight;
 	private void update_color_scheme () {
         if (buffer is GtkSource.Buffer) {
             var buffer = buffer as GtkSource.Buffer;
@@ -168,12 +224,24 @@ public class GtkMarkdown.View : GtkSource.View {
             text_tag_code_block.family = "Monospace";
             text_tag_code_block.indent = 16;
 
-            text_tag_code_block_around = get_or_create_tag ("markdown-code-block-around");
-            text_tag_code_block_around.family = "Monospace";
-            text_tag_code_block_around.scale = 0.7;
+            text_tag_bold = get_or_create_tag ("markdown-bold");
+            text_tag_bold.weight = 700;
+
+            text_tag_italic = get_or_create_tag ("markdown-italic");
+            text_tag_italic.style = Pango.Style.ITALIC;
+
+            text_tag_strikethrough = get_or_create_tag ("markdown-strikethrough");
+            text_tag_strikethrough.strikethrough = true;
+
+            text_tag_highlight = get_or_create_tag ("markdown-highlight");
+            text_tag_highlight.background_rgba = highlight_color;
+
+            text_tag_around = get_or_create_tag ("markdown-code-block-around");
+            text_tag_around.family = "Monospace";
+            text_tag_around.scale = 0.7;
             var around_block_color = gen_block_color ();
             around_block_color.alpha = 0.8f;
-            text_tag_code_block_around.foreground_rgba = around_block_color;
+            text_tag_around.foreground_rgba = around_block_color;
 
             text_tag_hidden = get_or_create_tag ("hidden-character");
             text_tag_hidden.invisible = true;
@@ -201,7 +269,7 @@ public class GtkMarkdown.View : GtkSource.View {
         buffer.remove_tag (text_tag_escaped, buffer_start, buffer_end);
         buffer.remove_tag (text_tag_code_span, buffer_start, buffer_end);
         buffer.remove_tag (text_tag_code_block, buffer_start, buffer_end);
-        buffer.remove_tag (text_tag_code_block_around, buffer_start, buffer_end);
+        buffer.remove_tag (text_tag_around, buffer_start, buffer_end);
         var cursor = buffer.get_insert ();
         buffer.get_iter_at_mark (out cursor_location, cursor);
         string buffer_text = buffer.get_text (buffer_start, buffer_end, true);
@@ -362,8 +430,8 @@ public class GtkMarkdown.View : GtkSource.View {
 
                         // Apply our styling
                         buffer.apply_tag (text_tag_code_block, start_code_iter, end_code_iter);
-                        buffer.apply_tag (text_tag_code_block_around, start_before_iter, end_before_iter);
-                        buffer.apply_tag (text_tag_code_block_around, start_after_iter, end_after_iter);
+                        buffer.apply_tag (text_tag_around, start_before_iter, end_before_iter);
+                        buffer.apply_tag (text_tag_around, start_after_iter, end_after_iter);
 
                         // Skip if our cursor is inside the code
                         if (cursor_location.in_range (start_before_iter, end_after_iter)) {
@@ -376,6 +444,68 @@ public class GtkMarkdown.View : GtkSource.View {
                     }
                 } while (matches.next ());
             }
+
+            // Check for formatting
+            do_formatting_pass (is_bold_0, text_tag_bold, buffer_text, cursor_location, out matches);
+            do_formatting_pass (is_bold_1, text_tag_bold, buffer_text, cursor_location, out matches);
+            do_formatting_pass (is_italic_0, text_tag_italic, buffer_text, cursor_location, out matches);
+            do_formatting_pass (is_italic_1, text_tag_italic, buffer_text, cursor_location, out matches);
+            do_formatting_pass (is_strikethough_0, text_tag_strikethrough, buffer_text, cursor_location, out matches);
+            do_formatting_pass (is_strikethough_1, text_tag_strikethrough, buffer_text, cursor_location, out matches);
+            do_formatting_pass (is_highlight, text_tag_highlight, buffer_text, cursor_location, out matches);
         } catch (RegexError e) {}
+    }
+
+    void do_formatting_pass (
+        Regex regex,
+        Gtk.TextTag text_tag,
+        string buffer_text,
+        Gtk.TextIter cursor_location,
+        out MatchInfo matches
+    ) throws RegexError {
+        if (regex.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+            do {
+                int start_before_pos, end_before_pos;
+                int start_code_pos,   end_code_pos;
+                int start_after_pos,  end_after_pos;
+                bool have_code_start = matches.fetch_pos (1, out start_before_pos, out end_before_pos);
+                bool have_code = matches.fetch_pos (2, out start_code_pos, out end_code_pos);
+                bool have_code_close = matches.fetch_pos (3, out start_after_pos, out end_after_pos);
+
+                if (have_code_start && have_code && have_code_close) {
+                    start_before_pos = buffer_text.char_count ((ssize_t) start_before_pos);
+                    end_before_pos = buffer_text.char_count ((ssize_t) end_before_pos);
+                    start_code_pos = buffer_text.char_count ((ssize_t) start_code_pos);
+                    end_code_pos = buffer_text.char_count ((ssize_t) end_code_pos);
+                    start_after_pos = buffer_text.char_count ((ssize_t) start_after_pos);
+                    end_after_pos = buffer_text.char_count ((ssize_t) end_after_pos);
+
+                    // Convert the character offsets to TextIter's
+                    Gtk.TextIter start_before_iter, end_before_iter;
+                    Gtk.TextIter start_code_iter,   end_code_iter;
+                    Gtk.TextIter start_after_iter,  end_after_iter;
+                    buffer.get_iter_at_offset (out start_before_iter, start_before_pos);
+                    buffer.get_iter_at_offset (out end_before_iter, end_before_pos);
+                    buffer.get_iter_at_offset (out start_code_iter, start_code_pos);
+                    buffer.get_iter_at_offset (out end_code_iter, end_code_pos);
+                    buffer.get_iter_at_offset (out start_after_iter, start_after_pos);
+                    buffer.get_iter_at_offset (out end_after_iter, end_after_pos);
+
+                    // Apply our styling
+                    buffer.apply_tag (text_tag, start_code_iter, end_code_iter);
+                    buffer.apply_tag (text_tag_around, start_before_iter, end_before_iter);
+                    buffer.apply_tag (text_tag_around, start_after_iter, end_after_iter);
+
+                    // Skip if our cursor is inside the code
+                    if (cursor_location.in_range (start_before_iter, end_after_iter)) {
+                        continue;
+                    }
+
+                    buffer.apply_tag (text_tag_hidden, start_before_iter, end_before_iter);
+                    buffer.apply_tag (text_tag_hidden, start_after_iter, end_after_iter);
+
+                }
+            } while (matches.next ());
+        }
     }
 }
