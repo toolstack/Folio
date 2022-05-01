@@ -2,7 +2,7 @@ project(
   'io.posidon.Paper',
   ['c', 'vala'],
   version: '22.2',
-  meson_version: '>= 0.59.0',
+  meson_version: '>= 0.59.4',
   default_options: [
     'warning_level=2',
   ],
@@ -13,9 +13,11 @@ i18n = import('i18n')
 app_id = 'io.posidon.Paper'
 version = meson.project_version()
 
+subdir('lib')
 subdir('data')
 subdir('src')
 subdir('po')
+subdir('search-provider')
 
 gnome.post_install(
   glib_compile_schemas: true,

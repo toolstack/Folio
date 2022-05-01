@@ -9,10 +9,6 @@ public class Paper.Note : Object {
         owned get { return @"$_name.md"; }
     }
 
-    public GtkMarkdown.Buffer text {
-        get { return (!) _text; }
-    }
-
     public string path {
         owned get { return @"$(_notebook.path)/$file_name"; }
     }
@@ -28,7 +24,6 @@ public class Paper.Note : Object {
     string _name;
     Notebook _notebook;
     DateTime _time_modified;
-    GtkMarkdown.Buffer? _text = null;
 
     public Note (string name, Notebook notebook, DateTime time_modified) {
         this._name = name;
@@ -42,8 +37,7 @@ public class Paper.Note : Object {
         this._time_modified = time_modified;
     }
 
-    public void load () {
-        _text = new GtkMarkdown.Buffer();
+    public string? load_text () {
         try {
             var file = File.new_for_path (path);
             if (!file.query_exists ()) {
@@ -52,32 +46,25 @@ public class Paper.Note : Object {
                 string etag_out;
                 uint8[] text_data = {};
                 file.load_contents (null, out text_data, out etag_out);
-                _text.text = (string) text_data;
+                return (string) text_data;
             }
         } catch (Error e) {
             error (e.message);
         }
+        return null;
     }
 
-    public void unload () {
-        _text = null;
+    public void save (string text) {
+        save_to (File.new_for_path (path), text);
     }
 
-    public void save () {
-        save_to (File.new_for_path (path));
-    }
-
-    public void save_to (File file) {
+    public void save_to (File file, string text) {
         try {
-            Gtk.TextIter start, end;
-            _text.get_start_iter (out start);
-            _text.get_end_iter (out end);
-            var save_text = _text.get_text(start, end, true);
             if (file.query_exists ()) {
                 string etag_out;
                 uint8[] text_data = {};
                 file.load_contents (null, out text_data, out etag_out);
-                if (save_text == (string) text_data) {
+                if (text == (string) text_data) {
                     return;
                 }
                 file.delete ();
@@ -85,7 +72,7 @@ public class Paper.Note : Object {
             var data_stream = new DataOutputStream (
                 file.create (FileCreateFlags.REPLACE_DESTINATION)
             );
-            uint8[] data = save_text.data;
+            uint8[] data = text.data;
             var l = data.length;
             long written = 0;
             while (written < l) {

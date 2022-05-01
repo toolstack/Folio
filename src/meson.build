@@ -23,20 +23,13 @@ paper_sources = [
   'ui/markdown/markdown_view.vala',
   'ui/markdown/heading_popover.vala',
 
-  'interface/note.vala',
-  'interface/notebook.vala',
-  'interface/provider.vala',
-  'interface/trash.vala',
-  'interface/local/provider.vala',
-  'interface/local/notebook.vala',
-  'interface/local/trash/trash.vala',
-  'interface/local/trash/trashed_notebook.vala',
+  lib_sources,
 
   'color.vala',
 ]
 
 cc = meson.get_compiler('c')
-m_dep = cc.find_library('m', required : false)
+m_dep = cc.find_library('m', required: false)
 
 paper_deps = [
   dependency('glib-2.0'),
@@ -64,11 +57,14 @@ conf.set_quoted('APP_ID', app_id)
 conf.set_quoted('VERSION', version)
 configure_file(output: 'config.h', configuration: conf)
 
-
 executable(
   meson.project_name(),
   paper_sources,
-  vala_args: [meson.project_source_root() + '/src/config.vapi', '--target-glib=2.70'],
+  vala_args: [
+    meson.project_source_root() + '/src/config.vapi',
+    '--target-glib=2.70'
+  ],
   dependencies: paper_deps,
+  implicit_include_directories: true,
   install: true,
 )

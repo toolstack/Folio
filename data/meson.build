@@ -2,6 +2,17 @@ conf = configuration_data()
 conf.set('app_id', app_id)
 conf.set('version', version)
 
+service_file = configure_file(
+  input: 'io.posidon.Paper.service.in',
+  output: 'io.posidon.Paper.service',
+  configuration: conf,
+)
+
+install_data(
+  service_file,
+  install_dir: get_option('datadir') / 'dbus-1/services'
+)
+
 desktop_conf = configure_file(
   input: meson.project_name() + '.desktop.in',
   output: '@0@.desktop.in'.format(app_id),
@@ -14,7 +25,7 @@ desktop_file = i18n.merge_file(
   type: 'desktop',
   po_dir: '../po',
   install: true,
-  install_dir: join_paths(get_option('datadir'), 'applications')
+  install_dir: get_option('datadir') / 'applications'
 )
 
 desktop_utils = find_program('desktop-file-validate', required: false)
@@ -35,7 +46,7 @@ appstream_file = i18n.merge_file(
   output: '@0@.appdata.xml'.format(app_id),
   po_dir: '../po',
   install: true,
-  install_dir: join_paths(get_option('datadir'), 'metainfo')
+  install_dir: get_option('datadir') / 'metainfo'
 )
 
 appstream_util = find_program('appstream-util', required: false)
@@ -47,7 +58,7 @@ endif
 
 install_data(
   meson.project_name() + '.gschema.xml',
-  install_dir: join_paths(get_option('datadir'), 'glib-2.0/schemas')
+  install_dir: get_option('datadir') / 'glib-2.0/schemas'
 )
 
 compile_schemas = find_program('glib-compile-schemas', required: false)
@@ -58,13 +69,13 @@ if compile_schemas.found()
 endif
 
 install_data('paper_markdown.xml',
-  install_dir: join_paths(get_option('datadir'), 'gtksourceview-5/styles/')
+  install_dir: get_option('datadir') / 'gtksourceview-5/styles'
 )
 install_data('paper_markdown_dark.xml',
-  install_dir: join_paths(get_option('datadir'), 'gtksourceview-5/styles/')
+  install_dir: get_option('datadir') / 'gtksourceview-5/styles'
 )
 install_data('markdown.lang',
-  install_dir: join_paths(get_option('datadir'), 'gtksourceview-5/language-specs/')
+  install_dir: get_option('datadir') / 'gtksourceview-5/language-specs'
 )
 
 subdir('icons')

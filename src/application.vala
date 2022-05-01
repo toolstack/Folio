@@ -44,9 +44,12 @@ public class Paper.Application : Adw.Application {
 
 	private Notebook? active_notebook = null;
     private Note? current_note = null;
+    private GtkMarkdown.Buffer? current_buffer = null;
+
+    private HashTable<string, Value?> temp_command;
 
 	public Application () {
-		Object (application_id: Config.APP_ID, flags: ApplicationFlags.FLAGS_NONE);
+		Object (application_id: Config.APP_ID, flags: ApplicationFlags.HANDLES_COMMAND_LINE);
 
 	    var settings = new Settings (Config.APP_ID);
 		var notes_dir = settings.get_string ("notes-dir");
@@ -72,6 +75,8 @@ public class Paper.Application : Adw.Application {
 
 		set_accels_for_action ("app.toggle-sidebar", {"F9"});
 		set_accels_for_action ("app.search-notes", {"<primary>f"});
+
+		command_line.connect (_command_line);
 	}
 
 	public override void activate () {
@@ -80,7 +85,26 @@ public class Paper.Application : Adw.Application {
 		if (win == null) {
 			win = new Window (this);
 		}
+		execute_temp_command ();
 		win.present ();
+	}
+
+	private void execute_temp_command () {
+	    if (temp_command == null) return;
+	    bool exists;
+	    var _note = temp_command.take ("open-note", out exists);
+	    if (exists) {
+	        var note = _note.get_object () as Note;
+            set_active_notebook (note.notebook);
+            set_active_note (note);
+            temp_command.remove ("open-note");
+	    }
+	    var query = temp_command.take ("launch-search", out exists);
+	    if (exists) {
+            window.search_notes (query.get_string ());
+            temp_command.remove ("launch-search");
+	    }
+	    temp_command = null;
 	}
 
 	private void on_about_action () {
@@ -269,7 +293,7 @@ public class Paper.Application : Adw.Application {
 	    }
 		try {
 	        note.notebook.change_note (note, name);
-            window.set_note (note);
+            current_buffer = window.set_note (note);
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS) {
 	            window.toast (@"Note '$(name)' already exists");
@@ -296,7 +320,7 @@ public class Paper.Application : Adw.Application {
 	}
 
 	private void try_export_note (Note note, File file) {
-	    note.save_to (file);
+	    note.save_to (file, current_buffer.get_all_text ());
         window.toast (@"Saved '$(note.name)' to $(file.get_path ())");
 	}
 
@@ -390,13 +414,8 @@ public class Paper.Application : Adw.Application {
 
 	public void set_active_note (Note? note) {
 	    if (current_note == note) return;
-	    if (current_note != null) {
-	        if (window.is_editable) current_note.save ();
-	        current_note.unload ();
-	    }
         current_note = note;
-        if (note != null) note.load ();
-        window.set_note (note);
+        current_buffer = window.set_note (note);
 	}
 
 	public Window window {
@@ -405,10 +424,67 @@ public class Paper.Application : Adw.Application {
 
 	public override void shutdown () {
 	    if (current_note != null) {
-	        current_note.save ();
-	        current_note.unload ();
+            current_note.save (current_buffer.get_all_text ());
             current_note = null;
+            current_buffer = null;
 	    }
 	    base.shutdown ();
+	}
+
+	private int _command_line (ApplicationCommandLine command_line) {
+		string? open_note = null;
+		string? launch_search = null;
+
+		OptionEntry[] options = new OptionEntry[2];
+		options[0] = { "open-note", 0, 0, OptionArg.STRING, ref open_note, "Open a note", null };
+		options[1] = { "launch-search", 0, 0, OptionArg.STRING, ref launch_search, "Search notes", null };
+
+
+		// We have to make an extra copy of the array, since .parse assumes
+		// that it can remove strings from the array without freeing them.
+		string[] args = command_line.get_arguments ();
+		string*[] _args = new string[args.length];
+		for (int i = 0; i < args.length; i++) {
+			_args[i] = args[i];
+		}
+
+		try {
+			var opt_context = new OptionContext ("- OptionContext example");
+			opt_context.set_help_enabled (true);
+			opt_context.add_main_entries (options, null);
+			unowned string[] tmp = _args;
+			opt_context.parse (ref tmp);
+		} catch (OptionError e) {
+			command_line.print ("error: %s\n", e.message);
+			command_line.print ("Run '%s --help' to see a full list of available command line options.\n", args[0]);
+			return 0;
+		}
+
+		if (open_note != null) {
+            if (temp_command == null) temp_command = new HashTable<string, Value> (str_hash, str_equal);
+			var note_data = open_note.split ("/");
+            var notebook = notebook_provider.notebooks.first_match ((it) => it.name == note_data[0]);
+            notebook.load ();
+            var note = notebook.loaded_notes.first_match ((it) => it.name == note_data[1]);
+            temp_command.insert("open-note", note);
+		}
+
+		if (launch_search != null) {
+            if (temp_command == null) temp_command = new HashTable<string, Value> (str_hash, str_equal);
+            temp_command.insert("launch-search", launch_search);
+		}
+
+        if (active_window != null)
+            execute_temp_command ();
+
+        activate ();
+        return 0;
+	}
+
+	public override int command_line (ApplicationCommandLine command_line) {
+		this.hold ();
+		var res = _command_line (command_line);
+		this.release ();
+		return res;
 	}
 }

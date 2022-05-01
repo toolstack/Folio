@@ -215,7 +215,17 @@ public class Paper.Window : Adw.ApplicationWindow {
 	}
 
     private Note? current_note = null;
-	public void set_note (Note? note) {
+
+    private GtkMarkdown.Buffer current_buffer;
+
+    public void optional_save () {
+	    if (is_editable && current_note != null) {
+            current_note.save (current_buffer.get_all_text ());
+        }
+    }
+
+	public GtkMarkdown.Buffer? set_note (Note? note) {
+        optional_save ();
 	    current_note = note;
 	    update_toolbar_visibility ();
 	    if (note != null) {
@@ -223,14 +233,17 @@ public class Paper.Window : Adw.ApplicationWindow {
 	        text_view_scroll.show ();
 	        button_more_menu.show ();
 	        text_view_empty.hide ();
-	        text_view.buffer = note.text;
+	        current_buffer = new GtkMarkdown.Buffer (note.load_text ());
+	        text_view.buffer = current_buffer;
 	    } else {
 	        note_title.title = null;
 	        text_view_scroll.hide ();
 	        button_more_menu.hide ();
 	        text_view_empty.show ();
+	        current_buffer = null;
 	        text_view.buffer = null;
         }
+        return current_buffer;
 	}
 
 	public void select_note (uint i) {
@@ -412,6 +425,11 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 	public void toggle_search () {
 	    notes_search_bar.search_mode_enabled = !notes_search_bar.search_mode_enabled;
+	}
+
+	public void search_notes (string query) {
+	    notes_search_bar.search_mode_enabled = true;
+	    notes_search_entry.text = query;
 	}
 
 	public void navigate_to_notes () {
