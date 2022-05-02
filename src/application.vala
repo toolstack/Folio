@@ -119,6 +119,7 @@ public class Paper.Application : Adw.Application {
 	}
 
 	private void on_preferences_action () {
+	    activate ();
         var w = new PreferencesWindow (this);
         w.destroy_with_parent = true;
 		w.transient_for = active_window;
@@ -168,6 +169,7 @@ public class Paper.Application : Adw.Application {
 	}
 
 	private void on_new_note () {
+	    activate ();
 		if (active_notebook != null) {
 		    var popup = new NoteCreatePopup (this);
 		    popup.transient_for = active_window;
@@ -209,6 +211,7 @@ public class Paper.Application : Adw.Application {
 	}
 
 	private void on_new_notebook () {
+	    activate ();
 		var popup = new CreatePopup (this);
 		popup.transient_for = active_window;
 		popup.title = "New notebook";
