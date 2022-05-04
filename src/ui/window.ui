@@ -75,7 +75,7 @@
                           </object>
                         </child>
                         <child>
-                          <object class="GtkScrolledWindow">
+                          <object class="GtkScrolledWindow" id="notebook_notes_list_scroller">
                             <property name="hexpand">1</property>
                             <property name="vexpand">1</property>
                             <property name="vscrollbar_policy">external</property>

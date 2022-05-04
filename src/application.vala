@@ -452,7 +452,7 @@ public class Paper.Application : Adw.Application {
 		}
 
 		try {
-			var opt_context = new OptionContext ("- OptionContext example");
+			var opt_context = new OptionContext ();
 			opt_context.set_help_enabled (true);
 			opt_context.add_main_entries (options, null);
 			unowned string[] tmp = _args;

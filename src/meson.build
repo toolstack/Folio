@@ -5,6 +5,8 @@ paper_sources = [
   'ui/window.vala',
   'ui/preferences.vala',
 
+  'ui/fuzzy_string_sorter.vala',
+
   'ui/notebooks_bar/notebooks_bar.vala',
   'ui/notebooks_bar/notebook_preview.vala',
   'ui/notebooks_bar/icon.vala',

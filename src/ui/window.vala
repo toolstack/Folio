@@ -39,6 +39,9 @@ public class Paper.Window : Adw.ApplicationWindow {
 	unowned Gtk.ListView notebook_notes_list;
 
 	[GtkChild]
+	unowned Gtk.ScrolledWindow notebook_notes_list_scroller;
+
+	[GtkChild]
 	unowned Gtk.SearchBar notes_search_bar;
 
 	[GtkChild]
@@ -87,7 +90,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 	public bool is_editable = false;
 
-	private Gtk.StringFilter search_filter;
+	private FuzzyStringSorter search_sorter;
 
 
 	public Window (Application app) {
@@ -125,8 +128,14 @@ public class Paper.Window : Adw.ApplicationWindow {
 
         set_notebook (null);
 
-        search_filter = new Gtk.StringFilter (new Gtk.PropertyExpression (typeof (Note), null, "name"));
-        notes_search_entry.search_changed.connect (() => search_filter.search = notes_search_entry.text);
+        search_sorter = new FuzzyStringSorter (
+            new Gtk.PropertyExpression (typeof (Note), null, "name"));
+        search_sorter.changed.connect ((change) => {
+            notebook_notes_list_scroller.vadjustment.@value = 0;
+        });
+        notes_search_entry.search_changed.connect (() => {
+            search_sorter.target = notes_search_entry.text;
+        });
 
         notebooks_bar.init (this, app);
 
@@ -177,7 +186,7 @@ public class Paper.Window : Adw.ApplicationWindow {
                 widget.set_note (item);
             });
             this.notebook_notes_model = new Gtk.SingleSelection (
-                new Gtk.FilterListModel (notebook, search_filter)
+                new Gtk.SortListModel (notebook, search_sorter)
             );
             this.notebook_notes_model.can_unselect = true;
 		    this.notebook_notes_model.selection_changed.connect (() => {

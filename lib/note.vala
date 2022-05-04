@@ -21,6 +21,10 @@ public class Paper.Note : Object {
         get { return _notebook; }
     }
 
+    public string id {
+        owned get { return @"$(_notebook.name)/$name"; }
+    }
+
     string _name;
     Notebook _notebook;
     DateTime _time_modified;

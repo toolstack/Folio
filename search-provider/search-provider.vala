@@ -25,24 +25,24 @@ public class SearchProvider : Object {
         foreach (var notebook in notebooks) {
             notebook.load ();
             foreach (var note in notebook.loaded_notes) {
-                notes.insert (note.name, note);
+                notes.insert(note.id, note);
             }
             notebook.unload ();
         }
-        return notes.get_keys_as_array ();
+        return get_subsearch_result_set(notes.get_keys_as_array (), terms);
     }
 
     public string[] get_subsearch_result_set (string[] previous_results, string[] terms) throws Error {
-        string[] result_list = {};
-        foreach (var name in previous_results)
-            foreach (var term in terms) {
-                if (cancellable.is_cancelled ()) return result_list;
-                if (match(name, term)) {
-                    result_list += name;
-                    break;
-                }
-            }
-        return result_list;
+        var result_list = new Gee.ArrayList<string>.wrap (previous_results);
+        result_list.sort ((a, b) => {
+            var a_name = a.split("/")[1].down ();
+            var b_name = b.split("/")[1].down ();
+            var query = string.joinv (" ", terms).down ();
+            var ad = Util.damerau_levenshtein_distance (a_name, query);
+            var bd = Util.damerau_levenshtein_distance (b_name, query);
+            return ad - bd;
+        });
+        return result_list.to_array ();
     }
 
     public HashTable<string, Variant>[] get_result_metas (string[] ids) throws Error {
@@ -51,7 +51,7 @@ public class SearchProvider : Object {
             var id = ids[i];
             metas[i] = new HashTable<string, Variant> (str_hash, str_equal);
             metas[i].insert ("id", id);
-            metas[i].insert ("name", id);
+            metas[i].insert ("name", notes[id].name);
         }
         return metas;
     }
@@ -65,19 +65,8 @@ public class SearchProvider : Object {
     public void activate_result (string result_id, string[] terms, uint32 timestamp) throws Error {
         var note = notes[result_id];
         Process.spawn_command_line_async (
-            "io.posidon.Paper --open-note " + Shell.quote (note.notebook.name + "/" + note.name)
+            "io.posidon.Paper --open-note " + Shell.quote (note.id)
         );
-    }
-
-    [DBus (visible = false)]
-    private bool match (string a, string b) {
-        var a_tokens = a.tokenize_and_fold (null, null);
-        var b_tokens = b.tokenize_and_fold (null, null);
-        foreach (var at in a_tokens)
-            foreach (var bt in b_tokens)
-                if (at.contains (bt) || bt.contains (at))
-                    return true;
-        return false;
     }
 }
 

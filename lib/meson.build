@@ -9,4 +9,6 @@ lib_sources = files(
   'local/local_notebook.vala',
   'local/trash/local_trash.vala',
   'local/trash/trashed_notebook.vala',
+
+  'util/fuzzy_matching.vala',
 )
