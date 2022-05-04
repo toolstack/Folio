@@ -252,6 +252,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 	        current_buffer = null;
 	        text_view.buffer = null;
         }
+        select_note (note.notebook.loaded_notes.index_of (note));
         return current_buffer;
 	}
 
