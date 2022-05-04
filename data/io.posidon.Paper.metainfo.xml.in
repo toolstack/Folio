@@ -10,6 +10,15 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
+    <release version="22.3" date="2022-05-04">
+      <description>
+        - New icon
+        - Gnome search integration
+        - Fuzzy matching in search
+        - Tweaked UI
+        - Icon right click menu
+      </description>
+    </release>
     <release version="22.2" date="2022-04-23">
       <description>
         - Made the heading hashtags invisible &amp; added controls to alter heading level
