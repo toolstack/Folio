@@ -6,6 +6,9 @@ public class Paper.NoteMenuPopover : Gtk.Popover {
 	unowned Gtk.Button button_edit;
 
 	[GtkChild]
+	unowned Gtk.Button button_move;
+
+	[GtkChild]
 	unowned Gtk.Button button_recover;
 
 	[GtkChild]
@@ -18,6 +21,7 @@ public class Paper.NoteMenuPopover : Gtk.Popover {
 	    if (is_in_trash) {
 	        button_edit.visible = false;
 	        button_trash.visible = false;
+	        button_move.visible = false;
             button_recover.clicked.connect (() => {
                 popdown ();
                 app.try_restore_note (note);
@@ -29,6 +33,10 @@ public class Paper.NoteMenuPopover : Gtk.Popover {
 	    } else {
 	        button_recover.visible = false;
 	        button_delete.visible = false;
+            button_move.clicked.connect (() => {
+                popdown ();
+                app.request_move_note (note);
+            });
             button_edit.clicked.connect (() => {
                 popdown ();
                 app.request_edit_note (note);

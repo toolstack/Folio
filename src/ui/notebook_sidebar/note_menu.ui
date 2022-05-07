@@ -46,6 +46,20 @@
           </object>
         </child>
         <child>
+          <object class="GtkButton" id="button_move">
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Move to Notebook…</property>
+                <property name="halign">start</property>
+              </object>
+            </child>
+            <style>
+              <class name="flat"/>
+              <class name="modelbutton"/>
+            </style>
+          </object>
+        </child>
+        <child>
           <object class="GtkButton" id="button_trash">
             <child>
               <object class="GtkLabel">

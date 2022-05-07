@@ -235,6 +235,35 @@ public class Paper.Application : Adw.Application {
 	    popup.present ();
 	}
 
+	public void request_move_note (Note note) {
+	    var popup = new NotebookSelectionPopup (
+	        notebook_provider,
+	        "Move to Notebook",
+	        "Move",
+	        (dest_notebook) => {
+	            var l = note.notebook.loaded_notes;
+	            if (l != null) {
+	                var i = l.index_of (note);
+	                l.remove_at (i);
+	                note.notebook.items_changed (i, 1, 0);
+	            }
+	            set_active_notebook (null);
+	            set_active_note (null);
+	            var file = File.new_for_path (note.path);
+	            var dest_path = @"$(dest_notebook.path)/$(note.file_name)";
+	            var dest = File.new_for_path (dest_path);
+	            if (dest.query_exists ()) {
+	                window.toast (@"Note '$(note.name)' already exists in notebook '$(dest_notebook.name)'");
+	                return;
+	            }
+	            file.move (dest, FileCopyFlags.NONE);
+	            select_notebook (dest_notebook);
+	        }
+	    );
+	    popup.transient_for = active_window;
+	    popup.present ();
+	}
+
 	public void request_delete_note (Note note) {
 		var popup = new ConfirmationPopup (
 		    @"Are you sure you want to delete the note $(note.name)?",
@@ -276,7 +305,7 @@ public class Paper.Application : Adw.Application {
 	        window.select_note (0);
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS) {
-	            window.toast (@"Note '$(name)' already exists");
+	            window.toast (@"Note '$name' already exists");
 	        } else if (e is ProviderError.COULDNT_CREATE_FILE) {
 	            window.toast ("Couldn't create note");
 	        } else {
@@ -299,7 +328,7 @@ public class Paper.Application : Adw.Application {
             current_buffer = window.set_note (note);
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS) {
-	            window.toast (@"Note '$(name)' already exists");
+	            window.toast (@"Note '$name' already exists");
 	        } else if (e is ProviderError.COULDNT_CREATE_FILE) {
 	            window.toast ("Couldn't change note");
 	        } else {
@@ -355,7 +384,7 @@ public class Paper.Application : Adw.Application {
 	        select_notebook (notebook);
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS) {
-	            window.toast (@"Notebook '$(name)' already exists");
+	            window.toast (@"Notebook '$name' already exists");
 	        }
 	        if (e is ProviderError.COULDNT_CREATE_FILE) {
 	            window.toast ("Couldn't create notebook");
@@ -378,7 +407,7 @@ public class Paper.Application : Adw.Application {
             window.set_notebook (notebook);
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS) {
-	            window.toast (@"Notebook '$(name)' already exists");
+	            window.toast (@"Notebook '$name' already exists");
 	        }
 	        if (e is ProviderError.COULDNT_CREATE_FILE) {
 	            window.toast ("Couldn't change notebook");

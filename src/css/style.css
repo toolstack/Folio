@@ -284,3 +284,58 @@ searchbar.inline box {
 .welcome-screen button:hover {
   background-color: @suggest_button_bg_color_hover;
 }
+
+
+/*
+ *
+ *   NOTEBOOK LIST
+ *
+ */
+
+.notebook-list {
+  padding: 3px 0;
+  border-top: solid 1px @borders;
+}
+
+.notebook-list row {
+  padding: 0;
+  background: 0;
+}
+
+.notebook-list row:focus {
+  border: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.notebook-list row > box {
+  outline: 3px solid transparent;
+  outline-offset: 5px;
+  padding: 0px 6px;
+  margin: 3px 6px;
+  border-radius: 8px;
+}
+
+.notebook-list row:hover:not(:selected):not(:active) > box {
+  background-color: rgba(0, 0, 0, .05);
+}
+
+.notebook-list row:active > box {
+  background-color: rgba(0, 0, 0, .18);
+}
+
+.notebook-list row:selected > box {
+  background-color: @accent_bg_color;
+  color: @accent_fg_color;
+}
+
+.notebook-list row:focus:not(:selected):not(:active) > box {
+  transition: outline .2s, outline-offset .2s;
+  outline: 2px solid alpha(@accent_color, .5);
+  outline-offset: -1px;
+}
+
+.notebook-list row .notebook {
+  margin: 0px;
+  transform: scale(.56);
+}

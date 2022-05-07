@@ -1,0 +1,62 @@
+<interface>
+  <template class="PaperNotebookSelectionPopup" parent="AdwWindow">
+    <property name="default-width">360</property>
+    <property name="default-height">420</property>
+    <property name="resizable">1</property>
+    <property name="modal">1</property>
+    <child>
+      <object class="GtkShortcutController">
+        <property name="scope">managed</property>
+        <child>
+          <object class="GtkShortcut">
+            <property name="trigger">Escape</property>
+            <property name="action">action(window.close)</property>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="GtkBox">
+        <property name="orientation">vertical</property>
+        <property name="hexpand">1</property>
+        <child>
+          <object class="AdwHeaderBar">
+            <property name="hexpand">1</property>
+            <property name="show-start-title-buttons">0</property>
+            <property name="show-end-title-buttons">0</property>
+            <child type="start">
+              <object class="GtkButton" id="button_cancel">
+                <property name="label">Cancel</property>
+              </object>
+            </child>
+            <child type="end">
+              <object class="GtkButton" id="button_confirm">
+                <property name="label">Confirm</property>
+                <style>
+                  <class name="suggested-action"/>
+                </style>
+              </object>
+            </child>
+            <style>
+              <class name="flat"/>
+            </style>
+          </object>
+        </child>
+        <child>
+          <object class="GtkScrolledWindow">
+            <property name="hexpand">1</property>
+            <property name="vexpand">1</property>
+            <child>
+              <object class="GtkListView" id="notebooks_list">
+                <property name="hexpand">1</property>
+                <style>
+                  <class name="notebook-list"/>
+                </style>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

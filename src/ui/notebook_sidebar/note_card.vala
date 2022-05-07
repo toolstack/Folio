@@ -12,7 +12,6 @@ public class Paper.NoteCard : Gtk.Box {
 
 	public NoteCard (bool is_in_trash) {
 	    this.is_in_trash = is_in_trash;
-	    //subtitle.visible = is_in_trash;
 	    var long_press = new Gtk.GestureLongPress ();
 	    long_press.pressed.connect (show_popup);
 	    add_controller (long_press);
@@ -22,26 +21,32 @@ public class Paper.NoteCard : Gtk.Box {
 	    add_controller (right_click);
 	}
 
-	public void set_window (Window window) {
-	    this.window = window;
+	public Window window {
+	    set {
+	        this._window = value;
+	    }
 	}
 
-	public void set_note (Note note) {
-	    this.note = note;
-	    label.label = note.name;
-	    subtitle.label = (is_in_trash ? note.time_modified.format (@"%e %b, %H:%m - $(note.notebook.name)") : note.time_modified.format ("%e %b, %H:%m")).strip ();
-	    tooltip_text = note.name;
+	public Note note {
+	    set {
+	        this._note = value;
+	        if (value != null) {
+	            label.label = value.name;
+	            subtitle.label = (is_in_trash ? value.time_modified.format (@"%e %b, %H:%m - $(value.notebook.name)") : value.time_modified.format ("%e %b, %H:%m")).strip ();
+	            tooltip_text = value.name;
+	        }
+	    }
 	}
 
-	private Window window;
-	private Note note;
+	private Window _window;
+	private Note _note;
     private Gtk.Popover? current_popover = null;
 
 	private void show_popup (double x, double y) {
 	    if (current_popover != null) {
 	        current_popover.popdown();
 	    }
-	    var popover = new NoteMenuPopover (get_app (), note, is_in_trash);
+	    var popover = new NoteMenuPopover (get_app (), _note, is_in_trash);
 	    popover.closed.connect (() => {
 	        current_popover.unparent ();
 	        current_popover = null;
@@ -55,6 +60,6 @@ public class Paper.NoteCard : Gtk.Box {
 	}
 
 	private Application get_app () {
-	    return (Application) window.application;
+	    return (Application) _window.application;
 	}
 }

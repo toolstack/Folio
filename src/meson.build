@@ -20,6 +20,8 @@ paper_sources = [
   'ui/markdown_cheatsheet/markdown_cheatsheet.vala',
 
   'ui/popup/confirmation_popup.vala',
+  'ui/popup/notebook_selection_popup/notebook_list_item.vala',
+  'ui/popup/notebook_selection_popup/notebook_selection_popup.vala',
 
   'ui/markdown/markdown_buffer.vala',
   'ui/markdown/markdown_view.vala',

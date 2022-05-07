@@ -177,13 +177,13 @@ public class Paper.Window : Adw.ApplicationWindow {
             var factory = new Gtk.SignalListItemFactory ();
             factory.setup.connect (list_item => {
                 var widget = new NoteCard (false);
-                widget.set_window (this);
+                widget.window = this;
                 list_item.child = widget;
             });
             factory.bind.connect (list_item => {
                 var widget = list_item.child as NoteCard;
                 var item = list_item.item as Note;
-                widget.set_note (item);
+                widget.note = item;
             });
             this.notebook_notes_model = new Gtk.SingleSelection (
                 new Gtk.SortListModel (notebook, search_sorter)
@@ -244,6 +244,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 	        text_view_empty.hide ();
 	        current_buffer = new GtkMarkdown.Buffer (note.load_text ());
 	        text_view.buffer = current_buffer;
+            select_note (note.notebook.loaded_notes.index_of (note));
 	    } else {
 	        note_title.title = null;
 	        text_view_scroll.hide ();
@@ -251,14 +252,13 @@ public class Paper.Window : Adw.ApplicationWindow {
 	        text_view_empty.show ();
 	        current_buffer = null;
 	        text_view.buffer = null;
+	        select_note (-1);
         }
-        select_note (note.notebook.loaded_notes.index_of (note));
         return current_buffer;
 	}
 
 	public void select_note (uint i) {
-	    notebook_notes_model.selected = i;
-	    notebook_notes_model.selection_changed (i, (int) i == -1 ? 0 : 1);
+	    notebook_notes_model.select_item (i, true);
 	}
 
 	public void update_selected_note () {
@@ -357,13 +357,13 @@ public class Paper.Window : Adw.ApplicationWindow {
         var factory = new Gtk.SignalListItemFactory ();
         factory.setup.connect (list_item => {
             var widget = new NoteCard (true);
-            widget.set_window (this);
+            widget.window = this;
             list_item.child = widget;
         });
         factory.bind.connect (list_item => {
             var widget = list_item.child as NoteCard;
             var item = list_item.item as Note;
-            widget.set_note (item);
+            widget.note = item;
         });
         this.notebook_notes_model = new Gtk.SingleSelection (
             trash
