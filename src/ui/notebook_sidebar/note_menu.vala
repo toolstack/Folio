@@ -17,6 +17,9 @@ public class Paper.NoteMenuPopover : Gtk.Popover {
 	[GtkChild]
 	unowned Gtk.Button button_delete;
 
+	[GtkChild]
+	unowned Gtk.Button button_open_containing_dir;
+
 	public NoteMenuPopover (Application app, Note note, bool is_in_trash) {
 	    if (is_in_trash) {
 	        button_edit.visible = false;
@@ -46,5 +49,14 @@ public class Paper.NoteMenuPopover : Gtk.Popover {
                 app.try_delete_note (note);
             });
 	    }
+	    button_open_containing_dir.clicked.connect (() => {
+            popdown ();
+	        var uri = File.new_for_path (note.notebook.path).get_uri ();
+	        try {
+	            AppInfo.launch_default_for_uri (uri, null);
+	        } catch (Error e) {
+	            app.window.toast ("Couldn't find an app to handle file uris");
+	        }
+	    });
 	}
 }

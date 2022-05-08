@@ -73,6 +73,20 @@
             </style>
           </object>
         </child>
+        <child>
+          <object class="GtkButton" id="button_open_containing_dir">
+            <child>
+              <object class="GtkLabel">
+                <property name="label">Open Containing Folder</property>
+                <property name="halign">start</property>
+              </object>
+            </child>
+            <style>
+              <class name="flat"/>
+              <class name="modelbutton"/>
+            </style>
+          </object>
+        </child>
       </object>
     </child>
     <style>
