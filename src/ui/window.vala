@@ -350,8 +350,8 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 	public void set_trash (Trash trash) {
         trash.load ();
-        notebook_title.title = "Trash";
-        notebook_title.subtitle = @"$(trash.get_n_items ()) notes";
+        notebook_title.title = Strings.TRASH;
+        notebook_title.subtitle = Strings.X_NOTES.printf (trash.get_n_items ());
         button_empty_trash.visible = true;
 
         var factory = new Gtk.SignalListItemFactory ();
@@ -369,7 +369,7 @@ public class Paper.Window : Adw.ApplicationWindow {
             trash
         );
         this.notebook_notes_model.items_changed.connect (() => {
-            notebook_title.subtitle = @"$(trash.get_n_items ()) notes";
+            notebook_title.subtitle = Strings.X_NOTES.printf (trash.get_n_items ());
         });
         this.notebook_notes_model.can_unselect = true;
 	    this.notebook_notes_model.selection_changed.connect (() => {

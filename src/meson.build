@@ -2,6 +2,8 @@ paper_sources = [
   'main.vala',
   'application.vala',
 
+  'ui/strings.vala',
+
   'ui/window.vala',
   'ui/preferences.vala',
 
@@ -47,8 +49,6 @@ paper_deps = [
   m_dep,
 ]
 
-gnome = import('gnome')
-
 paper_sources += gnome.compile_resources(
   'paper-resources',
   'paper.gresource.xml',
@@ -59,11 +59,15 @@ paper_sources += gnome.compile_resources(
 conf = configuration_data()
 conf.set_quoted('APP_ID', app_id)
 conf.set_quoted('VERSION', version)
+conf.set_quoted('GNOMELOCALEDIR', get_option('prefix') / get_option('localedir'))
 configure_file(output: 'config.h', configuration: conf)
 
 executable(
   meson.project_name(),
   paper_sources,
+  c_args: [
+    '-DGETTEXT_PACKAGE="' + app_id + '"'
+  ],
   vala_args: [
     meson.project_source_root() + '/src/config.vapi',
     '--target-glib=2.70'

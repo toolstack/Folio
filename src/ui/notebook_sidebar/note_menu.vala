@@ -55,7 +55,7 @@ public class Paper.NoteMenuPopover : Gtk.Popover {
 	        try {
 	            AppInfo.launch_default_for_uri (uri, null);
 	        } catch (Error e) {
-	            app.window.toast ("Couldn't find an app to handle file uris");
+	            app.window.toast (Strings.COULDNT_FIND_APP_TO_HANDLE_URIS);
 	        }
 	    });
 	}

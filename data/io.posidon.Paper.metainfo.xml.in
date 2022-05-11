@@ -5,38 +5,22 @@
   <summary>Note-taking app</summary>
 	<description>
 	  <p>Create notebooks, take notes in markdown</p>
+	  <p>Features:</p>
+    <ul>
+      <li>Almost WYSIWYG markdown rendering</li>
+      <li>Searchable through GNOME search</li>
+      <li>Highlight &amp; Strikethrough text formatting</li>
+      <li>App recoloring based on notebook color</li>
+      <li>Trash can</li>
+    </ul>
 	</description>
 
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
-    <release version="22.3" date="2022-05-04">
-      <description>
-        - New icon
-        - Gnome search integration
-        - Fuzzy matching in search
-        - Tweaked UI
-        - Icon right click menu
-      </description>
-    </release>
-    <release version="22.2" date="2022-04-23">
-      <description>
-        - Made the heading hashtags invisible &amp; added controls to alter heading level
-        - WYSIWYG for links, character escapes &amp; code
-
-        - Added button &amp; shortcut to insert link
-        - Added button to insert code span
-        - Updated markdown cheatsheet
-
-        - Replaced icons in context menus with text
-        - Tweaked styling
-
-        - Notes are now saved with the .md extension
-        - Added option to export note as a markdown file
-        - Only write to file if text was changed
-      </description>
-    </release>
-    <release version="22.1" date="2022-04-06" />
+    <release version="22.3" date="2022-05-04"/>
+    <release version="22.2" date="2022-04-23"/>
+    <release version="22.1" date="2022-04-06"/>
   </releases>
 
   <screenshots>

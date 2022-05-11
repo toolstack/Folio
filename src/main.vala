@@ -17,6 +17,11 @@
  */
 
 int main (string[] args) {
+    Environment.set_prgname (Config.APP_ID);
+    Intl.bindtextdomain (Config.APP_ID, Config.GNOMELOCALEDIR);
+    Intl.bind_textdomain_codeset (Config.APP_ID, "UTF-8");
+    Intl.textdomain (Config.APP_ID);
+    Environment.set_application_name (Paper.Strings.APP_NAME);
 	GtkSource.init ();
 	var app = new Paper.Application ();
 	return app.run (args);

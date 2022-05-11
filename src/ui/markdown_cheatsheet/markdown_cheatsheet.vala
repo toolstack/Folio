@@ -24,7 +24,7 @@ public class Paper.MarkdownCheatsheet : Adw.Window {
 
 	public MarkdownCheatsheet (Application app) {
 		Object (
-		    title: "Markdown cheatsheet",
+		    title: Strings.MARKDOWN_CHEATSHEET,
 		    icon_name: Config.APP_ID
 	    );
 

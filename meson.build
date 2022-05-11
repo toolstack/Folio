@@ -9,14 +9,15 @@ project(
 )
 
 i18n = import('i18n')
+gnome = import('gnome')
 
 app_id = 'io.posidon.Paper'
 version = meson.project_version()
 
 subdir('lib')
+subdir('po')
 subdir('data')
 subdir('src')
-subdir('po')
 subdir('search-provider')
 
 gnome.post_install(

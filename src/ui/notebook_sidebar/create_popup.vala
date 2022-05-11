@@ -16,7 +16,7 @@ public class Paper.NoteCreatePopup : Adw.Window {
 		button_cancel.clicked.connect (close);
 
         if (note != null) {
-            button_create.label = "Rename";
+            button_create.label = Strings.RENAME;
             entry.text = note.name;
 		    entry.activate.connect (() => change (app, note));
 		    button_create.clicked.connect (() => change (app, note));

@@ -10,7 +10,7 @@ service_file = configure_file(
 
 install_data(
   service_file,
-  install_dir: get_option('datadir') / 'dbus-1/services'
+  install_dir: get_option('datadir') / 'dbus-1' / 'services'
 )
 
 desktop_conf = configure_file(
@@ -58,7 +58,7 @@ endif
 
 install_data(
   meson.project_name() + '.gschema.xml',
-  install_dir: get_option('datadir') / 'glib-2.0/schemas'
+  install_dir: get_option('datadir') / 'glib-2.0' / 'schemas'
 )
 
 compile_schemas = find_program('glib-compile-schemas', required: false)
@@ -69,13 +69,13 @@ if compile_schemas.found()
 endif
 
 install_data('paper_markdown.xml',
-  install_dir: get_option('datadir') / 'gtksourceview-5/styles'
+  install_dir: get_option('datadir') / 'gtksourceview-5' / 'styles'
 )
 install_data('paper_markdown_dark.xml',
-  install_dir: get_option('datadir') / 'gtksourceview-5/styles'
+  install_dir: get_option('datadir') / 'gtksourceview-5' / 'styles'
 )
 install_data('markdown.lang',
-  install_dir: get_option('datadir') / 'gtksourceview-5/language-specs'
+  install_dir: get_option('datadir') / 'gtksourceview-5' / 'language-specs'
 )
 
 subdir('icons')

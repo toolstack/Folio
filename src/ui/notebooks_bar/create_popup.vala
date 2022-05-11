@@ -18,7 +18,7 @@ public class Paper.CreatePopup : Adw.Window {
 		Object ();
 
         if (notebook != null) {
-            button_create.label = "Apply";
+            button_create.label = Strings.APPLY;
 	        button_color.rgba = notebook.color;
 	        entry.text = notebook.name;
 		    entry.activate.connect (() => change (app, notebook));

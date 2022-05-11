@@ -110,7 +110,7 @@ public class Paper.Application : Adw.Application {
 	private void on_about_action () {
 		string[] authors = {"Zagura"};
 		Gtk.show_about_dialog(this.active_window,
-		                      "logo-icon-name", "io.posidon.Paper",
+		                      "logo-icon-name", Config.APP_ID,
 			                  "program-name", "Paper",
 			                  "authors", authors,
 			                  "version", Config.VERSION,
@@ -157,8 +157,8 @@ public class Paper.Application : Adw.Application {
 
 	private void on_empty_trash () {
 		var popup = new ConfirmationPopup (
-		    @"Are you sure you want to delete everything in the trash?",
-		    "Empty trash",
+		    Strings.EMPTY_TRASH_CONFIRMATION,
+		    Strings.EMPTY_TRASH,
 		    () => {
 		        set_active_note (null);
 		        notebook_provider.trash.delete_all ();
@@ -173,10 +173,10 @@ public class Paper.Application : Adw.Application {
 		if (active_notebook != null) {
 		    var popup = new NoteCreatePopup (this);
 		    popup.transient_for = active_window;
-		    popup.title = "New note";
+		    popup.title = Strings.NEW_NOTE;
 		    popup.present ();
 		} else {
-            window.toast ("Create/choose a notebook before creating a note");
+            window.toast (Strings.CREATE_NOTEBOOK_BEFORE_CREATING_NOTE);
 		}
 	}
 
@@ -184,7 +184,7 @@ public class Paper.Application : Adw.Application {
 		if (current_note != null) {
 		    request_edit_note (current_note);
 		} else {
-            window.toast ("Select a note to edit it");
+            window.toast (Strings.SELECT_NOTE_TO_EDIT);
 		}
 	}
 
@@ -192,12 +192,12 @@ public class Paper.Application : Adw.Application {
 	    if (current_note != null) {
 		    request_delete_note (current_note);
 		} else {
-            window.toast ("Select a note to delete it");
+            window.toast (Strings.SELECT_NOTE_TO_DELETE);
 		}
 	}
 
 	private void on_export_note () {
-	    var chooser = new Gtk.FileChooserNative ("Export Note", active_window, Gtk.FileChooserAction.SAVE, "Export", null);
+	    var chooser = new Gtk.FileChooserNative (Strings.EXPORT_NOTE, active_window, Gtk.FileChooserAction.SAVE, Strings.EXPORT, null);
 	    chooser.response.connect ((response_id) => {
 	        var file = chooser.get_file ();
 	        chooser.unref ();
@@ -214,7 +214,7 @@ public class Paper.Application : Adw.Application {
 	    activate ();
 		var popup = new CreatePopup (this);
 		popup.transient_for = active_window;
-		popup.title = "New notebook";
+		popup.title = Strings.NEW_NOTEBOOK;
 		popup.present ();
 	}
 
@@ -231,15 +231,15 @@ public class Paper.Application : Adw.Application {
 	public void request_edit_note (Note note) {
 	    var popup = new NoteCreatePopup (this, note);
 	    popup.transient_for = active_window;
-	    popup.title = "Rename note";
+	    popup.title = Strings.RENAME_NOTE;
 	    popup.present ();
 	}
 
 	public void request_move_note (Note note) {
 	    var popup = new NotebookSelectionPopup (
 	        notebook_provider,
-	        "Move to Notebook",
-	        "Move",
+	        Strings.MOVE_TO_NOTEBOOK,
+	        Strings.MOVE,
 	        (dest_notebook) => {
 	            var l = note.notebook.loaded_notes;
 	            if (l != null) {
@@ -253,7 +253,7 @@ public class Paper.Application : Adw.Application {
 	            var dest_path = @"$(dest_notebook.path)/$(note.file_name)";
 	            var dest = File.new_for_path (dest_path);
 	            if (dest.query_exists ()) {
-	                window.toast (@"Note '$(note.name)' already exists in notebook '$(dest_notebook.name)'");
+	                window.toast (Strings.NOTE_X_ALREADY_EXISTS_IN_X.printf (note.name, dest_notebook.name));
 	                return;
 	            }
 	            file.move (dest, FileCopyFlags.NONE);
@@ -266,8 +266,8 @@ public class Paper.Application : Adw.Application {
 
 	public void request_delete_note (Note note) {
 		var popup = new ConfirmationPopup (
-		    @"Are you sure you want to delete the note $(note.name)?",
-		    "Delete Note",
+		    Strings.DELETE_NOTE_CONFIRMATION.printf (note.name),
+		    Strings.DELETE_NOTE,
 		    () => try_delete_note (note)
 	    );
 		popup.transient_for = active_window;
@@ -277,14 +277,14 @@ public class Paper.Application : Adw.Application {
 	public void request_edit_notebook (Notebook notebook) {
 		var popup = new CreatePopup (this, notebook);
 		popup.transient_for = active_window;
-		popup.title = "Edit notebook";
+		popup.title = Strings.EDIT_NOTEBOOK;
 		popup.present ();
 	}
 
 	public void request_delete_notebook (Notebook notebook) {
 		var popup = new ConfirmationPopup (
-		    @"Are you sure you want to delete the notebook $(notebook.name)?",
-		    "Delete Notebook",
+		    Strings.DELETE_NOTEBOOK_CONFIRMATION.printf (notebook.name),
+		    Strings.DELETE_NOTEBOOK,
 		    () => try_delete_notebook (notebook)
 	    );
 		popup.transient_for = active_window;
@@ -293,11 +293,11 @@ public class Paper.Application : Adw.Application {
 
 	public void try_create_note (string name) {
 	    if (name.contains (".") || name.contains ("/")) {
-            window.toast (@"Note name shouldn't contain '.' or '/'");
+            window.toast (Strings.NOTE_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
             return;
 	    }
 	    if (name.replace(" ", "").length == 0) {
-            window.toast (@"Note name shouldn't be blank");
+            window.toast (Strings.NOTE_NAME_SHOULDNT_BE_BLANK);
             return;
 	    }
 		try {
@@ -305,22 +305,22 @@ public class Paper.Application : Adw.Application {
 	        window.select_note (0);
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS) {
-	            window.toast (@"Note '$name' already exists");
+	            window.toast (Strings.NOTE_X_ALREADY_EXISTS.printf (name));
 	        } else if (e is ProviderError.COULDNT_CREATE_FILE) {
-	            window.toast ("Couldn't create note");
+	            window.toast (Strings.COULDNT_CREATE_NOTE);
 	        } else {
-	            window.toast ("Unknown error");
+	            window.toast (Strings.UNKNOWN_ERROR);
 	        }
 	    }
 	}
 
 	public void try_change_note (Note note, string name) {
 	    if (name.contains (".") || name.contains ("/")) {
-            window.toast (@"Note name shouldn't contain '.' or '/'");
+            window.toast (Strings.NOTE_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
             return;
 	    }
 	    if (name.replace(" ", "").length == 0) {
-            window.toast (@"Note name shouldn't be blank");
+            window.toast (Strings.NOTE_NAME_SHOULDNT_BE_BLANK);
             return;
 	    }
 		try {
@@ -328,11 +328,11 @@ public class Paper.Application : Adw.Application {
             current_buffer = window.set_note (note);
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS) {
-	            window.toast (@"Note '$name' already exists");
+	            window.toast (Strings.NOTE_X_ALREADY_EXISTS.printf (name));
 	        } else if (e is ProviderError.COULDNT_CREATE_FILE) {
-	            window.toast ("Couldn't change note");
+	            window.toast (Strings.COULDNT_CHANGE_NOTE);
 	        } else {
-	            window.toast ("Unknown error");
+	            window.toast (Strings.UNKNOWN_ERROR);
 	        }
 	    }
 	}
@@ -344,16 +344,16 @@ public class Paper.Application : Adw.Application {
 	        window.update_selected_note ();
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.COULDNT_DELETE) {
-	            window.toast (@"Couldn't delete note");
+	            window.toast (Strings.COULDNT_DELETE_NOTE);
 	        } else {
-	            window.toast ("Unknown error");
+	            window.toast (Strings.UNKNOWN_ERROR);
 	        }
 	    }
 	}
 
 	private void try_export_note (Note note, File file) {
 	    note.save_to (file, current_buffer.get_all_text ());
-        window.toast (@"Saved '$(note.name)' to $(file.get_path ())");
+        window.toast (Strings.SAVED_X_TO_X.printf (note.name, file.get_path ()));
 	}
 
 	public void try_restore_note (Note note) {
@@ -361,22 +361,22 @@ public class Paper.Application : Adw.Application {
 	        notebook_provider.trash.restore_note (note);
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.COULDNT_MOVE) {
-	            window.toast (@"Couldn't restore note");
+	            window.toast (Strings.COULDNT_RESTORE_NOTE);
 	        } else if (e is ProviderError.ALREADY_EXISTS) {
-	            window.toast (@"Note called '$(note.name)' already exists in notebook '$(note.notebook.name)'");
+	            window.toast (Strings.NOTE_X_ALREADY_EXISTS_IN_X.printf (note.name, note.notebook.name));
 	        } else {
-	            window.toast ("Unknown error");
+	            window.toast (Strings.UNKNOWN_ERROR);
 	        }
 	    }
 	}
 
 	public void try_create_notebook (string name, Gdk.RGBA color) {
 	    if (name.contains (".") || name.contains ("/")) {
-            window.toast (@"Notebook name shouldn't contain '.' or '/'");
+            window.toast (Strings.NOTEBOOK_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
             return;
 	    }
 	    if (name.replace(" ", "").length == 0) {
-            window.toast (@"Notebook name shouldn't be blank");
+            window.toast (Strings.NOTEBOOK_NAME_SHOULDNT_BE_BLANK);
             return;
 	    }
 		try {
@@ -384,22 +384,22 @@ public class Paper.Application : Adw.Application {
 	        select_notebook (notebook);
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS) {
-	            window.toast (@"Notebook '$name' already exists");
-	        }
-	        if (e is ProviderError.COULDNT_CREATE_FILE) {
-	            window.toast ("Couldn't create notebook");
-                stderr.printf ("Couldn't create notebook: %s\n", e.message);
+	            window.toast (Strings.NOTEBOOK_X_ALREADY_EXISTS.printf (name));
+	        } else if (e is ProviderError.COULDNT_CREATE_FILE) {
+	            window.toast (Strings.COULDNT_CREATE_NOTEBOOK);
+	        } else {
+	            window.toast (Strings.UNKNOWN_ERROR);
 	        }
 	    }
 	}
 
 	public void try_change_notebook (Notebook notebook, string name, Gdk.RGBA color) {
 	    if (name.contains (".") || name.contains ("/")) {
-            window.toast (@"Notebook name shouldn't contain '.' or '/'");
+            window.toast (Strings.NOTEBOOK_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
             return;
 	    }
 	    if (name.replace(" ", "").length == 0) {
-            window.toast (@"Notebook name shouldn't be blank");
+            window.toast (Strings.NOTEBOOK_NAME_SHOULDNT_BE_BLANK);
             return;
 	    }
 		try {
@@ -407,11 +407,11 @@ public class Paper.Application : Adw.Application {
             window.set_notebook (notebook);
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS) {
-	            window.toast (@"Notebook '$name' already exists");
-	        }
-	        if (e is ProviderError.COULDNT_CREATE_FILE) {
-	            window.toast ("Couldn't change notebook");
-                stderr.printf ("Couldn't change notebook: %s\n", e.message);
+	            window.toast (Strings.NOTEBOOK_X_ALREADY_EXISTS.printf (name));
+	        } else if (e is ProviderError.COULDNT_CREATE_FILE) {
+	            window.toast (Strings.COULDNT_CHANGE_NOTEBOOK);
+	        } else {
+	            window.toast (Strings.UNKNOWN_ERROR);
 	        }
 	    }
 	}
@@ -421,9 +421,9 @@ public class Paper.Application : Adw.Application {
 	        notebook_provider.delete_notebook (notebook);
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.COULDNT_DELETE) {
-	            window.toast (@"Couldn't delete notebook");
+	            window.toast (Strings.COULDNT_DELETE_NOTEBOOK);
 	        } else {
-	            window.toast ("Unknown error");
+	            window.toast (Strings.UNKNOWN_ERROR);
 	        }
 	    }
 	}

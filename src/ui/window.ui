@@ -44,21 +44,21 @@
                               <object class="GtkButton" id="button_edit_notebook">
                                 <property name="icon-name">document-edit-symbolic</property>
                                 <property name="action_name">app.edit-notebook</property>
-                                <property name="tooltip_text">Edit Notebook</property>
+                                <property name="tooltip_text" translatable="yes">Edit Notebook</property>
                               </object>
                             </child>
                             <child type="end">
                               <object class="GtkButton" id="button_create_note">
                                 <property name="icon-name">list-add-symbolic</property>
                                 <property name="action_name">app.new-note</property>
-                                <property name="tooltip_text">New Note</property>
+                                <property name="tooltip_text" translatable="yes">New Note</property>
                               </object>
                             </child>
                             <child type="end">
                               <object class="GtkButton" id="button_empty_trash">
                                 <property name="icon-name">empty-trash-symbolic</property>
                                 <property name="action_name">app.empty-trash</property>
-                                <property name="tooltip_text">Empty Trash</property>
+                                <property name="tooltip_text" translatable="yes">Empty Trash</property>
                               </object>
                             </child>
                           </object>
@@ -115,7 +115,7 @@
                         <child type="start">
                           <object class="GtkToggleButton" id="button_toggle_sidebar">
                             <property name="icon-name">sidebar-show-symbolic</property>
-                            <property name="tooltip_text">Toggle sidebar</property>
+                            <property name="tooltip_text" translatable="yes">Toggle Sidebar</property>
                             <property name="active">1</property>
                           </object>
                         </child>
@@ -129,7 +129,7 @@
                           <object class="GtkButton">
                             <property name="visible" bind-source="leaflet" bind-property="folded" bind-flags="sync-create"/>
                             <property name="icon-name">dialog-information-symbolic</property>
-                            <property name="tooltip_text">Markdown cheatsheet</property>
+                            <property name="tooltip_text" translatable="yes">Markdown Cheatsheet</property>
                             <property name="action_name">app.markdown-cheatsheet</property>
                           </object>
                         </child>
@@ -191,28 +191,28 @@
                             <child>
                               <object class="GtkButton">
                                 <property name="icon-name">format-text-bold-symbolic</property>
-                                <property name="tooltip_text">Bold</property>
+                                <property name="tooltip_text" translatable="yes">Bold</property>
                                 <property name="action_name">app.format-bold</property>
                               </object>
                             </child>
                             <child>
                               <object class="GtkButton">
                                 <property name="icon-name">format-text-italic-symbolic</property>
-                                <property name="tooltip_text">Italic</property>
+                                <property name="tooltip_text" translatable="yes">Italic</property>
                                 <property name="action_name">app.format-italic</property>
                               </object>
                             </child>
                             <child>
                               <object class="GtkButton">
                                 <property name="icon-name">format-text-strikethrough-symbolic</property>
-                                <property name="tooltip_text">Strikethrough</property>
+                                <property name="tooltip_text" translatable="yes">Strikethrough</property>
                                 <property name="action_name">app.format-strikethough</property>
                               </object>
                             </child>
                             <child>
                               <object class="GtkButton">
                                 <property name="icon-name">format-text-highlight-symbolic</property>
-                                <property name="tooltip_text">Highlight</property>
+                                <property name="tooltip_text" translatable="yes">Highlight</property>
                                 <property name="action_name">app.format-highlight</property>
                               </object>
                             </child>
@@ -224,14 +224,14 @@
                             <child>
                               <object class="GtkButton">
                                 <property name="icon-name">insert-link-symbolic</property>
-                                <property name="tooltip_text">Insert Link</property>
+                                <property name="tooltip_text" translatable="yes">Insert Link</property>
                                 <property name="action_name">app.insert-link</property>
                               </object>
                             </child>
                             <child>
                               <object class="GtkButton">
                                 <property name="icon-name">code-symbolic</property>
-                                <property name="tooltip_text">Insert Code</property>
+                                <property name="tooltip_text" translatable="yes">Insert Code</property>
                                 <property name="action_name">app.insert-code-span</property>
                               </object>
                             </child>
@@ -245,7 +245,7 @@
                               <object class="GtkButton">
                                 <property name="visible" bind-source="leaflet" bind-property="folded" bind-flags="sync-create|invert-boolean"/>
                                 <property name="icon-name">dialog-information-symbolic</property>
-                                <property name="tooltip_text">Markdown cheatsheet</property>
+                                <property name="tooltip_text" translatable="yes">Markdown Cheatsheet</property>
                                 <property name="action_name">app.markdown-cheatsheet</property>
                               </object>
                             </child>
@@ -272,7 +272,7 @@
                         </style>
                         <child>
                           <object class="GtkLabel">
-                            <property name="label">Get started writing</property>
+                            <property name="label" translatable="yes">Get started writing</property>
                             <style>
                               <class name="large-title"/>
                             </style>
@@ -308,7 +308,7 @@
                                         <child>
                                           <object class="GtkLabel">
                                             <property name="halign">start</property>
-                                            <property name="label">Create Notebook</property>
+                                            <property name="label" translatable="yes">Create Notebook</property>
                                             <style>
                                               <class name="heading"/>
                                             </style>
@@ -317,7 +317,7 @@
                                         <child>
                                           <object class="GtkLabel">
                                             <property name="halign">start</property>
-                                            <property name="label">Create a new notebook</property>
+                                            <property name="label" translatable="yes">Create a new notebook</property>
                                             <style>
                                               <class name="caption"/>
                                             </style>
@@ -351,7 +351,7 @@
                                         <child>
                                           <object class="GtkLabel">
                                             <property name="halign">start</property>
-                                            <property name="label">Start Writing</property>
+                                            <property name="label" translatable="yes">Start Writing</property>
                                             <style>
                                               <class name="heading"/>
                                             </style>
@@ -360,7 +360,7 @@
                                         <child>
                                           <object class="GtkLabel">
                                             <property name="halign">start</property>
-                                            <property name="label">Create a new note</property>
+                                            <property name="label" translatable="yes">Create a new note</property>
                                             <style>
                                               <class name="caption"/>
                                             </style>

@@ -37,7 +37,7 @@ executable(
 
 install_data(
   'io.posidon.Paper.SearchProvider-search-provider.ini',
-  install_dir: join_paths(get_option('datadir'), 'gnome-shell', 'search-providers'),
+  install_dir: get_option('datadir') / 'gnome-shell' / 'search-providers',
 )
 
 # The DBUS service file
@@ -50,5 +50,5 @@ configuration_file = configure_file(
 
 install_data(
   configuration_file,
-  install_dir: join_paths(get_option('datadir'), 'dbus-1', 'services'),
+  install_dir: get_option('datadir') / 'dbus-1' / 'services',
 )
