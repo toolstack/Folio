@@ -15,12 +15,21 @@ public class GtkMarkdown.View : GtkSource.View {
     public Gdk.RGBA highlight_color {
         get {
             var rgb = Color.RGBA_to_rgb (theme_color);
-            rgb.r = float.min(rgb.r * 1.8f, 1);
-            rgb.g = float.min(rgb.g * 2.0f, 1);
-            rgb.b = float.min(rgb.b * 1.4f, 1);
-            var hsl = Color.rgb_to_hsl (rgb);
-            hsl.l = 0.82f;
-            return Color.rgb_to_RGBA (Color.hsl_to_rgb (hsl));
+            if (dark) {
+                var hsl = Color.rgb_to_hsl (rgb);
+                hsl.s = float.min (hsl.s * 2.2f, 1);
+                hsl.l = 0.5f;
+                var rgba = Color.rgb_to_RGBA (Color.hsl_to_rgb (hsl));
+                rgba.alpha = 0.5f;
+                return rgba;
+            } else {
+                rgb.r = float.min (rgb.r * 1.8f, 1);
+                rgb.g = float.min (rgb.g * 2.0f, 1);
+                rgb.b = float.min (rgb.b * 1.4f, 1);
+                var hsl = Color.rgb_to_hsl (rgb);
+                hsl.l = 0.82f;
+                return Color.rgb_to_RGBA (Color.hsl_to_rgb (hsl));
+            }
         }
     }
 
