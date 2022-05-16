@@ -35,7 +35,7 @@ template PaperWindow : Adw.ApplicationWindow {
 
             Adw.HeaderBar {
 
-              show-end-title-buttons: bind leaflet.folded sync-create;
+              show-end-title-buttons: bind leaflet.folded;
 
               [title]
               Adw.WindowTitle notebook_title {}
@@ -97,7 +97,7 @@ template PaperWindow : Adw.ApplicationWindow {
 
           Adw.HeaderBar {
 
-            show-start-title-buttons: bind leaflet.folded sync-create;
+            show-start-title-buttons: bind leaflet.folded;
             hexpand: true;
             vexpand: false;
             visible: true;
@@ -124,7 +124,7 @@ template PaperWindow : Adw.ApplicationWindow {
             [end]
             Button {
 
-              visible: bind leaflet.folded sync-create;
+              visible: bind leaflet.folded;
               icon-name: "dialog-information-symbolic";
               tooltip-text: _("Markdown Cheatsheet");
               action-name: "app.markdown-cheatsheet";
@@ -171,7 +171,7 @@ template PaperWindow : Adw.ApplicationWindow {
 
               ComboBoxText format_heading_type {
 
-                visible: bind leaflet.folded inverted sync-create;
+                visible: bind leaflet.folded inverted;
 
                 items [
                   p: _("Plain Text"),
@@ -185,7 +185,7 @@ template PaperWindow : Adw.ApplicationWindow {
               }
 
               Separator {
-                visible: bind leaflet.folded inverted sync-create;
+                visible: bind leaflet.folded inverted;
                 styles ["spacer"]
               }
 
@@ -230,12 +230,12 @@ template PaperWindow : Adw.ApplicationWindow {
               }
 
               Box {
-                visible: bind leaflet.folded inverted sync-create;
+                visible: bind leaflet.folded inverted;
                 hexpand: true;
               }
 
               Button {
-                visible: bind leaflet.folded inverted sync-create;
+                visible: bind leaflet.folded inverted;
                 icon-name: "dialog-information-symbolic";
                 tooltip-text: _("Markdown Cheatsheet");
                 action-name: "app.markdown-cheatsheet";
