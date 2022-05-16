@@ -8,6 +8,7 @@ public class Paper.NotebookIcon : NotebookPreview {
 	        _notebook = value;
 	        notebook_name = _notebook.name;
 	        color = _notebook.color;
+	        icon_type = _notebook.icon_type;
 	    }
 	}
 

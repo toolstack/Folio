@@ -14,6 +14,10 @@ public class Paper.LocalTrashedNotebook : Object, ListModel, Notebook {
         get { return _color; }
     }
 
+    public NotebookIconType icon_type {
+        get { return NotebookIconType.DEFAULT; }
+    }
+
     public Gee.List<Note>? loaded_notes {
         get { return null; }
     }

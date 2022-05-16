@@ -212,7 +212,7 @@ public class Paper.Application : Adw.Application {
 
 	private void on_new_notebook () {
 	    activate ();
-		var popup = new CreatePopup (this);
+		var popup = new NotebookCreatePopup (this);
 		popup.transient_for = active_window;
 		popup.title = Strings.NEW_NOTEBOOK;
 		popup.present ();
@@ -273,7 +273,7 @@ public class Paper.Application : Adw.Application {
 	}
 
 	public void request_edit_notebook (Notebook notebook) {
-		var popup = new CreatePopup (this, notebook);
+		var popup = new NotebookCreatePopup (this, notebook);
 		popup.transient_for = active_window;
 		popup.title = Strings.EDIT_NOTEBOOK;
 		popup.present ();
@@ -366,7 +366,7 @@ public class Paper.Application : Adw.Application {
 	    }
 	}
 
-	public void try_create_notebook (string name, Gdk.RGBA color) {
+	public void try_create_notebook (string name, Gdk.RGBA color, NotebookIconType icon_type) {
 	    if (name.contains (".") || name.contains ("/")) {
             window.toast (Strings.NOTEBOOK_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
             return;
@@ -376,7 +376,7 @@ public class Paper.Application : Adw.Application {
             return;
 	    }
 		try {
-	        var notebook = notebook_provider.new_notebook (name, color);
+	        var notebook = notebook_provider.new_notebook (name, color, icon_type);
 	        select_notebook (notebook);
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS) {
@@ -389,7 +389,7 @@ public class Paper.Application : Adw.Application {
 	    }
 	}
 
-	public void try_change_notebook (Notebook notebook, string name, Gdk.RGBA color) {
+	public void try_change_notebook (Notebook notebook, string name, Gdk.RGBA color, NotebookIconType icon_type) {
 	    if (name.contains (".") || name.contains ("/")) {
             window.toast (Strings.NOTEBOOK_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
             return;
@@ -399,7 +399,7 @@ public class Paper.Application : Adw.Application {
             return;
 	    }
 		try {
-	        notebook_provider.change_notebook (notebook, name, color);
+	        notebook_provider.change_notebook (notebook, name, color, icon_type);
             window.set_notebook (notebook);
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS) {

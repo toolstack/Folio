@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template PaperCreatePopup : Adw.Window {
+template PaperNotebookCreatePopup : Adw.Window {
 
   default-width: 320;
   resizable: false;
@@ -52,11 +52,30 @@ template PaperCreatePopup : Adw.Window {
         margin-start: 18;
         margin-end: 18;
 
-        styles ["linked"]
-
         Entry entry {
           placeholder-text: _("Notebook Name");
           hexpand: true;
+        }
+      }
+
+      Box {
+
+        orientation: horizontal;
+        margin-start: 18;
+        margin-end: 18;
+
+        styles ["linked"]
+
+        ComboBoxText icon_type_combobox {
+
+          hexpand: true;
+
+          items [
+            first: _("First Characters"),
+            initials: _("Initials"),
+            camel_case: _("Initials: camelCase"),
+            snake_case: _("Initials: snake_case"),
+          ]
         }
 
         ColorButton button_color {

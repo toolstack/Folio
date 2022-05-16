@@ -4,6 +4,7 @@ lib_sources = files(
   'notebook.vala',
   'provider.vala',
   'trash.vala',
+  'notebook_icon_type.vala',
 
   'local/local_provider.vala',
   'local/local_notebook.vala',

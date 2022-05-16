@@ -4,6 +4,7 @@ public interface Paper.Notebook : Object, ListModel {
     public abstract string name { get; }
     public abstract string path { owned get; }
     public abstract Gdk.RGBA color { get; }
+    public abstract NotebookIconType icon_type { get; }
 
     public abstract Gee.List<Note>? loaded_notes { get; }
 

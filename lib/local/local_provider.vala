@@ -33,14 +33,16 @@ public class Paper.LocalProvider : Object, ListModel, Provider {
             throw new ProviderError.COULDNT_CREATE_FILE (@"File $(file.get_path ()) couldn't be created");
         }
 
-        list_directory(notes_dir);
-
         try {
             update_data();
-        } catch (Error e) {}
+        } catch (Error e) {
+            stderr.printf ("Error: update_data failed: %s\n", e.message);
+        }
+
+        list_directory(notes_dir);
     }
 
-    public Notebook new_notebook (string name, Gdk.RGBA color) throws ProviderError {
+    public Notebook new_notebook (string name, Gdk.RGBA color, NotebookIconType icon_type) throws ProviderError {
         var path = @"$notes_dir/$name";
         var file = File.new_for_path (path);
 
@@ -57,13 +59,18 @@ public class Paper.LocalProvider : Object, ListModel, Provider {
         } catch (Error e) {
             throw new ProviderError.COULDNT_CREATE_FILE ("Couldn't write color");
         }
-        var notebook = new LocalNotebook (this, name, color);
+        try {
+            write_icon_type (path, icon_type);
+        } catch (Error e) {
+            throw new ProviderError.COULDNT_CREATE_FILE ("Couldn't write icon type");
+        }
+        var notebook = new LocalNotebook (this, name, color, icon_type);
         _notebooks.add (notebook);
         items_changed (_notebooks.size - 1, 0, 1);
         return notebook;
     }
 
-    public void change_notebook (Notebook notebook, string name, Gdk.RGBA color) throws ProviderError {
+    public void change_notebook (Notebook notebook, string name, Gdk.RGBA color, NotebookIconType icon_type) throws ProviderError {
         var path = @"$notes_dir/$name";
 
         if (notebook.name != name) {
@@ -84,7 +91,12 @@ public class Paper.LocalProvider : Object, ListModel, Provider {
         } catch (Error e) {
             throw new ProviderError.COULDNT_CREATE_FILE ("Couldn't write color");
         }
-        ((LocalNotebook) notebook).change (this, name, color);
+        try {
+            write_icon_type (path, icon_type);
+        } catch (Error e) {
+            throw new ProviderError.COULDNT_CREATE_FILE ("Couldn't write icon type");
+        }
+        ((LocalNotebook) notebook).change (this, name, color, icon_type);
         int i = _notebooks.index_of (notebook);
         items_changed (i, 1, 1);
     }
@@ -152,7 +164,8 @@ public class Paper.LocalProvider : Object, ListModel, Provider {
                 _notebooks.add (new LocalNotebook (
                     this,
                     name,
-                    read_color (path)
+                    read_color (path),
+                    read_icon_type (path)
                 ));
             }
         } catch (Error err) {
@@ -161,24 +174,44 @@ public class Paper.LocalProvider : Object, ListModel, Provider {
     }
 
     private void update_data () throws Error {
-        var database_version_file = File.new_for_path (@"$notes_dir/.version");
-        if (!database_version_file.query_exists ()) {
-	        var stream = new DataOutputStream (database_version_file.create (0));
-	        stream.put_string (Config.VERSION);
-	        foreach (var notebook in _notebooks) {
-                var dir = File.new_for_path (notebook.path);
-                try {
-                    var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME, 0);
-                    FileInfo file_info;
-                    while ((file_info = enumerator.next_file ()) != null) {
-                        var name = file_info.get_name ();
-                        if (name[0] == '.') continue;
-                        File.new_for_path (@"$(notebook.path)/$name").set_display_name(@"$name.md");
-                    }
-                } catch (Error e) {
-                    error (@"Notebook loading failed: $(e.message)\n");
+        var version_file = File.new_for_path (@"$notes_dir/.version");
+        if (version_file.query_exists ()) {
+            string etag_out;
+            uint8[] text_data = {};
+            version_file.load_contents (null, out text_data, out etag_out);
+            var last_version = (string) text_data;
+            if (last_version == Config.VERSION)
+                return;
+            version_file.@delete ();
+        }
+        var data_stream = new DataOutputStream (version_file.create (FileCreateFlags.REPLACE_DESTINATION));
+        uint8[] data = Config.VERSION.data;
+        var l = data.length;
+        long written = 0;
+        while (written < l) {
+            written += data_stream.write (data[written:data.length]);
+        }
+        var notebooks_enumerator = File.new_for_path (notes_dir).enumerate_children (FileAttribute.STANDARD_NAME, 0);
+        FileInfo notebook_file_info;
+        while ((notebook_file_info = notebooks_enumerator.next_file ()) != null) {
+            var notebook_path = @"$notes_dir/$(notebook_file_info.get_name ())";
+            var dir = File.new_for_path (notebook_path);
+            if (dir.query_file_type (0) != FileType.DIRECTORY)
+                continue;
+            try {
+                var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+                FileInfo file_info;
+                while ((file_info = enumerator.next_file ()) != null) {
+                    var name = file_info.get_name ();
+                    if (name != ".color") continue;
+                    File.new_for_path (@"$notebook_path/.config/").make_directory ();
+                    var dest = File.new_for_path (@"$notebook_path/.config/color");
+                    File.new_for_path (@"$notebook_path/.color").move (dest, 0);
+                    break;
                 }
-	        }
+            } catch (Error e) {
+                error (@"update_data failed: $(e.message)\n");
+            }
         }
     }
 
@@ -189,7 +222,7 @@ public class Paper.LocalProvider : Object, ListModel, Provider {
     }
 
     private Gdk.RGBA read_color (string notebook_path) throws Error {
-        var path = @"$notebook_path/.color";
+        var path = @"$notebook_path/.config/color";
         var f = File.new_for_path (path);
         if (!f.query_exists ()) {
             write_color (notebook_path, default_color);
@@ -207,7 +240,7 @@ public class Paper.LocalProvider : Object, ListModel, Provider {
     }
 
     private void write_color (string notebook_path, Gdk.RGBA color) throws Error {
-        var path = @"$notebook_path/.color";
+        var path = @"$notebook_path/.config/color";
         var f = File.new_for_path (path);
         if (f.query_exists ()) {
             f.@delete ();
@@ -215,5 +248,29 @@ public class Paper.LocalProvider : Object, ListModel, Provider {
         var fs = f.create (FileCreateFlags.REPLACE_DESTINATION);
 	    var stream = new DataOutputStream (fs);
 	    stream.put_string (color.to_string ());
+    }
+
+    private NotebookIconType read_icon_type (string notebook_path) throws Error {
+        var path = @"$notebook_path/.config/icon_type";
+        var f = File.new_for_path (path);
+        if (!f.query_exists ()) {
+            write_icon_type (notebook_path, NotebookIconType.DEFAULT);
+            return NotebookIconType.DEFAULT;
+        }
+        string etag_out;
+        uint8[] text_data = {};
+        f.load_contents (null, out text_data, out etag_out);
+        return NotebookIconType.from_string ((string) text_data);
+    }
+
+    private void write_icon_type (string notebook_path, NotebookIconType type) throws Error {
+        var path = @"$notebook_path/.config/icon_type";
+        var f = File.new_for_path (path);
+        if (f.query_exists ()) {
+            f.@delete ();
+        }
+        var fs = f.create (FileCreateFlags.REPLACE_DESTINATION);
+	    var stream = new DataOutputStream (fs);
+	    stream.put_string (type.to_string ());
     }
 }

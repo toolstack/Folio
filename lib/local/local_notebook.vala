@@ -14,6 +14,10 @@ public class Paper.LocalNotebook : Object, ListModel, Notebook {
         get { return _color; }
     }
 
+    public NotebookIconType icon_type {
+        get { return _icon_type; }
+    }
+
     public Gee.List<Note>? loaded_notes {
         get { return _loaded_notes; }
     }
@@ -22,12 +26,14 @@ public class Paper.LocalNotebook : Object, ListModel, Notebook {
 
     string _name;
     Gdk.RGBA _color;
+    NotebookIconType _icon_type;
     LocalProvider provider;
 
-    public LocalNotebook (LocalProvider provider, string name, Gdk.RGBA color) {
+    public LocalNotebook (LocalProvider provider, string name, Gdk.RGBA color, NotebookIconType icon_type) {
         this.provider = provider;
         this._name = name;
         this._color = color;
+        this._icon_type = icon_type;
     }
 
     public void load () {
@@ -60,10 +66,11 @@ public class Paper.LocalNotebook : Object, ListModel, Notebook {
         _loaded_notes = null;
     }
 
-    public void change (LocalProvider provider, string name, Gdk.RGBA color) {
+    public void change (LocalProvider provider, string name, Gdk.RGBA color, NotebookIconType icon_type) {
         this.provider = provider;
         this._name = name;
         this._color = color;
+        this._icon_type = icon_type;
     }
 
     public Note new_note (string name) throws ProviderError {
