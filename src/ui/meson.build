@@ -15,7 +15,6 @@ blueprint_files = files(
   'notebook_sidebar/note_menu.blp',
   'popup/notebook_selection_popup/notebook_list_item.blp',
   'popup/notebook_selection_popup/notebook_selection_popup.blp',
-  'popup/confirmation_popup.blp',
 )
 
 blueprint_ui = []

@@ -16,6 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+public delegate void Runnable ();
+
 public class Paper.Application : Adw.Application {
 	private ActionEntry[] APP_ACTIONS = {
 		{ "new-note", on_new_note },
@@ -156,16 +158,14 @@ public class Paper.Application : Adw.Application {
 	}
 
 	private void on_empty_trash () {
-		var popup = new ConfirmationPopup (
-		    Strings.EMPTY_TRASH_CONFIRMATION,
-		    Strings.EMPTY_TRASH,
-		    () => {
-		        set_active_note (null);
-		        notebook_provider.trash.delete_all ();
+	    show_confirmation_popup (
+            Strings.EMPTY_TRASH,
+	        Strings.EMPTY_TRASH_CONFIRMATION,
+	        () => {
+	            set_active_note (null);
+	            notebook_provider.trash.delete_all ();
 	        }
 	    );
-		popup.transient_for = active_window;
-		popup.present ();
 	}
 
 	private void on_new_note () {
@@ -265,13 +265,11 @@ public class Paper.Application : Adw.Application {
 	}
 
 	public void request_delete_note (Note note) {
-		var popup = new ConfirmationPopup (
-		    Strings.DELETE_NOTE_CONFIRMATION.printf (note.name),
+	    show_confirmation_popup (
 		    Strings.DELETE_NOTE,
+		    Strings.DELETE_NOTE_CONFIRMATION.printf (note.name),
 		    () => try_delete_note (note)
 	    );
-		popup.transient_for = active_window;
-		popup.present ();
 	}
 
 	public void request_edit_notebook (Notebook notebook) {
@@ -282,13 +280,11 @@ public class Paper.Application : Adw.Application {
 	}
 
 	public void request_delete_notebook (Notebook notebook) {
-		var popup = new ConfirmationPopup (
-		    Strings.DELETE_NOTEBOOK_CONFIRMATION.printf (notebook.name),
+	    show_confirmation_popup (
 		    Strings.DELETE_NOTEBOOK,
+		    Strings.DELETE_NOTEBOOK_CONFIRMATION.printf (notebook.name),
 		    () => try_delete_notebook (notebook)
 	    );
-		popup.transient_for = active_window;
-		popup.present ();
 	}
 
 	public void try_create_note (string name) {
@@ -518,6 +514,30 @@ public class Paper.Application : Adw.Application {
 		var res = _command_line (command_line);
 		this.release ();
 		return res;
+	}
+
+	private void show_confirmation_popup (string action_title, string action_description, owned Runnable callback) {
+        var dialog = new Gtk.MessageDialog (
+            active_window,
+            Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.QUESTION,
+            Gtk.ButtonsType.CANCEL,
+            action_title
+        );
+
+        dialog.secondary_text = action_description;
+
+        dialog.add_button (action_title, 1)
+            .get_style_context ()
+            .add_class ("destructive-action");
+
+        dialog.response.connect ((response_id) => {
+            if (response_id == 1) {
+	            callback ();
+	        }
+            dialog.close ();
+        });
+		dialog.present ();
 	}
 }
 
