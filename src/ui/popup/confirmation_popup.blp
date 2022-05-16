@@ -1,0 +1,56 @@
+using Gtk 4.0;
+using Adw 1;
+
+template PaperConfirmationPopup : Adw.Window {
+
+  default-width: 320;
+  resizable: false;
+  modal: true;
+
+  ShortcutController {
+
+    scope: managed;
+
+    Shortcut {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
+  }
+
+  Box {
+
+    spacing: 16;
+    orientation: vertical;
+    hexpand: true;
+    width-request: 360;
+
+    Label question {
+
+      hexpand: true;
+      wrap: true;
+      margin-top: 16;
+      margin-start: 16;
+      margin-end: 16;
+
+      styles ["flat", "title-2"]
+    }
+
+    Box {
+      spacing: 16;
+      orientation: horizontal;
+      homogeneous: true;
+      margin-bottom: 16;
+      margin-start: 16;
+      margin-end: 16;
+
+      Button button_cancel {
+        label: _("Cancel");
+      }
+
+      Button button_confirm {
+        label: _("Confirm");
+        styles ["destructive-action"]
+      }
+    }
+  }
+}

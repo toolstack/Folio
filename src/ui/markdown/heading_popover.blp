@@ -1,0 +1,53 @@
+using Gtk 4.0;
+
+template GtkMarkdownHeadingPopover : Popover {
+
+  Box {
+
+    orientation: vertical;
+
+    styles ["custom-popover-menu"]
+
+    Button button_heading_1 {
+      label: _("Heading 1");
+      halign: start;
+      styles ["flat", "modelbutton"]
+    }
+
+    Button button_heading_2 {
+      label: _("Heading 2");
+      halign: start;
+      styles ["flat", "modelbutton"]
+    }
+
+    Button button_heading_3 {
+      label: _("Heading 3");
+      halign: start;
+      styles ["flat", "modelbutton"]
+    }
+
+    Button button_heading_4 {
+      label: _("Heading 4");
+      halign: start;
+      styles ["flat", "modelbutton"]
+    }
+
+    Button button_heading_5 {
+      label: _("Heading 5");
+      halign: start;
+      styles ["flat", "modelbutton"]
+    }
+
+    Button button_heading_6 {
+      label: _("Heading 6");
+      halign: start;
+      styles ["flat", "modelbutton"]
+    }
+
+    Button button_plain_text {
+      label: _("Plain Text");
+      halign: start;
+      styles ["flat", "modelbutton"]
+    }
+  }
+}

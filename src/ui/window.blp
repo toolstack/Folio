@@ -1,0 +1,370 @@
+using Gtk 4.0;
+using Adw 1;
+using GtkSource 5;
+
+template PaperWindow : Adw.ApplicationWindow {
+  default-width: 720;
+  default-height: 512;
+
+  styles ["transparent"]
+
+  Adw.ToastOverlay toast_overlay {
+
+    Adw.Leaflet leaflet {
+
+      Adw.LeafletPage sidebar {
+
+        navigatable: false;
+
+        child: Box {
+
+          orientation: horizontal;
+          hexpand: false;
+          vexpand: true;
+
+          .PaperNotebooksBar notebooks_bar {}
+
+          Box {
+
+            orientation: vertical;
+            hexpand: true;
+            vexpand: true;
+            width-request: 200;
+
+            styles ["notebook-sidebar"]
+
+            Adw.HeaderBar {
+
+              show-end-title-buttons: bind leaflet.folded sync-create;
+
+              [title]
+              Adw.WindowTitle notebook_title {}
+
+              [start]
+              Button button_edit_notebook {
+                icon-name: "document-edit-symbolic";
+                action-name: "app.edit-notebook";
+                tooltip-text: _("Edit Notebook");
+              }
+
+              [end]
+              Button button_create_note {
+                icon-name: "list-add-symbolic";
+                action-name: "app.new-note";
+                tooltip-text: _("New Note");
+              }
+
+              [end]
+              Button button_empty_trash {
+                icon-name: "empty-trash-symbolic";
+                action-name: "app.empty-trash";
+                tooltip-text: _("Empty Trash");
+              }
+            }
+
+            SearchBar notes_search_bar {
+
+              styles ["inline"]
+
+              SearchEntry notes_search_entry {}
+            }
+
+            ScrolledWindow notebook_notes_list_scroller {
+
+              hexpand: true;
+              vexpand: true;
+              hscrollbar-policy: never;
+              vscrollbar-policy: external;
+
+              ListView notebook_notes_list {}
+            }
+          }
+        };
+      }
+
+      Adw.LeafletPage edit_view {
+
+        navigatable: true;
+
+        child: Box {
+
+          hexpand: true;
+          vexpand: true;
+          orientation: vertical;
+          width-request: 390;
+
+          styles ["text-area"]
+
+          Adw.HeaderBar {
+
+            show-start-title-buttons: bind leaflet.folded sync-create;
+            hexpand: true;
+            vexpand: false;
+            visible: true;
+            valign: start;
+
+            [title]
+            Adw.WindowTitle note_title {}
+
+            [start]
+            ToggleButton button_toggle_sidebar {
+
+              icon-name: "sidebar-show-symbolic";
+              tooltip-text: _("Toggle Sidebar");
+              active: true;
+            }
+
+            [end]
+            MenuButton button_more_menu {
+
+              icon-name: "view-more-symbolic";
+              menu-model: more_menu;
+            }
+
+            [end]
+            Button {
+
+              visible: bind leaflet.folded sync-create;
+              icon-name: "dialog-information-symbolic";
+              tooltip-text: _("Markdown Cheatsheet");
+              action-name: "app.markdown-cheatsheet";
+            }
+          }
+
+          ScrolledWindow text_view_scroll {
+
+            hexpand: true;
+            vexpand: true;
+            visible: false;
+
+            .GtkMarkdownView text_view {
+
+              width-request: 960;
+              halign: center;
+              hexpand: 1;
+              vexpand: 1;
+              tab-width: 4;
+              auto-indent: true;
+              wrap-mode: word-char;
+              top-margin: 32;
+              bottom-margin: 64;
+              show-gutter: true;
+
+              styles ["markdown-view"]
+            }
+          }
+
+          ScrolledWindow {
+
+            hexpand: true;
+            vexpand: false;
+            hscrollbar-policy: external;
+            vscrollbar-policy: never;
+
+            styles ["bottom-toolbar"]
+
+            Box toolbar {
+
+              orientation: horizontal;
+
+              styles ["toolbar"]
+
+              ComboBoxText format_heading_type {
+
+                visible: bind leaflet.folded inverted sync-create;
+
+                items [
+                  p: _("Plain Text"),
+                  h1: _("Heading 1"),
+                  h2: _("Heading 2"),
+                  h3: _("Heading 3"),
+                  h4: _("Heading 4"),
+                  h5: _("Heading 5"),
+                  h6: _("Heading 6"),
+                ]
+              }
+
+              Separator {
+                visible: bind leaflet.folded inverted sync-create;
+                styles ["spacer"]
+              }
+
+              Button {
+                icon-name: "format-text-bold-symbolic";
+                tooltip-text: _("Bold");
+                action-name: "app.format-bold";
+              }
+
+              Button {
+                icon-name: "format-text-italic-symbolic";
+                tooltip-text: _("Italic");
+                action-name: "app.format-italic";
+              }
+
+              Button {
+                icon-name: "format-text-strikethrough-symbolic";
+                tooltip-text: _("Strikethrough");
+                action-name: "app.format-strikethrough";
+              }
+
+              Button {
+                icon-name: "format-text-highlight-symbolic";
+                tooltip-text: _("Highlight");
+                action-name: "app.format-highlight";
+              }
+
+              Separator {
+                styles ["spacer"]
+              }
+
+              Button {
+                icon-name: "insert-link-symbolic";
+                tooltip-text: _("Insert Link");
+                action-name: "app.insert-link";
+              }
+
+              Button {
+                icon-name: "code-symbolic";
+                tooltip-text: _("Insert Code");
+                action-name: "app.insert-code-span";
+              }
+
+              Box {
+                visible: bind leaflet.folded inverted sync-create;
+                hexpand: true;
+              }
+
+              Button {
+                visible: bind leaflet.folded inverted sync-create;
+                icon-name: "dialog-information-symbolic";
+                tooltip-text: _("Markdown Cheatsheet");
+                action-name: "app.markdown-cheatsheet";
+              }
+            }
+          }
+
+          Box text_view_empty {
+
+            hexpand: true;
+            vexpand: true;
+            visible: true;
+            orientation: vertical;
+            halign: center;
+            valign: center;
+
+            styles ["welcome-screen"]
+
+            Label {
+              label: _("Get started writing");
+              styles ["large-title"]
+            }
+
+            Box {
+
+              margin-bottom: 18;
+              margin-top: 18;
+              orientation: vertical;
+
+              styles ["linked"]
+
+              Button {
+
+                action-name: "app.new-notebook";
+
+                Box {
+
+                  margin-bottom: 8;
+                  margin-top: 8;
+                  margin-start: 10;
+                  margin-end: 10;
+                  orientation: horizontal;
+
+                  Image {
+                    margin-end: 18;
+                    icon-name: "document-new-symbolic";
+                  }
+
+                  Box {
+
+                    orientation: vertical;
+
+                    Label {
+
+                      halign: start;
+                      label: _("Create Notebook");
+
+                      styles ["heading"]
+                    }
+
+                    Label {
+
+                      halign: start;
+                      label: _("Create a new notebook");
+
+                      styles ["caption"]
+                    }
+                  }
+                }
+              }
+
+              Button {
+
+                action-name: "app.new-note";
+
+                Box {
+
+                  margin-bottom: 8;
+                  margin-top: 8;
+                  margin-start: 10;
+                  margin-end: 10;
+                  orientation: horizontal;
+
+                  Image {
+                    margin-end: 18;
+                    icon-name: "document-new-symbolic";
+                  }
+
+                  Box {
+
+                    orientation: vertical;
+
+                    Label {
+
+                      halign: start;
+                      label: _("Start Writing");
+
+                      styles ["heading"]
+                    }
+
+                    Label {
+
+                      halign: start;
+                      label: _("Create a new note");
+
+                      styles ["caption"]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        };
+      }
+    }
+  }
+}
+
+menu more_menu {
+  section {
+    item {
+      label: _("_Rename Note");
+      action: "app.edit-note";
+    }
+  }
+  section {
+    item {
+      label: _("_Export Note");
+      action: "app.export-note";
+    }
+  }
+}

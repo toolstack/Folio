@@ -1,0 +1,25 @@
+using Gtk 4.0;
+using Adw 1;
+
+template PaperPreferencesWindow : Adw.PreferencesWindow {
+
+  default-width: 480;
+  default-height: 300;
+  modal: true;
+
+  Adw.PreferencesPage {
+    Adw.PreferencesGroup {
+      Adw.ActionRow {
+
+        title: _("Note Font");
+        subtitle: _("The font notes will be displayed in");
+
+        FontButton font_button {
+          title: _("Pick a font for displaying the notes' content");
+          use-size: false;
+          valign: center;
+        }
+      }
+    }
+  }
+}

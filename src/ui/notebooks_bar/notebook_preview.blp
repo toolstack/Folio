@@ -1,0 +1,15 @@
+using Gtk 4.0;
+
+template PaperNotebookPreview : Box {
+
+  halign: center;
+
+  styles ["notebook"]
+
+  Label label {
+    hexpand: false;
+    vexpand: false;
+    halign: start;
+    valign: end;
+  }
+}

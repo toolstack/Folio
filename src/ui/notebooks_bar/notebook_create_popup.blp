@@ -1,0 +1,82 @@
+using Gtk 4.0;
+using Adw 1;
+
+template PaperCreatePopup : Adw.Window {
+
+  default-width: 320;
+  resizable: false;
+  modal: true;
+
+  ShortcutController {
+
+    scope: managed;
+
+    Shortcut {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
+  }
+
+  WindowHandle {
+    Box {
+
+      spacing: 16;
+      orientation: vertical;
+      hexpand: true;
+      margin-bottom: 16;
+
+      Overlay {
+
+        [overlay]
+        Adw.HeaderBar {
+
+          hexpand: true;
+          vexpand: false;
+          valign: start;
+
+          styles ["flat"]
+
+          [title]
+          Box {}
+        }
+
+        .PaperNotebookPreview preview {
+          margin-top: 18;
+          styles ["notebook-preview"]
+        }
+      }
+
+      Box {
+
+        orientation: horizontal;
+        margin-start: 18;
+        margin-end: 18;
+
+        styles ["linked"]
+
+        Entry entry {
+          placeholder-text: _("Notebook Name");
+          hexpand: true;
+        }
+
+        ColorButton button_color {
+
+          title: _("Notebook Color");
+          modal: true;
+          show-editor: false;
+          rgba: "#2ec27eff";
+          hexpand: false;
+        }
+      }
+
+      Button button_create {
+
+        label: _("Create Notebook");
+        margin-start: 16;
+        margin-end: 16;
+
+        styles ["suggested-action"]
+      }
+    }
+  }
+}

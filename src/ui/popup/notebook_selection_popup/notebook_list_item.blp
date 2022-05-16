@@ -1,0 +1,14 @@
+using Gtk 4.0;
+
+template PaperNotebookListItem : Box {
+
+  hexpand: true;
+  orientation: horizontal;
+
+  .PaperNotebookPreview icon {}
+
+  Label label {
+    ellipsize: end;
+    halign: start;
+  }
+}

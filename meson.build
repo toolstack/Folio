@@ -14,6 +14,13 @@ gnome = import('gnome')
 app_id = 'io.posidon.Paper'
 version = meson.project_version()
 
+add_project_arguments(
+  [
+    '--enable-experimental',
+  ],
+  language: 'vala'
+)
+
 subdir('lib')
 subdir('po')
 subdir('data')

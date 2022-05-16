@@ -1,0 +1,107 @@
+using Gtk 4.0;
+
+ShortcutsWindow help_overlay {
+
+  modal: true;
+
+  ShortcutsSection {
+
+    section-name: "shortcuts";
+    max-height: 10;
+
+    ShortcutsGroup {
+
+      title: _("Note");
+
+      ShortcutsShortcut {
+        title: _("New Note");
+        action-name: "app.new-note";
+      }
+
+      ShortcutsShortcut {
+        title: _("Edit Note");
+        action-name: "app.edit-note";
+      }
+    }
+
+    ShortcutsGroup {
+
+      title: _("Notebook");
+
+      ShortcutsShortcut {
+        title: _("New Notebook");
+        action-name: "app.new-notebook";
+      }
+
+      ShortcutsShortcut {
+        title: _("Edit Notebook");
+        action-name: "app.edit-notebook";
+      }
+    }
+
+    ShortcutsGroup {
+
+      title: _("General");
+
+      ShortcutsShortcut {
+        title: _("Show Keyboard Shortcuts");
+        action-name: "win.show-help-overlay";
+      }
+
+      ShortcutsShortcut {
+        title: _("Quit");
+        action-name: "app.quit";
+      }
+
+      ShortcutsShortcut {
+        title: _("Preferences");
+        action-name: "app.preferences";
+      }
+    }
+
+    ShortcutsGroup {
+
+      title: _("Formatting");
+
+      ShortcutsShortcut {
+        title: _("Bold");
+        action-name: "app.format-bold";
+      }
+
+      ShortcutsShortcut {
+        title: _("Italic");
+        action-name: "app.format-italic";
+      }
+
+      ShortcutsShortcut {
+        title: _("Strikethough");
+        action-name: "app.format-strikethrough";
+      }
+
+      ShortcutsShortcut {
+        title: _("Highlight");
+        action-name: "app.format-highlight";
+      }
+
+      ShortcutsShortcut {
+        title: _("Insert Link");
+        action-name: "app.insert-link";
+      }
+    }
+
+    ShortcutsGroup {
+
+      title: _("Navigation");
+
+      ShortcutsShortcut {
+        title: _("Toggle Sidebar");
+        action-name: "app.toggle-sidebar";
+      }
+
+      ShortcutsShortcut {
+        title: _("Search Notes");
+        action-name: "app.search-notes";
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+using Gtk 4.0;
+
+template PaperNotebookMenuPopover : Popover {
+
+  styles ["custom-popover-menu"]
+
+  Box {
+
+    orientation: vertical;
+
+    Button button_edit {
+
+      styles ["flat", "modelbutton"]
+
+      Label {
+        label: _("Edit");
+        halign: start;
+      }
+    }
+
+    Button button_trash {
+
+      styles ["flat", "modelbutton"]
+
+      Label {
+        label: _("Move all to Trash");
+        halign: start;
+      }
+    }
+  }
+}

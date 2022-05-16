@@ -1,0 +1,71 @@
+using Gtk 4.0;
+
+template PaperNoteMenuPopover : Popover {
+
+  styles ["custom-popover-menu"]
+
+  Box {
+
+    orientation: vertical;
+
+    Button button_recover {
+
+      styles ["flat", "modelbutton"]
+
+      Label {
+        label: _("Restore from Trash");
+        halign: start;
+      }
+    }
+
+    Button button_delete {
+
+      styles ["flat", "modelbutton"]
+
+      Label {
+        label: _("Delete from Trash");
+        halign: start;
+      }
+    }
+
+    Button button_edit {
+
+      styles ["flat", "modelbutton"]
+
+      Label {
+        label: _("Rename");
+        halign: start;
+      }
+    }
+
+    Button button_move {
+
+      styles ["flat", "modelbutton"]
+
+      Label {
+        label: _("Move to Notebook…");
+        halign: start;
+      }
+    }
+
+    Button button_trash {
+
+      styles ["flat", "modelbutton"]
+
+      Label {
+        label: _("Move to Trash");
+        halign: start;
+      }
+    }
+
+    Button button_open_containing_dir {
+
+      styles ["flat", "modelbutton"]
+
+      Label {
+        label: _("Open Containing Folder");
+        halign: start;
+      }
+    }
+  }
+}

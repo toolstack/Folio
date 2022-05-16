@@ -1,0 +1,73 @@
+using Gtk 4.0;
+using Adw 1;
+
+template PaperNotebooksBar : Box {
+
+  hexpand: false;
+  vexpand: true;
+  orientation: vertical;
+
+  styles ["notebooks-bar"]
+
+  Adw.HeaderBar {
+
+    show-start-title-buttons: false;
+    show-end-title-buttons: false;
+
+    [title]
+    MenuButton {
+      icon-name: "open-menu-symbolic";
+      menu-model: primary_menu;
+      hexpand: false;
+      vexpand: false;
+    }
+
+    [start]
+    Box {}
+  }
+
+  ScrolledWindow {
+
+    hexpand: false;
+    vexpand: true;
+    hscrollbar-policy: never;
+    vscrollbar-policy: external;
+
+    ListView list {
+      hexpand: false;
+      vexpand: true;
+    }
+  }
+
+  ToggleButton trash_button {
+
+    icon-name: "user-trash-symbolic";
+    hexpand: false;
+    vexpand: false;
+
+    styles ["flat", "trash-button"]
+  }
+}
+
+menu primary_menu {
+  section {
+    item {
+      label: _("_New Notebook");
+      action: "app.new-notebook";
+    }
+  }
+  section {
+    item {
+      label: _("_Preferences");
+      action: "app.preferences";
+    }
+    item {
+      label: _("_Keyboard Shortcuts");
+      action: "win.show-help-overlay";
+    }
+    item {
+      label: _("_About");
+      action: "app.about";
+    }
+  }
+}

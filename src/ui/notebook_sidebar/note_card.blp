@@ -1,0 +1,23 @@
+using Gtk 4.0;
+
+template PaperNoteCard : Box {
+
+  hexpand: true;
+  orientation: vertical;
+
+  Label label {
+
+    ellipsize: end;
+    halign: start;
+
+    styles ["heading"]
+  }
+
+  Label subtitle {
+
+    ellipsize: end;
+    halign: start;
+
+    styles ["caption", "dim-label"]
+  }
+}

@@ -1,0 +1,57 @@
+using Gtk 4.0;
+using Adw 1;
+
+template PaperNotebookSelectionPopup : Adw.Window {
+
+  default-width: 360;
+  default-height: 420;
+  resizable: true;
+  modal: true;
+
+  ShortcutController {
+
+    scope: managed;
+
+    Shortcut {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
+  }
+
+  Box {
+
+    orientation: vertical;
+    hexpand: true;
+
+    Adw.HeaderBar {
+
+      hexpand: true;
+      show-start-title-buttons: false;
+      show-end-title-buttons: false;
+
+      styles ["flat"]
+
+      [start]
+      Button button_cancel {
+        label: _("Cancel");
+      }
+
+      [end]
+      Button button_confirm {
+        label: _("Confirm");
+        styles ["suggested-action"]
+      }
+    }
+
+    ScrolledWindow {
+
+      hexpand: true;
+      vexpand: true;
+
+      ListView notebooks_list {
+        hexpand: true;
+        styles ["notebook-list"]
+      }
+    }
+  }
+}

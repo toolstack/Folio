@@ -6,14 +6,10 @@ public class Paper.NoteCreatePopup : Adw.Window {
 	unowned Gtk.Entry entry;
 
 	[GtkChild]
-	unowned Gtk.Button button_cancel;
-
-	[GtkChild]
 	unowned Gtk.Button button_create;
 
 	public NoteCreatePopup (Application app, Note? note = null) {
 		Object ();
-		button_cancel.clicked.connect (close);
 
         if (note != null) {
             button_create.label = Strings.RENAME;

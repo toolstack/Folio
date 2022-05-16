@@ -1,0 +1,56 @@
+using Gtk 4.0;
+using Adw 1;
+
+template PaperNoteCreatePopup : Adw.Window {
+
+  default-width: 320;
+  resizable: false;
+  modal: true;
+
+  ShortcutController {
+
+    scope: managed;
+
+    Shortcut {
+      trigger: "Escape";
+      action: "action(window.close)";
+    }
+  }
+
+  WindowHandle {
+    Box {
+
+      spacing: 16;
+      orientation: vertical;
+      hexpand: true;
+      margin-bottom: 16;
+
+      [overlay]
+      Adw.HeaderBar {
+
+        hexpand: true;
+        vexpand: false;
+        valign: start;
+
+        styles ["flat"]
+      }
+
+      Entry entry {
+        placeholder-text: _("Note Name");
+        hexpand: true;
+        margin-start: 18;
+        margin-end: 18;
+      }
+
+      margin-bottom: 16;
+      Button button_create {
+
+        label: _("Create Note");
+        margin-start: 16;
+        margin-end: 16;
+
+        styles ["suggested-action"]
+      }
+    }
+  }
+}

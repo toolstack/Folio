@@ -121,8 +121,8 @@ public class GtkMarkdown.View : GtkSource.View {
 	private Regex is_bold_1;
 	private Regex is_italic_0;
 	private Regex is_italic_1;
-	private Regex is_strikethough_0;
-	private Regex is_strikethough_1;
+	private Regex is_strikethrough_0;
+	private Regex is_strikethrough_1;
 	private Regex is_highlight;
 
     construct {
@@ -161,8 +161,8 @@ public class GtkMarkdown.View : GtkSource.View {
              */
 	        is_bold_1 = new Regex ("(__)([^_ \\t].*?(?<!\\\\|_| |\\t))(__)", f, 0);
 
-	        is_strikethough_0 = new Regex ("((?<!\\~)\\~)([^\\~ \\t].*?(?<!\\\\|\\~| |\\t))(\\~(?!\\~))", f, 0);
-	        is_strikethough_1 = new Regex ("(~~)([^~ \\t].*?(?<!\\\\|~| |\\t))(~~)", f, 0);
+	        is_strikethrough_0 = new Regex ("((?<!\\~)\\~)([^\\~ \\t].*?(?<!\\\\|\\~| |\\t))(\\~(?!\\~))", f, 0);
+	        is_strikethrough_1 = new Regex ("(~~)([^~ \\t].*?(?<!\\\\|~| |\\t))(~~)", f, 0);
 	        is_highlight = new Regex ("(\\=\\=)([^\\= \\t].*?(?<!\\\\|\\=| |\\t))(\\=\\=)", f, 0);
 	    } catch (RegexError e) {
 	        error (e.message);
@@ -420,8 +420,8 @@ public class GtkMarkdown.View : GtkSource.View {
             do_formatting_pass (is_bold_1, text_tag_bold, buffer_text, cursor_location, out matches);
             do_formatting_pass (is_italic_0, text_tag_italic, buffer_text, cursor_location, out matches);
             do_formatting_pass (is_italic_1, text_tag_italic, buffer_text, cursor_location, out matches);
-            do_formatting_pass (is_strikethough_0, text_tag_strikethrough, buffer_text, cursor_location, out matches);
-            do_formatting_pass (is_strikethough_1, text_tag_strikethrough, buffer_text, cursor_location, out matches);
+            do_formatting_pass (is_strikethrough_0, text_tag_strikethrough, buffer_text, cursor_location, out matches);
+            do_formatting_pass (is_strikethrough_1, text_tag_strikethrough, buffer_text, cursor_location, out matches);
             do_formatting_pass (is_highlight, text_tag_highlight, buffer_text, cursor_location, out matches);
             do_formatting_pass (is_code_span, text_tag_code_span, buffer_text, cursor_location, out matches);
         } catch (RegexError e) {}

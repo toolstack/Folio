@@ -27,7 +27,7 @@ public class Paper.Application : Adw.Application {
 		{ "delete-notebook", on_delete_notebook },
 		{ "format-bold", on_format_bold },
 		{ "format-italic", on_format_italic },
-		{ "format-strikethough", on_format_strikethough },
+		{ "format-strikethrough", on_format_strikethrough },
 		{ "format-highlight", on_format_highlight },
 		{ "insert-link", on_insert_link },
 		{ "insert-code-span", on_insert_code_span },
@@ -69,7 +69,7 @@ public class Paper.Application : Adw.Application {
 
 		set_accels_for_action ("app.format-bold", {"<primary>b"});
 		set_accels_for_action ("app.format-italic", {"<primary>i"});
-		set_accels_for_action ("app.format-strikethough", {"<primary>s"});
+		set_accels_for_action ("app.format-strikethrough", {"<primary>s"});
 		set_accels_for_action ("app.format-highlight", {"<primary>h"});
 		set_accels_for_action ("app.insert-link", {"<primary>k"});
 
@@ -131,7 +131,7 @@ public class Paper.Application : Adw.Application {
 
 	private void on_format_italic () { window.format_selection_italic (); }
 
-	private void on_format_strikethough () { window.format_selection_strikethough (); }
+	private void on_format_strikethrough () { window.format_selection_strikethrough (); }
 
 	private void on_format_highlight () { window.format_selection_highlight (); }
 
@@ -520,3 +520,4 @@ public class Paper.Application : Adw.Application {
 		return res;
 	}
 }
+

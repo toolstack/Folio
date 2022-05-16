@@ -292,7 +292,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    b.end_user_action ();
 	}
 
-	public void format_selection_strikethough () {
+	public void format_selection_strikethrough () {
 	    var b = text_view.buffer;
 	    b.begin_user_action ();
 	    var mark = b.get_selection_bound ();
