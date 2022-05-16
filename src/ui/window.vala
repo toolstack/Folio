@@ -78,7 +78,13 @@ public class Paper.Window : Adw.ApplicationWindow {
 	unowned Gtk.ScrolledWindow text_view_scroll;
 
 	[GtkChild]
-	unowned Gtk.Box text_view_empty;
+	unowned Gtk.Box text_view_empty_notebook;
+
+	[GtkChild]
+	unowned Gtk.Box text_view_empty_trash;
+
+	[GtkChild]
+	unowned Gtk.Box text_view_no_notebook;
 
 
 	[GtkChild]
@@ -207,11 +213,15 @@ public class Paper.Window : Adw.ApplicationWindow {
                     var app = application as Application;
 	                app.set_active_note (note);
                 }
+		    } else {
+		        set_text_view_state (TextViewState.EMPTY_NOTEBOOK);
 		    }
+
             navigate_to_notes ();
 	    } else {
 		    notebook_notes_list.factory = null;
 		    notebook_notes_list.model = null;
+		    set_text_view_state (TextViewState.NO_NOTEBOOK);
 	    }
 	}
 
@@ -235,17 +245,13 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    update_toolbar_visibility ();
 	    if (note != null) {
 	        note_title.title = note.name;
-	        text_view_scroll.show ();
-	        button_more_menu.show ();
-	        text_view_empty.hide ();
+	        set_text_view_state (TextViewState.TEXT_VIEW);
 	        current_buffer = new GtkMarkdown.Buffer (note.load_text ());
 	        text_view.buffer = current_buffer;
             select_note (note.notebook.loaded_notes.index_of (note));
 	    } else {
 	        note_title.title = null;
-	        text_view_scroll.hide ();
-	        button_more_menu.hide ();
-	        text_view_empty.show ();
+	        set_text_view_state (TextViewState.EMPTY_NOTEBOOK);
 	        current_buffer = null;
 	        text_view.buffer = null;
 	        select_note (-1);
@@ -390,10 +396,27 @@ public class Paper.Window : Adw.ApplicationWindow {
                 var app = application as Application;
                 app.set_active_note (note);
             }
+	    } else {
+		    set_text_view_state (TextViewState.EMPTY_TRASH);
 	    }
 
         navigate_to_notes ();
 	}
+
+	private enum TextViewState {
+	    TEXT_VIEW,
+	    EMPTY_NOTEBOOK,
+	    EMPTY_TRASH,
+	    NO_NOTEBOOK
+	}
+
+	private void set_text_view_state (TextViewState state) {
+	    text_view_empty_notebook.visible = state == TextViewState.EMPTY_NOTEBOOK;
+	    text_view_empty_trash.visible = state == TextViewState.EMPTY_TRASH;
+	    text_view_no_notebook.visible = state == TextViewState.NO_NOTEBOOK;
+        text_view_scroll.visible = state == TextViewState.TEXT_VIEW;
+        button_more_menu.visible = state == TextViewState.TEXT_VIEW;
+    }
 
 	private void recolor (Notebook? notebook) {
         var rgba = Gdk.RGBA ();

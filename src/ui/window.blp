@@ -236,7 +236,7 @@ template PaperWindow : Adw.ApplicationWindow {
             }
           }
 
-          Box text_view_empty {
+          Box text_view_empty_notebook {
 
             hexpand: true;
             vexpand: true;
@@ -245,100 +245,59 @@ template PaperWindow : Adw.ApplicationWindow {
             halign: center;
             valign: center;
 
-            styles ["welcome-screen"]
-
             Label {
               label: _("Get started writing");
               styles ["large-title"]
             }
 
-            Box {
+            Button {
 
-              margin-bottom: 18;
-              margin-top: 18;
-              orientation: vertical;
+              label: _("New Note");
+              action-name: "app.new-note";
+              margin-bottom: 32;
+              margin-top: 32;
 
-              styles ["linked"]
+              styles ["pill", "suggested-action"]
+            }
+          }
 
-              Button {
+          Box text_view_no_notebook {
 
-                action-name: "app.new-notebook";
+            hexpand: true;
+            vexpand: true;
+            visible: true;
+            orientation: vertical;
+            halign: center;
+            valign: center;
 
-                Box {
+            Label {
+              label: _("Create a notebook");
+              styles ["large-title"]
+            }
 
-                  margin-bottom: 8;
-                  margin-top: 8;
-                  margin-start: 10;
-                  margin-end: 10;
-                  orientation: horizontal;
+            Button {
 
-                  Image {
-                    margin-end: 18;
-                    icon-name: "document-new-symbolic";
-                  }
+              label: _("New Notebook");
+              action-name: "app.new-notebook";
+              margin-bottom: 32;
+              margin-top: 32;
 
-                  Box {
+              styles ["pill", "suggested-action"]
+            }
+          }
 
-                    orientation: vertical;
+          Box text_view_empty_trash {
 
-                    Label {
+            hexpand: true;
+            vexpand: true;
+            visible: true;
+            orientation: vertical;
+            halign: center;
+            valign: center;
 
-                      halign: start;
-                      label: _("Create Notebook");
-
-                      styles ["heading"]
-                    }
-
-                    Label {
-
-                      halign: start;
-                      label: _("Create a new notebook");
-
-                      styles ["caption"]
-                    }
-                  }
-                }
-              }
-
-              Button {
-
-                action-name: "app.new-note";
-
-                Box {
-
-                  margin-bottom: 8;
-                  margin-top: 8;
-                  margin-start: 10;
-                  margin-end: 10;
-                  orientation: horizontal;
-
-                  Image {
-                    margin-end: 18;
-                    icon-name: "document-new-symbolic";
-                  }
-
-                  Box {
-
-                    orientation: vertical;
-
-                    Label {
-
-                      halign: start;
-                      label: _("Start Writing");
-
-                      styles ["heading"]
-                    }
-
-                    Label {
-
-                      halign: start;
-                      label: _("Create a new note");
-
-                      styles ["caption"]
-                    }
-                  }
-                }
-              }
+            Label {
+              label: _("Trash is empty");
+              styles ["large-title"]
             }
           }
         };

@@ -282,13 +282,6 @@ searchbar.inline box {
   background: transparent;
 }
 
-.welcome-screen button {
-  background-color: @suggest_button_bg_color;
-}
-.welcome-screen button:hover {
-  background-color: @suggest_button_bg_color_hover;
-}
-
 
 /*
  *
