@@ -6,8 +6,8 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
 	unowned Gtk.FontButton font_button;
 
 
-	public PreferencesWindow (Gtk.Application app) {
-		Object (application: app);
+	public PreferencesWindow () {
+		Object ();
 
 	    var settings = new Settings (Config.APP_ID);
 		var note_font = settings.get_string ("note-font");

@@ -122,7 +122,7 @@ public class Paper.Application : Adw.Application {
 
 	private void on_preferences_action () {
 	    activate ();
-        var w = new PreferencesWindow (this);
+        var w = new PreferencesWindow ();
         w.destroy_with_parent = true;
 		w.transient_for = active_window;
         w.modal = true;
