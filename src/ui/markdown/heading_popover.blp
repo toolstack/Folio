@@ -2,11 +2,11 @@ using Gtk 4.0;
 
 template GtkMarkdownHeadingPopover : Popover {
 
+  styles ["custom-popover-menu"]
+
   Box {
 
     orientation: vertical;
-
-    styles ["custom-popover-menu"]
 
     Button button_heading_1 {
       label: _("Heading 1");

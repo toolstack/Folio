@@ -37,3 +37,7 @@
     linear-gradient(mix(@notebook_color, #fff, 0.1), @notebook_color);
 }
 
+.notebook-list row:selected > box {
+  background-color: alpha(@accent_color, 0.3);
+  color: @window_fg_color;
+}
