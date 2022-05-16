@@ -50,9 +50,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 	Gtk.SingleSelection notebook_notes_model;
 
 	[GtkChild]
-	unowned Gtk.Button button_edit_notebook;
-
-	[GtkChild]
 	unowned Gtk.Button button_create_note;
 
 	[GtkChild]
@@ -166,7 +163,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    is_editable = notebook != null;
 	    text_view.sensitive = is_editable;
         recolor (notebook);
-        button_edit_notebook.visible = notebook != null;
         button_create_note.visible = notebook != null;
         button_empty_trash.visible = false;
 	    if (notebook != null) {
