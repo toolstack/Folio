@@ -1,10 +1,14 @@
 using Gee;
 
 public interface Paper.Notebook : Object, ListModel {
-    public abstract string name { get; }
+
+    public abstract NotebookInfo info { get; }
+
+    public string name { get { return info.name; } }
+    public Gdk.RGBA color { get { return info.color; } }
+    public NotebookIconType icon_type { get { return info.icon_type; } }
+
     public abstract string path { owned get; }
-    public abstract Gdk.RGBA color { get; }
-    public abstract NotebookIconType icon_type { get; }
 
     public abstract Gee.List<Note>? loaded_notes { get; }
 

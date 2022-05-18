@@ -3,7 +3,8 @@ public enum Paper.NotebookIconType {
     FIRST,
     INITIALS,
     INITIALS_CAMEL_CASE,
-    INITIALS_SNAKE_CASE;
+    INITIALS_SNAKE_CASE,
+    PREDEFINED_ICON;
 
     public const NotebookIconType DEFAULT = FIRST;
 
@@ -17,6 +18,8 @@ public enum Paper.NotebookIconType {
                 return "camel_case";
             case INITIALS_SNAKE_CASE:
                 return "snake_case";
+            case PREDEFINED_ICON:
+                return "predefined_icon";
             default:
                 assert_not_reached();
         }
@@ -32,6 +35,8 @@ public enum Paper.NotebookIconType {
                 return INITIALS_CAMEL_CASE;
             case "snake_case":
                 return INITIALS_SNAKE_CASE;
+            case "predefined_icon":
+                return PREDEFINED_ICON;
             default:
                 assert_not_reached();
         }

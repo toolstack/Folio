@@ -12,6 +12,12 @@ public class Paper.NotebookCreatePopup : Adw.Window {
 	unowned Gtk.ColorButton button_color;
 
 	[GtkChild]
+	unowned Gtk.MenuButton button_icon;
+
+	[GtkChild]
+	unowned Gtk.GridView icon_grid;
+
+	[GtkChild]
 	unowned Gtk.Button button_create;
 
 	[GtkChild]
@@ -33,11 +39,41 @@ public class Paper.NotebookCreatePopup : Adw.Window {
             button_create.clicked.connect (() => create (app));
         }
 
+        var model = new Gtk.SingleSelection (new Gtk.StringList ({
+            "dialog-information-symbolic",
+            "code-symbolic",
+            "icon-heart-symbolic",
+            "icon-music-symbolic",
+            "icon-patch-symbolic",
+            "icon-plus-symbolic",
+            "icon-science-symbolic",
+            "icon-skull-symbolic",
+            "icon-toki-pona-symbolic"
+        }));
+
+        model.selection_changed.connect (() => {
+            var icon_name = (model.selected_item as Gtk.StringObject).string;
+            button_icon.icon_name = icon_name;
+            preview.icon_name = icon_name;
+        });
+
+        var factory = new Gtk.SignalListItemFactory ();
+
+        factory.setup.connect ((it) => it.child = new Gtk.Image ());
+        factory.bind.connect ((it) => {
+            var icon_name = (it.item as Gtk.StringObject).string;
+            (it.child as Gtk.Image).icon_name = icon_name;
+        });
+
+        icon_grid.model = model;
+        icon_grid.factory = factory;
+
         entry.changed.connect (() => {
             preview.notebook_name = entry.text;
         });
         icon_type_combobox.changed.connect (() => {
             preview.icon_type = icon_type_combobox.active;
+            button_icon.visible = icon_type_combobox.active == NotebookIconType.PREDEFINED_ICON;
         });
         button_color.color_set.connect (() => {
             preview.color = button_color.rgba;
@@ -45,21 +81,19 @@ public class Paper.NotebookCreatePopup : Adw.Window {
         entry.changed ();
         icon_type_combobox.changed ();
         button_color.color_set ();
+
+        model.selection_changed (0, 1);
 	}
 
     private void create (Application app) {
-	    var name = entry.text;
-	    var color = button_color.rgba;
-	    var icon_type = icon_type_combobox.active;
+        var info = preview.notebook_info;
 	    close ();
-	    app.try_create_notebook (name, color, icon_type);
+	    app.try_create_notebook (info);
 	}
 
 	private void change (Application app, Notebook notebook) {
-        var name = entry.text;
-        var color = button_color.rgba;
-	    var icon_type = icon_type_combobox.active;
+        var info = preview.notebook_info;
         close ();
-        app.try_change_notebook (notebook, name, color, icon_type);
+        app.try_change_notebook (notebook, info);
     }
 }

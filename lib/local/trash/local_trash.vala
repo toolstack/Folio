@@ -37,7 +37,7 @@ public class Paper.LocalTrash : Object, ListModel, Trash {
             while ((file_info = enumerator.next_file ()) != null) {
                 var name = file_info.get_name ();
                 if (name[0] == '.') continue;
-                var notebook = new LocalTrashedNotebook (this, name, Gdk.RGBA ());
+                var notebook = new LocalTrashedNotebook (this, new NotebookInfo (name));
                 load_notebook (notebook);
             }
         } catch (Error e) {

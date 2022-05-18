@@ -146,9 +146,23 @@ headerbar popover arrow {
   font-size: 14px;
 }
 
+.notebook > image {
+  -gtk-icon-shadow: 0 1px 1px rgba(0, 0, 0, .1);
+  -gtk-icon-size: 14px;
+}
+
 .notebook-preview {
   transform: scale(2.4);
   margin: 32px;
+}
+
+.icon-selector child {
+  padding: 8px;
+  -gtk-icon-size: 24px;
+}
+
+.icon-selector gridview {
+  background: 0;
 }
 
 window.tiled-left .notebooks-bar > .trash-button,

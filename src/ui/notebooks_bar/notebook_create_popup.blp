@@ -75,11 +75,34 @@ template PaperNotebookCreatePopup : Adw.Window {
             initials: _("Initials"),
             camel_case: _("Initials: camelCase"),
             snake_case: _("Initials: snake_case"),
+            predefined_icon: _("Icon"),
           ]
         }
 
-        ColorButton button_color {
+        MenuButton button_icon {
+          visible: false;
+          hexpand: false;
+          popover: Popover {
+            child: ScrolledWindow {
 
+              vexpand: false;
+              height-request: 96;
+	      hscrollbar-policy: never;
+	      vscrollbar-policy: external;
+
+              styles ["icon-selector"]
+
+              GridView icon_grid {
+                hexpand: true;
+                vexpand: false;
+                min-columns: 4;
+                max-columns: 4;
+              }
+            };
+          };
+        }
+
+        ColorButton button_color {
           title: _("Notebook Color");
           modal: true;
           show-editor: false;

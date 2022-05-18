@@ -2,6 +2,7 @@
 lib_sources = files(
   'note.vala',
   'notebook.vala',
+  'notebook_info.vala',
   'provider.vala',
   'trash.vala',
   'notebook_icon_type.vala',

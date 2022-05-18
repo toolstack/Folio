@@ -2,20 +2,12 @@ using Gee;
 
 public class Paper.LocalNotebook : Object, ListModel, Notebook {
 
-    public string name {
-        get { return _name; }
-    }
-
     public string path {
         owned get { return @"$(provider.notes_dir)/$name"; }
     }
 
-    public Gdk.RGBA color {
-        get { return _color; }
-    }
-
-    public NotebookIconType icon_type {
-        get { return _icon_type; }
+    public NotebookInfo info {
+        get { return _info; }
     }
 
     public Gee.List<Note>? loaded_notes {
@@ -24,16 +16,12 @@ public class Paper.LocalNotebook : Object, ListModel, Notebook {
 
     ArrayList<Note>? _loaded_notes = null;
 
-    string _name;
-    Gdk.RGBA _color;
-    NotebookIconType _icon_type;
+    NotebookInfo _info;
     LocalProvider provider;
 
-    public LocalNotebook (LocalProvider provider, string name, Gdk.RGBA color, NotebookIconType icon_type) {
+    public LocalNotebook (LocalProvider provider, NotebookInfo info) {
         this.provider = provider;
-        this._name = name;
-        this._color = color;
-        this._icon_type = icon_type;
+        this._info = info;
     }
 
     public void load () {
@@ -66,11 +54,9 @@ public class Paper.LocalNotebook : Object, ListModel, Notebook {
         _loaded_notes = null;
     }
 
-    public void change (LocalProvider provider, string name, Gdk.RGBA color, NotebookIconType icon_type) {
+    public void change (LocalProvider provider, NotebookInfo info) {
         this.provider = provider;
-        this._name = name;
-        this._color = color;
-        this._icon_type = icon_type;
+        this._info = info;
     }
 
     public Note new_note (string name) throws ProviderError {

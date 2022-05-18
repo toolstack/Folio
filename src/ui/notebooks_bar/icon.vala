@@ -6,9 +6,7 @@ public class Paper.NotebookIcon : NotebookPreview {
 	    get { return _notebook; }
 	    set {
 	        _notebook = value;
-	        notebook_name = _notebook.name;
-	        color = _notebook.color;
-	        icon_type = _notebook.icon_type;
+	        notebook_info = notebook.info;
 	    }
 	}
 

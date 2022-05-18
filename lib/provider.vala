@@ -11,7 +11,7 @@ public errordomain Paper.ProviderError {
 public interface Paper.Provider : Object, ListModel {
     public abstract Gee.List<Notebook> notebooks { get; }
     public abstract Trash trash { get; }
-    public abstract Notebook new_notebook (string name, Gdk.RGBA color, NotebookIconType icon_type) throws ProviderError;
-    public abstract void change_notebook (Notebook notebook, string name, Gdk.RGBA color, NotebookIconType icon_type) throws ProviderError;
+    public abstract Notebook new_notebook (NotebookInfo info) throws ProviderError;
+    public abstract void change_notebook (Notebook notebook, NotebookInfo info) throws ProviderError;
     public abstract void delete_notebook (Notebook notebook) throws ProviderError;
 }

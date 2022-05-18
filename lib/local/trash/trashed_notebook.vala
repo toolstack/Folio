@@ -2,34 +2,24 @@ using Gee;
 
 public class Paper.LocalTrashedNotebook : Object, ListModel, Notebook {
 
-    public string name {
-        get { return _name; }
-    }
-
     public string path {
         owned get { return @"$(trash.path)/$name"; }
     }
 
-    public Gdk.RGBA color {
-        get { return _color; }
-    }
-
-    public NotebookIconType icon_type {
-        get { return NotebookIconType.DEFAULT; }
+    public NotebookInfo info {
+        get { return _info; }
     }
 
     public Gee.List<Note>? loaded_notes {
         get { return null; }
     }
 
-    string _name;
-    Gdk.RGBA _color;
+    NotebookInfo _info;
     LocalTrash trash;
 
-    public LocalTrashedNotebook (LocalTrash trash, string name, Gdk.RGBA color) {
+    public LocalTrashedNotebook (LocalTrash trash, NotebookInfo info) {
         this.trash = trash;
-        this._name = name;
-        this._color = color;
+        this._info = info;
     }
 
     public void load () {}

@@ -366,21 +366,21 @@ public class Paper.Application : Adw.Application {
 	    }
 	}
 
-	public void try_create_notebook (string name, Gdk.RGBA color, NotebookIconType icon_type) {
-	    if (name.contains (".") || name.contains ("/")) {
+	public void try_create_notebook (NotebookInfo info) {
+	    if (info.name.contains (".") || info.name.contains ("/")) {
             window.toast (Strings.NOTEBOOK_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
             return;
 	    }
-	    if (name.replace(" ", "").length == 0) {
+	    if (info.name.replace(" ", "").length == 0) {
             window.toast (Strings.NOTEBOOK_NAME_SHOULDNT_BE_BLANK);
             return;
 	    }
 		try {
-	        var notebook = notebook_provider.new_notebook (name, color, icon_type);
+	        var notebook = notebook_provider.new_notebook (info);
 	        select_notebook (notebook);
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS) {
-	            window.toast (Strings.NOTEBOOK_X_ALREADY_EXISTS.printf (name));
+	            window.toast (Strings.NOTEBOOK_X_ALREADY_EXISTS.printf (info.name));
 	        } else if (e is ProviderError.COULDNT_CREATE_FILE) {
 	            window.toast (Strings.COULDNT_CREATE_NOTEBOOK);
 	        } else {
@@ -389,21 +389,21 @@ public class Paper.Application : Adw.Application {
 	    }
 	}
 
-	public void try_change_notebook (Notebook notebook, string name, Gdk.RGBA color, NotebookIconType icon_type) {
-	    if (name.contains (".") || name.contains ("/")) {
+	public void try_change_notebook (Notebook notebook, NotebookInfo info) {
+	    if (info.name.contains (".") || info.name.contains ("/")) {
             window.toast (Strings.NOTEBOOK_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
             return;
 	    }
-	    if (name.replace(" ", "").length == 0) {
+	    if (info.name.replace(" ", "").length == 0) {
             window.toast (Strings.NOTEBOOK_NAME_SHOULDNT_BE_BLANK);
             return;
 	    }
 		try {
-	        notebook_provider.change_notebook (notebook, name, color, icon_type);
+	        notebook_provider.change_notebook (notebook, info);
             window.set_notebook (notebook);
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS) {
-	            window.toast (Strings.NOTEBOOK_X_ALREADY_EXISTS.printf (name));
+	            window.toast (Strings.NOTEBOOK_X_ALREADY_EXISTS.printf (info.name));
 	        } else if (e is ProviderError.COULDNT_CREATE_FILE) {
 	            window.toast (Strings.COULDNT_CHANGE_NOTEBOOK);
 	        } else {
