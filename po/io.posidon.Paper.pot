@@ -1,470 +1,472 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the io.posidon.Paper package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: io.posidon.Paper main\n"
+"Project-Id-Version: io.posidon.Paper\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-05-18 18:45+0200\n"
-"PO-Revision-Date: 2022-05-10 11:56+0200\n"
-"Last-Translator: Zagura <zagura@posidon.io>\n"
-"Language-Team: spanish <es@li.org>\n"
-"Language: es_ES\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Gtranslator 41.0\n"
 
 #: data/app.desktop.in:8 src/ui/strings.vala:3
 msgid "Paper"
-msgstr "Paper"
+msgstr ""
 
 #: data/app.desktop.in:9
 msgid "Notes Manager"
-msgstr "Administrador de Notas"
+msgstr ""
 
 #: data/app.desktop.in:10
 msgid "Take notes"
-msgstr "Toma notas"
+msgstr ""
 
 #: data/app.desktop.in:12
 msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
 msgstr ""
-"Libreta;Nota;Notas;Texto;Markdown;Notepad;Escribe;Cole;Colegio;Post-it;"
-"Sticky;"
 
 #: data/app.desktop.in:21 src/ui/strings.vala:8 src/ui/shortcut_window.blp:17
 #: src/ui/window.blp:47 src/ui/window.blp:255
 msgid "New Note"
-msgstr "Nota Nueva"
+msgstr ""
 
 #: data/app.desktop.in:25 src/ui/strings.vala:14 src/ui/shortcut_window.blp:32
 #: src/ui/window.blp:280
 msgid "New Notebook"
-msgstr "Libreta Nueva"
+msgstr ""
 
 #: data/app.desktop.in:29 src/ui/strings.vala:39 src/ui/window.blp:122
 #: src/ui/window.blp:233
 msgid "Markdown Cheatsheet"
-msgstr "Chuleta de Markdown"
+msgstr ""
 
 #: data/app.desktop.in:33 src/ui/shortcut_window.blp:57
 msgid "Preferences"
-msgstr "Preferencias"
+msgstr ""
 
 #: data/app.gschema.xml:6
 msgid "Font"
-msgstr "Fuente"
+msgstr ""
 
 #: data/app.gschema.xml:7 src/ui/preferences.blp:15
 msgid "The font notes will be displayed in"
-msgstr "La fuente en la que se mostraran las notas"
+msgstr ""
 
 #: data/app.gschema.xml:11
 msgid "Notes directory"
-msgstr "Carpeta de notas"
+msgstr ""
 
 #: data/app.gschema.xml:12
 msgid "Where the notebooks are stored"
-msgstr "Donde las notas se almacenan"
+msgstr ""
 
 #: data/app.metainfo.xml.in:5
 msgid "Note-taking app"
-msgstr "App para tomar apuntes"
+msgstr ""
 
 #: data/app.metainfo.xml.in:7
 msgid "Create notebooks, take notes in markdown"
-msgstr "Crea libretas, toma notas en markdown"
+msgstr ""
 
 #: data/app.metainfo.xml.in:8
 msgid "Features:"
-msgstr "Funcionalidades:"
+msgstr ""
 
 #: data/app.metainfo.xml.in:10
 msgid "Almost WYSIWYG markdown rendering"
-msgstr "Renderizage casi perfecto de markdown"
+msgstr ""
 
 #: data/app.metainfo.xml.in:11
 msgid "Searchable through GNOME search"
-msgstr "Buscable atraves de busqueda de GNOME"
+msgstr ""
 
 #: data/app.metainfo.xml.in:12
 msgid "Highlight &amp; Strikethrough text formatting"
-msgstr "Formato tachado y subrayado"
+msgstr ""
 
 #: data/app.metainfo.xml.in:13
 msgid "App recoloring based on notebook color"
-msgstr "Recoloración de la interfaz a base del color de la libreta"
+msgstr ""
 
 #: data/app.metainfo.xml.in:14
 msgid "Trash can"
-msgstr "Papelera"
+msgstr ""
 
 #: data/app.metainfo.xml.in:29
 msgid "Markdown document"
-msgstr "Documento markdown"
+msgstr ""
 
 #: src/ui/strings.vala:4
 msgid "Trash"
-msgstr "Papelera"
+msgstr ""
 
 #: src/ui/strings.vala:5
 #, c-format
 msgid "%d Notes"
-msgstr "%d Notas"
+msgstr ""
 
 #: src/ui/strings.vala:6
 msgid "Are you sure you want to delete everything in the trash?"
-msgstr "De verdad quiere borrar todo en la papelera?"
+msgstr ""
 
 #: src/ui/strings.vala:7 src/ui/window.blp:54
 msgid "Empty Trash"
-msgstr "Vaciar Papelera"
+msgstr ""
 
 #: src/ui/strings.vala:9
 msgid "Create/choose a notebook before creating a note"
-msgstr "Cree/escoga una libreta antes de crear una nota"
+msgstr ""
 
 #: src/ui/strings.vala:10
 msgid "Please, select a note to edit"
-msgstr "Seleccione una nota para editar, porfavor"
+msgstr ""
 
 #: src/ui/strings.vala:11
 msgid "Please, select a note to delete"
-msgstr "Seleccione una nota para borrar, porfavor"
+msgstr ""
 
 #: src/ui/strings.vala:12
 msgid "Export Note"
-msgstr "Exportar Nota"
+msgstr ""
 
 #: src/ui/strings.vala:13
 msgid "Export"
-msgstr "Exportar"
+msgstr ""
 
 #: src/ui/strings.vala:15
 msgid "Rename Note"
-msgstr "Renombrar Nota"
+msgstr ""
 
 #: src/ui/strings.vala:16
 msgid "Move to Notebook"
-msgstr "Mover a Libreta"
+msgstr ""
 
 #: src/ui/strings.vala:17
 msgid "Move"
-msgstr "Mover"
+msgstr ""
 
 #: src/ui/strings.vala:18
 #, c-format
 msgid "Note “%s” already exists in notebook “%s”"
-msgstr "Nota “%s” ya existe en libreta “%s”"
+msgstr ""
 
 #: src/ui/strings.vala:19
 #, c-format
 msgid "Are you sure you want to delete the note “%s”?"
-msgstr "De verdad quiere borrar la nota “%s”?"
+msgstr ""
 
 #: src/ui/strings.vala:20
 msgid "Delete Note"
-msgstr "Borrar Nota"
+msgstr ""
 
 #: src/ui/strings.vala:21
 #, c-format
 msgid "Are you sure you want to delete the notebook “%s”?"
-msgstr "De verdad quiere borrar la libreta “%s”?"
+msgstr ""
 
 #: src/ui/strings.vala:22
 msgid "Delete Notebook"
-msgstr "Borrar Libreta"
+msgstr ""
 
 #: src/ui/strings.vala:23 src/ui/shortcut_window.blp:37
 msgid "Edit Notebook"
-msgstr "Editar Libreta"
+msgstr ""
 
 #: src/ui/strings.vala:24
 msgid "Note name shouldn’t contain “.” or “/”"
-msgstr "Nombres de notas no deben contener “.” o “/”"
+msgstr ""
 
 #: src/ui/strings.vala:25
 msgid "Note name shouldn’t be blank"
-msgstr "Nombres de notas no deben ser vacios"
+msgstr ""
 
 #: src/ui/strings.vala:26
 #, c-format
 msgid "Note “%s” already exists"
-msgstr "Nota “%s” ya existe"
+msgstr ""
 
 #: src/ui/strings.vala:27
 msgid "Couldn’t create note"
-msgstr "Nota no se pudo crear"
+msgstr ""
 
 #: src/ui/strings.vala:28
 msgid "Couldn’t change note"
-msgstr "Nota no se pudo cambiar"
+msgstr ""
 
 #: src/ui/strings.vala:29
 msgid "Couldn’t delete note"
-msgstr "Nota no se pudo borrar"
+msgstr ""
 
 #: src/ui/strings.vala:30
 msgid "Couldn’t restore note"
-msgstr "Nota no se pudo recuperar"
+msgstr ""
 
 #: src/ui/strings.vala:31
 #, c-format
 msgid "Saved “%s” to “%s”"
-msgstr "“%s” se guardó en “%s”"
+msgstr ""
 
 #: src/ui/strings.vala:32
 msgid "Unknown error"
-msgstr "Error desconocido"
+msgstr ""
 
 #: src/ui/strings.vala:33
 msgid "Notebook name shouldn’t contain “.” or “/”"
-msgstr "Nombres de libretas no deben contener “.” o “/”"
+msgstr ""
 
 #: src/ui/strings.vala:34
 msgid "Notebook name shouldn’t be blank"
-msgstr "Nombres de libretas no deben ser vacios"
+msgstr ""
 
 #: src/ui/strings.vala:35
 #, c-format
 msgid "Notebook “%s” already exists"
-msgstr "Libreta “%s” ya existe"
+msgstr ""
 
 #: src/ui/strings.vala:36
 msgid "Couldn’t create notebook"
-msgstr "Libreta no se pudo crear"
+msgstr ""
 
 #: src/ui/strings.vala:37
 msgid "Couldn’t change notebook"
-msgstr "Libreta no se pudo cambiar"
+msgstr ""
 
 #: src/ui/strings.vala:38
 msgid "Couldn’t delete notebook"
-msgstr "Libreta no se pudo borrar"
+msgstr ""
 
 #: src/ui/strings.vala:40 src/ui/notebook_sidebar/note_menu.blp:36
 msgid "Rename"
-msgstr "Renombrar"
+msgstr ""
 
 #: src/ui/strings.vala:41
 msgid "Couldn’t find an app to handle file uris"
-msgstr "No se encontró app para manejar uris"
+msgstr ""
 
 #: src/ui/strings.vala:42
 msgid "Apply"
-msgstr "Aplicar"
+msgstr ""
 
 #: src/ui/markdown/heading_popover.blp:12 src/ui/window.blp:171
 msgid "Heading 1"
-msgstr "Encabezado 1"
+msgstr ""
 
 #: src/ui/markdown/heading_popover.blp:18 src/ui/window.blp:172
 msgid "Heading 2"
-msgstr "Encabezado 2"
+msgstr ""
 
 #: src/ui/markdown/heading_popover.blp:24 src/ui/window.blp:173
 msgid "Heading 3"
-msgstr "Encabezado 3"
+msgstr ""
 
 #: src/ui/markdown/heading_popover.blp:30 src/ui/window.blp:174
 msgid "Heading 4"
-msgstr "Encabezado 4"
+msgstr ""
 
 #: src/ui/markdown/heading_popover.blp:36 src/ui/window.blp:175
 msgid "Heading 5"
-msgstr "Encabezado 5"
+msgstr ""
 
 #: src/ui/markdown/heading_popover.blp:42 src/ui/window.blp:176
 msgid "Heading 6"
-msgstr "Encabezado 6"
+msgstr ""
 
 #: src/ui/markdown/heading_popover.blp:48 src/ui/window.blp:170
 msgid "Plain Text"
-msgstr "Texto Simple"
+msgstr ""
 
 #: src/ui/notebooks_bar/notebook_create_popup.blp:56
 msgid "Notebook Name"
-msgstr "Nombre de Libreta"
+msgstr ""
 
 #: src/ui/notebooks_bar/notebook_create_popup.blp:74
 msgid "First Characters"
-msgstr "Primeros Carácteres"
+msgstr ""
 
 #: src/ui/notebooks_bar/notebook_create_popup.blp:75
 msgid "Initials"
-msgstr "Iniciales"
+msgstr ""
 
 #: src/ui/notebooks_bar/notebook_create_popup.blp:76
 msgid "Initials: camelCase"
-msgstr "Iniciales: camelCase"
+msgstr ""
 
 #: src/ui/notebooks_bar/notebook_create_popup.blp:77
 msgid "Initials: snake_case"
-msgstr "Iniciales: snake_case"
+msgstr ""
 
 #: src/ui/notebooks_bar/notebook_create_popup.blp:78
 msgid "Icon"
-msgstr "Icono"
+msgstr ""
 
 #: src/ui/notebooks_bar/notebook_create_popup.blp:106
 msgid "Notebook Color"
-msgstr "Color de Libreta"
+msgstr ""
 
 #: src/ui/notebooks_bar/notebook_create_popup.blp:116
 msgid "Create Notebook"
-msgstr "Borrar Libreta"
+msgstr ""
 
 #: src/ui/notebooks_bar/notebook_menu.blp:16
 msgid "Edit"
-msgstr "Editar"
+msgstr ""
 
 #: src/ui/notebooks_bar/notebook_menu.blp:26
 msgid "Move all to Trash"
-msgstr "Mover Todo a la Papelera"
+msgstr ""
 
 #: src/ui/notebooks_bar/notebooks_bar.blp:55
 msgid "_New Notebook"
-msgstr "_Nueva Libreta"
+msgstr ""
 
 #: src/ui/notebooks_bar/notebooks_bar.blp:59
 msgid "_Edit Notebook"
-msgstr "_Editar Libreta"
+msgstr ""
 
 #: src/ui/notebooks_bar/notebooks_bar.blp:65
 msgid "_Preferences"
-msgstr "_Preferencias"
+msgstr ""
 
 #: src/ui/notebooks_bar/notebooks_bar.blp:69
 msgid "_Keyboard Shortcuts"
-msgstr "_Atajos"
+msgstr ""
 
 #: src/ui/notebooks_bar/notebooks_bar.blp:73
 msgid "_About"
-msgstr "_Acerca de Paper"
+msgstr ""
 
 #: src/ui/notebook_sidebar/note_create_popup.blp:39
 msgid "Note Name"
-msgstr "Nombre de Nota"
+msgstr ""
 
 #: src/ui/notebook_sidebar/note_create_popup.blp:48
 msgid "Create Note"
-msgstr "Crear Nota"
+msgstr ""
 
 #: src/ui/notebook_sidebar/note_menu.blp:16
 msgid "Restore from Trash"
-msgstr "Recuperar de la Papelera"
+msgstr ""
 
 #: src/ui/notebook_sidebar/note_menu.blp:26
 msgid "Delete from Trash"
-msgstr "Borrar de la Papelera"
+msgstr ""
 
 #: src/ui/notebook_sidebar/note_menu.blp:46
 msgid "Move to Notebook…"
-msgstr "Mover a Libreta…"
+msgstr ""
 
 #: src/ui/notebook_sidebar/note_menu.blp:56
 msgid "Move to Trash"
-msgstr "Mover a la Papelera"
+msgstr ""
 
 #: src/ui/notebook_sidebar/note_menu.blp:66
 msgid "Open Containing Folder"
-msgstr "Ver en Carpeta"
+msgstr ""
 
 #: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:36
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr ""
 
 #: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:41
 msgid "Confirm"
-msgstr "Confirmar"
+msgstr ""
 
 #: src/ui/preferences.blp:14
 msgid "Note Font"
-msgstr "Fuente de Notas"
+msgstr ""
 
 #: src/ui/preferences.blp:18
 msgid "Pick a font for displaying the notes' content"
-msgstr "Escoge una fuente para mostrar el contenido de las notas"
+msgstr ""
 
 #: src/ui/shortcut_window.blp:14
 msgid "Note"
-msgstr "Nota"
+msgstr ""
 
 #: src/ui/shortcut_window.blp:22
 msgid "Edit Note"
-msgstr "Editar Nota"
+msgstr ""
 
 #: src/ui/shortcut_window.blp:29
 msgid "Notebook"
-msgstr "Libreta"
+msgstr ""
 
 #: src/ui/shortcut_window.blp:44
 msgid "General"
-msgstr "General"
+msgstr ""
 
 #: src/ui/shortcut_window.blp:47
 msgid "Show Keyboard Shortcuts"
-msgstr "Mostrar Atajos de Teclado"
+msgstr ""
 
 #: src/ui/shortcut_window.blp:52
 msgid "Quit"
-msgstr "Salir"
+msgstr ""
 
 #: src/ui/shortcut_window.blp:64
 msgid "Formatting"
-msgstr "Formato"
+msgstr ""
 
 #: src/ui/shortcut_window.blp:67 src/ui/window.blp:187
 msgid "Bold"
-msgstr "Negrita"
+msgstr ""
 
 #: src/ui/shortcut_window.blp:72 src/ui/window.blp:193
 msgid "Italic"
-msgstr "Italico"
+msgstr ""
 
 #: src/ui/shortcut_window.blp:82 src/ui/window.blp:205
 msgid "Highlight"
-msgstr "Subrayado"
+msgstr ""
 
 #: src/ui/shortcut_window.blp:87 src/ui/window.blp:215
 msgid "Insert Link"
-msgstr "Insertar Enlace"
+msgstr ""
 
 #: src/ui/shortcut_window.blp:94
 msgid "Navigation"
-msgstr "Navegación"
+msgstr ""
 
 #: src/ui/shortcut_window.blp:97 src/ui/window.blp:106
 msgid "Toggle Sidebar"
-msgstr "Alternar Barra Lateral"
+msgstr ""
 
 #: src/ui/shortcut_window.blp:102
 msgid "Search Notes"
-msgstr "Buscar Notas"
+msgstr ""
 
 #: src/ui/shortcut_window.blp:77 src/ui/window.blp:199
 msgid "Strikethrough"
-msgstr "Tachado"
+msgstr ""
 
 #: src/ui/window.blp:221
 msgid "Insert Code"
-msgstr "Insertar Codigo"
+msgstr ""
 
 #: src/ui/window.blp:249
 msgid "Get started writing"
-msgstr "Empieza a escribir"
+msgstr ""
 
 #: src/ui/window.blp:274
 msgid "Create a notebook"
-msgstr "Crea una libreta"
+msgstr ""
 
 #: src/ui/window.blp:299
 msgid "Trash is empty"
-msgstr "La papelera está vacia"
+msgstr ""
 
 #: src/ui/window.blp:312
 msgid "_Rename Note"
-msgstr "_Renombrar Nota"
+msgstr ""
 
 #: src/ui/window.blp:318
 msgid "_Export Note"
-msgstr "_Exportar Nota"
+msgstr ""

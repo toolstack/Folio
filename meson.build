@@ -11,7 +11,7 @@ project(
 i18n = import('i18n')
 gnome = import('gnome')
 
-app_id = 'io.posidon.Paper'
+app_id = meson.project_name()
 version = meson.project_version()
 
 add_project_arguments(
