@@ -24,8 +24,10 @@ conf.set_quoted('APP_ID', app_id)
 conf.set_quoted('VERSION', version)
 configure_file(output: 'config.h', configuration: conf)
 
+exec_name = 'paper-search-provider'
+
 executable(
-  'paper-search-provider',
+  exec_name,
   search_provider_sources,
   dependencies: search_provider_deps,
   vala_args: [
@@ -35,16 +37,25 @@ executable(
   install: true,
 )
 
+dbusconf = configuration_data()
+dbusconf.set('app_id', app_id)
+dbusconf.set('version', version)
+dbusconf.set('exec_name', exec_name)
+
+gnome_shell_file = configure_file(
+  input: 'search-provider.ini',
+  output: app_id + '.SearchProvider-search-provider.ini',
+  configuration: dbusconf,
+)
+
 install_data(
-  'io.posidon.Paper.SearchProvider-search-provider.ini',
+  gnome_shell_file,
   install_dir: get_option('datadir') / 'gnome-shell' / 'search-providers',
 )
 
-# The DBUS service file
-dbusconf = configuration_data()
 configuration_file = configure_file(
-  input: 'io.posidon.Paper.SearchProvider.service.in',
-  output: 'io.posidon.Paper.SearchProvider.service',
+  input: 'SearchProvider.service.in',
+  output: app_id + '.SearchProvider.service',
   configuration: dbusconf,
 )
 

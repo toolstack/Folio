@@ -1,3 +1,0 @@
-[D-BUS Service]
-Name=io.posidon.Paper.SearchProvider
-Exec=paper-search-provider

@@ -3,7 +3,7 @@ conf.set('app_id', app_id)
 conf.set('version', version)
 
 service_file = configure_file(
-  input: 'io.posidon.Paper.service.in',
+  input: 'app.service.in',
   output: 'io.posidon.Paper.service',
   configuration: conf,
 )
@@ -14,7 +14,7 @@ install_data(
 )
 
 desktop_conf = configure_file(
-  input: meson.project_name() + '.desktop.in',
+  input: 'app.desktop.in',
   output: '@0@.desktop.in'.format(app_id),
   configuration: conf
 )
@@ -36,7 +36,7 @@ if desktop_utils.found()
 endif
 
 appstream_conf = configure_file(
-  input: meson.project_name() + '.metainfo.xml.in',
+  input: 'app.metainfo.xml.in',
   output: '@0@.metainfo.xml.in'.format(app_id),
   configuration: conf
 )
@@ -56,8 +56,14 @@ if appstream_util.found()
   )
 endif
 
+gschema_file = configure_file(
+  input: 'app.gschema.xml',
+  output: app_id + '.gschema.xml',
+  configuration: conf,
+)
+
 install_data(
-  meson.project_name() + '.gschema.xml',
+  gschema_file,
   install_dir: get_option('datadir') / 'glib-2.0' / 'schemas'
 )
 

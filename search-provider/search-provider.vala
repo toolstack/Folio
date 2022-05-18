@@ -1,19 +1,8 @@
 
 [DBus (name = "org.gnome.Shell.SearchProvider2")]
 public class SearchProvider : Object {
-    private Cancellable cancellable;
 
     public SearchProvider () {}
-
-    ~SearchProvider () {
-        cancel ();
-    }
-
-    [DBus (visible = false)]
-    public void cancel () {
-        if (cancellable != null)
-            cancellable.cancel ();
-    }
 
     private HashTable<string, Paper.Note> notes;
 
@@ -89,10 +78,6 @@ public class SearchProviderApp : Application {
         catch (IOError e) {
             error (@"Could not register service: $(e.message)");
         }
-
-        shutdown.connect (() => {
-            search_provider.cancel ();
-        });
 
         return true;
     }

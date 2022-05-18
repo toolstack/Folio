@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Terminal=false
-Exec=io.posidon.Paper
+Exec=@app_id@
 DBusActivatable=true
 
 Name=Paper
