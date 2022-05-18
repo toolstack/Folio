@@ -32,9 +32,11 @@
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-heart-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-music-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-patch-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-plant-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-plus-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-science-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-skull-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-toki-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-toki-pona-symbolic.svg</file>
   </gresource>
 </gresources>

@@ -45,9 +45,11 @@ public class Paper.NotebookCreatePopup : Adw.Window {
             "icon-heart-symbolic",
             "icon-music-symbolic",
             "icon-patch-symbolic",
+            "icon-plant-symbolic",
             "icon-plus-symbolic",
             "icon-science-symbolic",
             "icon-skull-symbolic",
+            "icon-toki-symbolic",
             "icon-toki-pona-symbolic"
         }));
 
