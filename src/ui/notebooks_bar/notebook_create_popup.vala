@@ -26,19 +26,6 @@ public class Paper.NotebookCreatePopup : Adw.Window {
 	public NotebookCreatePopup (Application app, Notebook? notebook = null) {
 		Object ();
 
-        if (notebook != null) {
-            button_create.label = Strings.APPLY;
-	        button_color.rgba = notebook.color;
-	        entry.text = notebook.name;
-	        icon_type_combobox.active = notebook.icon_type;
-		    entry.activate.connect (() => change (app, notebook));
-            button_create.clicked.connect (() => change (app, notebook));
-        } else {
-	        icon_type_combobox.active = 0;
-            entry.activate.connect (() => create (app));
-            button_create.clicked.connect (() => create (app));
-        }
-
         var model = new Gtk.SingleSelection (new Gtk.StringList ({
             "dialog-information-symbolic",
             "code-symbolic",
@@ -69,6 +56,32 @@ public class Paper.NotebookCreatePopup : Adw.Window {
 
         icon_grid.model = model;
         icon_grid.factory = factory;
+
+        if (notebook != null) {
+            button_create.label = Strings.APPLY;
+            preview.notebook_info = new NotebookInfo (
+                notebook.name,
+                notebook.color,
+                notebook.icon_type,
+                notebook.info.icon_name
+            );
+	        button_color.rgba = notebook.color;
+	        entry.text = notebook.name;
+	        icon_type_combobox.active = notebook.icon_type;
+	        for (uint i = 0; i < model.get_n_items (); i++) {
+	            var v = model.get_item (i);
+	            if ((v as Gtk.StringObject).string == notebook.info.icon_name) {
+	                model.set_selected (i);
+	                break;
+	            }
+	        }
+		    entry.activate.connect (() => change (app, notebook));
+            button_create.clicked.connect (() => change (app, notebook));
+        } else {
+	        icon_type_combobox.active = 0;
+            entry.activate.connect (() => create (app));
+            button_create.clicked.connect (() => create (app));
+        }
 
         entry.changed.connect (() => {
             preview.notebook_name = entry.text;
