@@ -134,3 +134,4 @@ public class Paper.NotebookPreview : Gtk.Box {
         return original.slice (0, int.min(original.length, 2));
 	}
 }
+

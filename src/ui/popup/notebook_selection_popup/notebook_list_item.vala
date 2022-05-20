@@ -12,8 +12,7 @@ public class Paper.NotebookListItem : Gtk.Box {
 	    set {
 	        this._notebook = value;
 	        label.label = value.name;
-	        icon.notebook_name = value.name;
-	        icon.color = value.color;
+	        icon.notebook_info = value.info;
 	    }
 	}
 
