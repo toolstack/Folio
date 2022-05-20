@@ -148,6 +148,7 @@ row.activatable:hover .notebook {
   opacity: 0.8;
 }
 
+.notebook-preview,
 row.activatable:selected .notebook {
   opacity: 1;
 }
