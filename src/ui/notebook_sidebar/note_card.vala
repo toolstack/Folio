@@ -32,7 +32,8 @@ public class Paper.NoteCard : Gtk.Box {
 	        this._note = value;
 	        if (value != null) {
 	            label.label = value.name;
-	            subtitle.label = (is_in_trash ? value.time_modified.format ("%e %b, %H:%m - %s").printf (value.notebook.name) : value.time_modified.format ("%e %b, %H:%m")).strip ();
+	            var time_string = value.time_modified.format ("%e %b, %H:%m");
+	            subtitle.label = (is_in_trash ? @"%s - %s".printf (time_string, value.notebook.name) : time_string).strip ();
 	            tooltip_text = value.name;
 	        }
 	    }
