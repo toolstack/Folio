@@ -87,9 +87,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 	[GtkChild]
 	unowned Adw.ToastOverlay toast_overlay;
 
-
-	public bool is_editable = false;
-
 	private FuzzyStringSorter search_sorter;
 
 
@@ -224,7 +221,7 @@ public class Paper.Window : Adw.ApplicationWindow {
     private GtkMarkdown.Buffer current_buffer;
 
     public void optional_save () {
-	    if (is_editable && current_note != null) {
+	    if (edit_view.is_editable && current_note != null) {
             current_note.save (current_buffer.get_all_text ());
         }
     }
