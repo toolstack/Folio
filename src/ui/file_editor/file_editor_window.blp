@@ -16,12 +16,10 @@ template PaperFileEditorWindow : Adw.Window {
 
       styles ["text-area"]
 
-      Adw.HeaderBar {
+      Adw.HeaderBar headerbar {
 
         hexpand: true;
         vexpand: false;
-
-        styles ["bordered"]
 
         [title]
         Adw.WindowTitle file_title {}

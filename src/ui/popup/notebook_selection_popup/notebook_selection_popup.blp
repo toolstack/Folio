@@ -23,13 +23,11 @@ template PaperNotebookSelectionPopup : Adw.Window {
     orientation: vertical;
     hexpand: true;
 
-    Adw.HeaderBar {
+    Adw.HeaderBar headerbar {
 
       hexpand: true;
       show-start-title-buttons: false;
       show-end-title-buttons: false;
-
-      styles ["flat", "bordered"]
 
       [start]
       Button button_cancel {
@@ -43,7 +41,7 @@ template PaperNotebookSelectionPopup : Adw.Window {
       }
     }
 
-    ScrolledWindow {
+    ScrolledWindow scrolled_window {
 
       hexpand: true;
       vexpand: true;

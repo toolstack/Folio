@@ -6,6 +6,9 @@ public class Paper.FileEditorWindow : Adw.Window {
 	unowned Adw.WindowTitle file_title;
 
 	[GtkChild]
+	unowned Adw.HeaderBar headerbar;
+
+	[GtkChild]
 	public unowned EditView edit_view;
 
 	[GtkChild]
@@ -37,6 +40,12 @@ public class Paper.FileEditorWindow : Adw.Window {
             return false;
         });
 
+        edit_view.scrolled_window.vadjustment.notify["value"].connect (() => {
+            var v = edit_view.scrolled_window.vadjustment.value;
+            if (v == 0) headerbar.get_style_context ().remove_class ("overlaid");
+            else headerbar.get_style_context ().add_class ("overlaid");
+        });
+
         recolor (Color.RGB ());
 	}
 
@@ -65,7 +74,7 @@ public class Paper.FileEditorWindow : Adw.Window {
         }
         var css = new Gtk.CssProvider ();
         css.load_from_data (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;".data);
-        Gtk.StyleContext.add_provider_for_display (display, css, -1);
+        get_style_context ().add_provider (css, -1);
         edit_view.theme_color = rgba;
 	}
 }

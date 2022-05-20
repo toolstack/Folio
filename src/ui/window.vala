@@ -330,6 +330,7 @@ public class Paper.Window : Adw.ApplicationWindow {
         button_more_menu.visible = state == TextViewState.TEXT_VIEW;
     }
 
+    private Gtk.CssProvider? last_provider = null;
 	private void recolor (Notebook? notebook) {
         var rgba = Gdk.RGBA ();
         var light_rgba = Gdk.RGBA ();
@@ -343,6 +344,8 @@ public class Paper.Window : Adw.ApplicationWindow {
             Color.hsl_to_rgb (hsl, out rgb);
             Color.rgb_to_RGBA (rgb, out light_rgba);
         }
+        if (last_provider != null)
+            Gtk.StyleContext.remove_provider_for_display (display, last_provider);
         var css = new Gtk.CssProvider ();
         css.load_from_data (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;".data);
         Gtk.StyleContext.add_provider_for_display (display, css, -1);

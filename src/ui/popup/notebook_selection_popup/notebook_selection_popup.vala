@@ -13,6 +13,12 @@ public class Paper.NotebookSelectionPopup : Adw.Window {
 	[GtkChild]
 	unowned Gtk.Button button_confirm;
 
+	[GtkChild]
+	unowned Adw.HeaderBar headerbar;
+
+	[GtkChild]
+	unowned Gtk.ScrolledWindow scrolled_window;
+
 	private OnNotebookSelected callback;
 
 	public NotebookSelectionPopup (Provider provider, string title, string action_name, owned OnNotebookSelected callback) {
@@ -31,5 +37,11 @@ public class Paper.NotebookSelectionPopup : Adw.Window {
 	        close ();
 	        this.callback (model.selected_item as Notebook);
 	    });
+
+        scrolled_window.vadjustment.notify["value"].connect (() => {
+            var v = scrolled_window.vadjustment.value;
+            if (v == 0) headerbar.get_style_context ().remove_class ("overlaid");
+            else headerbar.get_style_context ().add_class ("overlaid");
+        });
 	}
 }
