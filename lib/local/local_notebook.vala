@@ -61,7 +61,8 @@ public class Paper.LocalNotebook : Object, ListModel, Notebook {
 
     public Note new_note (string name) throws ProviderError {
         load ();
-        var path = @"$path/$name";
+        var file_name = @"$name.md";
+        var path = @"$path/$file_name";
         var file = File.new_for_path (path);
         if (file.query_exists ()) {
             throw new ProviderError.ALREADY_EXISTS (@"Note \"$name\" already exists in $(this.name)");
@@ -82,13 +83,14 @@ public class Paper.LocalNotebook : Object, ListModel, Notebook {
         if (note.name != name) {
             var original_path = note.path;
             var original_file = File.new_for_path (original_path);
-            var path = @"$path/$name";
+            var file_name = @"$name.md";
+            var path = @"$path/$file_name";
             var file = File.new_for_path (path);
             if (file.query_exists ()) {
                 throw new ProviderError.ALREADY_EXISTS (@"Note at $path already exists");
             }
             try {
-                original_file.set_display_name(name);
+                original_file.set_display_name(file_name);
             } catch (Error e) {
                 throw new ProviderError.COULDNT_CREATE_FILE (@"Couldn't change $original_path to $path: $(e.message)");
             }
