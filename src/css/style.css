@@ -38,6 +38,10 @@ headerbar popover arrow {
   color: @headerbar_fg_color;
 }
 
+headerbar.flat.bordered {
+  border-bottom: solid 1px @borders;
+}
+
 /*
  *
  *   NOTEBOOKS BAR
@@ -303,7 +307,6 @@ searchbar.inline box {
 
 .notebook-list {
   padding: 3px 0;
-  border-top: solid 1px @borders;
 }
 
 .notebook-list row {

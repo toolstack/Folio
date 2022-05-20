@@ -71,7 +71,7 @@ public class Paper.Application : Adw.Application {
 
 		set_accels_for_action ("app.format-bold", {"<primary>b"});
 		set_accels_for_action ("app.format-italic", {"<primary>i"});
-		set_accels_for_action ("app.format-strikethrough", {"<primary>s"});
+		set_accels_for_action ("app.format-strikethrough", {"<primary>t"});
 		set_accels_for_action ("app.format-highlight", {"<primary>h"});
 		set_accels_for_action ("app.insert-link", {"<primary>k"});
 
@@ -129,17 +129,17 @@ public class Paper.Application : Adw.Application {
         w.present ();
 	}
 
-	private void on_format_bold () { window.format_selection_bold (); }
+	private void on_format_bold () { window.edit_view.format_selection_bold (); }
 
-	private void on_format_italic () { window.format_selection_italic (); }
+	private void on_format_italic () { window.edit_view.format_selection_italic (); }
 
-	private void on_format_strikethrough () { window.format_selection_strikethrough (); }
+	private void on_format_strikethrough () { window.edit_view.format_selection_strikethrough (); }
 
-	private void on_format_highlight () { window.format_selection_highlight (); }
+	private void on_format_highlight () { window.edit_view.format_selection_highlight (); }
 
-	private void on_insert_link () { window.insert_link (); }
+	private void on_insert_link () { window.edit_view.insert_link (); }
 
-	private void on_insert_code_span () { window.insert_code_span (); }
+	private void on_insert_code_span () { window.edit_view.insert_code_span (); }
 
 	private void on_markdown_cheatsheet () {
         var w = new MarkdownCheatsheet (this);
@@ -348,7 +348,7 @@ public class Paper.Application : Adw.Application {
 	}
 
 	private void try_export_note (Note note, File file) {
-	    note.save_to (file, current_buffer.get_all_text ());
+	    FileUtils.save_to (file, current_buffer.get_all_text ());
         window.toast (Strings.SAVED_X_TO_X.printf (note.name, file.get_path ()));
 	}
 
@@ -462,10 +462,13 @@ public class Paper.Application : Adw.Application {
 	private int _command_line (ApplicationCommandLine command_line) {
 		string? open_note = null;
 		string? launch_search = null;
+		string? file = null;
 
-		OptionEntry[] options = new OptionEntry[2];
-		options[0] = { "open-note", 0, 0, OptionArg.STRING, ref open_note, "Open a note", null };
-		options[1] = { "launch-search", 0, 0, OptionArg.STRING, ref launch_search, "Search notes", null };
+		OptionEntry[] options = {
+		    { "open-note", 'n', 0, OptionArg.STRING, ref open_note, "Open a note", null },
+		    { "launch-search", 's', 0, OptionArg.STRING, ref launch_search, "Search notes", null },
+		    { "file", 'f', 0, OptionArg.FILENAME, ref file, "Edit file", null },
+		};
 
 
 		// We have to make an extra copy of the array, since .parse assumes
@@ -484,8 +487,19 @@ public class Paper.Application : Adw.Application {
 			opt_context.parse (ref tmp);
 		} catch (OptionError e) {
 			command_line.print ("error: %s\n", e.message);
-			command_line.print ("Run '%s --help' to see a full list of available command line options.\n", args[0]);
+			command_line.print ("Run '%s --help' to see a full list of available command line options\n", args[0]);
 			return 0;
+		}
+
+		if (file != null) {
+		    var f = File.new_for_path (file);
+		    if (!f.query_exists ()) {
+			    command_line.print ("File at %s doesn't exist\n", f.get_path ());
+		        return 0;
+		    }
+		    var w = new FileEditorWindow (this, f);
+		    w.present ();
+		    return 0;
 		}
 
 		if (open_note != null) {

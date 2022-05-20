@@ -13,4 +13,5 @@ lib_sources = files(
   'local/trash/trashed_notebook.vala',
 
   'util/fuzzy_matching.vala',
+  'util/file_utils.vala',
 )

@@ -1,0 +1,118 @@
+using Gtk 4.0;
+using Adw 1;
+
+template PaperEditView : Box {
+
+  orientation: vertical;
+
+  styles ["text-area"]
+
+  ScrolledWindow text_view_scroll {
+
+    hexpand: true;
+    vexpand: true;
+
+    .GtkMarkdownView text_view {
+
+      width-request: 960;
+      halign: center;
+      hexpand: 1;
+      vexpand: 1;
+      tab-width: 4;
+      auto-indent: true;
+      wrap-mode: word-char;
+      top-margin: 32;
+      bottom-margin: 64;
+      show-gutter: true;
+
+      styles ["markdown-view"]
+    }
+  }
+
+  ScrolledWindow {
+
+    hexpand: true;
+    vexpand: false;
+    hscrollbar-policy: external;
+    vscrollbar-policy: never;
+
+    styles ["bottom-toolbar"]
+
+    Box toolbar {
+
+      orientation: horizontal;
+
+      styles ["toolbar"]
+
+      ComboBoxText format_heading_type {
+
+        items [
+          p: _("Plain Text"),
+          h1: _("Heading 1"),
+          h2: _("Heading 2"),
+          h3: _("Heading 3"),
+          h4: _("Heading 4"),
+          h5: _("Heading 5"),
+          h6: _("Heading 6"),
+        ]
+      }
+
+      Separator {
+        visible: bind format_heading_type.visible;
+        styles ["spacer"]
+      }
+
+      Button {
+        icon-name: "format-text-bold-symbolic";
+        tooltip-text: _("Bold");
+        action-name: "app.format-bold";
+      }
+
+      Button {
+        icon-name: "format-text-italic-symbolic";
+        tooltip-text: _("Italic");
+        action-name: "app.format-italic";
+      }
+
+      Button {
+        icon-name: "format-text-strikethrough-symbolic";
+        tooltip-text: _("Strikethrough");
+        action-name: "app.format-strikethrough";
+      }
+
+      Button {
+        icon-name: "format-text-highlight-symbolic";
+        tooltip-text: _("Highlight");
+        action-name: "app.format-highlight";
+      }
+
+      Separator {
+        styles ["spacer"]
+      }
+
+      Button {
+        icon-name: "insert-link-symbolic";
+        tooltip-text: _("Insert Link");
+        action-name: "app.insert-link";
+      }
+
+      Button {
+        icon-name: "code-symbolic";
+        tooltip-text: _("Insert Code");
+        action-name: "app.insert-code-span";
+      }
+
+      Box {
+        visible: bind format_heading_type.visible;
+        hexpand: true;
+      }
+
+      Button {
+        visible: bind format_heading_type.visible;
+        icon-name: "dialog-information-symbolic";
+        tooltip-text: _("Markdown Cheatsheet");
+        action-name: "app.markdown-cheatsheet";
+      }
+    }
+  }
+}

@@ -8,6 +8,9 @@
     <file preprocess="xml-stripblanks" alias="preferences.ui">ui/preferences.ui</file>
     <file preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">ui/shortcut_window.ui</file>
 
+    <file preprocess="xml-stripblanks" alias="edit_view.ui">ui/edit_view/edit_view.ui</file>
+    <file preprocess="xml-stripblanks" alias="file_editor_window.ui">ui/file_editor/file_editor_window.ui</file>
+
     <file preprocess="xml-stripblanks" alias="notebooks_bar.ui">ui/notebooks_bar/notebooks_bar.ui</file>
     <file preprocess="xml-stripblanks" alias="notebooks_bar/notebook_preview.ui">ui/notebooks_bar/notebook_preview.ui</file>
     <file preprocess="xml-stripblanks" alias="notebooks_bar/icon.ui">ui/notebooks_bar/icon.ui</file>

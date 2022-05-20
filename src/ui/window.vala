@@ -26,7 +26,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 	unowned Adw.LeafletPage sidebar;
 
 	[GtkChild]
-	unowned Adw.LeafletPage edit_view;
+	unowned Adw.LeafletPage edit_view_page;
 
 	[GtkChild]
 	unowned NotebooksBar notebooks_bar;
@@ -66,16 +66,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 	unowned Adw.WindowTitle note_title;
 
 	[GtkChild]
-	unowned Gtk.Box toolbar;
-
-	[GtkChild]
-	unowned Gtk.ComboBox format_heading_type;
-
-	[GtkChild]
-	unowned GtkMarkdown.View text_view;
-
-	[GtkChild]
-	unowned Gtk.ScrolledWindow text_view_scroll;
+	public unowned EditView edit_view;
 
 	[GtkChild]
 	unowned Gtk.Box text_view_empty_notebook;
@@ -105,30 +96,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 
         Gtk.IconTheme.get_for_display (display).add_resource_path ("/io/posidon/Paper/graphics/");
 
-	    var settings = new Settings (Config.APP_ID);
-		var note_font = settings.get_string ("note-font");
-
-        {
-		    var css = new Gtk.CssProvider ();
-		    css.load_from_data (@"textview{font-family:'$(note_font)';}".data);
-		    text_view.get_style_context ().add_provider (css, -1);
-		}
-
-        app.style_manager.notify["dark"].connect (() => text_view.dark = app.style_manager.dark);
-        text_view.dark = app.style_manager.dark;
-        text_view.notify["buffer"].connect (() => text_view.buffer.notify["cursor-position"].connect (() => {
-            var ins = text_view.buffer.get_insert ();
-            Gtk.TextIter cur;
-            text_view.buffer.get_iter_at_mark (out cur, ins);
-            format_heading_type.active = (int) text_view.get_title_level (cur.get_line ());
-        }));
-        format_heading_type.changed.connect (() => {
-            var ins = text_view.buffer.get_insert ();
-            Gtk.TextIter cur;
-            text_view.buffer.get_iter_at_mark (out cur, ins);
-            text_view.set_title_level (cur.get_line (), format_heading_type.active);
-        });
-
         set_notebook (null);
 
         search_sorter = new FuzzyStringSorter (
@@ -144,30 +111,28 @@ public class Paper.Window : Adw.ApplicationWindow {
 
         button_toggle_sidebar.toggled.connect (() => set_sidebar_visibility (button_toggle_sidebar.active));
 
+        edit_view.on_dark_changed(app.style_manager.dark);
+        app.style_manager.notify["dark"].connect (() => edit_view.on_dark_changed(app.style_manager.dark));
         leaflet.notify["folded"].connect (() => {
             if (leaflet.folded) {
-                update_toolbar_visibility ();
+	            update_editability ();
                 button_toggle_sidebar.icon_name = "go-previous-symbolic";
 	            notebook_notes_model.unselect_item (notebook_notes_model.selected);
             } else {
-                update_toolbar_visibility ();
+	            update_editability ();
                 button_toggle_sidebar.icon_name = "sidebar-show-symbolic";
 	            button_toggle_sidebar.active = sidebar.child.visible;
             }
         });
-
-        Gtk.TextIter start;
-        text_view.buffer.get_start_iter (out start);
-        text_view.buffer.place_cursor (start);
 	}
 
-	private void update_toolbar_visibility () {
-        toolbar.visible = current_note != null && is_editable;
+	private void update_editability () {
+	    edit_view.is_editable = current_note != null && current_notebook != null;
 	}
 
 	public void set_notebook (Notebook? notebook) {
-	    is_editable = notebook != null;
-	    text_view.sensitive = is_editable;
+	    current_notebook = notebook;
+	    update_editability ();
         recolor (notebook);
         button_create_note.visible = notebook != null;
         button_empty_trash.visible = false;
@@ -231,6 +196,8 @@ public class Paper.Window : Adw.ApplicationWindow {
 
     private Note? current_note = null;
 
+    private Notebook? current_notebook = null;
+
     private GtkMarkdown.Buffer current_buffer;
 
     public void optional_save () {
@@ -242,18 +209,18 @@ public class Paper.Window : Adw.ApplicationWindow {
 	public GtkMarkdown.Buffer? set_note (Note? note) {
         optional_save ();
 	    current_note = note;
-	    update_toolbar_visibility ();
+	    update_editability ();
 	    if (note != null) {
 	        note_title.title = note.name;
 	        set_text_view_state (TextViewState.TEXT_VIEW);
 	        current_buffer = new GtkMarkdown.Buffer (note.load_text ());
-	        text_view.buffer = current_buffer;
+	        edit_view.buffer = current_buffer;
             select_note (note.notebook.loaded_notes.index_of (note));
 	    } else {
 	        note_title.title = null;
 	        set_text_view_state (TextViewState.EMPTY_NOTEBOOK);
 	        current_buffer = null;
-	        text_view.buffer = null;
+	        edit_view.buffer = null;
 	        select_note (-1);
         }
         return current_buffer;
@@ -270,84 +237,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 	public void toast (string text) {
         var toast = new Adw.Toast (text);
         toast_overlay.add_toast (toast);
-	}
-
-	public void format_selection_bold () {
-	    var b = text_view.buffer;
-	    b.begin_user_action ();
-	    var mark = b.get_selection_bound ();
-	    Gtk.TextIter iter;
-	    b.get_iter_at_mark (out iter, mark);
-	    b.insert (ref iter, "**", 2);
-	    b.insert_at_cursor ("**", 2);
-	    b.end_user_action ();
-	}
-
-	public void format_selection_italic () {
-	    var b = text_view.buffer;
-	    b.begin_user_action ();
-	    var mark = b.get_selection_bound ();
-	    Gtk.TextIter iter;
-	    b.get_iter_at_mark (out iter, mark);
-	    b.insert (ref iter, "_", 1);
-	    b.insert_at_cursor ("_", 1);
-	    b.end_user_action ();
-	}
-
-	public void format_selection_strikethrough () {
-	    var b = text_view.buffer;
-	    b.begin_user_action ();
-	    var mark = b.get_selection_bound ();
-	    Gtk.TextIter iter;
-	    b.get_iter_at_mark (out iter, mark);
-	    b.insert (ref iter, "~~", 2);
-	    b.insert_at_cursor ("~~", 2);
-	    b.end_user_action ();
-	}
-
-	public void format_selection_highlight () {
-	    var b = text_view.buffer;
-	    b.begin_user_action ();
-	    var mark = b.get_selection_bound ();
-	    Gtk.TextIter iter;
-	    b.get_iter_at_mark (out iter, mark);
-	    b.insert (ref iter, "==", 2);
-	    b.insert_at_cursor ("==", 2);
-	    b.end_user_action ();
-	}
-
-	public void insert_link () {
-	    var b = text_view.buffer;
-	    b.begin_user_action ();
-	    Gtk.TextIter iter_a, iter_b, iter;
-	    {
-	        var mark = b.get_selection_bound ();
-	        b.get_iter_at_mark (out iter_a, mark);
-	        b.get_iter_at_offset (out iter_b, b.cursor_position);
-	        iter = iter_a.compare (iter_b) == -1 ? iter_a : iter_b;
-	        b.insert (ref iter, "[", 1);
-	    }
-	    {
-	        var mark = b.get_selection_bound ();
-	        b.get_iter_at_mark (out iter_a, mark);
-	        b.get_iter_at_offset (out iter_b, b.cursor_position);
-	        iter = iter_a.compare (iter_b) == 1 ? iter_a : iter_b;
-	        b.insert (ref iter, "]()", 3);
-	    }
-	    iter.backward_chars (3);
-	    b.place_cursor (iter);
-	    b.end_user_action ();
-	}
-
-	public void insert_code_span () {
-	    var b = text_view.buffer;
-	    b.begin_user_action ();
-	    var mark = b.get_selection_bound ();
-	    Gtk.TextIter iter;
-	    b.get_iter_at_mark (out iter, mark);
-	    b.insert (ref iter, "`", 1);
-	    b.insert_at_cursor ("`", 1);
-	    b.end_user_action ();
 	}
 
 	public void set_trash (Trash trash) {
@@ -414,7 +303,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    text_view_empty_notebook.visible = state == TextViewState.EMPTY_NOTEBOOK;
 	    text_view_empty_trash.visible = state == TextViewState.EMPTY_TRASH;
 	    text_view_no_notebook.visible = state == TextViewState.NO_NOTEBOOK;
-        text_view_scroll.visible = state == TextViewState.TEXT_VIEW;
+        edit_view.visible = state == TextViewState.TEXT_VIEW;
         button_more_menu.visible = state == TextViewState.TEXT_VIEW;
     }
 
@@ -434,7 +323,7 @@ public class Paper.Window : Adw.ApplicationWindow {
         var css = new Gtk.CssProvider ();
         css.load_from_data (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;".data);
         Gtk.StyleContext.add_provider_for_display (display, css, -1);
-        text_view.theme_color = rgba;
+        edit_view.theme_color = rgba;
 	}
 
 	public void set_sidebar_visibility (bool visibility) {
@@ -471,6 +360,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 	public void navigate_to_edit_view () {
         button_toggle_sidebar.active = false;
-	    leaflet.visible_child = edit_view.child;
+	    leaflet.visible_child = edit_view_page.child;
 	}
 }

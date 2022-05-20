@@ -18,16 +18,16 @@ Actions=new-note;new-notebook;markdown-cheatsheet;preferences;
 
 [Desktop Action new-note]
 Name=New Note
-Exec=io.posidon.Paper --new-note
+Exec=@app_id@ --new-note
 
 [Desktop Action new-notebook]
 Name=New Notebook
-Exec=io.posidon.Paper --new-notebook
+Exec=@app_id@ --new-notebook
 
 [Desktop Action markdown-cheatsheet]
 Name=Markdown Cheatsheet
-Exec=io.posidon.Paper --markdown-cheatsheet
+Exec=@app_id@ --markdown-cheatsheet
 
 [Desktop Action preferences]
 Name=Preferences
-Exec=io.posidon.Paper --preferences
+Exec=@app_id@ --preferences

@@ -3,6 +3,8 @@ blueprint_files = files(
   'window.blp',
   'shortcut_window.blp',
   'preferences.blp',
+  'edit_view/edit_view.blp',
+  'file_editor/file_editor_window.blp',
   'markdown/heading_popover.blp',
   'markdown_cheatsheet/markdown_cheatsheet.blp',
   'notebooks_bar/notebook_create_popup.blp',

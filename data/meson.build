@@ -28,6 +28,21 @@ desktop_file = i18n.merge_file(
   install_dir: get_option('datadir') / 'applications'
 )
 
+editor_conf = configure_file(
+  input: 'editor.desktop.in',
+  output: '@0@-editor.desktop.in'.format(app_id),
+  configuration: conf
+)
+
+editor_file = i18n.merge_file(
+  input: editor_conf,
+  output: '@0@-editor.desktop'.format(app_id),
+  type: 'desktop',
+  po_dir: '../po',
+  install: true,
+  install_dir: get_option('datadir') / 'applications'
+)
+
 desktop_utils = find_program('desktop-file-validate', required: false)
 if desktop_utils.found()
   test('Validate desktop file', desktop_utils,

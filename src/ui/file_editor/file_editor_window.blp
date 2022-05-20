@@ -1,0 +1,37 @@
+using Gtk 4.0;
+using Adw 1;
+
+template PaperFileEditorWindow : Adw.Window {
+  default-width: 720;
+  default-height: 512;
+
+  Adw.ToastOverlay toast_overlay {
+
+    Box {
+
+      hexpand: true;
+      vexpand: true;
+      orientation: vertical;
+      width-request: 390;
+
+      styles ["text-area"]
+
+      Adw.HeaderBar {
+
+        hexpand: true;
+        vexpand: false;
+
+        styles ["flat", "bordered"]
+
+        [title]
+        Adw.WindowTitle file_title {}
+      }
+
+      .PaperEditView edit_view {
+        hexpand: true;
+        vexpand: true;
+        width-request: 390;
+      }
+    }
+  }
+}
