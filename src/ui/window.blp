@@ -32,7 +32,7 @@ template PaperWindow : Adw.ApplicationWindow {
 
             styles ["notebook-sidebar"]
 
-            Adw.HeaderBar {
+            Adw.HeaderBar headerbar_sidebar {
 
               show-end-title-buttons: bind leaflet.folded;
 
@@ -55,9 +55,6 @@ template PaperWindow : Adw.ApplicationWindow {
             }
 
             SearchBar notes_search_bar {
-
-              styles ["inline"]
-
               SearchEntry notes_search_entry {}
             }
 
@@ -87,7 +84,7 @@ template PaperWindow : Adw.ApplicationWindow {
 
           styles ["text-area"]
 
-          Adw.HeaderBar {
+          Adw.HeaderBar headerbar_edit_view {
 
             show-start-title-buttons: bind leaflet.folded;
             hexpand: true;

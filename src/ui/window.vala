@@ -47,6 +47,9 @@ public class Paper.Window : Adw.ApplicationWindow {
 	[GtkChild]
 	unowned Gtk.SearchEntry notes_search_entry;
 
+	[GtkChild]
+	unowned Adw.HeaderBar headerbar_sidebar;
+
 	Gtk.SingleSelection notebook_notes_model;
 
 	[GtkChild]
@@ -67,6 +70,9 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 	[GtkChild]
 	public unowned EditView edit_view;
+
+	[GtkChild]
+	unowned Adw.HeaderBar headerbar_edit_view;
 
 	[GtkChild]
 	unowned Gtk.Box text_view_empty_notebook;
@@ -124,6 +130,23 @@ public class Paper.Window : Adw.ApplicationWindow {
 	            button_toggle_sidebar.active = sidebar.child.visible;
             }
         });
+
+        edit_view.scrolled_window.vadjustment.notify["value"].connect (() => {
+            var v = edit_view.scrolled_window.vadjustment.value;
+            if (v == 0) headerbar_edit_view.get_style_context ().remove_class ("overlaid");
+            else headerbar_edit_view.get_style_context ().add_class ("overlaid");
+        });
+
+        notebook_notes_list_scroller.vadjustment.notify["value"].connect (update_sidebar_scroll);
+        notes_search_bar.notify["visible"].connect (update_sidebar_scroll);
+	}
+
+	private void update_sidebar_scroll () {
+        var v = notebook_notes_list_scroller.vadjustment.value;
+        if (v == 0 || notes_search_bar.visible) headerbar_sidebar.get_style_context ().remove_class ("overlaid");
+        else headerbar_sidebar.get_style_context ().add_class ("overlaid");
+        if (v == 0) notes_search_bar.get_style_context ().remove_class ("overlaid");
+        else notes_search_bar.get_style_context ().add_class ("overlaid");
 	}
 
 	private void update_editability () {

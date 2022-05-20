@@ -12,7 +12,7 @@ public class Paper.EditView : Gtk.Box {
 	unowned GtkMarkdown.View text_view;
 
 	[GtkChild]
-	unowned Gtk.ScrolledWindow text_view_scroll;
+	public unowned Gtk.ScrolledWindow scrolled_window;
 
 	public bool is_editable {
 	    get { return toolbar.visible; }

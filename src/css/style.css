@@ -6,11 +6,10 @@
 
 @define-color card_shade_color shade(@theme_color, 0.8);
 
-@define-color headerbar_bg_color mix(#3d3846, @theme_color, 0.36);
-@define-color headerbar_fg_color shade(@theme_color, 1.96);
-@define-color headerbar_border_color shade(mix(@headerbar_bg_color, #eeffdd, 0.2), 1.8);
-@define-color headerbar_backdrop_color mix(@window_bg_color, @headerbar_bg_color, 0.6);
-@define-color headerbar_popover_color mix(@headerbar_bg_color, #ffffff, 0.1);
+@define-color headerbar_bg_color transparent;
+@define-color headerbar_fg_color @window_fg_color;
+@define-color headerbar_border_color @borders;
+@define-color headerbar_backdrop_color transparent;
 
 @define-color notebooks_bar_bg_color shade(@window_bg_color, 0.96);
 @define-color notebooks_bar_fg_color shade(@window_fg_color, 0.4);
@@ -32,14 +31,16 @@ listview, window.transparent {
   background-color: transparent;
 }
 
-headerbar popover contents,
-headerbar popover arrow {
-  background-color: @headerbar_popover_color;
-  color: @headerbar_fg_color;
+searchbar box,
+headerbar {
+  border: none;
+  box-shadow: none;
 }
 
-headerbar.flat.bordered {
-  border-bottom: solid 1px @borders;
+searchbar.overlaid box,
+headerbar.bordered,
+headerbar.overlaid {
+  box-shadow: inset 0 -1px @headerbar_border_color;
 }
 
 /*
@@ -62,15 +63,15 @@ headerbar.flat.bordered {
   padding: 0;
 }
 
-.notebooks-bar > scrolledwindow {
-  border-bottom: solid 1px @borders;
-}
-
 .notebooks-bar > .trash-button {
   margin: 0px;
   min-width: 26px;
   min-height: 34px;
   border-radius: 0 0 0 10px;
+}
+
+.notebooks-bar > .trash-button.overlaid {
+  border-top: solid 1px @borders;
 }
 
 .notebooks-bar > .trash-button,
@@ -102,7 +103,8 @@ headerbar.flat.bordered {
 }
 
 .notebook {
-  transition: transform .2s;
+  transition: opacity .1s;
+  opacity: 0.6;
   background-image:
     repeating-linear-gradient(
       45deg,
@@ -140,6 +142,14 @@ headerbar.flat.bordered {
 
     inset 1px 0 0 0 shade(@notebook_color, 0.8),
     inset 0 -3px 0px 0px rgba(0, 0, 0, 0.2);
+}
+
+row.activatable:hover .notebook {
+  opacity: 0.8;
+}
+
+row.activatable:selected .notebook {
+  opacity: 1;
 }
 
 .notebook > label {
@@ -199,11 +209,6 @@ window.tiled-bottom .notebooks-bar > .trash-button:checked {
   padding-bottom: 0;
   min-height: 32px;
   color: @popover_fg_color;
-}
-
-searchbar.inline box {
-  background-color: @view_bg_color;
-  border-bottom: solid 1px @borders;
 }
 
 .notebook-sidebar {

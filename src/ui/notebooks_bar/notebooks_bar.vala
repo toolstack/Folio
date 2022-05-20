@@ -10,6 +10,27 @@ public class Paper.NotebooksBar : Gtk.Box {
 	[GtkChild]
 	unowned Gtk.ToggleButton trash_button;
 
+	[GtkChild]
+    unowned Adw.HeaderBar header_bar;
+
+	[GtkChild]
+	unowned Gtk.ScrolledWindow scrolled_window;
+
+	construct {
+        scrolled_window.vadjustment.notify["value"].connect (update_scroll);
+        update_scroll ();
+	}
+
+	private void update_scroll () {
+        var v = scrolled_window.vadjustment.value;
+
+        if (v == scrolled_window.vadjustment.lower) header_bar.get_style_context ().remove_class ("overlaid");
+        else header_bar.get_style_context ().add_class ("overlaid");
+
+        if (v >= scrolled_window.vadjustment.upper - scrolled_window.get_allocated_height ()) trash_button.get_style_context ().remove_class ("overlaid");
+        else trash_button.get_style_context ().add_class ("overlaid");
+	}
+
 	public void init (Window window, Application app) {
         var factory = new Gtk.SignalListItemFactory ();
         factory.setup.connect (list_item => {
