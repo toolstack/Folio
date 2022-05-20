@@ -20,6 +20,15 @@ template PaperPreferencesWindow : Adw.PreferencesWindow {
           valign: center;
         }
       }
+      Adw.ActionRow {
+
+        title: _("Notes Storage Location");
+        subtitle: _("Where the notebooks are stored");
+
+        Button notes_dir_button {
+          valign: center;
+        }
+      }
     }
   }
 }

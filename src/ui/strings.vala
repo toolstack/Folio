@@ -40,4 +40,6 @@ public class Paper.Strings {
     public abstract const string RENAME = _("Rename");
     public abstract const string COULDNT_FIND_APP_TO_HANDLE_URIS = _("Couldn’t find an app to handle file uris");
     public abstract const string APPLY = _("Apply");
+    public abstract const string CANCEL = _("Cancel");
+    public abstract const string PICK_NOTES_DIR = _("Pick where the notebooks will be stored");
 }
