@@ -43,6 +43,13 @@ template PaperWindow : Adw.ApplicationWindow {
                 tooltip-text: _("New Note");
               }
 
+              [start]
+              Button button_empty_trash {
+                icon-name: "empty-trash-symbolic";
+                action-name: "app.empty-trash";
+                tooltip-text: _("Empty Trash");
+              }
+
               [title]
               Adw.WindowTitle notebook_title {}
 
@@ -51,13 +58,6 @@ template PaperWindow : Adw.ApplicationWindow {
                 icon-name: "system-search-symbolic";
                 tooltip-text: _("Search Notes");
                 active: bind notes_search_bar.search_mode_enabled bidirectional;
-              }
-
-              [end]
-              Button button_empty_trash {
-                icon-name: "empty-trash-symbolic";
-                action-name: "app.empty-trash";
-                tooltip-text: _("Empty Trash");
               }
             }
 
