@@ -44,6 +44,7 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
 		            settings.set_string ("notes-dir", notes_dir);
                     notes_dir_button.label = notes_dir;
                 }
+                chooser.close ();
             });
             chooser.present ();
         });

@@ -205,17 +205,17 @@ public class Paper.LocalProvider : Object, ListModel, Provider {
         try {
 	        write_data_file (notebook_path, "color", info.color.to_string ());
         } catch (Error e) {
-            throw new ProviderError.COULDNT_CREATE_FILE ("Couldn't write color");
+            stderr.printf ("Couldn't write color: %s\n", e.message);
         }
         try {
 	        write_data_file (notebook_path, "icon_type", info.icon_type.to_string ());
         } catch (Error e) {
-            throw new ProviderError.COULDNT_CREATE_FILE ("Couldn't write icon type");
+            stderr.printf ("Couldn't write icon type: %s\n", e.message);
         }
         try {
             write_data_file (notebook_path, "icon_name", info.icon_name);
         } catch (Error e) {
-            throw new ProviderError.COULDNT_CREATE_FILE ("Couldn't write icon name");
+            stderr.printf ("Couldn't write icon name: %s\n", e.message);
         }
     }
 
@@ -251,10 +251,12 @@ public class Paper.LocalProvider : Object, ListModel, Provider {
     private void write_data_file (string notebook_path, string data_name, string? data) throws Error {
         var path = @"$notebook_path/.config/$data_name";
         var f = File.new_for_path (path);
-        if (f.query_exists ()) {
+        if (f.query_exists ())
             f.@delete ();
-        }
         if (data == null) return;
+        var d = f.get_parent ();
+        if (!d.query_exists ())
+            d.make_directory_with_parents ();
         var fs = f.create (FileCreateFlags.REPLACE_DESTINATION);
 	    var stream = new DataOutputStream (fs);
 	    stream.put_string (data);
@@ -263,9 +265,8 @@ public class Paper.LocalProvider : Object, ListModel, Provider {
     private string? read_data_file (string notebook_path, string data_name) throws Error {
         var path = @"$notebook_path/.config/$data_name";
         var f = File.new_for_path (path);
-        if (!f.query_exists ()) {
+        if (!f.query_exists ())
             return null;
-        }
         string etag_out;
         uint8[] text_data = {};
         f.load_contents (null, out text_data, out etag_out);
