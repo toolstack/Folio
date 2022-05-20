@@ -143,7 +143,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 	private void update_sidebar_scroll () {
         var v = notebook_notes_list_scroller.vadjustment.value;
-        if (v == 0 || notes_search_bar.visible) headerbar_sidebar.get_style_context ().remove_class ("overlaid");
+        if (v == 0 || notes_search_bar.search_mode_enabled) headerbar_sidebar.get_style_context ().remove_class ("overlaid");
         else headerbar_sidebar.get_style_context ().add_class ("overlaid");
         if (v == 0) notes_search_bar.get_style_context ().remove_class ("overlaid");
         else notes_search_bar.get_style_context ().add_class ("overlaid");

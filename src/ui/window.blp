@@ -36,14 +36,21 @@ template PaperWindow : Adw.ApplicationWindow {
 
               show-end-title-buttons: bind leaflet.folded;
 
-              [title]
-              Adw.WindowTitle notebook_title {}
-
-              [end]
+              [start]
               Button button_create_note {
                 icon-name: "list-add-symbolic";
                 action-name: "app.new-note";
                 tooltip-text: _("New Note");
+              }
+
+              [title]
+              Adw.WindowTitle notebook_title {}
+
+              [end]
+              ToggleButton {
+                icon-name: "system-search-symbolic";
+                tooltip-text: _("Search Notes");
+                active: bind notes_search_bar.search_mode_enabled bidirectional;
               }
 
               [end]
