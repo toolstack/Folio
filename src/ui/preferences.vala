@@ -6,20 +6,31 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
 	unowned Gtk.FontButton font_button;
 
 	[GtkChild]
+	unowned Gtk.Switch oled_mode;
+
+	[GtkChild]
 	unowned Gtk.Button notes_dir_button;
 
 
-	public PreferencesWindow () {
+	public PreferencesWindow (Window window) {
 		Object ();
 
 	    var settings = new Settings (Config.APP_ID);
 		var note_font = settings.get_string ("note-font");
+		var theme_oled = settings.get_boolean ("theme-oled");
 		var notes_dir = settings.get_string ("notes-dir");
 
         font_button.level = Gtk.FontChooserLevel.FEATURES;
         font_button.font = note_font;
         font_button.font_set.connect (() => {
             settings.set_string ("note-font", font_button.get_font_family ().get_name ());
+        });
+
+        oled_mode.state = theme_oled;
+        oled_mode.state_set.connect ((state) => {
+            settings.set_boolean ("theme-oled", state);
+            window.update_theme ((window.application as Adw.Application).style_manager.dark);
+            return false;
         });
 
         notes_dir_button.label = notes_dir;

@@ -62,7 +62,7 @@ msgid "The font notes will be displayed in"
 msgstr "La font en la qual es mostraran les notes"
 
 #: data/app.gschema.xml:11
-msgid "Notes directory"
+msgid "Notes Directory"
 msgstr "Carpeta de notes"
 
 #: data/app.gschema.xml:12

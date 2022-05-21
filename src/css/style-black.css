@@ -1,0 +1,12 @@
+@define-color window_bg_color #000000;
+
+@define-color view_bg_color @window_bg_color;
+@define-color notebooks_bar_bg_color @window_bg_color;
+
+@define-color popover_bg_color #1f1f1f;
+
+@define-color window_fg_color #f2f2f2;
+
+@define-color notebooks_bar_fg_color @window_fg_color;
+
+@define-color selected_bg_color alpha(mix(@theme_color, #180033, 0.5), 0.4);

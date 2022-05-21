@@ -37,6 +37,7 @@ headerbar {
   box-shadow: none;
 }
 
+.preferences headerbar,
 searchbar.overlaid box,
 headerbar.bordered,
 headerbar.overlaid {
@@ -84,15 +85,15 @@ headerbar.overlaid {
 .notebooks-bar > .trash-button:checked,
 .notebooks-bar listview row.activatable:selected {
   box-shadow:
-    0 -1px 0 0 @borders,
-    0 1px 0 0 @borders,
+    inset 0 1px 0 0 @borders,
+    inset 0 -1px 0 0 @borders,
     inset 3px 0 0 0 @accent_color;
   background-color: @window_bg_color;
 }
 
 .notebooks-bar > .trash-button:hover:not(:checked),
 .notebooks-bar listview row.activatable:hover:not(:selected) {
-  background-color: rgba(0, 0, 0, .06);
+  background-color: alpha(@window_fg_color, 0.06);
 }
 
 .notebooks-bar > .trash-button:checked {

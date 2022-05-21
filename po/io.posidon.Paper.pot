@@ -61,7 +61,7 @@ msgid "The font notes will be displayed in"
 msgstr ""
 
 #: data/app.gschema.xml:11
-msgid "Notes directory"
+msgid "Notes Directory"
 msgstr ""
 
 #: data/app.gschema.xml:12

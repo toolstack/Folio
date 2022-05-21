@@ -60,7 +60,7 @@ msgid "The font notes will be displayed in"
 msgstr "sitelen lili sina li kepeken ni"
 
 #: data/app.gschema.xml:11
-msgid "Notes directory"
+msgid "Notes Directory"
 msgstr "kulupu lipu"
 
 #: data/app.gschema.xml:12

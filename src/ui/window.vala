@@ -114,8 +114,9 @@ public class Paper.Window : Adw.ApplicationWindow {
 
         button_toggle_sidebar.toggled.connect (() => set_sidebar_visibility (button_toggle_sidebar.active));
 
-        edit_view.on_dark_changed(app.style_manager.dark);
-        app.style_manager.notify["dark"].connect (() => edit_view.on_dark_changed(app.style_manager.dark));
+        app.style_manager.notify["dark"].connect (() => update_theme(app.style_manager.dark));
+        update_theme(app.style_manager.dark);
+
         leaflet.notify["folded"].connect (() => {
             if (leaflet.folded) {
 	            update_editability ();
@@ -136,18 +137,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 
         notebook_notes_list_scroller.vadjustment.notify["value"].connect (update_sidebar_scroll);
         notes_search_bar.notify["visible"].connect (update_sidebar_scroll);
-	}
-
-	private void update_sidebar_scroll () {
-        var v = notebook_notes_list_scroller.vadjustment.value;
-        if (v == 0 || notes_search_bar.search_mode_enabled) headerbar_sidebar.get_style_context ().remove_class ("overlaid");
-        else headerbar_sidebar.get_style_context ().add_class ("overlaid");
-        if (v == 0) notes_search_bar.get_style_context ().remove_class ("overlaid");
-        else notes_search_bar.get_style_context ().add_class ("overlaid");
-	}
-
-	private void update_editability () {
-	    edit_view.is_editable = current_note != null && current_notebook != null;
 	}
 
 	public void set_notebook (Notebook? notebook) {
@@ -213,12 +202,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 	public void select_notebook (uint i) {
 	    notebooks_bar.select_notebook (i);
 	}
-
-    private Note? current_note = null;
-
-    private Notebook? current_notebook = null;
-
-    private GtkMarkdown.Buffer current_buffer;
 
     public void optional_save () {
 	    if (edit_view.is_editable && current_note != null) {
@@ -312,43 +295,6 @@ public class Paper.Window : Adw.ApplicationWindow {
         navigate_to_notes ();
 	}
 
-	private enum TextViewState {
-	    TEXT_VIEW,
-	    EMPTY_NOTEBOOK,
-	    EMPTY_TRASH,
-	    NO_NOTEBOOK
-	}
-
-	private void set_text_view_state (TextViewState state) {
-	    text_view_empty_notebook.visible = state == TextViewState.EMPTY_NOTEBOOK;
-	    text_view_empty_trash.visible = state == TextViewState.EMPTY_TRASH;
-	    text_view_no_notebook.visible = state == TextViewState.NO_NOTEBOOK;
-        edit_view.visible = state == TextViewState.TEXT_VIEW;
-        button_more_menu.visible = state == TextViewState.TEXT_VIEW;
-    }
-
-    private Gtk.CssProvider? last_provider = null;
-	private void recolor (Notebook? notebook) {
-        var rgba = Gdk.RGBA ();
-        var light_rgba = Gdk.RGBA ();
-        var rgb = (notebook == null) ? Color.RGB () : Color.RGBA_to_rgb (notebook.color);
-        var hsl = Color.rgb_to_hsl (rgb);
-        {
-            hsl.l = 0.5f;
-            Color.hsl_to_rgb (hsl, out rgb);
-            Color.rgb_to_RGBA (rgb, out rgba);
-            hsl.l = 0.7f;
-            Color.hsl_to_rgb (hsl, out rgb);
-            Color.rgb_to_RGBA (rgb, out light_rgba);
-        }
-        if (last_provider != null)
-            Gtk.StyleContext.remove_provider_for_display (display, last_provider);
-        var css = new Gtk.CssProvider ();
-        css.load_from_data (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;".data);
-        Gtk.StyleContext.add_provider_for_display (display, css, -1);
-        edit_view.theme_color = rgba;
-	}
-
 	public void set_sidebar_visibility (bool visibility) {
         if (visibility) {
             navigate_to_notes ();
@@ -384,5 +330,83 @@ public class Paper.Window : Adw.ApplicationWindow {
 	public void navigate_to_edit_view () {
         button_toggle_sidebar.active = false;
 	    leaflet.visible_child = edit_view_page.child;
+	}
+
+	public void update_theme (bool dark) {
+	    edit_view.on_dark_changed(dark);
+	    var settings = new Settings (Config.APP_ID);
+		var theme_oled = settings.get_boolean ("theme-oled");
+		if (dark && theme_oled) {
+		    if (black_css_provider == null) {
+                var css = new Gtk.CssProvider ();
+                css.load_from_resource (@"$(application.resource_base_path)/style-black.css");
+                Gtk.StyleContext.add_provider_for_display (display, css, -1);
+                black_css_provider = css;
+            }
+		}
+		else {
+            if (black_css_provider != null)
+                Gtk.StyleContext.remove_provider_for_display (display, black_css_provider);
+            black_css_provider = null;
+		}
+	}
+
+    private Note? current_note = null;
+
+    private Notebook? current_notebook = null;
+
+    private GtkMarkdown.Buffer current_buffer;
+
+    private Gtk.CssProvider? last_css_provider = null;
+
+    private Gtk.CssProvider? black_css_provider = null;
+
+	private void update_sidebar_scroll () {
+        var v = notebook_notes_list_scroller.vadjustment.value;
+        if (v == 0 || notes_search_bar.search_mode_enabled) headerbar_sidebar.get_style_context ().remove_class ("overlaid");
+        else headerbar_sidebar.get_style_context ().add_class ("overlaid");
+        if (v == 0) notes_search_bar.get_style_context ().remove_class ("overlaid");
+        else notes_search_bar.get_style_context ().add_class ("overlaid");
+	}
+
+	private void update_editability () {
+	    edit_view.is_editable = current_note != null && current_notebook != null;
+	}
+
+	private enum TextViewState {
+	    TEXT_VIEW,
+	    EMPTY_NOTEBOOK,
+	    EMPTY_TRASH,
+	    NO_NOTEBOOK
+	}
+
+	private void set_text_view_state (TextViewState state) {
+	    text_view_empty_notebook.visible = state == TextViewState.EMPTY_NOTEBOOK;
+	    text_view_empty_trash.visible = state == TextViewState.EMPTY_TRASH;
+	    text_view_no_notebook.visible = state == TextViewState.NO_NOTEBOOK;
+        edit_view.visible = state == TextViewState.TEXT_VIEW;
+        button_more_menu.visible = state == TextViewState.TEXT_VIEW;
+    }
+
+	private void recolor (Notebook? notebook) {
+        var rgba = Gdk.RGBA ();
+        var light_rgba = Gdk.RGBA ();
+        var rgb = (notebook == null) ? Color.RGB () : Color.RGBA_to_rgb (notebook.color);
+        var hsl = Color.rgb_to_hsl (rgb);
+        {
+            hsl.l = 0.5f;
+            Color.hsl_to_rgb (hsl, out rgb);
+            Color.rgb_to_RGBA (rgb, out rgba);
+            hsl.l = 0.7f;
+            Color.hsl_to_rgb (hsl, out rgb);
+            Color.rgb_to_RGBA (rgb, out light_rgba);
+        }
+        if (last_css_provider != null)
+            Gtk.StyleContext.remove_provider_for_display (display, last_css_provider);
+        var css = new Gtk.CssProvider ();
+        css.load_from_data (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;".data);
+        Gtk.StyleContext.add_provider_for_display (display, css, -1);
+        last_css_provider = css;
+        edit_view.theme_color = rgba;
 	}
 }

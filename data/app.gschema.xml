@@ -6,9 +6,13 @@
       <summary>Font</summary>
       <description>The font notes will be displayed in</description>
     </key>
+    <key name="theme-oled" type="b">
+      <default>false</default>
+      <summary>OLED Mode</summary>
+    </key>
     <key name="notes-dir" type="s">
       <default>'.var/app/io.posidon.Paper/data'</default>
-      <summary>Notes directory</summary>
+      <summary>Notes Directory</summary>
       <description>Where the notebooks are stored</description>
     </key>
   </schema>
