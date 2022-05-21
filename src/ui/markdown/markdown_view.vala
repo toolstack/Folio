@@ -279,6 +279,10 @@ public class GtkMarkdown.View : GtkSource.View {
         buffer.remove_tag (text_tag_code_span, buffer_start, buffer_end);
         buffer.remove_tag (text_tag_code_block, buffer_start, buffer_end);
         buffer.remove_tag (text_tag_around, buffer_start, buffer_end);
+        buffer.remove_tag (text_tag_bold, buffer_start, buffer_end);
+        buffer.remove_tag (text_tag_italic, buffer_start, buffer_end);
+        buffer.remove_tag (text_tag_strikethrough, buffer_start, buffer_end);
+        buffer.remove_tag (text_tag_highlight, buffer_start, buffer_end);
         var cursor = buffer.get_insert ();
         buffer.get_iter_at_mark (out cursor_location, cursor);
         string buffer_text = buffer.get_text (buffer_start, buffer_end, true);
