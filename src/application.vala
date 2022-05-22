@@ -16,8 +16,6 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public delegate void Runnable ();
-
 public class Paper.Application : Adw.Application {
 	private ActionEntry[] APP_ACTIONS = {
 		{ "new-note", on_new_note },
@@ -56,7 +54,7 @@ public class Paper.Application : Adw.Application {
 	    var settings = new Settings (Config.APP_ID);
 		var notes_dir = settings.get_string ("notes-dir");
 
-		notebook_provider = new LocalProvider.from_directory (notes_dir);
+		notebook_provider = new LocalProvider.from_directory (notes_dir, Strings.TRASH);
 
 		add_action_entries (APP_ACTIONS, this);
 
@@ -554,4 +552,5 @@ public class Paper.Application : Adw.Application {
 		dialog.present ();
 	}
 }
+
 

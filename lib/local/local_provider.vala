@@ -17,9 +17,9 @@ public class Paper.LocalProvider : Object, ListModel, Provider {
 
     private LocalProvider () {}
 
-    public LocalProvider.from_directory (string notes_dir) throws ProviderError {
+    public LocalProvider.from_directory (string notes_dir, string? trash_name = null) throws ProviderError {
         this.notes_dir = notes_dir;
-        this._trash = new LocalTrash (this);
+        this._trash = new LocalTrash (this, trash_name ?? "");
 
         var file = File.new_for_path (notes_dir);
 

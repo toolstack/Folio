@@ -33,9 +33,27 @@ template PaperNotebooksBar : Box {
     hscrollbar-policy: never;
     vscrollbar-policy: external;
 
-    ListView list {
-      hexpand: false;
-      vexpand: true;
+    Box {
+      orientation: vertical;
+
+      Revealer all_button_revealer {
+        reveal-child: false;
+        transition-type: slide_down;
+
+        ToggleButton all_button {
+
+          icon-name: "view-list-symbolic";
+          hexpand: false;
+          vexpand: false;
+
+          styles ["flat", "all-button"]
+        }
+      }
+
+      ListView list {
+        hexpand: false;
+        vexpand: true;
+      }
     }
   }
 

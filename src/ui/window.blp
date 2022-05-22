@@ -20,6 +20,7 @@ template PaperWindow : Adw.ApplicationWindow {
           orientation: horizontal;
           hexpand: false;
           vexpand: true;
+          width-request: 224;
 
           .PaperNotebooksBar notebooks_bar {}
 
@@ -28,7 +29,6 @@ template PaperWindow : Adw.ApplicationWindow {
             orientation: vertical;
             hexpand: true;
             vexpand: true;
-            width-request: 200;
 
             styles ["notebook-sidebar"]
 
@@ -104,7 +104,6 @@ template PaperWindow : Adw.ApplicationWindow {
 
             [start]
             ToggleButton button_toggle_sidebar {
-
               icon-name: "sidebar-show-symbolic";
               tooltip-text: _("Toggle Sidebar");
               active: true;
@@ -112,14 +111,18 @@ template PaperWindow : Adw.ApplicationWindow {
 
             [end]
             MenuButton button_more_menu {
-
               icon-name: "view-more-symbolic";
               menu-model: more_menu;
             }
 
             [end]
-            Button {
+            Button button_open_in_notebook {
+              icon-name: "document-edit-symbolic";
+              tooltip-text: _("Open in Notebook");
+            }
 
+            [end]
+            Button {
               visible: bind leaflet.folded;
               icon-name: "dialog-information-symbolic";
               tooltip-text: _("Markdown Cheatsheet");

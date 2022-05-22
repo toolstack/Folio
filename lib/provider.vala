@@ -14,4 +14,16 @@ public interface Paper.Provider : Object, ListModel {
     public abstract Notebook new_notebook (NotebookInfo info) throws ProviderError;
     public abstract void change_notebook (Notebook notebook, NotebookInfo info) throws ProviderError;
     public abstract void delete_notebook (Notebook notebook) throws ProviderError;
+
+    public Gee.List<Note> get_all_notes () {
+        var notes = new ArrayList<Note> ();
+        foreach (var notebook in notebooks) {
+            notebook.load ();
+            foreach (var note in notebook.loaded_notes) {
+                notes.add(note);
+            }
+            notebook.unload ();
+        }
+        return notes;
+    }
 }

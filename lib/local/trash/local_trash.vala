@@ -1,6 +1,10 @@
 using Gee;
 
-public class Paper.LocalTrash : Object, ListModel, Trash {
+public class Paper.LocalTrash : Object, ListModel, NoteContainer, Trash {
+
+    public string name {
+        get { return _name; }
+    }
 
     public Gee.List<Note>? loaded_notes {
         get { return _loaded_notes; }
@@ -10,12 +14,13 @@ public class Paper.LocalTrash : Object, ListModel, Trash {
         owned get { return @"$(provider.notes_dir)/.trash"; }
     }
 
-    ArrayList<Note>? _loaded_notes = null;
+    private ArrayList<Note>? _loaded_notes = null;
+    private LocalProvider provider;
+    private string _name;
 
-    LocalProvider provider;
-
-    public LocalTrash (LocalProvider provider) {
+    public LocalTrash (LocalProvider provider, string name) {
         this.provider = provider;
+        this._name = name;
     }
 
     public void load () {

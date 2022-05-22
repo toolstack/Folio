@@ -37,9 +37,11 @@ public class Paper.Strings {
     public abstract const string COULDNT_CHANGE_NOTEBOOK = _("Couldn’t change notebook");
     public abstract const string COULDNT_DELETE_NOTEBOOK = _("Couldn’t delete notebook");
     public abstract const string MARKDOWN_CHEATSHEET = _("Markdown Cheatsheet");
+    public abstract const string SEARCH = _("Search");
     public abstract const string RENAME = _("Rename");
     public abstract const string COULDNT_FIND_APP_TO_HANDLE_URIS = _("Couldn’t find an app to handle file uris");
     public abstract const string APPLY = _("Apply");
     public abstract const string CANCEL = _("Cancel");
     public abstract const string PICK_NOTES_DIR = _("Pick where the notebooks will be stored");
+    public abstract const string ALL_NOTES = _("All Notes");
 }

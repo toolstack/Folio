@@ -12,6 +12,7 @@
   background-color: alpha(@accent_color, .05);
 }
 
+.notebooks-bar .all-button:checked,
 .notebooks-bar > .trash-button:checked,
 .notebooks-bar listview row.activatable:selected {
   background-color: alpha(shade(@accent_color, 1.4), 0.1);

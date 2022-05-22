@@ -8,6 +8,12 @@ public class Paper.NotebooksBar : Gtk.Box {
 	Gtk.SingleSelection model;
 
 	[GtkChild]
+	unowned Gtk.ToggleButton all_button;
+
+	[GtkChild]
+	unowned Gtk.Revealer all_button_revealer;
+
+	[GtkChild]
 	unowned Gtk.ToggleButton trash_button;
 
 	[GtkChild]
@@ -16,7 +22,14 @@ public class Paper.NotebooksBar : Gtk.Box {
 	[GtkChild]
 	unowned Gtk.ScrolledWindow scrolled_window;
 
+	public bool all_button_enabled {
+	    set {
+	        all_button_revealer.reveal_child = value;
+	    }
+	}
+
 	construct {
+	    all_button_revealer.notify["child-revealed"].connect (update_scroll);
         scrolled_window.vadjustment.notify["value"].connect (update_scroll);
         update_scroll ();
 	}
@@ -53,6 +66,7 @@ public class Paper.NotebooksBar : Gtk.Box {
 		        var notebook = notebooks[(int) i];
 		        app.set_active_notebook (notebook);
 		        trash_button.active = false;
+		        all_button.active = false;
 		    }
 		});
 		list.factory = factory;
@@ -71,6 +85,18 @@ public class Paper.NotebooksBar : Gtk.Box {
 		        app.set_active_notebook (null);
 
 		        window.set_trash (app.notebook_provider.trash);
+		    }
+		});
+
+		all_button.toggled.connect (() => {
+	        all_button.sensitive = !all_button.active;
+		    if (all_button.active) {
+		        model.unselect_item (model.selected);
+
+		        // will call set_notebook (null) as a side effect
+		        app.set_active_notebook (null);
+
+		        window.set_all ();
 		    }
 		});
 	}

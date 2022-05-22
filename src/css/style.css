@@ -64,24 +64,30 @@ headerbar.overlaid {
   padding: 0;
 }
 
+.notebooks-bar .all-button {
+  border-radius: 0;
+}
+
 .notebooks-bar > .trash-button {
+  border-radius: 0 0 0 10px;
+}
+
+.notebooks-bar .all-button,
+.notebooks-bar > .trash-button,
+.notebooks-bar listview row.activatable {
   margin: 0px;
   min-width: 26px;
   min-height: 34px;
-  border-radius: 0 0 0 10px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+  transition: box-shadow .2s, background-color .1s;
 }
 
 .notebooks-bar > .trash-button.overlaid {
   border-top: solid 1px @borders;
 }
 
-.notebooks-bar > .trash-button,
-.notebooks-bar listview row.activatable {
-  padding-bottom: 8px;
-  padding-top: 8px;
-  transition: box-shadow .2s, background-color .1s;
-}
-
+.notebooks-bar .all-button:checked,
 .notebooks-bar > .trash-button:checked,
 .notebooks-bar listview row.activatable:selected {
   box-shadow:
@@ -91,11 +97,20 @@ headerbar.overlaid {
   background-color: @window_bg_color;
 }
 
+.notebooks-bar > .trash-button:checked {
+  box-shadow:
+    inset 0 1px 0 0 @borders,
+    inset 0 -1px 0 0 @borders,
+    inset 3px -3px 0 0 @accent_color;
+}
+
+.notebooks-bar .all-button:hover:not(:checked),
 .notebooks-bar > .trash-button:hover:not(:checked),
 .notebooks-bar listview row.activatable:hover:not(:selected) {
   background-color: alpha(@window_fg_color, 0.06);
 }
 
+.notebooks-bar .all-button:checked
 .notebooks-bar > .trash-button:checked {
   box-shadow:
     0 -1px 0 0 @borders,

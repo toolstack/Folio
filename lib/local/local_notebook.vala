@@ -1,6 +1,8 @@
 using Gee;
 
-public class Paper.LocalNotebook : Object, ListModel, Notebook {
+public class Paper.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
+
+    public string name { get { return info.name; } }
 
     public string path {
         owned get { return @"$(provider.notes_dir)/$name"; }
@@ -131,18 +133,14 @@ public class Paper.LocalNotebook : Object, ListModel, Notebook {
     }
 
     public uint get_n_items () {
-        check_notes_loaded ();
+        if (_loaded_notes == null)
+            error (@"Notebook \"$name\": Notes haven't loaded yet");
         return _loaded_notes.size;
     }
 
     public Object? get_item (uint i) {
-        check_notes_loaded ();
+        if (_loaded_notes == null)
+            error (@"Notebook \"$name\": Notes haven't loaded yet");
         return (i >= _loaded_notes.size) ? null : _loaded_notes.@get((int) i);
-    }
-
-    private inline void check_notes_loaded () {
-        if (_loaded_notes == null) {
-            error ("Notes haven't loaded yet");
-        }
     }
 }

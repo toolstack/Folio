@@ -1,6 +1,7 @@
 
 lib_sources = files(
   'note.vala',
+  'note_container.vala',
   'notebook.vala',
   'notebook_info.vala',
   'provider.vala',
@@ -14,4 +15,5 @@ lib_sources = files(
 
   'util/fuzzy_matching.vala',
   'util/file_utils.vala',
+  'util/sugar.vala',
 )

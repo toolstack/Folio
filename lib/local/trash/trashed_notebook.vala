@@ -1,6 +1,8 @@
 using Gee;
 
-public class Paper.LocalTrashedNotebook : Object, ListModel, Notebook {
+public class Paper.LocalTrashedNotebook : Object, ListModel, NoteContainer, Notebook {
+
+    public string name { get { return info.name; } }
 
     public string path {
         owned get { return @"$(trash.path)/$name"; }

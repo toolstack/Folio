@@ -1,11 +1,6 @@
 using Gee;
 
-public interface Paper.Trash : Object, ListModel {
-    public abstract Gee.List<Note>? loaded_notes { get; }
-
-    public abstract void load ();
-    public abstract void unload ();
-
+public interface Paper.Trash : Object, ListModel, NoteContainer {
     public abstract void delete_note (Note note) throws ProviderError;
     public abstract void delete_all () throws ProviderError;
 

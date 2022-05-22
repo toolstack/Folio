@@ -50,7 +50,12 @@ public class Paper.Window : Adw.ApplicationWindow {
 	[GtkChild]
 	unowned Adw.HeaderBar headerbar_sidebar;
 
-	Gtk.SingleSelection notebook_notes_model;
+	Gtk.SingleSelection notebook_notes_model {
+	    get { return (Gtk.SingleSelection) notebook_notes_list.model; }
+	    set {
+		    notebook_notes_list.model = value;
+	    }
+	}
 
 	[GtkChild]
 	unowned Gtk.Button button_create_note;
@@ -63,6 +68,9 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 	[GtkChild]
 	unowned Gtk.MenuButton button_more_menu;
+
+	[GtkChild]
+	unowned Gtk.Button button_open_in_notebook;
 
 
 	[GtkChild]
@@ -89,6 +97,12 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 	private FuzzyStringSorter search_sorter;
 
+	public State current_state {
+	    public get;
+	    private set;
+	}
+
+	private SimpleNoteContainer all_notes;
 
 	public Window (Application app) {
 		Object (
@@ -98,6 +112,8 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    );
 
         Gtk.IconTheme.get_for_display (display).add_resource_path ("/io/posidon/Paper/graphics/");
+
+        all_notes = new SimpleNoteContainer (Strings.ALL_NOTES, app.notebook_provider.get_all_notes);
 
         set_notebook (null);
 
@@ -135,68 +151,44 @@ public class Paper.Window : Adw.ApplicationWindow {
             else headerbar_edit_view.get_style_context ().add_class ("overlaid");
         });
 
+        button_open_in_notebook.clicked.connect (() => open_note_in_notebook (current_note, app));
+
         notebook_notes_list_scroller.vadjustment.notify["value"].connect (update_sidebar_scroll);
-        notes_search_bar.notify["visible"].connect (update_sidebar_scroll);
+        notes_search_bar.notify["search-mode-enabled"].connect (() => on_searchbar_mode_changed (notes_search_bar.search_mode_enabled));
 	}
 
 	public void set_notebook (Notebook? notebook) {
-	    current_notebook = notebook;
+	    set_state (notebook == null ? State.NO_NOTEBOOK : State.NOTEBOOK, notebook);
+	}
+
+	public void set_trash (Trash trash) {
+	    set_state (State.TRASH, trash);
+	}
+
+	public void set_all () {
+	    set_state (State.ALL, all_notes);
+	}
+
+	public GtkMarkdown.Buffer? set_note (Note? note) {
+        optional_save ();
+	    current_note = note;
 	    update_editability ();
-        recolor (notebook);
-        button_create_note.visible = notebook != null;
-        button_empty_trash.visible = false;
-	    if (notebook != null) {
-	        notebook.load ();
-	        notebook_title.title = notebook.name;
-	        notebook_title.subtitle = null;
-
-            var factory = new Gtk.SignalListItemFactory ();
-            factory.setup.connect (list_item => {
-                var widget = new NoteCard (false);
-                widget.window = this;
-                list_item.child = widget;
-            });
-            factory.bind.connect (list_item => {
-                var widget = list_item.child as NoteCard;
-                var item = list_item.item as Note;
-                widget.note = item;
-            });
-            this.notebook_notes_model = new Gtk.SingleSelection (
-                new Gtk.SortListModel (notebook, search_sorter)
-            );
-            this.notebook_notes_model.can_unselect = true;
-		    this.notebook_notes_model.selection_changed.connect (() => {
-	            var i = notebook_notes_model.selected;
-	            if (i < notebook.loaded_notes.size) {
-		            var note = notebook.loaded_notes[(int) i];
-                    var app = application as Application;
-		            app.set_active_note (note);
-	                if (leaflet.folded)
-	                    navigate_to_edit_view ();
-		        }
-	            else if (leaflet.folded)
-	                navigate_to_notes ();
-		    });
-		    notebook_notes_list.factory = factory;
-		    notebook_notes_list.model = notebook_notes_model;
-
-		    if (notebook.loaded_notes.size != 0) {
-	            var i = notebook_notes_model.selected;
-	            if (i < notebook.loaded_notes.size) {
-	                var note = notebook.loaded_notes[(int) i];
-                    var app = application as Application;
-	                app.set_active_note (note);
-                }
-		    } else {
-		        set_text_view_state (TextViewState.EMPTY_NOTEBOOK);
-		    }
-
-            navigate_to_notes ();
+	    if (note != null) {
+	        note_title.title = note.name;
+	        set_text_view_state (TextViewState.TEXT_VIEW);
+	        current_buffer = new GtkMarkdown.Buffer (note.load_text ());
+	        edit_view.buffer = current_buffer;
+	        var n = note.notebook.loaded_notes;
+	        if (n != null)
+                select_note (n.index_of (note));
 	    } else {
-		    notebook_notes_list.factory = null;
-		    notebook_notes_list.model = null;
-		    set_text_view_state (TextViewState.NO_NOTEBOOK);
-	    }
+	        note_title.title = null;
+	        set_text_view_state (TextViewState.EMPTY_NOTEBOOK);
+	        current_buffer = null;
+	        edit_view.buffer = null;
+	        select_note (-1);
+        }
+        return current_buffer;
 	}
 
 	public void select_notebook (uint i) {
@@ -209,26 +201,6 @@ public class Paper.Window : Adw.ApplicationWindow {
         }
     }
 
-	public GtkMarkdown.Buffer? set_note (Note? note) {
-        optional_save ();
-	    current_note = note;
-	    update_editability ();
-	    if (note != null) {
-	        note_title.title = note.name;
-	        set_text_view_state (TextViewState.TEXT_VIEW);
-	        current_buffer = new GtkMarkdown.Buffer (note.load_text ());
-	        edit_view.buffer = current_buffer;
-            select_note (note.notebook.loaded_notes.index_of (note));
-	    } else {
-	        note_title.title = null;
-	        set_text_view_state (TextViewState.EMPTY_NOTEBOOK);
-	        current_buffer = null;
-	        edit_view.buffer = null;
-	        select_note (-1);
-        }
-        return current_buffer;
-	}
-
 	public void select_note (uint i) {
 	    notebook_notes_model.select_item (i, true);
 	}
@@ -240,59 +212,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 	public void toast (string text) {
         var toast = new Adw.Toast (text);
         toast_overlay.add_toast (toast);
-	}
-
-	public void set_trash (Trash trash) {
-        trash.load ();
-        notebook_title.title = Strings.TRASH;
-        notebook_title.subtitle = Strings.X_NOTES.printf (trash.get_n_items ());
-        button_empty_trash.visible = true;
-
-        var factory = new Gtk.SignalListItemFactory ();
-        factory.setup.connect (list_item => {
-            var widget = new NoteCard (true);
-            widget.window = this;
-            list_item.child = widget;
-        });
-        factory.bind.connect (list_item => {
-            var widget = list_item.child as NoteCard;
-            var item = list_item.item as Note;
-            widget.note = item;
-        });
-        this.notebook_notes_model = new Gtk.SingleSelection (
-            trash
-        );
-        this.notebook_notes_model.items_changed.connect (() => {
-            notebook_title.subtitle = Strings.X_NOTES.printf (trash.get_n_items ());
-        });
-        this.notebook_notes_model.can_unselect = true;
-	    this.notebook_notes_model.selection_changed.connect (() => {
-	        var i = notebook_notes_model.selected;
-	        if (i < trash.loaded_notes.size) {
-                var app = application as Application;
-                var note = trash.loaded_notes[(int) i];
-                app.set_active_note (note);
-                if (leaflet.folded)
-                    navigate_to_edit_view ();
-            }
-            else if (leaflet.folded)
-                navigate_to_notes ();
-	    });
-	    notebook_notes_list.factory = factory;
-	    notebook_notes_list.model = notebook_notes_model;
-
-	    if (trash.loaded_notes.size != 0) {
-            var i = notebook_notes_model.selected;
-            if (i < trash.loaded_notes.size) {
-                var note = trash.loaded_notes[(int) i];
-                var app = application as Application;
-                app.set_active_note (note);
-            }
-	    } else {
-		    set_text_view_state (TextViewState.EMPTY_TRASH);
-	    }
-
-        navigate_to_notes ();
 	}
 
 	public void set_sidebar_visibility (bool visibility) {
@@ -353,9 +272,9 @@ public class Paper.Window : Adw.ApplicationWindow {
 
     private Note? current_note = null;
 
-    private Notebook? current_notebook = null;
-
     private GtkMarkdown.Buffer current_buffer;
+
+    private NoteContainer? current_container = null;
 
     private Gtk.CssProvider? last_css_provider = null;
 
@@ -369,9 +288,102 @@ public class Paper.Window : Adw.ApplicationWindow {
         else notes_search_bar.get_style_context ().add_class ("overlaid");
 	}
 
-	private void update_editability () {
-	    edit_view.is_editable = current_note != null && current_notebook != null;
+	private void on_searchbar_mode_changed (bool enabled) {
+	    update_sidebar_scroll ();
+	    notebooks_bar.all_button_enabled = enabled;
 	}
+
+	private void update_editability () {
+	    edit_view.is_editable = current_note != null && current_state == State.NOTEBOOK;
+	}
+
+	public enum State {
+	    NOTEBOOK,
+	    NO_NOTEBOOK,
+	    ALL,
+	    TRASH
+	}
+
+	private void set_state (State state, NoteContainer? container = null) {
+	    this.current_state = state;
+        button_create_note.visible = state == State.NOTEBOOK;
+        button_empty_trash.visible = state == State.TRASH;
+
+        var last_container = current_container;
+        current_container = container;
+
+        var notebook = (container is Notebook) ? container as Notebook : null;
+	    update_editability ();
+        recolor (notebook);
+
+        if (container != null) {
+            container.load ();
+            notebook_title.title = container.name;
+            notebook_title.subtitle = state == State.TRASH ? Strings.X_NOTES.printf (container.get_n_items ()) : null;
+
+            var factory = new Gtk.SignalListItemFactory ();
+            factory.setup.connect (list_item => {
+                var widget = new NoteCard ();
+                widget.window = this;
+                list_item.child = widget;
+            });
+            factory.bind.connect (list_item => {
+                var widget = list_item.child as NoteCard;
+                var item = list_item.item as Note;
+                widget.note = item;
+            });
+	        notebook_notes_list.factory = factory;
+
+            var model = new Gtk.SingleSelection (
+                new Gtk.SortListModel (container, search_sorter)
+            );
+            model.can_unselect = true;
+		    model.selection_changed.connect (() => {
+	            var i = model.selected;
+	            if (i < container.loaded_notes.size) {
+		            var note = model.get_item (i) as Note;
+                    var app = application as Application;
+		            app.set_active_note (note);
+	                if (leaflet.folded)
+	                    navigate_to_edit_view ();
+		        }
+	            else if (leaflet.folded)
+	                navigate_to_notes ();
+		    });
+
+            if (state == State.TRASH) model.items_changed.connect (() => {
+                notebook_title.subtitle = Strings.X_NOTES.printf (container.get_n_items ());
+            });
+
+            if (notebook_notes_model != null && notebook_notes_model != model)
+                notebook_notes_model.model = null;
+	        notebook_notes_model = model;
+
+		    if (container.loaded_notes.size != 0) {
+	            var i = model.selected;
+	            if (i < container.loaded_notes.size) {
+	                var note = container.loaded_notes[(int) i];
+                    var app = application as Application;
+	                app.set_active_note (note);
+                }
+		    } else {
+		        set_text_view_state (state == State.TRASH ? TextViewState.EMPTY_TRASH : TextViewState.EMPTY_NOTEBOOK);
+		    }
+
+            navigate_to_notes ();
+        } else {
+            if (notebook_notes_model != null)
+                notebook_notes_model.model = null;
+		    notebook_notes_model = null;
+	        notebook_notes_list.factory = null;
+            notebook_title.title = null;
+            notebook_title.subtitle = null;
+		    set_text_view_state (TextViewState.NO_NOTEBOOK);
+	    }
+
+        if (last_container != null && last_container != container)
+            last_container.unload ();
+    }
 
 	private enum TextViewState {
 	    TEXT_VIEW,
@@ -385,7 +397,23 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    text_view_empty_trash.visible = state == TextViewState.EMPTY_TRASH;
 	    text_view_no_notebook.visible = state == TextViewState.NO_NOTEBOOK;
         edit_view.visible = state == TextViewState.TEXT_VIEW;
-        button_more_menu.visible = state == TextViewState.TEXT_VIEW;
+        button_more_menu.visible = state == TextViewState.TEXT_VIEW && edit_view.is_editable;
+        button_open_in_notebook.visible = state == TextViewState.TEXT_VIEW && current_state == State.ALL;
+    }
+
+    private void open_note_in_notebook (Note note, Application app) {
+        var name = note.name;
+        notes_search_bar.search_mode_enabled = false;
+        app.select_notebook (note.notebook);
+        Note? new_note_instance = null;
+        foreach (var n in current_container.loaded_notes) {
+            message (n.name);
+            if (n.name == name) {
+                new_note_instance = n;
+                break;
+            }
+        }
+        select_note (current_container.loaded_notes.index_of (new_note_instance));
     }
 
 	private void recolor (Notebook? notebook) {
