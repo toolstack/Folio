@@ -314,7 +314,7 @@ msgstr "Color del Quadern"
 
 #: src/ui/notebooks_bar/notebook_create_popup.blp:116
 msgid "Create Notebook"
-msgstr "Eliminar Quadern"
+msgstr "Crear Quadern"
 
 #: src/ui/notebooks_bar/notebook_menu.blp:16
 msgid "Edit"

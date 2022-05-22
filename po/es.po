@@ -311,7 +311,7 @@ msgstr "Color de Libreta"
 
 #: src/ui/notebooks_bar/notebook_create_popup.blp:116
 msgid "Create Notebook"
-msgstr "Borrar Libreta"
+msgstr "Crear Libreta"
 
 #: src/ui/notebooks_bar/notebook_menu.blp:16
 msgid "Edit"
