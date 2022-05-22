@@ -18,26 +18,6 @@
   background-color: alpha(shade(@accent_color, 1.4), 0.1);
 }
 
-.notebook {
-  background-image:
-    repeating-linear-gradient(
-      45deg,
-      alpha(@notebook_color, 0) 2px,
-      alpha(#fff, 0.024) 3px,
-      alpha(#fff, 0.024) 4px,
-      alpha(@notebook_color, 0) 5px
-    ),
-    linear-gradient(
-      mix(@notebook_color, #fff, 0.1) 0%,
-      @notebook_color 50%,
-      alpha(@notebook_color, 0.6) 75%,
-      alpha(@notebook_color, 0) 100%
-    ),
-    radial-gradient(mix(@notebook_color, #fff, 0.3) 30%, transparent 31%),
-    radial-gradient(mix(@notebook_color, #fff, 0.38) 30%, transparent 31%),
-    linear-gradient(mix(@notebook_color, #fff, 0.1), @notebook_color);
-}
-
 .notebook-list row:selected > box {
   background-color: alpha(@accent_color, 0.3);
   color: @window_fg_color;
