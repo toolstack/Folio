@@ -291,6 +291,13 @@ public class Paper.Window : Adw.ApplicationWindow {
 	private void on_searchbar_mode_changed (bool enabled) {
 	    update_sidebar_scroll ();
 	    notebooks_bar.all_button_enabled = enabled;
+	    if (!enabled && current_state == State.ALL) {
+	        if (notebooks_bar.model.get_n_items () != 0) {
+	            select_notebook (0);
+	        } else {
+	            set_notebook (null);
+	        }
+        }
 	}
 
 	private void update_editability () {

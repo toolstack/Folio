@@ -5,8 +5,6 @@ public class Paper.NotebooksBar : Gtk.Box {
 	[GtkChild]
 	unowned Gtk.ListView list;
 
-	Gtk.SingleSelection model;
-
 	[GtkChild]
 	unowned Gtk.ToggleButton all_button;
 
@@ -21,6 +19,8 @@ public class Paper.NotebooksBar : Gtk.Box {
 
 	[GtkChild]
 	unowned Gtk.ScrolledWindow scrolled_window;
+
+	public Gtk.SingleSelection model;
 
 	public bool all_button_enabled {
 	    set {
