@@ -18,6 +18,7 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
+    <release version="22.5" date="2022-05-24"/>
     <release version="22.4" date="2022-05-19"/>
     <release version="22.3" date="2022-05-04"/>
     <release version="22.2" date="2022-04-23"/>
