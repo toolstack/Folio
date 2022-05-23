@@ -2,6 +2,8 @@ data/app.desktop.in
 data/app.gschema.xml
 data/app.metainfo.xml.in
 src/ui/strings.vala
+src/ui/edit_view/edit_view.blp
+src/ui/file_editor/file_editor_window.blp
 src/ui/markdown_cheatsheet/markdown_cheatsheet.blp
 src/ui/markdown/heading_popover.blp
 src/ui/notebooks_bar/icon.blp
