@@ -18,11 +18,59 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
-    <release version="22.5" date="2022-05-24"/>
-    <release version="22.4" date="2022-05-19"/>
-    <release version="22.3" date="2022-05-04"/>
-    <release version="22.2" date="2022-04-23"/>
-    <release version="22.1" date="2022-04-06"/>
+    <release type="stable" version="22.5" date="2022-05-24">
+      <description translate="no">
+	      <p>This update brings the setting to change where notebooks are stored, among other improvements:</p>
+        <ul>
+          <li>Unobtrusive headerbars</li>
+          <li>Search all notes from inside the app</li>
+          <li>OLED mode setting</li>
+          <li>UI tweaks</li>
+          <li>New icon</li>
+          <li>Several bug-fixes</li>
+        </ul>
+      </description>
+    </release>
+    <release type="stable" version="22.4" date="2022-05-19">
+      <description translate="no">
+	      <p>New Features:</p>
+        <ul>
+          <li>Move to Notebook... option in note context menus</li>
+          <li>i18n: Spanish, Catalan, toki pona</li>
+          <li>Open Containing Folder option in note context menus</li>
+        </ul>
+	      <p>UI:</p>
+        <ul>
+          <li>Actual icons on notebooks</li>
+          <li>Move to Notebook... option in note context menus</li>
+          <li>i18n: Spanish, Catalan, toki pona</li>
+          <li>Open Containing Folder option in note context menus</li>
+          <li>Different ways to choose the icon characters</li>
+          <li>UI &amp; Markdown rendering tweaks</li>
+          <li>Better confirmation dialogs</li>
+        </ul>
+      </description>
+    </release>
+    <release type="stable" version="22.3" date="2022-05-04">
+      <description translate="no">
+	      <p>Search:</p>
+        <ul>
+          <li>Gnome search integration</li>
+          <li>Fuzzy matching in search</li>
+          <li>New icon</li>
+          <li>Tweaked UI</li>
+          <li>Icon right click menu</li>
+        </ul>
+	      <p>Graphical:</p>
+        <ul>
+          <li>New icon</li>
+          <li>Tweaked UI</li>
+          <li>Icon right click menu</li>
+        </ul>
+      </description>
+    </release>
+    <release type="stable" version="22.2" date="2022-04-23"/>
+    <release type="stable" version="22.1" date="2022-04-06"/>
   </releases>
 
   <screenshots>
