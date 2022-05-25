@@ -142,6 +142,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 	            update_editability ();
                 button_toggle_sidebar.icon_name = "sidebar-show-symbolic";
 	            button_toggle_sidebar.active = sidebar.child.visible;
+	            notebook_notes_model.selected = current_container.loaded_notes.index_of (current_note);
             }
         });
 
