@@ -33,6 +33,9 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 
 	[GtkChild]
+	unowned Gtk.Revealer sidebar_revealer;
+
+	[GtkChild]
 	unowned Adw.WindowTitle notebook_title;
 
 	[GtkChild]
@@ -64,7 +67,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 	unowned Gtk.Button button_empty_trash;
 
 	[GtkChild]
-	unowned Gtk.ToggleButton button_toggle_sidebar;
+	unowned Gtk.Button button_back;
 
 	[GtkChild]
 	unowned Gtk.MenuButton button_more_menu;
@@ -128,20 +131,18 @@ public class Paper.Window : Adw.ApplicationWindow {
 
         notebooks_bar.init (this, app);
 
-        button_toggle_sidebar.toggled.connect (() => set_sidebar_visibility (button_toggle_sidebar.active));
-
         app.style_manager.notify["dark"].connect (() => update_theme(app.style_manager.dark));
         update_theme(app.style_manager.dark);
+
+        button_back.clicked.connect (() => navigate_to_notes ());
 
         leaflet.notify["folded"].connect (() => {
             if (leaflet.folded) {
 	            update_editability ();
-                button_toggle_sidebar.icon_name = "go-previous-symbolic";
 	            notebook_notes_model.unselect_item (notebook_notes_model.selected);
+	            navigate_to_edit_view ();
             } else {
 	            update_editability ();
-                button_toggle_sidebar.icon_name = "sidebar-show-symbolic";
-	            button_toggle_sidebar.active = sidebar.child.visible;
 	            notebook_notes_model.selected = current_container.loaded_notes.index_of (current_note);
             }
         });
@@ -215,19 +216,8 @@ public class Paper.Window : Adw.ApplicationWindow {
         toast_overlay.add_toast (toast);
 	}
 
-	public void set_sidebar_visibility (bool visibility) {
-        if (visibility) {
-            navigate_to_notes ();
-        } else {
-            navigate_to_edit_view ();
-        }
-	    if (!leaflet.folded) {
-	        sidebar.child.visible = visibility;
-	    }
-	}
-
 	public void toggle_sidebar_visibility () {
-        button_toggle_sidebar.active = !button_toggle_sidebar.active;
+        sidebar_revealer.reveal_child = !sidebar_revealer.reveal_child;
 	}
 
 	public void toggle_search () {
@@ -240,7 +230,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 	}
 
 	public void navigate_to_notes () {
-        button_toggle_sidebar.active = true;
 	    leaflet.visible_child = sidebar.child;
 	    if (leaflet.folded) {
 	        notebook_notes_model.unselect_item (notebook_notes_model.selected);
@@ -248,7 +237,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 	}
 
 	public void navigate_to_edit_view () {
-        button_toggle_sidebar.active = false;
 	    leaflet.visible_child = edit_view_page.child;
 	}
 

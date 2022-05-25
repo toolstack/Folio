@@ -15,66 +15,72 @@ template PaperWindow : Adw.ApplicationWindow {
 
         navigatable: false;
 
-        child: Box {
+        child: Revealer sidebar_revealer {
 
-          orientation: horizontal;
-          hexpand: false;
-          vexpand: true;
-          width-request: 224;
+          transition-type: slide_right;
+          reveal-child: true;
 
-          .PaperNotebooksBar notebooks_bar {}
+          child: Box {
 
-          Box {
-
-            orientation: vertical;
-            hexpand: true;
+            orientation: horizontal;
+            hexpand: false;
             vexpand: true;
+            width-request: 224;
 
-            styles ["notebook-sidebar"]
+            .PaperNotebooksBar notebooks_bar {}
 
-            Adw.HeaderBar headerbar_sidebar {
+            Box {
 
-              show-end-title-buttons: bind leaflet.folded;
-
-              [start]
-              Button button_create_note {
-                icon-name: "list-add-symbolic";
-                action-name: "app.new-note";
-                tooltip-text: _("New Note");
-              }
-
-              [start]
-              Button button_empty_trash {
-                icon-name: "empty-trash-symbolic";
-                action-name: "app.empty-trash";
-                tooltip-text: _("Empty Trash");
-              }
-
-              [title]
-              Adw.WindowTitle notebook_title {}
-
-              [end]
-              ToggleButton {
-                icon-name: "system-search-symbolic";
-                tooltip-text: _("Search Notes");
-                active: bind notes_search_bar.search_mode_enabled bidirectional;
-              }
-            }
-
-            SearchBar notes_search_bar {
-              SearchEntry notes_search_entry {}
-            }
-
-            ScrolledWindow notebook_notes_list_scroller {
-
+              orientation: vertical;
               hexpand: true;
               vexpand: true;
-              hscrollbar-policy: never;
-              vscrollbar-policy: external;
 
-              ListView notebook_notes_list {}
+              styles ["notebook-sidebar"]
+
+              Adw.HeaderBar headerbar_sidebar {
+
+                show-end-title-buttons: bind leaflet.folded;
+
+                [start]
+                Button button_create_note {
+                  icon-name: "list-add-symbolic";
+                  action-name: "app.new-note";
+                  tooltip-text: _("New Note");
+                }
+
+                [start]
+                Button button_empty_trash {
+                  icon-name: "empty-trash-symbolic";
+                  action-name: "app.empty-trash";
+                  tooltip-text: _("Empty Trash");
+                }
+
+                [title]
+                Adw.WindowTitle notebook_title {}
+
+                [end]
+                ToggleButton {
+                  icon-name: "system-search-symbolic";
+                  tooltip-text: _("Search Notes");
+                  active: bind notes_search_bar.search_mode_enabled bidirectional;
+                }
+              }
+
+              SearchBar notes_search_bar {
+                SearchEntry notes_search_entry {}
+              }
+
+              ScrolledWindow notebook_notes_list_scroller {
+
+                hexpand: true;
+                vexpand: true;
+                hscrollbar-policy: never;
+                vscrollbar-policy: external;
+
+                ListView notebook_notes_list {}
+              }
             }
-          }
+          };
         };
       }
 
@@ -103,10 +109,18 @@ template PaperWindow : Adw.ApplicationWindow {
             Adw.WindowTitle note_title {}
 
             [start]
-            ToggleButton button_toggle_sidebar {
+            ToggleButton {
               icon-name: "sidebar-show-symbolic";
               tooltip-text: _("Toggle Sidebar");
-              active: true;
+              active: bind sidebar_revealer.reveal_child bidirectional;
+              visible: bind leaflet.folded inverted;
+            }
+
+            [start]
+            Button button_back {
+              icon-name: "go-previous-symbolic";
+              tooltip-text: _("Back");
+              visible: bind leaflet.folded;
             }
 
             [end]
