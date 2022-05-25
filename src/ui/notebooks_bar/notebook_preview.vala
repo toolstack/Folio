@@ -122,12 +122,15 @@ public class Paper.NotebookPreview : Gtk.Box {
             if (word.length == 0) continue;
             initials += word[0];
         }
-        if (initials.length == 0)
-            return first_chars (original);
-        else {
-            var str = (string) initials;
-            return str.slice (0, int.min(str.length, 2));
-        }
+		switch (initials.length) {
+			case 0:
+				return first_chars (original);
+			case 1:
+				return initials[0].to_string();
+			default:
+				var str = (string) initials;
+				return str.slice (0, int.min(str.length, 2));
+		}
 	}
 
 	private string first_chars (string original) {
