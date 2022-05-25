@@ -136,6 +136,7 @@ headerbar.overlaid {
   min-height: 34px;
 
   color: @notebook_fg_color;
+  font-size: 14px;
 
   box-shadow:
     inset 0 .5px 0px 0px rgba(255, 255, 255, 0.2),
@@ -158,17 +159,29 @@ row.activatable:selected .notebook {
 .notebook > label {
   text-shadow: 0 1px 1px rgba(0, 0, 0, .1);
   font-weight: 700;
-  font-size: 14px;
+  font-size: 1em;
 }
 
 .notebook > image {
   -gtk-icon-shadow: 0 1px 1px rgba(0, 0, 0, .1);
-  -gtk-icon-size: 14px;
+  -gtk-icon-size: 1em;
 }
 
 .notebook-preview {
   transform: scale(2.4);
   margin: 32px;
+  font-size: 2em;
+}
+
+.notebook-preview > image,
+.notebook-preview > label {
+  margin: -100px;
+}
+.notebook-preview > image {
+  -gtk-icon-transform: scale(0.5);
+}
+.notebook-preview > label {
+  transform: scale(0.5);
 }
 
 .icon-selector child {
