@@ -124,9 +124,8 @@ public class Paper.NotebookPreview : Gtk.Box {
         }
 		switch (initials.length) {
 			case 0:
-				return first_chars (original);
 			case 1:
-				return initials[0].to_string();
+				return first_chars (original);
 			default:
 				var str = (string) initials;
 				return str.slice (0, int.min(str.length, 2));
