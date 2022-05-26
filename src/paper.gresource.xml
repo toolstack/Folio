@@ -4,6 +4,7 @@
     <file alias="style.css">css/style.css</file>
     <file alias="style-dark.css">css/style-dark.css</file>
     <file alias="style-black.css">css/style-black.css</file>
+    <file alias="style-black-hc.css">css/style-black-hc.css</file>
 
     <file preprocess="xml-stripblanks" alias="window.ui">ui/window.ui</file>
     <file preprocess="xml-stripblanks" alias="preferences.ui">ui/preferences.ui</file>

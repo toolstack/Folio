@@ -1,0 +1,2 @@
+
+@define-color borders alpha(shade(@theme_color, 1.6), 0.5);

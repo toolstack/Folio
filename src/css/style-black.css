@@ -10,3 +10,13 @@
 @define-color notebooks_bar_fg_color @window_fg_color;
 
 @define-color selected_bg_color alpha(mix(@theme_color, #180033, 0.5), 0.4);
+
+@define-color accent_color shade(@theme_color, 0.9);
+@define-color accent_bg_color shade(@theme_color, 0.6);
+
+@define-color borders alpha(shade(@theme_color, 1.6), 0.25);
+
+window:not(.tiled-left),
+window:not(.tiled-bottom) {
+  outline: solid 1px @borders;
+}

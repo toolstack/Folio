@@ -131,8 +131,9 @@ public class Paper.Window : Adw.ApplicationWindow {
 
         notebooks_bar.init (this, app);
 
-        app.style_manager.notify["dark"].connect (() => update_theme(app.style_manager.dark));
-        update_theme(app.style_manager.dark);
+        app.style_manager.notify["dark"].connect (() => update_theme (app.style_manager.dark, app.style_manager.high_contrast));
+        app.style_manager.notify["high-contrast"].connect (() => update_theme (app.style_manager.dark, app.style_manager.high_contrast));
+        update_theme (app.style_manager.dark, app.style_manager.high_contrast);
 
         button_back.clicked.connect (() => navigate_to_notes ());
 
@@ -240,8 +241,8 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    leaflet.visible_child = edit_view_page.child;
 	}
 
-	public void update_theme (bool dark) {
-	    edit_view.on_dark_changed(dark);
+	public void update_theme (bool dark, bool high_contrast) {
+	    edit_view.on_dark_changed (dark);
 	    var settings = new Settings (Config.APP_ID);
 		var theme_oled = settings.get_boolean ("theme-oled");
 		if (dark && theme_oled) {
@@ -257,6 +258,19 @@ public class Paper.Window : Adw.ApplicationWindow {
                 Gtk.StyleContext.remove_provider_for_display (display, black_css_provider);
             black_css_provider = null;
 		}
+		if (dark && theme_oled && high_contrast) {
+	        if (black_hc_css_provider == null) {
+                var css = new Gtk.CssProvider ();
+                css.load_from_resource (@"$(application.resource_base_path)/style-black-hc.css");
+                Gtk.StyleContext.add_provider_for_display (display, css, -1);
+                black_hc_css_provider = css;
+            }
+		}
+		else {
+            if (black_hc_css_provider != null)
+                Gtk.StyleContext.remove_provider_for_display (display, black_hc_css_provider);
+            black_hc_css_provider = null;
+		}
 	}
 
     private Note? current_note = null;
@@ -268,6 +282,7 @@ public class Paper.Window : Adw.ApplicationWindow {
     private Gtk.CssProvider? last_css_provider = null;
 
     private Gtk.CssProvider? black_css_provider = null;
+    private Gtk.CssProvider? black_hc_css_provider = null;
 
 	private void update_sidebar_scroll () {
         var v = notebook_notes_list_scroller.vadjustment.value;

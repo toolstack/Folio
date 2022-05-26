@@ -29,7 +29,8 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
         oled_mode.state = theme_oled;
         oled_mode.state_set.connect ((state) => {
             settings.set_boolean ("theme-oled", state);
-            window.update_theme ((window.application as Adw.Application).style_manager.dark);
+            var app = (window.application as Adw.Application);
+            window.update_theme (app.style_manager.dark, app.style_manager.high_contrast);
             return false;
         });
 
