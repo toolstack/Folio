@@ -257,17 +257,17 @@ window.tiled-bottom .notebooks-bar > .trash-button:checked {
   border-radius: 8px;
 }
 
-.notebook-sidebar listview row:hover:not(:selected):not(:active) > box {
+.notebook-sidebar listview row:hover:not(:selected):not(:active) > box:not(.dragged) {
   transition: box-shadow .2s, background-color .1s, outline .1s, outline-offset .1s;
   background-color: rgba(0, 0, 0, .05);
 }
 
-.notebook-sidebar listview row:active > box {
+.notebook-sidebar listview row:active > box:not(.dragged) {
   transition: box-shadow .3s, background-color .4s, outline .1s, outline-offset .1s;
   background-color: rgba(0, 0, 0, .12);
 }
 
-.notebook-sidebar listview row:selected > box {
+.notebook-sidebar listview row:selected > box:not(.dragged) {
   transition: box-shadow .2s, background-color 0, outline .1s, outline-offset .1s;
   background-color: @selected_bg_color;
   box-shadow:
@@ -277,10 +277,15 @@ window.tiled-bottom .notebooks-bar > .trash-button:checked {
     inset 0 0 0 1px @borders;
 }
 
-.notebook-sidebar listview row:focus:not(:selected):not(:active) > box {
+.notebook-sidebar listview row:focus:not(:selected):not(:active):not(.dragged) > box {
   transition: box-shadow .1s, background-color .2s, outline .2s, outline-offset .2s;
   outline: 2px solid alpha(@accent_color, .5);
   outline-offset: -1px;
+}
+
+.notebook-sidebar listview row > .dragged {
+  background-color: @window_bg_color;
+  box-shadow: inset 0 0 0 1px @borders;
 }
 
 
