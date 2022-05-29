@@ -238,28 +238,30 @@ public class Paper.Application : Adw.Application {
 	        notebook_provider,
 	        Strings.MOVE_TO_NOTEBOOK,
 	        Strings.MOVE,
-	        (dest_notebook) => {
-	            var l = note.notebook.loaded_notes;
-	            if (l != null) {
-	                var i = l.index_of (note);
-	                l.remove_at (i);
-	                note.notebook.items_changed (i, 1, 0);
-	            }
-	            set_active_notebook (null);
-	            set_active_note (null);
-	            var file = File.new_for_path (note.path);
-	            var dest_path = @"$(dest_notebook.path)/$(note.file_name)";
-	            var dest = File.new_for_path (dest_path);
-	            if (dest.query_exists ()) {
-	                window.toast (Strings.NOTE_X_ALREADY_EXISTS_IN_X.printf (note.name, dest_notebook.name));
-	                return;
-	            }
-	            file.move (dest, FileCopyFlags.NONE);
-	            select_notebook (dest_notebook);
-	        }
+	        (dest_notebook) => move_note (note, dest_notebook)
 	    );
 	    popup.transient_for = active_window;
 	    popup.present ();
+	}
+
+	public void move_note (Note note, Notebook dest_notebook) {
+        var l = note.notebook.loaded_notes;
+        if (l != null) {
+            var i = l.index_of (note);
+            l.remove_at (i);
+            note.notebook.items_changed (i, 1, 0);
+        }
+        set_active_notebook (null);
+        set_active_note (null);
+        var file = File.new_for_path (note.path);
+        var dest_path = @"$(dest_notebook.path)/$(note.file_name)";
+        var dest = File.new_for_path (dest_path);
+        if (dest.query_exists ()) {
+            window.toast (Strings.NOTE_X_ALREADY_EXISTS_IN_X.printf (note.name, dest_notebook.name));
+            return;
+        }
+        file.move (dest, FileCopyFlags.NONE);
+        select_notebook (dest_notebook);
 	}
 
 	public void request_delete_note (Note note) {
