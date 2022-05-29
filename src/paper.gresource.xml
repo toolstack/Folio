@@ -34,6 +34,7 @@
     <file preprocess="xml-stripblanks">graphics/scalable/actions/format-text-highlight-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/empty-trash-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/code-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">graphics/scalable/actions/dark-mode-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-heart-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-like-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-music-symbolic.svg</file>

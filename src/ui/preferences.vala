@@ -11,6 +11,9 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
 	[GtkChild]
 	unowned Gtk.Button notes_dir_button;
 
+	[GtkChild]
+	unowned Gtk.Label notes_dir_label;
+
 
 	public PreferencesWindow (Window window) {
 		Object ();
@@ -34,7 +37,8 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
             return false;
         });
 
-        notes_dir_button.label = notes_dir;
+        notes_dir_label.label = notes_dir;
+        notes_dir_label.tooltip_text = notes_dir;
         notes_dir_button.clicked.connect (() => {
             var chooser = new Gtk.FileChooserNative (
                 Strings.PICK_NOTES_DIR,
@@ -49,7 +53,8 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
                 if (id == Gtk.ResponseType.ACCEPT) {
                     notes_dir = chooser.get_file ().get_path ();
 		            settings.set_string ("notes-dir", notes_dir);
-                    notes_dir_button.label = notes_dir;
+                    notes_dir_label.label = notes_dir;
+                    notes_dir_label.tooltip_text = notes_dir;
                 }
             });
             chooser.show ();

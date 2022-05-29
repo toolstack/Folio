@@ -14,6 +14,7 @@ template PaperPreferencesWindow : Adw.PreferencesWindow {
 
         title: _("Note Font");
         subtitle: _("The font notes will be displayed in");
+        icon-name: "font-x-generic-symbolic";
         activatable-widget: font_button;
 
         FontButton font_button {
@@ -26,6 +27,7 @@ template PaperPreferencesWindow : Adw.PreferencesWindow {
 
         title: _("OLED Mode");
         subtitle: _("Makes the dark theme pitch black");
+        icon-name: "dark-mode-symbolic";
         activatable-widget: oled_mode;
 
         Switch oled_mode {
@@ -38,10 +40,17 @@ template PaperPreferencesWindow : Adw.PreferencesWindow {
 
         title: _("Notes Storage Location");
         subtitle: _("Where the notebooks are stored (requires app restart)");
+        icon-name: "folder-symbolic";
         activatable-widget: notes_dir_button;
 
         Button notes_dir_button {
           valign: center;
+          width-request: 128;
+          styles ["file-button"]
+
+          child: Label notes_dir_label {
+            ellipsize: start;
+          };
         }
       }
     }
