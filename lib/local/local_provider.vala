@@ -140,6 +140,7 @@ public class Paper.LocalProvider : Object, ListModel, Provider {
             var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME, 0);
             FileInfo file_info;
             while ((file_info = enumerator.next_file ()) != null) {
+                if (file_info.get_file_type () != FileType.DIRECTORY) continue;
                 var name = file_info.get_name ();
                 if (name[0] == '.') continue;
                 var path = @"$notes_dir/$name";

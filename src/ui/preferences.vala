@@ -36,29 +36,23 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
 
         notes_dir_button.label = notes_dir;
         notes_dir_button.clicked.connect (() => {
-            var chooser = new Gtk.FileChooserDialog (
+            var chooser = new Gtk.FileChooserNative (
                 Strings.PICK_NOTES_DIR,
                 this,
                 Gtk.FileChooserAction.SELECT_FOLDER,
-                Strings.APPLY, 1
+                Strings.APPLY,
+                Strings.CANCEL
             );
             chooser.modal = true;
-            chooser.set_current_folder (File.new_for_path (notes_dir));
-            var h = chooser.get_header_bar();
-            h.show_title_buttons = false;
-            var button_cancel = new Gtk.Button.with_label (Strings.CANCEL);
-            button_cancel.clicked.connect (() => chooser.close ());
-            h.pack_start (button_cancel);
-            chooser.get_widget_for_response (1).get_style_context ().add_class ("suggested-action");
+            chooser.set_file (File.new_for_path (notes_dir));
             chooser.response.connect ((id) => {
-                if (id == 1) {
-                    notes_dir = chooser.get_current_folder ().get_path ();
+                if (id == Gtk.ResponseType.ACCEPT) {
+                    notes_dir = chooser.get_file ().get_path ();
 		            settings.set_string ("notes-dir", notes_dir);
                     notes_dir_button.label = notes_dir;
                 }
-                chooser.close ();
             });
-            chooser.present ();
+            chooser.show ();
         });
 	}
 }
