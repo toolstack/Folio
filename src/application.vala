@@ -54,7 +54,9 @@ public class Paper.Application : Adw.Application {
 	    var settings = new Settings (Config.APP_ID);
 		var notes_dir = settings.get_string ("notes-dir");
 
-		notebook_provider = new LocalProvider.from_directory (notes_dir, Strings.TRASH);
+		notebook_provider = new Provider (Strings.TRASH);
+		notebook_provider.set_directory (notes_dir);
+		notebook_provider.load ();
 
 		add_action_entries (APP_ACTIONS, this);
 
@@ -377,6 +379,30 @@ public class Paper.Application : Adw.Application {
 	public void try_restore_note (Note note) {
 		try {
 	        notebook_provider.trash.restore_note (note);
+	        {
+	            var n = notebook_provider.notebooks;
+	            var i = 0;
+	            while (i < n.size) {
+	                if (n[i].name == note.notebook.name)
+	                    break;
+	                i++;
+	            }
+	            if (i == n.size) {
+	                notebook_provider.unload ();
+	                notebook_provider.load ();
+	                window.update_notebooks (this);
+	            }
+	        }
+	        {
+	            var n = notebook_provider.notebooks;
+	            var i = 0;
+	            while (i < n.size) {
+	                if (n[i].name == note.notebook.name)
+	                    break;
+	                i++;
+	            }
+	            select_notebook (i == n.size ? null : n[i]);
+	        }
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.COULDNT_MOVE) {
 	            window.toast (Strings.COULDNT_RESTORE_NOTE);
@@ -436,6 +462,7 @@ public class Paper.Application : Adw.Application {
 
 	public void try_delete_notebook (Notebook notebook) {
 		try {
+	        set_active_notebook (null);
 	        notebook_provider.delete_notebook (notebook);
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.COULDNT_DELETE) {

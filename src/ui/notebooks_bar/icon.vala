@@ -23,15 +23,8 @@ public class Paper.NotebookIcon : NotebookPreview {
 	    add_controller (right_click);
 	    var drop_target = new Gtk.DropTarget (typeof (Note), Gdk.DragAction.MOVE);
 	    drop_target.preload = true;
-	    /*drop_target.accept.connect ((drop) => {
-	        Value v;
-	        drop.drag.content.get_value (out v);
-	        message (v.type_name ());
-	        message (drop_target.get_value ().type_name ());
-	        return (v.get_object () as Note).notebook.name != _notebook.name;
-	    });*/
 	    drop_target.on_drop.connect ((v, x, y) => {
-	        var note = (v.get_object () as Note);
+	        var note = v.get_object () as Note;
 	        if (note.notebook == _notebook)
 	            return false;
 	        app.move_note (note, _notebook);

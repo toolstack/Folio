@@ -9,7 +9,10 @@ public class SearchProvider : Object {
     public string[] get_initial_result_set (string[] terms) throws Error {
 	    var settings = new Settings (Config.APP_ID);
 		var notes_dir = settings.get_string ("notes-dir");
-        var notebooks = new Paper.LocalProvider.from_directory (notes_dir).notebooks;
+		var notebook_provider = new Paper.Provider ();
+		notebook_provider.set_directory (notes_dir);
+		notebook_provider.load ();
+        var notebooks = notebook_provider.notebooks;
         notes = new HashTable<string, Paper.Note> (str_hash, str_equal);
         foreach (var notebook in notebooks) {
             notebook.load ();

@@ -55,11 +55,40 @@ public class Paper.NotebooksBar : Gtk.Box {
             var item = list_item.item as Notebook;
             widget.notebook = item;
         });
-        this.model = new Gtk.SingleSelection (
+		list.factory = factory;
+
+		trash_button.toggled.connect (() => {
+            trash_button.sensitive = !trash_button.active;
+            if (trash_button.active) {
+                model.unselect_item (model.selected);
+
+                // will call set_notebook (null) as a side effect
+                app.set_active_notebook (null);
+
+                window.set_trash (app.notebook_provider.trash);
+            }
+        });
+		all_button.toggled.connect (() => {
+            all_button.sensitive = !all_button.active;
+            if (all_button.active) {
+                model.unselect_item (model.selected);
+
+                // will call set_notebook (null) as a side effect
+                app.set_active_notebook (null);
+
+                window.set_all ();
+            }
+        });
+
+		update_notebooks (app);
+	}
+
+	public void update_notebooks (Application app) {
+        model = new Gtk.SingleSelection (
             app.notebook_provider
         );
-        this.model.can_unselect = true;
-		this.model.selection_changed.connect (() => {
+        model.can_unselect = true;
+		model.selection_changed.connect (() => {
 		    uint i = model.selected;
 		    var notebooks = app.notebook_provider.notebooks;
 		    if (i <= notebooks.size) {
@@ -69,36 +98,11 @@ public class Paper.NotebooksBar : Gtk.Box {
 		        all_button.active = false;
 		    }
 		});
-		list.factory = factory;
 		list.model = model;
 
 		if (app.notebook_provider.notebooks.size != 0) {
 		    model.selection_changed (0, 1);
 		}
-
-		trash_button.toggled.connect (() => {
-	        trash_button.sensitive = !trash_button.active;
-		    if (trash_button.active) {
-		        model.unselect_item (model.selected);
-
-		        // will call set_notebook (null) as a side effect
-		        app.set_active_notebook (null);
-
-		        window.set_trash (app.notebook_provider.trash);
-		    }
-		});
-
-		all_button.toggled.connect (() => {
-	        all_button.sensitive = !all_button.active;
-		    if (all_button.active) {
-		        model.unselect_item (model.selected);
-
-		        // will call set_notebook (null) as a side effect
-		        app.set_active_notebook (null);
-
-		        window.set_all ();
-		    }
-		});
 	}
 
 	public void select_notebook (uint i) {

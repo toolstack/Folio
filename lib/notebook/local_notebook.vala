@@ -19,9 +19,9 @@ public class Paper.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
     ArrayList<Note>? _loaded_notes = null;
 
     NotebookInfo _info;
-    LocalProvider provider;
+    Provider provider;
 
-    public LocalNotebook (LocalProvider provider, NotebookInfo info) {
+    public LocalNotebook (Provider provider, NotebookInfo info) {
         this.provider = provider;
         this._info = info;
     }
@@ -56,7 +56,7 @@ public class Paper.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
         _loaded_notes = null;
     }
 
-    public void change (LocalProvider provider, NotebookInfo info) {
+    public void change (Provider provider, NotebookInfo info) {
         this.provider = provider;
         this._info = info;
     }

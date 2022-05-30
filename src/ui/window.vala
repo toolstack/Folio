@@ -160,6 +160,11 @@ public class Paper.Window : Adw.ApplicationWindow {
         notes_search_bar.notify["search-mode-enabled"].connect (() => on_searchbar_mode_changed (notes_search_bar.search_mode_enabled));
 	}
 
+	public void update_notebooks (Application app) {
+	    notebooks_bar.update_notebooks (app);
+	    update_selected_note ();
+	}
+
 	public void set_notebook (Notebook? notebook) {
 	    set_state (notebook == null ? State.NO_NOTEBOOK : State.NOTEBOOK, notebook);
 	}
@@ -383,9 +388,10 @@ public class Paper.Window : Adw.ApplicationWindow {
 
             navigate_to_notes ();
         } else {
-            if (notebook_notes_model != null)
+            if (notebook_notes_model != null) {
                 notebook_notes_model.model = null;
-		    notebook_notes_model = null;
+		        notebook_notes_model = null;
+            }
 	        notebook_notes_list.factory = null;
             notebook_title.title = null;
             notebook_title.subtitle = null;

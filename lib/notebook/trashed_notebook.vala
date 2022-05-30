@@ -1,6 +1,6 @@
 using Gee;
 
-public class Paper.LocalTrashedNotebook : Object, ListModel, NoteContainer, Notebook {
+public class Paper.TrashedNotebook : Object, ListModel, NoteContainer, Notebook {
 
     public string name { get { return info.name; } }
 
@@ -17,9 +17,9 @@ public class Paper.LocalTrashedNotebook : Object, ListModel, NoteContainer, Note
     }
 
     NotebookInfo _info;
-    LocalTrash trash;
+    Trash trash;
 
-    public LocalTrashedNotebook (LocalTrash trash, NotebookInfo info) {
+    public TrashedNotebook (Trash trash, NotebookInfo info) {
         this.trash = trash;
         this._info = info;
     }
