@@ -12,6 +12,9 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
 	unowned Gtk.Button notes_dir_button;
 
 	[GtkChild]
+	unowned Gtk.Button notes_dir_button_reset;
+
+	[GtkChild]
 	unowned Gtk.Label notes_dir_label;
 
 
@@ -58,6 +61,12 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
                 }
             });
             chooser.show ();
+        });
+        notes_dir_button_reset.clicked.connect (() => {
+            settings.reset ("notes-dir");
+		    notes_dir = settings.get_string ("notes-dir");
+            notes_dir_label.label = notes_dir;
+            notes_dir_label.tooltip_text = notes_dir;
         });
 	}
 }

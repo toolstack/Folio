@@ -43,14 +43,25 @@ template PaperPreferencesWindow : Adw.PreferencesWindow {
         icon-name: "folder-symbolic";
         activatable-widget: notes_dir_button;
 
-        Button notes_dir_button {
-          valign: center;
-          width-request: 128;
-          styles ["file-button"]
+        Box {
 
-          child: Label notes_dir_label {
-            ellipsize: start;
-          };
+          orientation: horizontal;
+
+          styles ["linked"]
+
+          Button notes_dir_button {
+            valign: center;
+            width-request: 128;
+
+            child: Label notes_dir_label {
+              ellipsize: start;
+            };
+          }
+
+          Button notes_dir_button_reset {
+            valign: center;
+            icon-name: "reset-symbolic";
+          }
         }
       }
     }
