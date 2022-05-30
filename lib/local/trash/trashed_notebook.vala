@@ -50,4 +50,8 @@ public class Paper.LocalTrashedNotebook : Object, ListModel, NoteContainer, Note
     public Object? get_item (uint i) {
         return null;
     }
+
+    public uint get_index_of(Note? note){
+        return  -1;
+    }
 }

@@ -297,8 +297,9 @@ public class Paper.Application : Adw.Application {
             return;
 	    }
 		try {
-		    active_notebook.new_note (name);
+		    var n = active_notebook.new_note (name);
 	        window.select_note (0);
+	        set_active_note(n);
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS) {
 	            window.toast (Strings.NOTE_X_ALREADY_EXISTS.printf (name));
@@ -335,9 +336,30 @@ public class Paper.Application : Adw.Application {
 
 	public void try_delete_note (Note note) {
 		try {
-	        if (current_note == note) set_active_note (null);
+            //upon deletion of a note, we will select the next note DOWN the list (or none).
+	        var idx = note.notebook.get_index_of(note);
+
 	        note.notebook.delete_note (note);
+
+	        var item_count = note.notebook.get_n_items();
+	        Note? new_active_note = null;
+	        if (item_count==1 || idx == 0){ // selecting down, so first item or a list of 2 is the same.
+	            new_active_note = (Note) note.notebook.get_item(0);
+	        } else if (item_count>1){
+	            new_active_note = (Note) note.notebook.get_item(idx-1);
+	        }
+
+	        set_active_note(new_active_note);
+
+            //if we are removing the last item we need to select a different index.
+            //we really should be doing this somewhere else.
+	        if (idx==item_count)
+	            window.select_note(idx-1);
+	        else
+	            window.select_note(idx);
+
 	        window.update_selected_note ();
+
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.COULDNT_DELETE) {
 	            window.toast (Strings.COULDNT_DELETE_NOTE);

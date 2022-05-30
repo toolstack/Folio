@@ -138,6 +138,13 @@ public class Paper.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
         return _loaded_notes.size;
     }
 
+    public uint get_index_of(Note? note){
+        if (note != null && _loaded_notes != null){
+            return loaded_notes.index_of (note);
+        }
+        return -1;
+    }
+
     public Object? get_item (uint i) {
         if (_loaded_notes == null)
             error (@"Notebook \"$name\": Notes haven't loaded yet");
