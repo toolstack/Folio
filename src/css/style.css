@@ -184,13 +184,21 @@ row.activatable:selected .notebook {
   transform: scale(0.5);
 }
 
-.icon-selector child {
+.icon-selector > popover gridview {
+  background: 0;
+}
+
+.icon-selector > popover gridview child {
   padding: 8px;
   -gtk-icon-size: 24px;
 }
 
-.icon-selector gridview {
-  background: 0;
+.icon-selector > popover > contents {
+  padding: 0;
+}
+
+.icon-selector > popover > contents > scrolledwindow > * {
+  padding: 8px;
 }
 
 window.tiled-left .notebooks-bar > .trash-button,

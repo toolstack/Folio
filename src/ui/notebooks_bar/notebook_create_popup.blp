@@ -78,8 +78,12 @@ template PaperNotebookCreatePopup : Adw.Window {
         }
 
         MenuButton button_icon {
+
           visible: false;
           hexpand: false;
+
+          styles ["icon-selector"]
+
           popover: Popover {
             child: ScrolledWindow {
 
@@ -87,8 +91,6 @@ template PaperNotebookCreatePopup : Adw.Window {
               height-request: 145;
 	            hscrollbar-policy: never;
 	            vscrollbar-policy: external;
-
-              styles ["icon-selector"]
 
               GridView icon_grid {
                 hexpand: true;
