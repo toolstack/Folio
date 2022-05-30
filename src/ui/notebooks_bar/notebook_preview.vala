@@ -99,7 +99,7 @@ public class Paper.NotebookPreview : Gtk.Box {
                 var matchable = info.name.substring (int.min(info.name.length, 1));
                 if (regex.match_full (matchable, matchable.length, 0, 0, out matches)) {
                     var _1 = matches.fetch (0);
-                    var result = info.name.slice (0, int.min(info.name.length, 1));
+                    var result = (info.name.length == 0) ? "" : info.name.get_char (0).to_string ();
                     if (_1 != null) {
                         result += _1;
                     }
@@ -117,23 +117,29 @@ public class Paper.NotebookPreview : Gtk.Box {
 
 	private string initials_split (string original, string delimiter) {
         var words = original.split (delimiter);
-        char[] initials = {};
+        string initials = "";
+        var i = 0;
         foreach (string word in words) {
             if (word.length == 0) continue;
-            initials += word[0];
+            initials += word.get_char (0).to_string ();
+            i++;
+            if (i == 2) break;
         }
-		switch (initials.length) {
+		switch (i) {
 			case 0:
 			case 1:
 				return first_chars (original);
 			default:
-				var str = (string) initials;
-				return str.slice (0, int.min(str.length, 2));
+				return initials;
 		}
 	}
 
 	private string first_chars (string original) {
-        return original.slice (0, int.min(original.length, 2));
+	    if (original.length == 0)
+	        return "";
+	    var a = original.get_char (0).to_string ();
+	    if (a.length == original.length) return a;
+	    else return a + original.get_char (a.length).to_string ();
 	}
 }
 
