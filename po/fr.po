@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.posidon.Paper\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-23 09:28+0200\n"
+"POT-Creation-Date: 2022-05-31 10:02+0200\n"
 "PO-Revision-Date: 2022-05-24 23:36+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -35,17 +35,17 @@ msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
 msgstr "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
 
 #: data/app.desktop.in:21 src/ui/strings.vala:8 src/ui/shortcut_window.blp:17
-#: src/ui/window.blp:43 src/ui/window.blp:155
+#: src/ui/window.blp:46 src/ui/window.blp:167
 msgid "New Note"
 msgstr "Nouvelle Note"
 
 #: data/app.desktop.in:25 src/ui/strings.vala:14 src/ui/shortcut_window.blp:32
-#: src/ui/window.blp:180
+#: src/ui/window.blp:192
 msgid "New Notebook"
 msgstr "Nouveau Carnet de note"
 
 #: data/app.desktop.in:29 src/ui/strings.vala:39
-#: src/ui/edit_view/edit_view.blp:113 src/ui/window.blp:128
+#: src/ui/edit_view/edit_view.blp:113 src/ui/window.blp:140
 msgid "Markdown Cheatsheet"
 msgstr "Feuille technique Markdown"
 
@@ -57,11 +57,11 @@ msgstr "Préférences"
 msgid "Font"
 msgstr "Police"
 
-#: data/app.gschema.xml:7 src/ui/preferences.blp:15
+#: data/app.gschema.xml:7 src/ui/preferences.blp:16
 msgid "The font notes will be displayed in"
 msgstr "Les notes seront affichées en police"
 
-#: data/app.gschema.xml:11 src/ui/preferences.blp:25
+#: data/app.gschema.xml:11 src/ui/preferences.blp:28
 msgid "OLED Mode"
 msgstr "Mode OLED"
 
@@ -105,7 +105,7 @@ msgstr "Recoloration de l'application selon la couleur du carnet de notes"
 msgid "Trash can"
 msgstr "Corbeille"
 
-#: data/app.metainfo.xml.in:30
+#: data/app.metainfo.xml.in:79
 msgid "Markdown document"
 msgstr "Document Markdown"
 
@@ -122,7 +122,7 @@ msgstr "%d Notes"
 msgid "Are you sure you want to delete everything in the trash?"
 msgstr "Êtes-vous sûr de vouloir vider la corbeille ?"
 
-#: src/ui/strings.vala:7 src/ui/window.blp:50
+#: src/ui/strings.vala:7 src/ui/window.blp:53
 msgid "Empty Trash"
 msgstr "Vider la corbeille"
 
@@ -353,11 +353,11 @@ msgstr "Initiales : snake_case"
 msgid "Icon"
 msgstr "Icône"
 
-#: src/ui/notebooks_bar/notebook_create_popup.blp:104
+#: src/ui/notebooks_bar/notebook_create_popup.blp:106
 msgid "Notebook Color"
 msgstr "Couleur du carnet de notes"
 
-#: src/ui/notebooks_bar/notebook_create_popup.blp:114
+#: src/ui/notebooks_bar/notebook_create_popup.blp:116
 msgid "Create Notebook"
 msgstr "Créer le carnet de notes"
 
@@ -421,25 +421,26 @@ msgstr "Ouvrir le dossier contenant"
 msgid "Confirm"
 msgstr "Confirmer"
 
-#: src/ui/preferences.blp:14
+#: src/ui/preferences.blp:15
 msgid "Note Font"
 msgstr "Police de note"
 
-#: src/ui/preferences.blp:18
+#: src/ui/preferences.blp:21
 msgid "Pick a font for displaying the notes' content"
 msgstr "Choisir une police pour l'affichage du contenu de la note"
 
-#: src/ui/preferences.blp:26
+#: src/ui/preferences.blp:29
 msgid "Makes the dark theme pitch black"
 msgstr "Rend le thème sombre noir"
 
-#: src/ui/preferences.blp:36
+#: src/ui/preferences.blp:41
 msgid "Notes Storage Location"
 msgstr "Emplacement de stockage des notes"
 
-#: src/ui/preferences.blp:37
+#: src/ui/preferences.blp:42
 msgid "Where the notebooks are stored (requires app restart)"
-msgstr "Où les carnets de notes sont stockés (requiert un redémarrage de l'appli)"
+msgstr ""
+"Où les carnets de notes sont stockés (requiert un redémarrage de l'appli)"
 
 #: src/ui/shortcut_window.blp:14
 msgid "Note"
@@ -473,34 +474,38 @@ msgstr "Formatage"
 msgid "Navigation"
 msgstr "Navigation"
 
-#: src/ui/shortcut_window.blp:97 src/ui/window.blp:108
+#: src/ui/shortcut_window.blp:97 src/ui/window.blp:112
 msgid "Toggle Sidebar"
 msgstr "Basculer la barre latérale"
 
-#: src/ui/shortcut_window.blp:102 src/ui/window.blp:59
+#: src/ui/shortcut_window.blp:102 src/ui/window.blp:62
 msgid "Search Notes"
 msgstr "Rechercher des notes"
 
-#: src/ui/window.blp:121
+#: src/ui/window.blp:120
+msgid "Back"
+msgstr ""
+
+#: src/ui/window.blp:133
 msgid "Open in Notebook"
 msgstr "Ouvrir dans le carnet de notes"
 
-#: src/ui/window.blp:149
+#: src/ui/window.blp:161
 msgid "Get started writing"
 msgstr "Commencez à écrire"
 
-#: src/ui/window.blp:174
+#: src/ui/window.blp:186
 msgid "Create a notebook"
 msgstr "Créer un carnet de notes"
 
-#: src/ui/window.blp:199
+#: src/ui/window.blp:211
 msgid "Trash is empty"
 msgstr "Corbeille vide"
 
-#: src/ui/window.blp:212
+#: src/ui/window.blp:224
 msgid "_Rename Note"
 msgstr "_Renommer la Note"
 
-#: src/ui/window.blp:218
+#: src/ui/window.blp:230
 msgid "_Export Note"
 msgstr "_Exporter la Note"

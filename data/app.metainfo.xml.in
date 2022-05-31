@@ -19,7 +19,7 @@
 
   <releases>
     <release type="stable" version="22.5" date="2022-05-24">
-      <description translate="no">
+      <description translatable="no">
 	      <p>This update brings the setting to change where notebooks are stored, among other improvements:</p>
         <ul>
           <li>Unobtrusive headerbars</li>
@@ -32,7 +32,7 @@
       </description>
     </release>
     <release type="stable" version="22.4" date="2022-05-19">
-      <description translate="no">
+      <description translatable="no">
 	      <p>New Features:</p>
         <ul>
           <li>Move to Notebook... option in note context menus</li>
@@ -52,7 +52,7 @@
       </description>
     </release>
     <release type="stable" version="22.3" date="2022-05-04">
-      <description translate="no">
+      <description translatable="no">
 	      <p>Search:</p>
         <ul>
           <li>Gnome search integration</li>

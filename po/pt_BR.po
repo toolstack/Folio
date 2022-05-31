@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.posidon.Paper main\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-23 09:28+0200\n"
+"POT-Creation-Date: 2022-05-31 10:02+0200\n"
 "PO-Revision-Date: 2022-05-24 10:57-0300\n"
 "Last-Translator: Juliano Dorneles dos Santos <juliano.dorneles@gmail.com>\n"
 "Language-Team: Juliano Dorneles dos Santos <juliano.dorneles@gmail.com>\n"
@@ -32,17 +32,17 @@ msgstr ""
 "Lembrete;"
 
 #: data/app.desktop.in:21 src/ui/strings.vala:8 src/ui/shortcut_window.blp:17
-#: src/ui/window.blp:43 src/ui/window.blp:155
+#: src/ui/window.blp:46 src/ui/window.blp:167
 msgid "New Note"
 msgstr "Nova Nota"
 
 #: data/app.desktop.in:25 src/ui/strings.vala:14 src/ui/shortcut_window.blp:32
-#: src/ui/window.blp:180
+#: src/ui/window.blp:192
 msgid "New Notebook"
 msgstr "Novo Caderno"
 
 #: data/app.desktop.in:29 src/ui/strings.vala:39
-#: src/ui/edit_view/edit_view.blp:113 src/ui/window.blp:128
+#: src/ui/edit_view/edit_view.blp:113 src/ui/window.blp:140
 msgid "Markdown Cheatsheet"
 msgstr "Dicas de Markdown"
 
@@ -54,11 +54,11 @@ msgstr "Preferências"
 msgid "Font"
 msgstr "Fonte"
 
-#: data/app.gschema.xml:7 src/ui/preferences.blp:15
+#: data/app.gschema.xml:7 src/ui/preferences.blp:16
 msgid "The font notes will be displayed in"
 msgstr "Fonte com a qual as notas serão exibidas"
 
-#: data/app.gschema.xml:11 src/ui/preferences.blp:25
+#: data/app.gschema.xml:11 src/ui/preferences.blp:28
 msgid "OLED Mode"
 msgstr "Modo OLED"
 
@@ -102,7 +102,7 @@ msgstr "Colorir o aplicativo com base na cor do caderno"
 msgid "Trash can"
 msgstr "Lixeira"
 
-#: data/app.metainfo.xml.in:30
+#: data/app.metainfo.xml.in:79
 msgid "Markdown document"
 msgstr "Documento markdown"
 
@@ -119,7 +119,7 @@ msgstr "%d Notas"
 msgid "Are you sure you want to delete everything in the trash?"
 msgstr "Tem certeza de que deseja apagar tudo da lixeira?"
 
-#: src/ui/strings.vala:7 src/ui/window.blp:50
+#: src/ui/strings.vala:7 src/ui/window.blp:53
 msgid "Empty Trash"
 msgstr "Esvaziar Lixeira"
 
@@ -351,11 +351,11 @@ msgstr "Iniciais: snake_case"
 msgid "Icon"
 msgstr "Ícone"
 
-#: src/ui/notebooks_bar/notebook_create_popup.blp:104
+#: src/ui/notebooks_bar/notebook_create_popup.blp:106
 msgid "Notebook Color"
 msgstr "Cor do Caderno"
 
-#: src/ui/notebooks_bar/notebook_create_popup.blp:114
+#: src/ui/notebooks_bar/notebook_create_popup.blp:116
 msgid "Create Notebook"
 msgstr "Criar Caderno"
 
@@ -419,23 +419,23 @@ msgstr "Abrir Diretório de Armazenamento"
 msgid "Confirm"
 msgstr "Confirmar"
 
-#: src/ui/preferences.blp:14
+#: src/ui/preferences.blp:15
 msgid "Note Font"
 msgstr "Fonte das Notas"
 
-#: src/ui/preferences.blp:18
+#: src/ui/preferences.blp:21
 msgid "Pick a font for displaying the notes' content"
 msgstr "Escolha uma fonte para exibir o conteúdo das notas"
 
-#: src/ui/preferences.blp:26
+#: src/ui/preferences.blp:29
 msgid "Makes the dark theme pitch black"
 msgstr "Torna o tema escuro como preto"
 
-#: src/ui/preferences.blp:36
+#: src/ui/preferences.blp:41
 msgid "Notes Storage Location"
 msgstr "Local do armazenamento das notas"
 
-#: src/ui/preferences.blp:37
+#: src/ui/preferences.blp:42
 msgid "Where the notebooks are stored (requires app restart)"
 msgstr ""
 "Onde os cadernos são armazenados (requer reinicialização do aplicativo)"
@@ -472,34 +472,38 @@ msgstr "Formato"
 msgid "Navigation"
 msgstr "Navegação"
 
-#: src/ui/shortcut_window.blp:97 src/ui/window.blp:108
+#: src/ui/shortcut_window.blp:97 src/ui/window.blp:112
 msgid "Toggle Sidebar"
 msgstr "Alternar Barra Lateral"
 
-#: src/ui/shortcut_window.blp:102 src/ui/window.blp:59
+#: src/ui/shortcut_window.blp:102 src/ui/window.blp:62
 msgid "Search Notes"
 msgstr "Buscar Notas"
 
-#: src/ui/window.blp:121
+#: src/ui/window.blp:120
+msgid "Back"
+msgstr ""
+
+#: src/ui/window.blp:133
 msgid "Open in Notebook"
 msgstr "Abrir no Caderno"
 
-#: src/ui/window.blp:149
+#: src/ui/window.blp:161
 msgid "Get started writing"
 msgstr "Comece a escrever"
 
-#: src/ui/window.blp:174
+#: src/ui/window.blp:186
 msgid "Create a notebook"
 msgstr "Cria um caderno"
 
-#: src/ui/window.blp:199
+#: src/ui/window.blp:211
 msgid "Trash is empty"
 msgstr "A lixeira está vazia"
 
-#: src/ui/window.blp:212
+#: src/ui/window.blp:224
 msgid "_Rename Note"
 msgstr "_Renomear Nota"
 
-#: src/ui/window.blp:218
+#: src/ui/window.blp:230
 msgid "_Export Note"
 msgstr "_Exportar Nota"
