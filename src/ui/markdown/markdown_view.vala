@@ -4,6 +4,14 @@ public class GtkMarkdown.View : GtkSource.View {
     public bool dark { get; set; default = false; }
     public Gdk.RGBA theme_color { get; set; }
 
+    public Gdk.RGBA h6_color {
+        get {
+            var rgba = get_style_context ().get_color ();
+            rgba.alpha = 0.6f;
+            return rgba;
+        }
+    }
+
     public Gdk.RGBA url_color {
         get {
             var hsl = Color.rgb_to_hsl (Color.RGBA_to_rgb (theme_color));
@@ -214,6 +222,8 @@ public class GtkMarkdown.View : GtkSource.View {
     private Gtk.TextTag text_tag_italic;
     private Gtk.TextTag text_tag_strikethrough;
     private Gtk.TextTag text_tag_highlight;
+    private Gtk.TextTag[] text_tags_title;
+
 	private void update_color_scheme () {
         if (buffer is GtkSource.Buffer) {
             var buffer = buffer as GtkSource.Buffer;
@@ -258,10 +268,32 @@ public class GtkMarkdown.View : GtkSource.View {
             text_tag_invisible = get_or_create_tag ("invisible-character");
             text_tag_invisible.foreground = "rgba(0,0,0,0.001)";
 
+            update_title_styling ();
+
             buffer.changed.connect (restyle_text);
             buffer.notify["cursor-position"].connect (restyle_text);
             restyle_text();
         }
+	}
+
+	private float interpolate (float x) {
+	    return 1 - (float) Math.sqrt (1 - x);
+	}
+
+	private void update_title_styling () {
+	    var tags = new Gtk.TextTag[6];
+        var last_i = tags.length - 1;
+	    for (var i = 0; i < tags.length; i++) {
+	        var tag = get_or_create_tag (@"markdown-h$i");
+	        var bold_f = (last_i - int.min (i, last_i - 1) - 1) / (float) last_i;
+            tag.weight = 600 + (int) (bold_f * 300);
+            var scale_f = (last_i - i) / (float) last_i;
+            tag.scale = 1.0f + interpolate(scale_f) * 1.4f;
+            if (i == last_i)
+                tag.foreground_rgba = h6_color;
+	        tags[i] = tag;
+	    }
+	    text_tags_title = tags;
 	}
 
 	private Gtk.TextTag get_or_create_tag (string name) {
@@ -280,23 +312,15 @@ public class GtkMarkdown.View : GtkSource.View {
         buffer.remove_tag (text_tag_italic, start, end);
         buffer.remove_tag (text_tag_strikethrough, start, end);
         buffer.remove_tag (text_tag_highlight, start, end);
+        foreach (var t in text_tags_title)
+            buffer.remove_tag (t, start, end);
 	}
 
 	private void restyle_text () {
         renderer.queue_draw ();
         Gtk.TextIter buffer_start, buffer_end, cursor_location;
         buffer.get_bounds (out buffer_start, out buffer_end);
-        buffer.remove_tag (text_tag_hidden, buffer_start, buffer_end);
-        buffer.remove_tag (text_tag_invisible, buffer_start, buffer_end);
-        buffer.remove_tag (text_tag_url, buffer_start, buffer_end);
-        buffer.remove_tag (text_tag_escaped, buffer_start, buffer_end);
-        buffer.remove_tag (text_tag_code_span, buffer_start, buffer_end);
-        buffer.remove_tag (text_tag_code_block, buffer_start, buffer_end);
-        buffer.remove_tag (text_tag_around, buffer_start, buffer_end);
-        buffer.remove_tag (text_tag_bold, buffer_start, buffer_end);
-        buffer.remove_tag (text_tag_italic, buffer_start, buffer_end);
-        buffer.remove_tag (text_tag_strikethrough, buffer_start, buffer_end);
-        buffer.remove_tag (text_tag_highlight, buffer_start, buffer_end);
+        remove_tags (buffer_start, buffer_end);
         var cursor = buffer.get_insert ();
         buffer.get_iter_at_mark (out cursor_location, cursor);
         string buffer_text = buffer.get_text (buffer_start, buffer_end, true);
@@ -311,6 +335,8 @@ public class GtkMarkdown.View : GtkSource.View {
                     end = start.copy ();
                     end.forward_chars ((int) title_level + 1);
                     buffer.apply_tag (text_tag_hidden, start, end);
+                    buffer.get_iter_at_line (out start, line + 1);
+                    buffer.apply_tag (text_tags_title[title_level - 1], end, start);
                 }
             }
         }
