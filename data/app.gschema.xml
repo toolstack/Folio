@@ -16,4 +16,15 @@
       <description>Where the notebooks are stored</description>
     </key>
   </schema>
+  <schema id="io.posidon.Paper.WindowState" path="/io/posidon/Paper/WindowState/">
+    <key name="width" type="i">
+      <default>720</default>
+    </key>
+    <key name="height" type="i">
+      <default>512</default>
+    </key>
+    <key name="maximized" type="b">
+      <default>false</default>
+    </key>
+  </schema>
 </schemalist>

@@ -114,6 +114,11 @@ public class Paper.Window : Adw.ApplicationWindow {
 		    icon_name: Config.APP_ID
 	    );
 
+	    var window_state = new Settings (@"$(Config.APP_ID).WindowState");
+	    window_state.bind ("width", this, "default-width", SettingsBindFlags.DEFAULT);
+	    window_state.bind ("height", this, "default-height", SettingsBindFlags.DEFAULT);
+	    window_state.bind ("maximized", this, "maximized", SettingsBindFlags.DEFAULT);
+
         Gtk.IconTheme.get_for_display (display).add_resource_path ("/io/posidon/Paper/graphics/");
 
         all_notes = new SimpleNoteContainer (Strings.ALL_NOTES, app.notebook_provider.get_all_notes);
