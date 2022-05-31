@@ -1,0 +1,510 @@
+# Russian translation for Paper by Daudix
+# Copyright (C) 2022
+# This file is distributed under the same license as the io.posidon.Paper package.
+# Daudix UFO <ddaudix@gmail.com>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: io.posidon.Paper\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-05-31 12:41+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/app.desktop.in:8 src/ui/strings.vala:3
+msgid "Paper"
+msgstr "Paper"
+
+#: data/app.desktop.in:9
+msgid "Notes Manager"
+msgstr "Менеджер Заметок"
+
+#: data/app.desktop.in:10
+msgid "Take notes"
+msgstr "Делайте Заметки"
+
+#: data/app.desktop.in:12
+msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
+msgstr ""
+"Блокнот;Заметка;Заметки;Текст;Markdown;Писать;Школа;Пости-это;"
+
+#: data/app.desktop.in:21 src/ui/strings.vala:8 src/ui/shortcut_window.blp:17
+#: src/ui/window.blp:46 src/ui/window.blp:167
+msgid "New Note"
+msgstr "Новая Заметка"
+
+#: data/app.desktop.in:25 src/ui/strings.vala:14 src/ui/shortcut_window.blp:32
+#: src/ui/window.blp:192
+msgid "New Notebook"
+msgstr "Новый Блокнот"
+
+#: data/app.desktop.in:29 src/ui/strings.vala:39
+#: src/ui/edit_view/edit_view.blp:113 src/ui/window.blp:140
+msgid "Markdown Cheatsheet"
+msgstr "Шпаргалка Markdown"
+
+#: data/app.desktop.in:33 src/ui/shortcut_window.blp:57
+msgid "Preferences"
+msgstr "Параметры"
+
+#: data/app.gschema.xml:6
+msgid "Font"
+msgstr "Шрифт"
+
+#: data/app.gschema.xml:7 src/ui/preferences.blp:16
+msgid "The font notes will be displayed in"
+msgstr "Шрифт которым будут отображатся заметки"
+
+#: data/app.gschema.xml:11 src/ui/preferences.blp:28
+msgid "OLED Mode"
+msgstr "Режим OLED"
+
+#: data/app.gschema.xml:15
+msgid "Notes Directory"
+msgstr "Каталог Заметок"
+
+#: data/app.gschema.xml:16
+msgid "Where the notebooks are stored"
+msgstr "То где хранятся блокноты"
+
+#: data/app.metainfo.xml.in:5
+msgid "Note-taking app"
+msgstr "Приложение для создания заметок"
+
+#: data/app.metainfo.xml.in:7
+msgid "Create notebooks, take notes in markdown"
+msgstr "Создать блокноты, делать заметки, делать заметки в markdown"
+
+#: data/app.metainfo.xml.in:8
+msgid "Features:"
+msgstr "Функции"
+
+#: data/app.metainfo.xml.in:10
+msgid "Almost WYSIWYG markdown rendering"
+msgstr "Рендеринг markdown почти как WYSIWYG"
+
+#: data/app.metainfo.xml.in:11
+msgid "Searchable through GNOME search"
+msgstr "Доступен для поиска через поиск GNOME"
+
+#: data/app.metainfo.xml.in:12
+msgid "Highlight &amp; Strikethrough text formatting"
+msgstr "Выделение &amp; Зачеркнутое форматирование текста"
+
+#: data/app.metainfo.xml.in:13
+msgid "App recoloring based on notebook color"
+msgstr "Перекрашивание приложения на основе цвета блокнота"
+
+#: data/app.metainfo.xml.in:14
+msgid "Trash can"
+msgstr "Мусорная корзина"
+
+#: data/app.metainfo.xml.in:79
+msgid "Markdown document"
+msgstr "Документ markdown"
+
+#: src/ui/strings.vala:4
+msgid "Trash"
+msgstr "Корзина"
+
+#: src/ui/strings.vala:5
+#, c-format
+msgid "%d Notes"
+msgstr "%d Заметки"
+
+#: src/ui/strings.vala:6
+msgid "Are you sure you want to delete everything in the trash?"
+msgstr "Вы уверены что вы хотите удалить всё из корзины?"
+
+#: src/ui/strings.vala:7 src/ui/window.blp:53
+msgid "Empty Trash"
+msgstr "Очистить Корзину"
+
+#: src/ui/strings.vala:9
+msgid "Create/choose a notebook before creating a note"
+msgstr "Создайте/выберите блокнот прежде чем делать заметки"
+
+#: src/ui/strings.vala:10
+msgid "Please, select a note to edit"
+msgstr "Пожалуйста, выберите заметку для редактирования"
+
+#: src/ui/strings.vala:11
+msgid "Please, select a note to delete"
+msgstr "Пожалуйста, выберите заметку для удаления"
+
+#: src/ui/strings.vala:12
+msgid "Export Note"
+msgstr "Экспортировать Заметку"
+
+#: src/ui/strings.vala:13
+msgid "Export"
+msgstr "Экспорт"
+
+#: src/ui/strings.vala:15
+msgid "Rename Note"
+msgstr "Переименовать Заметку"
+
+#: src/ui/strings.vala:16
+msgid "Move to Notebook"
+msgstr "Переместить в Блокнот"
+
+#: src/ui/strings.vala:17
+msgid "Move"
+msgstr "Переместить"
+
+#: src/ui/strings.vala:18
+#, c-format
+msgid "Note “%s” already exists in notebook “%s”"
+msgstr "Заметка “%s” уже существует в блокноте “%s”"
+
+#: src/ui/strings.vala:19
+#, c-format
+msgid "Are you sure you want to delete the note “%s”?"
+msgstr "Вы уверены что вы хотите удалить заметку “%s”?"
+
+#: src/ui/strings.vala:20
+msgid "Delete Note"
+msgstr "Удалить Заметку"
+
+#: src/ui/strings.vala:21
+#, c-format
+msgid "Are you sure you want to delete the notebook “%s”?"
+msgstr "Вы уверены что вы хотите удалить блокнот “%s”?"
+
+#: src/ui/strings.vala:22
+msgid "Delete Notebook"
+msgstr "Удалить Блокнот"
+
+#: src/ui/strings.vala:23 src/ui/shortcut_window.blp:37
+msgid "Edit Notebook"
+msgstr "Изменить Блокнот"
+
+#: src/ui/strings.vala:24
+msgid "Note name shouldn’t contain “.” or “/”"
+msgstr "Помните что имя не должно содержать “.” или “/”"
+
+#: src/ui/strings.vala:25
+msgid "Note name shouldn’t be blank"
+msgstr "Помните что имя не должно быть пустым"
+
+#: src/ui/strings.vala:26
+#, c-format
+msgid "Note “%s” already exists"
+msgstr "Заметка “%s” уже существует"
+
+#: src/ui/strings.vala:27
+msgid "Couldn’t create note"
+msgstr "Не удалось создать заметку"
+
+#: src/ui/strings.vala:28
+msgid "Couldn’t change note"
+msgstr "Не удалось изменить заметку"
+
+#: src/ui/strings.vala:29
+msgid "Couldn’t delete note"
+msgstr "Не удалось удалить заметку"
+
+#: src/ui/strings.vala:30
+msgid "Couldn’t restore note"
+msgstr "Не удалось восстановить заметку"
+
+#: src/ui/strings.vala:31
+#, c-format
+msgid "Saved “%s” to “%s”"
+msgstr "Сохранено “%s” в “%s”"
+
+#: src/ui/strings.vala:32
+msgid "Unknown error"
+msgstr "Неизвестная ошибка"
+
+#: src/ui/strings.vala:33
+msgid "Notebook name shouldn’t contain “.” or “/”"
+msgstr "Имя блокнота не должно содержать “.” или “/”"
+
+#: src/ui/strings.vala:34
+msgid "Notebook name shouldn’t be blank"
+msgstr "Имя блокнота не должно быть пустым"
+
+#: src/ui/strings.vala:35
+#, c-format
+msgid "Notebook “%s” already exists"
+msgstr "Блокнот “%s” уже существует"
+
+#: src/ui/strings.vala:36
+msgid "Couldn’t create notebook"
+msgstr "Не удалось создать блокнот"
+
+#: src/ui/strings.vala:37
+msgid "Couldn’t change notebook"
+msgstr "Не удалось изменить блокнот"
+
+#: src/ui/strings.vala:38
+msgid "Couldn’t delete notebook"
+msgstr "Не удалось удалить блокнот"
+
+#: src/ui/strings.vala:40
+msgid "Search"
+msgstr "Поиск"
+
+#: src/ui/strings.vala:41 src/ui/notebook_sidebar/note_menu.blp:36
+msgid "Rename"
+msgstr "Переименовать"
+
+#: src/ui/strings.vala:42
+msgid "Couldn’t find an app to handle file uris"
+msgstr "Не удалось найти приложение для обработки uris файлов"
+
+#: src/ui/strings.vala:43
+msgid "Apply"
+msgstr "Применить"
+
+#: src/ui/strings.vala:44
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:34
+msgid "Cancel"
+msgstr "Отмена"
+
+#: src/ui/strings.vala:45
+msgid "Pick where the notebooks will be stored"
+msgstr "Выберите где блокноты будут хранится"
+
+#: src/ui/strings.vala:46
+msgid "All Notes"
+msgstr "Все Заметки"
+
+#: src/ui/edit_view/edit_view.blp:50 src/ui/markdown/heading_popover.blp:48
+msgid "Plain Text"
+msgstr "Простой текст"
+
+#: src/ui/edit_view/edit_view.blp:51 src/ui/markdown/heading_popover.blp:12
+msgid "Heading 1"
+msgstr "Заголовок 1"
+
+#: src/ui/edit_view/edit_view.blp:52 src/ui/markdown/heading_popover.blp:18
+msgid "Heading 2"
+msgstr "Заголовок 2"
+
+#: src/ui/edit_view/edit_view.blp:53 src/ui/markdown/heading_popover.blp:24
+msgid "Heading 3"
+msgstr "Заголовок 3"
+
+#: src/ui/edit_view/edit_view.blp:54 src/ui/markdown/heading_popover.blp:30
+msgid "Heading 4"
+msgstr "Заголовок 4"
+
+#: src/ui/edit_view/edit_view.blp:55 src/ui/markdown/heading_popover.blp:36
+msgid "Heading 5"
+msgstr "Заголовок 5"
+
+#: src/ui/edit_view/edit_view.blp:56 src/ui/markdown/heading_popover.blp:42
+msgid "Heading 6"
+msgstr "Заголовок 6"
+
+#: src/ui/edit_view/edit_view.blp:67 src/ui/shortcut_window.blp:67
+msgid "Bold"
+msgstr "Жирный"
+
+#: src/ui/edit_view/edit_view.blp:73 src/ui/shortcut_window.blp:72
+msgid "Italic"
+msgstr "Курсив"
+
+#: src/ui/edit_view/edit_view.blp:79 src/ui/shortcut_window.blp:77
+msgid "Strikethrough"
+msgstr "Зачеркнутый"
+
+#: src/ui/edit_view/edit_view.blp:85 src/ui/shortcut_window.blp:82
+msgid "Highlight"
+msgstr "Выделение"
+
+#: src/ui/edit_view/edit_view.blp:95 src/ui/shortcut_window.blp:87
+msgid "Insert Link"
+msgstr "Вставить Ссылку"
+
+#: src/ui/edit_view/edit_view.blp:101
+msgid "Insert Code"
+msgstr "Вставить Код"
+
+#: src/ui/notebooks_bar/notebook_create_popup.blp:54
+msgid "Notebook Name"
+msgstr "Имя Блокнота"
+
+#: src/ui/notebooks_bar/notebook_create_popup.blp:72
+msgid "First Characters"
+msgstr "Первые Буквы"
+
+#: src/ui/notebooks_bar/notebook_create_popup.blp:73
+msgid "Initials"
+msgstr "Инициалы"
+
+#: src/ui/notebooks_bar/notebook_create_popup.blp:74
+msgid "Initials: camelCase"
+msgstr "Инициалы: camelCase"
+
+#: src/ui/notebooks_bar/notebook_create_popup.blp:75
+msgid "Initials: snake_case"
+msgstr "Инициалы: snake_case"
+
+#: src/ui/notebooks_bar/notebook_create_popup.blp:76
+msgid "Icon"
+msgstr "Значок"
+
+#: src/ui/notebooks_bar/notebook_create_popup.blp:106
+msgid "Notebook Color"
+msgstr "Цвет Блокнота"
+
+#: src/ui/notebooks_bar/notebook_create_popup.blp:116
+msgid "Create Notebook"
+msgstr "Создать Блокнот"
+
+#: src/ui/notebooks_bar/notebook_menu.blp:16
+msgid "Edit"
+msgstr "Изменить"
+
+#: src/ui/notebooks_bar/notebook_menu.blp:26
+msgid "Move all to Trash"
+msgstr "Переместить всё в корзину"
+
+#: src/ui/notebooks_bar/notebooks_bar.blp:73
+msgid "_New Notebook"
+msgstr "_Новый Блокнот"
+
+#: src/ui/notebooks_bar/notebooks_bar.blp:77
+msgid "_Edit Notebook"
+msgstr "_Изменить блокнот"
+
+#: src/ui/notebooks_bar/notebooks_bar.blp:83
+msgid "_Preferences"
+msgstr "_Параметры"
+
+#: src/ui/notebooks_bar/notebooks_bar.blp:87
+msgid "_Keyboard Shortcuts"
+msgstr "_Комбинации клавиш"
+
+#: src/ui/notebooks_bar/notebooks_bar.blp:91
+msgid "_About"
+msgstr "_О Paper"
+
+#: src/ui/notebook_sidebar/note_create_popup.blp:37
+msgid "Note Name"
+msgstr "Имя Заметки"
+
+#: src/ui/notebook_sidebar/note_create_popup.blp:46
+msgid "Create Note"
+msgstr "Создать Заметку"
+
+#: src/ui/notebook_sidebar/note_menu.blp:16
+msgid "Restore from Trash"
+msgstr "Восстановить из Корзины"
+
+#: src/ui/notebook_sidebar/note_menu.blp:26
+msgid "Delete from Trash"
+msgstr "Удалить из Корзины"
+
+#: src/ui/notebook_sidebar/note_menu.blp:46
+msgid "Move to Notebook…"
+msgstr "Переместить в Блокнот…"
+
+#: src/ui/notebook_sidebar/note_menu.blp:56
+msgid "Move to Trash"
+msgstr "Переместить в Корзину"
+
+#: src/ui/notebook_sidebar/note_menu.blp:66
+msgid "Open Containing Folder"
+msgstr "Открыть содержащую папку"
+
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
+msgid "Confirm"
+msgstr "Подтвердить"
+
+#: src/ui/preferences.blp:15
+msgid "Note Font"
+msgstr "Шрифт Заметок"
+
+#: src/ui/preferences.blp:21
+msgid "Pick a font for displaying the notes' content"
+msgstr "Выберите шрифт для отображения содержимого заметок'"
+
+#: src/ui/preferences.blp:29
+msgid "Makes the dark theme pitch black"
+msgstr "Делает темную тему черной как смола"
+
+#: src/ui/preferences.blp:41
+msgid "Notes Storage Location"
+msgstr "Место Хранения Заметок"
+
+#: src/ui/preferences.blp:42
+msgid "Where the notebooks are stored (requires app restart)"
+msgstr "Где хранятся блокноты (требует перезапуск приложения)"
+
+#: src/ui/shortcut_window.blp:14
+msgid "Note"
+msgstr "Заметка"
+
+#: src/ui/shortcut_window.blp:22
+msgid "Edit Note"
+msgstr "Изменить Заметку"
+
+#: src/ui/shortcut_window.blp:29
+msgid "Notebook"
+msgstr "Блокнот"
+
+#: src/ui/shortcut_window.blp:44
+msgid "General"
+msgstr "Общее"
+
+#: src/ui/shortcut_window.blp:47
+msgid "Show Keyboard Shortcuts"
+msgstr "Показать Сочетания Клавиш"
+
+#: src/ui/shortcut_window.blp:52
+msgid "Quit"
+msgstr "Выйти"
+
+#: src/ui/shortcut_window.blp:64
+msgid "Formatting"
+msgstr "Форматирование"
+
+#: src/ui/shortcut_window.blp:94
+msgid "Navigation"
+msgstr "Навигация"
+
+#: src/ui/shortcut_window.blp:97 src/ui/window.blp:112
+msgid "Toggle Sidebar"
+msgstr "Переключить Боковую панель"
+
+#: src/ui/shortcut_window.blp:102 src/ui/window.blp:62
+msgid "Search Notes"
+msgstr "Поиск Заметок"
+
+#: src/ui/window.blp:120
+msgid "Back"
+msgstr "Назад"
+
+#: src/ui/window.blp:133
+msgid "Open in Notebook"
+msgstr "Открыть в Блокноте"
+
+#: src/ui/window.blp:161
+msgid "Get started writing"
+msgstr "Начать писать"
+
+#: src/ui/window.blp:186
+msgid "Create a notebook"
+msgstr "Создать блокнот"
+
+#: src/ui/window.blp:211
+msgid "Trash is empty"
+msgstr "Корзина пуста"
+
+#: src/ui/window.blp:224
+msgid "_Rename Note"
+msgstr "_Переименовать Заметку"
+
+#: src/ui/window.blp:230
+msgid "_Export Note"
+msgstr "_Экспортировать Заметку"
