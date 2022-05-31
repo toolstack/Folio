@@ -95,7 +95,7 @@ install_data('paper_markdown.xml',
 install_data('paper_markdown_dark.xml',
   install_dir: get_option('datadir') / 'gtksourceview-5' / 'styles'
 )
-install_data('markdown.lang',
+install_data('markdownpp.lang',
   install_dir: get_option('datadir') / 'gtksourceview-5' / 'language-specs'
 )
 
