@@ -18,6 +18,40 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
+    <release type="stable" version="22.6" date="2022-06-02">
+      <description translatable="no">
+	      <p>New Stuff:</p>
+        <ul>
+          <li>Added more icons for notebooks</li>
+          <li>Added ability to drag notes to a notebook, to move them</li>
+          <li>Made window state get saved</li>
+        </ul>
+	      <p>Translations:</p>
+        <ul>
+          <li>French</li>
+          <li>Portuguese (Brazilian)</li>
+          <li>Occitan</li>
+          <li>Russian</li>
+        </ul>
+	      <p>UI Tweaks:</p>
+        <ul>
+          <li>Made headings more compact</li>
+          <li>Improved mobile toolbar layout</li>
+          <li>Improved contrast for OLED mode</li>
+          <li>Made note cards look closer to normal GNOME sidebars</li>
+          <li>Removed search from preferences window</li>
+          <li>Improved the preferences UI</li>
+          <li>Redesigned app icons</li>
+        </ul>
+	      <p>Fixed:</p>
+        <ul>
+          <li>Blurry icon in notebook creation popup</li>
+          <li>Sidebar folding glitchiness</li>
+          <li>Emojis not being properly displayed in notebook icons</li>
+          <li>Random bugs with deleting &amp; creating notes</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="22.5" date="2022-05-24">
       <description translatable="no">
 	      <p>This update brings the setting to change where notebooks are stored, among other improvements:</p>
