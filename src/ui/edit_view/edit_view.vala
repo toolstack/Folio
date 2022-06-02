@@ -9,6 +9,9 @@ public class Paper.EditView : Gtk.Box {
 	unowned Gtk.ComboBox format_heading_type;
 
 	[GtkChild]
+	unowned Gtk.ComboBox format_heading_type_mobile;
+
+	[GtkChild]
 	unowned GtkMarkdown.View text_view;
 
 	[GtkChild]
@@ -22,12 +25,7 @@ public class Paper.EditView : Gtk.Box {
 	    }
 	}
 
-	public bool compacted {
-	    get { return !format_heading_type.visible; }
-	    set {
-            format_heading_type.visible = !value;
-	    }
-	}
+	public bool compacted { get; set; }
 
 	public Gdk.RGBA theme_color {
 	    get { return text_view.theme_color; }
@@ -61,12 +59,19 @@ public class Paper.EditView : Gtk.Box {
             Gtk.TextIter cur;
             text_view.buffer.get_iter_at_mark (out cur, ins);
             format_heading_type.active = (int) text_view.get_title_level (cur.get_line ());
+            format_heading_type_mobile.active = (int) text_view.get_title_level (cur.get_line ());
         }));
         format_heading_type.changed.connect (() => {
             var ins = text_view.buffer.get_insert ();
             Gtk.TextIter cur;
             text_view.buffer.get_iter_at_mark (out cur, ins);
             text_view.set_title_level (cur.get_line (), format_heading_type.active);
+        });
+        format_heading_type_mobile.changed.connect (() => {
+            var ins = text_view.buffer.get_insert ();
+            Gtk.TextIter cur;
+            text_view.buffer.get_iter_at_mark (out cur, ins);
+            text_view.set_title_level (cur.get_line (), format_heading_type_mobile.active);
         });
     }
 

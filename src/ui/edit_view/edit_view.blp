@@ -45,6 +45,7 @@ template PaperEditView : Box {
       styles ["toolbar"]
 
       ComboBoxText format_heading_type {
+        visible: bind PaperEditView.compacted inverted;
 
         items [
           p: _("Plain Text"),
@@ -58,61 +59,155 @@ template PaperEditView : Box {
       }
 
       Separator {
-        visible: bind format_heading_type.visible;
+        visible: bind PaperEditView.compacted inverted;
         styles ["spacer"]
       }
 
       Button {
+        hexpand: bind PaperEditView.compacted;
         icon-name: "format-text-bold-symbolic";
         tooltip-text: _("Bold");
         action-name: "app.format-bold";
       }
 
       Button {
+        hexpand: bind PaperEditView.compacted;
         icon-name: "format-text-italic-symbolic";
         tooltip-text: _("Italic");
         action-name: "app.format-italic";
       }
 
       Button {
+        visible: bind PaperEditView.compacted inverted;
         icon-name: "format-text-strikethrough-symbolic";
         tooltip-text: _("Strikethrough");
         action-name: "app.format-strikethrough";
       }
 
       Button {
+        visible: bind PaperEditView.compacted inverted;
         icon-name: "format-text-highlight-symbolic";
         tooltip-text: _("Highlight");
         action-name: "app.format-highlight";
       }
 
       Separator {
+        visible: bind PaperEditView.compacted inverted;
         styles ["spacer"]
       }
 
       Button {
+        visible: bind PaperEditView.compacted inverted;
         icon-name: "insert-link-symbolic";
         tooltip-text: _("Insert Link");
         action-name: "app.insert-link";
       }
 
       Button {
+        visible: bind PaperEditView.compacted inverted;
         icon-name: "code-symbolic";
         tooltip-text: _("Insert Code");
         action-name: "app.insert-code-span";
       }
 
       Box {
-        visible: bind format_heading_type.visible;
+        visible: bind PaperEditView.compacted inverted;
         hexpand: true;
       }
 
+      MenuButton {
+        visible: bind PaperEditView.compacted;
+        hexpand: true;
+        icon-name: "format-text-rich-symbolic";
+        tooltip-text: _("Format");
+        popover: Popover {
+
+          styles ["custom-popover-menu"]
+
+          child: Box {
+            orientation: vertical;
+            spacing: 6;
+
+            ComboBoxText format_heading_type_mobile {
+
+              items [
+                p: _("Plain Text"),
+                h1: _("Heading 1"),
+                h2: _("Heading 2"),
+                h3: _("Heading 3"),
+                h4: _("Heading 4"),
+                h5: _("Heading 5"),
+                h6: _("Heading 6"),
+              ]
+            }
+
+            Separator {}
+
+            Box {
+              orientation: horizontal;
+
+              Button {
+                icon-name: "format-text-bold-symbolic";
+                tooltip-text: _("Bold");
+                action-name: "app.format-bold";
+                styles ["flat", "modelbutton"]
+              }
+
+              Button {
+                icon-name: "format-text-italic-symbolic";
+                tooltip-text: _("Italic");
+                action-name: "app.format-italic";
+                styles ["flat", "modelbutton"]
+              }
+
+              Button {
+                icon-name: "format-text-strikethrough-symbolic";
+                tooltip-text: _("Strikethrough");
+                action-name: "app.format-strikethrough";
+                styles ["flat", "modelbutton"]
+              }
+
+              Button {
+                icon-name: "format-text-highlight-symbolic";
+                tooltip-text: _("Highlight");
+                action-name: "app.format-highlight";
+                styles ["flat", "modelbutton"]
+              }
+            }
+          };
+        };
+      }
+
+      MenuButton {
+        visible: bind PaperEditView.compacted;
+        hexpand: true;
+        icon-name: "insert-object-symbolic";
+        tooltip-text: _("Insert");
+        menu-model: insert_menu;
+      }
+
       Button {
-        visible: bind format_heading_type.visible;
+        visible: bind PaperEditView.compacted inverted;
         icon-name: "dialog-information-symbolic";
         tooltip-text: _("Markdown Cheatsheet");
         action-name: "app.markdown-cheatsheet";
       }
     }
+  }
+}
+
+menu insert_menu {
+  section {
+    item (_("Insert Link"), "app.insert-link", "insert-link-symbolic")
+    item (_("Insert Code"), "app.insert-code-span", "code-symbolic")
+  }
+}
+
+menu format_menu {
+  section {
+    item (_("Bold"), "app.format-bold", "format-text-bold-symbolic")
+    item (_("Italic"), "app.format-italic", "format-text-italic-symbolic")
+    item (_("Strikethrough"), "app.format-strikethrough", "format-text-strikethrough-symbolic")
+    item (_("Highlight"), "app.format-highlight", "format-text-highlight-symbolic")
   }
 }
