@@ -166,6 +166,23 @@ public class Paper.Window : Adw.ApplicationWindow {
 
         notebook_notes_list_scroller.vadjustment.notify["value"].connect (update_sidebar_scroll);
         notes_search_bar.notify["search-mode-enabled"].connect (() => on_searchbar_mode_changed (notes_search_bar.search_mode_enabled));
+
+        // Zen mode
+        // Autohide headerbar_edit_view when typing and leaflet is closed
+        edit_view.buffer.notify["begin-user-action"].connect (() => {
+            // Only hide if leaflet is folded
+            if((leaflet.folded) && (headerbar_edit_view.is_visible())) {
+                headerbar_edit_view.set_visible(false);
+            }
+        });
+
+        // Show controls when You stop typing
+        edit_view.buffer.notify["end-user-action"].connect (() => {
+            // Only show if headerbar is hidden
+            if(!(headerbar_edit_view.is_visible())) {
+                headerbar_edit_view.set_visible(true);
+            }
+        });
 	}
 
 	public void update_notebooks (Application app) {
