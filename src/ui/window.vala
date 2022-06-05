@@ -143,6 +143,7 @@ public class Paper.Window : Adw.ApplicationWindow {
         button_back.clicked.connect (() => navigate_to_notes ());
 
         leaflet.notify["folded"].connect (() => {
+            update_title_buttons ();
             if (leaflet.folded) {
 	            update_editability ();
 	            notebook_notes_model.unselect_item (notebook_notes_model.selected);
@@ -152,6 +153,8 @@ public class Paper.Window : Adw.ApplicationWindow {
 	            notebook_notes_model.selected = current_container.loaded_notes.index_of (current_note);
             }
         });
+        sidebar_revealer.notify["reveal-child"].connect (update_title_buttons);
+        update_title_buttons ();
 
         edit_view.scrolled_window.vadjustment.notify["value"].connect (() => {
             var v = edit_view.scrolled_window.vadjustment.value;
@@ -316,6 +319,10 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 	private void update_editability () {
 	    edit_view.is_editable = current_note != null && current_state == State.NOTEBOOK;
+	}
+
+	private void update_title_buttons () {
+        headerbar_edit_view.show_start_title_buttons = leaflet.folded || !sidebar_revealer.reveal_child;
 	}
 
 	public enum State {
