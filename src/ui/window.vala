@@ -188,6 +188,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 	public GtkMarkdown.Buffer? set_note (Note? note) {
         optional_save ();
 	    current_note = note;
+	    update_note_title ();
 	    update_editability ();
 	    if (note != null) {
 	        note_title.title = note.name;
@@ -322,7 +323,14 @@ public class Paper.Window : Adw.ApplicationWindow {
 	}
 
 	private void update_title_buttons () {
-        headerbar_edit_view.show_start_title_buttons = leaflet.folded || !sidebar_revealer.reveal_child;
+	    var is_sidebar_hidden = leaflet.folded || !sidebar_revealer.reveal_child;
+        headerbar_edit_view.show_start_title_buttons = is_sidebar_hidden;
+        update_note_title ();
+	}
+
+	private void update_note_title () {
+	    var is_sidebar_hidden = leaflet.folded || !sidebar_revealer.reveal_child;
+        note_title.subtitle = is_sidebar_hidden ? current_note.notebook.name : null;
 	}
 
 	public enum State {
