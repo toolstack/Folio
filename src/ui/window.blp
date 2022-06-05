@@ -86,67 +86,22 @@ template PaperWindow : Adw.ApplicationWindow {
 
         navigatable: true;
 
-        child: Box {
+        child: Overlay {
 
           hexpand: true;
           vexpand: true;
-          orientation: vertical;
           width-request: 320;
 
           styles ["text-area"]
 
-          Adw.HeaderBar headerbar_edit_view {
-
-            hexpand: true;
-            vexpand: false;
-            visible: true;
-            valign: start;
-
-            [title]
-            Adw.WindowTitle note_title {}
-
-            [start]
-            ToggleButton {
-              icon-name: "sidebar-show-symbolic";
-              tooltip-text: _("Toggle Sidebar");
-              active: bind sidebar_revealer.reveal_child bidirectional;
-              visible: bind leaflet.folded inverted;
-            }
-
-            [start]
-            Button button_back {
-              icon-name: "go-previous-symbolic";
-              tooltip-text: _("Back");
-              visible: bind leaflet.folded;
-            }
-
-            [end]
-            MenuButton button_more_menu {
-              icon-name: "view-more-symbolic";
-              menu-model: more_menu;
-            }
-
-            [end]
-            Button button_open_in_notebook {
-              icon-name: "document-edit-symbolic";
-              tooltip-text: _("Open in Notebook");
-            }
-
-            [end]
-            Button {
-              visible: bind leaflet.folded;
-              icon-name: "dialog-information-symbolic";
-              tooltip-text: _("Markdown Cheatsheet");
-              action-name: "app.markdown-cheatsheet";
-            }
-          }
-
+          [overlay]
           .PaperEditView edit_view {
             hexpand: true;
             vexpand: true;
             compacted: bind leaflet.folded;
           }
 
+          [overlay]
           Box text_view_empty_notebook {
 
             hexpand: true;
@@ -172,6 +127,7 @@ template PaperWindow : Adw.ApplicationWindow {
             }
           }
 
+          [overlay]
           Box text_view_no_notebook {
 
             hexpand: true;
@@ -197,6 +153,7 @@ template PaperWindow : Adw.ApplicationWindow {
             }
           }
 
+          [overlay]
           Box text_view_empty_trash {
 
             hexpand: true;
@@ -210,6 +167,58 @@ template PaperWindow : Adw.ApplicationWindow {
               label: _("Trash is empty");
               styles ["large-title"]
             }
+          }
+
+          [overlay]
+          Revealer headerbar_edit_view_revealer {
+            valign: start;
+            reveal-child: true;
+            transition-type: crossfade;
+
+            child: Adw.HeaderBar headerbar_edit_view {
+
+              hexpand: true;
+              vexpand: false;
+              visible: true;
+
+              [title]
+              Adw.WindowTitle note_title {}
+
+              [start]
+              ToggleButton {
+                icon-name: "sidebar-show-symbolic";
+                tooltip-text: _("Toggle Sidebar");
+                active: bind sidebar_revealer.reveal_child bidirectional;
+                visible: bind leaflet.folded inverted;
+              }
+
+              [start]
+              Button button_back {
+                icon-name: "go-previous-symbolic";
+                tooltip-text: _("Back");
+                visible: bind leaflet.folded;
+              }
+
+              [end]
+              MenuButton button_more_menu {
+                icon-name: "view-more-symbolic";
+                menu-model: more_menu;
+              }
+
+              [end]
+              Button button_open_in_notebook {
+                icon-name: "document-edit-symbolic";
+                tooltip-text: _("Open in Notebook");
+              }
+
+              [end]
+              Button {
+                visible: bind leaflet.folded;
+                icon-name: "dialog-information-symbolic";
+                tooltip-text: _("Markdown Cheatsheet");
+                action-name: "app.markdown-cheatsheet";
+              }
+            };
           }
         };
       }

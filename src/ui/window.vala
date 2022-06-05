@@ -86,6 +86,9 @@ public class Paper.Window : Adw.ApplicationWindow {
 	unowned Adw.HeaderBar headerbar_edit_view;
 
 	[GtkChild]
+	unowned Gtk.Revealer headerbar_edit_view_revealer;
+
+	[GtkChild]
 	unowned Gtk.Box text_view_empty_notebook;
 
 	[GtkChild]
@@ -167,22 +170,23 @@ public class Paper.Window : Adw.ApplicationWindow {
         notebook_notes_list_scroller.vadjustment.notify["value"].connect (update_sidebar_scroll);
         notes_search_bar.notify["search-mode-enabled"].connect (() => on_searchbar_mode_changed (notes_search_bar.search_mode_enabled));
 
-        // Zen mode
-        // Autohide headerbar_edit_view when typing and leaflet is closed
-        edit_view.buffer.notify["begin-user-action"].connect (() => {
-            // Only hide if leaflet is folded
-            if((leaflet.folded) && (headerbar_edit_view.is_visible())) {
-                headerbar_edit_view.set_visible(false);
-            }
+        var motion_controller = new Gtk.EventControllerMotion ();
+        double x = 0, y = 0;
+        motion_controller.enter.connect ((_x, _y) => {
+            x = _x;
+            y = _y;
         });
-
-        // Show controls when You stop typing
-        edit_view.buffer.notify["end-user-action"].connect (() => {
-            // Only show if headerbar is hidden
-            if(!(headerbar_edit_view.is_visible())) {
-                headerbar_edit_view.set_visible(true);
+        motion_controller.motion.connect ((_x, _y) => {
+            // Only hide in desktop no sidebar mode
+            if (!sidebar_revealer.reveal_child) {
+                var dx = _x - x, dy = _y - y;
+                if (dx != 0 || dy != 0)
+                    headerbar_edit_view_revealer.reveal_child = true;
             }
+            x = _x;
+            y = _y;
         });
+        edit_view_page.child.add_controller (motion_controller);
 	}
 
 	public void update_notebooks (Application app) {
@@ -215,6 +219,13 @@ public class Paper.Window : Adw.ApplicationWindow {
 	        var n = note.notebook.loaded_notes;
 	        if (n != null)
                 select_note (n.index_of (note));
+            // Zen mode
+            // Autohide headerbar_edit_view when typing in desktop no sidebar mode
+            current_buffer.begin_user_action.connect (() => {
+                // Only hide in desktop no sidebar mode
+                if (!sidebar_revealer.reveal_child)
+                    headerbar_edit_view_revealer.reveal_child = false;
+            });
 	    } else {
 	        note_title.title = null;
 	        set_text_view_state (TextViewState.EMPTY_NOTEBOOK);
