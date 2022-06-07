@@ -16,7 +16,7 @@
   <color name="literal"                     value="#074228"/>
 
 	<style name="markdown:backslash-escape"   foreground="escape" bold="true"/>
-\
+
 	<style name="markdown:list-marker"        foreground="#rgba(0,0,0,0.3)"/>
 	<style name="markdown:image-marker"       foreground="#rgba(0,0,0,0.3)" bold="true"/>
 

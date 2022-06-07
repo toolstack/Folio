@@ -156,4 +156,14 @@ public class Paper.EditView : Gtk.Box {
 	    b.insert_at_cursor ("`", 1);
 	    b.end_user_action ();
 	}
+
+	public void insert_horizontal_rule () {
+	    var b = text_view.buffer;
+	    b.begin_user_action ();
+	    var mark = b.get_selection_bound ();
+	    Gtk.TextIter iter;
+	    b.get_iter_at_mark (out iter, mark);
+	    b.insert (ref iter, "\n- - -\n", 7);
+	    b.end_user_action ();
+	}
 }

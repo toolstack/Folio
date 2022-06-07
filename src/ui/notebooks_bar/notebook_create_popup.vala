@@ -28,7 +28,7 @@ public class Paper.NotebookCreatePopup : Adw.Window {
 
         var model = new Gtk.SingleSelection (new Gtk.StringList ({
             "dialog-information-symbolic",
-            "code-symbolic",
+            "icon-code-symbolic",
             "icon-heart-symbolic",
             "icon-like-symbolic",
             "icon-music-symbolic",

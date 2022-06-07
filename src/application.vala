@@ -22,19 +22,26 @@ public class Paper.Application : Adw.Application {
 		{ "edit-note", on_edit_note },
 		{ "delete-note", on_delete_note },
 		{ "export-note", on_export_note },
+
 		{ "new-notebook", on_new_notebook },
 		{ "edit-notebook", on_edit_notebook },
 		{ "delete-notebook", on_delete_notebook },
+
 		{ "format-bold", on_format_bold },
 		{ "format-italic", on_format_italic },
 		{ "format-strikethrough", on_format_strikethrough },
 		{ "format-highlight", on_format_highlight },
+
 		{ "insert-link", on_insert_link },
 		{ "insert-code-span", on_insert_code_span },
+		{ "insert-horizontal-rule", on_insert_horizontal_rule },
+
 		{ "markdown-cheatsheet", on_markdown_cheatsheet },
 		{ "toggle-sidebar", on_toggle_sidebar },
 		{ "search-notes", on_search_notes },
+
 		{ "empty-trash", on_empty_trash },
+
 		{ "about", on_about_action },
 		{ "preferences", on_preferences_action },
 		{ "quit", quit }
@@ -73,7 +80,9 @@ public class Paper.Application : Adw.Application {
 		set_accels_for_action ("app.format-italic", {"<primary>i"});
 		set_accels_for_action ("app.format-strikethrough", {"<primary>t"});
 		set_accels_for_action ("app.format-highlight", {"<primary>h"});
+
 		set_accels_for_action ("app.insert-link", {"<primary>k"});
+		set_accels_for_action ("app.insert-horizontal-rule", {"<primary>Return"});
 
 		set_accels_for_action ("app.toggle-sidebar", {"F9"});
 		set_accels_for_action ("app.search-notes", {"<primary>f"});
@@ -140,6 +149,8 @@ public class Paper.Application : Adw.Application {
 	private void on_insert_link () { window.edit_view.insert_link (); }
 
 	private void on_insert_code_span () { window.edit_view.insert_code_span (); }
+
+	private void on_insert_horizontal_rule () { window.edit_view.insert_horizontal_rule (); }
 
 	private void on_markdown_cheatsheet () {
         var w = new MarkdownCheatsheet (this);

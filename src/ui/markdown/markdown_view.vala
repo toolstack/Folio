@@ -282,9 +282,8 @@ public class GtkMarkdown.View : GtkSource.View {
             text_tag_blockquote.right_margin = 32;
 
             text_tag_blockquote_marker = get_or_create_tag ("markdown-blockquote-marker");
-            var c = tinted_foreground;
-            text_tag_blockquote_marker.background_rgba = c;
-            text_tag_blockquote_marker.foreground_rgba = c;
+            text_tag_blockquote_marker.background_rgba = tinted_foreground;
+            text_tag_blockquote_marker.foreground_rgba = tinted_foreground;
             text_tag_blockquote_marker.size_points = 8;
 
             text_tag_horizontal_rule = get_or_create_tag ("markdown-horizontal-rule");

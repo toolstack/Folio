@@ -105,9 +105,16 @@ template PaperEditView : Box {
 
       Button {
         visible: bind PaperEditView.compacted inverted;
-        icon-name: "code-symbolic";
+        icon-name: "insert-code-symbolic";
         tooltip-text: _("Insert Code");
         action-name: "app.insert-code-span";
+      }
+
+      Button {
+        visible: bind PaperEditView.compacted inverted;
+        icon-name: "insert-horizontal-rule-symbolic";
+        tooltip-text: _("Insert Horizontal Rule");
+        action-name: "app.insert-horizontal-rule";
       }
 
       Box {
@@ -199,7 +206,8 @@ template PaperEditView : Box {
 menu insert_menu {
   section {
     item (_("Insert Link"), "app.insert-link", "insert-link-symbolic")
-    item (_("Insert Code"), "app.insert-code-span", "code-symbolic")
+    item (_("Insert Code"), "app.insert-code-span", "insert-code-symbolic")
+    item (_("Insert Horizontal Rule"), "app.insert-horizontal-rule", "horizontal-rule-symbolic")
   }
 }
 
