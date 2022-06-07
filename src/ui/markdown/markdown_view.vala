@@ -41,7 +41,7 @@ public class GtkMarkdown.View : GtkSource.View {
         }
     }
 
-    public Gdk.RGBA escape_color {
+    public Gdk.RGBA tinted_foreground {
         get {
             var hsl = Color.rgb_to_hsl (Color.RGBA_to_rgb (theme_color));
             hsl.l = 0.5f;
@@ -132,6 +132,7 @@ public class GtkMarkdown.View : GtkSource.View {
 	private Regex is_strikethrough_0;
 	private Regex is_strikethrough_1;
 	private Regex is_highlight;
+	private Regex is_blockquote;
 
     construct {
         try {
@@ -172,6 +173,14 @@ public class GtkMarkdown.View : GtkSource.View {
 	        is_strikethrough_0 = new Regex ("((?<!\\~)\\~)([^\\~ \\t].*?(?<!\\\\|\\~| |\\t))(\\~(?!\\~))", f, 0);
 	        is_strikethrough_1 = new Regex ("(~~)([^~ \\t].*?(?<!\\\\|~| |\\t))(~~)", f, 0);
 	        is_highlight = new Regex ("(\\=\\=)([^\\= \\t].*?(?<!\\\\|\\=| |\\t))(\\=\\=)", f, 0);
+
+	        /*
+             * Example:
+             * > Quoted text.
+             * > Quoted text with `code span`.
+             * >> Blockquote **nested**.
+             */
+	        is_blockquote = new Regex ("^( {0,3}>( {0,4}>)*).*", f | RegexCompileFlags.MULTILINE, 0);
 	    } catch (RegexError e) {
 	        error (e.message);
 	    }
@@ -222,6 +231,8 @@ public class GtkMarkdown.View : GtkSource.View {
     private Gtk.TextTag text_tag_italic;
     private Gtk.TextTag text_tag_strikethrough;
     private Gtk.TextTag text_tag_highlight;
+    private Gtk.TextTag text_tag_blockquote;
+    private Gtk.TextTag text_tag_blockquote_marker;
     private Gtk.TextTag[] text_tags_title;
 
 	private void update_color_scheme () {
@@ -229,15 +240,19 @@ public class GtkMarkdown.View : GtkSource.View {
             var buffer = buffer as GtkSource.Buffer;
             buffer.style_scheme = GtkSource.StyleSchemeManager.get_default ().get_scheme (dark ? "paper-dark" : "paper");
 
+            var block_color = gen_block_color ();
+            var tinted_foreground = tinted_foreground;
+
             text_tag_url = get_or_create_tag ("markdown-link");
             text_tag_url.foreground_rgba = url_color;
             text_tag_url.underline = Pango.Underline.SINGLE;
 
             text_tag_escaped = get_or_create_tag ("markdown-escaped-char");
-            text_tag_escaped.foreground_rgba = escape_color;
+            text_tag_escaped.foreground_rgba = tinted_foreground;
 
             text_tag_code_span = get_or_create_tag ("markdown-code-span");
             text_tag_code_span.family = "Monospace";
+            text_tag_code_span.background_rgba = block_color;
 
             text_tag_code_block = get_or_create_tag ("markdown-code-block");
             text_tag_code_block.family = "Monospace";
@@ -258,9 +273,20 @@ public class GtkMarkdown.View : GtkSource.View {
             text_tag_around = get_or_create_tag ("markdown-code-block-around");
             text_tag_around.family = "Monospace";
             text_tag_around.scale = 0.7;
-            var around_block_color = gen_block_color ();
+            var around_block_color = block_color;
             around_block_color.alpha = 0.8f;
             text_tag_around.foreground_rgba = around_block_color;
+
+            text_tag_blockquote = get_or_create_tag ("markdown-blockquote");
+            text_tag_blockquote.paragraph_background_rgba = block_color;
+            text_tag_blockquote.line_height = 2;
+            text_tag_blockquote.right_margin = 32;
+
+            text_tag_blockquote_marker = get_or_create_tag ("markdown-blockquote-marker");
+            var c = tinted_foreground;
+            text_tag_blockquote_marker.background_rgba = c;
+            text_tag_blockquote_marker.foreground_rgba = c;
+            text_tag_blockquote_marker.size_points = 8;
 
             text_tag_hidden = get_or_create_tag ("hidden-character");
             text_tag_hidden.invisible = true;
@@ -312,6 +338,7 @@ public class GtkMarkdown.View : GtkSource.View {
         buffer.remove_tag (text_tag_italic, start, end);
         buffer.remove_tag (text_tag_strikethrough, start, end);
         buffer.remove_tag (text_tag_highlight, start, end);
+        buffer.remove_tag (text_tag_blockquote, start, end);
         foreach (var t in text_tags_title)
             buffer.remove_tag (t, start, end);
 	}
@@ -342,8 +369,11 @@ public class GtkMarkdown.View : GtkSource.View {
         }
 
         try {
-            // Check for links
             MatchInfo matches;
+
+            format_blockquote (buffer_text, cursor_location, out matches);
+
+            // Check for links
             if (is_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
                 do {
                     int start_text_pos, end_text_pos;
@@ -398,6 +428,41 @@ public class GtkMarkdown.View : GtkSource.View {
         } catch (RegexError e) {}
     }
 
+    void format_blockquote (
+        string buffer_text,
+        Gtk.TextIter cursor_location,
+        out MatchInfo matches
+    ) throws RegexError {
+        // Check for code blocks
+        if (is_blockquote.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+            do {
+                int start_marker_pos, end_marker_pos;
+                int start_full_pos,   end_full_pos;
+                bool have_marker = matches.fetch_pos (1, out start_marker_pos, out end_marker_pos);
+                bool have_full = matches.fetch_pos (0, out start_full_pos, out end_full_pos);
+
+                if (have_marker && have_full) {
+                    start_marker_pos = buffer_text.char_count ((ssize_t) start_marker_pos);
+                    end_marker_pos = buffer_text.char_count ((ssize_t) end_marker_pos);
+                    start_full_pos = buffer_text.char_count ((ssize_t) start_full_pos);
+                    end_full_pos = buffer_text.char_count ((ssize_t) end_full_pos);
+
+                    // Convert the character offsets to TextIter's
+                    Gtk.TextIter start_marker_iter, end_marker_iter;
+                    Gtk.TextIter start_full_iter,   end_full_iter;
+                    buffer.get_iter_at_offset (out start_marker_iter, start_marker_pos);
+                    buffer.get_iter_at_offset (out end_marker_iter, end_marker_pos);
+                    buffer.get_iter_at_offset (out start_full_iter, start_full_pos);
+                    buffer.get_iter_at_offset (out end_full_iter, end_full_pos);
+
+                    // Apply styling
+                    buffer.apply_tag (text_tag_blockquote, start_full_iter, end_full_iter);
+                    buffer.apply_tag (text_tag_blockquote_marker, start_marker_iter, end_marker_iter);
+                }
+            } while (matches.next ());
+        }
+    }
+
     void format_code_block (
         string buffer_text,
         Gtk.TextIter cursor_location,
@@ -432,9 +497,9 @@ public class GtkMarkdown.View : GtkSource.View {
                     buffer.get_iter_at_offset (out start_after_iter, start_after_pos);
                     buffer.get_iter_at_offset (out end_after_iter, end_after_pos);
 
+                    // Apply styling
                     remove_tags (start_before_iter, end_after_iter);
 
-                    // Apply our styling
                     buffer.apply_tag (text_tag_code_block, start_code_iter, end_code_iter);
                     buffer.apply_tag (text_tag_around, start_before_iter, end_before_iter);
                     buffer.apply_tag (text_tag_around, start_after_iter, end_after_iter);
@@ -485,9 +550,9 @@ public class GtkMarkdown.View : GtkSource.View {
                     buffer.get_iter_at_offset (out start_after_iter, start_after_pos);
                     buffer.get_iter_at_offset (out end_after_iter, end_after_pos);
 
+                    // Apply styling
                     remove_tags (start_before_iter, end_after_iter);
 
-                    // Apply our styling
                     buffer.apply_tag (text_tag_code_span, start_code_iter, end_code_iter);
                     buffer.apply_tag (text_tag_around, start_before_iter, end_before_iter);
                     buffer.apply_tag (text_tag_around, start_after_iter, end_after_iter);
@@ -532,7 +597,7 @@ public class GtkMarkdown.View : GtkSource.View {
                         continue;
                     }
 
-                    // Apply our styling
+                    // Apply styling
                     buffer.apply_tag (text_tag_escaped, start_escaped_char_iter, end_text_iter);
                     buffer.apply_tag (text_tag_hidden, start_text_iter, start_escaped_char_iter);
                 }
@@ -575,7 +640,7 @@ public class GtkMarkdown.View : GtkSource.View {
                     buffer.get_iter_at_offset (out start_after_iter, start_after_pos);
                     buffer.get_iter_at_offset (out end_after_iter, end_after_pos);
 
-                    // Apply our styling
+                    // Apply styling
                     buffer.apply_tag (text_tag, start_code_iter, end_code_iter);
                     buffer.apply_tag (text_tag_around, start_before_iter, end_before_iter);
                     buffer.apply_tag (text_tag_around, start_after_iter, end_after_iter);

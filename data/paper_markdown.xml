@@ -17,17 +17,11 @@
 
 	<style name="markdown:backslash-escape"   foreground="escape" bold="true"/>
 
-	<style name="markdown:blockquote-marker"  foreground="quote" background="quote" scale="0.5"/>
-	<style name="markdownpp:blockquote"       foreground="literal"/>
-
 	<style name="markdown:horizontal-rule"    foreground="#rgba(0,0,0,0.2)"/>
 	<style name="markdown:list-marker"        foreground="#rgba(0,0,0,0.3)"/>
 	<style name="markdown:image-marker"       foreground="#rgba(0,0,0,0.3)" bold="true"/>
 
 	<style name="markdown:attribute-value"    foreground="literal"/>
-
-	<style name="markdown:code-block"         foreground="literal"/>
-	<style name="markdown:code-span"          foreground="literal" background="#rgba(96,100,150,0.08)"/>
 
 	<style name="markdown:label"              foreground="hyperlink"/>
 	<style name="markdown:link-text"          foreground="hyperlink"/>
