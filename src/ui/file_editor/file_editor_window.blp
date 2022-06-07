@@ -7,28 +7,29 @@ template PaperFileEditorWindow : Adw.Window {
 
   Adw.ToastOverlay toast_overlay {
 
-    Box {
+    Overlay {
 
       hexpand: true;
       vexpand: true;
-      orientation: vertical;
       width-request: 390;
 
       styles ["text-area"]
-
-      Adw.HeaderBar headerbar {
-
-        hexpand: true;
-        vexpand: false;
-
-        [title]
-        Adw.WindowTitle file_title {}
-      }
 
       .PaperEditView edit_view {
         hexpand: true;
         vexpand: true;
         width-request: 390;
+      }
+
+      [overlay]
+      Adw.HeaderBar headerbar {
+
+        hexpand: true;
+        vexpand: false;
+        valign: start;
+
+        [title]
+        Adw.WindowTitle file_title {}
       }
     }
   }

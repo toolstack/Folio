@@ -73,6 +73,8 @@ public class Paper.EditView : Gtk.Box {
             text_view.buffer.get_iter_at_mark (out cur, ins);
             text_view.set_title_level (cur.get_line (), format_heading_type_mobile.active);
         });
+
+        scrolled_window.get_vscrollbar ().margin_top = 48;
     }
 
     public void on_dark_changed (bool dark) {
