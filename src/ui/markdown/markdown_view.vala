@@ -12,6 +12,14 @@ public class GtkMarkdown.View : GtkSource.View {
         }
     }
 
+    public Gdk.RGBA marking_color {
+        get {
+            var rgba = get_style_context ().get_color ();
+            rgba.alpha = 0.6f;
+            return rgba;
+        }
+    }
+
     public Gdk.RGBA url_color {
         get {
             var hsl = Color.rgb_to_hsl (Color.RGBA_to_rgb (theme_color));
@@ -50,13 +58,15 @@ public class GtkMarkdown.View : GtkSource.View {
         }
     }
 
-    public Gdk.RGBA gen_block_color () {
-        var hsl = Color.rgb_to_hsl (Color.RGBA_to_rgb (theme_color));
-        hsl.l = dark ? 0.7f : 0.3f;
-        hsl.s *= 0.64f;
-        var rgba = Color.rgb_to_RGBA (Color.hsl_to_rgb (hsl));
-        rgba.alpha = 0.1f;
-        return rgba;
+    public Gdk.RGBA block_color {
+        get {
+            var hsl = Color.rgb_to_hsl (Color.RGBA_to_rgb (theme_color));
+            hsl.l = dark ? 0.7f : 0.3f;
+            hsl.s *= 0.64f;
+            var rgba = Color.rgb_to_RGBA (Color.hsl_to_rgb (hsl));
+            rgba.alpha = 0.1f;
+            return rgba;
+        }
     }
 
     public bool show_gutter { get; set; default = true; }
@@ -123,8 +133,10 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	private Regex is_link;
 	private Regex is_escape;
-	private Regex is_code_span;
-	private Regex is_code_block;
+	private Regex is_blockquote;
+
+	private Regex is_horizontal_rule;
+
 	private Regex is_bold_0;
 	private Regex is_bold_1;
 	private Regex is_italic_0;
@@ -132,15 +144,25 @@ public class GtkMarkdown.View : GtkSource.View {
 	private Regex is_strikethrough_0;
 	private Regex is_strikethrough_1;
 	private Regex is_highlight;
-	private Regex is_blockquote;
+
+	private Regex is_code_span;
+	private Regex is_code_block;
 
     construct {
         try {
             var f = RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS;
 	        is_link = new Regex ("\\[([^\\[]+?)\\](\\([^\\)\\n]+?\\))", f, 0);
 	        is_escape = new Regex ("\\\\[\\\\`*_{}\\[\\]()#+-.!]", f, 0);
-	        is_code_span = new Regex ("(?<!`)(`)([^`]+(?:`{2,}[^`]+)*)(`)(?!`)", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS | RegexCompileFlags.MULTILINE, 0);
-	        is_code_block = new Regex ("(?<![^\\n])(```[^`\\n]*)\\n([^`]*)(```)(?=\\n)", f, 0);
+
+	        /*
+             * Example:
+             * > Quoted text.
+             * > Quoted text with `code span`.
+             * >> Blockquote **nested**.
+             */
+	        is_blockquote = new Regex ("^( {0,3}>( {0,4}>)*).*", f | RegexCompileFlags.MULTILINE, 0);
+
+	        is_horizontal_rule = new Regex ("^[ ]{0,3}((-[ ]{0,2}){3,}|(_[ ]{0,2}){3,}|(\\*[ ]{0,2}){3,})[ \\t]*$", f | RegexCompileFlags.MULTILINE, 0);
 
             /*
              * Examples:
@@ -174,13 +196,8 @@ public class GtkMarkdown.View : GtkSource.View {
 	        is_strikethrough_1 = new Regex ("(~~)([^~ \\t].*?(?<!\\\\|~| |\\t))(~~)", f, 0);
 	        is_highlight = new Regex ("(\\=\\=)([^\\= \\t].*?(?<!\\\\|\\=| |\\t))(\\=\\=)", f, 0);
 
-	        /*
-             * Example:
-             * > Quoted text.
-             * > Quoted text with `code span`.
-             * >> Blockquote **nested**.
-             */
-	        is_blockquote = new Regex ("^( {0,3}>( {0,4}>)*).*", f | RegexCompileFlags.MULTILINE, 0);
+	        is_code_span = new Regex ("(?<!`)(`)([^`]+(?:`{2,}[^`]+)*)(`)(?!`)", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS | RegexCompileFlags.MULTILINE, 0);
+	        is_code_block = new Regex ("(?<![^\\n])(```[^`\\n]*)\\n([^`]*)(```)(?=\\n)", f, 0);
 	    } catch (RegexError e) {
 	        error (e.message);
 	    }
@@ -220,28 +237,37 @@ public class GtkMarkdown.View : GtkSource.View {
         }
     }
 
-    private Gtk.TextTag text_tag_hidden;
-    private Gtk.TextTag text_tag_invisible;
-    private Gtk.TextTag text_tag_around;
+
+    private Gtk.TextTag[] text_tags_title;
+
     private Gtk.TextTag text_tag_url;
     private Gtk.TextTag text_tag_escaped;
-    private Gtk.TextTag text_tag_code_span;
-    private Gtk.TextTag text_tag_code_block;
+    private Gtk.TextTag text_tag_blockquote;
+    private Gtk.TextTag text_tag_blockquote_marker;
+
+    private Gtk.TextTag text_tag_horizontal_rule;
+
     private Gtk.TextTag text_tag_bold;
     private Gtk.TextTag text_tag_italic;
     private Gtk.TextTag text_tag_strikethrough;
     private Gtk.TextTag text_tag_highlight;
-    private Gtk.TextTag text_tag_blockquote;
-    private Gtk.TextTag text_tag_blockquote_marker;
-    private Gtk.TextTag[] text_tags_title;
+
+    private Gtk.TextTag text_tag_code_span;
+    private Gtk.TextTag text_tag_code_block;
+    private Gtk.TextTag text_tag_around;
+
+    private Gtk.TextTag text_tag_hidden;
+    private Gtk.TextTag text_tag_invisible;
 
 	private void update_color_scheme () {
         if (buffer is GtkSource.Buffer) {
             var buffer = buffer as GtkSource.Buffer;
             buffer.style_scheme = GtkSource.StyleSchemeManager.get_default ().get_scheme (dark ? "paper-dark" : "paper");
 
-            var block_color = gen_block_color ();
+            var block_color = block_color;
             var tinted_foreground = tinted_foreground;
+
+            update_title_styling ();
 
             text_tag_url = get_or_create_tag ("markdown-link");
             text_tag_url.foreground_rgba = url_color;
@@ -250,13 +276,21 @@ public class GtkMarkdown.View : GtkSource.View {
             text_tag_escaped = get_or_create_tag ("markdown-escaped-char");
             text_tag_escaped.foreground_rgba = tinted_foreground;
 
-            text_tag_code_span = get_or_create_tag ("markdown-code-span");
-            text_tag_code_span.family = "Monospace";
-            text_tag_code_span.background_rgba = block_color;
+            text_tag_blockquote = get_or_create_tag ("markdown-blockquote");
+            text_tag_blockquote.paragraph_background_rgba = block_color;
+            text_tag_blockquote.line_height = 2;
+            text_tag_blockquote.right_margin = 32;
 
-            text_tag_code_block = get_or_create_tag ("markdown-code-block");
-            text_tag_code_block.family = "Monospace";
-            text_tag_code_block.indent = 16;
+            text_tag_blockquote_marker = get_or_create_tag ("markdown-blockquote-marker");
+            var c = tinted_foreground;
+            text_tag_blockquote_marker.background_rgba = c;
+            text_tag_blockquote_marker.foreground_rgba = c;
+            text_tag_blockquote_marker.size_points = 8;
+
+            text_tag_horizontal_rule = get_or_create_tag ("markdown-horizontal-rule");
+            text_tag_horizontal_rule.justification = Gtk.Justification.CENTER;
+            text_tag_horizontal_rule.foreground_rgba = marking_color;
+
 
             text_tag_bold = get_or_create_tag ("markdown-bold");
             text_tag_bold.weight = 700;
@@ -270,6 +304,7 @@ public class GtkMarkdown.View : GtkSource.View {
             text_tag_highlight = get_or_create_tag ("markdown-highlight");
             text_tag_highlight.background_rgba = highlight_color;
 
+
             text_tag_around = get_or_create_tag ("markdown-code-block-around");
             text_tag_around.family = "Monospace";
             text_tag_around.scale = 0.7;
@@ -277,24 +312,21 @@ public class GtkMarkdown.View : GtkSource.View {
             around_block_color.alpha = 0.8f;
             text_tag_around.foreground_rgba = around_block_color;
 
-            text_tag_blockquote = get_or_create_tag ("markdown-blockquote");
-            text_tag_blockquote.paragraph_background_rgba = block_color;
-            text_tag_blockquote.line_height = 2;
-            text_tag_blockquote.right_margin = 32;
 
-            text_tag_blockquote_marker = get_or_create_tag ("markdown-blockquote-marker");
-            var c = tinted_foreground;
-            text_tag_blockquote_marker.background_rgba = c;
-            text_tag_blockquote_marker.foreground_rgba = c;
-            text_tag_blockquote_marker.size_points = 8;
+            text_tag_code_span = get_or_create_tag ("markdown-code-span");
+            text_tag_code_span.family = "Monospace";
+            text_tag_code_span.background_rgba = block_color;
+
+            text_tag_code_block = get_or_create_tag ("markdown-code-block");
+            text_tag_code_block.family = "Monospace";
+            text_tag_code_block.indent = 16;
+
 
             text_tag_hidden = get_or_create_tag ("hidden-character");
             text_tag_hidden.invisible = true;
 
             text_tag_invisible = get_or_create_tag ("invisible-character");
             text_tag_invisible.foreground = "rgba(0,0,0,0.001)";
-
-            update_title_styling ();
 
             buffer.changed.connect (restyle_text);
             buffer.notify["cursor-position"].connect (restyle_text);
@@ -371,7 +403,9 @@ public class GtkMarkdown.View : GtkSource.View {
         try {
             MatchInfo matches;
 
-            format_blockquote (buffer_text, cursor_location, out matches);
+            format_horizontal_rule (buffer_text, out matches);
+
+            format_blockquote (buffer_text, out matches);
 
             // Check for links
             if (is_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
@@ -428,9 +462,34 @@ public class GtkMarkdown.View : GtkSource.View {
         } catch (RegexError e) {}
     }
 
+    void format_horizontal_rule (
+        string buffer_text,
+        out MatchInfo matches
+    ) throws RegexError {
+        // Check for code blocks
+        if (is_horizontal_rule.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+            do {
+                int start_pos, end_pos;
+                bool have = matches.fetch_pos (0, out start_pos, out end_pos);
+
+                if (have) {
+                    start_pos = buffer_text.char_count ((ssize_t) start_pos);
+                    end_pos = buffer_text.char_count ((ssize_t) end_pos);
+
+                    // Convert the character offsets to TextIter's
+                    Gtk.TextIter start_iter,   end_iter;
+                    buffer.get_iter_at_offset (out start_iter, start_pos);
+                    buffer.get_iter_at_offset (out end_iter, end_pos);
+
+                    // Apply styling
+                    buffer.apply_tag (text_tag_horizontal_rule, start_iter, end_iter);
+                }
+            } while (matches.next ());
+        }
+    }
+
     void format_blockquote (
         string buffer_text,
-        Gtk.TextIter cursor_location,
         out MatchInfo matches
     ) throws RegexError {
         // Check for code blocks

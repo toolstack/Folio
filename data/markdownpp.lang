@@ -35,8 +35,6 @@
     <style id="h5" _name="Heading 5" map-to="def:heading5"/>
     <style id="h6" _name="Heading 6" map-to="def:heading6"/>
     <style id="heading-hash" _name="Heading Hash" map-to="def:text"/>
-
-    <style id="blockquote" _name="Blockquote" map-to="def:text"/>
   </styles>
 
   <definitions>
@@ -95,7 +93,6 @@
         <context ref="h4"/>
         <context ref="h5"/>
         <context ref="h6"/>
-        <context ref="markdown:blockquote" style-ref="blockquote"/>
         <context ref="markdown:markdown"/>
       </include>
     </context>

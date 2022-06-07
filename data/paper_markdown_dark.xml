@@ -17,7 +17,6 @@
 
 	<style name="markdown:backslash-escape"   foreground="escape" bold="true"/>
 
-	<style name="markdown:horizontal-rule"    foreground="#rgba(255,255,255,0.2)"/>
 	<style name="markdown:list-marker"        foreground="#rgba(255,255,255,0.3)"/>
 	<style name="markdown:image-marker"       foreground="#rgba(255,255,255,0.3)" bold="true"/>
 
