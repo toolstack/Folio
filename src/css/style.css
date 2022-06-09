@@ -313,7 +313,7 @@ window.tiled-bottom .notebooks-bar > .trash-button:checked {
 }
 
 .markdown-view {
-  margin-right: 8px;
+  margin-right: 32px;
 }
 
 .markdown-view:disabled text {
