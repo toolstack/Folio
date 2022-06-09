@@ -19,6 +19,8 @@
 [GtkTemplate (ui = "/io/posidon/Paper/window.ui")]
 public class Paper.Window : Adw.ApplicationWindow {
 
+    public NoteContainer? current_container { get; private set; default = null; }
+
 	[GtkChild]
 	unowned Adw.Leaflet leaflet;
 
@@ -319,8 +321,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 
     private GtkMarkdown.Buffer current_buffer;
 
-    private NoteContainer? current_container = null;
-
     private Gtk.CssProvider? last_css_provider = null;
 
     private Gtk.CssProvider? black_css_provider = null;
@@ -373,12 +373,15 @@ public class Paper.Window : Adw.ApplicationWindow {
         button_create_note.visible = state == State.NOTEBOOK;
         button_empty_trash.visible = state == State.TRASH;
 
+        var is_different = current_container != container;
         var last_container = current_container;
         current_container = container;
 
         var notebook = (container is Notebook) ? container as Notebook : null;
 	    update_editability ();
         recolor (notebook);
+
+        if (!is_different) return;
 
         if (container != null) {
             container.load ();

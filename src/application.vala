@@ -459,6 +459,8 @@ public class Paper.Application : Adw.Application {
 	    }
 		try {
 	        notebook_provider.change_notebook (notebook, info);
+	        if (window.current_container == notebook)
+	            window.set_notebook (notebook);
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS) {
 	            window.toast (Strings.NOTEBOOK_X_ALREADY_EXISTS.printf (info.name));
