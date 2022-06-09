@@ -34,6 +34,16 @@ template PaperPreferencesWindow : Adw.PreferencesWindow {
           valign: center;
         }
       }
+      Adw.ActionRow {
+
+        title: _("Enable Toolbar");
+        icon-name: "toolbar-symbolic";
+        activatable-widget: enable_toolbar;
+
+        Switch enable_toolbar {
+          valign: center;
+        }
+      }
     }
     Adw.PreferencesGroup {
       Adw.ActionRow {

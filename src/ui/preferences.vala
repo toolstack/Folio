@@ -9,6 +9,9 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
 	unowned Gtk.Switch oled_mode;
 
 	[GtkChild]
+	unowned Gtk.Switch enable_toolbar;
+
+	[GtkChild]
 	unowned Gtk.Button notes_dir_button;
 
 	[GtkChild]
@@ -24,6 +27,7 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
 	    var settings = new Settings (Config.APP_ID);
 		var note_font = settings.get_string ("note-font");
 		var theme_oled = settings.get_boolean ("theme-oled");
+		var toolbar_enabled = settings.get_boolean ("toolbar-enabled");
 		var notes_dir = settings.get_string ("notes-dir");
 
         font_button.level = Gtk.FontChooserLevel.FEATURES;
@@ -37,6 +41,13 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
             settings.set_boolean ("theme-oled", state);
             var app = (window.application as Adw.Application);
             window.update_theme (app.style_manager.dark, app.style_manager.high_contrast);
+            return false;
+        });
+
+        enable_toolbar.state = toolbar_enabled;
+        enable_toolbar.state_set.connect ((state) => {
+            settings.set_boolean ("toolbar-enabled", state);
+            window.edit_view.toolbar_enabled = state;
             return false;
         });
 

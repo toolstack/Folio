@@ -2,28 +2,9 @@
 [GtkTemplate (ui = "/io/posidon/Paper/edit_view.ui")]
 public class Paper.EditView : Gtk.Box {
 
-	[GtkChild]
-	unowned Gtk.Box toolbar;
+    public bool toolbar_enabled { get; set; }
 
-	[GtkChild]
-	unowned Gtk.ComboBox format_heading_type;
-
-	[GtkChild]
-	unowned Gtk.ComboBox format_heading_type_mobile;
-
-	[GtkChild]
-	unowned GtkMarkdown.View text_view;
-
-	[GtkChild]
-	public unowned Gtk.ScrolledWindow scrolled_window;
-
-	public bool is_editable {
-	    get { return toolbar.visible; }
-	    set {
-            toolbar.visible = value;
-	        text_view.sensitive = value;
-	    }
-	}
+	public bool is_editable { get; set; }
 
 	public bool compacted { get; set; }
 
@@ -43,6 +24,21 @@ public class Paper.EditView : Gtk.Box {
             text_view.buffer.place_cursor (start);
 	    }
 	}
+
+	[GtkChild]
+	unowned Gtk.Box toolbar;
+
+	[GtkChild]
+	unowned Gtk.ComboBox format_heading_type;
+
+	[GtkChild]
+	unowned Gtk.ComboBox format_heading_type_mobile;
+
+	[GtkChild]
+	unowned GtkMarkdown.View text_view;
+
+	[GtkChild]
+	public unowned Gtk.ScrolledWindow scrolled_window;
 
     construct {
 	    var settings = new Settings (Config.APP_ID);
@@ -75,6 +71,15 @@ public class Paper.EditView : Gtk.Box {
         });
 
         scrolled_window.get_vscrollbar ().margin_top = 48;
+
+	    settings.bind ("toolbar-enabled", this, "toolbar_enabled", SettingsBindFlags.DEFAULT);
+
+        notify["toolbar-enabled"].connect (update_toolbar_visibility);
+        notify["is-editable"].connect (() => {
+            update_toolbar_visibility ();
+	        text_view.sensitive = is_editable;
+        });
+        update_toolbar_visibility ();
     }
 
     public void on_dark_changed (bool dark) {
@@ -167,5 +172,9 @@ public class Paper.EditView : Gtk.Box {
 	    b.get_iter_at_mark (out iter, mark);
 	    b.insert (ref iter, "\n- - -\n", 7);
 	    b.end_user_action ();
+	}
+
+	private void update_toolbar_visibility () {
+	    toolbar.visible = is_editable && toolbar_enabled;
 	}
 }

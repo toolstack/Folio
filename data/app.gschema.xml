@@ -10,6 +10,9 @@
       <default>false</default>
       <summary>OLED Mode</summary>
     </key>
+    <key name="toolbar-enabled" type="b">
+      <default>true</default>
+    </key>
     <key name="notes-dir" type="s">
       <default>'.var/app/io.posidon.Paper/data'</default>
       <summary>Notes Directory</summary>

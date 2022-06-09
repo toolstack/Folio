@@ -37,6 +37,7 @@
     <file preprocess="xml-stripblanks">graphics/scalable/actions/insert-code-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/dark-mode-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/reset-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">graphics/scalable/actions/toolbar-symbolic.svg</file>
 
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-code-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-heart-symbolic.svg</file>
