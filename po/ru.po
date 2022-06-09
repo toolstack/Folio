@@ -59,7 +59,7 @@ msgstr "Шрифт"
 
 #: data/app.gschema.xml:7 src/ui/preferences.blp:16
 msgid "The font notes will be displayed in"
-msgstr "Шрифт которым будут отображатся заметки"
+msgstr "Шрифт, которым будут отображатся заметки"
 
 #: data/app.gschema.xml:11 src/ui/preferences.blp:28
 msgid "OLED Mode"
@@ -71,7 +71,7 @@ msgstr "Каталог Заметок"
 
 #: data/app.gschema.xml:16
 msgid "Where the notebooks are stored"
-msgstr "То где хранятся блокноты"
+msgstr "То, где хранятся блокноты"
 
 #: data/app.metainfo.xml.in:5
 msgid "Note-taking app"
@@ -79,7 +79,7 @@ msgstr "Приложение для создания заметок"
 
 #: data/app.metainfo.xml.in:7
 msgid "Create notebooks, take notes in markdown"
-msgstr "Создать блокноты, делать заметки, делать заметки в markdown"
+msgstr "Создать блокноты, делайте заметки в markdown"
 
 #: data/app.metainfo.xml.in:8
 msgid "Features:"
@@ -120,7 +120,7 @@ msgstr "%d Заметки"
 
 #: src/ui/strings.vala:6
 msgid "Are you sure you want to delete everything in the trash?"
-msgstr "Вы уверены что вы хотите удалить всё из корзины?"
+msgstr "Вы уверены что хотите удалить всё из корзины?"
 
 #: src/ui/strings.vala:7 src/ui/window.blp:53
 msgid "Empty Trash"
@@ -166,7 +166,7 @@ msgstr "Заметка “%s” уже существует в блокноте 
 #: src/ui/strings.vala:19
 #, c-format
 msgid "Are you sure you want to delete the note “%s”?"
-msgstr "Вы уверены что вы хотите удалить заметку “%s”?"
+msgstr "Вы уверены что хотите удалить заметку “%s”?"
 
 #: src/ui/strings.vala:20
 msgid "Delete Note"
@@ -175,7 +175,7 @@ msgstr "Удалить Заметку"
 #: src/ui/strings.vala:21
 #, c-format
 msgid "Are you sure you want to delete the notebook “%s”?"
-msgstr "Вы уверены что вы хотите удалить блокнот “%s”?"
+msgstr "Вы уверены что хотите удалить блокнот “%s”?"
 
 #: src/ui/strings.vala:22
 msgid "Delete Notebook"
@@ -271,7 +271,7 @@ msgstr "Отмена"
 
 #: src/ui/strings.vala:45
 msgid "Pick where the notebooks will be stored"
-msgstr "Выберите где блокноты будут хранится"
+msgstr "Выберите где будут хранится блокноты"
 
 #: src/ui/strings.vala:46
 msgid "All Notes"
@@ -431,7 +431,7 @@ msgstr "Выберите шрифт для отображения содержи
 
 #: src/ui/preferences.blp:29
 msgid "Makes the dark theme pitch black"
-msgstr "Делает темную тему черной как смола"
+msgstr "Делает тёмную тему чёрной как смоль"
 
 #: src/ui/preferences.blp:41
 msgid "Notes Storage Location"
@@ -439,7 +439,7 @@ msgstr "Место Хранения Заметок"
 
 #: src/ui/preferences.blp:42
 msgid "Where the notebooks are stored (requires app restart)"
-msgstr "Где хранятся блокноты (требует перезапуск приложения)"
+msgstr "То, где хранятся блокноты (требует перезапуск приложения)"
 
 #: src/ui/shortcut_window.blp:14
 msgid "Note"
@@ -459,7 +459,7 @@ msgstr "Общее"
 
 #: src/ui/shortcut_window.blp:47
 msgid "Show Keyboard Shortcuts"
-msgstr "Показать Сочетания Клавиш"
+msgstr "Показать Комбинации Клавиш"
 
 #: src/ui/shortcut_window.blp:52
 msgid "Quit"
@@ -475,7 +475,7 @@ msgstr "Навигация"
 
 #: src/ui/shortcut_window.blp:97 src/ui/window.blp:112
 msgid "Toggle Sidebar"
-msgstr "Переключить Боковую панель"
+msgstr "Переключить Боковую Панель"
 
 #: src/ui/shortcut_window.blp:102 src/ui/window.blp:62
 msgid "Search Notes"
