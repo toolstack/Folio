@@ -13,6 +13,7 @@ blueprint_files = files(
   'notebooks_bar/notebook_menu.blp',
   'notebooks_bar/notebook_preview.blp',
   'notebooks_bar/notebooks_bar.blp',
+  'notebooks_bar/theme_selector.blp',
   'notebook_sidebar/note_card.blp',
   'notebook_sidebar/note_create_popup.blp',
   'notebook_sidebar/note_menu.blp',

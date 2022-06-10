@@ -16,14 +16,14 @@ template PaperNotebooksBar : Box {
 
     [title]
     MenuButton {
-      icon-name: "open-menu-symbolic";
-      menu-model: primary_menu;
       hexpand: false;
       vexpand: false;
+      icon-name: "open-menu-symbolic";
+      primary: true;
+      popover: PopoverMenu primary_menu_popover {
+        menu-model: primary_menu;
+      };
     }
-
-    [start]
-    Box {}
   }
 
   ScrolledWindow scrolled_window {
@@ -68,6 +68,11 @@ template PaperNotebooksBar : Box {
 }
 
 menu primary_menu {
+  section {
+    item {
+      custom: "theme";
+    }
+  }
   section {
     item {
       label: _("_New Notebook");

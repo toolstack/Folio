@@ -1,0 +1,36 @@
+using Gtk 4.0;
+
+template PaperThemeSelector : Box {
+
+  orientation: horizontal;
+  hexpand: true;
+  spacing: 12;
+
+  styles ["theme-selector"]
+
+  CheckButton _auto {
+    hexpand: true;
+    halign: center;
+    focus-on-click: false;
+    tooltip-text: _("Follow system style");
+    styles ["auto"]
+  }
+
+  CheckButton light {
+    hexpand: true;
+    halign: center;
+    focus-on-click: false;
+    tooltip-text: _("Light style");
+    group: _auto;
+    styles ["light"]
+  }
+
+  CheckButton dark {
+    hexpand: true;
+    halign: center;
+    focus-on-click: false;
+    tooltip-text: _("Dark style");
+    group: light;
+    styles ["dark"]
+  }
+}

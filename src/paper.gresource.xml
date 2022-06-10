@@ -19,6 +19,7 @@
     <file preprocess="xml-stripblanks" alias="notebooks_bar/icon.ui">ui/notebooks_bar/icon.ui</file>
     <file preprocess="xml-stripblanks" alias="notebooks_bar/notebook_menu.ui">ui/notebooks_bar/notebook_menu.ui</file>
     <file preprocess="xml-stripblanks" alias="notebooks_bar/create_popup.ui">ui/notebooks_bar/notebook_create_popup.ui</file>
+    <file preprocess="xml-stripblanks" alias="theme_selector.ui">ui/notebooks_bar/theme_selector.ui</file>
 
     <file preprocess="xml-stripblanks" alias="notebook_sidebar/note_card.ui">ui/notebook_sidebar/note_card.ui</file>
     <file preprocess="xml-stripblanks" alias="notebook_sidebar/note_menu.ui">ui/notebook_sidebar/note_menu.ui</file>

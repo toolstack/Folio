@@ -50,7 +50,7 @@ public class Paper.NoteCard : Gtk.Box {
 	            var time_string = value.time_modified.format ("%e %b, %H:%m").strip ();
 	            subtitle.label = _window.current_state == Window.State.NOTEBOOK ? time_string : @"%s - %s".printf (time_string, value.notebook.name);
 	            tooltip_text = value.name;
-                var v = new Value (typeof (Note));
+                var v = Value (typeof (Note));
                 v.set_object (value);
                 drag_controller.content = new Gdk.ContentProvider.for_value (v);
 	        }

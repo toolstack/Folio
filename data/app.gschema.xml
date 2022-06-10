@@ -19,6 +19,18 @@
       <description>Where the notebooks are stored</description>
     </key>
   </schema>
+  <enum id="io.posidon.Paper.ThemeVariantEnum">
+    <value nick="default" value="0"/>
+    <value nick="force-light" value="1"/>
+    <value nick="force-dark" value="2"/>
+    <value nick="prefer-light" value="3"/>
+    <value nick="prefer-dark" value="4"/>
+  </enum>
+  <schema id="io.posidon.Paper.Theme" path="/io/posidon/Paper/Theme/">
+    <key name="variant" enum="io.posidon.Paper.ThemeVariantEnum">
+      <default>'default'</default>
+    </key>
+  </schema>
   <schema id="io.posidon.Paper.WindowState" path="/io/posidon/Paper/WindowState/">
     <key name="width" type="i">
       <default>720</default>

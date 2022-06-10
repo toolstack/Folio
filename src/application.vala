@@ -56,14 +56,19 @@ public class Paper.Application : Adw.Application {
     private HashTable<string, Value?> temp_command;
 
 	public Application () {
-		Object (application_id: Config.APP_ID, flags: ApplicationFlags.HANDLES_COMMAND_LINE);
+		Object (
+		    application_id: Config.APP_ID,
+		    flags: ApplicationFlags.HANDLES_COMMAND_LINE
+		);
 
-	    var settings = new Settings (Config.APP_ID);
-		var notes_dir = settings.get_string ("notes-dir");
+	    {
+	        var settings = new Settings (Config.APP_ID);
+		    var notes_dir = settings.get_string ("notes-dir");
 
-		notebook_provider = new Provider (Strings.TRASH);
-		notebook_provider.set_directory (notes_dir);
-		notebook_provider.load ();
+		    notebook_provider = new Provider (Strings.TRASH);
+		    notebook_provider.set_directory (notes_dir);
+		    notebook_provider.load ();
+		}
 
 		add_action_entries (APP_ACTIONS, this);
 
@@ -88,6 +93,11 @@ public class Paper.Application : Adw.Application {
 		set_accels_for_action ("app.search-notes", {"<primary>f"});
 
 		command_line.connect (_command_line);
+
+        {
+	        var settings = new Settings (@"$(Config.APP_ID).Theme");
+	        settings.bind ("variant", style_manager, "color-scheme", SettingsBindFlags.DEFAULT);
+	    }
 	}
 
 	public override void activate () {

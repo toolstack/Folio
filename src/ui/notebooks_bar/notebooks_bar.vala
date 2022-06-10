@@ -3,6 +3,9 @@
 public class Paper.NotebooksBar : Gtk.Box {
 
 	[GtkChild]
+	unowned Gtk.PopoverMenu primary_menu_popover;
+
+	[GtkChild]
 	unowned Gtk.ListView list;
 
 	[GtkChild]
@@ -29,6 +32,8 @@ public class Paper.NotebooksBar : Gtk.Box {
 	}
 
 	construct {
+	    primary_menu_popover.add_child (new ThemeSelector (), "theme");
+
 	    all_button_revealer.notify["child-revealed"].connect (update_scroll);
         scrolled_window.vadjustment.notify["value"].connect (update_scroll);
         update_scroll ();
