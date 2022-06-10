@@ -8,6 +8,7 @@ paper_sources = [
   'ui/preferences.vala',
 
   'ui/edit_view/edit_view.vala',
+  'ui/edit_view/toolbar/toolbar.vala',
   'ui/file_editor/file_editor_window.vala',
 
   'ui/fuzzy_string_sorter.vala',

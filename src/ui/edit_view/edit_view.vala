@@ -6,7 +6,10 @@ public class Paper.EditView : Gtk.Box {
 
 	public bool is_editable { get; set; }
 
-	public bool compacted { get; set; }
+	public bool compacted {
+	    get { return toolbar.compacted; }
+	    set { toolbar.compacted = value; }
+    }
 
 	public Gdk.RGBA theme_color {
 	    get { return text_view.theme_color; }
@@ -26,13 +29,7 @@ public class Paper.EditView : Gtk.Box {
 	}
 
 	[GtkChild]
-	unowned Gtk.Box toolbar;
-
-	[GtkChild]
-	unowned Gtk.ComboBox format_heading_type;
-
-	[GtkChild]
-	unowned Gtk.ComboBox format_heading_type_mobile;
+	unowned Toolbar toolbar;
 
 	[GtkChild]
 	unowned GtkMarkdown.View text_view;
@@ -54,20 +51,13 @@ public class Paper.EditView : Gtk.Box {
             var ins = text_view.buffer.get_insert ();
             Gtk.TextIter cur;
             text_view.buffer.get_iter_at_mark (out cur, ins);
-            format_heading_type.active = (int) text_view.get_title_level (cur.get_line ());
-            format_heading_type_mobile.active = (int) text_view.get_title_level (cur.get_line ());
+            toolbar.heading_i = (int) text_view.get_title_level (cur.get_line ());
         }));
-        format_heading_type.changed.connect (() => {
+        toolbar.heading_i_changed.connect ((i) => {
             var ins = text_view.buffer.get_insert ();
             Gtk.TextIter cur;
             text_view.buffer.get_iter_at_mark (out cur, ins);
-            text_view.set_title_level (cur.get_line (), format_heading_type.active);
-        });
-        format_heading_type_mobile.changed.connect (() => {
-            var ins = text_view.buffer.get_insert ();
-            Gtk.TextIter cur;
-            text_view.buffer.get_iter_at_mark (out cur, ins);
-            text_view.set_title_level (cur.get_line (), format_heading_type_mobile.active);
+            text_view.set_title_level (cur.get_line (), i);
         });
 
         scrolled_window.get_vscrollbar ().margin_top = 48;

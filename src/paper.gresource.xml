@@ -11,6 +11,7 @@
     <file preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">ui/shortcut_window.ui</file>
 
     <file preprocess="xml-stripblanks" alias="edit_view.ui">ui/edit_view/edit_view.ui</file>
+    <file preprocess="xml-stripblanks" alias="toolbar.ui">ui/edit_view/toolbar/toolbar.ui</file>
     <file preprocess="xml-stripblanks" alias="file_editor_window.ui">ui/file_editor/file_editor_window.ui</file>
 
     <file preprocess="xml-stripblanks" alias="notebooks_bar.ui">ui/notebooks_bar/notebooks_bar.ui</file>

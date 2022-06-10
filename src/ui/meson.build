@@ -4,6 +4,7 @@ blueprint_files = files(
   'shortcut_window.blp',
   'preferences.blp',
   'edit_view/edit_view.blp',
+  'edit_view/toolbar/toolbar.blp',
   'file_editor/file_editor_window.blp',
   'markdown/heading_popover.blp',
   'markdown_cheatsheet/markdown_cheatsheet.blp',
