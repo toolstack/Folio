@@ -120,9 +120,15 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    );
 
 	    var window_state = new Settings (@"$(Config.APP_ID).WindowState");
-	    window_state.bind ("width", this, "default-width", SettingsBindFlags.DEFAULT);
-	    window_state.bind ("height", this, "default-height", SettingsBindFlags.DEFAULT);
-	    window_state.bind ("maximized", this, "maximized", SettingsBindFlags.DEFAULT);
+	    set_default_size (window_state.get_int ("width"), window_state.get_int ("height"));
+	    maximized = window_state.get_boolean ("maximized");
+
+	    close_request.connect (() => {
+	        window_state.set_int ("width", get_width ());
+	        window_state.set_int ("height", get_height ());
+	        window_state.set_boolean ("maximized", maximized);
+	        return false;
+	    });
 
         Gtk.IconTheme.get_for_display (display).add_resource_path ("/io/posidon/Paper/graphics/");
 

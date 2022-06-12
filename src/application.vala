@@ -44,7 +44,7 @@ public class Paper.Application : Adw.Application {
 
 		{ "about", on_about_action },
 		{ "preferences", on_preferences_action },
-		{ "quit", quit }
+		{ "quit", on_quit_action }
 	};
 
 	public Provider notebook_provider;
@@ -146,6 +146,11 @@ public class Paper.Application : Adw.Application {
 		w.transient_for = active_window;
         w.modal = true;
         w.present ();
+	}
+
+	private void on_quit_action () {
+	    active_window.close_request ();
+	    quit ();
 	}
 
 	private void on_format_bold () { window.edit_view.format_selection_bold (); }
