@@ -13,8 +13,9 @@ paper_sources = [
 
   'ui/fuzzy_string_sorter.vala',
 
+  'ui/notebook_icon/notebook_preview.vala',
+
   'ui/notebooks_bar/notebooks_bar.vala',
-  'ui/notebooks_bar/notebook_preview.vala',
   'ui/notebooks_bar/icon.vala',
   'ui/notebooks_bar/notebook_menu.vala',
   'ui/notebooks_bar/notebook_create_popup.vala',

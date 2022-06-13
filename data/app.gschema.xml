@@ -13,6 +13,9 @@
     <key name="toolbar-enabled" type="b">
       <default>true</default>
     </key>
+    <key name="enable-3-pane" type="b">
+      <default>false</default>
+    </key>
     <key name="notes-dir" type="s">
       <default>'.var/app/io.posidon.Paper/data'</default>
       <summary>Notes Directory</summary>

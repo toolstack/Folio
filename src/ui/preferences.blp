@@ -44,6 +44,16 @@ template PaperPreferencesWindow : Adw.PreferencesWindow {
           valign: center;
         }
       }
+      Adw.ActionRow {
+
+        title: _("3-Pane Layout");
+        icon-name: "sidebar-show-symbolic";
+        activatable-widget: enable_3_pane;
+
+        Switch enable_3_pane {
+          valign: center;
+        }
+      }
     }
     Adw.PreferencesGroup {
       Adw.ActionRow {

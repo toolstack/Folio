@@ -168,3 +168,4 @@ public class Paper.EditView : Gtk.Box {
 	    toolbar.visible = is_editable && toolbar_enabled;
 	}
 }
+

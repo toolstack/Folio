@@ -37,6 +37,7 @@ template PaperWindow : Adw.ApplicationWindow {
 
               Adw.HeaderBar headerbar_sidebar {
 
+                show-start-title-buttons: bind notebooks_bar.paned inverted;
                 show-end-title-buttons: bind leaflet.folded;
 
                 [start]

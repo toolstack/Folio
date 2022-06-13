@@ -53,7 +53,7 @@ headerbar.overlaid {
   margin: 6px;
 }
 
-.notebooks-bar > headerbar > windowhandle > box {
+.notebooks-bar:not(.paned) > headerbar > windowhandle > box {
   padding: 0;
 }
 
@@ -109,6 +109,28 @@ headerbar.overlaid {
     0 -1px 0 0 @borders,
     0 1px 0 0 @borders,
     inset 3px -3px 0 0 @notebooks_bar_fg_color;
+}
+
+.notebooks-bar.paned listview row {
+  padding: 2px;
+}
+
+.notebooks-bar.paned listview row .notebook {
+  margin-left: 6px;
+  margin-right: 6px;
+  transform: scale(.7);
+}
+
+.notebooks-bar.paned .all-button image,
+.notebooks-bar.paned .trash-button image {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.notebooks-bar.paned .all-button,
+.notebooks-bar.paned .trash-button {
+  padding: 2px;
+  font-weight: normal;
 }
 
 .notebook {

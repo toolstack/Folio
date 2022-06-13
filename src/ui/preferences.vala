@@ -12,6 +12,9 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
 	unowned Gtk.Switch enable_toolbar;
 
 	[GtkChild]
+	unowned Gtk.Switch enable_3_pane;
+
+	[GtkChild]
 	unowned Gtk.Button notes_dir_button;
 
 	[GtkChild]
@@ -28,6 +31,7 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
 		var note_font = settings.get_string ("note-font");
 		var theme_oled = settings.get_boolean ("theme-oled");
 		var toolbar_enabled = settings.get_boolean ("toolbar-enabled");
+		var is_3_pane_enabled = settings.get_boolean ("enable-3-pane");
 		var notes_dir = settings.get_string ("notes-dir");
 
         font_button.level = Gtk.FontChooserLevel.FEATURES;
@@ -47,7 +51,12 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
         enable_toolbar.state = toolbar_enabled;
         enable_toolbar.state_set.connect ((state) => {
             settings.set_boolean ("toolbar-enabled", state);
-            window.edit_view.toolbar_enabled = state;
+            return false;
+        });
+
+        enable_3_pane.state = is_3_pane_enabled;
+        enable_3_pane.state_set.connect ((state) => {
+            settings.set_boolean ("enable-3-pane", state);
             return false;
         });
 

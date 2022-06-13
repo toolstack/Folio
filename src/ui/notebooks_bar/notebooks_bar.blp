@@ -11,16 +11,35 @@ template PaperNotebooksBar : Box {
 
   Adw.HeaderBar header_bar {
 
-    show-start-title-buttons: false;
+    show-start-title-buttons: bind PaperNotebooksBar.paned;
     show-end-title-buttons: false;
 
     [title]
+    Box {
+      MenuButton {
+        visible: bind PaperNotebooksBar.paned inverted;
+        hexpand: false;
+        vexpand: false;
+        icon-name: "open-menu-symbolic";
+        primary: true;
+        popover: PopoverMenu primary_menu_popover {
+          menu-model: primary_menu;
+        };
+      }
+
+      Adw.WindowTitle window_title {
+        visible: bind PaperNotebooksBar.paned;
+      }
+    }
+
+    [end]
     MenuButton {
+      visible: bind PaperNotebooksBar.paned;
       hexpand: false;
       vexpand: false;
       icon-name: "open-menu-symbolic";
       primary: true;
-      popover: PopoverMenu primary_menu_popover {
+      popover: PopoverMenu primary_menu_popover_paned {
         menu-model: primary_menu;
       };
     }
@@ -42,11 +61,39 @@ template PaperNotebooksBar : Box {
 
         ToggleButton all_button {
 
+          visible: bind PaperNotebooksBar.paned inverted;
           icon-name: "view-list-symbolic";
           hexpand: false;
           vexpand: false;
 
           styles ["flat", "all-button"]
+        }
+
+        ToggleButton {
+
+          visible: bind PaperNotebooksBar.paned;
+          hexpand: false;
+          vexpand: false;
+          active: bind all_button.active bidirectional;
+          sensitive: bind all_button.sensitive bidirectional;
+
+          styles ["flat", "all-button"]
+
+          Box {
+
+            hexpand: true;
+            orientation: horizontal;
+
+            Image {
+              icon-name: "view-list-symbolic";
+            }
+
+            Label {
+              ellipsize: end;
+              halign: start;
+              label: _("All Notes");
+            }
+          }
         }
       }
 
@@ -59,11 +106,39 @@ template PaperNotebooksBar : Box {
 
   ToggleButton trash_button {
 
+    visible: bind PaperNotebooksBar.paned inverted;
     icon-name: "user-trash-symbolic";
     hexpand: false;
     vexpand: false;
 
     styles ["flat", "trash-button"]
+  }
+
+  ToggleButton {
+
+    visible: bind PaperNotebooksBar.paned;
+    hexpand: false;
+    vexpand: false;
+    active: bind trash_button.active bidirectional;
+    sensitive: bind trash_button.sensitive bidirectional;
+
+    styles ["flat", "trash-button"]
+
+    Box {
+
+      hexpand: true;
+      orientation: horizontal;
+
+      Image {
+        icon-name: "user-trash-symbolic";
+      }
+
+      Label {
+        ellipsize: end;
+        halign: start;
+        label: _("Trash");
+      }
+    }
   }
 }
 
