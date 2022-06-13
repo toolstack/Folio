@@ -15,9 +15,9 @@ public class Paper.Provider : Object, ListModel {
         foreach (var notebook in notebooks) {
             notebook.load ();
             foreach (var note in notebook.loaded_notes) {
-                notes.add(note);
+                notes.add (note);
             }
-            notebook.unload ();
+            // notebook.unload ();
         }
         return notes;
     }

@@ -523,7 +523,9 @@ public class Paper.Application : Adw.Application {
 	}
 
 	public void select_notebook (Notebook notebook) {
-        int i = notebook_provider.notebooks.index_of (notebook);
+	    var n = notebook_provider.notebooks
+	        .first_match ((it) => it.name == notebook.name);
+        int i = notebook_provider.notebooks.index_of (n);
         window.select_notebook (i);
 	}
 

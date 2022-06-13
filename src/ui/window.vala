@@ -481,7 +481,6 @@ public class Paper.Window : Adw.ApplicationWindow {
         app.select_notebook (note.notebook);
         Note? new_note_instance = null;
         foreach (var n in current_container.loaded_notes) {
-            message (n.name);
             if (n.name == name) {
                 new_note_instance = n;
                 break;
