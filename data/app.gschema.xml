@@ -41,5 +41,8 @@
     <key name="maximized" type="b">
       <default>false</default>
     </key>
+    <key name="note" type="s">
+      <default>''</default>
+    </key>
   </schema>
 </schemalist>

@@ -106,6 +106,15 @@ public class Paper.Application : Adw.Application {
 		if (win == null) {
 			win = new Window (this);
 		}
+		{
+            var settings = new Settings (@"$(Config.APP_ID).WindowState");
+            var note_path = settings.get_string ("note");
+		    var note = try_get_note_from_path (note_path);
+            if (note != null) {
+                select_notebook (note.notebook);
+                set_active_note (note);
+            }
+        }
 		execute_temp_command ();
 		win.present ();
 	}
@@ -116,8 +125,10 @@ public class Paper.Application : Adw.Application {
 	    var _note = temp_command.take ("open-note", out exists);
 	    if (exists) {
 	        var note = _note.get_object () as Note;
-            set_active_notebook (note.notebook);
-            set_active_note (note);
+            if (note != null) {
+                select_notebook (note.notebook);
+                set_active_note (note);
+            }
             temp_command.remove ("open-note");
 	    }
 	    var query = temp_command.take ("launch-search", out exists);
@@ -527,6 +538,10 @@ public class Paper.Application : Adw.Application {
 	}
 
 	public override void shutdown () {
+	    {
+            var settings = new Settings (@"$(Config.APP_ID).WindowState");
+            settings.set_string ("note", current_note.id);
+        }
 	    if (current_note != null) {
             current_note.save (current_buffer.get_all_text ());
             current_note = null;
@@ -579,16 +594,17 @@ public class Paper.Application : Adw.Application {
 		}
 
 		if (open_note != null) {
-            if (temp_command == null) temp_command = new HashTable<string, Value> (str_hash, str_equal);
-			var note_data = open_note.split ("/");
-            var notebook = notebook_provider.notebooks.first_match ((it) => it.name == note_data[0]);
-            notebook.load ();
-            var note = notebook.loaded_notes.first_match ((it) => it.name == note_data[1]);
-            temp_command.insert("open-note", note);
+            if (temp_command == null) temp_command =
+                new HashTable<string, Value> (str_hash, str_equal);
+            temp_command.insert(
+                "open-note",
+                try_get_note_from_path (open_note)
+            );
 		}
 
 		if (launch_search != null) {
-            if (temp_command == null) temp_command = new HashTable<string, Value> (str_hash, str_equal);
+            if (temp_command == null) temp_command =
+                new HashTable<string, Value> (str_hash, str_equal);
             temp_command.insert("launch-search", launch_search);
 		}
 
@@ -599,6 +615,21 @@ public class Paper.Application : Adw.Application {
         return 0;
 	}
 
+	private Note? try_get_note_from_path (string path) {
+	    if (path.length == 0)
+	        return null;
+		var note_data = path.split ("/");
+	    if (note_data.length != 2)
+	        return null;
+        var notebook = notebook_provider.notebooks
+            .first_match ((it) => it.name == note_data[0]);
+        if (notebook == null)
+            return null;
+        notebook.load ();
+        return notebook.loaded_notes
+            .first_match ((it) => it.name == note_data[1]);
+	}
+
 	public override int command_line (ApplicationCommandLine command_line) {
 		this.hold ();
 		var res = _command_line (command_line);
@@ -606,7 +637,11 @@ public class Paper.Application : Adw.Application {
 		return res;
 	}
 
-	private void show_confirmation_popup (string action_title, string action_description, owned Runnable callback) {
+	private void show_confirmation_popup (
+	    string action_title,
+	    string action_description,
+	    owned Runnable callback
+	) {
         var dialog = new Gtk.MessageDialog (
             active_window,
             Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
@@ -630,5 +665,4 @@ public class Paper.Application : Adw.Application {
 		dialog.present ();
 	}
 }
-
 
