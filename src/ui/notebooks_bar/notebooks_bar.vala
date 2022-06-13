@@ -90,11 +90,11 @@ public class Paper.NotebooksBar : Gtk.Box {
         {
             var factory = new Gtk.SignalListItemFactory ();
             factory.setup.connect (list_item => {
-                var widget = new NotebookListItem ();
+                var widget = new NotebookSidebarItem (app);
                 list_item.child = widget;
             });
             factory.bind.connect (list_item => {
-                var widget = list_item.child as NotebookListItem;
+                var widget = list_item.child as NotebookSidebarItem;
                 var item = list_item.item as Notebook;
                 widget.notebook = item;
             });

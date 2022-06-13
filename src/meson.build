@@ -20,6 +20,7 @@ paper_sources = [
   'ui/notebooks_bar/notebook_menu.vala',
   'ui/notebooks_bar/notebook_create_popup.vala',
   'ui/notebooks_bar/theme_selector.vala',
+  'ui/notebooks_bar/notebook_sidebar_item.vala',
 
   'ui/notebook_sidebar/note_card.vala',
   'ui/notebook_sidebar/note_menu.vala',

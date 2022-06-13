@@ -9,6 +9,7 @@ public class Paper.NotebookListItem : Gtk.Box {
 	unowned Gtk.Label label;
 
 	public Notebook notebook {
+	    get { return _notebook; }
 	    set {
 	        this._notebook = value;
 	        label.label = value.name;
