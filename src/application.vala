@@ -105,8 +105,7 @@ public class Paper.Application : Adw.Application {
 		var win = this.active_window;
 		if (win == null) {
 			win = new Window (this);
-		}
-		{
+
             var settings = new Settings (@"$(Config.APP_ID).WindowState");
             var note_path = settings.get_string ("note");
 		    var note = try_get_note_from_path (note_path);
@@ -114,7 +113,7 @@ public class Paper.Application : Adw.Application {
                 select_notebook (note.notebook);
                 set_active_note (note);
             }
-        }
+		}
 		execute_temp_command ();
 		win.present ();
 	}
