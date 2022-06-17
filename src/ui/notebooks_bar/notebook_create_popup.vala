@@ -97,6 +97,7 @@ public class Paper.NotebookCreatePopup : Adw.Window {
         });
         button_color.color_set.connect (() => {
             preview.color = button_color.rgba;
+            recolor (button_color.rgba);
         });
         entry.changed ();
         icon_type_combobox.changed ();
@@ -116,4 +117,29 @@ public class Paper.NotebookCreatePopup : Adw.Window {
         close ();
         app.try_change_notebook (notebook, info);
     }
+
+    private Gtk.CssProvider? last_css_provider = null;
+	private void recolor (Gdk.RGBA color) {
+        var rgba = Gdk.RGBA ();
+        var light_rgba = Gdk.RGBA ();
+        var rgb = Color.RGBA_to_rgb (color);
+        var hsl = Color.rgb_to_hsl (rgb);
+        {
+            hsl.l = 0.5f;
+            Color.hsl_to_rgb (hsl, out rgb);
+            Color.rgb_to_RGBA (rgb, out rgba);
+            hsl.l = 0.7f;
+            Color.hsl_to_rgb (hsl, out rgb);
+            Color.rgb_to_RGBA (rgb, out light_rgba);
+        }
+        if (last_css_provider != null) {
+            entry.get_style_context ().remove_provider (last_css_provider);
+            button_create.get_style_context ().remove_provider (last_css_provider);
+        }
+        var css = new Gtk.CssProvider ();
+        css.load_from_data (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;".data);
+        entry.get_style_context ().add_provider (css, -1);
+        button_create.get_style_context ().add_provider (css, -1);
+        last_css_provider = css;
+	}
 }

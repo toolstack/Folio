@@ -511,3 +511,4 @@ public class Paper.Window : Adw.ApplicationWindow {
         edit_view.theme_color = rgba;
 	}
 }
+
