@@ -1,5 +1,5 @@
 
-[GtkTemplate (ui = "/io/posidon/Paper/notebooks_bar/notebook_preview.ui")]
+[GtkTemplate (ui = "/io/posidon/Paper/notebook_icon/notebook_preview.ui")]
 public class Paper.NotebookPreview : Gtk.Box {
 
 	[GtkChild]
