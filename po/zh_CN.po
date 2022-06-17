@@ -1,0 +1,510 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the io.posidon.Paper package.
+# Guoyi Zhang <guoyizhang@malacology.net>, 2022.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: io.posidon.Paper\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-06-15 00:00+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Guoyi Zhang <guoyizhang@malacology.net>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/app.desktop.in:8 src/ui/strings.vala:3
+msgid "Paper"
+msgstr ""
+
+#: data/app.desktop.in:9
+msgid "Notes Manager"
+msgstr "笔记管家"
+
+#: data/app.desktop.in:10
+msgid "Take notes"
+msgstr "记笔记"
+
+#: data/app.desktop.in:12
+msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
+msgstr "笔记本;笔记;札记;文本;Markdown;记事本;书写;学校;便利贴;便签"
+
+#: data/app.desktop.in:21 src/ui/strings.vala:8 src/ui/shortcut_window.blp:17
+#: src/ui/window.blp:46 src/ui/window.blp:167
+msgid "New Note"
+msgstr "新建笔记"
+
+#: data/app.desktop.in:25 src/ui/strings.vala:14 src/ui/shortcut_window.blp:32
+#: src/ui/window.blp:192
+msgid "New Notebook"
+msgstr "新建笔记本"
+
+#: data/app.desktop.in:29 src/ui/strings.vala:39
+#: src/ui/edit_view/edit_view.blp:113 src/ui/window.blp:140
+msgid "Markdown Cheatsheet"
+msgstr "Markdown 备忘录"
+
+#: data/app.desktop.in:33 src/ui/shortcut_window.blp:57
+msgid "Preferences"
+msgstr "首选项"
+
+#: data/app.gschema.xml:6
+msgid "Font"
+msgstr "字体"
+
+#: data/app.gschema.xml:7 src/ui/preferences.blp:16
+msgid "The font notes will be displayed in"
+msgstr "这个字体将会展示在"
+
+#: data/app.gschema.xml:11 src/ui/preferences.blp:28
+msgid "OLED Mode"
+msgstr "OLED 模式"
+
+#: data/app.gschema.xml:15
+msgid "Notes Directory"
+msgstr "笔记文件夹"
+
+#: data/app.gschema.xml:16
+msgid "Where the notebooks are stored"
+msgstr "笔记存储位置"
+
+#: data/app.metainfo.xml.in:5
+msgid "Note-taking app"
+msgstr "笔记 app"
+
+#: data/app.metainfo.xml.in:7
+msgid "Create notebooks, take notes in markdown"
+msgstr "创建笔记本，记录 markdown 笔记"
+
+#: data/app.metainfo.xml.in:8
+msgid "Features:"
+msgstr "特性"
+
+#: data/app.metainfo.xml.in:10
+msgid "Almost WYSIWYG markdown rendering"
+msgstr "所见即所得 markdown 渲染"
+
+#: data/app.metainfo.xml.in:11
+msgid "Searchable through GNOME search"
+msgstr "GNOME search 可搜索"
+
+#: data/app.metainfo.xml.in:12
+msgid "Highlight &amp; Strikethrough text formatting"
+msgstr "亮点 &amp; 删除线文本格式"
+
+#: data/app.metainfo.xml.in:13
+msgid "App recoloring based on notebook color"
+msgstr "App 基于笔记本颜色重新着色"
+
+#: data/app.metainfo.xml.in:14
+msgid "Trash can"
+msgstr "垃圾桶"
+
+#: data/app.metainfo.xml.in:79
+msgid "Markdown document"
+msgstr "Markdown 文件"
+
+#: src/ui/strings.vala:4
+msgid "Trash"
+msgstr "垃圾"
+
+#: src/ui/strings.vala:5
+#, c-format
+msgid "%d Notes"
+msgstr "%d 笔记"
+
+#: src/ui/strings.vala:6
+msgid "Are you sure you want to delete everything in the trash?"
+msgstr "您想删除垃圾桶里的一切嘛？"
+
+#: src/ui/strings.vala:7 src/ui/window.blp:53
+msgid "Empty Trash"
+msgstr "清空垃圾桶"
+
+#: src/ui/strings.vala:9
+msgid "Create/choose a notebook before creating a note"
+msgstr "在创建笔记之前 创建/选择 一个笔记本"
+
+#: src/ui/strings.vala:10
+msgid "Please, select a note to edit"
+msgstr "请您选择一个笔记编辑"
+
+#: src/ui/strings.vala:11
+msgid "Please, select a note to delete"
+msgstr "请您选择一个笔记删除"
+
+#: src/ui/strings.vala:12
+msgid "Export Note"
+msgstr "导出笔记"
+
+#: src/ui/strings.vala:13
+msgid "Export"
+msgstr "导出"
+
+#: src/ui/strings.vala:15
+msgid "Rename Note"
+msgstr "重命名笔记"
+
+#: src/ui/strings.vala:16
+msgid "Move to Notebook"
+msgstr "移动到笔记本"
+
+#: src/ui/strings.vala:17
+msgid "Move"
+msgstr "移动"
+
+#: src/ui/strings.vala:18
+#, c-format
+msgid "Note “%s” already exists in notebook “%s”"
+msgstr "笔记 “%s” 已经存在于 “%s”笔记本中"
+
+#: src/ui/strings.vala:19
+#, c-format
+msgid "Are you sure you want to delete the note “%s”?"
+msgstr "您真的想删除笔记 “%s” 嘛？"
+
+#: src/ui/strings.vala:20
+msgid "Delete Note"
+msgstr "删除笔记"
+
+#: src/ui/strings.vala:21
+#, c-format
+msgid "Are you sure you want to delete the notebook “%s”?"
+msgstr "您真的想删除笔记本 “%s” 嘛？"
+
+#: src/ui/strings.vala:22
+msgid "Delete Notebook"
+msgstr "删除笔记本"
+
+#: src/ui/strings.vala:23 src/ui/shortcut_window.blp:37
+msgid "Edit Notebook"
+msgstr "编辑笔记本"
+
+#: src/ui/strings.vala:24
+msgid "Note name shouldn’t contain “.” or “/”"
+msgstr "笔记名称不应该包含 “.”或者 “/”"
+
+#: src/ui/strings.vala:25
+msgid "Note name shouldn’t be blank"
+msgstr "笔记名称不应该为空"
+
+#: src/ui/strings.vala:26
+#, c-format
+msgid "Note “%s” already exists"
+msgstr "笔记 “%s” 已经存在"
+
+#: src/ui/strings.vala:27
+msgid "Couldn’t create note"
+msgstr "无法创建笔记"
+
+#: src/ui/strings.vala:28
+msgid "Couldn’t change note"
+msgstr "无法更改笔记"
+
+#: src/ui/strings.vala:29
+msgid "Couldn’t delete note"
+msgstr "无法删除笔记"
+
+#: src/ui/strings.vala:30
+msgid "Couldn’t restore note"
+msgstr "无法存储笔记"
+
+#: src/ui/strings.vala:31
+#, c-format
+msgid "Saved “%s” to “%s”"
+msgstr "保存 “%s” 到 “%s”"
+
+#: src/ui/strings.vala:32
+msgid "Unknown error"
+msgstr "未知错误"
+
+#: src/ui/strings.vala:33
+msgid "Notebook name shouldn’t contain “.” or “/”"
+msgstr "笔记本名称不应该包含 “.” 或 “/”?"
+
+#: src/ui/strings.vala:34
+msgid "Notebook name shouldn’t be blank"
+msgstr "笔记本名称不应为空"
+
+#: src/ui/strings.vala:35
+#, c-format
+msgid "Notebook “%s” already exists"
+msgstr "笔记本 “%s” 已经存在"
+
+#: src/ui/strings.vala:36
+msgid "Couldn’t create notebook"
+msgstr "无法创建笔记本"
+
+#: src/ui/strings.vala:37
+msgid "Couldn’t change notebook"
+msgstr "无法更改笔记本"
+
+#: src/ui/strings.vala:38
+msgid "Couldn’t delete notebook"
+msgstr "无法删除笔记本"
+
+#: src/ui/strings.vala:40
+msgid "Search"
+msgstr "搜索"
+
+#: src/ui/strings.vala:41 src/ui/notebook_sidebar/note_menu.blp:36
+msgid "Rename"
+msgstr "重命名"
+
+#: src/ui/strings.vala:42
+msgid "Couldn’t find an app to handle file uris"
+msgstr "无法找到软件去处理文件的 uris"
+
+#: src/ui/strings.vala:43
+msgid "Apply"
+msgstr "应用"
+
+#: src/ui/strings.vala:44
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:34
+msgid "Cancel"
+msgstr "取消"
+
+#: src/ui/strings.vala:45
+msgid "Pick where the notebooks will be stored"
+msgstr "选择笔记本的存储位置"
+
+#: src/ui/strings.vala:46
+msgid "All Notes"
+msgstr "所有笔记"
+
+#: src/ui/edit_view/edit_view.blp:50 src/ui/markdown/heading_popover.blp:48
+msgid "Plain Text"
+msgstr "平文本"
+
+#: src/ui/edit_view/edit_view.blp:51 src/ui/markdown/heading_popover.blp:12
+msgid "Heading 1"
+msgstr "1 级标题"
+
+#: src/ui/edit_view/edit_view.blp:52 src/ui/markdown/heading_popover.blp:18
+msgid "Heading 2"
+msgstr "2 级标题"
+
+#: src/ui/edit_view/edit_view.blp:53 src/ui/markdown/heading_popover.blp:24
+msgid "Heading 3"
+msgstr "3级标题"
+
+#: src/ui/edit_view/edit_view.blp:54 src/ui/markdown/heading_popover.blp:30
+msgid "Heading 4"
+msgstr "4 级标题"
+
+#: src/ui/edit_view/edit_view.blp:55 src/ui/markdown/heading_popover.blp:36
+msgid "Heading 5"
+msgstr "5 级标题"
+
+#: src/ui/edit_view/edit_view.blp:56 src/ui/markdown/heading_popover.blp:42
+msgid "Heading 6"
+msgstr "6 级标题"
+
+#: src/ui/edit_view/edit_view.blp:67 src/ui/shortcut_window.blp:67
+msgid "Bold"
+msgstr "粗体"
+
+#: src/ui/edit_view/edit_view.blp:73 src/ui/shortcut_window.blp:72
+msgid "Italic"
+msgstr "斜体"
+
+#: src/ui/edit_view/edit_view.blp:79 src/ui/shortcut_window.blp:77
+msgid "Strikethrough"
+msgstr "删除线"
+
+#: src/ui/edit_view/edit_view.blp:85 src/ui/shortcut_window.blp:82
+msgid "Highlight"
+msgstr "高亮"
+
+#: src/ui/edit_view/edit_view.blp:95 src/ui/shortcut_window.blp:87
+msgid "Insert Link"
+msgstr "插入链接"
+
+#: src/ui/edit_view/edit_view.blp:101
+msgid "Insert Code"
+msgstr "插入代码"
+
+#: src/ui/notebooks_bar/notebook_create_popup.blp:54
+msgid "Notebook Name"
+msgstr "笔记本名称"
+
+#: src/ui/notebooks_bar/notebook_create_popup.blp:72
+msgid "First Characters"
+msgstr "首字符"
+
+#: src/ui/notebooks_bar/notebook_create_popup.blp:73
+msgid "Initials"
+msgstr "缩写"
+
+#: src/ui/notebooks_bar/notebook_create_popup.blp:74
+msgid "Initials: camelCase"
+msgstr "缩写：camelCase"
+
+#: src/ui/notebooks_bar/notebook_create_popup.blp:75
+msgid "Initials: snake_case"
+msgstr "缩写：snake_case"
+
+#: src/ui/notebooks_bar/notebook_create_popup.blp:76
+msgid "Icon"
+msgstr "图标"
+
+#: src/ui/notebooks_bar/notebook_create_popup.blp:106
+msgid "Notebook Color"
+msgstr "笔记颜色"
+
+#: src/ui/notebooks_bar/notebook_create_popup.blp:116
+msgid "Create Notebook"
+msgstr "创建笔记本"
+
+#: src/ui/notebooks_bar/notebook_menu.blp:16
+msgid "Edit"
+msgstr "编辑"
+
+#: src/ui/notebooks_bar/notebook_menu.blp:26
+msgid "Move all to Trash"
+msgstr "移动所有的笔记到垃圾桶"
+
+#: src/ui/notebooks_bar/notebooks_bar.blp:73
+msgid "_New Notebook"
+msgstr "_新笔记本"
+
+#: src/ui/notebooks_bar/notebooks_bar.blp:77
+msgid "_Edit Notebook"
+msgstr "_编辑笔记本"
+
+#: src/ui/notebooks_bar/notebooks_bar.blp:83
+msgid "_Preferences"
+msgstr "_首选项"
+
+#: src/ui/notebooks_bar/notebooks_bar.blp:87
+msgid "_Keyboard Shortcuts"
+msgstr "_快捷键"
+
+#: src/ui/notebooks_bar/notebooks_bar.blp:91
+msgid "_About"
+msgstr "_关于"
+
+#: src/ui/notebook_sidebar/note_create_popup.blp:37
+msgid "Note Name"
+msgstr "笔记名称"
+
+#: src/ui/notebook_sidebar/note_create_popup.blp:46
+msgid "Create Note"
+msgstr "创建笔记"
+
+#: src/ui/notebook_sidebar/note_menu.blp:16
+msgid "Restore from Trash"
+msgstr "从垃圾桶中恢复"
+
+#: src/ui/notebook_sidebar/note_menu.blp:26
+msgid "Delete from Trash"
+msgstr "从垃圾桶中删除"
+
+#: src/ui/notebook_sidebar/note_menu.blp:46
+msgid "Move to Notebook…"
+msgstr "移动到笔记本…"
+
+#: src/ui/notebook_sidebar/note_menu.blp:56
+msgid "Move to Trash"
+msgstr "移动到垃圾桶"
+
+#: src/ui/notebook_sidebar/note_menu.blp:66
+msgid "Open Containing Folder"
+msgstr "在文件夹中打开"
+
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
+msgid "Confirm"
+msgstr "确认"
+
+#: src/ui/preferences.blp:15
+msgid "Note Font"
+msgstr "笔记字体"
+
+#: src/ui/preferences.blp:21
+msgid "Pick a font for displaying the notes' content"
+msgstr "选择笔记内容的字体"
+
+#: src/ui/preferences.blp:29
+msgid "Makes the dark theme pitch black"
+msgstr "使暗黑主题颜色更深"
+
+#: src/ui/preferences.blp:41
+msgid "Notes Storage Location"
+msgstr "笔记本存储位置"
+
+#: src/ui/preferences.blp:42
+msgid "Where the notebooks are stored (requires app restart)"
+msgstr "笔记本应该存储在哪里（需要重启本 app）"
+
+#: src/ui/shortcut_window.blp:14
+msgid "Note"
+msgstr "笔记"
+
+#: src/ui/shortcut_window.blp:22
+msgid "Edit Note"
+msgstr "编辑笔记"
+
+#: src/ui/shortcut_window.blp:29
+msgid "Notebook"
+msgstr "笔记本"
+
+#: src/ui/shortcut_window.blp:44
+msgid "General"
+msgstr "常规"
+
+#: src/ui/shortcut_window.blp:47
+msgid "Show Keyboard Shortcuts"
+msgstr "显示快捷键"
+
+#: src/ui/shortcut_window.blp:52
+msgid "Quit"
+msgstr "退出"
+
+#: src/ui/shortcut_window.blp:64
+msgid "Formatting"
+msgstr "格式化"
+
+#: src/ui/shortcut_window.blp:94
+msgid "Navigation"
+msgstr "导航栏"
+
+#: src/ui/shortcut_window.blp:97 src/ui/window.blp:112
+msgid "Toggle Sidebar"
+msgstr "切换侧栏"
+
+#: src/ui/shortcut_window.blp:102 src/ui/window.blp:62
+msgid "Search Notes"
+msgstr "搜索笔记"
+
+#: src/ui/window.blp:120
+msgid "Back"
+msgstr "返回"
+
+#: src/ui/window.blp:133
+msgid "Open in Notebook"
+msgstr "在笔记本中打开"
+
+#: src/ui/window.blp:161
+msgid "Get started writing"
+msgstr "开始书写"
+
+#: src/ui/window.blp:186
+msgid "Create a notebook"
+msgstr "创建笔记本"
+
+#: src/ui/window.blp:211
+msgid "Trash is empty"
+msgstr "垃圾桶空空如也"
+
+#: src/ui/window.blp:224
+msgid "_Rename Note"
+msgstr "_重命名笔记"
+
+#: src/ui/window.blp:230
+msgid "_Export Note"
+msgstr "_导出笔记"
+
