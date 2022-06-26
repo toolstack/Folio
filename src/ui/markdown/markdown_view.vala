@@ -33,8 +33,8 @@ public class GtkMarkdown.View : GtkSource.View {
             var rgb = Color.RGBA_to_rgb (theme_color);
             if (dark) {
                 var hsl = Color.rgb_to_hsl (rgb);
-                hsl.s = float.min (hsl.s * 2.2f, 1);
-                hsl.l = 0.5f;
+                hsl.s = float.min (hsl.s * 1.2f, 1);
+                hsl.l = 0.46f;
                 var rgba = Color.rgb_to_RGBA (Color.hsl_to_rgb (hsl));
                 rgba.alpha = 0.5f;
                 return rgba;
