@@ -124,8 +124,8 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    maximized = window_state.get_boolean ("maximized");
 
 	    close_request.connect (() => {
-	        window_state.set_int ("width", get_width ());
-	        window_state.set_int ("height", get_height ());
+	        window_state.set_int ("width", default_width);
+	        window_state.set_int ("height", default_height);
 	        window_state.set_boolean ("maximized", maximized);
 	        return false;
 	    });
