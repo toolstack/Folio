@@ -73,7 +73,7 @@ paper_deps = [
   dependency('gtk4'),
   dependency('gio-2.0'),
   dependency('gee-0.8'),
-  dependency('libadwaita-1', version: '>= 1.0', required: true),
+  dependency('libadwaita-1', version: '>= 1.1', required: true),
   dependency('gtksourceview-5'),
   m_dep,
 ]
