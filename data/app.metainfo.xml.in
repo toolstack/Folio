@@ -18,6 +18,36 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
+    <release type="stable" version="22.7" date="2022-07-09">
+      <description translatable="no">
+	      <p>UI Tweaks:</p>
+        <ul>
+          <li>Added subtitle to notebook title when sidebar is not visible</li>
+          <li>Made headerbar fade out when you start typing with the sidebar hidden</li>
+          <li>Added theme variant selector (auto, light, dark)</li>
+          <li>Added preference to remove toolbar</li>
+          <li>Added preference to make the notebooks bar look like a 3rd pane</li>
+        </ul>
+	      <p>Markdown Rendering:</p>
+        <ul>
+          <li>Center horizontal rules</li>
+          <li>New blockquote appearance</li>
+          <li>Removed green tint from code blocks</li>
+        </ul>
+	      <p>Translations:</p>
+        <ul>
+          <li>Persian</li>
+          <li>Italian</li>
+          <li>Korean</li>
+          <li>Simplified Chinese</li>
+        </ul>
+	      <p>Fixed:</p>
+        <ul>
+          <li>Title buttons not being shown on the left side when the sidebar is hidden</li>
+          <li>UI not reflecting changes after editing a notebook</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="22.6" date="2022-06-02">
       <description translatable="no">
 	      <p>New Stuff:</p>
