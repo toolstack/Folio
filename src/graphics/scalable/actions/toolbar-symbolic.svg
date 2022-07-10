@@ -5,34 +5,13 @@
    width="16px"
    version="1.1"
    id="svg4"
-   sodipodi:docname="toolbar-symbolic.svg"
-   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
      id="defs8" />
-  <sodipodi:namedview
-     id="namedview6"
-     pagecolor="#505050"
-     bordercolor="#eeeeee"
-     borderopacity="1"
-     inkscape:pageshadow="0"
-     inkscape:pageopacity="0"
-     inkscape:pagecheckerboard="0"
-     showgrid="false"
-     inkscape:zoom="40.375"
-     inkscape:cx="8"
-     inkscape:cy="7.9876161"
-     inkscape:window-width="1503"
-     inkscape:window-height="941"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="svg4" />
   <path
      d="M 2,16 C 0.785156,16 0,15.171875 0,14 V 2 C 0,1 1,0 2,0 h 11.984375 c 1,0 2,1 2,2 v 12 c 0,1.238281 -0.828125,2 -2,2 z M 2,14 H 4 V 12 H 2 Z m 3,0 H 7 V 12 H 5 Z m 3,0 h 2 V 12 H 8 Z M 2,10 H 13.984375 V 2 H 2 Z m 0,0"
      fill="#222222"
-     id="path2" />
+     id="path2"
+     style="fill:#2e3436;fill-opacity:1" />
 </svg>
