@@ -19,6 +19,8 @@ public class Paper.Toolbar : Gtk.Box {
             format_heading_type.active = heading_i;
             format_heading_type_mobile.active = heading_i;
         });
+        format_heading_type.active = heading_i;
+        format_heading_type_mobile.active = heading_i;
         format_heading_type.changed.connect (() => {
             heading_i_changed(format_heading_type.active);
         });

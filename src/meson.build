@@ -7,6 +7,9 @@ paper_sources = [
   'ui/window.vala',
   'ui/preferences.vala',
 
+  'ui/save_indicator/save_indicator.vala',
+  'ui/save_indicator/save_status.vala',
+
   'ui/edit_view/edit_view.vala',
   'ui/edit_view/toolbar/toolbar.vala',
   'ui/file_editor/file_editor_window.vala',

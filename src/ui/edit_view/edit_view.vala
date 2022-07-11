@@ -28,14 +28,9 @@ public class Paper.EditView : Gtk.Box {
 	    }
 	}
 
-	[GtkChild]
-	unowned Toolbar toolbar;
-
-	[GtkChild]
-	unowned GtkMarkdown.View text_view;
-
-	[GtkChild]
-	public unowned Gtk.ScrolledWindow scrolled_window;
+	[GtkChild] unowned Toolbar toolbar;
+	[GtkChild] unowned GtkMarkdown.View text_view;
+	[GtkChild] public unowned Gtk.ScrolledWindow scrolled_window;
 
     construct {
 	    var settings = new Settings (Config.APP_ID);

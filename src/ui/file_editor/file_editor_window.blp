@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template PaperFileEditorWindow : Adw.Window {
+template PaperFileEditorWindow : Adw.ApplicationWindow {
   default-width: 720;
   default-height: 512;
 
@@ -27,6 +27,9 @@ template PaperFileEditorWindow : Adw.Window {
         hexpand: true;
         vexpand: false;
         valign: start;
+
+        [start]
+        .PaperSaveIndicator save_indicator {}
 
         [title]
         Adw.WindowTitle file_title {}

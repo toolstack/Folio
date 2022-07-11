@@ -200,6 +200,9 @@ template PaperWindow : Adw.ApplicationWindow {
                 visible: bind leaflet.folded;
               }
 
+              [start]
+              .PaperSaveIndicator save_indicator {}
+
               [end]
               MenuButton button_more_menu {
                 icon-name: "view-more-symbolic";

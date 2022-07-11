@@ -21,39 +21,30 @@ public class Paper.Window : Adw.ApplicationWindow {
 
     public NoteContainer? current_container { get; private set; default = null; }
 
-	[GtkChild]
-	unowned Adw.Leaflet leaflet;
+	public State current_state {
+	    public get;
+	    private set;
+	}
 
-	[GtkChild]
-	unowned Adw.LeafletPage sidebar;
+	public enum State {
+	    NOTEBOOK,
+	    NO_NOTEBOOK,
+	    ALL,
+	    TRASH
+	}
 
-	[GtkChild]
-	unowned Adw.LeafletPage edit_view_page;
+	[GtkChild] unowned Adw.Leaflet leaflet;
+	[GtkChild] unowned Adw.LeafletPage sidebar;
+	[GtkChild] unowned Adw.LeafletPage edit_view_page;
+	[GtkChild] unowned NotebooksBar notebooks_bar;
 
-	[GtkChild]
-	unowned NotebooksBar notebooks_bar;
-
-
-	[GtkChild]
-	unowned Gtk.Revealer sidebar_revealer;
-
-	[GtkChild]
-	unowned Adw.WindowTitle notebook_title;
-
-	[GtkChild]
-	unowned Gtk.ListView notebook_notes_list;
-
-	[GtkChild]
-	unowned Gtk.ScrolledWindow notebook_notes_list_scroller;
-
-	[GtkChild]
-	unowned Gtk.SearchBar notes_search_bar;
-
-	[GtkChild]
-	unowned Gtk.SearchEntry notes_search_entry;
-
-	[GtkChild]
-	unowned Adw.HeaderBar headerbar_sidebar;
+	[GtkChild] unowned Gtk.Revealer sidebar_revealer;
+	[GtkChild] unowned Adw.WindowTitle notebook_title;
+	[GtkChild] unowned Gtk.ListView notebook_notes_list;
+	[GtkChild] unowned Gtk.ScrolledWindow notebook_notes_list_scroller;
+	[GtkChild] unowned Gtk.SearchBar notes_search_bar;
+	[GtkChild] unowned Gtk.SearchEntry notes_search_entry;
+	[GtkChild] unowned Adw.HeaderBar headerbar_sidebar;
 
 	Gtk.SingleSelection notebook_notes_model {
 	    get { return (Gtk.SingleSelection) notebook_notes_list.model; }
@@ -62,62 +53,55 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    }
 	}
 
-	[GtkChild]
-	unowned Gtk.Button button_create_note;
+	[GtkChild] unowned Gtk.Button button_create_note;
+	[GtkChild] unowned Gtk.Button button_empty_trash;
+	[GtkChild] unowned Gtk.Button button_back;
+	[GtkChild] unowned SaveIndicator save_indicator;
+	[GtkChild] unowned Gtk.MenuButton button_more_menu;
+	[GtkChild] unowned Gtk.Button button_open_in_notebook;
 
-	[GtkChild]
-	unowned Gtk.Button button_empty_trash;
+	[GtkChild] unowned Adw.WindowTitle note_title;
 
-	[GtkChild]
-	unowned Gtk.Button button_back;
+	[GtkChild] unowned Adw.HeaderBar headerbar_edit_view;
+	[GtkChild] unowned Gtk.Revealer headerbar_edit_view_revealer;
 
-	[GtkChild]
-	unowned Gtk.MenuButton button_more_menu;
+	[GtkChild] unowned EditView edit_view;
+	[GtkChild] unowned Gtk.Box text_view_empty_notebook;
+	[GtkChild] unowned Gtk.Box text_view_empty_trash;
+	[GtkChild] unowned Gtk.Box text_view_no_notebook;
 
-	[GtkChild]
-	unowned Gtk.Button button_open_in_notebook;
-
-
-	[GtkChild]
-	unowned Adw.WindowTitle note_title;
-
-	[GtkChild]
-	public unowned EditView edit_view;
-
-	[GtkChild]
-	unowned Adw.HeaderBar headerbar_edit_view;
-
-	[GtkChild]
-	unowned Gtk.Revealer headerbar_edit_view_revealer;
-
-	[GtkChild]
-	unowned Gtk.Box text_view_empty_notebook;
-
-	[GtkChild]
-	unowned Gtk.Box text_view_empty_trash;
-
-	[GtkChild]
-	unowned Gtk.Box text_view_no_notebook;
-
-
-	[GtkChild]
-	unowned Adw.ToastOverlay toast_overlay;
+	[GtkChild] unowned Adw.ToastOverlay toast_overlay;
 
 	private FuzzyStringSorter search_sorter;
 
-	public State current_state {
-	    public get;
-	    private set;
-	}
-
 	private SimpleNoteContainer all_notes;
 
-	public Window (Application app) {
-		Object (
-		    application: app,
-		    title: "Paper",
-		    icon_name: Config.APP_ID
-	    );
+    private Note? current_note = null;
+
+    private GtkMarkdown.Buffer current_buffer;
+
+    private Gtk.CssProvider? last_css_provider = null;
+
+    private Gtk.CssProvider? black_css_provider = null;
+    private Gtk.CssProvider? black_hc_css_provider = null;
+
+	private ActionEntry[] ACTIONS = {
+		{ "format-bold", on_format_bold },
+		{ "format-italic", on_format_italic },
+		{ "format-strikethrough", on_format_strikethrough },
+		{ "format-highlight", on_format_highlight },
+
+		{ "insert-link", on_insert_link },
+		{ "insert-code-span", on_insert_code_span },
+		{ "insert-horizontal-rule", on_insert_horizontal_rule },
+
+		{ "toggle-sidebar", toggle_sidebar_visibility },
+		{ "search-notes", toggle_search },
+		{ "save-note", save_current_note },
+	};
+
+	construct {
+		add_action_entries (ACTIONS, this);
 
 	    var window_state = new Settings (@"$(Config.APP_ID).WindowState");
 	    set_default_size (window_state.get_int ("width"), window_state.get_int ("height"));
@@ -131,6 +115,14 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    });
 
         Gtk.IconTheme.get_for_display (display).add_resource_path ("/io/posidon/Paper/graphics/");
+	}
+
+	public Window (Application app) {
+		Object (
+		    application: app,
+		    title: "Paper",
+		    icon_name: Config.APP_ID
+	    );
 
         all_notes = new SimpleNoteContainer (Strings.ALL_NOTES, app.notebook_provider.get_all_notes);
 
@@ -203,20 +195,16 @@ public class Paper.Window : Adw.ApplicationWindow {
 	}
 
 	public void set_notebook (Notebook? notebook) {
-	    set_state (notebook == null ? State.NO_NOTEBOOK : State.NOTEBOOK, notebook);
-	}
+	    set_state (notebook == null ? State.NO_NOTEBOOK : State.NOTEBOOK, notebook); }
 
-	public void set_trash (Trash trash) {
-	    set_state (State.TRASH, trash);
-	}
+	public void set_trash (Trash trash) { set_state (State.TRASH, trash); }
 
-	public void set_all () {
-	    set_state (State.ALL, all_notes);
-	}
+	public void set_all () { set_state (State.ALL, all_notes); }
 
 	public GtkMarkdown.Buffer? set_note (Note? note) {
         optional_save ();
 	    current_note = note;
+        save_status = SaveStatus.SAVED;
 	    update_note_title ();
 	    update_editability ();
 	    if (note != null) {
@@ -233,6 +221,8 @@ public class Paper.Window : Adw.ApplicationWindow {
                 // Only hide in desktop no sidebar mode
                 if (!sidebar_revealer.reveal_child)
                     headerbar_edit_view_revealer.reveal_child = false;
+
+                save_status = SaveStatus.UNSAVED;
             });
 	    } else {
 	        note_title.title = null;
@@ -244,9 +234,9 @@ public class Paper.Window : Adw.ApplicationWindow {
         return current_buffer;
 	}
 
-	public void select_notebook (uint i) {
-	    notebooks_bar.select_notebook (i);
-	}
+	public SaveStatus save_status { set { save_indicator.status = value; } }
+
+	public void select_notebook (uint i) { notebooks_bar.select_notebook (i); }
 
     public void optional_save () {
 	    if (edit_view.is_editable && current_note != null) {
@@ -254,13 +244,17 @@ public class Paper.Window : Adw.ApplicationWindow {
         }
     }
 
-	public void select_note (uint i) {
-	    notebook_notes_model.select_item (i, true);
-	}
+    public void save_current_note () {
+	    if (edit_view.is_editable && current_note != null) {
+            save_status = SaveStatus.SAVING;
+            current_note.save (current_buffer.get_all_text ());
+            save_status = SaveStatus.SAVED;
+	    }
+    }
 
-	public void update_selected_note () {
-	    select_note (notebook_notes_model.selected);
-	}
+	public void select_note (uint i) { notebook_notes_model.select_item (i, true); }
+
+	public void update_selected_note () { select_note (notebook_notes_model.selected); }
 
 	public void toast (string text) {
         var toast = new Adw.Toast (text);
@@ -287,9 +281,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    }
 	}
 
-	public void navigate_to_edit_view () {
-	    leaflet.visible_child = edit_view_page.child;
-	}
+	public void navigate_to_edit_view () { leaflet.visible_child = edit_view_page.child; }
 
 	public void update_theme (bool dark, bool high_contrast) {
 	    edit_view.on_dark_changed (dark);
@@ -323,14 +315,13 @@ public class Paper.Window : Adw.ApplicationWindow {
 		}
 	}
 
-    private Note? current_note = null;
-
-    private GtkMarkdown.Buffer current_buffer;
-
-    private Gtk.CssProvider? last_css_provider = null;
-
-    private Gtk.CssProvider? black_css_provider = null;
-    private Gtk.CssProvider? black_hc_css_provider = null;
+	private void on_format_bold () { edit_view.format_selection_bold (); }
+	private void on_format_italic () { edit_view.format_selection_italic (); }
+	private void on_format_strikethrough () { edit_view.format_selection_strikethrough (); }
+	private void on_format_highlight () { edit_view.format_selection_highlight (); }
+	private void on_insert_link () { edit_view.insert_link (); }
+	private void on_insert_code_span () { edit_view.insert_code_span (); }
+	private void on_insert_horizontal_rule () { edit_view.insert_horizontal_rule (); }
 
 	private void update_sidebar_scroll () {
         var v = notebook_notes_list_scroller.vadjustment.value;
@@ -365,13 +356,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 	private void update_note_title () {
 	    var is_sidebar_hidden = leaflet.folded || !sidebar_revealer.reveal_child;
         note_title.subtitle = is_sidebar_hidden ? current_note.notebook.name : null;
-	}
-
-	public enum State {
-	    NOTEBOOK,
-	    NO_NOTEBOOK,
-	    ALL,
-	    TRASH
 	}
 
 	private void set_state (State state, NoteContainer? container = null) {

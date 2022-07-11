@@ -10,6 +10,7 @@
     <file preprocess="xml-stripblanks" alias="preferences.ui">ui/preferences.ui</file>
     <file preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">ui/shortcut_window.ui</file>
 
+    <file preprocess="xml-stripblanks" alias="save_indicator.ui">ui/save_indicator/save_indicator.ui</file>
     <file preprocess="xml-stripblanks" alias="edit_view.ui">ui/edit_view/edit_view.ui</file>
     <file preprocess="xml-stripblanks" alias="toolbar.ui">ui/edit_view/toolbar/toolbar.ui</file>
     <file preprocess="xml-stripblanks" alias="file_editor_window.ui">ui/file_editor/file_editor_window.ui</file>
@@ -40,6 +41,8 @@
     <file preprocess="xml-stripblanks">graphics/scalable/actions/dark-mode-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/reset-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/toolbar-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">graphics/scalable/actions/saved-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">graphics/scalable/actions/unsaved-symbolic.svg</file>
 
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-code-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-heart-symbolic.svg</file>

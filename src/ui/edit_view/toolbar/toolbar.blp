@@ -41,28 +41,28 @@ template PaperToolbar : Box {
         hexpand: bind PaperToolbar.compacted;
         icon-name: "format-text-bold-symbolic";
         tooltip-text: _("Bold");
-        action-name: "app.format-bold";
+        action-name: "win.format-bold";
       }
 
       Button {
         hexpand: bind PaperToolbar.compacted;
         icon-name: "format-text-italic-symbolic";
         tooltip-text: _("Italic");
-        action-name: "app.format-italic";
+        action-name: "win.format-italic";
       }
 
       Button {
         visible: bind PaperToolbar.compacted inverted;
         icon-name: "format-text-strikethrough-symbolic";
         tooltip-text: _("Strikethrough");
-        action-name: "app.format-strikethrough";
+        action-name: "win.format-strikethrough";
       }
 
       Button {
         visible: bind PaperToolbar.compacted inverted;
         icon-name: "format-text-highlight-symbolic";
         tooltip-text: _("Highlight");
-        action-name: "app.format-highlight";
+        action-name: "win.format-highlight";
       }
 
       Separator {
@@ -74,21 +74,21 @@ template PaperToolbar : Box {
         visible: bind PaperToolbar.compacted inverted;
         icon-name: "insert-link-symbolic";
         tooltip-text: _("Insert Link");
-        action-name: "app.insert-link";
+        action-name: "win.insert-link";
       }
 
       Button {
         visible: bind PaperToolbar.compacted inverted;
         icon-name: "insert-code-symbolic";
         tooltip-text: _("Insert Code");
-        action-name: "app.insert-code-span";
+        action-name: "win.insert-code-span";
       }
 
       Button {
         visible: bind PaperToolbar.compacted inverted;
         icon-name: "insert-horizontal-rule-symbolic";
         tooltip-text: _("Insert Horizontal Rule");
-        action-name: "app.insert-horizontal-rule";
+        action-name: "win.insert-horizontal-rule";
       }
 
       Box {
@@ -131,28 +131,28 @@ template PaperToolbar : Box {
               Button {
                 icon-name: "format-text-bold-symbolic";
                 tooltip-text: _("Bold");
-                action-name: "app.format-bold";
+                action-name: "win.format-bold";
                 styles ["flat", "modelbutton"]
               }
 
               Button {
                 icon-name: "format-text-italic-symbolic";
                 tooltip-text: _("Italic");
-                action-name: "app.format-italic";
+                action-name: "win.format-italic";
                 styles ["flat", "modelbutton"]
               }
 
               Button {
                 icon-name: "format-text-strikethrough-symbolic";
                 tooltip-text: _("Strikethrough");
-                action-name: "app.format-strikethrough";
+                action-name: "win.format-strikethrough";
                 styles ["flat", "modelbutton"]
               }
 
               Button {
                 icon-name: "format-text-highlight-symbolic";
                 tooltip-text: _("Highlight");
-                action-name: "app.format-highlight";
+                action-name: "win.format-highlight";
                 styles ["flat", "modelbutton"]
               }
             }
@@ -183,17 +183,17 @@ template PaperToolbar : Box {
 
 menu insert_menu {
   section {
-    item (_("Insert Link"), "app.insert-link", "insert-link-symbolic")
-    item (_("Insert Code"), "app.insert-code-span", "insert-code-symbolic")
-    item (_("Insert Horizontal Rule"), "app.insert-horizontal-rule", "horizontal-rule-symbolic")
+    item (_("Insert Link"), "win.insert-link", "insert-link-symbolic")
+    item (_("Insert Code"), "win.insert-code-span", "insert-code-symbolic")
+    item (_("Insert Horizontal Rule"), "win.insert-horizontal-rule", "horizontal-rule-symbolic")
   }
 }
 
 menu format_menu {
   section {
-    item (_("Bold"), "app.format-bold", "format-text-bold-symbolic")
-    item (_("Italic"), "app.format-italic", "format-text-italic-symbolic")
-    item (_("Strikethrough"), "app.format-strikethrough", "format-text-strikethrough-symbolic")
-    item (_("Highlight"), "app.format-highlight", "format-text-highlight-symbolic")
+    item (_("Bold"), "win.format-bold", "format-text-bold-symbolic")
+    item (_("Italic"), "win.format-italic", "format-text-italic-symbolic")
+    item (_("Strikethrough"), "win.format-strikethrough", "format-text-strikethrough-symbolic")
+    item (_("Highlight"), "win.format-highlight", "format-text-highlight-symbolic")
   }
 }

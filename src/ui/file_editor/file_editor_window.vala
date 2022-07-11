@@ -1,18 +1,35 @@
 
 [GtkTemplate (ui = "/io/posidon/Paper/file_editor_window.ui")]
-public class Paper.FileEditorWindow : Adw.Window {
+public class Paper.FileEditorWindow : Adw.ApplicationWindow {
 
-	[GtkChild]
-	unowned Adw.WindowTitle file_title;
+	[GtkChild] unowned Adw.WindowTitle file_title;
+	[GtkChild] unowned Adw.HeaderBar headerbar;
+	[GtkChild] unowned SaveIndicator save_indicator;
 
-	[GtkChild]
-	unowned Adw.HeaderBar headerbar;
+	[GtkChild] unowned EditView edit_view;
+	[GtkChild] unowned Adw.ToastOverlay toast_overlay;
 
-	[GtkChild]
-	public unowned EditView edit_view;
+	private ActionEntry[] ACTIONS = {
+		{ "format-bold", on_format_bold },
+		{ "format-italic", on_format_italic },
+		{ "format-strikethrough", on_format_strikethrough },
+		{ "format-highlight", on_format_highlight },
 
-	[GtkChild]
-	unowned Adw.ToastOverlay toast_overlay;
+		{ "insert-link", on_insert_link },
+		{ "insert-code-span", on_insert_code_span },
+		{ "insert-horizontal-rule", on_insert_horizontal_rule },
+
+		{ "save-note", save },
+	};
+
+    private GtkMarkdown.Buffer current_buffer;
+    private File current_file;
+
+	construct {
+		add_action_entries (ACTIONS, this);
+
+        Gtk.IconTheme.get_for_display (display).add_resource_path ("/io/posidon/Paper/graphics/");
+	}
 
 	public FileEditorWindow (Application app, File file) {
 		Object (
@@ -21,8 +38,7 @@ public class Paper.FileEditorWindow : Adw.Window {
 		    icon_name: Config.APP_ID
 	    );
 
-        Gtk.IconTheme.get_for_display (display).add_resource_path ("/io/posidon/Paper/graphics/");
-
+        current_file = file;
         edit_view.on_dark_changed(app.style_manager.dark);
         app.style_manager.notify["dark"].connect (() => edit_view.on_dark_changed(app.style_manager.dark));
 
@@ -36,7 +52,7 @@ public class Paper.FileEditorWindow : Adw.Window {
         edit_view.buffer = current_buffer;
 
         close_request.connect (() => {
-            save (file);
+            save_file ();
             return false;
         });
 
@@ -47,12 +63,22 @@ public class Paper.FileEditorWindow : Adw.Window {
         });
 
         recolor (Color.RGB ());
+
+        current_buffer.begin_user_action.connect (() => {
+            save_indicator.status = SaveStatus.UNSAVED;
+        });
+
+        save_indicator.status = SaveStatus.SAVED;
 	}
 
-    private GtkMarkdown.Buffer current_buffer;
+    public void save_file () {
+	    FileUtils.save_to (current_file, current_buffer.get_all_text ());
+    }
 
-    public void save (File file) {
-	    FileUtils.save_to (file, current_buffer.get_all_text ());
+    public void save () {
+        save_indicator.status = SaveStatus.SAVING;
+        save_file ();
+        save_indicator.status = SaveStatus.SAVED;
     }
 
 	public void toast (string text) {
@@ -77,4 +103,12 @@ public class Paper.FileEditorWindow : Adw.Window {
         get_style_context ().add_provider (css, -1);
         edit_view.theme_color = rgba;
 	}
+
+	private void on_format_bold () { edit_view.format_selection_bold (); }
+	private void on_format_italic () { edit_view.format_selection_italic (); }
+	private void on_format_strikethrough () { edit_view.format_selection_strikethrough (); }
+	private void on_format_highlight () { edit_view.format_selection_highlight (); }
+	private void on_insert_link () { edit_view.insert_link (); }
+	private void on_insert_code_span () { edit_view.insert_code_span (); }
+	private void on_insert_horizontal_rule () { edit_view.insert_horizontal_rule (); }
 }

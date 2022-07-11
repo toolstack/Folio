@@ -2,14 +2,9 @@
 [GtkTemplate (ui = "/io/posidon/Paper/theme_selector.ui")]
 public class Paper.ThemeSelector : Gtk.Box {
 
-    [GtkChild]
-    Gtk.CheckButton _auto;
-
-    [GtkChild]
-    Gtk.CheckButton light;
-
-    [GtkChild]
-    Gtk.CheckButton dark;
+    [GtkChild] unowned Gtk.CheckButton _auto;
+    [GtkChild] unowned Gtk.CheckButton light;
+    [GtkChild] unowned Gtk.CheckButton dark;
 
     construct {
 	    var settings = new Settings (@"$(Config.APP_ID).Theme");

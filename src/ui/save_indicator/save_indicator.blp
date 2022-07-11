@@ -1,0 +1,13 @@
+using Gtk 4.0;
+
+template PaperSaveIndicator : Box {
+  styles ["save-indicator"]
+
+  Image save_status_icon {
+    icon-name: "saved-symbolic";
+    visible: bind saving_spinner.visible inverted;
+  }
+
+  Spinner saving_spinner {
+  }
+}
