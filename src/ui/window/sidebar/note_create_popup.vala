@@ -1,5 +1,5 @@
 
-[GtkTemplate (ui = "/io/posidon/Paper/notebook_sidebar/create_popup.ui")]
+[GtkTemplate (ui = "/io/posidon/Paper/sidebar/create_popup.ui")]
 public class Paper.NoteCreatePopup : Adw.Window {
 
 	[GtkChild]

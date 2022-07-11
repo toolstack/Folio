@@ -34,22 +34,22 @@ msgstr "یادداشت‌برداری"
 msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
 msgstr "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;دفترچهٔ یادداشت;یادداشت‌ها;مارک‌داون;مارک‌دون;مارک‌دان;نوشتن;مدرسه;فرستادن;"
 
-#: data/app.desktop.in:21 src/ui/strings.vala:8 src/ui/shortcut_window.blp:17
-#: src/ui/window.blp:46 src/ui/window.blp:167
+#: data/app.desktop.in:21 src/ui/strings.vala:8 src/ui/popup/shortcut_window.blp:17
+#: src/ui/window/window.blp:46 src/ui/window/window.blp:167
 msgid "New Note"
 msgstr "یادداشت جدید"
 
-#: data/app.desktop.in:25 src/ui/strings.vala:14 src/ui/shortcut_window.blp:32
-#: src/ui/window.blp:192
+#: data/app.desktop.in:25 src/ui/strings.vala:14 src/ui/popup/shortcut_window.blp:32
+#: src/ui/window/window.blp:192
 msgid "New Notebook"
 msgstr "دفترچهٔ جدید"
 
 #: data/app.desktop.in:29 src/ui/strings.vala:39
-#: src/ui/edit_view/edit_view.blp:113 src/ui/window.blp:140
+#: src/ui/edit_view/edit_view.blp:113 src/ui/window/window.blp:140
 msgid "Markdown Cheatsheet"
 msgstr "برگهٔ تقلب مارک‌دون"
 
-#: data/app.desktop.in:33 src/ui/shortcut_window.blp:57
+#: data/app.desktop.in:33 src/ui/popup/shortcut_window.blp:57
 msgid "Preferences"
 msgstr "ترجیحات"
 
@@ -122,7 +122,7 @@ msgstr "%d یادداشت"
 msgid "Are you sure you want to delete everything in the trash?"
 msgstr "آیا مطمئنید که می‌خواهید تمامی موارد داخل زباله‌دان را حذف کنید؟"
 
-#: src/ui/strings.vala:7 src/ui/window.blp:53
+#: src/ui/strings.vala:7 src/ui/window/window.blp:53
 msgid "Empty Trash"
 msgstr "تخلیهٔ زباله‌دان"
 
@@ -181,7 +181,7 @@ msgstr "آیا مطمئنید که می‌خواهید دفترچهٔ «%s» ر�
 msgid "Delete Notebook"
 msgstr "حذف دفترچه"
 
-#: src/ui/strings.vala:23 src/ui/shortcut_window.blp:37
+#: src/ui/strings.vala:23 src/ui/popup/shortcut_window.blp:37
 msgid "Edit Notebook"
 msgstr "ویرایش دفترچه"
 
@@ -252,7 +252,7 @@ msgstr "نمی‌توان دفترچه را حذف کرد"
 msgid "Search"
 msgstr "جست‌وجو"
 
-#: src/ui/strings.vala:41 src/ui/notebook_sidebar/note_menu.blp:36
+#: src/ui/strings.vala:41 src/ui/window/sidebar/note_menu.blp:36
 msgid "Rename"
 msgstr "تغییر نام"
 
@@ -277,51 +277,51 @@ msgstr "جایی که دفترچه‌ها ذخیره می‌شوند را انت
 msgid "All Notes"
 msgstr "تمامی یادداشت‌ها"
 
-#: src/ui/edit_view/edit_view.blp:50 src/ui/markdown/heading_popover.blp:48
+#: src/ui/edit_view/edit_view.blp:50 src/ui/widgets/markdown/heading_popover.blp:48
 msgid "Plain Text"
 msgstr "متن ساده"
 
-#: src/ui/edit_view/edit_view.blp:51 src/ui/markdown/heading_popover.blp:12
+#: src/ui/edit_view/edit_view.blp:51 src/ui/widgets/markdown/heading_popover.blp:12
 msgid "Heading 1"
 msgstr "سرایند ۱"
 
-#: src/ui/edit_view/edit_view.blp:52 src/ui/markdown/heading_popover.blp:18
+#: src/ui/edit_view/edit_view.blp:52 src/ui/widgets/markdown/heading_popover.blp:18
 msgid "Heading 2"
 msgstr "سرایند ۲"
 
-#: src/ui/edit_view/edit_view.blp:53 src/ui/markdown/heading_popover.blp:24
+#: src/ui/edit_view/edit_view.blp:53 src/ui/widgets/markdown/heading_popover.blp:24
 msgid "Heading 3"
 msgstr "سرایند ۳"
 
-#: src/ui/edit_view/edit_view.blp:54 src/ui/markdown/heading_popover.blp:30
+#: src/ui/edit_view/edit_view.blp:54 src/ui/widgets/markdown/heading_popover.blp:30
 msgid "Heading 4"
 msgstr "سرایند ۴"
 
-#: src/ui/edit_view/edit_view.blp:55 src/ui/markdown/heading_popover.blp:36
+#: src/ui/edit_view/edit_view.blp:55 src/ui/widgets/markdown/heading_popover.blp:36
 msgid "Heading 5"
 msgstr "سرایند ۵"
 
-#: src/ui/edit_view/edit_view.blp:56 src/ui/markdown/heading_popover.blp:42
+#: src/ui/edit_view/edit_view.blp:56 src/ui/widgets/markdown/heading_popover.blp:42
 msgid "Heading 6"
 msgstr "سرایند ۶"
 
-#: src/ui/edit_view/edit_view.blp:67 src/ui/shortcut_window.blp:67
+#: src/ui/edit_view/edit_view.blp:67 src/ui/popup/shortcut_window.blp:67
 msgid "Bold"
 msgstr "توپُر"
 
-#: src/ui/edit_view/edit_view.blp:73 src/ui/shortcut_window.blp:72
+#: src/ui/edit_view/edit_view.blp:73 src/ui/popup/shortcut_window.blp:72
 msgid "Italic"
 msgstr "کج"
 
-#: src/ui/edit_view/edit_view.blp:79 src/ui/shortcut_window.blp:77
+#: src/ui/edit_view/edit_view.blp:79 src/ui/popup/shortcut_window.blp:77
 msgid "Strikethrough"
 msgstr "خط‌خورده"
 
-#: src/ui/edit_view/edit_view.blp:85 src/ui/shortcut_window.blp:82
+#: src/ui/edit_view/edit_view.blp:85 src/ui/popup/shortcut_window.blp:82
 msgid "Highlight"
 msgstr "برجسته"
 
-#: src/ui/edit_view/edit_view.blp:95 src/ui/shortcut_window.blp:87
+#: src/ui/edit_view/edit_view.blp:95 src/ui/popup/shortcut_window.blp:87
 msgid "Insert Link"
 msgstr "درج پیوند"
 
@@ -329,91 +329,91 @@ msgstr "درج پیوند"
 msgid "Insert Code"
 msgstr "درج کد"
 
-#: src/ui/notebooks_bar/notebook_create_popup.blp:54
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:54
 msgid "Notebook Name"
 msgstr "نام دفترچه"
 
-#: src/ui/notebooks_bar/notebook_create_popup.blp:72
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:72
 msgid "First Characters"
 msgstr "نویسه‌های نخست"
 
-#: src/ui/notebooks_bar/notebook_create_popup.blp:73
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:73
 msgid "Initials"
 msgstr "حروف اول"
 
-#: src/ui/notebooks_bar/notebook_create_popup.blp:74
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:74
 msgid "Initials: camelCase"
 msgstr "حروف اول: CamelCase"
 
-#: src/ui/notebooks_bar/notebook_create_popup.blp:75
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:75
 msgid "Initials: snake_case"
 msgstr "حروف اول: snake_case"
 
-#: src/ui/notebooks_bar/notebook_create_popup.blp:76
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:76
 msgid "Icon"
 msgstr "نقشک"
 
-#: src/ui/notebooks_bar/notebook_create_popup.blp:106
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:106
 msgid "Notebook Color"
 msgstr "رنگ دفترچه"
 
-#: src/ui/notebooks_bar/notebook_create_popup.blp:116
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:116
 msgid "Create Notebook"
 msgstr "ایجاد دفترچه"
 
-#: src/ui/notebooks_bar/notebook_menu.blp:16
+#: src/ui/window/notebooks_bar/notebook_menu.blp:16
 msgid "Edit"
 msgstr "ویرایش"
 
-#: src/ui/notebooks_bar/notebook_menu.blp:26
+#: src/ui/window/notebooks_bar/notebook_menu.blp:26
 msgid "Move all to Trash"
 msgstr "انتقال همه به زباله‌دان"
 
-#: src/ui/notebooks_bar/notebooks_bar.blp:73
+#: src/ui/window/notebooks_bar/notebooks_bar.blp:73
 msgid "_New Notebook"
 msgstr "دفترچهٔ _جدید"
 
-#: src/ui/notebooks_bar/notebooks_bar.blp:77
+#: src/ui/window/notebooks_bar/notebooks_bar.blp:77
 msgid "_Edit Notebook"
 msgstr "_ویرایش دفترچه"
 
-#: src/ui/notebooks_bar/notebooks_bar.blp:83
+#: src/ui/window/notebooks_bar/notebooks_bar.blp:83
 msgid "_Preferences"
 msgstr "_ترجیحات"
 
-#: src/ui/notebooks_bar/notebooks_bar.blp:87
+#: src/ui/window/notebooks_bar/notebooks_bar.blp:87
 msgid "_Keyboard Shortcuts"
 msgstr "_میان‌برهای صفحه‌کلید"
 
-#: src/ui/notebooks_bar/notebooks_bar.blp:91
+#: src/ui/window/notebooks_bar/notebooks_bar.blp:91
 msgid "_About"
 msgstr "_درباره"
 
-#: src/ui/notebook_sidebar/note_create_popup.blp:37
+#: src/ui/window/sidebar/note_create_popup.blp:37
 msgid "Note Name"
 msgstr "نام یادداشت"
 
-#: src/ui/notebook_sidebar/note_create_popup.blp:46
+#: src/ui/window/sidebar/note_create_popup.blp:46
 msgid "Create Note"
 msgstr "ایجاد یادداشت"
 
-#: src/ui/notebook_sidebar/note_menu.blp:16
+#: src/ui/window/sidebar/note_menu.blp:16
 msgid "Restore from Trash"
 msgstr "بازیابی از زباله‌دان"
 
-#: src/ui/notebook_sidebar/note_menu.blp:26
+#: src/ui/window/sidebar/note_menu.blp:26
 msgid "Delete from Trash"
 msgstr "حذف از زباله‌دان"
 
-#: src/ui/notebook_sidebar/note_menu.blp:46
+#: src/ui/window/sidebar/note_menu.blp:46
 msgid "Move to Notebook…"
 msgstr "انتقال به دفترچه…"
 
-#: src/ui/notebook_sidebar/note_menu.blp:56
+#: src/ui/window/sidebar/note_menu.blp:56
 msgid "Move to Trash"
 msgstr "انتقال به زباله‌دان"
 
-#: src/ui/notebook_sidebar/note_menu.blp:66
+#: src/ui/window/sidebar/note_menu.blp:66
 msgid "Open Containing Folder"
 msgstr "گشودن شاخهٔ محتوی"
 
@@ -441,70 +441,70 @@ msgstr "مکان ذخیره‌سازی یادداشت‌ها"
 msgid "Where the notebooks are stored (requires app restart)"
 msgstr "جایی که یادداشت‌ها ذخیره می‌شوند (نیازمند راه‌اندازی دوبارهٔ کاره)"
 
-#: src/ui/shortcut_window.blp:14
+#: src/ui/popup/shortcut_window.blp:14
 msgid "Note"
 msgstr "یادداشت"
 
-#: src/ui/shortcut_window.blp:22
+#: src/ui/popup/shortcut_window.blp:22
 msgid "Edit Note"
 msgstr "ویرایش یادداشت"
 
-#: src/ui/shortcut_window.blp:29
+#: src/ui/popup/shortcut_window.blp:29
 msgid "Notebook"
 msgstr "دفترچه"
 
-#: src/ui/shortcut_window.blp:44
+#: src/ui/popup/shortcut_window.blp:44
 msgid "General"
 msgstr "عمومی"
 
-#: src/ui/shortcut_window.blp:47
+#: src/ui/popup/shortcut_window.blp:47
 msgid "Show Keyboard Shortcuts"
 msgstr "نمایش میان‌برهای صفحه‌کلید"
 
-#: src/ui/shortcut_window.blp:52
+#: src/ui/popup/shortcut_window.blp:52
 msgid "Quit"
 msgstr "خروج"
 
-#: src/ui/shortcut_window.blp:64
+#: src/ui/popup/shortcut_window.blp:64
 msgid "Formatting"
 msgstr "قالب‌بندی"
 
-#: src/ui/shortcut_window.blp:94
+#: src/ui/popup/shortcut_window.blp:94
 msgid "Navigation"
 msgstr "ناوبری"
 
-#: src/ui/shortcut_window.blp:97 src/ui/window.blp:112
+#: src/ui/popup/shortcut_window.blp:97 src/ui/window/window.blp:112
 msgid "Toggle Sidebar"
 msgstr "تعویض حالت نوار کناری"
 
-#: src/ui/shortcut_window.blp:102 src/ui/window.blp:62
+#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:62
 msgid "Search Notes"
 msgstr "جست‌وجوی یادداشت‌ها"
 
-#: src/ui/window.blp:120
+#: src/ui/window/window.blp:120
 msgid "Back"
 msgstr "بازگشت"
 
-#: src/ui/window.blp:133
+#: src/ui/window/window.blp:133
 msgid "Open in Notebook"
 msgstr "گشودن در دفترچه"
 
-#: src/ui/window.blp:161
+#: src/ui/window/window.blp:161
 msgid "Get started writing"
 msgstr "شروع نوشتن"
 
-#: src/ui/window.blp:186
+#: src/ui/window/window.blp:186
 msgid "Create a notebook"
 msgstr "ایجاد یک دفترچه"
 
-#: src/ui/window.blp:211
+#: src/ui/window/window.blp:211
 msgid "Trash is empty"
 msgstr "زباله‌دان خالی است"
 
-#: src/ui/window.blp:224
+#: src/ui/window/window.blp:224
 msgid "_Rename Note"
 msgstr "_تغییر نام یادداشت"
 
-#: src/ui/window.blp:230
+#: src/ui/window/window.blp:230
 msgid "_Export Note"
 msgstr "_برون‌ریزی یادداشت"

@@ -1,5 +1,5 @@
 
-[GtkTemplate (ui = "/io/posidon/Paper/notebook_sidebar/note_card.ui")]
+[GtkTemplate (ui = "/io/posidon/Paper/sidebar/note_card.ui")]
 public class Paper.NoteCard : Gtk.Box {
 
 	[GtkChild]

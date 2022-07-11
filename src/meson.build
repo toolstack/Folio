@@ -4,11 +4,8 @@ paper_sources = [
 
   'ui/strings.vala',
 
-  'ui/window.vala',
+  'ui/window/window.vala',
   'ui/preferences/preferences.vala',
-
-  'ui/save_indicator/save_indicator.vala',
-  'ui/save_indicator/save_status.vala',
 
   'ui/edit_view/edit_view.vala',
   'ui/edit_view/toolbar/toolbar.vala',
@@ -16,27 +13,29 @@ paper_sources = [
 
   'ui/fuzzy_string_sorter.vala',
 
-  'ui/notebook_icon/notebook_preview.vala',
+  'ui/window/notebooks_bar/notebooks_bar.vala',
+  'ui/window/notebooks_bar/icon.vala',
+  'ui/window/notebooks_bar/notebook_menu.vala',
+  'ui/window/notebooks_bar/notebook_create_popup.vala',
+  'ui/window/notebooks_bar/notebook_sidebar_item.vala',
 
-  'ui/notebooks_bar/notebooks_bar.vala',
-  'ui/notebooks_bar/icon.vala',
-  'ui/notebooks_bar/notebook_menu.vala',
-  'ui/notebooks_bar/notebook_create_popup.vala',
-  'ui/notebooks_bar/theme_selector.vala',
-  'ui/notebooks_bar/notebook_sidebar_item.vala',
+  'ui/window/sidebar/note_card.vala',
+  'ui/window/sidebar/note_menu.vala',
+  'ui/window/sidebar/note_create_popup.vala',
 
-  'ui/notebook_sidebar/note_card.vala',
-  'ui/notebook_sidebar/note_menu.vala',
-  'ui/notebook_sidebar/note_create_popup.vala',
-
-  'ui/markdown_cheatsheet/markdown_cheatsheet.vala',
+  'ui/edit_view/cheatsheet/markdown_cheatsheet.vala',
 
   'ui/popup/notebook_selection_popup/notebook_list_item.vala',
   'ui/popup/notebook_selection_popup/notebook_selection_popup.vala',
 
-  'ui/markdown/markdown_buffer.vala',
-  'ui/markdown/markdown_view.vala',
-  'ui/markdown/heading_popover.vala',
+  'ui/widgets/markdown/markdown_buffer.vala',
+  'ui/widgets/markdown/markdown_view.vala',
+  'ui/widgets/markdown/heading_popover.vala',
+
+  'ui/widgets/save_indicator/save_indicator.vala',
+  'ui/widgets/save_indicator/save_status.vala',
+  'ui/widgets/theme_selector/theme_selector.vala',
+  'ui/widgets/notebook_icon/notebook_preview.vala',
 
   lib_sources,
 

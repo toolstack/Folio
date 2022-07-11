@@ -1,5 +1,5 @@
 
-[GtkTemplate (ui = "/io/posidon/Paper/notebook_sidebar/note_menu.ui")]
+[GtkTemplate (ui = "/io/posidon/Paper/sidebar/note_menu.ui")]
 public class Paper.NoteMenuPopover : Gtk.Popover {
 
 	[GtkChild]

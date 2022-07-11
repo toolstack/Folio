@@ -17,7 +17,7 @@
 <!-- Note: this language definition file adds support for Markdown syntax,
      described in the following websites:
      * (fr) <http://michelf.com/projets/php-markdown/syntaxe/>
-     * (en) <http://daringfireball.net/projects/markdown/syntax> -->
+     * (en) <http://daringfireball.net/projects/widgets/markdown/syntax> -->
 
 <language id="markdownpp" _name="Markdown" version="2.0" _section="Markup">
   <metadata>
