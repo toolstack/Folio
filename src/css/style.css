@@ -368,6 +368,10 @@ window.tiled-bottom .notebooks-bar > .trash-button:checked {
   margin-left: 8px;
 }
 
+.text-area headerbar {
+  background: @view_bg_color;
+}
+
 .markdown-view {
   margin-right: 32px;
 }
