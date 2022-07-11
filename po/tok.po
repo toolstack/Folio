@@ -72,12 +72,12 @@ msgid "Where the notebooks are stored"
 msgstr "lipu sina li lon ni"
 
 #: data/app.metainfo.xml.in:5
-msgid "Note-taking app"
-msgstr "ilo sitelen"
+msgid "Take notes in Markdown"
+msgstr "o pali sitelen lon nasin Matan"
 
 #: data/app.metainfo.xml.in:7
 msgid "Create notebooks, take notes in markdown"
-msgstr "o pali lipu, o pali sitelen lili lon nasin Matan"
+msgstr "o pali lipu, o pali sitelen lon nasin Matan"
 
 #: data/app.metainfo.xml.in:8
 msgid "Features:"

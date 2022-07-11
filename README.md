@@ -1,6 +1,6 @@
 # <img src="./data/icons/hicolor/scalable/apps/io.posidon.Paper.svg" height="64"/>Paper
 
-## A pretty note-taking app for GNOME
+## Take notes in Markdown
 
 Contributions are appreciated!
 

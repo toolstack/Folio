@@ -2,7 +2,7 @@
 <component type="desktop-application">
 	<id>@app_id@</id>
   <name translatable="no">Paper</name>
-  <summary>Note-taking app</summary>
+  <summary>Take notes in Markdown</summary>
 	<description>
 	  <p>Create notebooks, take notes in markdown</p>
 	  <p>Features:</p>
