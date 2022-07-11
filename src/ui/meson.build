@@ -2,7 +2,7 @@
 blueprint_files = files(
   'window.blp',
   'shortcut_window.blp',
-  'preferences.blp',
+  'preferences/preferences.blp',
   'save_indicator/save_indicator.blp',
   'edit_view/edit_view.blp',
   'edit_view/toolbar/toolbar.blp',

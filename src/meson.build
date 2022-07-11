@@ -5,7 +5,7 @@ paper_sources = [
   'ui/strings.vala',
 
   'ui/window.vala',
-  'ui/preferences.vala',
+  'ui/preferences/preferences.vala',
 
   'ui/save_indicator/save_indicator.vala',
   'ui/save_indicator/save_status.vala',

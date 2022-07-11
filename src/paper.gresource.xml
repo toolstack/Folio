@@ -7,7 +7,7 @@
     <file alias="style-black-hc.css">css/style-black-hc.css</file>
 
     <file preprocess="xml-stripblanks" alias="window.ui">ui/window.ui</file>
-    <file preprocess="xml-stripblanks" alias="preferences.ui">ui/preferences.ui</file>
+    <file preprocess="xml-stripblanks" alias="preferences.ui">ui/preferences/preferences.ui</file>
     <file preprocess="xml-stripblanks" alias="gtk/help-overlay.ui">ui/shortcut_window.ui</file>
 
     <file preprocess="xml-stripblanks" alias="save_indicator.ui">ui/save_indicator/save_indicator.ui</file>
