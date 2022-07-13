@@ -318,18 +318,19 @@ public class Paper.Application : Adw.Application {
 	    }
 	}
 
-	public void try_change_note (Note note, string name) {
+	public bool try_change_note (Note note, string name) {
 	    if (name.contains (".") || name.contains ("/")) {
             window.toast (Strings.NOTE_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
-            return;
+            return false;
 	    }
 	    if (name.replace(" ", "").length == 0) {
             window.toast (Strings.NOTE_NAME_SHOULDNT_BE_BLANK);
-            return;
+            return false;
 	    }
 		try {
 	        note.notebook.change_note (note, name);
             current_buffer = window.set_note (note);
+	        return true;
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS) {
 	            window.toast (Strings.NOTE_X_ALREADY_EXISTS.printf (name));
@@ -338,6 +339,7 @@ public class Paper.Application : Adw.Application {
 	        } else {
 	            window.toast (Strings.UNKNOWN_ERROR);
 	        }
+	        return false;
 	    }
 	}
 

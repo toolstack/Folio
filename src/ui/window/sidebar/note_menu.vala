@@ -20,7 +20,12 @@ public class Paper.NoteMenuPopover : Gtk.Popover {
 	[GtkChild]
 	unowned Gtk.Button button_open_containing_dir;
 
-	public NoteMenuPopover (Application app, Note note, bool is_in_trash) {
+	public NoteMenuPopover (
+	    Application app,
+	    Note note,
+	    bool is_in_trash,
+	    Runnable rename
+	) {
 	    if (is_in_trash) {
 	        button_edit.visible = false;
 	        button_trash.visible = false;
@@ -42,7 +47,7 @@ public class Paper.NoteMenuPopover : Gtk.Popover {
             });
             button_edit.clicked.connect (() => {
                 popdown ();
-                app.request_edit_note (note);
+                rename ();
             });
             button_trash.clicked.connect (() => {
                 popdown ();

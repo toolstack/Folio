@@ -5,10 +5,45 @@ template PaperNoteCard : Box {
   hexpand: true;
   orientation: vertical;
 
-  Label label {
-    ellipsize: end;
-    halign: start;
-    styles ["heading"]
+  styles ["note-card"]
+
+  Box {
+    hexpand: true;
+    orientation: horizontal;
+
+    styles ["note-card"]
+
+    Label label {
+      ellipsize: end;
+      visible: bind entry.visible inverted;
+      styles ["heading"]
+    }
+
+    Box {
+      orientation: horizontal;
+      hexpand: true;
+
+      styles ["linked"]
+
+      Entry entry {
+        truncate-multiline: true;
+        visible: false;
+        hexpand: true;
+        styles ["heading"]
+      }
+      Button button_apply {
+        icon-name: "apply-symbolic";
+        visible: bind entry.visible;
+        styles ["apply", "suggested-action"]
+      }
+    }
+
+    Button button_edit {
+      halign: end;
+      icon-name: "document-edit-symbolic";
+      visible: bind entry.visible inverted;
+      styles ["edit", "flat"]
+    }
   }
 
   Label subtitle {

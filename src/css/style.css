@@ -345,6 +345,26 @@ window.tiled-bottom .notebooks-bar > .trash-button:checked {
   background-color: shade(mix(@window_bg_color, #fff, 0.04), 1.4);
 }
 
+.note-card > box .edit {
+  min-width: 0;
+  min-height: 0;
+  opacity: 0;
+  margin-left: 8px;
+  transition-delay: .05s;
+}
+.note-card > box:hover .edit {
+  opacity: 1;
+}
+
+.note-card > box entry.heading {
+  min-height: 0;
+}
+
+.note-card > box .apply {
+  min-width: 0;
+  min-height: 0;
+}
+
 
 /*
  *
