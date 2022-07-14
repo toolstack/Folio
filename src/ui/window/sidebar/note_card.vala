@@ -70,6 +70,7 @@ public class Paper.NoteCard : Gtk.Box {
         entry.grab_focus ();
         _window.notify["focus-widget"].connect (maybe_exit_rename);
         button_apply.clicked.connect (() => rename (entry.buffer.text));
+        entry.activate.connect (() => rename (entry.buffer.text));
 	}
 
 	private void maybe_exit_rename () {
