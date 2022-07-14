@@ -36,11 +36,7 @@ public class Paper.EditView : Gtk.Box {
 	    var settings = new Settings (Config.APP_ID);
 		var note_font = settings.get_string ("note-font");
 
-        {
-		    var css = new Gtk.CssProvider ();
-		    css.load_from_data (@"textview{font-family:'$(note_font)';}".data);
-		    text_view.get_style_context ().add_provider (css, -1);
-		}
+        set_note_font (note_font);
 
         text_view.notify["buffer"].connect (() => text_view.buffer.notify["cursor-position"].connect (() => {
             var ins = text_view.buffer.get_insert ();
@@ -65,6 +61,12 @@ public class Paper.EditView : Gtk.Box {
 	        text_view.sensitive = is_editable;
         });
         update_toolbar_visibility ();
+    }
+
+    private Gtk.CssProvider note_font_provider = new Gtk.CssProvider ();
+    public void set_note_font (string font) {
+	    note_font_provider.load_from_data (@"textview{font-family:'$font';}".data);
+	    text_view.get_style_context ().add_provider (note_font_provider, -1);
     }
 
     public void on_dark_changed (bool dark) {

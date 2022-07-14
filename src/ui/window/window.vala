@@ -323,6 +323,8 @@ public class Paper.Window : Adw.ApplicationWindow {
 	private void on_insert_code_span () { edit_view.insert_code_span (); }
 	private void on_insert_horizontal_rule () { edit_view.insert_horizontal_rule (); }
 
+    public void set_note_font (string font) { edit_view.set_note_font (font); }
+
 	private void update_sidebar_scroll () {
         var v = notebook_notes_list_scroller.vadjustment.value;
         if (v == 0 || notes_search_bar.search_mode_enabled) headerbar_sidebar.get_style_context ().remove_class ("overlaid");

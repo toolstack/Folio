@@ -34,10 +34,12 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
 		var is_3_pane_enabled = settings.get_boolean ("enable-3-pane");
 		var notes_dir = settings.get_string ("notes-dir");
 
-        font_button.level = Gtk.FontChooserLevel.FEATURES;
+        font_button.level = Gtk.FontChooserLevel.FAMILY;
         font_button.font = note_font;
         font_button.font_set.connect (() => {
-            settings.set_string ("note-font", font_button.get_font_family ().get_name ());
+            var font = font_button.get_font_family ().get_name ();
+            settings.set_string ("note-font", font);
+            window.set_note_font (font);
         });
 
         oled_mode.state = theme_oled;
