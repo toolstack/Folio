@@ -64,7 +64,7 @@ public class Paper.NoteCard : Gtk.Box {
         add_controller (controller);
 	}
 
-	private void request_rename () {
+	public void request_rename () {
         entry.buffer.set_text (_note.name.data);
         entry.visible = true;
         entry.grab_focus ();

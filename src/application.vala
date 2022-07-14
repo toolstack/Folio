@@ -175,11 +175,10 @@ public class Paper.Application : Adw.Application {
 
 	private void on_new_note () {
 	    activate ();
-		if (active_notebook != null) {
-		    var popup = new NoteCreatePopup (this);
-		    popup.transient_for = active_window;
-		    popup.title = Strings.NEW_NOTE;
-		    popup.present ();
+	    var a = active_notebook;
+		if (a != null) {
+		    var name = a.get_available_name ();
+            try_create_note (name);
 		} else {
             window.toast (Strings.CREATE_NOTEBOOK_BEFORE_CREATING_NOTE);
 		}
