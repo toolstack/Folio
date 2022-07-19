@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.posidon.Paper\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-31 10:02+0200\n"
+"POT-Creation-Date: 2022-07-19 17:20+0200\n"
 "PO-Revision-Date: 2022-05-18 18:45+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -32,42 +32,51 @@ msgstr "o pali e sitelen lili"
 msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
 msgstr "lipu;sitelen;Markdown;Matan;sona;"
 
-#: data/app.desktop.in:21 src/ui/strings.vala:8 src/ui/popup/shortcut_window.blp:17
-#: src/ui/window/window.blp:46 src/ui/window/window.blp:167
+#: data/app.desktop.in:21 src/ui/strings.vala:8
+#: src/ui/popup/shortcut_window.blp:17 src/ui/window/window.blp:47
+#: src/ui/window/window.blp:121
 msgid "New Note"
 msgstr "sitelen sin"
 
-#: data/app.desktop.in:25 src/ui/strings.vala:14 src/ui/popup/shortcut_window.blp:32
-#: src/ui/window/window.blp:192
+#: data/app.desktop.in:25 src/ui/strings.vala:14
+#: src/ui/popup/shortcut_window.blp:37 src/ui/window/window.blp:146
 msgid "New Notebook"
 msgstr "lipu sin"
 
 #: data/app.desktop.in:29 src/ui/strings.vala:39
-#: src/ui/edit_view/edit_view.blp:113 src/ui/window/window.blp:140
+#: src/ui/edit_view/toolbar/toolbar.blp:175 src/ui/window/window.blp:219
 msgid "Markdown Cheatsheet"
 msgstr "lipu pi nasin Markdown"
 
-#: data/app.desktop.in:33 src/ui/popup/shortcut_window.blp:57
+#: data/app.desktop.in:33 src/ui/popup/shortcut_window.blp:62
 msgid "Preferences"
 msgstr "nasin"
 
-#: data/app.gschema.xml:6
-msgid "Font"
-msgstr "sitelen"
+#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:15
+msgid "Note Font"
+msgstr "sitelen pi sitelen lili"
 
-#: data/app.gschema.xml:7 src/ui/preferences.blp:16
+#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:16
 msgid "The font notes will be displayed in"
 msgstr "sitelen lili sina li kepeken ni"
 
-#: data/app.gschema.xml:11 src/ui/preferences.blp:28
+#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:29
+msgid "Monospace Font"
+msgstr "sitelen pi toki ilo"
+
+#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:30
+msgid "The font code will be displayed in"
+msgstr "toki ilo lon sitelen lili sina li kepeken ni"
+
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:44
 msgid "OLED Mode"
 msgstr "nasin OLED"
 
-#: data/app.gschema.xml:15
+#: data/app.gschema.xml:26
 msgid "Notes Directory"
 msgstr "kulupu lipu"
 
-#: data/app.gschema.xml:16
+#: data/app.gschema.xml:27
 msgid "Where the notebooks are stored"
 msgstr "lipu sina li lon ni"
 
@@ -103,11 +112,11 @@ msgstr "kule ilo li ante tan kule lipu"
 msgid "Trash can"
 msgstr "jaki poki"
 
-#: data/app.metainfo.xml.in:79
+#: data/app.metainfo.xml.in:143
 msgid "Markdown document"
 msgstr "lipu Markdown"
 
-#: src/ui/strings.vala:4
+#: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:125
 msgid "Trash"
 msgstr "jaki"
 
@@ -120,7 +129,7 @@ msgstr "sitelen %d"
 msgid "Are you sure you want to delete everything in the trash?"
 msgstr "sina wawa ala wawa ni: sina wile weka e jaki ale?"
 
-#: src/ui/strings.vala:7 src/ui/window/window.blp:53
+#: src/ui/strings.vala:7 src/ui/window/window.blp:54
 msgid "Empty Trash"
 msgstr "o weka e jaki"
 
@@ -179,7 +188,7 @@ msgstr "sina wawa ala wawa ni: sina wile weka e lipu “%s”?"
 msgid "Delete Notebook"
 msgstr "o weka e lipu"
 
-#: src/ui/strings.vala:23 src/ui/popup/shortcut_window.blp:37
+#: src/ui/strings.vala:23 src/ui/popup/shortcut_window.blp:42
 msgid "Edit Notebook"
 msgstr "o ante e lipu"
 
@@ -271,61 +280,206 @@ msgstr "pini"
 msgid "Pick where the notebooks will be stored"
 msgstr "lipu sina li lon ni"
 
-#: src/ui/strings.vala:46
+#: src/ui/strings.vala:46 src/ui/window/notebooks_bar/notebooks_bar.blp:80
 msgid "All Notes"
 msgstr "sitelen ale"
 
-#: src/ui/edit_view/edit_view.blp:50 src/ui/widgets/markdown/heading_popover.blp:48
+#: src/ui/edit_view/toolbar/toolbar.blp:25
+#: src/ui/edit_view/toolbar/toolbar.blp:116
+#: src/ui/widgets/markdown/heading_popover.blp:48
 msgid "Plain Text"
 msgstr "sitelen ali"
 
-#: src/ui/edit_view/edit_view.blp:51 src/ui/widgets/markdown/heading_popover.blp:12
+#: src/ui/edit_view/toolbar/toolbar.blp:26
+#: src/ui/edit_view/toolbar/toolbar.blp:117
+#: src/ui/widgets/markdown/heading_popover.blp:12
 msgid "Heading 1"
 msgstr "sitelen suli 1"
 
-#: src/ui/edit_view/edit_view.blp:52 src/ui/widgets/markdown/heading_popover.blp:18
+#: src/ui/edit_view/toolbar/toolbar.blp:27
+#: src/ui/edit_view/toolbar/toolbar.blp:118
+#: src/ui/widgets/markdown/heading_popover.blp:18
 msgid "Heading 2"
 msgstr "sitelen suli 2"
 
-#: src/ui/edit_view/edit_view.blp:53 src/ui/widgets/markdown/heading_popover.blp:24
+#: src/ui/edit_view/toolbar/toolbar.blp:28
+#: src/ui/edit_view/toolbar/toolbar.blp:119
+#: src/ui/widgets/markdown/heading_popover.blp:24
 msgid "Heading 3"
 msgstr "sitelen suli 3"
 
-#: src/ui/edit_view/edit_view.blp:54 src/ui/widgets/markdown/heading_popover.blp:30
+#: src/ui/edit_view/toolbar/toolbar.blp:29
+#: src/ui/edit_view/toolbar/toolbar.blp:120
+#: src/ui/widgets/markdown/heading_popover.blp:30
 msgid "Heading 4"
 msgstr "sitelen suli 4"
 
-#: src/ui/edit_view/edit_view.blp:55 src/ui/widgets/markdown/heading_popover.blp:36
+#: src/ui/edit_view/toolbar/toolbar.blp:30
+#: src/ui/edit_view/toolbar/toolbar.blp:121
+#: src/ui/widgets/markdown/heading_popover.blp:36
 msgid "Heading 5"
 msgstr "sitelen suli 5"
 
-#: src/ui/edit_view/edit_view.blp:56 src/ui/widgets/markdown/heading_popover.blp:42
+#: src/ui/edit_view/toolbar/toolbar.blp:31
+#: src/ui/edit_view/toolbar/toolbar.blp:122
+#: src/ui/widgets/markdown/heading_popover.blp:42
 msgid "Heading 6"
 msgstr "sitelen suli 6"
 
-#: src/ui/edit_view/edit_view.blp:67 src/ui/popup/shortcut_window.blp:67
+#: src/ui/edit_view/toolbar/toolbar.blp:43
+#: src/ui/edit_view/toolbar/toolbar.blp:133
+#: src/ui/edit_view/toolbar/toolbar.blp:194 src/ui/popup/shortcut_window.blp:72
 msgid "Bold"
 msgstr "sitelen wawa"
 
-#: src/ui/edit_view/edit_view.blp:73 src/ui/popup/shortcut_window.blp:72
+#: src/ui/edit_view/toolbar/toolbar.blp:50
+#: src/ui/edit_view/toolbar/toolbar.blp:140
+#: src/ui/edit_view/toolbar/toolbar.blp:195 src/ui/popup/shortcut_window.blp:77
 msgid "Italic"
 msgstr "sitelen linja"
 
-#: src/ui/edit_view/edit_view.blp:79 src/ui/popup/shortcut_window.blp:77
+#: src/ui/edit_view/toolbar/toolbar.blp:57
+#: src/ui/edit_view/toolbar/toolbar.blp:147
+#: src/ui/edit_view/toolbar/toolbar.blp:196 src/ui/popup/shortcut_window.blp:82
 msgid "Strikethrough"
 msgstr "sitelen pakala"
 
-#: src/ui/edit_view/edit_view.blp:85 src/ui/popup/shortcut_window.blp:82
+#: src/ui/edit_view/toolbar/toolbar.blp:64
+#: src/ui/edit_view/toolbar/toolbar.blp:154
+#: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:87
 msgid "Highlight"
 msgstr "sitelen kule"
 
-#: src/ui/edit_view/edit_view.blp:95 src/ui/popup/shortcut_window.blp:87
+#: src/ui/edit_view/toolbar/toolbar.blp:76
+#: src/ui/edit_view/toolbar/toolbar.blp:186 src/ui/popup/shortcut_window.blp:92
 msgid "Insert Link"
 msgstr "pana sitelen nasin"
 
-#: src/ui/edit_view/edit_view.blp:101
+#: src/ui/edit_view/toolbar/toolbar.blp:83
+#: src/ui/edit_view/toolbar/toolbar.blp:187
 msgid "Insert Code"
 msgstr "pana toki ilo"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:90
+#: src/ui/edit_view/toolbar/toolbar.blp:188
+msgid "Insert Horizontal Rule"
+msgstr "pana palisa"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:103
+msgid "Format"
+msgstr "sitelen nasin"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:167
+msgid "Insert"
+msgstr "pana sitelen"
+
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
+msgid "Confirm"
+msgstr "toki lon"
+
+#: src/ui/popup/shortcut_window.blp:14
+msgid "Note"
+msgstr "sitelen lili"
+
+#: src/ui/popup/shortcut_window.blp:22
+msgid "Edit Note"
+msgstr "o ante e sitelen lili"
+
+#: src/ui/popup/shortcut_window.blp:27
+msgid "Save Note"
+msgstr "o awen e sitelen"
+
+#: src/ui/popup/shortcut_window.blp:34
+msgid "Notebook"
+msgstr "lipu"
+
+#: src/ui/popup/shortcut_window.blp:49
+msgid "General"
+msgstr "ali"
+
+#: src/ui/popup/shortcut_window.blp:52
+msgid "Show Keyboard Shortcuts"
+msgstr "o open ijo pi tenpo lili pi ilo sitelen"
+
+#: src/ui/popup/shortcut_window.blp:57
+msgid "Quit"
+msgstr "o tawa"
+
+#: src/ui/popup/shortcut_window.blp:69
+msgid "Formatting"
+msgstr "sitelen nasin"
+
+#: src/ui/popup/shortcut_window.blp:99
+msgid "Navigation"
+msgstr "lawa tawa"
+
+#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:188
+msgid "Toggle Sidebar"
+msgstr "o ante e palisa poka"
+
+#: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:63
+msgid "Search Notes"
+msgstr "lukin sitelen lili"
+
+#: src/ui/preferences/preferences.blp:21
+msgid "Pick a font for displaying the notes' content"
+msgstr "o wile sitelen tawa ni: sitelen lili sina li kepeken ni"
+
+#: src/ui/preferences/preferences.blp:35
+msgid "Pick a font for displaying code"
+msgstr "o wile sitelen tawa ni: toki ilo sina li kepeken ni"
+
+#: src/ui/preferences/preferences.blp:45
+msgid "Makes the dark theme pitch black"
+msgstr "pimeja li pimeja mute"
+
+#: src/ui/preferences/preferences.blp:55
+msgid "Enable Toolbar"
+msgstr "palisa ilo"
+
+#: src/ui/preferences/preferences.blp:65
+msgid "3-Pane Layout"
+msgstr "nasin pi kipisi 3"
+
+#: src/ui/preferences/preferences.blp:77
+msgid "Notes Storage Location"
+msgstr "kulupu lipu"
+
+#: src/ui/preferences/preferences.blp:78
+msgid "Where the notebooks are stored (requires app restart)"
+msgstr "lipu sina li lon ni (wile kama sin)"
+
+#: src/ui/widgets/theme_selector/theme_selector.blp:15
+msgid "Follow system style"
+msgstr "pali e nasin ilo"
+
+#: src/ui/widgets/theme_selector/theme_selector.blp:23
+msgid "Light style"
+msgstr "nasin suno"
+
+#: src/ui/widgets/theme_selector/theme_selector.blp:32
+msgid "Dark style"
+msgstr "nasin pimeja"
+
+#: src/ui/window/app_menu/app_menu.blp:24
+msgid "_New Notebook"
+msgstr "lipu _sin"
+
+#: src/ui/window/app_menu/app_menu.blp:28
+msgid "_Edit Notebook"
+msgstr "o _ante e lipu"
+
+#: src/ui/window/app_menu/app_menu.blp:34
+msgid "_Preferences"
+msgstr "_nasin"
+
+#: src/ui/window/app_menu/app_menu.blp:38
+msgid "_Keyboard Shortcuts"
+msgstr "ijo pi _tenpo lili pi ilo sitelen"
+
+#: src/ui/window/app_menu/app_menu.blp:42
+msgid "_About"
+msgstr "_lon"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:54
 msgid "Notebook Name"
@@ -367,31 +521,11 @@ msgstr "o ante"
 msgid "Move all to Trash"
 msgstr "o tawa e ali lon jaki poki"
 
-#: src/ui/window/notebooks_bar/notebooks_bar.blp:73
-msgid "_New Notebook"
-msgstr "lipu _sin"
-
-#: src/ui/window/notebooks_bar/notebooks_bar.blp:77
-msgid "_Edit Notebook"
-msgstr "o _ante e lipu"
-
-#: src/ui/window/notebooks_bar/notebooks_bar.blp:83
-msgid "_Preferences"
-msgstr "_nasin"
-
-#: src/ui/window/notebooks_bar/notebooks_bar.blp:87
-msgid "_Keyboard Shortcuts"
-msgstr "ijo pi _tenpo lili pi ilo sitelen"
-
-#: src/ui/window/notebooks_bar/notebooks_bar.blp:91
-msgid "_About"
-msgstr "_lon"
-
 #: src/ui/window/sidebar/note_create_popup.blp:37
 msgid "Note Name"
 msgstr "nimi pi sitelen lili"
 
-#: src/ui/window/sidebar/note_create_popup.blp:46
+#: src/ui/window/sidebar/note_create_popup.blp:45
 msgid "Create Note"
 msgstr "o pali e sitelen"
 
@@ -415,94 +549,33 @@ msgstr "o tawa lon jaki poki"
 msgid "Open Containing Folder"
 msgstr "o open kulupu lipu poki"
 
-#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
-msgid "Confirm"
-msgstr "toki lon"
-
-#: src/ui/preferences.blp:15
-msgid "Note Font"
-msgstr "sitelen pi sitelen lili"
-
-#: src/ui/preferences.blp:21
-msgid "Pick a font for displaying the notes' content"
-msgstr "o wile sitelen tawa ni: sitelen lili sina li kepeken ni"
-
-#: src/ui/preferences.blp:29
-msgid "Makes the dark theme pitch black"
-msgstr "pimeja li pimeja mute"
-
-#: src/ui/preferences.blp:41
-msgid "Notes Storage Location"
-msgstr "kulupu lipu"
-
-#: src/ui/preferences.blp:42
-msgid "Where the notebooks are stored (requires app restart)"
-msgstr "lipu sina li lon ni (wile kama sin)"
-
-#: src/ui/popup/shortcut_window.blp:14
-msgid "Note"
-msgstr "sitelen lili"
-
-#: src/ui/popup/shortcut_window.blp:22
-msgid "Edit Note"
-msgstr "o ante sitelen lili"
-
-#: src/ui/popup/shortcut_window.blp:29
-msgid "Notebook"
-msgstr "lipu"
-
-#: src/ui/popup/shortcut_window.blp:44
-msgid "General"
-msgstr "ali"
-
-#: src/ui/popup/shortcut_window.blp:47
-msgid "Show Keyboard Shortcuts"
-msgstr "o open ijo pi tenpo lili pi ilo sitelen"
-
-#: src/ui/popup/shortcut_window.blp:52
-msgid "Quit"
-msgstr "o tawa"
-
-#: src/ui/popup/shortcut_window.blp:64
-msgid "Formatting"
-msgstr "sitelen nasin"
-
-#: src/ui/popup/shortcut_window.blp:94
-msgid "Navigation"
-msgstr "lawa tawa"
-
-#: src/ui/popup/shortcut_window.blp:97 src/ui/window/window.blp:112
-msgid "Toggle Sidebar"
-msgstr "o ante e palisa poka"
-
-#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:62
-msgid "Search Notes"
-msgstr "lukin sitelen lili"
-
-#: src/ui/window/window.blp:120
-msgid "Back"
-msgstr "monsi"
-
-#: src/ui/window/window.blp:133
-msgid "Open in Notebook"
-msgstr "o open lon lipu"
-
-#: src/ui/window/window.blp:161
+#: src/ui/window/window.blp:115
 msgid "Get started writing"
 msgstr "o open sitelen"
 
-#: src/ui/window/window.blp:186
+#: src/ui/window/window.blp:140
 msgid "Create a notebook"
 msgstr "o pali e lipu"
 
-#: src/ui/window/window.blp:211
+#: src/ui/window/window.blp:165
 msgid "Trash is empty"
 msgstr "jaki poki li ala"
 
-#: src/ui/window/window.blp:224
+#: src/ui/window/window.blp:196
+msgid "Back"
+msgstr "monsi"
+
+#: src/ui/window/window.blp:212
+msgid "Open in Notebook"
+msgstr "o open lon lipu"
+
+#: src/ui/window/window.blp:233
 msgid "_Rename Note"
 msgstr "o ante e _nimi pi sitelen"
 
-#: src/ui/window/window.blp:230
+#: src/ui/window/window.blp:239
 msgid "_Export Note"
 msgstr "o awen _ete e sitelen lili"
+
+#~ msgid "Font"
+#~ msgstr "sitelen"

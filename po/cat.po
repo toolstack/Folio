@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.posidon.Paper\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-31 10:02+0200\n"
+"POT-Creation-Date: 2022-07-19 17:20+0200\n"
 "PO-Revision-Date: 2022-05-18 18:45+0200\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -34,42 +34,51 @@ msgstr ""
 "Lquadern;Nota;Notes;Text;Markdown;Notepad;Escriu;Cole;Col·legi;Post-it;"
 "Sticky;"
 
-#: data/app.desktop.in:21 src/ui/strings.vala:8 src/ui/popup/shortcut_window.blp:17
-#: src/ui/window/window.blp:46 src/ui/window/window.blp:167
+#: data/app.desktop.in:21 src/ui/strings.vala:8
+#: src/ui/popup/shortcut_window.blp:17 src/ui/window/window.blp:47
+#: src/ui/window/window.blp:121
 msgid "New Note"
 msgstr "Nota Nova"
 
-#: data/app.desktop.in:25 src/ui/strings.vala:14 src/ui/popup/shortcut_window.blp:32
-#: src/ui/window/window.blp:192
+#: data/app.desktop.in:25 src/ui/strings.vala:14
+#: src/ui/popup/shortcut_window.blp:37 src/ui/window/window.blp:146
 msgid "New Notebook"
 msgstr "Quadern Nou"
 
 #: data/app.desktop.in:29 src/ui/strings.vala:39
-#: src/ui/edit_view/edit_view.blp:113 src/ui/window/window.blp:140
+#: src/ui/edit_view/toolbar/toolbar.blp:175 src/ui/window/window.blp:219
 msgid "Markdown Cheatsheet"
 msgstr "Chuleta de Markdown"
 
-#: data/app.desktop.in:33 src/ui/popup/shortcut_window.blp:57
+#: data/app.desktop.in:33 src/ui/popup/shortcut_window.blp:62
 msgid "Preferences"
 msgstr "Preferencies"
 
-#: data/app.gschema.xml:6
-msgid "Font"
-msgstr "Font"
+#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:15
+msgid "Note Font"
+msgstr "Font de Notas"
 
-#: data/app.gschema.xml:7 src/ui/preferences.blp:16
+#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:16
 msgid "The font notes will be displayed in"
 msgstr "La font en la qual es mostraran les notes"
 
-#: data/app.gschema.xml:11 src/ui/preferences.blp:28
+#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:29
+msgid "Monospace Font"
+msgstr "Font de Codi"
+
+#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:30
+msgid "The font code will be displayed in"
+msgstr "La font en la qual es mostrarà el codi"
+
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:44
 msgid "OLED Mode"
 msgstr "Mode OLED"
 
-#: data/app.gschema.xml:15
+#: data/app.gschema.xml:26
 msgid "Notes Directory"
 msgstr "Carpeta de notes"
 
-#: data/app.gschema.xml:16
+#: data/app.gschema.xml:27
 msgid "Where the notebooks are stored"
 msgstr "On s'emmagatzemen els quaderns"
 
@@ -105,11 +114,11 @@ msgstr "Recoloració de la interfície, basada en el color del quadern"
 msgid "Trash can"
 msgstr "Paperera"
 
-#: data/app.metainfo.xml.in:79
+#: data/app.metainfo.xml.in:143
 msgid "Markdown document"
 msgstr "Document markdown"
 
-#: src/ui/strings.vala:4
+#: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:125
 msgid "Trash"
 msgstr "Paperera"
 
@@ -122,7 +131,7 @@ msgstr "%d Notes"
 msgid "Are you sure you want to delete everything in the trash?"
 msgstr "De veritat vol eliminar-ho tot en la paperera?"
 
-#: src/ui/strings.vala:7 src/ui/window/window.blp:53
+#: src/ui/strings.vala:7 src/ui/window/window.blp:54
 msgid "Empty Trash"
 msgstr "Buidar Paperera"
 
@@ -181,7 +190,7 @@ msgstr "De veritat vol eliminar el quadern “%s”?"
 msgid "Delete Notebook"
 msgstr "Eliminar Quadern"
 
-#: src/ui/strings.vala:23 src/ui/popup/shortcut_window.blp:37
+#: src/ui/strings.vala:23 src/ui/popup/shortcut_window.blp:42
 msgid "Edit Notebook"
 msgstr "Editar Quadern"
 
@@ -252,7 +261,7 @@ msgstr "Quadern es va poder borrar"
 msgid "Search"
 msgstr "Cercar"
 
-#: src/ui/strings.vala:41 src/ui/window/sidebar/.blp:36
+#: src/ui/strings.vala:41 src/ui/window/sidebar/note_menu.blp:36
 msgid "Rename"
 msgstr "Reanomenar"
 
@@ -273,61 +282,206 @@ msgstr "Cancel·lar"
 msgid "Pick where the notebooks will be stored"
 msgstr "Escull on s'emmagatzemen els quaderns"
 
-#: src/ui/strings.vala:46
+#: src/ui/strings.vala:46 src/ui/window/notebooks_bar/notebooks_bar.blp:80
 msgid "All Notes"
 msgstr "Totes les Notes"
 
-#: src/ui/edit_view/edit_view.blp:50 src/ui/widgets/markdown/heading_popover.blp:48
+#: src/ui/edit_view/toolbar/toolbar.blp:25
+#: src/ui/edit_view/toolbar/toolbar.blp:116
+#: src/ui/widgets/markdown/heading_popover.blp:48
 msgid "Plain Text"
 msgstr "Text Simple"
 
-#: src/ui/edit_view/edit_view.blp:51 src/ui/widgets/markdown/heading_popover.blp:12
+#: src/ui/edit_view/toolbar/toolbar.blp:26
+#: src/ui/edit_view/toolbar/toolbar.blp:117
+#: src/ui/widgets/markdown/heading_popover.blp:12
 msgid "Heading 1"
 msgstr "Encapçalat 1"
 
-#: src/ui/edit_view/edit_view.blp:52 src/ui/widgets/markdown/heading_popover.blp:18
+#: src/ui/edit_view/toolbar/toolbar.blp:27
+#: src/ui/edit_view/toolbar/toolbar.blp:118
+#: src/ui/widgets/markdown/heading_popover.blp:18
 msgid "Heading 2"
 msgstr "Encapçalat 2"
 
-#: src/ui/edit_view/edit_view.blp:53 src/ui/widgets/markdown/heading_popover.blp:24
+#: src/ui/edit_view/toolbar/toolbar.blp:28
+#: src/ui/edit_view/toolbar/toolbar.blp:119
+#: src/ui/widgets/markdown/heading_popover.blp:24
 msgid "Heading 3"
 msgstr "Encapçalat 3"
 
-#: src/ui/edit_view/edit_view.blp:54 src/ui/widgets/markdown/heading_popover.blp:30
+#: src/ui/edit_view/toolbar/toolbar.blp:29
+#: src/ui/edit_view/toolbar/toolbar.blp:120
+#: src/ui/widgets/markdown/heading_popover.blp:30
 msgid "Heading 4"
 msgstr "Encapçalat 4"
 
-#: src/ui/edit_view/edit_view.blp:55 src/ui/widgets/markdown/heading_popover.blp:36
+#: src/ui/edit_view/toolbar/toolbar.blp:30
+#: src/ui/edit_view/toolbar/toolbar.blp:121
+#: src/ui/widgets/markdown/heading_popover.blp:36
 msgid "Heading 5"
 msgstr "Encapçalat 5"
 
-#: src/ui/edit_view/edit_view.blp:56 src/ui/widgets/markdown/heading_popover.blp:42
+#: src/ui/edit_view/toolbar/toolbar.blp:31
+#: src/ui/edit_view/toolbar/toolbar.blp:122
+#: src/ui/widgets/markdown/heading_popover.blp:42
 msgid "Heading 6"
 msgstr "Encapçalat 6"
 
-#: src/ui/edit_view/edit_view.blp:67 src/ui/popup/shortcut_window.blp:67
+#: src/ui/edit_view/toolbar/toolbar.blp:43
+#: src/ui/edit_view/toolbar/toolbar.blp:133
+#: src/ui/edit_view/toolbar/toolbar.blp:194 src/ui/popup/shortcut_window.blp:72
 msgid "Bold"
 msgstr "Negreta"
 
-#: src/ui/edit_view/edit_view.blp:73 src/ui/popup/shortcut_window.blp:72
+#: src/ui/edit_view/toolbar/toolbar.blp:50
+#: src/ui/edit_view/toolbar/toolbar.blp:140
+#: src/ui/edit_view/toolbar/toolbar.blp:195 src/ui/popup/shortcut_window.blp:77
 msgid "Italic"
 msgstr "Itàlic"
 
-#: src/ui/edit_view/edit_view.blp:79 src/ui/popup/shortcut_window.blp:77
+#: src/ui/edit_view/toolbar/toolbar.blp:57
+#: src/ui/edit_view/toolbar/toolbar.blp:147
+#: src/ui/edit_view/toolbar/toolbar.blp:196 src/ui/popup/shortcut_window.blp:82
 msgid "Strikethrough"
 msgstr "Ratllat"
 
-#: src/ui/edit_view/edit_view.blp:85 src/ui/popup/shortcut_window.blp:82
+#: src/ui/edit_view/toolbar/toolbar.blp:64
+#: src/ui/edit_view/toolbar/toolbar.blp:154
+#: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:87
 msgid "Highlight"
 msgstr "Subratllat"
 
-#: src/ui/edit_view/edit_view.blp:95 src/ui/popup/shortcut_window.blp:87
+#: src/ui/edit_view/toolbar/toolbar.blp:76
+#: src/ui/edit_view/toolbar/toolbar.blp:186 src/ui/popup/shortcut_window.blp:92
 msgid "Insert Link"
 msgstr "Inserir Enllaç"
 
-#: src/ui/edit_view/edit_view.blp:101
+#: src/ui/edit_view/toolbar/toolbar.blp:83
+#: src/ui/edit_view/toolbar/toolbar.blp:187
 msgid "Insert Code"
 msgstr "Inserir Codi"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:90
+#: src/ui/edit_view/toolbar/toolbar.blp:188
+msgid "Insert Horizontal Rule"
+msgstr "Inserir Separació horitzontal"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:103
+msgid "Format"
+msgstr "Format"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:167
+msgid "Insert"
+msgstr "Inserir"
+
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
+msgid "Confirm"
+msgstr "Confirmar"
+
+#: src/ui/popup/shortcut_window.blp:14
+msgid "Note"
+msgstr "Nota"
+
+#: src/ui/popup/shortcut_window.blp:22
+msgid "Edit Note"
+msgstr "Editar Nota"
+
+#: src/ui/popup/shortcut_window.blp:27
+msgid "Save Note"
+msgstr "Guardar Nota"
+
+#: src/ui/popup/shortcut_window.blp:34
+msgid "Notebook"
+msgstr "Quadern"
+
+#: src/ui/popup/shortcut_window.blp:49
+msgid "General"
+msgstr "General"
+
+#: src/ui/popup/shortcut_window.blp:52
+msgid "Show Keyboard Shortcuts"
+msgstr "Mostrar Dreceres de Teclat"
+
+#: src/ui/popup/shortcut_window.blp:57
+msgid "Quit"
+msgstr "Sortir"
+
+#: src/ui/popup/shortcut_window.blp:69
+msgid "Formatting"
+msgstr "Format"
+
+#: src/ui/popup/shortcut_window.blp:99
+msgid "Navigation"
+msgstr "Navegació"
+
+#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:188
+msgid "Toggle Sidebar"
+msgstr "Alternar Barra Lateral"
+
+#: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:63
+msgid "Search Notes"
+msgstr "Cercar Notes"
+
+#: src/ui/preferences/preferences.blp:21
+msgid "Pick a font for displaying the notes' content"
+msgstr "Escull una font per mostrar el contingut de les notes"
+
+#: src/ui/preferences/preferences.blp:35
+msgid "Pick a font for displaying code"
+msgstr "Escull una font per mostrar el codi"
+
+#: src/ui/preferences/preferences.blp:45
+msgid "Makes the dark theme pitch black"
+msgstr "Fa el tema fosc de color negre"
+
+#: src/ui/preferences/preferences.blp:55
+msgid "Enable Toolbar"
+msgstr "Activar la barra d'eines"
+
+#: src/ui/preferences/preferences.blp:65
+msgid "3-Pane Layout"
+msgstr "Disseny de 3 panells"
+
+#: src/ui/preferences/preferences.blp:77
+msgid "Notes Storage Location"
+msgstr "Emmagatzematge de Notes"
+
+#: src/ui/preferences/preferences.blp:78
+msgid "Where the notebooks are stored (requires app restart)"
+msgstr "On s'emmagatzemen els quaderns (requereix reiniciar la app)"
+
+#: src/ui/widgets/theme_selector/theme_selector.blp:15
+msgid "Follow system style"
+msgstr "Seguir l'estil del sistema"
+
+#: src/ui/widgets/theme_selector/theme_selector.blp:23
+msgid "Light style"
+msgstr "Estil clar"
+
+#: src/ui/widgets/theme_selector/theme_selector.blp:32
+msgid "Dark style"
+msgstr "Estil fosc"
+
+#: src/ui/window/app_menu/app_menu.blp:24
+msgid "_New Notebook"
+msgstr "Quadern _Nou"
+
+#: src/ui/window/app_menu/app_menu.blp:28
+msgid "_Edit Notebook"
+msgstr "_Editar Quadern"
+
+#: src/ui/window/app_menu/app_menu.blp:34
+msgid "_Preferences"
+msgstr "_Preferències"
+
+#: src/ui/window/app_menu/app_menu.blp:38
+msgid "_Keyboard Shortcuts"
+msgstr "_Dreceres"
+
+#: src/ui/window/app_menu/app_menu.blp:42
+msgid "_About"
+msgstr "_Sobre Paper"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:54
 msgid "Notebook Name"
@@ -369,39 +523,19 @@ msgstr "Editar"
 msgid "Move all to Trash"
 msgstr "Moure tot a la Paperera"
 
-#: src/ui/window/notebooks_bar/notebooks_bar.blp:73
-msgid "_New Notebook"
-msgstr "Quadern _Nou"
-
-#: src/ui/window/notebooks_bar/notebooks_bar.blp:77
-msgid "_Edit Notebook"
-msgstr "_Editar Quadern"
-
-#: src/ui/window/notebooks_bar/notebooks_bar.blp:83
-msgid "_Preferences"
-msgstr "_Preferències"
-
-#: src/ui/window/notebooks_bar/notebooks_bar.blp:87
-msgid "_Keyboard Shortcuts"
-msgstr "_Dreceres"
-
-#: src/ui/window/notebooks_bar/notebooks_bar.blp:91
-msgid "_About"
-msgstr "_Sobre Paper"
-
-#: src/ui/window/sidebar/te_popup.blp:37
+#: src/ui/window/sidebar/note_create_popup.blp:37
 msgid "Note Name"
 msgstr "Nom de Nota"
 
-#: src/ui/window/sidebar/te_popup.blp:46
+#: src/ui/window/sidebar/note_create_popup.blp:45
 msgid "Create Note"
 msgstr "Crear Nota"
 
-#: src/ui/window/sidebar/.blp:16
+#: src/ui/window/sidebar/note_menu.blp:16
 msgid "Restore from Trash"
 msgstr "Recuperar de la Paperera"
 
-#: src/ui/window/sidebar/.blp:26
+#: src/ui/window/sidebar/note_menu.blp:26
 msgid "Delete from Trash"
 msgstr "Eliminar de la Paperera"
 
@@ -417,94 +551,30 @@ msgstr "Moure a la Paperera"
 msgid "Open Containing Folder"
 msgstr "Veure en Carpeta"
 
-#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
-msgid "Confirm"
-msgstr "Confirmar"
-
-#: src/ui/preferences.blp:15
-msgid "Note Font"
-msgstr "Font de Notas"
-
-#: src/ui/preferences.blp:21
-msgid "Pick a font for displaying the notes' content"
-msgstr "Escull una font per mostrar el contingut de les notes"
-
-#: src/ui/preferences.blp:29
-msgid "Makes the dark theme pitch black"
-msgstr "Fa el tema fosc de color negre"
-
-#: src/ui/preferences.blp:41
-msgid "Notes Storage Location"
-msgstr "Emmagatzematge de Notes"
-
-#: src/ui/preferences.blp:42
-msgid "Where the notebooks are stored (requires app restart)"
-msgstr "On s'emmagatzemen els quaderns (requereix reiniciar la app)"
-
-#: src/ui/popup/shortcut_window.blp:14
-msgid "Note"
-msgstr "Nota"
-
-#: src/ui/popup/shortcut_window.blp:22
-msgid "Edit Note"
-msgstr "Editar Nota"
-
-#: src/ui/popup/shortcut_window.blp:29
-msgid "Notebook"
-msgstr "Quadern"
-
-#: src/ui/popup/shortcut_window.blp:44
-msgid "General"
-msgstr "General"
-
-#: src/ui/popup/shortcut_window.blp:47
-msgid "Show Keyboard Shortcuts"
-msgstr "Mostrar Dreceres de Teclat"
-
-#: src/ui/popup/shortcut_window.blp:52
-msgid "Quit"
-msgstr "Sortir"
-
-#: src/ui/popup/shortcut_window.blp:64
-msgid "Formatting"
-msgstr "Format"
-
-#: src/ui/popup/shortcut_window.blp:94
-msgid "Navigation"
-msgstr "Navegació"
-
-#: src/ui/popup/shortcut_window.blp:97 src/ui/window/window.blp:112
-msgid "Toggle Sidebar"
-msgstr "Alternar Barra Lateral"
-
-#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:62
-msgid "Search Notes"
-msgstr "Cercar Notes"
-
-#: src/ui/window/window.blp:120
-msgid "Back"
-msgstr "Tornar"
-
-#: src/ui/window/window.blp:133
-msgid "Open in Notebook"
-msgstr "Obrir al Quadern"
-
-#: src/ui/window/window.blp:161
+#: src/ui/window/window.blp:115
 msgid "Get started writing"
 msgstr "Comença a escribir"
 
-#: src/ui/window/window.blp:186
+#: src/ui/window/window.blp:140
 msgid "Create a notebook"
 msgstr "Crea un quadern"
 
-#: src/ui/window/window.blp:211
+#: src/ui/window/window.blp:165
 msgid "Trash is empty"
 msgstr "La paperera está buida"
 
-#: src/ui/window/window.blp:224
+#: src/ui/window/window.blp:196
+msgid "Back"
+msgstr "Tornar"
+
+#: src/ui/window/window.blp:212
+msgid "Open in Notebook"
+msgstr "Obrir al Quadern"
+
+#: src/ui/window/window.blp:233
 msgid "_Rename Note"
 msgstr "_Reanomenar Nota"
 
-#: src/ui/window/window.blp:230
+#: src/ui/window/window.blp:239
 msgid "_Export Note"
 msgstr "_Exportar Nota"
