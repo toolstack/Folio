@@ -115,6 +115,8 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    });
 
         Gtk.IconTheme.get_for_display (display).add_resource_path ("/io/posidon/Paper/graphics/");
+
+        set_text_view_state (TextViewState.NO_NOTEBOOK);
 	}
 
 	public Window (Application app) {
