@@ -20,6 +20,7 @@ public class Paper.FileEditorWindow : Adw.ApplicationWindow {
 		{ "insert-horizontal-rule", on_insert_horizontal_rule },
 
 		{ "save-note", save },
+		{ "toggle-fullscreen", toggle_fullscreen },
 	};
 
     private GtkMarkdown.Buffer current_buffer;
@@ -102,6 +103,10 @@ public class Paper.FileEditorWindow : Adw.ApplicationWindow {
         css.load_from_data (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;".data);
         get_style_context ().add_provider (css, -1);
         edit_view.theme_color = rgba;
+	}
+
+	private void toggle_fullscreen () {
+	    fullscreened = !fullscreened;
 	}
 
 	private void on_format_bold () { edit_view.format_selection_bold (); }

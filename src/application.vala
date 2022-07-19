@@ -82,6 +82,7 @@ public class Paper.Application : Adw.Application {
 		set_accels_for_action ("win.search-notes", {"<primary>f"});
 
 		set_accels_for_action ("win.save-note", {"<primary>s"});
+        set_accels_for_action ("win.toggle-fullscreen", { "F11" });
 
 		command_line.connect (_command_line);
 

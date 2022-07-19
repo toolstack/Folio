@@ -98,6 +98,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 		{ "toggle-sidebar", toggle_sidebar_visibility },
 		{ "search-notes", toggle_search },
 		{ "save-note", save_current_note },
+		{ "toggle-fullscreen", toggle_fullscreen },
 	};
 
 	construct {
@@ -189,6 +190,10 @@ public class Paper.Window : Adw.ApplicationWindow {
             y = _y;
         });
         edit_view_page.child.add_controller (motion_controller);
+	}
+
+	private void toggle_fullscreen () {
+	    fullscreened = !fullscreened;
 	}
 
 	public void update_notebooks (Application app) {
