@@ -111,6 +111,10 @@ public class Paper.Provider : Object, ListModel {
             var trashed_path = @"$(notes_dir)/.trash/$(notebook.name)";
             var enumerator = file.enumerate_children (FileAttribute.STANDARD_NAME, 0);
             FileInfo file_info;
+            var trash_dir = File.new_for_path (trashed_path);
+            if (!trash_dir.query_exists ()) {
+                trash_dir.make_directory_with_parents ();
+            }
             while ((file_info = enumerator.next_file ()) != null) {
                 try {
                     var name = file_info.get_name ();
