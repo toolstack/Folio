@@ -1,4 +1,4 @@
-@define-color accent_color shade(@theme_color, 1.2);
+@define-color accent_color shade(mix(@theme_color, #efffa0, 0.1), 1.5);
 @define-color accent_bg_color shade(@theme_color, 0.8);
 
 @define-color card_shade_color rgba(0, 0, 0, 0.1);

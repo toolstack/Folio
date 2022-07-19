@@ -384,7 +384,7 @@ window.tiled-bottom .notebooks-bar > .trash-button:checked {
 }
 
 .text-area headerbar .save-indicator {
-  color: shade(@headerbar_fg_color, 0.5);
+  opacity: 0.5;
   margin-left: 8px;
 }
 
