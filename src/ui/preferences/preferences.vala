@@ -24,7 +24,7 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
 	unowned Gtk.Label notes_dir_label;
 
 
-	public PreferencesWindow (Application app, Window? window) {
+	public PreferencesWindow (Application app) {
 		Object ();
 
 	    var settings = new Settings (Config.APP_ID);
@@ -39,8 +39,6 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
         font_button.font_set.connect (() => {
             var font = font_button.get_font_family ().get_name ();
             settings.set_string ("note-font", font);
-            if (window != null)
-                window.set_note_font (font);
         });
 
         oled_mode.state = theme_oled;

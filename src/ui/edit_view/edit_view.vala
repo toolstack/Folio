@@ -32,6 +32,8 @@ public class Paper.EditView : Gtk.Box {
 	[GtkChild] unowned GtkMarkdown.View text_view;
 	[GtkChild] public unowned Gtk.ScrolledWindow scrolled_window;
 
+    private Gtk.CssProvider note_font_provider = new Gtk.CssProvider ();
+
     construct {
 	    var settings = new Settings (Config.APP_ID);
 		var note_font = settings.get_string ("note-font");
@@ -54,6 +56,7 @@ public class Paper.EditView : Gtk.Box {
         scrolled_window.get_vscrollbar ().margin_top = 48;
 
 	    settings.bind ("toolbar-enabled", this, "toolbar_enabled", SettingsBindFlags.DEFAULT);
+	    settings.changed["note-font"].connect(() => set_note_font (settings.get_string ("note-font")));
 
         notify["toolbar-enabled"].connect (update_toolbar_visibility);
         notify["is-editable"].connect (() => {
@@ -61,12 +64,6 @@ public class Paper.EditView : Gtk.Box {
 	        text_view.sensitive = is_editable;
         });
         update_toolbar_visibility ();
-    }
-
-    private Gtk.CssProvider note_font_provider = new Gtk.CssProvider ();
-    public void set_note_font (string font) {
-	    note_font_provider.load_from_data (@"textview{font-family:'$font';}".data);
-	    text_view.get_style_context ().add_provider (note_font_provider, -1);
     }
 
     public void on_dark_changed (bool dark) {
@@ -160,6 +157,11 @@ public class Paper.EditView : Gtk.Box {
 	    b.insert (ref iter, "\n- - -\n", 7);
 	    b.end_user_action ();
 	}
+
+    private void set_note_font (string font) {
+	    note_font_provider.load_from_data (@"textview{font-family:'$font';}".data);
+	    text_view.get_style_context ().add_provider (note_font_provider, -1);
+    }
 
 	private void update_toolbar_visibility () {
 	    toolbar.visible = is_editable && toolbar_enabled;
