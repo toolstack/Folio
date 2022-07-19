@@ -18,6 +18,35 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
+    <release type="stable" version="22.8" date="2022-07-19">
+      <description translatable="no">
+	      <p>UI Tweaks:</p>
+        <ul>
+          <li>Inline note renaming</li>
+          <li>Notes are created without asking for the note name</li>
+          <li>Save status indicator</li>
+          <li>Ctrl+S shortcut to force save a file</li>
+          <li>Note font is instantly updated, instead of requiring restart</li>
+          <li>Fullscreen support</li>
+          <li>App menu in file editor window</li>
+          <li>Setting for the font used for code</li>
+        </ul>
+	      <p>New Translations:</p>
+        <ul>
+          <li>Finnish</li>
+          <li>Polish</li>
+        </ul>
+	      <p>Fixes:</p>
+        <ul>
+          <li>Shortcuts not working in file editor</li>
+          <li>Messed up splash screen when there's no notebooks</li>
+          <li>Not being able to delete notebooks</li>
+          <li>Deleting empty notebook switching to another one, but not showing its content</li>
+          <li>Wrong note last modification time</li>
+          <li>Settings not opening from the file editor window</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="22.7" date="2022-07-09">
       <description translatable="no">
 	      <p>UI Tweaks:</p>
@@ -139,7 +168,11 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>https://posidon.io/paper/screenshot/22_0602_kule.png</image>
+      <image>https://posidon.io/paper/screenshot/22_0719_kule.png</image>
+      <caption>Markdown document</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://posidon.io/paper/screenshot/22_0719_kule_mobile.png</image>
       <caption>Markdown document</caption>
     </screenshot>
   </screenshots>
