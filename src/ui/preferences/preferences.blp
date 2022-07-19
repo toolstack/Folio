@@ -20,7 +20,23 @@ template PaperPreferencesWindow : Adw.PreferencesWindow {
         FontButton font_button {
           title: _("Pick a font for displaying the notes' content");
           use-size: false;
+          level: family;
           valign: center;
+        }
+      }
+      Adw.ActionRow {
+
+        title: _("Monospace Font");
+        subtitle: _("The font code will be displayed in");
+        icon-name: "font-x-generic-symbolic";
+        activatable-widget: font_button_monospace;
+
+        FontButton font_button_monospace {
+          title: _("Pick a font for displaying code");
+          use-size: false;
+          level: family;
+          valign: center;
+          preview-text: "function var struct enum type impl >= <= => =< == === <== ==> >- <- -> -< :: != ~= := =: >> << >>=";
         }
       }
       Adw.ActionRow {

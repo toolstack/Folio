@@ -55,7 +55,8 @@ public class Paper.EditView : Gtk.Box {
 
         scrolled_window.get_vscrollbar ().margin_top = 48;
 
-	    settings.bind ("toolbar-enabled", this, "toolbar_enabled", SettingsBindFlags.DEFAULT);
+	    settings.bind ("toolbar-enabled", this, "toolbar-enabled", SettingsBindFlags.DEFAULT);
+	    settings.bind ("note-font-monospace", text_view, "font-monospace", SettingsBindFlags.DEFAULT);
 	    settings.changed["note-font"].connect(() => set_note_font (settings.get_string ("note-font")));
 
         notify["toolbar-enabled"].connect (update_toolbar_visibility);

@@ -3,8 +3,13 @@
 	<schema id="io.posidon.Paper" path="/io/posidon/Paper/">
     <key name="note-font" type="s">
       <default>'Sans'</default>
-      <summary>Font</summary>
+      <summary>Note Font</summary>
       <description>The font notes will be displayed in</description>
+    </key>
+    <key name="note-font-monospace" type="s">
+      <default>'Monospace'</default>
+      <summary>Monospace Font</summary>
+      <description>The font code will be displayed in</description>
     </key>
     <key name="theme-oled" type="b">
       <default>false</default>

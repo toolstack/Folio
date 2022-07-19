@@ -6,6 +6,9 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
 	unowned Gtk.FontButton font_button;
 
 	[GtkChild]
+	unowned Gtk.FontButton font_button_monospace;
+
+	[GtkChild]
 	unowned Gtk.Switch oled_mode;
 
 	[GtkChild]
@@ -29,16 +32,25 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
 
 	    var settings = new Settings (Config.APP_ID);
 		var note_font = settings.get_string ("note-font");
+		var note_font_monospace = settings.get_string ("note-font-monospace");
 		var theme_oled = settings.get_boolean ("theme-oled");
 		var toolbar_enabled = settings.get_boolean ("toolbar-enabled");
 		var is_3_pane_enabled = settings.get_boolean ("enable-3-pane");
 		var notes_dir = settings.get_string ("notes-dir");
 
-        font_button.level = Gtk.FontChooserLevel.FAMILY;
         font_button.font = note_font;
         font_button.font_set.connect (() => {
             var font = font_button.get_font_family ().get_name ();
             settings.set_string ("note-font", font);
+        });
+
+        font_button_monospace.font = note_font_monospace;
+        font_button_monospace.set_filter_func ((family) => {
+            return family.is_monospace ();
+        });
+        font_button_monospace.font_set.connect (() => {
+            var font = font_button_monospace.get_font_family ().get_name ();
+            settings.set_string ("note-font-monospace", font);
         });
 
         oled_mode.state = theme_oled;

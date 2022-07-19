@@ -3,6 +3,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
     public bool dark { get; set; default = false; }
     public Gdk.RGBA theme_color { get; set; }
+    public string font_monospace { get; set; default = "Monospace"; }
 
     public Gdk.RGBA h6_color {
         get {
@@ -76,6 +77,7 @@ public class GtkMarkdown.View : GtkSource.View {
         set {
             base.buffer = value;
             update_color_scheme ();
+            update_font ();
             buffer.changed.connect (restyle_text_all);
             buffer.notify["cursor-position"].connect (restyle_text_cursor);
             restyle_text_all ();
@@ -207,7 +209,9 @@ public class GtkMarkdown.View : GtkSource.View {
 
         notify["dark"].connect ((s, p) => update_color_scheme ());
         notify["theme-color"].connect ((s, p) => update_color_scheme ());
+        notify["font-monospace"].connect ((s, p) => update_font ());
         update_color_scheme ();
+        update_font ();
 
         {
             var gutter = get_gutter (Gtk.TextWindowType.LEFT);
@@ -262,15 +266,13 @@ public class GtkMarkdown.View : GtkSource.View {
     private Gtk.TextTag text_tag_hidden;
     private Gtk.TextTag text_tag_invisible;
 
+    private Gtk.TextTag get_or_create_tag (string name) {
+        return buffer.tag_table.lookup (name) ?? buffer.create_tag (name); }
+
 	private void update_color_scheme () {
 
-	    Gtk.TextTag get_or_create_tag (string name) {
-	        return buffer.tag_table.lookup (name) ?? buffer.create_tag (name);
-	    }
-
 	    float interpolate (float x) {
-	        return 1 - (float) Math.sqrt (1 - x);
-	    }
+	        return 1 - (float) Math.sqrt (1 - x); }
 
 	    void update_title_styling () {
 	        var tags = new Gtk.TextTag[6];
@@ -332,7 +334,6 @@ public class GtkMarkdown.View : GtkSource.View {
 
 
             text_tag_around = get_or_create_tag ("markdown-code-block-around");
-            text_tag_around.family = "Monospace";
             text_tag_around.scale = 0.7;
             var around_block_color = block_color;
             around_block_color.alpha = 0.8f;
@@ -340,11 +341,9 @@ public class GtkMarkdown.View : GtkSource.View {
 
 
             text_tag_code_span = get_or_create_tag ("markdown-code-span");
-            text_tag_code_span.family = "Monospace";
             text_tag_code_span.background_rgba = block_color;
 
             text_tag_code_block = get_or_create_tag ("markdown-code-block");
-            text_tag_code_block.family = "Monospace";
             text_tag_code_block.indent = 16;
 
 
@@ -354,6 +353,17 @@ public class GtkMarkdown.View : GtkSource.View {
             text_tag_invisible = get_or_create_tag ("invisible-character");
             text_tag_invisible.foreground = "rgba(0,0,0,0.001)";
         }
+	}
+
+	private void update_font () {
+        text_tag_around = get_or_create_tag ("markdown-code-block-around");
+        text_tag_around.family = font_monospace;
+
+        text_tag_code_span = get_or_create_tag ("markdown-code-span");
+        text_tag_code_span.family = font_monospace;
+
+        text_tag_code_block = get_or_create_tag ("markdown-code-block");
+        text_tag_code_block.family = font_monospace;
 	}
 
 	private void remove_tags_format (Gtk.TextIter start, Gtk.TextIter end) {
