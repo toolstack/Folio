@@ -46,9 +46,7 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
         oled_mode.state = theme_oled;
         oled_mode.state_set.connect ((state) => {
             settings.set_boolean ("theme-oled", state);
-            if (window != null) {
-                app.update_theme ();
-            }
+            app.update_theme ();
             return false;
         });
 

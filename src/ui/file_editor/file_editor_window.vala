@@ -51,6 +51,7 @@ public class Paper.FileEditorWindow : Adw.ApplicationWindow {
         file.load_contents (null, out text_data, out etag_out);
         current_buffer = new GtkMarkdown.Buffer ((string) text_data);
         edit_view.buffer = current_buffer;
+        edit_view.is_editable = true;
 
         close_request.connect (() => {
             save_file ();
