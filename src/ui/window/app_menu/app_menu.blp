@@ -1,0 +1,46 @@
+using Gtk 4.0;
+using Adw 1;
+
+template PaperAppMenu : Box {
+  MenuButton {
+    hexpand: false;
+    vexpand: false;
+    icon-name: "open-menu-symbolic";
+    primary: true;
+    popover: PopoverMenu popover {
+      menu-model: primary_menu;
+    };
+  }
+}
+
+menu primary_menu {
+  section {
+    item {
+      custom: "theme";
+    }
+  }
+  section {
+    item {
+      label: _("_New Notebook");
+      action: "app.new-notebook";
+    }
+    item {
+      label: _("_Edit Notebook");
+      action: "app.edit-notebook";
+    }
+  }
+  section {
+    item {
+      label: _("_Preferences");
+      action: "app.preferences";
+    }
+    item {
+      label: _("_Keyboard Shortcuts");
+      action: "win.show-help-overlay";
+    }
+    item {
+      label: _("_About");
+      action: "app.about";
+    }
+  }
+}

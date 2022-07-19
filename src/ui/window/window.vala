@@ -72,7 +72,8 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 	[GtkChild] unowned Adw.ToastOverlay toast_overlay;
 
-	private FuzzyStringSorter search_sorter;
+	private FuzzyStringSorter search_sorter = new FuzzyStringSorter (
+            new Gtk.PropertyExpression (typeof (Note), null, "name"));
 
 	private SimpleNoteContainer all_notes;
 
@@ -81,9 +82,6 @@ public class Paper.Window : Adw.ApplicationWindow {
     private GtkMarkdown.Buffer current_buffer;
 
     private Gtk.CssProvider? last_css_provider = null;
-
-    private Gtk.CssProvider? black_css_provider = null;
-    private Gtk.CssProvider? black_hc_css_provider = null;
 
 	private ActionEntry[] ACTIONS = {
 		{ "format-bold", on_format_bold },
@@ -118,6 +116,15 @@ public class Paper.Window : Adw.ApplicationWindow {
         Gtk.IconTheme.get_for_display (display).add_resource_path ("/io/posidon/Paper/graphics/");
 
         set_text_view_state (TextViewState.NO_NOTEBOOK);
+
+        button_back.clicked.connect (() => navigate_to_notes ());
+
+        search_sorter.changed.connect ((change) => {
+            notebook_notes_list_scroller.vadjustment.@value = 0;
+        });
+        notes_search_entry.search_changed.connect (() => {
+            search_sorter.target = notes_search_entry.text;
+        });
 	}
 
 	public Window (Application app) {
@@ -131,22 +138,8 @@ public class Paper.Window : Adw.ApplicationWindow {
 
         set_notebook (null);
 
-        search_sorter = new FuzzyStringSorter (
-            new Gtk.PropertyExpression (typeof (Note), null, "name"));
-        search_sorter.changed.connect ((change) => {
-            notebook_notes_list_scroller.vadjustment.@value = 0;
-        });
-        notes_search_entry.search_changed.connect (() => {
-            search_sorter.target = notes_search_entry.text;
-        });
-
-        notebooks_bar.init (this, app);
-
-        app.style_manager.notify["dark"].connect (() => update_theme (app.style_manager.dark, app.style_manager.high_contrast));
-        app.style_manager.notify["high-contrast"].connect (() => update_theme (app.style_manager.dark, app.style_manager.high_contrast));
-        update_theme (app.style_manager.dark, app.style_manager.high_contrast);
-
-        button_back.clicked.connect (() => navigate_to_notes ());
+        app.style_manager.notify["dark"].connect (() => edit_view.on_dark_changed (app.style_manager.dark));
+        edit_view.on_dark_changed (app.style_manager.dark);
 
         leaflet.notify["folded"].connect (() => {
             update_title_buttons ();
@@ -190,6 +183,10 @@ public class Paper.Window : Adw.ApplicationWindow {
             y = _y;
         });
         edit_view_page.child.add_controller (motion_controller);
+	}
+
+	public void init (Application app) {
+        notebooks_bar.init (this, app);
 	}
 
 	private void toggle_fullscreen () {
@@ -291,38 +288,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 	}
 
 	public void navigate_to_edit_view () { leaflet.visible_child = edit_view_page.child; }
-
-	public void update_theme (bool dark, bool high_contrast) {
-	    edit_view.on_dark_changed (dark);
-	    var settings = new Settings (Config.APP_ID);
-		var theme_oled = settings.get_boolean ("theme-oled");
-		if (dark && theme_oled) {
-		    if (black_css_provider == null) {
-                var css = new Gtk.CssProvider ();
-                css.load_from_resource (@"$(application.resource_base_path)/style-black.css");
-                Gtk.StyleContext.add_provider_for_display (display, css, -1);
-                black_css_provider = css;
-            }
-		}
-		else {
-            if (black_css_provider != null)
-                Gtk.StyleContext.remove_provider_for_display (display, black_css_provider);
-            black_css_provider = null;
-		}
-		if (dark && theme_oled && high_contrast) {
-	        if (black_hc_css_provider == null) {
-                var css = new Gtk.CssProvider ();
-                css.load_from_resource (@"$(application.resource_base_path)/style-black-hc.css");
-                Gtk.StyleContext.add_provider_for_display (display, css, -1);
-                black_hc_css_provider = css;
-            }
-		}
-		else {
-            if (black_hc_css_provider != null)
-                Gtk.StyleContext.remove_provider_for_display (display, black_hc_css_provider);
-            black_hc_css_provider = null;
-		}
-	}
 
 	private void on_format_bold () { edit_view.format_selection_bold (); }
 	private void on_format_italic () { edit_view.format_selection_italic (); }

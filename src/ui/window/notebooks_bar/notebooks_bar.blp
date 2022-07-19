@@ -16,15 +16,8 @@ template PaperNotebooksBar : Box {
 
     [title]
     Box {
-      MenuButton {
+      .PaperAppMenu {
         visible: bind PaperNotebooksBar.paned inverted;
-        hexpand: false;
-        vexpand: false;
-        icon-name: "open-menu-symbolic";
-        primary: true;
-        popover: PopoverMenu primary_menu_popover {
-          menu-model: primary_menu;
-        };
       }
 
       Adw.WindowTitle window_title {
@@ -33,15 +26,8 @@ template PaperNotebooksBar : Box {
     }
 
     [end]
-    MenuButton {
+    .PaperAppMenu {
       visible: bind PaperNotebooksBar.paned;
-      hexpand: false;
-      vexpand: false;
-      icon-name: "open-menu-symbolic";
-      primary: true;
-      popover: PopoverMenu primary_menu_popover_paned {
-        menu-model: primary_menu;
-      };
     }
   }
 
@@ -138,38 +124,6 @@ template PaperNotebooksBar : Box {
         halign: start;
         label: _("Trash");
       }
-    }
-  }
-}
-
-menu primary_menu {
-  section {
-    item {
-      custom: "theme";
-    }
-  }
-  section {
-    item {
-      label: _("_New Notebook");
-      action: "app.new-notebook";
-    }
-    item {
-      label: _("_Edit Notebook");
-      action: "app.edit-notebook";
-    }
-  }
-  section {
-    item {
-      label: _("_Preferences");
-      action: "app.preferences";
-    }
-    item {
-      label: _("_Keyboard Shortcuts");
-      action: "win.show-help-overlay";
-    }
-    item {
-      label: _("_About");
-      action: "app.about";
     }
   }
 }

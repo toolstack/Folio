@@ -13,6 +13,7 @@ blueprint_files = files(
   'widgets/save_indicator/save_indicator.blp',
   'widgets/theme_selector/theme_selector.blp',
   'window/window.blp',
+  'window/app_menu/app_menu.blp',
   'window/notebooks_bar/notebook_create_popup.blp',
   'window/notebooks_bar/icon.blp',
   'window/notebooks_bar/notebook_menu.blp',

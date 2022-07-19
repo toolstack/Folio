@@ -24,7 +24,7 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
 	unowned Gtk.Label notes_dir_label;
 
 
-	public PreferencesWindow (Window window) {
+	public PreferencesWindow (Application app, Window? window) {
 		Object ();
 
 	    var settings = new Settings (Config.APP_ID);
@@ -39,14 +39,16 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
         font_button.font_set.connect (() => {
             var font = font_button.get_font_family ().get_name ();
             settings.set_string ("note-font", font);
-            window.set_note_font (font);
+            if (window != null)
+                window.set_note_font (font);
         });
 
         oled_mode.state = theme_oled;
         oled_mode.state_set.connect ((state) => {
             settings.set_boolean ("theme-oled", state);
-            var app = (window.application as Adw.Application);
-            window.update_theme (app.style_manager.dark, app.style_manager.high_contrast);
+            if (window != null) {
+                app.update_theme ();
+            }
             return false;
         });
 

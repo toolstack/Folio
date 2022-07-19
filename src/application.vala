@@ -44,6 +44,11 @@ public class Paper.Application : Adw.Application {
 
     private HashTable<string, Value?> temp_command;
 
+    private Window? main_window = null;
+
+    private Gtk.CssProvider? black_css_provider = null;
+    private Gtk.CssProvider? black_hc_css_provider = null;
+
 	public Application () {
 		Object (
 		    application_id: Config.APP_ID,
@@ -90,13 +95,19 @@ public class Paper.Application : Adw.Application {
 	        var settings = new Settings (@"$(Config.APP_ID).Theme");
 	        settings.bind ("variant", style_manager, "color-scheme", SettingsBindFlags.DEFAULT);
 	    }
+
+        style_manager.notify["dark"].connect (() => update_theme ());
+        style_manager.notify["high-contrast"].connect (() => update_theme ());
+        update_theme ();
 	}
 
 	public override void activate () {
 		base.activate ();
 		var win = this.active_window;
 		if (win == null) {
-			win = new Window (this);
+			main_window = new Window (this);
+			main_window.init (this);
+			win = main_window;
 
             var settings = new Settings (@"$(Config.APP_ID).WindowState");
             var note_path = settings.get_string ("note");
@@ -124,7 +135,7 @@ public class Paper.Application : Adw.Application {
 	    }
 	    var query = temp_command.take ("launch-search", out exists);
 	    if (exists) {
-            window.search_notes (query.get_string ());
+            main_window.search_notes (query.get_string ());
             temp_command.remove ("launch-search");
 	    }
 	    temp_command = null;
@@ -143,7 +154,7 @@ public class Paper.Application : Adw.Application {
 
 	private void on_preferences_action () {
 	    activate ();
-        var w = new PreferencesWindow (window);
+        var w = new PreferencesWindow (this, main_window);
         w.destroy_with_parent = true;
 		w.transient_for = active_window;
         w.modal = true;
@@ -181,7 +192,7 @@ public class Paper.Application : Adw.Application {
 		    var name = a.get_available_name ();
             try_create_note (name);
 		} else {
-            window.toast (Strings.CREATE_NOTEBOOK_BEFORE_CREATING_NOTE);
+            toast (Strings.CREATE_NOTEBOOK_BEFORE_CREATING_NOTE);
 		}
 	}
 
@@ -189,7 +200,7 @@ public class Paper.Application : Adw.Application {
 		if (current_note != null) {
 		    request_edit_note (current_note);
 		} else {
-            window.toast (Strings.SELECT_NOTE_TO_EDIT);
+            toast (Strings.SELECT_NOTE_TO_EDIT);
 		}
 	}
 
@@ -197,7 +208,7 @@ public class Paper.Application : Adw.Application {
 	    if (current_note != null) {
 		    request_delete_note (current_note);
 		} else {
-            window.toast (Strings.SELECT_NOTE_TO_DELETE);
+            toast (Strings.SELECT_NOTE_TO_DELETE);
 		}
 	}
 
@@ -264,7 +275,7 @@ public class Paper.Application : Adw.Application {
         var dest_path = @"$(dest_notebook.path)/$(note.file_name)";
         var dest = File.new_for_path (dest_path);
         if (dest.query_exists ()) {
-            window.toast (Strings.NOTE_X_ALREADY_EXISTS_IN_X.printf (note.name, dest_notebook.name));
+            toast (Strings.NOTE_X_ALREADY_EXISTS_IN_X.printf (note.name, dest_notebook.name));
             return;
         }
         file.move (dest, FileCopyFlags.NONE);
@@ -296,49 +307,47 @@ public class Paper.Application : Adw.Application {
 
 	public void try_create_note (string name) {
 	    if (name.contains (".") || name.contains ("/")) {
-            window.toast (Strings.NOTE_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
+            toast (Strings.NOTE_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
             return;
 	    }
 	    if (name.replace(" ", "").length == 0) {
-            window.toast (Strings.NOTE_NAME_SHOULDNT_BE_BLANK);
+            toast (Strings.NOTE_NAME_SHOULDNT_BE_BLANK);
             return;
 	    }
 		try {
 		    var n = active_notebook.new_note (name);
-	        window.select_note (0);
+	        main_window.select_note (0);
 	        set_active_note(n);
 	    } catch (ProviderError e) {
-	        if (e is ProviderError.ALREADY_EXISTS) {
-	            window.toast (Strings.NOTE_X_ALREADY_EXISTS.printf (name));
-	        } else if (e is ProviderError.COULDNT_CREATE_FILE) {
-	            window.toast (Strings.COULDNT_CREATE_NOTE);
-	        } else {
-	            window.toast (Strings.UNKNOWN_ERROR);
-	        }
+	        if (e is ProviderError.ALREADY_EXISTS)
+	            toast (Strings.NOTE_X_ALREADY_EXISTS.printf (name));
+	        else if (e is ProviderError.COULDNT_CREATE_FILE)
+	            toast (Strings.COULDNT_CREATE_NOTE);
+	        else
+	            toast (Strings.UNKNOWN_ERROR);
 	    }
 	}
 
 	public bool try_change_note (Note note, string name) {
 	    if (name.contains (".") || name.contains ("/")) {
-            window.toast (Strings.NOTE_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
+            toast (Strings.NOTE_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
             return false;
 	    }
 	    if (name.replace(" ", "").length == 0) {
-            window.toast (Strings.NOTE_NAME_SHOULDNT_BE_BLANK);
+            toast (Strings.NOTE_NAME_SHOULDNT_BE_BLANK);
             return false;
 	    }
 		try {
 	        note.notebook.change_note (note, name);
-            current_buffer = window.set_note (note);
+            current_buffer = main_window.set_note (note);
 	        return true;
 	    } catch (ProviderError e) {
-	        if (e is ProviderError.ALREADY_EXISTS) {
-	            window.toast (Strings.NOTE_X_ALREADY_EXISTS.printf (name));
-	        } else if (e is ProviderError.COULDNT_CREATE_FILE) {
-	            window.toast (Strings.COULDNT_CHANGE_NOTE);
-	        } else {
-	            window.toast (Strings.UNKNOWN_ERROR);
-	        }
+	        if (e is ProviderError.ALREADY_EXISTS)
+	            toast (Strings.NOTE_X_ALREADY_EXISTS.printf (name));
+	        else if (e is ProviderError.COULDNT_CREATE_FILE)
+	            toast (Strings.COULDNT_CHANGE_NOTE);
+	        else
+	            toast (Strings.UNKNOWN_ERROR);
 	        return false;
 	    }
 	}
@@ -364,23 +373,22 @@ public class Paper.Application : Adw.Application {
             //if we are removing the last item we need to select a different index.
             //we really should be doing this somewhere else.
 	        if (idx == item_count)
-	            window.select_note (idx - 1);
+	            main_window.select_note (idx - 1);
 	        else
-	            window.select_note (idx);
+	            main_window.select_note (idx);
 
-	        window.update_selected_note ();
+	        main_window.update_selected_note ();
 	    } catch (ProviderError e) {
-	        if (e is ProviderError.COULDNT_DELETE) {
-	            window.toast (Strings.COULDNT_DELETE_NOTE);
-	        } else {
-	            window.toast (Strings.UNKNOWN_ERROR);
-	        }
+	        if (e is ProviderError.COULDNT_DELETE)
+	            toast (Strings.COULDNT_DELETE_NOTE);
+	        else
+	            toast (Strings.UNKNOWN_ERROR);
 	    }
 	}
 
 	private void try_export_note (Note note, File file) {
 	    FileUtils.save_to (file, current_buffer.get_all_text ());
-        window.toast (Strings.SAVED_X_TO_X.printf (note.name, file.get_path ()));
+        toast (Strings.SAVED_X_TO_X.printf (note.name, file.get_path ()));
 	}
 
 	public void try_restore_note (Note note) {
@@ -397,7 +405,7 @@ public class Paper.Application : Adw.Application {
 	            if (i == n.size) {
 	                notebook_provider.unload ();
 	                notebook_provider.load ();
-	                window.update_notebooks (this);
+	                main_window.update_notebooks (this);
 	            }
 	        }
 	        {
@@ -412,59 +420,57 @@ public class Paper.Application : Adw.Application {
 	        }
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.COULDNT_MOVE) {
-	            window.toast (Strings.COULDNT_RESTORE_NOTE);
+	            toast (Strings.COULDNT_RESTORE_NOTE);
 	        } else if (e is ProviderError.ALREADY_EXISTS) {
-	            window.toast (Strings.NOTE_X_ALREADY_EXISTS_IN_X.printf (note.name, note.notebook.name));
+	            toast (Strings.NOTE_X_ALREADY_EXISTS_IN_X.printf (note.name, note.notebook.name));
 	        } else {
-	            window.toast (Strings.UNKNOWN_ERROR);
+	            toast (Strings.UNKNOWN_ERROR);
 	        }
 	    }
 	}
 
 	public void try_create_notebook (NotebookInfo info) {
 	    if (info.name.contains (".") || info.name.contains ("/")) {
-            window.toast (Strings.NOTEBOOK_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
+            toast (Strings.NOTEBOOK_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
             return;
 	    }
 	    if (info.name.replace(" ", "").length == 0) {
-            window.toast (Strings.NOTEBOOK_NAME_SHOULDNT_BE_BLANK);
+            toast (Strings.NOTEBOOK_NAME_SHOULDNT_BE_BLANK);
             return;
 	    }
 		try {
 	        var notebook = notebook_provider.new_notebook (info);
 	        select_notebook (notebook);
 	    } catch (ProviderError e) {
-	        if (e is ProviderError.ALREADY_EXISTS) {
-	            window.toast (Strings.NOTEBOOK_X_ALREADY_EXISTS.printf (info.name));
-	        } else if (e is ProviderError.COULDNT_CREATE_FILE) {
-	            window.toast (Strings.COULDNT_CREATE_NOTEBOOK);
-	        } else {
-	            window.toast (Strings.UNKNOWN_ERROR);
-	        }
+	        if (e is ProviderError.ALREADY_EXISTS)
+	            toast (Strings.NOTEBOOK_X_ALREADY_EXISTS.printf (info.name));
+	        else if (e is ProviderError.COULDNT_CREATE_FILE)
+	            toast (Strings.COULDNT_CREATE_NOTEBOOK);
+	        else
+	            toast (Strings.UNKNOWN_ERROR);
 	    }
 	}
 
 	public void try_change_notebook (Notebook notebook, NotebookInfo info) {
 	    if (info.name.contains (".") || info.name.contains ("/")) {
-            window.toast (Strings.NOTEBOOK_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
+            toast (Strings.NOTEBOOK_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
             return;
 	    }
 	    if (info.name.replace(" ", "").length == 0) {
-            window.toast (Strings.NOTEBOOK_NAME_SHOULDNT_BE_BLANK);
+            toast (Strings.NOTEBOOK_NAME_SHOULDNT_BE_BLANK);
             return;
 	    }
 		try {
 	        notebook_provider.change_notebook (notebook, info);
-	        if (window.current_container == notebook)
-	            window.set_notebook (notebook);
+	        if (main_window.current_container == notebook)
+	            main_window.set_notebook (notebook);
 	    } catch (ProviderError e) {
-	        if (e is ProviderError.ALREADY_EXISTS) {
-	            window.toast (Strings.NOTEBOOK_X_ALREADY_EXISTS.printf (info.name));
-	        } else if (e is ProviderError.COULDNT_CREATE_FILE) {
-	            window.toast (Strings.COULDNT_CHANGE_NOTEBOOK);
-	        } else {
-	            window.toast (Strings.UNKNOWN_ERROR);
-	        }
+	        if (e is ProviderError.ALREADY_EXISTS)
+	            toast (Strings.NOTEBOOK_X_ALREADY_EXISTS.printf (info.name));
+	        else if (e is ProviderError.COULDNT_CREATE_FILE)
+	            toast (Strings.COULDNT_CHANGE_NOTEBOOK);
+	        else
+	            toast (Strings.UNKNOWN_ERROR);
 	    }
 	}
 
@@ -472,13 +478,12 @@ public class Paper.Application : Adw.Application {
 		try {
 	        set_active_notebook (null);
 	        notebook_provider.delete_notebook (notebook);
-	        window.update_selected_notebook ();
+	        main_window.update_selected_notebook ();
 	    } catch (ProviderError e) {
-	        if (e is ProviderError.COULDNT_DELETE) {
-	            window.toast (Strings.COULDNT_DELETE_NOTEBOOK);
-	        } else {
-	            window.toast (Strings.UNKNOWN_ERROR);
-	        }
+	        if (e is ProviderError.COULDNT_DELETE)
+	            toast (Strings.COULDNT_DELETE_NOTEBOOK);
+	        else
+	            toast (Strings.UNKNOWN_ERROR);
 	    }
 	}
 
@@ -487,7 +492,7 @@ public class Paper.Application : Adw.Application {
 	    var old_notebook = active_notebook;
 	    set_active_note (null);
 	    active_notebook = notebook;
-        window.set_notebook (notebook);
+        main_window.set_notebook (notebook);
         if (old_notebook != null) {
 	        old_notebook.unload ();
 	    }
@@ -497,17 +502,13 @@ public class Paper.Application : Adw.Application {
 	    var n = notebook_provider.notebooks
 	        .first_match ((it) => it.name == notebook.name);
         int i = notebook_provider.notebooks.index_of (n);
-        window.select_notebook (i);
+        main_window.select_notebook (i);
 	}
 
 	public void set_active_note (Note? note) {
 	    if (current_note == note) return;
         current_note = note;
-        current_buffer = window.set_note (note);
-	}
-
-	public Window window {
-	    get { return ((!) this.active_window) as Window; }
+        current_buffer = main_window.set_note (note);
 	}
 
 	public override void shutdown () {
@@ -519,6 +520,43 @@ public class Paper.Application : Adw.Application {
         current_note = null;
         current_buffer = null;
 	    base.shutdown ();
+	}
+
+	public void toast (string message) {
+	    main_window.toast (message);
+	}
+
+	public void update_theme () {
+	    var dark = style_manager.dark;
+	    var high_contrast = style_manager.high_contrast;
+	    var settings = new Settings (Config.APP_ID);
+		var theme_oled = settings.get_boolean ("theme-oled");
+		if (dark && theme_oled) {
+		    if (black_css_provider == null) {
+                var css = new Gtk.CssProvider ();
+                css.load_from_resource (@"$resource_base_path/style-black.css");
+                Gtk.StyleContext.add_provider_for_display (active_window.display, css, -1);
+                black_css_provider = css;
+            }
+		}
+		else {
+            if (black_css_provider != null)
+                Gtk.StyleContext.remove_provider_for_display (active_window.display, black_css_provider);
+            black_css_provider = null;
+		}
+		if (dark && theme_oled && high_contrast) {
+	        if (black_hc_css_provider == null) {
+                var css = new Gtk.CssProvider ();
+                css.load_from_resource (@"$resource_base_path/style-black-hc.css");
+                Gtk.StyleContext.add_provider_for_display (active_window.display, css, -1);
+                black_hc_css_provider = css;
+            }
+		}
+		else {
+            if (black_hc_css_provider != null)
+                Gtk.StyleContext.remove_provider_for_display (active_window.display, black_hc_css_provider);
+            black_hc_css_provider = null;
+		}
 	}
 
 	private int _command_line (ApplicationCommandLine command_line) {
