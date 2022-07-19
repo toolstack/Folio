@@ -471,6 +471,7 @@ public class Paper.Application : Adw.Application {
 		try {
 	        set_active_notebook (null);
 	        notebook_provider.delete_notebook (notebook);
+	        window.update_selected_notebook ();
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.COULDNT_DELETE) {
 	            window.toast (Strings.COULDNT_DELETE_NOTEBOOK);

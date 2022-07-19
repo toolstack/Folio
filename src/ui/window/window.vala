@@ -240,6 +240,8 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 	public void select_notebook (uint i) { notebooks_bar.select_notebook (i); }
 
+	public void update_selected_notebook () { notebooks_bar.select_notebook (notebooks_bar.model.selected); }
+
     public void optional_save () {
 	    if (edit_view.is_editable && current_note != null) {
             current_note.save (current_buffer.get_all_text ());

@@ -4,44 +4,25 @@ public class Paper.NotebooksBar : Gtk.Box {
 
     public bool paned { get; set; default = false; }
 
-	[GtkChild]
-	unowned Gtk.PopoverMenu primary_menu_popover;
-
-	[GtkChild]
-	unowned Gtk.PopoverMenu primary_menu_popover_paned;
-
-	[GtkChild]
-	unowned Gtk.ListView list;
-
-	[GtkChild]
-	unowned Gtk.ToggleButton all_button;
-
-	[GtkChild]
-	unowned Gtk.Revealer all_button_revealer;
-
-	[GtkChild]
-	unowned Gtk.ToggleButton trash_button;
-
-	[GtkChild]
-    unowned Adw.HeaderBar header_bar;
-
-	[GtkChild]
-    unowned Adw.WindowTitle window_title;
-
-	[GtkChild]
-	unowned Gtk.ScrolledWindow scrolled_window;
+	public bool all_button_enabled {
+	    set { all_button_revealer.reveal_child = value; }
+	}
 
 	public Gtk.SingleSelection model;
+
+	[GtkChild] unowned Gtk.PopoverMenu primary_menu_popover;
+	[GtkChild] unowned Gtk.PopoverMenu primary_menu_popover_paned;
+	[GtkChild] unowned Gtk.ListView list;
+	[GtkChild] unowned Gtk.ToggleButton all_button;
+	[GtkChild] unowned Gtk.Revealer all_button_revealer;
+	[GtkChild] unowned Gtk.ToggleButton trash_button;
+	[GtkChild] unowned Adw.HeaderBar header_bar;
+	[GtkChild] unowned Adw.WindowTitle window_title;
+	[GtkChild] unowned Gtk.ScrolledWindow scrolled_window;
 
 	private Gtk.ListItemFactory item_factory;
 
 	private Gtk.ListItemFactory item_factory_paned;
-
-	public bool all_button_enabled {
-	    set {
-	        all_button_revealer.reveal_child = value;
-	    }
-	}
 
 	construct {
 	    primary_menu_popover.add_child (new ThemeSelector (), "theme");
