@@ -9,7 +9,7 @@ public class Paper.NoteCard : Gtk.Box {
 	        this._note = value;
 	        if (value != null) {
 	            label.label = value.name;
-	            var time_string = value.time_modified.format ("%e %b, %H:%m").strip ();
+	            var time_string = value.time_modified.format ("%e %b, %R").strip ();
 	            subtitle.label = _window.current_state == Window.State.NOTEBOOK ? time_string : @"%s - %s".printf (time_string, value.notebook.name);
 	            tooltip_text = value.name;
                 var v = Value (typeof (Note));

@@ -39,7 +39,7 @@ public class Paper.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
                 if (name.has_suffix (".md"))
                     name = name.substring (0, name.length - 3);
                 else continue;
-	            var mod_time = (!) file_info.get_modification_date_time ();
+	            var mod_time = (!) file_info.get_modification_date_time ().to_timezone (new TimeZone.local ());
                 _loaded_notes.add (new Note (
                     name,
                     this,
