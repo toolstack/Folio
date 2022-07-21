@@ -145,24 +145,24 @@ headerbar.overlaid {
     ),
     linear-gradient(mix(@notebook_color, #fff, 0.2), @notebook_color);
 
-  border-radius: 0 3px 3px 0;
+  border-radius: 0 0.25em 0.25em 0;
 
-  min-width: 26px;
-  min-height: 34px;
+  min-width: 1.857142857em;
+  min-height: 2.428571429em;
 
   color: @notebook_fg_color;
   font-size: 14px;
 
   box-shadow:
-    inset 0 .5px 0px 0px rgba(255, 255, 255, 0.2),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.2),
 
-    inset 3px 0 0 0 shade(@notebook_color, 0.8),
+    inset 0.2em 0 0 0 shade(@notebook_color, 0.8),
 
-    inset 0 -2px 0px 0px #f0f3f8,
-    inset 0 -1px 0px 0px @notebook_color,
+    inset 0 -0.142857143em 0 0 #f0f3f8,
+    inset 0 -0.071428571em 0 0 @notebook_color,
 
-    inset 1px 0 0 0 shade(@notebook_color, 0.8),
-    inset 0 -3px 0px 0px rgba(0, 0, 0, 0.2);
+    inset 0.08em 0 0 0 shade(@notebook_color, 0.8),
+    inset 0 -0.214285714em 0 0 rgba(0, 0, 0, 0.2);
 }
 
 .notebook-preview,
@@ -183,20 +183,8 @@ row.activatable:selected .notebook {
 }
 
 .notebook-preview {
-  transform: scale(2.4);
-  margin: 32px;
-  font-size: 2em;
-}
-
-.notebook-preview > image,
-.notebook-preview > label {
-  margin: -100px;
-}
-.notebook-preview > image {
-  -gtk-icon-transform: scale(0.5);
-}
-.notebook-preview > label {
-  transform: scale(0.5);
+  margin: 20px;
+  font-size: 2.4em;
 }
 
 .icon-selector > popover gridview {
@@ -460,6 +448,6 @@ window.tiled-bottom .notebooks-bar > .trash-button:checked {
 }
 
 .notebook-list row .notebook {
-  margin: 0px;
-  transform: scale(.56);
+  margin: 6px 8px;
+  font-size: .72em;
 }
