@@ -3,23 +3,21 @@ using Adw 1;
 
 template PaperToolbar : Box {
 
-  ScrolledWindow {
+  Adw.Squeezer {
 
     hexpand: true;
     vexpand: false;
-    hscrollbar-policy: external;
-    vscrollbar-policy: never;
+    allow-none: false;
 
     styles ["bottom-toolbar"]
 
-    Box toolbar {
+    Box {
 
       orientation: horizontal;
 
       styles ["toolbar"]
 
       ComboBoxText format_heading_type {
-        visible: bind PaperToolbar.compacted inverted;
 
         items [
           p: _("Plain Text"),
@@ -33,71 +31,87 @@ template PaperToolbar : Box {
       }
 
       Separator {
-        visible: bind PaperToolbar.compacted inverted;
         styles ["spacer"]
       }
 
       Button {
-        hexpand: bind PaperToolbar.compacted;
         icon-name: "format-text-bold-symbolic";
         tooltip-text: _("Bold");
         action-name: "win.format-bold";
       }
 
       Button {
-        hexpand: bind PaperToolbar.compacted;
         icon-name: "format-text-italic-symbolic";
         tooltip-text: _("Italic");
         action-name: "win.format-italic";
       }
 
       Button {
-        visible: bind PaperToolbar.compacted inverted;
         icon-name: "format-text-strikethrough-symbolic";
         tooltip-text: _("Strikethrough");
         action-name: "win.format-strikethrough";
       }
 
       Button {
-        visible: bind PaperToolbar.compacted inverted;
         icon-name: "format-text-highlight-symbolic";
         tooltip-text: _("Highlight");
         action-name: "win.format-highlight";
       }
 
       Separator {
-        visible: bind PaperToolbar.compacted inverted;
         styles ["spacer"]
       }
 
       Button {
-        visible: bind PaperToolbar.compacted inverted;
         icon-name: "insert-link-symbolic";
         tooltip-text: _("Insert Link");
         action-name: "win.insert-link";
       }
 
       Button {
-        visible: bind PaperToolbar.compacted inverted;
         icon-name: "insert-code-symbolic";
         tooltip-text: _("Insert Code");
         action-name: "win.insert-code-span";
       }
 
       Button {
-        visible: bind PaperToolbar.compacted inverted;
         icon-name: "insert-horizontal-rule-symbolic";
         tooltip-text: _("Insert Horizontal Rule");
         action-name: "win.insert-horizontal-rule";
       }
 
       Box {
-        visible: bind PaperToolbar.compacted inverted;
         hexpand: true;
       }
 
+      Button {
+        icon-name: "dialog-information-symbolic";
+        tooltip-text: _("Markdown Cheatsheet");
+        action-name: "app.markdown-cheatsheet";
+      }
+    }
+
+    Box {
+
+      orientation: horizontal;
+
+      styles ["toolbar"]
+
+      Button {
+        hexpand: true;
+        icon-name: "format-text-bold-symbolic";
+        tooltip-text: _("Bold");
+        action-name: "win.format-bold";
+      }
+
+      Button {
+        hexpand: true;
+        icon-name: "format-text-italic-symbolic";
+        tooltip-text: _("Italic");
+        action-name: "win.format-italic";
+      }
+
       MenuButton {
-        visible: bind PaperToolbar.compacted;
         hexpand: true;
         icon-name: "format-text-rich-symbolic";
         tooltip-text: _("Format");
@@ -161,19 +175,11 @@ template PaperToolbar : Box {
       }
 
       MenuButton {
-        visible: bind PaperToolbar.compacted;
         hexpand: true;
         icon-name: "insert-object-symbolic";
         tooltip-text: _("Insert");
         direction: up;
         menu-model: insert_menu;
-      }
-
-      Button {
-        visible: bind PaperToolbar.compacted inverted;
-        icon-name: "dialog-information-symbolic";
-        tooltip-text: _("Markdown Cheatsheet");
-        action-name: "app.markdown-cheatsheet";
       }
     }
   }
