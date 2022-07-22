@@ -3,6 +3,7 @@ Type=Application
 Terminal=false
 Exec=@app_id@
 DBusActivatable=true
+StartupWMClass=@app_id@
 
 Name=Paper
 GenericName=Notes Manager
