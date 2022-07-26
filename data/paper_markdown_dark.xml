@@ -8,22 +8,9 @@
     <property name="light-variant">paper</property>
   </metadata>
 
-  <color name="hyperlink"                   value="#4ba0f3"/>
-
-  <color name="escape"                      value="#7bb972"/>
-
-  <color name="quote"                       value="#11af50"/>
-  <color name="literal"                     value="#87fcc8"/>
-
-	<style name="markdown:backslash-escape"   foreground="escape" bold="true"/>
-
 	<style name="markdown:list-marker"        foreground="#rgba(255,255,255,0.3)"/>
 	<style name="markdown:image-marker"       foreground="#rgba(255,255,255,0.3)" bold="true"/>
 
 	<style name="markdown:attribute-value"    foreground="literal"/>
-
-	<style name="markdown:label"              foreground="hyperlink"/>
-	<style name="markdown:link-text"          foreground="hyperlink"/>
-	<style name="markdown:url"                foreground="hyperlink"/>
 </style-scheme>
 

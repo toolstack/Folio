@@ -157,7 +157,7 @@ public class GtkMarkdown.View : GtkSource.View {
         try {
             var f = RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS;
 	        is_link = new Regex ("\\[([^\\[]+?)\\](\\([^\\)\\n]+?\\))", f, 0);
-	        is_escape = new Regex ("\\\\[\\\\`*_{}\\[\\]()#+-.!]", f, 0);
+	        is_escape = new Regex ("\\\\[\\\\`*_{}\\[\\]()#+\\-.!]", f, 0);
 
 	        /*
              * Example:
