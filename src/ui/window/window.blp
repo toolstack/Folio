@@ -203,7 +203,9 @@ template PaperWindow : Adw.ApplicationWindow {
               [end]
               MenuButton button_more_menu {
                 icon-name: "view-more-symbolic";
-                menu-model: more_menu;
+                popover: PopoverMenu more_popover {
+                  menu-model: more_menu;
+                };
               }
 
               [end]
@@ -228,6 +230,11 @@ template PaperWindow : Adw.ApplicationWindow {
 }
 
 menu more_menu {
+  section {
+    item {
+      custom: "font-scale";
+    }
+  }
   section {
     item {
       label: _("_Rename Note");

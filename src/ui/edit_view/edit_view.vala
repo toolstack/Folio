@@ -11,6 +11,11 @@ public class Paper.EditView : Gtk.Box {
 	    set { toolbar.compacted = value; }
     }
 
+    public int scale { get; set; default = 100; }
+
+    public const int MIN_SCALE = 10;
+    public const int MAX_SCALE = 600;
+
 	public Gdk.RGBA theme_color {
 	    get { return text_view.theme_color; }
 	    set {
@@ -33,6 +38,7 @@ public class Paper.EditView : Gtk.Box {
 	[GtkChild] public unowned Gtk.ScrolledWindow scrolled_window;
 
     private Gtk.CssProvider note_font_provider = new Gtk.CssProvider ();
+    private Gtk.CssProvider font_scale_provider = new Gtk.CssProvider ();
 
     construct {
 	    var settings = new Settings (Config.APP_ID);
@@ -65,6 +71,44 @@ public class Paper.EditView : Gtk.Box {
 	        text_view.sensitive = is_editable;
         });
         update_toolbar_visibility ();
+
+	    notify["scale"].connect(set_font_scale);
+
+	    var key_controller = new Gtk.EventControllerKey ();
+	    var is_ctrl = false;
+	    key_controller.key_pressed.connect ((keyval, keycode, state) => {
+	        if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R)
+	            is_ctrl = true;
+	        return false;
+	    });
+	    key_controller.key_released.connect ((keyval, keycode, state) => {
+	        if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R)
+	            is_ctrl = false;
+	    });
+	    var scroll_controller = new Gtk.EventControllerScroll (Gtk.EventControllerScrollFlags.DISCRETE | Gtk.EventControllerScrollFlags.VERTICAL);
+	    scroll_controller.scroll.connect ((dx, dy) => {
+	        if (is_ctrl) {
+	            if (dy < 0)
+	                zoom_in ();
+	            else zoom_out ();
+	            return true;
+	        }
+	        return false;
+	    });
+	    add_controller (key_controller);
+	    text_view.add_controller (scroll_controller);
+    }
+
+    public void zoom_in () {
+        var new_scale = scale + 10;
+        if (new_scale <= MAX_SCALE)
+            scale = new_scale;
+    }
+
+    public void zoom_out () {
+        var new_scale = scale - 10;
+        if (new_scale >= MIN_SCALE)
+            scale = new_scale;
     }
 
     public void on_dark_changed (bool dark) {
@@ -158,6 +202,11 @@ public class Paper.EditView : Gtk.Box {
 	    b.insert (ref iter, "\n- - -\n", 7);
 	    b.end_user_action ();
 	}
+
+    public void set_font_scale () {
+	    font_scale_provider.load_from_data (@"textview{font-size:$(scale / 100f)em;}".data);
+	    text_view.get_style_context ().add_provider (font_scale_provider, -1);
+    }
 
     private void set_note_font (string font) {
 	    note_font_provider.load_from_data (@"textview{font-family:'$font';}".data);

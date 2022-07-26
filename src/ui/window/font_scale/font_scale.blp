@@ -1,0 +1,24 @@
+using Gtk 4.0;
+using Adw 1;
+
+template PaperFontScale : Box {
+
+  orientation: horizontal;
+  spacing: 12;
+  margin-start: 12;
+  margin-end: 12;
+
+  Button dec {
+    icon-name: "zoom-out-symbolic";
+    styles ["flat", "circular"]
+  }
+
+  Label zoom_level {
+    hexpand: true;
+  }
+
+  Button inc {
+    icon-name: "zoom-in-symbolic";
+    styles ["flat", "circular"]
+  }
+}

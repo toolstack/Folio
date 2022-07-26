@@ -69,6 +69,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 	[GtkChild] unowned Gtk.Box text_view_empty_notebook;
 	[GtkChild] unowned Gtk.Box text_view_empty_trash;
 	[GtkChild] unowned Gtk.Box text_view_no_notebook;
+	[GtkChild] unowned Gtk.PopoverMenu more_popover;
 
 	[GtkChild] unowned Adw.ToastOverlay toast_overlay;
 
@@ -125,6 +126,8 @@ public class Paper.Window : Adw.ApplicationWindow {
         notes_search_entry.search_changed.connect (() => {
             search_sorter.target = notes_search_entry.text;
         });
+        var font_scale = new FontScale (edit_view);
+	    more_popover.add_child (font_scale, "font-scale");
 	}
 
 	public Window (Application app) {

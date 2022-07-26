@@ -15,6 +15,7 @@
 
     <file preprocess="xml-stripblanks" alias="window.ui">ui/window/window.ui</file>
     <file preprocess="xml-stripblanks" alias="app_menu.ui">ui/window/app_menu/app_menu.ui</file>
+    <file preprocess="xml-stripblanks" alias="font_scale.ui">ui/window/font_scale/font_scale.ui</file>
     <file preprocess="xml-stripblanks" alias="notebooks_bar.ui">ui/window/notebooks_bar/notebooks_bar.ui</file>
     <file preprocess="xml-stripblanks" alias="notebooks_bar/icon.ui">ui/window/notebooks_bar/icon.ui</file>
     <file preprocess="xml-stripblanks" alias="notebooks_bar/notebook_menu.ui">ui/window/notebooks_bar/notebook_menu.ui</file>

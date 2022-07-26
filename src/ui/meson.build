@@ -14,6 +14,7 @@ blueprint_files = files(
   'widgets/theme_selector/theme_selector.blp',
   'window/window.blp',
   'window/app_menu/app_menu.blp',
+  'window/font_scale/font_scale.blp',
   'window/notebooks_bar/notebook_create_popup.blp',
   'window/notebooks_bar/icon.blp',
   'window/notebooks_bar/notebook_menu.blp',
