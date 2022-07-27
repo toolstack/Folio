@@ -527,34 +527,39 @@ public class Paper.Application : Adw.Application {
 	}
 
 	public void update_theme () {
+		if (active_window == null)
+		    return;
 	    var dark = style_manager.dark;
 	    var high_contrast = style_manager.high_contrast;
 	    var settings = new Settings (Config.APP_ID);
 		var theme_oled = settings.get_boolean ("theme-oled");
+		var display = active_window.display;
+		if (display == null)
+		    return;
 		if (dark && theme_oled) {
 		    if (black_css_provider == null) {
                 var css = new Gtk.CssProvider ();
                 css.load_from_resource (@"$resource_base_path/style-black.css");
-                Gtk.StyleContext.add_provider_for_display (active_window.display, css, -1);
+                Gtk.StyleContext.add_provider_for_display (display, css, -1);
                 black_css_provider = css;
             }
 		}
 		else {
             if (black_css_provider != null)
-                Gtk.StyleContext.remove_provider_for_display (active_window.display, black_css_provider);
+                Gtk.StyleContext.remove_provider_for_display (display, black_css_provider);
             black_css_provider = null;
 		}
 		if (dark && theme_oled && high_contrast) {
 	        if (black_hc_css_provider == null) {
                 var css = new Gtk.CssProvider ();
                 css.load_from_resource (@"$resource_base_path/style-black-hc.css");
-                Gtk.StyleContext.add_provider_for_display (active_window.display, css, -1);
+                Gtk.StyleContext.add_provider_for_display (display, css, -1);
                 black_hc_css_provider = css;
             }
 		}
 		else {
             if (black_hc_css_provider != null)
-                Gtk.StyleContext.remove_provider_for_display (active_window.display, black_hc_css_provider);
+                Gtk.StyleContext.remove_provider_for_display (display, black_hc_css_provider);
             black_hc_css_provider = null;
 		}
 	}
