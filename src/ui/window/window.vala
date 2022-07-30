@@ -222,19 +222,18 @@ public class Paper.Window : Adw.ApplicationWindow {
 	public void set_all () { set_state (State.ALL, all_notes); }
 
 	public GtkMarkdown.Buffer? set_note (Note? note) {
+	    var old_note = current_note;
         optional_save ();
 	    current_note = note;
         is_unsaved = false;
 	    update_note_title ();
 	    update_editability ();
-	    if (note != null) {
+	    if (note != null && current_note != old_note) {
 	        note_title.label = note.name;
 	        set_text_view_state (TextViewState.TEXT_VIEW);
 	        current_buffer = new GtkMarkdown.Buffer (note.load_text ());
 	        edit_view.buffer = current_buffer;
 	        var n = note.notebook.loaded_notes;
-	        if (n != null)
-                select_note (n.index_of (note));
             // Zen mode
             // Autohide headerbar_edit_view when typing in desktop no sidebar mode
             current_buffer.begin_user_action.connect (() => {

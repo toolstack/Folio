@@ -61,4 +61,8 @@ public class Paper.Note : Object {
     public void save (string text) {
         FileUtils.save_to (File.new_for_path (path), text);
     }
+
+    public bool equals (Note other) {
+        return this.name == other.name && this.notebook == other.notebook;
+    }
 }

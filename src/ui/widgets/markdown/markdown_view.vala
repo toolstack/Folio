@@ -534,7 +534,9 @@ public class GtkMarkdown.View : GtkSource.View {
 
             do_formatting_pass_cursor (is_code_span, buffer_text, cursor_location, out matches, true);
             format_code_block_cursor (buffer_text, cursor_location, out matches);
-        } catch (RegexError e) {}
+        } catch (RegexError e) {
+            critical (e.message);
+        }
     }
 
     private void restyle_text_all () {

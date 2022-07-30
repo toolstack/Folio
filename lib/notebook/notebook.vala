@@ -23,4 +23,8 @@ public interface Paper.Notebook : Object, ListModel, NoteContainer {
         }
         return name;
     }
+
+    public bool equals (Notebook other) {
+        return this.name == other.name;
+    }
 }
