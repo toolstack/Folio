@@ -45,39 +45,42 @@ template PaperNotebooksBar : Box {
         reveal-child: false;
         transition-type: slide_down;
 
-        ToggleButton all_button {
+        Box {
 
-          visible: bind PaperNotebooksBar.paned inverted;
-          icon-name: "view-list-symbolic";
-          hexpand: false;
-          vexpand: false;
+          ToggleButton all_button {
 
-          styles ["flat", "all-button"]
-        }
-
-        ToggleButton {
-
-          visible: bind PaperNotebooksBar.paned;
-          hexpand: false;
-          vexpand: false;
-          active: bind all_button.active bidirectional;
-          sensitive: bind all_button.sensitive bidirectional;
-
-          styles ["flat", "all-button"]
-
-          Box {
-
+            visible: bind PaperNotebooksBar.paned inverted;
+            icon-name: "view-list-symbolic";
             hexpand: true;
-            orientation: horizontal;
+            vexpand: false;
 
-            Image {
-              icon-name: "view-list-symbolic";
-            }
+            styles ["flat", "all-button"]
+          }
 
-            Label {
-              ellipsize: end;
-              halign: start;
-              label: _("All Notes");
+          ToggleButton {
+
+            visible: bind PaperNotebooksBar.paned;
+            hexpand: true;
+            vexpand: false;
+            active: bind all_button.active bidirectional;
+            sensitive: bind all_button.sensitive bidirectional;
+
+            styles ["flat", "all-button"]
+
+            Box {
+
+              hexpand: true;
+              orientation: horizontal;
+
+              Image {
+                icon-name: "view-list-symbolic";
+              }
+
+              Label {
+                ellipsize: end;
+                halign: start;
+                label: _("All Notes");
+              }
             }
           }
         }
