@@ -180,7 +180,32 @@ template PaperWindow : Adw.ApplicationWindow {
               visible: true;
 
               [title]
-              Adw.WindowTitle note_title {}
+              Box {
+                orientation: vertical;
+                valign: center;
+                CenterBox {
+                  orientation: horizontal;
+                  halign: center;
+
+                  styles ["title"]
+
+                  [start]
+                  Label save_indicator {
+                    label: "•";
+                    visible: false;
+                    hexpand: false;
+                    halign: end;
+                    margin-end: 6;
+                  }
+                  [center]
+                  Label note_title {
+                    halign: fill;
+                  }
+                }
+                Label note_subtitle {
+                  styles ["subtitle"]
+                }
+              }
 
               [start]
               ToggleButton {
@@ -196,9 +221,6 @@ template PaperWindow : Adw.ApplicationWindow {
                 tooltip-text: _("Back");
                 visible: bind leaflet.folded;
               }
-
-              [start]
-              .PaperSaveIndicator save_indicator {}
 
               [end]
               MenuButton button_more_menu {

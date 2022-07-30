@@ -371,11 +371,6 @@ window.tiled-bottom .notebooks-bar > .trash-button:checked {
   font-size: 12px;
 }
 
-.text-area headerbar .save-indicator {
-  opacity: 0.5;
-  margin-left: 8px;
-}
-
 .text-area headerbar {
   background: @view_bg_color;
 }

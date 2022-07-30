@@ -33,6 +33,8 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    TRASH
 	}
 
+	public bool is_unsaved { set { save_indicator.visible = value; } }
+
 	[GtkChild] unowned Adw.Leaflet leaflet;
 	[GtkChild] unowned Adw.LeafletPage sidebar;
 	[GtkChild] unowned Adw.LeafletPage edit_view_page;
@@ -56,11 +58,12 @@ public class Paper.Window : Adw.ApplicationWindow {
 	[GtkChild] unowned Gtk.Button button_create_note;
 	[GtkChild] unowned Gtk.Button button_empty_trash;
 	[GtkChild] unowned Gtk.Button button_back;
-	[GtkChild] unowned SaveIndicator save_indicator;
 	[GtkChild] unowned Gtk.MenuButton button_more_menu;
 	[GtkChild] unowned Gtk.Button button_open_in_notebook;
 
-	[GtkChild] unowned Adw.WindowTitle note_title;
+	[GtkChild] unowned Gtk.Label note_title;
+	[GtkChild] unowned Gtk.Label note_subtitle;
+	[GtkChild] unowned Gtk.Label save_indicator;
 
 	[GtkChild] unowned Adw.HeaderBar headerbar_edit_view;
 	[GtkChild] unowned Gtk.Revealer headerbar_edit_view_revealer;
@@ -211,11 +214,11 @@ public class Paper.Window : Adw.ApplicationWindow {
 	public GtkMarkdown.Buffer? set_note (Note? note) {
         optional_save ();
 	    current_note = note;
-        save_status = SaveStatus.SAVED;
+        is_unsaved = false;
 	    update_note_title ();
 	    update_editability ();
 	    if (note != null) {
-	        note_title.title = note.name;
+	        note_title.label = note.name;
 	        set_text_view_state (TextViewState.TEXT_VIEW);
 	        current_buffer = new GtkMarkdown.Buffer (note.load_text ());
 	        edit_view.buffer = current_buffer;
@@ -229,10 +232,10 @@ public class Paper.Window : Adw.ApplicationWindow {
                 if (!sidebar_revealer.reveal_child)
                     headerbar_edit_view_revealer.reveal_child = false;
 
-                save_status = SaveStatus.UNSAVED;
+                is_unsaved = true;
             });
 	    } else {
-	        note_title.title = null;
+	        note_title.label = null;
 	        set_text_view_state (TextViewState.EMPTY_NOTEBOOK);
 	        current_buffer = null;
 	        edit_view.buffer = null;
@@ -240,8 +243,6 @@ public class Paper.Window : Adw.ApplicationWindow {
         }
         return current_buffer;
 	}
-
-	public SaveStatus save_status { set { save_indicator.status = value; } }
 
 	public void select_notebook (uint i) { notebooks_bar.select_notebook (i); }
 
@@ -255,9 +256,8 @@ public class Paper.Window : Adw.ApplicationWindow {
 
     public void save_current_note () {
 	    if (edit_view.is_editable && current_note != null) {
-            save_status = SaveStatus.SAVING;
             current_note.save (current_buffer.get_all_text ());
-            save_status = SaveStatus.SAVED;
+            is_unsaved = false;
 	    }
     }
 
@@ -332,7 +332,8 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 	private void update_note_title () {
 	    var is_sidebar_hidden = leaflet.folded || !sidebar_revealer.reveal_child;
-        note_title.subtitle = is_sidebar_hidden ? current_note.notebook.name : null;
+        note_subtitle.label = is_sidebar_hidden ? current_note.notebook.name : null;
+        note_subtitle.visible = is_sidebar_hidden;
 	}
 
 	private void set_state (State state, NoteContainer? container = null) {

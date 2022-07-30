@@ -2,9 +2,11 @@
 [GtkTemplate (ui = "/io/posidon/Paper/file_editor_window.ui")]
 public class Paper.FileEditorWindow : Adw.ApplicationWindow {
 
-	[GtkChild] unowned Adw.WindowTitle file_title;
+	[GtkChild] unowned Gtk.Label file_title;
+	[GtkChild] unowned Gtk.Label file_subtitle;
+	[GtkChild] unowned Gtk.Label save_indicator;
+
 	[GtkChild] unowned Adw.HeaderBar headerbar;
-	[GtkChild] unowned SaveIndicator save_indicator;
 
 	[GtkChild] unowned EditView edit_view;
 	[GtkChild] unowned Adw.ToastOverlay toast_overlay;
@@ -43,8 +45,8 @@ public class Paper.FileEditorWindow : Adw.ApplicationWindow {
         edit_view.on_dark_changed(app.style_manager.dark);
         app.style_manager.notify["dark"].connect (() => edit_view.on_dark_changed(app.style_manager.dark));
 
-        file_title.title = file.get_basename ();
-        file_title.subtitle = file.get_path ();
+        file_title.label = file.get_basename ();
+        file_subtitle.label = file.get_path ();
 
         string etag_out;
         uint8[] text_data = {};
@@ -67,10 +69,10 @@ public class Paper.FileEditorWindow : Adw.ApplicationWindow {
         recolor (Color.RGB ());
 
         current_buffer.begin_user_action.connect (() => {
-            save_indicator.status = SaveStatus.UNSAVED;
+            save_indicator.visible = true;
         });
 
-        save_indicator.status = SaveStatus.SAVED;
+        save_indicator.visible = false;
 	}
 
     public void save_file () {
@@ -78,9 +80,8 @@ public class Paper.FileEditorWindow : Adw.ApplicationWindow {
     }
 
     public void save () {
-        save_indicator.status = SaveStatus.SAVING;
         save_file ();
-        save_indicator.status = SaveStatus.SAVED;
+        save_indicator.visible = false;
     }
 
 	public void toast (string text) {

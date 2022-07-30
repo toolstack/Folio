@@ -10,7 +10,6 @@ blueprint_files = files(
   'preferences/preferences.blp',
   'widgets/markdown/heading_popover.blp',
   'widgets/notebook_icon/notebook_preview.blp',
-  'widgets/save_indicator/save_indicator.blp',
   'widgets/theme_selector/theme_selector.blp',
   'window/window.blp',
   'window/app_menu/app_menu.blp',

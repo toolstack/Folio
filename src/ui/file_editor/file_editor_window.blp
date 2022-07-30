@@ -28,11 +28,33 @@ template PaperFileEditorWindow : Adw.ApplicationWindow {
         vexpand: false;
         valign: start;
 
-        [start]
-        .PaperSaveIndicator save_indicator {}
-
         [title]
-        Adw.WindowTitle file_title {}
+        Box {
+          orientation: vertical;
+          valign: center;
+          CenterBox {
+            orientation: horizontal;
+            halign: center;
+
+            styles ["title"]
+
+            [start]
+            Label save_indicator {
+              label: "•";
+              visible: false;
+              hexpand: false;
+              halign: end;
+              margin-end: 6;
+            }
+            [center]
+            Label file_title {
+              halign: fill;
+            }
+          }
+          Label file_subtitle {
+            styles ["subtitle"]
+          }
+        }
 
         [end]
         .PaperAppMenu {}

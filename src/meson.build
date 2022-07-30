@@ -34,8 +34,6 @@ paper_sources = [
   'ui/widgets/markdown/markdown_view.vala',
   'ui/widgets/markdown/heading_popover.vala',
 
-  'ui/widgets/save_indicator/save_indicator.vala',
-  'ui/widgets/save_indicator/save_status.vala',
   'ui/widgets/theme_selector/theme_selector.vala',
   'ui/widgets/notebook_icon/notebook_preview.vala',
 
