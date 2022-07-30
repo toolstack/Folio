@@ -35,6 +35,8 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 	public bool is_unsaved { set { save_indicator.visible = value; } }
 
+	public bool cheatsheet_enabled { get; set; }
+
 	[GtkChild] unowned Adw.Leaflet leaflet;
 	[GtkChild] unowned Adw.LeafletPage sidebar;
 	[GtkChild] unowned Adw.LeafletPage edit_view_page;
@@ -60,6 +62,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 	[GtkChild] unowned Gtk.Button button_back;
 	[GtkChild] unowned Gtk.MenuButton button_more_menu;
 	[GtkChild] unowned Gtk.Button button_open_in_notebook;
+	[GtkChild] unowned Gtk.Button button_md_cheatsheet_headerbar;
 
 	[GtkChild] unowned Gtk.Label note_title;
 	[GtkChild] unowned Gtk.Label note_subtitle;
@@ -189,6 +192,13 @@ public class Paper.Window : Adw.ApplicationWindow {
             y = _y;
         });
         edit_view_page.child.add_controller (motion_controller);
+
+        var settings = new Settings (Config.APP_ID);
+	    settings.bind ("cheatsheet-enabled", this, "cheatsheet-enabled", SettingsBindFlags.DEFAULT);
+
+	    notify["cheatsheet-enabled"].connect (update_cheatsheet_visibility);
+	    edit_view.toolbar.notify["compacted"].connect (update_cheatsheet_visibility);
+	    update_cheatsheet_visibility ();
 	}
 
 	public void init (Application app) {
@@ -291,6 +301,10 @@ public class Paper.Window : Adw.ApplicationWindow {
 	}
 
 	public void navigate_to_edit_view () { leaflet.visible_child = edit_view_page.child; }
+
+	public void update_cheatsheet_visibility () {
+	    button_md_cheatsheet_headerbar.visible = cheatsheet_enabled && edit_view.toolbar.compacted;
+	}
 
 	private void on_format_bold () { edit_view.format_selection_bold (); }
 	private void on_format_italic () { edit_view.format_selection_italic (); }

@@ -62,6 +62,16 @@ template PaperPreferencesWindow : Adw.PreferencesWindow {
       }
       Adw.ActionRow {
 
+        title: _("Enable Cheatsheet");
+        icon-name: "dialog-information-symbolic";
+        activatable-widget: enable_cheatsheet;
+
+        Switch enable_cheatsheet {
+          valign: center;
+        }
+      }
+      Adw.ActionRow {
+
         title: _("3-Pane Layout");
         icon-name: "sidebar-show-symbolic";
         activatable-widget: enable_3_pane;

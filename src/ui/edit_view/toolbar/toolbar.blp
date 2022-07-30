@@ -3,7 +3,7 @@ using Adw 1;
 
 template PaperToolbar : Box {
 
-  Adw.Squeezer {
+  Adw.Squeezer squeezer {
 
     hexpand: true;
     vexpand: false;
@@ -85,13 +85,14 @@ template PaperToolbar : Box {
       }
 
       Button {
+        visible: bind PaperToolbar.cheatsheet-enabled;
         icon-name: "dialog-information-symbolic";
         tooltip-text: _("Markdown Cheatsheet");
         action-name: "app.markdown-cheatsheet";
       }
     }
 
-    Box {
+    Box small_toolbar {
 
       orientation: horizontal;
 

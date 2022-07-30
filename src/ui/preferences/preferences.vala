@@ -2,30 +2,15 @@
 [GtkTemplate (ui = "/io/posidon/Paper/preferences.ui")]
 public class Paper.PreferencesWindow : Adw.PreferencesWindow {
 
-	[GtkChild]
-	unowned Gtk.FontButton font_button;
-
-	[GtkChild]
-	unowned Gtk.FontButton font_button_monospace;
-
-	[GtkChild]
-	unowned Gtk.Switch oled_mode;
-
-	[GtkChild]
-	unowned Gtk.Switch enable_toolbar;
-
-	[GtkChild]
-	unowned Gtk.Switch enable_3_pane;
-
-	[GtkChild]
-	unowned Gtk.Button notes_dir_button;
-
-	[GtkChild]
-	unowned Gtk.Button notes_dir_button_reset;
-
-	[GtkChild]
-	unowned Gtk.Label notes_dir_label;
-
+	[GtkChild] unowned Gtk.FontButton font_button;
+	[GtkChild] unowned Gtk.FontButton font_button_monospace;
+	[GtkChild] unowned Gtk.Switch oled_mode;
+	[GtkChild] unowned Gtk.Switch enable_toolbar;
+	[GtkChild] unowned Gtk.Switch enable_cheatsheet;
+	[GtkChild] unowned Gtk.Switch enable_3_pane;
+	[GtkChild] unowned Gtk.Button notes_dir_button;
+	[GtkChild] unowned Gtk.Button notes_dir_button_reset;
+	[GtkChild] unowned Gtk.Label notes_dir_label;
 
 	public PreferencesWindow (Application app) {
 		Object ();
@@ -35,6 +20,7 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
 		var note_font_monospace = settings.get_string ("note-font-monospace");
 		var theme_oled = settings.get_boolean ("theme-oled");
 		var toolbar_enabled = settings.get_boolean ("toolbar-enabled");
+		var cheatsheet_enabled = settings.get_boolean ("cheatsheet-enabled");
 		var is_3_pane_enabled = settings.get_boolean ("enable-3-pane");
 		var notes_dir = settings.get_string ("notes-dir");
 
@@ -63,6 +49,12 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
         enable_toolbar.state = toolbar_enabled;
         enable_toolbar.state_set.connect ((state) => {
             settings.set_boolean ("toolbar-enabled", state);
+            return false;
+        });
+
+        enable_cheatsheet.state = cheatsheet_enabled;
+        enable_cheatsheet.state_set.connect ((state) => {
+            settings.set_boolean ("cheatsheet-enabled", state);
             return false;
         });
 

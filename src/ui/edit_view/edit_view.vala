@@ -6,11 +6,6 @@ public class Paper.EditView : Gtk.Box {
 
 	public bool is_editable { get; set; }
 
-	public bool compacted {
-	    get { return toolbar.compacted; }
-	    set { toolbar.compacted = value; }
-    }
-
     public int scale { get; set; default = 100; }
 
     public const int MIN_SCALE = 10;
@@ -33,7 +28,7 @@ public class Paper.EditView : Gtk.Box {
 	    }
 	}
 
-	[GtkChild] unowned Toolbar toolbar;
+	[GtkChild] public unowned Toolbar toolbar;
 	[GtkChild] unowned GtkMarkdown.View text_view;
 	[GtkChild] public unowned Gtk.ScrolledWindow scrolled_window;
 

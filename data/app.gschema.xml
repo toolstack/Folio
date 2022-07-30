@@ -18,6 +18,9 @@
     <key name="toolbar-enabled" type="b">
       <default>true</default>
     </key>
+    <key name="cheatsheet-enabled" type="b">
+      <default>true</default>
+    </key>
     <key name="enable-3-pane" type="b">
       <default>false</default>
     </key>

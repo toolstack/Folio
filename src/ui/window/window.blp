@@ -99,7 +99,6 @@ template PaperWindow : Adw.ApplicationWindow {
           .PaperEditView edit_view {
             hexpand: true;
             vexpand: true;
-            compacted: bind leaflet.folded;
           }
 
           [overlay]
@@ -237,8 +236,7 @@ template PaperWindow : Adw.ApplicationWindow {
               }
 
               [end]
-              Button {
-                visible: bind leaflet.folded;
+              Button button_md_cheatsheet_headerbar {
                 icon-name: "dialog-information-symbolic";
                 tooltip-text: _("Markdown Cheatsheet");
                 action-name: "app.markdown-cheatsheet";
