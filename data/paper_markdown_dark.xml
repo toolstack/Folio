@@ -10,7 +10,5 @@
 
 	<style name="markdown:list-marker"        foreground="#rgba(255,255,255,0.3)"/>
 	<style name="markdown:image-marker"       foreground="#rgba(255,255,255,0.3)" bold="true"/>
-
-	<style name="markdown:attribute-value"    foreground="literal"/>
 </style-scheme>
 
