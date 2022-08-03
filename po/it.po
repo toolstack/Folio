@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: io.posidon.Paper\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-19 17:20+0200\n"
-"PO-Revision-Date: 2022-06-30 03:51+0200\n"
-"Last-Translator: Musiclover382 <musiclover382@protonmail.com>\n"
+"PO-Revision-Date: 2022-08-01 022:51+0200\n"
+"Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <example@example.com>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
@@ -65,14 +65,12 @@ msgid "The font notes will be displayed in"
 msgstr "Il carattere in cui visualizzare le note"
 
 #: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:29
-#, fuzzy
 msgid "Monospace Font"
-msgstr "Carattere delle note"
+msgstr "Carattere monospazio"
 
 #: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:30
-#, fuzzy
 msgid "The font code will be displayed in"
-msgstr "Il carattere in cui visualizzare le note"
+msgstr "Il codice del carattere verrà visualizzato in"
 
 #: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:44
 msgid "OLED Mode"
@@ -369,17 +367,15 @@ msgstr "Inserisci codice"
 #: src/ui/edit_view/toolbar/toolbar.blp:90
 #: src/ui/edit_view/toolbar/toolbar.blp:188
 msgid "Insert Horizontal Rule"
-msgstr ""
+msgstr "Inserisci regola orizzontale"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:103
-#, fuzzy
 msgid "Format"
-msgstr "Formattazione"
+msgstr "Formato"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:167
-#, fuzzy
 msgid "Insert"
-msgstr "Inserisci collegamento"
+msgstr "Inserisci"
 
 #: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
 msgid "Confirm"
@@ -394,9 +390,8 @@ msgid "Edit Note"
 msgstr "Modifica nota"
 
 #: src/ui/popup/shortcut_window.blp:27
-#, fuzzy
 msgid "Save Note"
-msgstr "Nuova nota"
+msgstr "Salva nota"
 
 #: src/ui/popup/shortcut_window.blp:34
 msgid "Notebook"
@@ -435,9 +430,8 @@ msgid "Pick a font for displaying the notes' content"
 msgstr "Scegli un carattere per visualizzare i contenuti della note"
 
 #: src/ui/preferences/preferences.blp:35
-#, fuzzy
 msgid "Pick a font for displaying code"
-msgstr "Scegli un carattere per visualizzare i contenuti della note"
+msgstr "Scegli un carattere per visualizzare il codice"
 
 #: src/ui/preferences/preferences.blp:45
 msgid "Makes the dark theme pitch black"
@@ -445,11 +439,11 @@ msgstr "Rende il tema scuro completamente nero"
 
 #: src/ui/preferences/preferences.blp:55
 msgid "Enable Toolbar"
-msgstr ""
+msgstr "abilita barra degli strumenti"
 
 #: src/ui/preferences/preferences.blp:65
 msgid "3-Pane Layout"
-msgstr ""
+msgstr "Layout a 3 riquadri"
 
 #: src/ui/preferences/preferences.blp:77
 msgid "Notes Storage Location"
@@ -461,15 +455,15 @@ msgstr "Dove salvare i taccuini (riavvio richiesto)"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
 msgid "Follow system style"
-msgstr ""
+msgstr "Segui lo stile del sistema"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:23
 msgid "Light style"
-msgstr ""
+msgstr "Stile chiaro"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:32
 msgid "Dark style"
-msgstr ""
+msgstr "Stile scuro"
 
 #: src/ui/window/app_menu/app_menu.blp:24
 msgid "_New Notebook"
