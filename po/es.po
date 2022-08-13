@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: io.posidon.Paper main\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-19 17:20+0200\n"
-"PO-Revision-Date: 2022-05-10 11:56+0200\n"
-"Last-Translator: Zagura <zagura@posidon.io>\n"
+"PO-Revision-Date: 2022-08-11 12:59+0200\n"
+"Last-Translator: Sergio Varela <sergiovg01@outlook.com>, 2022.\n"
 "Language-Team: spanish <es@li.org>\n"
 "Language: es_ES\n"
 "MIME-Version: 1.0\n"
@@ -57,15 +57,15 @@ msgstr "Fuente de Notas"
 
 #: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:16
 msgid "The font notes will be displayed in"
-msgstr "La fuente en la que se mostraran las notas"
+msgstr "La fuente en la que se mostrarán las notas"
 
 #: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:29
 msgid "Monospace Font"
-msgstr "Fuente de Codigo"
+msgstr "Fuente de Código"
 
 #: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:30
 msgid "The font code will be displayed in"
-msgstr "La fuente en la que se mostrará el codigo"
+msgstr "La fuente en la que se mostrará el código"
 
 #: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:44
 msgid "OLED Mode"
@@ -85,7 +85,7 @@ msgstr "Toma apuntes en Markdown"
 
 #: data/app.metainfo.xml.in:7
 msgid "Create notebooks, take notes in markdown"
-msgstr "Crea libretas, toma notas en markdown"
+msgstr "Crea libretas, toma notas en Markdown"
 
 #: data/app.metainfo.xml.in:8
 msgid "Features:"
@@ -93,11 +93,11 @@ msgstr "Funcionalidades:"
 
 #: data/app.metainfo.xml.in:10
 msgid "Almost WYSIWYG markdown rendering"
-msgstr "Renderizage casi perfecto de markdown"
+msgstr "Renderizado casi perfecto de Markdown"
 
 #: data/app.metainfo.xml.in:11
 msgid "Searchable through GNOME search"
-msgstr "Buscable atraves de busqueda de GNOME"
+msgstr "Buscable a través de busqueda de GNOME"
 
 #: data/app.metainfo.xml.in:12
 msgid "Highlight &amp; Strikethrough text formatting"
@@ -113,7 +113,7 @@ msgstr "Papelera"
 
 #: data/app.metainfo.xml.in:143
 msgid "Markdown document"
-msgstr "Documento markdown"
+msgstr "Documento Markdown"
 
 #: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:125
 msgid "Trash"
@@ -126,7 +126,7 @@ msgstr "%d Notas"
 
 #: src/ui/strings.vala:6
 msgid "Are you sure you want to delete everything in the trash?"
-msgstr "De verdad quiere borrar todo en la papelera?"
+msgstr "¿De verdad quiere borrar todo en la papelera?"
 
 #: src/ui/strings.vala:7 src/ui/window/window.blp:54
 msgid "Empty Trash"
@@ -134,15 +134,15 @@ msgstr "Vaciar Papelera"
 
 #: src/ui/strings.vala:9
 msgid "Create/choose a notebook before creating a note"
-msgstr "Cree/escoga una libreta antes de crear una nota"
+msgstr "Cree/escoja una libreta antes de crear una nota"
 
 #: src/ui/strings.vala:10
 msgid "Please, select a note to edit"
-msgstr "Seleccione una nota para editar, porfavor"
+msgstr "Seleccione una nota para editar, por favor"
 
 #: src/ui/strings.vala:11
 msgid "Please, select a note to delete"
-msgstr "Seleccione una nota para borrar, porfavor"
+msgstr "Seleccione una nota para borrar, por favor"
 
 #: src/ui/strings.vala:12
 msgid "Export Note"
@@ -172,7 +172,7 @@ msgstr "Nota “%s” ya existe en libreta “%s”"
 #: src/ui/strings.vala:19
 #, c-format
 msgid "Are you sure you want to delete the note “%s”?"
-msgstr "De verdad quiere borrar la nota “%s”?"
+msgstr "¿De verdad quiere borrar la nota “%s”?"
 
 #: src/ui/strings.vala:20
 msgid "Delete Note"
@@ -181,7 +181,7 @@ msgstr "Borrar Nota"
 #: src/ui/strings.vala:21
 #, c-format
 msgid "Are you sure you want to delete the notebook “%s”?"
-msgstr "De verdad quiere borrar la libreta “%s”?"
+msgstr "¿De verdad quiere borrar la libreta “%s”?"
 
 #: src/ui/strings.vala:22
 msgid "Delete Notebook"
@@ -235,7 +235,7 @@ msgstr "Nombres de libretas no deben contener “.” o “/”"
 
 #: src/ui/strings.vala:34
 msgid "Notebook name shouldn’t be blank"
-msgstr "Nombres de libretas no deben ser vacios"
+msgstr "Nombres de libretas no deben ser vacíos"
 
 #: src/ui/strings.vala:35
 #, c-format
@@ -277,7 +277,7 @@ msgstr "Cancelar"
 
 #: src/ui/strings.vala:45
 msgid "Pick where the notebooks will be stored"
-msgstr "Escoja donde las notas se almacenaran"
+msgstr "Escoja donde se almacenarán las notas"
 
 #: src/ui/strings.vala:46 src/ui/window/notebooks_bar/notebooks_bar.blp:80
 msgid "All Notes"
@@ -357,7 +357,7 @@ msgstr "Insertar Enlace"
 #: src/ui/edit_view/toolbar/toolbar.blp:83
 #: src/ui/edit_view/toolbar/toolbar.blp:187
 msgid "Insert Code"
-msgstr "Insertar Codigo"
+msgstr "Insertar Código"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:90
 #: src/ui/edit_view/toolbar/toolbar.blp:188
@@ -442,7 +442,7 @@ msgstr "Diseño de 3 paneles"
 
 #: src/ui/preferences/preferences.blp:77
 msgid "Notes Storage Location"
-msgstr "Almacenage de Notas"
+msgstr "Almacenaje de Notas"
 
 #: src/ui/preferences/preferences.blp:78
 msgid "Where the notebooks are stored (requires app restart)"
@@ -550,7 +550,7 @@ msgstr "Ver en Carpeta"
 
 #: src/ui/window/window.blp:115
 msgid "Get started writing"
-msgstr "Empieza a escribir"
+msgstr "Empezar a escribir"
 
 #: src/ui/window/window.blp:140
 msgid "Create a notebook"
@@ -558,11 +558,11 @@ msgstr "Crea una libreta"
 
 #: src/ui/window/window.blp:165
 msgid "Trash is empty"
-msgstr "La papelera está vacia"
+msgstr "La papelera está vacía"
 
 #: src/ui/window/window.blp:196
 msgid "Back"
-msgstr "Atras"
+msgstr "Atrás"
 
 #: src/ui/window/window.blp:212
 msgid "Open in Notebook"
