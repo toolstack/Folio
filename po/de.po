@@ -2,20 +2,22 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the io.posidon.Paper package.
 # Jan Krings <liquidsky42@gmail.com>, 2022.
+# Jürgen Benvenuti <gastornis@posteo.org>, 2022.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: io.posidon.Paper\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-23 09:28+0200\n"
-"PO-Revision-Date: 2022-05-25 14:13+0200\n"
-"Last-Translator: Jan Krings <liquidsky42@gmail.com>\n"
-"Language-Team: german <>\n"
+"POT-Creation-Date: 2022-07-19 17:20+0200\n"
+"PO-Revision-Date: 2022-08-10 13:42+0200\n"
+"Last-Translator: Jürgen Benvenuti <gastornis@posteo.org>\n"
+"Language-Team: German <gnome-de@gnome.org>\n"
 "Language: de_DE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Gtranslator 40.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: data/app.desktop.in:8 src/ui/strings.vala:3
 msgid "Paper"
@@ -27,7 +29,7 @@ msgstr "Notizverwaltung"
 
 #: data/app.desktop.in:10
 msgid "Take notes"
-msgstr "Erstelle Notizen"
+msgstr "Notizen machen"
 
 #: data/app.desktop.in:12
 msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
@@ -35,82 +37,92 @@ msgstr ""
 "Notizbuch;Notizen;Erinnerungen;Text;Markdown;Notizblock;Schreiben;Schule;"
 "Post-It;Notizzettel"
 
-#: data/app.desktop.in:21 src/ui/strings.vala:8 src/ui/shortcut_window.blp:17
-#: src/ui/window.blp:43 src/ui/window.blp:155
+#: data/app.desktop.in:21 src/ui/strings.vala:8
+#: src/ui/popup/shortcut_window.blp:17 src/ui/window/window.blp:47
+#: src/ui/window/window.blp:121
 msgid "New Note"
 msgstr "Neue Notiz"
 
-#: data/app.desktop.in:25 src/ui/strings.vala:14 src/ui/shortcut_window.blp:32
-#: src/ui/window.blp:180
+#: data/app.desktop.in:25 src/ui/strings.vala:14
+#: src/ui/popup/shortcut_window.blp:37 src/ui/window/window.blp:146
 msgid "New Notebook"
 msgstr "Neues Notizbuch"
 
 #: data/app.desktop.in:29 src/ui/strings.vala:39
-#: src/ui/edit_view/edit_view.blp:113 src/ui/window.blp:128
+#: src/ui/edit_view/toolbar/toolbar.blp:175 src/ui/window/window.blp:219
 msgid "Markdown Cheatsheet"
-msgstr "Markdown Spickzettel"
+msgstr "Markdown-Referenz"
 
-#: data/app.desktop.in:33 src/ui/shortcut_window.blp:57
+#: data/app.desktop.in:33 src/ui/popup/shortcut_window.blp:62
 msgid "Preferences"
 msgstr "Einstellungen"
 
-#: data/app.gschema.xml:6
-msgid "Font"
-msgstr "Schriftart"
+#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:15
+msgid "Note Font"
+msgstr "Notizschriftart"
 
-#: data/app.gschema.xml:7 src/ui/preferences.blp:15
+#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:16
 msgid "The font notes will be displayed in"
-msgstr "Schriftart mit welcher die Notizen dargestellt werden"
+msgstr "Die Schriftart, in der Notizen dargestellt werden"
 
-#: data/app.gschema.xml:11 src/ui/preferences.blp:25
+#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:29
+msgid "Monospace Font"
+msgstr "Monospace-Schriftart"
+
+#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:30
+msgid "The font code will be displayed in"
+msgstr "Die Schriftart, in der Code dargestellt werden"
+
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:44
 msgid "OLED Mode"
 msgstr "OLED-Modus"
 
-#: data/app.gschema.xml:15
+#: data/app.gschema.xml:26
 msgid "Notes Directory"
-msgstr "Notizen Speicherort"
+msgstr "Notizverzeichnis"
 
-#: data/app.gschema.xml:16
+#: data/app.gschema.xml:27
 msgid "Where the notebooks are stored"
-msgstr "Wo die Notizen gespeichert sind"
+msgstr "Wo die Notizbücher gespeichert sind"
 
 #: data/app.metainfo.xml.in:5
-msgid "Note-taking app"
-msgstr "Notizen-App"
+msgid "Take notes in Markdown"
+msgstr "Notizen machen in Markdown"
 
 #: data/app.metainfo.xml.in:7
 msgid "Create notebooks, take notes in markdown"
-msgstr "Erstelle Notizbücher und Notizen in Markdown"
+msgstr "Erstellen Sie Notizbücher, machen Sie Notizen in Markdown"
 
 #: data/app.metainfo.xml.in:8
 msgid "Features:"
-msgstr "Merkmale:"
+msgstr "Funktionen:"
 
 #: data/app.metainfo.xml.in:10
 msgid "Almost WYSIWYG markdown rendering"
-msgstr "Hauptsächlich WYSIWYG Markdowndarstellung"
+msgstr "Beinahe vollständige Echtbilddarstellung (WYSIWYG) von Markdown"
 
 #: data/app.metainfo.xml.in:11
 msgid "Searchable through GNOME search"
-msgstr "Durchsuchbar mittels GNOME-Suche"
+msgstr "Durchsuchbar mit der GNOME-Suche"
 
 #: data/app.metainfo.xml.in:12
 msgid "Highlight &amp; Strikethrough text formatting"
-msgstr "Hervorhebung &amp; Durchstreichen als Textformatierung"
+msgstr "Text hervorgehoben und durchgestrichen formatieren"
 
 #: data/app.metainfo.xml.in:13
+#, fuzzy
 msgid "App recoloring based on notebook color"
-msgstr "Programmfenstereinfärbung basierend auf Notizbuchfarbe"
+msgstr "Anwendung passt sich farblich an die Notizbuchfarbe an"
 
 #: data/app.metainfo.xml.in:14
 msgid "Trash can"
 msgstr "Papierkorb"
 
-#: data/app.metainfo.xml.in:30
+#: data/app.metainfo.xml.in:143
 msgid "Markdown document"
-msgstr "Markdowndokument"
+msgstr "Markdown-Dokument"
 
-#: src/ui/strings.vala:4
+#: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:125
 msgid "Trash"
 msgstr "Papierkorb"
 
@@ -121,23 +133,23 @@ msgstr "%d Notizen"
 
 #: src/ui/strings.vala:6
 msgid "Are you sure you want to delete everything in the trash?"
-msgstr "Möchten Sie alles im Papierkorb löschen?"
+msgstr "Sind Sie sicher, dass Sie alles im Papierkorb löschen wollen?"
 
-#: src/ui/strings.vala:7 src/ui/window.blp:50
+#: src/ui/strings.vala:7 src/ui/window/window.blp:54
 msgid "Empty Trash"
 msgstr "Papierkorb leeren"
 
 #: src/ui/strings.vala:9
 msgid "Create/choose a notebook before creating a note"
-msgstr "Erstellen/Wählen Sie ein Notizbuch bevor Sie eine Notiz erstellen"
+msgstr "Erstellen/Wählen Sie ein Notizbuch, bevor Sie eine Notiz erstellen"
 
 #: src/ui/strings.vala:10
 msgid "Please, select a note to edit"
-msgstr "Bitte wählen Sie eine Notiz aus zum bearbeiten"
+msgstr "Wählen Sie bitte eine Notiz aus zum Bearbeiten"
 
 #: src/ui/strings.vala:11
 msgid "Please, select a note to delete"
-msgstr "Bitte wählen Sie eine Notiz aus zum löschen"
+msgstr "Wählen Sie bitte eine Notiz aus zum Löschen"
 
 #: src/ui/strings.vala:12
 msgid "Export Note"
@@ -162,12 +174,12 @@ msgstr "Verschieben"
 #: src/ui/strings.vala:18
 #, c-format
 msgid "Note “%s” already exists in notebook “%s”"
-msgstr "Die Notiz “%s” ist in Notizbuch “%s” bereits vorhanden"
+msgstr "Notiz »%s« existiert bereits in Notizbuch »%s«"
 
 #: src/ui/strings.vala:19
 #, c-format
 msgid "Are you sure you want to delete the note “%s”?"
-msgstr "Möchten Sie die Notiz “%s” wirklich löschen?"
+msgstr "Sind Sie sicher, dass Sie die Notiz »%s« löschen wollen?"
 
 #: src/ui/strings.vala:20
 msgid "Delete Note"
@@ -176,28 +188,28 @@ msgstr "Notiz löschen"
 #: src/ui/strings.vala:21
 #, c-format
 msgid "Are you sure you want to delete the notebook “%s”?"
-msgstr "Möchten Sie das das Notizbuch “%s” wirklich löschen?"
+msgstr "Sind Sie sicher, dass Sie das Notizbuch »%s« löschen wollen?"
 
 #: src/ui/strings.vala:22
 msgid "Delete Notebook"
 msgstr "Notizbuch löschen"
 
-#: src/ui/strings.vala:23 src/ui/shortcut_window.blp:37
+#: src/ui/strings.vala:23 src/ui/popup/shortcut_window.blp:42
 msgid "Edit Notebook"
 msgstr "Notizbuch bearbeiten"
 
 #: src/ui/strings.vala:24
 msgid "Note name shouldn’t contain “.” or “/”"
-msgstr "Notiztitel dürfen “.” oder “/” nicht enthalten"
+msgstr "Notizname sollte kein ».« oder »/« enthalten"
 
 #: src/ui/strings.vala:25
 msgid "Note name shouldn’t be blank"
-msgstr "Notiztitel darf nicht leer sein"
+msgstr "Notizname sollte nicht leer sein"
 
 #: src/ui/strings.vala:26
 #, c-format
 msgid "Note “%s” already exists"
-msgstr "Notiz “%s” ist bereits vorhanden"
+msgstr "Notiz »%s« existiert bereits"
 
 #: src/ui/strings.vala:27
 msgid "Couldn’t create note"
@@ -218,7 +230,7 @@ msgstr "Notiz konnte nicht wiederhergestellt werden"
 #: src/ui/strings.vala:31
 #, c-format
 msgid "Saved “%s” to “%s”"
-msgstr "“%s” nach “%s” gespeichert"
+msgstr "»%s« wurde nach »%s« gespeichert"
 
 #: src/ui/strings.vala:32
 msgid "Unknown error"
@@ -226,16 +238,16 @@ msgstr "Unbekannter Fehler"
 
 #: src/ui/strings.vala:33
 msgid "Notebook name shouldn’t contain “.” or “/”"
-msgstr "Notizbuchtitel dürfen “.” oder “/” nicht enthalten"
+msgstr "Notizbuchname sollte kein ».« oder »/« enthalten"
 
 #: src/ui/strings.vala:34
 msgid "Notebook name shouldn’t be blank"
-msgstr "Notizbuchtitel darf nicht leer sein"
+msgstr "Notizbuchname sollte nicht leer sein"
 
 #: src/ui/strings.vala:35
 #, c-format
 msgid "Notebook “%s” already exists"
-msgstr "Notizbuch “%s” ist bereits vorhanden"
+msgstr "Notizbuch »%s« existiert bereits"
 
 #: src/ui/strings.vala:36
 msgid "Couldn’t create notebook"
@@ -251,15 +263,15 @@ msgstr "Notizbuch konnte nicht gelöscht werden"
 
 #: src/ui/strings.vala:40
 msgid "Search"
-msgstr "Suche"
+msgstr "Suchen"
 
-#: src/ui/strings.vala:41 src/ui/notebook_sidebar/note_menu.blp:36
+#: src/ui/strings.vala:41 src/ui/window/sidebar/note_menu.blp:36
 msgid "Rename"
 msgstr "Umbenennen"
 
 #: src/ui/strings.vala:42
 msgid "Couldn’t find an app to handle file uris"
-msgstr "Es konnte kein Programm zur Handhabung der Datei-URI gefunden werden"
+msgstr "Es konnte kein Programm gefunden werden für den Umgang mit Datei-URIs"
 
 #: src/ui/strings.vala:43
 msgid "Apply"
@@ -272,238 +284,307 @@ msgstr "Abbrechen"
 
 #: src/ui/strings.vala:45
 msgid "Pick where the notebooks will be stored"
-msgstr "Auswählen wo die Notizbücher gespeichert werden sollen"
+msgstr "Wählen Sie, wo die Notizbücher gespeichert werden"
 
-#: src/ui/strings.vala:46
+#: src/ui/strings.vala:46 src/ui/window/notebooks_bar/notebooks_bar.blp:80
 msgid "All Notes"
 msgstr "Alle Notizen"
 
-#: src/ui/edit_view/edit_view.blp:50 src/ui/markdown/heading_popover.blp:48
+#: src/ui/edit_view/toolbar/toolbar.blp:25
+#: src/ui/edit_view/toolbar/toolbar.blp:116
+#: src/ui/widgets/markdown/heading_popover.blp:48
 msgid "Plain Text"
-msgstr "Klartext"
+msgstr "Reiner Text"
 
-#: src/ui/edit_view/edit_view.blp:51 src/ui/markdown/heading_popover.blp:12
+#: src/ui/edit_view/toolbar/toolbar.blp:26
+#: src/ui/edit_view/toolbar/toolbar.blp:117
+#: src/ui/widgets/markdown/heading_popover.blp:12
 msgid "Heading 1"
 msgstr "Überschrift 1"
 
-#: src/ui/edit_view/edit_view.blp:52 src/ui/markdown/heading_popover.blp:18
+#: src/ui/edit_view/toolbar/toolbar.blp:27
+#: src/ui/edit_view/toolbar/toolbar.blp:118
+#: src/ui/widgets/markdown/heading_popover.blp:18
 msgid "Heading 2"
 msgstr "Überschrift 2"
 
-#: src/ui/edit_view/edit_view.blp:53 src/ui/markdown/heading_popover.blp:24
+#: src/ui/edit_view/toolbar/toolbar.blp:28
+#: src/ui/edit_view/toolbar/toolbar.blp:119
+#: src/ui/widgets/markdown/heading_popover.blp:24
 msgid "Heading 3"
 msgstr "Überschrift 3"
 
-#: src/ui/edit_view/edit_view.blp:54 src/ui/markdown/heading_popover.blp:30
+#: src/ui/edit_view/toolbar/toolbar.blp:29
+#: src/ui/edit_view/toolbar/toolbar.blp:120
+#: src/ui/widgets/markdown/heading_popover.blp:30
 msgid "Heading 4"
 msgstr "Überschrift 4"
 
-#: src/ui/edit_view/edit_view.blp:55 src/ui/markdown/heading_popover.blp:36
+#: src/ui/edit_view/toolbar/toolbar.blp:30
+#: src/ui/edit_view/toolbar/toolbar.blp:121
+#: src/ui/widgets/markdown/heading_popover.blp:36
 msgid "Heading 5"
 msgstr "Überschrift 5"
 
-#: src/ui/edit_view/edit_view.blp:56 src/ui/markdown/heading_popover.blp:42
+#: src/ui/edit_view/toolbar/toolbar.blp:31
+#: src/ui/edit_view/toolbar/toolbar.blp:122
+#: src/ui/widgets/markdown/heading_popover.blp:42
 msgid "Heading 6"
 msgstr "Überschrift 6"
 
-#: src/ui/edit_view/edit_view.blp:67 src/ui/shortcut_window.blp:67
+#: src/ui/edit_view/toolbar/toolbar.blp:43
+#: src/ui/edit_view/toolbar/toolbar.blp:133
+#: src/ui/edit_view/toolbar/toolbar.blp:194 src/ui/popup/shortcut_window.blp:72
 msgid "Bold"
 msgstr "Fett"
 
-#: src/ui/edit_view/edit_view.blp:73 src/ui/shortcut_window.blp:72
+#: src/ui/edit_view/toolbar/toolbar.blp:50
+#: src/ui/edit_view/toolbar/toolbar.blp:140
+#: src/ui/edit_view/toolbar/toolbar.blp:195 src/ui/popup/shortcut_window.blp:77
 msgid "Italic"
 msgstr "Kursiv"
 
-#: src/ui/edit_view/edit_view.blp:79 src/ui/shortcut_window.blp:77
+#: src/ui/edit_view/toolbar/toolbar.blp:57
+#: src/ui/edit_view/toolbar/toolbar.blp:147
+#: src/ui/edit_view/toolbar/toolbar.blp:196 src/ui/popup/shortcut_window.blp:82
 msgid "Strikethrough"
 msgstr "Durchgestrichen"
 
-#: src/ui/edit_view/edit_view.blp:85 src/ui/shortcut_window.blp:82
+#: src/ui/edit_view/toolbar/toolbar.blp:64
+#: src/ui/edit_view/toolbar/toolbar.blp:154
+#: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:87
 msgid "Highlight"
 msgstr "Hervorheben"
 
-#: src/ui/edit_view/edit_view.blp:95 src/ui/shortcut_window.blp:87
+#: src/ui/edit_view/toolbar/toolbar.blp:76
+#: src/ui/edit_view/toolbar/toolbar.blp:186 src/ui/popup/shortcut_window.blp:92
 msgid "Insert Link"
 msgstr "Verweis einfügen"
 
-#: src/ui/edit_view/edit_view.blp:101
+#: src/ui/edit_view/toolbar/toolbar.blp:83
+#: src/ui/edit_view/toolbar/toolbar.blp:187
 msgid "Insert Code"
 msgstr "Code einfügen"
 
-#: src/ui/notebooks_bar/notebook_create_popup.blp:54
-msgid "Notebook Name"
-msgstr "Notizbuchtitel"
+#: src/ui/edit_view/toolbar/toolbar.blp:90
+#: src/ui/edit_view/toolbar/toolbar.blp:188
+msgid "Insert Horizontal Rule"
+msgstr "Horizontale Linie einfügen"
 
-#: src/ui/notebooks_bar/notebook_create_popup.blp:72
-msgid "First Characters"
-msgstr "Erste Zeichen"
+#: src/ui/edit_view/toolbar/toolbar.blp:103
+msgid "Format"
+msgstr "Format"
 
-#: src/ui/notebooks_bar/notebook_create_popup.blp:73
-msgid "Initials"
-msgstr "Initialen"
-
-#: src/ui/notebooks_bar/notebook_create_popup.blp:74
-msgid "Initials: camelCase"
-msgstr "Initialen: Binnenmajuskel"
-
-#: src/ui/notebooks_bar/notebook_create_popup.blp:75
-msgid "Initials: snake_case"
-msgstr "Initialen: Snake Case"
-
-#: src/ui/notebooks_bar/notebook_create_popup.blp:76
-msgid "Icon"
-msgstr "Symbol"
-
-#: src/ui/notebooks_bar/notebook_create_popup.blp:104
-msgid "Notebook Color"
-msgstr "Notizbuchfarbe"
-
-#: src/ui/notebooks_bar/notebook_create_popup.blp:114
-msgid "Create Notebook"
-msgstr "Notizbuch erstellen"
-
-#: src/ui/notebooks_bar/notebook_menu.blp:16
-msgid "Edit"
-msgstr "Bearbeiten"
-
-#: src/ui/notebooks_bar/notebook_menu.blp:26
-msgid "Move all to Trash"
-msgstr "Alles in den Papierkorb verschieben"
-
-#: src/ui/notebooks_bar/notebooks_bar.blp:73
-msgid "_New Notebook"
-msgstr "_Neues Notizbuch"
-
-#: src/ui/notebooks_bar/notebooks_bar.blp:77
-msgid "_Edit Notebook"
-msgstr "_Notizbuch bearbeiten"
-
-#: src/ui/notebooks_bar/notebooks_bar.blp:83
-msgid "_Preferences"
-msgstr "_Einstellungen"
-
-#: src/ui/notebooks_bar/notebooks_bar.blp:87
-msgid "_Keyboard Shortcuts"
-msgstr "_Tastenkombinationen"
-
-#: src/ui/notebooks_bar/notebooks_bar.blp:91
-msgid "_About"
-msgstr "_Über"
-
-#: src/ui/notebook_sidebar/note_create_popup.blp:37
-msgid "Note Name"
-msgstr "Notiztitel"
-
-#: src/ui/notebook_sidebar/note_create_popup.blp:46
-msgid "Create Note"
-msgstr "Notiz erstellen"
-
-#: src/ui/notebook_sidebar/note_menu.blp:16
-msgid "Restore from Trash"
-msgstr "Von Papierkorb wiederherstellen"
-
-#: src/ui/notebook_sidebar/note_menu.blp:26
-msgid "Delete from Trash"
-msgstr "Aus Papierkorb löschen"
-
-#: src/ui/notebook_sidebar/note_menu.blp:46
-msgid "Move to Notebook…"
-msgstr "In Notizbuch verschieben"
-
-#: src/ui/notebook_sidebar/note_menu.blp:56
-msgid "Move to Trash"
-msgstr "In den Papierkorb verschieben"
-
-#: src/ui/notebook_sidebar/note_menu.blp:66
-msgid "Open Containing Folder"
-msgstr "Enthaltender Ordner öffnen"
+#: src/ui/edit_view/toolbar/toolbar.blp:167
+msgid "Insert"
+msgstr "Einfg"
 
 #: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
 msgid "Confirm"
 msgstr "Bestätigen"
 
-#: src/ui/preferences.blp:14
-msgid "Note Font"
-msgstr "Notizschriftart"
-
-#: src/ui/preferences.blp:18
-msgid "Pick a font for displaying the notes' content"
-msgstr ""
-"Wählen Sie eine Schriftart aus in welche die Notizen dargestellt werden "
-"sollen"
-
-#: src/ui/preferences.blp:26
-msgid "Makes the dark theme pitch black"
-msgstr "Stellt den dunklen Stil pechschwarz dar"
-
-#: src/ui/preferences.blp:36
-msgid "Notes Storage Location"
-msgstr "Speicherort der Notizen"
-
-#: src/ui/preferences.blp:37
-msgid "Where the notebooks are stored (requires app restart)"
-msgstr "Wo die Notizbücher gespeichert werden (Neustart des Programms nötig)"
-
-#: src/ui/shortcut_window.blp:14
+#: src/ui/popup/shortcut_window.blp:14
 msgid "Note"
 msgstr "Notiz"
 
-#: src/ui/shortcut_window.blp:22
+#: src/ui/popup/shortcut_window.blp:22
 msgid "Edit Note"
 msgstr "Notiz bearbeiten"
 
-#: src/ui/shortcut_window.blp:29
+#: src/ui/popup/shortcut_window.blp:27
+msgid "Save Note"
+msgstr "Notiz speichern"
+
+#: src/ui/popup/shortcut_window.blp:34
 msgid "Notebook"
 msgstr "Notizbuch"
 
-#: src/ui/shortcut_window.blp:44
+#: src/ui/popup/shortcut_window.blp:49
 msgid "General"
-msgstr "Allgemeines"
+msgstr "Allgemein"
 
-#: src/ui/shortcut_window.blp:47
+#: src/ui/popup/shortcut_window.blp:52
 msgid "Show Keyboard Shortcuts"
 msgstr "Tastenkombinationen anzeigen"
 
-#: src/ui/shortcut_window.blp:52
+#: src/ui/popup/shortcut_window.blp:57
 msgid "Quit"
 msgstr "Beenden"
 
-#: src/ui/shortcut_window.blp:64
+#: src/ui/popup/shortcut_window.blp:69
 msgid "Formatting"
 msgstr "Formatierung"
 
-#: src/ui/shortcut_window.blp:94
+#: src/ui/popup/shortcut_window.blp:99
 msgid "Navigation"
 msgstr "Navigation"
 
-#: src/ui/shortcut_window.blp:97 src/ui/window.blp:108
+#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:188
 msgid "Toggle Sidebar"
-msgstr "Seitenleiste anzeigen"
+msgstr "Seitenleiste ein-/ausblenden"
 
-#: src/ui/shortcut_window.blp:102 src/ui/window.blp:59
+#: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:63
 msgid "Search Notes"
 msgstr "Notizen durchsuchen"
 
-#: src/ui/window.blp:121
-msgid "Open in Notebook"
-msgstr "In Notizbuch öffnen"
+#: src/ui/preferences/preferences.blp:21
+msgid "Pick a font for displaying the notes' content"
+msgstr "Wählen Sie eine Schriftart für die Darstellung der Notiz"
 
-#: src/ui/window.blp:149
+#: src/ui/preferences/preferences.blp:35
+msgid "Pick a font for displaying code"
+msgstr "Wählen Sie eine Schriftart für die Darstellung von Code"
+
+#: src/ui/preferences/preferences.blp:45
+msgid "Makes the dark theme pitch black"
+msgstr "Macht das dunkle Thema tiefschwarz"
+
+#: src/ui/preferences/preferences.blp:55
+msgid "Enable Toolbar"
+msgstr "Werkzeugleiste aktivieren"
+
+#: src/ui/preferences/preferences.blp:65
+msgid "3-Pane Layout"
+msgstr "3-Leisten-Anordnung"
+
+#: src/ui/preferences/preferences.blp:77
+msgid "Notes Storage Location"
+msgstr "Speicherort der Notizen"
+
+#: src/ui/preferences/preferences.blp:78
+msgid "Where the notebooks are stored (requires app restart)"
+msgstr "Wo die Notizbücher gespeichert sind (erfordert Neustart des Programms)"
+
+#: src/ui/widgets/theme_selector/theme_selector.blp:15
+msgid "Follow system style"
+msgstr "Systemstil folgen"
+
+#: src/ui/widgets/theme_selector/theme_selector.blp:23
+msgid "Light style"
+msgstr "Heller Stil"
+
+#: src/ui/widgets/theme_selector/theme_selector.blp:32
+msgid "Dark style"
+msgstr "Dunkler Stil"
+
+#: src/ui/window/app_menu/app_menu.blp:24
+msgid "_New Notebook"
+msgstr "_Neues Notizbuch"
+
+#: src/ui/window/app_menu/app_menu.blp:28
+msgid "_Edit Notebook"
+msgstr "Notizbuch _bearbeiten"
+
+#: src/ui/window/app_menu/app_menu.blp:34
+msgid "_Preferences"
+msgstr "_Einstellungen"
+
+#: src/ui/window/app_menu/app_menu.blp:38
+msgid "_Keyboard Shortcuts"
+msgstr "_Tastenkombinationen"
+
+#: src/ui/window/app_menu/app_menu.blp:42
+msgid "_About"
+msgstr "_Info"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:54
+msgid "Notebook Name"
+msgstr "Notizbuchname"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:72
+msgid "First Characters"
+msgstr "Anfangsbuchstaben"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:73
+msgid "Initials"
+msgstr "Initialen"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:74
+msgid "Initials: camelCase"
+msgstr "Initialen: camelCase"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:75
+msgid "Initials: snake_case"
+msgstr "Initialen: snake_case"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:76
+msgid "Icon"
+msgstr "Symbol"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:106
+msgid "Notebook Color"
+msgstr "Notizbuchfarbe"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:116
+msgid "Create Notebook"
+msgstr "Notizbuch erstellen"
+
+#: src/ui/window/notebooks_bar/notebook_menu.blp:16
+msgid "Edit"
+msgstr "Bearbeiten"
+
+#: src/ui/window/notebooks_bar/notebook_menu.blp:26
+msgid "Move all to Trash"
+msgstr "Alles in den Papierkorb verschieben"
+
+#: src/ui/window/sidebar/note_create_popup.blp:37
+msgid "Note Name"
+msgstr "Notizname"
+
+#: src/ui/window/sidebar/note_create_popup.blp:45
+msgid "Create Note"
+msgstr "Notiz erstellen"
+
+#: src/ui/window/sidebar/note_menu.blp:16
+msgid "Restore from Trash"
+msgstr "Aus dem Papierkorb wiederherstellen"
+
+#: src/ui/window/sidebar/note_menu.blp:26
+msgid "Delete from Trash"
+msgstr "Aus dem Papierkorb löschen"
+
+#: src/ui/window/sidebar/note_menu.blp:46
+msgid "Move to Notebook…"
+msgstr "In Notizbuch verschieben …"
+
+#: src/ui/window/sidebar/note_menu.blp:56
+msgid "Move to Trash"
+msgstr "In den Papierkorb verschieben"
+
+#: src/ui/window/sidebar/note_menu.blp:66
+msgid "Open Containing Folder"
+msgstr "Den beinhaltenden Ordner öffnen"
+
+#: src/ui/window/window.blp:115
 msgid "Get started writing"
 msgstr "Beginnen Sie mit dem Schreiben"
 
-#: src/ui/window.blp:174
+#: src/ui/window/window.blp:140
 msgid "Create a notebook"
-msgstr "Neues Notizbuch erstellen"
+msgstr "Ein Notizbuch erstellen"
 
-#: src/ui/window.blp:199
+#: src/ui/window/window.blp:165
 msgid "Trash is empty"
-msgstr "Papierkorb leeren"
+msgstr "Der Papierkorb ist leer"
 
-#: src/ui/window.blp:212
+#: src/ui/window/window.blp:196
+msgid "Back"
+msgstr "Zurück"
+
+#: src/ui/window/window.blp:212
+msgid "Open in Notebook"
+msgstr "In Notizbuch öffnen"
+
+#: src/ui/window/window.blp:233
 msgid "_Rename Note"
-msgstr "_Notiz umbennnen"
+msgstr "Notiz _umbenennen"
 
-#: src/ui/window.blp:218
+#: src/ui/window/window.blp:239
 msgid "_Export Note"
-msgstr "_Notiz exportieren"
+msgstr "Notiz ex_portieren"
+
+#~ msgid "Font"
+#~ msgstr "Schriftart"
+
+#~ msgid "Note-taking app"
+#~ msgstr "Notiz-Anwendung"
