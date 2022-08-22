@@ -44,17 +44,25 @@
     <file preprocess="xml-stripblanks">graphics/scalable/actions/reset-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/toolbar-symbolic.svg</file>
 
+    <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-car-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-code-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-food-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-gaming-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-heart-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-home-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-like-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-music-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-nature-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-patch-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-pin-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-plant-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-plus-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-school-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-science-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-settings-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-skull-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-sport-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-star-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-toki-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-toki-pona-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-travel-symbolic.svg</file>
