@@ -8,8 +8,6 @@ public class Paper.NotebooksBar : Gtk.Box {
 	    set { all_button_revealer.reveal_child = value; }
 	}
 
-	public Gtk.SingleSelection model;
-
 	[GtkChild] unowned Gtk.ListView list;
 	[GtkChild] unowned Gtk.ToggleButton all_button;
 	[GtkChild] unowned Gtk.Revealer all_button_revealer;
@@ -17,6 +15,8 @@ public class Paper.NotebooksBar : Gtk.Box {
 	[GtkChild] unowned Adw.HeaderBar header_bar;
 	[GtkChild] unowned Adw.WindowTitle window_title;
 	[GtkChild] unowned Gtk.ScrolledWindow scrolled_window;
+
+	private WindowModel window_model;
 
 	private Gtk.ListItemFactory item_factory;
 
@@ -49,11 +49,12 @@ public class Paper.NotebooksBar : Gtk.Box {
         else trash_button.get_style_context ().add_class ("overlaid");
 	}
 
-	public void init (Window window, Application app) {
+	public void init (Window window) {
+	    this.window_model = window.window_model;
         {
             var factory = new Gtk.SignalListItemFactory ();
             factory.setup.connect (list_item => {
-                var widget = new NotebookIcon (app);
+                var widget = new NotebookIcon (window);
                 list_item.child = widget;
             });
             factory.bind.connect (list_item => {
@@ -66,7 +67,7 @@ public class Paper.NotebooksBar : Gtk.Box {
         {
             var factory = new Gtk.SignalListItemFactory ();
             factory.setup.connect (list_item => {
-                var widget = new NotebookSidebarItem (app);
+                var widget = new NotebookSidebarItem (window);
                 list_item.child = widget;
             });
             factory.bind.connect (list_item => {
@@ -81,53 +82,35 @@ public class Paper.NotebooksBar : Gtk.Box {
 		trash_button.toggled.connect (() => {
             trash_button.sensitive = !trash_button.active;
             if (trash_button.active) {
-                model.unselect_item (model.selected);
-
-                // will call set_notebook (null) as a side effect
-                app.set_active_notebook (null);
-
-                window.set_trash (app.notebook_provider.trash);
+                window_model.select_notebook (null);
+                window_model.set_trash (window_model.notebook_provider.trash);
             }
         });
 		all_button.toggled.connect (() => {
             all_button.sensitive = !all_button.active;
             if (all_button.active) {
-                model.unselect_item (model.selected);
-
-                // will call set_notebook (null) as a side effect
-                app.set_active_notebook (null);
-
-                window.set_all ();
+                window_model.select_notebook (null);
+                window_model.set_all ();
             }
         });
 
-		update_notebooks (app);
+		window_model.notify["notebooks-model"].connect (on_notebooks_updated);
+		on_notebooks_updated ();
 	}
 
-	public void update_notebooks (Application app) {
-        model = new Gtk.SingleSelection (
-            app.notebook_provider
-        );
-        model.can_unselect = true;
-		model.selection_changed.connect (() => {
-		    uint i = model.selected;
-		    var notebooks = app.notebook_provider.notebooks;
-		    if (i <= notebooks.size) {
-		        var notebook = notebooks[(int) i];
-		        app.set_active_notebook (notebook);
-		        trash_button.active = false;
-		        all_button.active = false;
-		    }
-		});
-		list.model = model;
+	private void on_notebooks_updated () {
+	    window_model.notebooks_model.selection_changed.connect (() => {
+	        var i = window_model.notebooks_model.selected;
+	        var notebooks = window_model.notebook_provider.notebooks;
+	        if (i <= notebooks.size && i != -1) {
+	            trash_button.active = false;
+	            all_button.active = false;
+	        }
+	    });
+	    list.model = window_model.notebooks_model;
 
-		if (app.notebook_provider.notebooks.size != 0) {
-		    model.selection_changed (0, 1);
-		}
-	}
-
-	public void select_notebook (uint i) {
-	    model.selected = i;
-	    model.selection_changed (i, 1);
+	    if (window_model.notebook_provider.notebooks.size != 0) {
+	        window_model.notebooks_model.selection_changed (0, 1);
+	    }
 	}
 }

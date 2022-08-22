@@ -23,7 +23,7 @@ public class Paper.NotebookCreatePopup : Adw.Window {
 	[GtkChild]
 	unowned NotebookPreview preview;
 
-	public NotebookCreatePopup (Application app, Notebook? notebook = null) {
+	public NotebookCreatePopup (Window window, Notebook? notebook = null) {
 		Object ();
 
         var model = new Gtk.SingleSelection (new Gtk.StringList ({
@@ -80,12 +80,12 @@ public class Paper.NotebookCreatePopup : Adw.Window {
 	                break;
 	            }
 	        }
-		    entry.activate.connect (() => change (app, notebook));
-            button_create.clicked.connect (() => change (app, notebook));
+		    entry.activate.connect (() => change (window, notebook));
+            button_create.clicked.connect (() => change (window, notebook));
         } else {
 	        icon_type_combobox.active = 0;
-            entry.activate.connect (() => create (app));
-            button_create.clicked.connect (() => create (app));
+            entry.activate.connect (() => create (window));
+            button_create.clicked.connect (() => create (window));
         }
 
         entry.changed.connect (() => {
@@ -106,16 +106,16 @@ public class Paper.NotebookCreatePopup : Adw.Window {
         model.selection_changed (0, 1);
 	}
 
-    private void create (Application app) {
+    private void create (Window window) {
         var info = preview.notebook_info;
 	    close ();
-	    app.try_create_notebook (info);
+	    window.try_create_notebook (info);
 	}
 
-	private void change (Application app, Notebook notebook) {
+	private void change (Window window, Notebook notebook) {
         var info = preview.notebook_info;
         close ();
-        app.try_change_notebook (notebook, info);
+        window.try_change_notebook (notebook, info);
     }
 
     private Gtk.CssProvider? last_css_provider = null;

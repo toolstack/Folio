@@ -17,6 +17,7 @@
  */
 
 public class Paper.Application : Adw.Application {
+
 	private ActionEntry[] APP_ACTIONS = {
 		{ "new-note", on_new_note },
 		{ "edit-note", on_edit_note },
@@ -36,15 +37,11 @@ public class Paper.Application : Adw.Application {
 		{ "quit", on_quit_action }
 	};
 
-	public Provider notebook_provider;
-
-	private Notebook? active_notebook = null;
-    private Note? current_note = null;
-    private GtkMarkdown.Buffer? current_buffer = null;
-
     private HashTable<string, Value?> temp_command;
 
     private Window? main_window = null;
+
+    public WindowModel window_model { get { return main_window.window_model; } }
 
     private Gtk.CssProvider? black_css_provider = null;
     private Gtk.CssProvider? black_hc_css_provider = null;
@@ -54,15 +51,6 @@ public class Paper.Application : Adw.Application {
 		    application_id: Config.APP_ID,
 		    flags: ApplicationFlags.HANDLES_COMMAND_LINE
 		);
-
-	    {
-	        var settings = new Settings (Config.APP_ID);
-		    var notes_dir = settings.get_string ("notes-dir");
-
-		    notebook_provider = new Provider (Strings.TRASH);
-		    notebook_provider.set_directory (notes_dir);
-		    notebook_provider.load ();
-		}
 
 		add_action_entries (APP_ACTIONS, this);
 
@@ -106,16 +94,7 @@ public class Paper.Application : Adw.Application {
 		var win = this.active_window;
 		if (win == null) {
 			main_window = new Window (this);
-			main_window.init (this);
 			win = main_window;
-
-            var settings = new Settings (@"$(Config.APP_ID).WindowState");
-            var note_path = settings.get_string ("note");
-		    var note = try_get_note_from_path (note_path);
-            if (note != null) {
-                select_notebook (note.notebook);
-                set_active_note (note);
-            }
 		}
 		execute_temp_command ();
 		win.present ();
@@ -128,8 +107,7 @@ public class Paper.Application : Adw.Application {
 	    if (exists) {
 	        var note = _note.get_object () as Note;
             if (note != null) {
-                select_notebook (note.notebook);
-                set_active_note (note);
+                window_model.open_note_in_notebook (window_model.note);
             }
             temp_command.remove ("open-note");
 	    }
@@ -175,38 +153,30 @@ public class Paper.Application : Adw.Application {
 	}
 
 	private void on_empty_trash () {
-	    show_confirmation_popup (
-            Strings.EMPTY_TRASH,
-	        Strings.EMPTY_TRASH_CONFIRMATION,
-	        () => {
-	            set_active_note (null);
-	            notebook_provider.trash.delete_all ();
-	        }
-	    );
+	    main_window.request_empty_trash ();
 	}
 
 	private void on_new_note () {
 	    activate ();
-	    var a = active_notebook;
-		if (a != null) {
-		    var name = a.get_available_name ();
-            try_create_note (name);
+		if (window_model.notebook != null) {
+		    var name = window_model.generate_new_note_name ();
+            main_window.try_create_note (name);
 		} else {
             toast (Strings.CREATE_NOTEBOOK_BEFORE_CREATING_NOTE);
 		}
 	}
 
 	private void on_edit_note () {
-		if (current_note != null) {
-		    request_edit_note (current_note);
+		if (window_model.note != null) {
+		    main_window.request_edit_note (window_model.note);
 		} else {
             toast (Strings.SELECT_NOTE_TO_EDIT);
 		}
 	}
 
 	private void on_delete_note () {
-	    if (current_note != null) {
-		    request_delete_note (current_note);
+	    if (window_model.note != null) {
+		    main_window.request_delete_note (window_model.note);
 		} else {
             toast (Strings.SELECT_NOTE_TO_DELETE);
 		}
@@ -217,8 +187,8 @@ public class Paper.Application : Adw.Application {
 	    chooser.response.connect ((response_id) => {
 	        var file = chooser.get_file ();
 	        chooser.unref ();
-	        if (file != null && current_note != null) {
-	            try_export_note (current_note, file);
+	        if (file != null && window_model.note != null) {
+	            main_window.try_export_note (window_model.note, file);
 	        }
 	    });
 	    chooser.modal = true;
@@ -228,302 +198,26 @@ public class Paper.Application : Adw.Application {
 
 	private void on_new_notebook () {
 	    activate ();
-		var popup = new NotebookCreatePopup (this);
-		popup.transient_for = active_window;
-		popup.title = Strings.NEW_NOTEBOOK;
-		popup.present ();
+	    main_window.request_new_notebook ();
 	}
 
 	private void on_edit_notebook () {
-	    if (active_notebook == null) return;
-		request_edit_notebook (active_notebook);
+	    if (window_model.notebook == null) return;
+		main_window.request_edit_notebook (window_model.notebook);
 	}
 
 	private void on_delete_notebook () {
-	    if (active_notebook == null) return;
-		request_delete_notebook (active_notebook);
-	}
-
-	public void request_edit_note (Note note) {
-	    var popup = new NoteCreatePopup (this, note);
-	    popup.transient_for = active_window;
-	    popup.title = Strings.RENAME_NOTE;
-	    popup.present ();
-	}
-
-	public void request_move_note (Note note) {
-	    var popup = new NotebookSelectionPopup (
-	        notebook_provider,
-	        Strings.MOVE_TO_NOTEBOOK,
-	        Strings.MOVE,
-	        (dest_notebook) => move_note (note, dest_notebook)
-	    );
-	    popup.transient_for = active_window;
-	    popup.present ();
-	}
-
-	public void move_note (Note note, Notebook dest_notebook) {
-        var l = note.notebook.loaded_notes;
-        if (l != null) {
-            var i = l.index_of (note);
-            l.remove_at (i);
-            note.notebook.items_changed (i, 1, 0);
-        }
-        set_active_notebook (null);
-        set_active_note (null);
-        var file = File.new_for_path (note.path);
-        var dest_path = @"$(dest_notebook.path)/$(note.file_name)";
-        var dest = File.new_for_path (dest_path);
-        if (dest.query_exists ()) {
-            toast (Strings.NOTE_X_ALREADY_EXISTS_IN_X.printf (note.name, dest_notebook.name));
-            return;
-        }
-        file.move (dest, FileCopyFlags.NONE);
-        select_notebook (dest_notebook);
-	}
-
-	public void request_delete_note (Note note) {
-	    show_confirmation_popup (
-		    Strings.DELETE_NOTE,
-		    Strings.DELETE_NOTE_CONFIRMATION.printf (note.name),
-		    () => try_delete_note (note)
-	    );
-	}
-
-	public void request_edit_notebook (Notebook notebook) {
-		var popup = new NotebookCreatePopup (this, notebook);
-		popup.transient_for = active_window;
-		popup.title = Strings.EDIT_NOTEBOOK;
-		popup.present ();
-	}
-
-	public void request_delete_notebook (Notebook notebook) {
-	    show_confirmation_popup (
-		    Strings.DELETE_NOTEBOOK,
-		    Strings.DELETE_NOTEBOOK_CONFIRMATION.printf (notebook.name),
-		    () => try_delete_notebook (notebook)
-	    );
-	}
-
-	public void try_create_note (string name) {
-	    if (name.contains (".") || name.contains ("/")) {
-            toast (Strings.NOTE_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
-            return;
-	    }
-	    if (name.replace(" ", "").length == 0) {
-            toast (Strings.NOTE_NAME_SHOULDNT_BE_BLANK);
-            return;
-	    }
-		try {
-		    var n = active_notebook.new_note (name);
-	        main_window.select_note (0);
-	        set_active_note(n);
-	    } catch (ProviderError e) {
-	        if (e is ProviderError.ALREADY_EXISTS)
-	            toast (Strings.NOTE_X_ALREADY_EXISTS.printf (name));
-	        else if (e is ProviderError.COULDNT_CREATE_FILE)
-	            toast (Strings.COULDNT_CREATE_NOTE);
-	        else
-	            toast (Strings.UNKNOWN_ERROR);
-	    }
-	}
-
-	public bool try_change_note (Note note, string name) {
-	    if (name.contains (".") || name.contains ("/")) {
-            toast (Strings.NOTE_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
-            return false;
-	    }
-	    if (name.replace(" ", "").length == 0) {
-            toast (Strings.NOTE_NAME_SHOULDNT_BE_BLANK);
-            return false;
-	    }
-		try {
-	        note.notebook.change_note (note, name);
-            current_buffer = main_window.set_note (note);
-	        return true;
-	    } catch (ProviderError e) {
-	        if (e is ProviderError.ALREADY_EXISTS)
-	            toast (Strings.NOTE_X_ALREADY_EXISTS.printf (name));
-	        else if (e is ProviderError.COULDNT_CREATE_FILE)
-	            toast (Strings.COULDNT_CHANGE_NOTE);
-	        else
-	            toast (Strings.UNKNOWN_ERROR);
-	        return false;
-	    }
-	}
-
-	public void try_delete_note (Note note) {
-		try {
-	        set_active_note (null);
-            //upon deletion of a note, we will select the next note DOWN the list (or none).
-	        var idx = note.notebook.get_index_of (note);
-
-	        note.notebook.delete_note (note);
-
-	        var item_count = note.notebook.get_n_items ();
-	        Note? new_active_note = null;
-	        if (item_count == 1 || idx == 0) { // selecting down, so first item or a list of 2 is the same.
-	            new_active_note = (Note) note.notebook.get_item (0);
-	        } else if (item_count > 1){
-	            new_active_note = (Note) note.notebook.get_item (idx - 1);
-	        }
-
-	        set_active_note (new_active_note);
-
-            //if we are removing the last item we need to select a different index.
-            //we really should be doing this somewhere else.
-	        if (idx == item_count)
-	            main_window.select_note (idx - 1);
-	        else
-	            main_window.select_note (idx);
-
-	        main_window.update_selected_note ();
-	    } catch (ProviderError e) {
-	        if (e is ProviderError.COULDNT_DELETE)
-	            toast (Strings.COULDNT_DELETE_NOTE);
-	        else
-	            toast (Strings.UNKNOWN_ERROR);
-	    }
-	}
-
-	private void try_export_note (Note note, File file) {
-	    FileUtils.save_to (file, current_buffer.get_all_text ());
-        toast (Strings.SAVED_X_TO_X.printf (note.name, file.get_path ()));
-	}
-
-	public void try_restore_note (Note note) {
-		try {
-	        notebook_provider.trash.restore_note (note);
-	        {
-	            var n = notebook_provider.notebooks;
-	            var i = 0;
-	            while (i < n.size) {
-	                if (n[i].name == note.notebook.name)
-	                    break;
-	                i++;
-	            }
-	            if (i == n.size) {
-	                notebook_provider.unload ();
-	                notebook_provider.load ();
-	                main_window.update_notebooks (this);
-	            }
-	        }
-	        {
-	            var n = notebook_provider.notebooks;
-	            var i = 0;
-	            while (i < n.size) {
-	                if (n[i].name == note.notebook.name)
-	                    break;
-	                i++;
-	            }
-	            select_notebook (i == n.size ? null : n[i]);
-	        }
-	    } catch (ProviderError e) {
-	        if (e is ProviderError.COULDNT_MOVE) {
-	            toast (Strings.COULDNT_RESTORE_NOTE);
-	        } else if (e is ProviderError.ALREADY_EXISTS) {
-	            toast (Strings.NOTE_X_ALREADY_EXISTS_IN_X.printf (note.name, note.notebook.name));
-	        } else {
-	            toast (Strings.UNKNOWN_ERROR);
-	        }
-	    }
-	}
-
-	public void try_create_notebook (NotebookInfo info) {
-	    if (info.name.contains (".") || info.name.contains ("/")) {
-            toast (Strings.NOTEBOOK_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
-            return;
-	    }
-	    if (info.name.replace(" ", "").length == 0) {
-            toast (Strings.NOTEBOOK_NAME_SHOULDNT_BE_BLANK);
-            return;
-	    }
-		try {
-	        var notebook = notebook_provider.new_notebook (info);
-	        select_notebook (notebook);
-	    } catch (ProviderError e) {
-	        if (e is ProviderError.ALREADY_EXISTS)
-	            toast (Strings.NOTEBOOK_X_ALREADY_EXISTS.printf (info.name));
-	        else if (e is ProviderError.COULDNT_CREATE_FILE)
-	            toast (Strings.COULDNT_CREATE_NOTEBOOK);
-	        else
-	            toast (Strings.UNKNOWN_ERROR);
-	    }
-	}
-
-	public void try_change_notebook (Notebook notebook, NotebookInfo info) {
-	    if (info.name.contains (".") || info.name.contains ("/")) {
-            toast (Strings.NOTEBOOK_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
-            return;
-	    }
-	    if (info.name.replace(" ", "").length == 0) {
-            toast (Strings.NOTEBOOK_NAME_SHOULDNT_BE_BLANK);
-            return;
-	    }
-		try {
-	        notebook_provider.change_notebook (notebook, info);
-	        if (main_window.current_container == notebook)
-	            main_window.set_notebook (notebook);
-	    } catch (ProviderError e) {
-	        if (e is ProviderError.ALREADY_EXISTS)
-	            toast (Strings.NOTEBOOK_X_ALREADY_EXISTS.printf (info.name));
-	        else if (e is ProviderError.COULDNT_CREATE_FILE)
-	            toast (Strings.COULDNT_CHANGE_NOTEBOOK);
-	        else
-	            toast (Strings.UNKNOWN_ERROR);
-	    }
-	}
-
-	public void try_delete_notebook (Notebook notebook) {
-		try {
-	        set_active_notebook (null);
-	        notebook_provider.delete_notebook (notebook);
-	        main_window.update_selected_notebook ();
-	    } catch (ProviderError e) {
-	        if (e is ProviderError.COULDNT_DELETE)
-	            toast (Strings.COULDNT_DELETE_NOTEBOOK);
-	        else
-	            toast (Strings.UNKNOWN_ERROR);
-	    }
-	}
-
-	public void set_active_notebook (Notebook? notebook) {
-	    if (active_notebook == notebook) return;
-	    var old_notebook = active_notebook;
-	    set_active_note (null);
-	    active_notebook = notebook;
-        main_window.set_notebook (notebook);
-        if (old_notebook != null) {
-	        old_notebook.unload ();
-	    }
-	}
-
-	public void select_notebook (Notebook notebook) {
-	    var n = notebook_provider.notebooks
-	        .first_match ((it) => it.name == notebook.name);
-        int i = notebook_provider.notebooks.index_of (n);
-        main_window.select_notebook (i);
-	}
-
-	public void set_active_note (Note? note) {
-	    if (current_note == note) return;
-        current_note = note;
-        current_buffer = main_window.set_note (note);
-	}
-
-	public override void shutdown () {
-	    {
-            var settings = new Settings (@"$(Config.APP_ID).WindowState");
-            settings.set_string ("note", current_note.id);
-        }
-        current_note.save (current_buffer.get_all_text ());
-        current_note = null;
-        current_buffer = null;
-	    base.shutdown ();
+	    if (window_model.notebook == null) return;
+		main_window.request_delete_notebook (window_model.notebook);
 	}
 
 	public void toast (string message) {
 	    main_window.toast (message);
+	}
+
+	public override void shutdown () {
+        window_model.save_note ();
+	    base.shutdown ();
 	}
 
 	public void update_theme () {
@@ -612,7 +306,7 @@ public class Paper.Application : Adw.Application {
                 new HashTable<string, Value> (str_hash, str_equal);
             temp_command.insert(
                 "open-note",
-                try_get_note_from_path (open_note)
+                window_model.try_get_note_from_path (open_note)
             );
 		}
 
@@ -629,54 +323,11 @@ public class Paper.Application : Adw.Application {
         return 0;
 	}
 
-	private Note? try_get_note_from_path (string path) {
-	    if (path.length == 0)
-	        return null;
-		var note_data = path.split ("/");
-	    if (note_data.length != 2)
-	        return null;
-        var notebook = notebook_provider.notebooks
-            .first_match ((it) => it.name == note_data[0]);
-        if (notebook == null)
-            return null;
-        notebook.load ();
-        return notebook.loaded_notes
-            .first_match ((it) => it.name == note_data[1]);
-	}
-
 	public override int command_line (ApplicationCommandLine command_line) {
 		this.hold ();
 		var res = _command_line (command_line);
 		this.release ();
 		return res;
-	}
-
-	private void show_confirmation_popup (
-	    string action_title,
-	    string action_description,
-	    owned Runnable callback
-	) {
-        var dialog = new Gtk.MessageDialog (
-            active_window,
-            Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-            Gtk.MessageType.QUESTION,
-            Gtk.ButtonsType.CANCEL,
-            action_title
-        );
-
-        dialog.secondary_text = action_description;
-
-        dialog.add_button (action_title, 1)
-            .get_style_context ()
-            .add_class ("destructive-action");
-
-        dialog.response.connect ((response_id) => {
-            if (response_id == 1) {
-	            callback ();
-	        }
-            dialog.close ();
-        });
-		dialog.present ();
 	}
 }
 

@@ -19,23 +19,9 @@
 [GtkTemplate (ui = "/io/posidon/Paper/window.ui")]
 public class Paper.Window : Adw.ApplicationWindow {
 
-    public NoteContainer? current_container { get; private set; default = null; }
-
-	public State current_state {
-	    public get;
-	    private set;
-	}
-
-	public enum State {
-	    NOTEBOOK,
-	    NO_NOTEBOOK,
-	    ALL,
-	    TRASH
-	}
-
-	public bool is_unsaved { set { save_indicator.visible = value; } }
-
 	public bool cheatsheet_enabled { get; set; }
+
+	public WindowModel window_model = new WindowModel ();
 
 	[GtkChild] unowned Adw.Leaflet leaflet;
 	[GtkChild] unowned Adw.LeafletPage sidebar;
@@ -49,13 +35,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 	[GtkChild] unowned Gtk.SearchBar notes_search_bar;
 	[GtkChild] unowned Gtk.SearchEntry notes_search_entry;
 	[GtkChild] unowned Adw.HeaderBar headerbar_sidebar;
-
-	Gtk.SingleSelection notebook_notes_model {
-	    get { return (Gtk.SingleSelection) notebook_notes_list.model; }
-	    set {
-		    notebook_notes_list.model = value;
-	    }
-	}
 
 	[GtkChild] unowned Gtk.Button button_create_note;
 	[GtkChild] unowned Gtk.Button button_empty_trash;
@@ -79,15 +58,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 	[GtkChild] unowned Adw.ToastOverlay toast_overlay;
 
-	private FuzzyStringSorter search_sorter = new FuzzyStringSorter (
-            new Gtk.PropertyExpression (typeof (Note), null, "name"));
-
-	private SimpleNoteContainer all_notes;
-
-    private Note? current_note = null;
-
-    private GtkMarkdown.Buffer current_buffer;
-
     private Gtk.CssProvider? last_css_provider = null;
 
 	private ActionEntry[] ACTIONS = {
@@ -102,11 +72,22 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 		{ "toggle-sidebar", toggle_sidebar_visibility },
 		{ "search-notes", toggle_search },
-		{ "save-note", save_current_note },
+		{ "save-note", () => save_current_note },
 		{ "toggle-fullscreen", toggle_fullscreen },
 	};
 
 	construct {
+	    window_model.note_changed.connect (on_update_note);
+	    window_model.state_changed.connect (on_update_state);
+	    window_model.notify["notes-model"].connect (() => {
+	        notebook_notes_list.model = window_model.notes_model;
+            if (window_model.state == WindowModel.State.TRASH) {
+                window_model.notes_model.items_changed.connect (() => {
+                    notebook_title.subtitle = Strings.X_NOTES.printf (window_model.note_container.get_n_items ());
+                });
+            }
+	    });
+
 		add_action_entries (ACTIONS, this);
 
 	    var window_state = new Settings (@"$(Config.APP_ID).WindowState");
@@ -126,11 +107,11 @@ public class Paper.Window : Adw.ApplicationWindow {
 
         button_back.clicked.connect (() => navigate_to_notes ());
 
-        search_sorter.changed.connect ((change) => {
+        window_model.search_sorter.changed.connect ((change) => {
             notebook_notes_list_scroller.vadjustment.@value = 0;
         });
         notes_search_entry.search_changed.connect (() => {
-            search_sorter.target = notes_search_entry.text;
+            window_model.search (notes_search_entry.text);
         });
         var font_scale = new FontScale (edit_view);
 	    more_popover.add_child (font_scale, "font-scale");
@@ -143,10 +124,6 @@ public class Paper.Window : Adw.ApplicationWindow {
 		    icon_name: Config.APP_ID
 	    );
 
-        all_notes = new SimpleNoteContainer (Strings.ALL_NOTES, app.notebook_provider.get_all_notes);
-
-        set_notebook (null);
-
         app.style_manager.notify["dark"].connect (() => edit_view.on_dark_changed (app.style_manager.dark));
         edit_view.on_dark_changed (app.style_manager.dark);
 
@@ -154,11 +131,11 @@ public class Paper.Window : Adw.ApplicationWindow {
             update_title_buttons ();
             if (leaflet.folded) {
 	            update_editability ();
-	            notebook_notes_model.unselect_item (notebook_notes_model.selected);
+	            window_model.select_note (null);
 	            navigate_to_edit_view ();
             } else {
 	            update_editability ();
-	            notebook_notes_model.selected = current_container.loaded_notes.index_of (current_note);
+	            window_model.select_note (window_model.note);
             }
         });
         sidebar_revealer.notify["reveal-child"].connect (update_title_buttons);
@@ -170,7 +147,7 @@ public class Paper.Window : Adw.ApplicationWindow {
             else headerbar_edit_view.get_style_context ().add_class ("overlaid");
         });
 
-        button_open_in_notebook.clicked.connect (() => open_note_in_notebook (current_note, app));
+        button_open_in_notebook.clicked.connect (() => window_model.open_note_in_notebook (window_model.note));
 
         notebook_notes_list_scroller.vadjustment.notify["value"].connect (update_sidebar_scroll);
         notes_search_bar.notify["search-mode-enabled"].connect (() => on_searchbar_mode_changed (notes_search_bar.search_mode_enabled));
@@ -199,80 +176,39 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    notify["cheatsheet-enabled"].connect (update_cheatsheet_visibility);
 	    edit_view.toolbar.notify["compacted"].connect (update_cheatsheet_visibility);
 	    update_cheatsheet_visibility ();
-	}
-
-	public void init (Application app) {
-        notebooks_bar.init (this, app);
+        notebooks_bar.init (this);
 	}
 
 	private void toggle_fullscreen () {
 	    fullscreened = !fullscreened;
 	}
 
-	public void update_notebooks (Application app) {
-	    notebooks_bar.update_notebooks (app);
-	    update_selected_note ();
-	}
-
-	public void set_notebook (Notebook? notebook) {
-	    set_state (notebook == null ? State.NO_NOTEBOOK : State.NOTEBOOK, notebook); }
-
-	public void set_trash (Trash trash) { set_state (State.TRASH, trash); }
-
-	public void set_all () { set_state (State.ALL, all_notes); }
-
-	public GtkMarkdown.Buffer? set_note (Note? note) {
-	    var old_note = current_note;
-        optional_save ();
-	    current_note = note;
-        is_unsaved = false;
+	public void on_update_note (Note? note) {
+        if (leaflet.folded) {
+            if (note == null) navigate_to_notes ();
+            else navigate_to_edit_view ();
+        }
 	    update_note_title ();
 	    update_editability ();
-	    if (note != null && current_note != old_note) {
+        edit_view.buffer = window_model.current_buffer;
+	    if (note != null) {
 	        note_title.label = note.name;
 	        set_text_view_state (TextViewState.TEXT_VIEW);
-	        current_buffer = new GtkMarkdown.Buffer (note.load_text ());
-	        edit_view.buffer = current_buffer;
 	        var n = note.notebook.loaded_notes;
             // Zen mode
             // Autohide headerbar_edit_view when typing in desktop no sidebar mode
-            current_buffer.begin_user_action.connect (() => {
+            window_model.current_buffer.begin_user_action.connect (() => {
                 // Only hide in desktop no sidebar mode
                 if (!sidebar_revealer.reveal_child)
                     headerbar_edit_view_revealer.reveal_child = false;
-
-                is_unsaved = true;
+                window_model.is_unsaved = true;
             });
 	    } else {
 	        note_title.label = null;
-	        set_text_view_state (TextViewState.EMPTY_NOTEBOOK);
-	        current_buffer = null;
-	        edit_view.buffer = null;
-	        select_note (-1);
+	        set_text_view_state (window_model.state == WindowModel.State.TRASH ? TextViewState.EMPTY_TRASH : TextViewState.EMPTY_NOTEBOOK);
+	        window_model.select_note_at (-1);
         }
-        return current_buffer;
 	}
-
-	public void select_notebook (uint i) { notebooks_bar.select_notebook (i); }
-
-	public void update_selected_notebook () { notebooks_bar.select_notebook (notebooks_bar.model.selected); }
-
-    public void optional_save () {
-	    if (edit_view.is_editable && current_note != null) {
-            current_note.save (current_buffer.get_all_text ());
-        }
-    }
-
-    public void save_current_note () {
-	    if (edit_view.is_editable && current_note != null) {
-            current_note.save (current_buffer.get_all_text ());
-            is_unsaved = false;
-	    }
-    }
-
-	public void select_note (uint i) { notebook_notes_model.select_item (i, true); }
-
-	public void update_selected_note () { select_note (notebook_notes_model.selected); }
 
 	public void toast (string text) {
         var toast = new Adw.Toast (text);
@@ -292,10 +228,14 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    notes_search_entry.text = query;
 	}
 
+	public void save_current_note () {
+	    window_model.save_note ();
+	}
+
 	public void navigate_to_notes () {
 	    leaflet.visible_child = sidebar.child;
 	    if (leaflet.folded) {
-	        notebook_notes_model.unselect_item (notebook_notes_model.selected);
+	        window_model.select_note (null);
 	    }
 	}
 
@@ -324,17 +264,17 @@ public class Paper.Window : Adw.ApplicationWindow {
 	private void on_searchbar_mode_changed (bool enabled) {
 	    update_sidebar_scroll ();
 	    notebooks_bar.all_button_enabled = enabled;
-	    if (!enabled && current_state == State.ALL) {
-	        if (notebooks_bar.model.get_n_items () != 0) {
-	            select_notebook (0);
+	    if (!enabled && window_model.state == WindowModel.State.ALL) {
+	        if (window_model.notebooks_model.get_n_items () != 0) {
+	            window_model.select_notebook_at (0);
 	        } else {
-	            set_notebook (null);
+	            window_model.set_notebook (null);
 	        }
         }
 	}
 
 	private void update_editability () {
-	    edit_view.is_editable = current_note != null && current_state == State.NOTEBOOK;
+	    edit_view.is_editable = window_model.note != null && window_model.state == WindowModel.State.NOTEBOOK;
 	}
 
 	private void update_title_buttons () {
@@ -345,29 +285,21 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 	private void update_note_title () {
 	    var is_sidebar_hidden = leaflet.folded || !sidebar_revealer.reveal_child;
-        note_subtitle.label = is_sidebar_hidden ? current_note.notebook.name : null;
+        note_subtitle.label = is_sidebar_hidden ? window_model.note.notebook.name : null;
         note_subtitle.visible = is_sidebar_hidden;
 	}
 
-	private void set_state (State state, NoteContainer? container = null) {
-	    this.current_state = state;
-        button_create_note.visible = state == State.NOTEBOOK;
-        button_empty_trash.visible = state == State.TRASH;
-
-        var is_different = current_container != container;
-        var last_container = current_container;
-        current_container = container;
+	private void on_update_state (WindowModel.State state, NoteContainer? container) {
+        button_create_note.visible = state == WindowModel.State.NOTEBOOK;
+        button_empty_trash.visible = state == WindowModel.State.TRASH;
 
         var notebook = (container is Notebook) ? container as Notebook : null;
 	    update_editability ();
         recolor (notebook);
 
-        if (!is_different) return;
-
         if (container != null) {
-            container.load ();
             notebook_title.title = container.name;
-            notebook_title.subtitle = state == State.TRASH ? Strings.X_NOTES.printf (container.get_n_items ()) : null;
+            notebook_title.subtitle = state == WindowModel.State.TRASH ? Strings.X_NOTES.printf (container.get_n_items ()) : null;
 
             var factory = new Gtk.SignalListItemFactory ();
             factory.setup.connect (list_item => {
@@ -382,56 +314,13 @@ public class Paper.Window : Adw.ApplicationWindow {
             });
 	        notebook_notes_list.factory = factory;
 
-            var model = new Gtk.SingleSelection (
-                new Gtk.SortListModel (container, search_sorter)
-            );
-            model.can_unselect = true;
-		    model.selection_changed.connect (() => {
-	            var i = model.selected;
-	            if (i < container.loaded_notes.size) {
-		            var note = model.get_item (i) as Note;
-                    var app = application as Application;
-		            app.set_active_note (note);
-	                if (leaflet.folded)
-	                    navigate_to_edit_view ();
-		        }
-	            else if (leaflet.folded)
-	                navigate_to_notes ();
-		    });
-
-            if (state == State.TRASH) model.items_changed.connect (() => {
-                notebook_title.subtitle = Strings.X_NOTES.printf (container.get_n_items ());
-            });
-
-            if (notebook_notes_model != null && notebook_notes_model != model)
-                notebook_notes_model.model = null;
-	        notebook_notes_model = model;
-
-		    if (container.loaded_notes.size != 0) {
-	            var i = model.selected;
-	            if (i < container.loaded_notes.size) {
-	                var note = container.loaded_notes[(int) i];
-                    var app = application as Application;
-	                app.set_active_note (note);
-                }
-		    } else {
-		        set_text_view_state (state == State.TRASH ? TextViewState.EMPTY_TRASH : TextViewState.EMPTY_NOTEBOOK);
-		    }
-
             navigate_to_notes ();
         } else {
-            if (notebook_notes_model != null) {
-                notebook_notes_model.model = null;
-		        notebook_notes_model = null;
-            }
 	        notebook_notes_list.factory = null;
             notebook_title.title = null;
             notebook_title.subtitle = null;
 		    set_text_view_state (TextViewState.NO_NOTEBOOK);
 	    }
-
-        if (last_container != null && last_container != container)
-            last_container.unload ();
     }
 
 	private enum TextViewState {
@@ -447,21 +336,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    text_view_no_notebook.visible = state == TextViewState.NO_NOTEBOOK;
         edit_view.visible = state == TextViewState.TEXT_VIEW;
         button_more_menu.visible = state == TextViewState.TEXT_VIEW && edit_view.is_editable;
-        button_open_in_notebook.visible = state == TextViewState.TEXT_VIEW && current_state == State.ALL;
-    }
-
-    private void open_note_in_notebook (Note note, Application app) {
-        var name = note.name;
-        notes_search_bar.search_mode_enabled = false;
-        app.select_notebook (note.notebook);
-        Note? new_note_instance = null;
-        foreach (var n in current_container.loaded_notes) {
-            if (n.name == name) {
-                new_note_instance = n;
-                break;
-            }
-        }
-        select_note (current_container.loaded_notes.index_of (new_note_instance));
+        button_open_in_notebook.visible = state == TextViewState.TEXT_VIEW && window_model.state == WindowModel.State.ALL;
     }
 
 	private void recolor (Notebook? notebook) {
@@ -484,6 +359,261 @@ public class Paper.Window : Adw.ApplicationWindow {
         Gtk.StyleContext.add_provider_for_display (display, css, -1);
         last_css_provider = css;
         edit_view.theme_color = rgba;
+	}
+
+	public void request_edit_note (Note note) {
+	    var popup = new NoteCreatePopup (this, note);
+	    popup.transient_for = this;
+	    popup.title = Strings.RENAME_NOTE;
+	    popup.present ();
+	}
+
+	public void request_move_note (Note note) {
+	    var popup = new NotebookSelectionPopup (
+	        window_model.notebook_provider,
+	        Strings.MOVE_TO_NOTEBOOK,
+	        Strings.MOVE,
+	        (dest_notebook) => {
+	            if (!window_model.move_note (note, dest_notebook))
+                    toast (Strings.NOTE_X_ALREADY_EXISTS_IN_X.printf (note.name, dest_notebook.name));
+            }
+	    );
+	    popup.transient_for = this;
+	    popup.present ();
+	}
+
+	public void request_delete_note (Note note) {
+	    show_confirmation_popup (
+		    Strings.DELETE_NOTE,
+		    Strings.DELETE_NOTE_CONFIRMATION.printf (note.name),
+		    () => try_delete_note (note)
+	    );
+	}
+
+	public void request_empty_trash () {
+	    show_confirmation_popup (
+            Strings.EMPTY_TRASH,
+	        Strings.EMPTY_TRASH_CONFIRMATION,
+	        () => {
+	            window_model.update_note (null);
+	            window_model.empty_trash ();
+	        }
+	    );
+	}
+
+	public void request_new_notebook () {
+		var popup = new NotebookCreatePopup (this);
+		popup.transient_for = this;
+		popup.title = Strings.NEW_NOTEBOOK;
+		popup.present ();
+	}
+
+	public void request_edit_notebook (Notebook notebook) {
+		var popup = new NotebookCreatePopup (this, notebook);
+		popup.transient_for = this;
+		popup.title = Strings.EDIT_NOTEBOOK;
+		popup.present ();
+	}
+
+	public void request_delete_notebook (Notebook notebook) {
+	    show_confirmation_popup (
+		    Strings.DELETE_NOTEBOOK,
+		    Strings.DELETE_NOTEBOOK_CONFIRMATION.printf (notebook.name),
+		    () => try_delete_notebook (notebook)
+	    );
+	}
+
+	public void try_create_note (string name) {
+	    if (name.contains (".") || name.contains ("/")) {
+            toast (Strings.NOTE_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
+            return;
+	    }
+	    if (name.replace(" ", "").length == 0) {
+            toast (Strings.NOTE_NAME_SHOULDNT_BE_BLANK);
+            return;
+	    }
+		try {
+		    window_model.create_note (name);
+	    } catch (ProviderError e) {
+	        if (e is ProviderError.ALREADY_EXISTS)
+	            toast (Strings.NOTE_X_ALREADY_EXISTS.printf (name));
+	        else if (e is ProviderError.COULDNT_CREATE_FILE)
+	            toast (Strings.COULDNT_CREATE_NOTE);
+	        else
+	            toast (Strings.UNKNOWN_ERROR);
+	    }
+	}
+
+	public bool try_change_note (Note note, string name) {
+	    if (name.contains (".") || name.contains ("/")) {
+            toast (Strings.NOTE_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
+            return false;
+	    }
+	    if (name.replace(" ", "").length == 0) {
+            toast (Strings.NOTE_NAME_SHOULDNT_BE_BLANK);
+            return false;
+	    }
+		try {
+		    window_model.change_note (note, name);
+	        return true;
+	    } catch (ProviderError e) {
+	        if (e is ProviderError.ALREADY_EXISTS)
+	            toast (Strings.NOTE_X_ALREADY_EXISTS.printf (name));
+	        else if (e is ProviderError.COULDNT_CREATE_FILE)
+	            toast (Strings.COULDNT_CHANGE_NOTE);
+	        else
+	            toast (Strings.UNKNOWN_ERROR);
+	        return false;
+	    }
+	}
+
+	public void try_delete_note (Note note) {
+		try {
+	        window_model.update_note (null);
+            //upon deletion of a note, we will select the next note DOWN the list (or none).
+	        var idx = note.notebook.get_index_of (note);
+
+	        note.notebook.delete_note (note);
+
+	        var item_count = note.notebook.get_n_items ();
+	        Note? new_active_note = null;
+	        if (item_count == 1 || idx == 0) { // selecting down, so first item or a list of 2 is the same.
+	            new_active_note = (Note) note.notebook.get_item (0);
+	        } else if (item_count > 1){
+	            new_active_note = (Note) note.notebook.get_item (idx - 1);
+	        }
+
+	        window_model.update_note (new_active_note);
+
+            //if we are removing the last item we need to select a different index.
+            //we really should be doing this somewhere else.
+	        if (idx == item_count)
+	            window_model.select_note_at (idx - 1);
+	        else
+	            window_model.select_note_at (idx);
+
+	        window_model.update_selected_note ();
+	    } catch (ProviderError e) {
+	        if (e is ProviderError.COULDNT_DELETE)
+	            toast (Strings.COULDNT_DELETE_NOTE);
+	        else
+	            toast (Strings.UNKNOWN_ERROR);
+	    }
+	}
+
+	public void try_export_note (Note note, File file) {
+	    FileUtils.save_to (file, window_model.current_buffer.get_all_text ());
+        toast (Strings.SAVED_X_TO_X.printf (note.name, file.get_path ()));
+	}
+
+	public void try_restore_note (Note note) {
+		try {
+	        window_model.restore_note (note);
+	        {
+	            var n = window_model.notebook_provider.notebooks;
+	            var i = 0;
+	            while (i < n.size) {
+	                if (n[i].name == note.notebook.name)
+	                    break;
+	                i++;
+	            }
+	            if (i == n.size) {
+	                window_model.notebook_provider.unload ();
+	                window_model.notebook_provider.load ();
+	                window_model.update_notebooks ();
+	            }
+	        }
+            window_model.select_notebook (note.notebook);
+	    } catch (ProviderError e) {
+	        if (e is ProviderError.COULDNT_MOVE) {
+	            toast (Strings.COULDNT_RESTORE_NOTE);
+	        } else if (e is ProviderError.ALREADY_EXISTS) {
+	            toast (Strings.NOTE_X_ALREADY_EXISTS_IN_X.printf (note.name, note.notebook.name));
+	        } else {
+	            toast (Strings.UNKNOWN_ERROR);
+	        }
+	    }
+	}
+
+	public void try_create_notebook (NotebookInfo info) {
+	    if (info.name.contains (".") || info.name.contains ("/")) {
+            toast (Strings.NOTEBOOK_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
+            return;
+	    }
+	    if (info.name.replace(" ", "").length == 0) {
+            toast (Strings.NOTEBOOK_NAME_SHOULDNT_BE_BLANK);
+            return;
+	    }
+		try {
+	        window_model.create_notebook (info);
+	    } catch (ProviderError e) {
+	        if (e is ProviderError.ALREADY_EXISTS)
+	            toast (Strings.NOTEBOOK_X_ALREADY_EXISTS.printf (info.name));
+	        else if (e is ProviderError.COULDNT_CREATE_FILE)
+	            toast (Strings.COULDNT_CREATE_NOTEBOOK);
+	        else
+	            toast (Strings.UNKNOWN_ERROR);
+	    }
+	}
+
+	public void try_change_notebook (Notebook notebook, NotebookInfo info) {
+	    if (info.name.contains (".") || info.name.contains ("/")) {
+            toast (Strings.NOTEBOOK_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
+            return;
+	    }
+	    if (info.name.replace(" ", "").length == 0) {
+            toast (Strings.NOTEBOOK_NAME_SHOULDNT_BE_BLANK);
+            return;
+	    }
+		try {
+	        window_model.change_notebook (notebook, info);
+	    } catch (ProviderError e) {
+	        if (e is ProviderError.ALREADY_EXISTS)
+	            toast (Strings.NOTEBOOK_X_ALREADY_EXISTS.printf (info.name));
+	        else if (e is ProviderError.COULDNT_CREATE_FILE)
+	            toast (Strings.COULDNT_CHANGE_NOTEBOOK);
+	        else
+	            toast (Strings.UNKNOWN_ERROR);
+	    }
+	}
+
+	public void try_delete_notebook (Notebook notebook) {
+		try {
+	        window_model.delete_notebook (notebook);
+	    } catch (ProviderError e) {
+	        if (e is ProviderError.COULDNT_DELETE)
+	            toast (Strings.COULDNT_DELETE_NOTEBOOK);
+	        else
+	            toast (Strings.UNKNOWN_ERROR);
+	    }
+	}
+
+	public void show_confirmation_popup (
+	    string action_title,
+	    string action_description,
+	    owned Runnable callback
+	) {
+        var dialog = new Gtk.MessageDialog (
+            this,
+            Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
+            Gtk.MessageType.QUESTION,
+            Gtk.ButtonsType.CANCEL,
+            action_title
+        );
+
+        dialog.secondary_text = action_description;
+
+        dialog.add_button (action_title, 1)
+            .get_style_context ()
+            .add_class ("destructive-action");
+
+        dialog.response.connect ((response_id) => {
+            if (response_id == 1) {
+	            callback ();
+	        }
+            dialog.close ();
+        });
+		dialog.present ();
 	}
 }
 

@@ -12,8 +12,8 @@ public class Paper.NotebookIcon : NotebookPreview {
 
     private Notebook _notebook;
 
-	public NotebookIcon (Application app) {
-	    this.app = app;
+	public NotebookIcon (Window window) {
+	    this.window = window;
 	    var long_press = new Gtk.GestureLongPress ();
 	    long_press.pressed.connect (show_popup);
 	    add_controller (long_press);
@@ -27,20 +27,20 @@ public class Paper.NotebookIcon : NotebookPreview {
 	        var note = v.get_object () as Note;
 	        if (note.notebook == _notebook)
 	            return false;
-	        app.move_note (note, _notebook);
+	        window.window_model.move_note (note, _notebook);
 	        return true;
 	    });
 	    add_controller (drop_target);
 	}
 
-	private Application app;
+	private Window window;
     private Gtk.Popover? current_popover = null;
 
 	private void show_popup (double x, double y) {
 	    if (current_popover != null) {
 	        current_popover.popdown();
 	    }
-	    var popover = new NotebookMenuPopover (app, _notebook);
+	    var popover = new NotebookMenuPopover (window, _notebook);
 	    popover.closed.connect (() => {
 	        current_popover.unparent ();
 	        current_popover = null;

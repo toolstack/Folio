@@ -1,11 +1,11 @@
 
 public class Paper.NotebookSidebarItem : NotebookListItem {
 
-	private Application app;
+	private Window window;
     private Gtk.Popover? current_popover = null;
 
-	public NotebookSidebarItem (Application app) {
-	    this.app = app;
+	public NotebookSidebarItem (Window window) {
+	    this.window = window;
 	    var long_press = new Gtk.GestureLongPress ();
 	    long_press.pressed.connect (show_popup);
 	    add_controller (long_press);
@@ -19,7 +19,7 @@ public class Paper.NotebookSidebarItem : NotebookListItem {
 	        var note = v.get_object () as Note;
 	        if (note.notebook == notebook)
 	            return false;
-	        app.move_note (note, notebook);
+	        window.window_model.move_note (note, notebook);
 	        return true;
 	    });
 	    add_controller (drop_target);
@@ -29,7 +29,7 @@ public class Paper.NotebookSidebarItem : NotebookListItem {
 	    if (current_popover != null) {
 	        current_popover.popdown();
 	    }
-	    var popover = new NotebookMenuPopover (app, notebook);
+	    var popover = new NotebookMenuPopover (window, notebook);
 	    popover.closed.connect (() => {
 	        current_popover.unparent ();
 	        current_popover = null;

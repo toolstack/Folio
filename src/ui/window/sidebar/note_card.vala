@@ -10,7 +10,7 @@ public class Paper.NoteCard : Gtk.Box {
 	        if (value != null) {
 	            label.label = value.name;
 	            var time_string = value.time_modified.format ("%e %b, %R").strip ();
-	            subtitle.label = _window.current_state == Window.State.NOTEBOOK ? time_string : @"%s - %s".printf (time_string, value.notebook.name);
+	            subtitle.label = _window.window_model.state == WindowModel.State.NOTEBOOK ? time_string : @"%s - %s".printf (time_string, value.notebook.name);
 	            tooltip_text = value.name;
                 var v = Value (typeof (Note));
                 v.set_object (value);
@@ -93,7 +93,7 @@ public class Paper.NoteCard : Gtk.Box {
 
 	private void rename (string name) {
         exit_rename ();
-        if (get_app ().try_change_note (_note, name))
+        if (_window.try_change_note (_note, name))
             note = _note;
 	}
 
@@ -102,9 +102,9 @@ public class Paper.NoteCard : Gtk.Box {
 	        current_popover.popdown();
 	    }
 	    var popover = new NoteMenuPopover (
-	        get_app (),
+	        _window,
 	        _note,
-	        _window.current_state == Window.State.TRASH,
+	        _window.window_model.state == WindowModel.State.TRASH,
 	        request_rename
 	    );
 	    popover.closed.connect (() => {
@@ -118,6 +118,4 @@ public class Paper.NoteCard : Gtk.Box {
 	    popover.popup ();
 	    current_popover = popover;
 	}
-
-	private Application get_app () { return (Application) _window.application; }
 }

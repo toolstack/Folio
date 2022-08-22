@@ -5,6 +5,7 @@ paper_sources = [
   'ui/strings.vala',
 
   'ui/window/window.vala',
+  'ui/window/window_model.vala',
   'ui/preferences/preferences.vala',
 
   'ui/edit_view/edit_view.vala',

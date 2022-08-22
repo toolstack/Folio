@@ -8,14 +8,14 @@ public class Paper.NotebookMenuPopover : Gtk.Popover {
 	[GtkChild]
 	unowned Gtk.Button button_trash;
 
-	public NotebookMenuPopover (Application app, Notebook notebook) {
+	public NotebookMenuPopover (Window window, Notebook notebook) {
         button_edit.clicked.connect (() => {
             popdown ();
-            app.request_edit_notebook (notebook);
+            window.request_edit_notebook (notebook);
         });
         button_trash.clicked.connect (() => {
             popdown ();
-            app.request_delete_notebook (notebook);
+            window.request_delete_notebook (notebook);
         });
 	}
 }
