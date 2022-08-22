@@ -299,31 +299,31 @@ window.tiled-bottom .notebooks-bar > .trash-button:checked {
   outline: none;
 }
 
-.notebook-sidebar listview row > box {
+.notebook-sidebar listview row > .note-card {
   transition: box-shadow .1s, background-color .2s, outline .1s, outline-offset .1s;
   outline: 3px solid transparent;
   outline-offset: 5px;
-  padding: 11px 10px;
+  padding: 7px 10px 12px 10px;
   margin: 3px 6px;
   border-radius: 8px;
 }
 
-.notebook-sidebar listview row:hover:not(:selected):not(:active) > box:not(.dragged) {
+.notebook-sidebar listview row:hover:not(:selected):not(:active) > .note-card:not(.dragged) {
   transition: box-shadow .2s, background-color .1s, outline .1s, outline-offset .1s;
   background-color: rgba(0, 0, 0, .05);
 }
 
-.notebook-sidebar listview row:active > box:not(.dragged) {
+.notebook-sidebar listview row:active > .note-card:not(.dragged) {
   transition: box-shadow .3s, background-color .4s, outline .1s, outline-offset .1s;
   background-color: rgba(0, 0, 0, .12);
 }
 
-.notebook-sidebar listview row:selected > box:not(.dragged) {
+.notebook-sidebar listview row:selected > .note-card:not(.dragged) {
   transition: box-shadow .2s, background-color 0, outline .1s, outline-offset .1s;
   background-color: @selected_bg_color;
 }
 
-.notebook-sidebar listview row:focus:not(:selected):not(:active):not(.dragged) > box {
+.notebook-sidebar listview row:focus-visible:not(:selected):not(:active):not(.dragged) > .note-card {
   transition: box-shadow .1s, background-color .2s, outline .2s, outline-offset .2s;
   outline: 2px solid alpha(@accent_color, .5);
   outline-offset: -1px;
