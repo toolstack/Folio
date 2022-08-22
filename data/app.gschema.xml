@@ -52,6 +52,9 @@
     <key name="maximized" type="b">
       <default>false</default>
     </key>
+    <key name="text-scale" type="i">
+      <default>100</default>
+    </key>
     <key name="note" type="s">
       <default>''</default>
     </key>

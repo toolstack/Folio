@@ -60,6 +60,9 @@ public class Paper.EditView : Gtk.Box {
 	    settings.bind ("note-font-monospace", text_view, "font-monospace", SettingsBindFlags.DEFAULT);
 	    settings.changed["note-font"].connect(() => set_note_font (settings.get_string ("note-font")));
 
+	    var window_state = new Settings (@"$(Config.APP_ID).WindowState");
+	    window_state.bind ("text-scale", this, "scale", SettingsBindFlags.DEFAULT);
+
         notify["toolbar-enabled"].connect (update_toolbar_visibility);
         notify["is-editable"].connect (() => {
             update_toolbar_visibility ();
