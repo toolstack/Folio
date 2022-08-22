@@ -86,7 +86,6 @@ public class Paper.Application : Adw.Application {
 
         style_manager.notify["dark"].connect (() => update_theme ());
         style_manager.notify["high-contrast"].connect (() => update_theme ());
-        update_theme ();
 	}
 
 	public override void activate () {
@@ -96,6 +95,7 @@ public class Paper.Application : Adw.Application {
 			main_window = new Window (this);
 			win = main_window;
 		}
+        update_theme ();
 		execute_temp_command ();
 		win.present ();
 	}
