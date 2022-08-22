@@ -72,7 +72,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 		{ "toggle-sidebar", toggle_sidebar_visibility },
 		{ "search-notes", toggle_search },
-		{ "save-note", () => save_current_note },
+		{ "save-note", save_current_note },
 		{ "toggle-fullscreen", toggle_fullscreen },
 	};
 
@@ -115,6 +115,10 @@ public class Paper.Window : Adw.ApplicationWindow {
         });
         var font_scale = new FontScale (edit_view);
 	    more_popover.add_child (font_scale, "font-scale");
+
+	    window_model.notify["is-unsaved"].connect (() => {
+	        save_indicator.visible = window_model.is_unsaved;
+	    });
 	}
 
 	public Window (Application app) {
@@ -229,6 +233,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 	}
 
 	public void save_current_note () {
+	    message ("saving");
 	    window_model.save_note ();
 	}
 
