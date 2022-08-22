@@ -8,7 +8,7 @@ public class Paper.FuzzyStringSorter : Gtk.Sorter {
     public string? target {
         get { return _target; }
         set {
-            _target = value;
+            _target = value.down ().normalize ();
             changed (Gtk.SorterChange.DIFFERENT);
         }
     }
@@ -39,6 +39,6 @@ public class Paper.FuzzyStringSorter : Gtk.Sorter {
         //_expression.evaluate (item, val);
         var str = ((Note) item).name;
         if (str == null) return 0;
-        return Util.damerau_levenshtein_distance (str, _target);
+        return Util.search_distance (str.down ().normalize (), _target);
     }
 }

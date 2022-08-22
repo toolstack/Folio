@@ -2,6 +2,24 @@
 
 namespace Util {
 
+    public int search_distance (string item, string query) {
+        var words = item.split_set (" _");
+        var query_words = query.split_set (" _");
+        var base_distance = 0;
+        var min_word = int.MAX;
+        foreach (var i in words) {
+            if (i.length == 0) continue;
+            var min = int.MAX;
+            foreach (var q in query_words) {
+                if (q.length == 0) continue;
+                min = int.min (min, damerau_levenshtein_distance (i, q, 2, 4, 6, 1));
+            }
+            base_distance += min / words.length;
+            min_word = int.min (min_word, min / words.length);
+        }
+        return (base_distance + min_word) / 2;
+    }
+
     /**
      * This implementation is an adaptation based on Kevin L. Stern's work
      * https://github.com/KevinStern/software-and-algorithms
@@ -13,10 +31,10 @@ namespace Util {
     public int damerau_levenshtein_distance (
         string source,
         string target,
-        int insert_cost = 2,
-        int delete_cost = 3,
-        int replace_cost = 2,
-        int swap_cost = 1
+        int insert_cost,
+        int delete_cost,
+        int replace_cost,
+        int swap_cost
     ) {
         int delete_distance = 0;
         int insert_distance = 0;
@@ -33,37 +51,37 @@ namespace Util {
             return source.length * delete_cost;
 
         var table = new int[source.length, target.length];
-        var sourceIndexByCharacter = new Gee.HashMap<char, int> ();
+        var sourceIndexByCharacter = new Gee.HashMap<unichar, int> ();
 
-        if (source[0] != target[0])
+        if (source.get_char (0) != target.get_char (0))
             table[0, 0] = int.min (replace_cost, delete_cost + insert_cost);
 
-        sourceIndexByCharacter.@set (source[0], 0);
+        sourceIndexByCharacter.@set (source.get_char (0), 0);
 
         for (int i = 1; i < source.length; i++) {
             delete_distance = table[i - 1, 0] + delete_cost;
             insert_distance = (i + 1) * delete_cost + insert_cost;
-            match_distance = i * delete_cost + (source[i] == target[0] ? 0 : replace_cost);
+            match_distance = i * delete_cost + (source.get_char (i) == target.get_char (0) ? 0 : replace_cost);
             table[i, 0] = int.min (int.min (delete_distance, insert_distance), match_distance);
         }
 
         for (int j = 1; j < target.length; j++) {
             delete_distance = (j + 1) * insert_cost + delete_cost;
             insert_distance = table[0, j - 1] + insert_cost;
-            match_distance = j * insert_cost + (source[0] == target[j] ? 0 : replace_cost);
+            match_distance = j * insert_cost + (source.get_char (0) == target.get_char (j) ? 0 : replace_cost);
             table[0, j] = int.min (int.min (delete_distance, insert_distance), match_distance);
         }
 
         for (int i = 1; i < source.length; i++) {
-            maxSourceLetterMatchIndex = source[i] == target[0] ? 0 : -1;
+            maxSourceLetterMatchIndex = source.get_char (i) == target.get_char (0) ? 0 : -1;
             for (int j = 1; j < target.length; j++) {
-                candidateSwapIndex = sourceIndexByCharacter.@get (target[j]);
+                candidateSwapIndex = sourceIndexByCharacter.@get (target.get_char (j));
                 jSwap = maxSourceLetterMatchIndex;
                 delete_distance = table[i - 1, j] + delete_cost;
                 insert_distance = table[i, j - 1] + insert_cost;
                 match_distance = table[i - 1, j - 1];
 
-                if (source[i] != target[j])
+                if (source.get_char (i) != target.get_char (j))
                     match_distance += replace_cost;
                 else
                     maxSourceLetterMatchIndex = j;
@@ -80,7 +98,7 @@ namespace Util {
                 else swap_distance = int.MAX;
                 table[i, j] = int.min (int.min (int.min (delete_distance, insert_distance), match_distance), swap_distance);
             }
-            sourceIndexByCharacter.@set (source[i], i);
+            sourceIndexByCharacter.@set (source.get_char (i), i);
         }
         return table[source.length - 1, target.length - 1];
     }

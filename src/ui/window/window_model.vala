@@ -138,7 +138,7 @@ public class Paper.WindowModel : Object {
 		    });
 	        notes_model = model;
 
-            if (notes_model.get_n_items () != 0) {
+            if (container.loaded_notes.size != 0) {
 	            select_note_at (-1);
 	            select_note_at (0);
             }
@@ -148,7 +148,7 @@ public class Paper.WindowModel : Object {
 
 	    state_changed (state, note_container);
 
-        if (last_container != null && last_container != container)
+        if (last_container != null && last_container != container && state != State.ALL)
             last_container.unload ();
     }
 
