@@ -113,7 +113,7 @@ public class Paper.NoteCard : Gtk.Box {
 	    });
 	    popover.autohide = true;
 	    popover.has_arrow = true;
-        popover.position = Gtk.PositionType.TOP;
+        popover.position = Gtk.PositionType.BOTTOM;
 	    popover.set_parent (label);
 	    popover.popup ();
 	    current_popover = popover;
