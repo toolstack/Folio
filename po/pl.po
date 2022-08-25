@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: io.posidon.Paper\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-19 17:20+0200\n"
-"PO-Revision-Date: 2022-07-12 00:14+0200\n"
+"PO-Revision-Date: 2022-08-23 20:07+0200\n"
 "Last-Translator: Marcin Wolski <martinwolski04@gmail.com>\n"
 "Language-Team: polish <->\n"
 "Language: pl\n"
@@ -65,14 +65,12 @@ msgid "The font notes will be displayed in"
 msgstr "Czcionka używana w notatkach"
 
 #: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:29
-#, fuzzy
 msgid "Monospace Font"
-msgstr "Czcionka Notatek"
+msgstr "Monospace Font"
 
 #: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:30
-#, fuzzy
 msgid "The font code will be displayed in"
-msgstr "Czcionka używana w notatkach"
+msgstr "Czcionka używana dla kodu"
 
 #: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:44
 msgid "OLED Mode"
@@ -369,17 +367,15 @@ msgstr "Wstaw kod"
 #: src/ui/edit_view/toolbar/toolbar.blp:90
 #: src/ui/edit_view/toolbar/toolbar.blp:188
 msgid "Insert Horizontal Rule"
-msgstr ""
+msgstr "Wstaw linię poziomą"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:103
-#, fuzzy
 msgid "Format"
 msgstr "Formatowanie"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:167
-#, fuzzy
 msgid "Insert"
-msgstr "Wstaw link"
+msgstr "Wstaw"
 
 #: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
 msgid "Confirm"
@@ -394,9 +390,8 @@ msgid "Edit Note"
 msgstr "Edytuj notatkę"
 
 #: src/ui/popup/shortcut_window.blp:27
-#, fuzzy
 msgid "Save Note"
-msgstr "Nowa notatka"
+msgstr "Zapisz notatkę"
 
 #: src/ui/popup/shortcut_window.blp:34
 msgid "Notebook"
@@ -435,9 +430,8 @@ msgid "Pick a font for displaying the notes' content"
 msgstr "Wybierz czcionkę używaną przez notatki"
 
 #: src/ui/preferences/preferences.blp:35
-#, fuzzy
 msgid "Pick a font for displaying code"
-msgstr "Wybierz czcionkę używaną przez notatki"
+msgstr "Wybierz czcionkę używaną do kodu"
 
 #: src/ui/preferences/preferences.blp:45
 msgid "Makes the dark theme pitch black"
@@ -445,11 +439,11 @@ msgstr "Sprawia, że ​​ciemny motyw jest całkowicie czarny"
 
 #: src/ui/preferences/preferences.blp:55
 msgid "Enable Toolbar"
-msgstr ""
+msgstr "Włącz Pasek Narzędzi"
 
 #: src/ui/preferences/preferences.blp:65
 msgid "3-Pane Layout"
-msgstr ""
+msgstr "3-Kolumnowy Interfejs"
 
 #: src/ui/preferences/preferences.blp:77
 msgid "Notes Storage Location"
@@ -461,15 +455,15 @@ msgstr "Folder, w którym przechowywane są zeszyty (wymaga restartu aplikacji)
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
 msgid "Follow system style"
-msgstr ""
+msgstr "Używaj stylu systemu"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:23
 msgid "Light style"
-msgstr ""
+msgstr "Jasny styl"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:32
 msgid "Dark style"
-msgstr ""
+msgstr "Ciemny styl"
 
 #: src/ui/window/app_menu/app_menu.blp:24
 msgid "_New Notebook"
