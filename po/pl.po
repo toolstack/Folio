@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: io.posidon.Paper\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-19 17:20+0200\n"
-"PO-Revision-Date: 2022-08-23 20:07+0200\n"
+"PO-Revision-Date: 2022-08-25 20:11+0200\n"
 "Last-Translator: Marcin Wolski <martinwolski04@gmail.com>\n"
 "Language-Team: polish <->\n"
 "Language: pl\n"
@@ -66,7 +66,7 @@ msgstr "Czcionka używana w notatkach"
 
 #: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:29
 msgid "Monospace Font"
-msgstr "Monospace Font"
+msgstr "Czcionka Monospace"
 
 #: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:30
 msgid "The font code will be displayed in"
