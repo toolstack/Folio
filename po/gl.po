@@ -1,0 +1,582 @@
+# Galician translations for io.posidon.Paper package.
+# Copyright (C) 2022 THE io.posidon.Paper'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the io.posidon.Paper package.
+# Fran Dieguez <frandieguez@gnome.org>, 2022.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: io.posidon.Paper\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-07-19 17:20+0200\n"
+"PO-Revision-Date: 2022-09-14 22:56+0200\n"
+"Last-Translator: Fran Dieguez <frandieguez@gnome.org>\n"
+"Language-Team: Galician <proxecto@trasno.gal>\n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"X-Generator: Gtranslator 40.0\n"
+
+#: data/app.desktop.in:8 src/ui/strings.vala:3
+msgid "Paper"
+msgstr "Paper"
+
+#: data/app.desktop.in:9
+msgid "Notes Manager"
+msgstr "Xestor de notas"
+
+#: data/app.desktop.in:10
+msgid "Take notes"
+msgstr "Tomar notas"
+
+#: data/app.desktop.in:12
+msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
+msgstr ""
+"Caderno;Nota;Notas;Texto;Markdown;Notepad;Escribir;Escola;Post-it;Pegañento;"
+
+#: data/app.desktop.in:21 src/ui/strings.vala:8
+#: src/ui/popup/shortcut_window.blp:17 src/ui/window/window.blp:47
+#: src/ui/window/window.blp:121
+msgid "New Note"
+msgstr "Nova nota"
+
+#: data/app.desktop.in:25 src/ui/strings.vala:14
+#: src/ui/popup/shortcut_window.blp:37 src/ui/window/window.blp:146
+msgid "New Notebook"
+msgstr "Novo caderno"
+
+#: data/app.desktop.in:29 src/ui/strings.vala:39
+#: src/ui/edit_view/toolbar/toolbar.blp:175 src/ui/window/window.blp:219
+msgid "Markdown Cheatsheet"
+msgstr "Guía de Markdown"
+
+#: data/app.desktop.in:33 src/ui/popup/shortcut_window.blp:62
+msgid "Preferences"
+msgstr "Preferencias"
+
+#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:15
+msgid "Note Font"
+msgstr "Tipo de letra da nota"
+
+#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:16
+msgid "The font notes will be displayed in"
+msgstr "O tipo de letra no que se mostran as notas"
+
+#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:29
+msgid "Monospace Font"
+msgstr "Tipo de letra monoespaciado"
+
+#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:30
+msgid "The font code will be displayed in"
+msgstr "O tipo de letra no que se mostra o código"
+
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:44
+msgid "OLED Mode"
+msgstr "Modo OLED"
+
+#: data/app.gschema.xml:26
+msgid "Notes Directory"
+msgstr "Cartafol de notas"
+
+#: data/app.gschema.xml:27
+msgid "Where the notebooks are stored"
+msgstr "Onde se almacenan os cadernos de notas"
+
+#: data/app.metainfo.xml.in:5
+msgid "Take notes in Markdown"
+msgstr "Tomar notas en Markdown"
+
+#: data/app.metainfo.xml.in:7
+msgid "Create notebooks, take notes in markdown"
+msgstr "Crear cadernos, tomar notas en markdown"
+
+#: data/app.metainfo.xml.in:8
+msgid "Features:"
+msgstr "Características:"
+
+#: data/app.metainfo.xml.in:10
+msgid "Almost WYSIWYG markdown rendering"
+msgstr "Case renderizado markdown WYSIWYG"
+
+#: data/app.metainfo.xml.in:11
+msgid "Searchable through GNOME search"
+msgstr "Buscábel mediante a busca de GNOME"
+
+#: data/app.metainfo.xml.in:12
+msgid "Highlight &amp; Strikethrough text formatting"
+msgstr "Realce e formatado de texto riscado"
+
+#: data/app.metainfo.xml.in:13
+msgid "App recoloring based on notebook color"
+msgstr "Recoloreado da aplicación baseado na cor do caderno"
+
+#: data/app.metainfo.xml.in:14
+msgid "Trash can"
+msgstr "Lixo"
+
+#: data/app.metainfo.xml.in:143
+msgid "Markdown document"
+msgstr "Documento Markdown"
+
+#: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:125
+msgid "Trash"
+msgstr "Lixo"
+
+#: src/ui/strings.vala:5
+#, c-format
+msgid "%d Notes"
+msgstr "%d notas"
+
+#: src/ui/strings.vala:6
+msgid "Are you sure you want to delete everything in the trash?"
+msgstr "Are you sure you want to delete everything in the trash?"
+
+#: src/ui/strings.vala:7 src/ui/window/window.blp:54
+msgid "Empty Trash"
+msgstr "Baleirar lixo"
+
+#: src/ui/strings.vala:9
+msgid "Create/choose a notebook before creating a note"
+msgstr "Cree/escolla un caderno antes de crear unha nota"
+
+#: src/ui/strings.vala:10
+msgid "Please, select a note to edit"
+msgstr "Seleccione a nota a editar"
+
+#: src/ui/strings.vala:11
+msgid "Please, select a note to delete"
+msgstr "Seleccione a nota a eliminar"
+
+#: src/ui/strings.vala:12
+msgid "Export Note"
+msgstr "Exportar nota"
+
+#: src/ui/strings.vala:13
+msgid "Export"
+msgstr "Exportar"
+
+#: src/ui/strings.vala:15
+msgid "Rename Note"
+msgstr "Renomear nota"
+
+#: src/ui/strings.vala:16
+msgid "Move to Notebook"
+msgstr "Mover ao caderno"
+
+#: src/ui/strings.vala:17
+msgid "Move"
+msgstr "Mover"
+
+#: src/ui/strings.vala:18
+#, c-format
+msgid "Note “%s” already exists in notebook “%s”"
+msgstr "A nota «%s» xa existe no caderno «%s»"
+
+#: src/ui/strings.vala:19
+#, c-format
+msgid "Are you sure you want to delete the note “%s”?"
+msgstr "Ten certeza que quere eliminar a nota «%s»?"
+
+#: src/ui/strings.vala:20
+msgid "Delete Note"
+msgstr "Eliminar nota"
+
+#: src/ui/strings.vala:21
+#, c-format
+msgid "Are you sure you want to delete the notebook “%s”?"
+msgstr "Ten certeza que quere eliminar o caderno «%s»?"
+
+#: src/ui/strings.vala:22
+msgid "Delete Notebook"
+msgstr "Eliminar caderno"
+
+#: src/ui/strings.vala:23 src/ui/popup/shortcut_window.blp:42
+msgid "Edit Notebook"
+msgstr "Editar caderno"
+
+#: src/ui/strings.vala:24
+msgid "Note name shouldn’t contain “.” or “/”"
+msgstr "O nome da nota non debe conter «.» ou «/»"
+
+#: src/ui/strings.vala:25
+msgid "Note name shouldn’t be blank"
+msgstr "O nome da nota non debe estar baleiro"
+
+#: src/ui/strings.vala:26
+#, c-format
+msgid "Note “%s” already exists"
+msgstr "Xa existe a nota «%s»"
+
+#: src/ui/strings.vala:27
+msgid "Couldn’t create note"
+msgstr "Non foi posíbel crear unha nota"
+
+#: src/ui/strings.vala:28
+msgid "Couldn’t change note"
+msgstr "Non foi posíbel cambiar a nota"
+
+#: src/ui/strings.vala:29
+msgid "Couldn’t delete note"
+msgstr "Non foi posíbel eliminar a nota"
+
+#: src/ui/strings.vala:30
+msgid "Couldn’t restore note"
+msgstr "Non foi posíbel restaurar a nota"
+
+#: src/ui/strings.vala:31
+#, c-format
+msgid "Saved “%s” to “%s”"
+msgstr "Gardar «%s» en «%s»"
+
+#: src/ui/strings.vala:32
+msgid "Unknown error"
+msgstr "Erro descoñecido"
+
+#: src/ui/strings.vala:33
+msgid "Notebook name shouldn’t contain “.” or “/”"
+msgstr "O nome do caderno non debe conter «.» ou «/»"
+
+#: src/ui/strings.vala:34
+msgid "Notebook name shouldn’t be blank"
+msgstr "O nome do caderno non debería estar baleiro"
+
+#: src/ui/strings.vala:35
+#, c-format
+msgid "Notebook “%s” already exists"
+msgstr "Xa existe o caderno «%s»"
+
+#: src/ui/strings.vala:36
+msgid "Couldn’t create notebook"
+msgstr "Non foi posíbel crear un caderno"
+
+#: src/ui/strings.vala:37
+msgid "Couldn’t change notebook"
+msgstr "Non foi posíbel cambiar o caderno"
+
+#: src/ui/strings.vala:38
+msgid "Couldn’t delete notebook"
+msgstr "Non foi posíbel eliminar o caderno"
+
+#: src/ui/strings.vala:40
+msgid "Search"
+msgstr "Buscar"
+
+#: src/ui/strings.vala:41 src/ui/window/sidebar/note_menu.blp:36
+msgid "Rename"
+msgstr "Renomear"
+
+#: src/ui/strings.vala:42
+msgid "Couldn’t find an app to handle file uris"
+msgstr ""
+"Non foi posíbel atopar unha aplicación que xestione os uris do ficheiro"
+
+#: src/ui/strings.vala:43
+msgid "Apply"
+msgstr "Aplicar"
+
+#: src/ui/strings.vala:44
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:34
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: src/ui/strings.vala:45
+msgid "Pick where the notebooks will be stored"
+msgstr "Escoller onde se almacenan os cadernos"
+
+#: src/ui/strings.vala:46 src/ui/window/notebooks_bar/notebooks_bar.blp:80
+msgid "All Notes"
+msgstr "Todas as notas"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:25
+#: src/ui/edit_view/toolbar/toolbar.blp:116
+#: src/ui/widgets/markdown/heading_popover.blp:48
+msgid "Plain Text"
+msgstr "Texto plano"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:26
+#: src/ui/edit_view/toolbar/toolbar.blp:117
+#: src/ui/widgets/markdown/heading_popover.blp:12
+msgid "Heading 1"
+msgstr "Cabeceira 1"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:27
+#: src/ui/edit_view/toolbar/toolbar.blp:118
+#: src/ui/widgets/markdown/heading_popover.blp:18
+msgid "Heading 2"
+msgstr "Cabeceira 2"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:28
+#: src/ui/edit_view/toolbar/toolbar.blp:119
+#: src/ui/widgets/markdown/heading_popover.blp:24
+msgid "Heading 3"
+msgstr "Cabeceira 3"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:29
+#: src/ui/edit_view/toolbar/toolbar.blp:120
+#: src/ui/widgets/markdown/heading_popover.blp:30
+msgid "Heading 4"
+msgstr "Cabeceira 4"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:30
+#: src/ui/edit_view/toolbar/toolbar.blp:121
+#: src/ui/widgets/markdown/heading_popover.blp:36
+msgid "Heading 5"
+msgstr "Cabeceira 5"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:31
+#: src/ui/edit_view/toolbar/toolbar.blp:122
+#: src/ui/widgets/markdown/heading_popover.blp:42
+msgid "Heading 6"
+msgstr "Cabeceira 6"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:43
+#: src/ui/edit_view/toolbar/toolbar.blp:133
+#: src/ui/edit_view/toolbar/toolbar.blp:194 src/ui/popup/shortcut_window.blp:72
+msgid "Bold"
+msgstr "Negriña"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:50
+#: src/ui/edit_view/toolbar/toolbar.blp:140
+#: src/ui/edit_view/toolbar/toolbar.blp:195 src/ui/popup/shortcut_window.blp:77
+msgid "Italic"
+msgstr "Cursiva"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:57
+#: src/ui/edit_view/toolbar/toolbar.blp:147
+#: src/ui/edit_view/toolbar/toolbar.blp:196 src/ui/popup/shortcut_window.blp:82
+msgid "Strikethrough"
+msgstr "Riscado"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:64
+#: src/ui/edit_view/toolbar/toolbar.blp:154
+#: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:87
+msgid "Highlight"
+msgstr "Realzado"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:76
+#: src/ui/edit_view/toolbar/toolbar.blp:186 src/ui/popup/shortcut_window.blp:92
+msgid "Insert Link"
+msgstr "Inserir ligazón"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:83
+#: src/ui/edit_view/toolbar/toolbar.blp:187
+msgid "Insert Code"
+msgstr "Inserir código"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:90
+#: src/ui/edit_view/toolbar/toolbar.blp:188
+msgid "Insert Horizontal Rule"
+msgstr "Inserir regra horizontal"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:103
+msgid "Format"
+msgstr "Formatado"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:167
+msgid "Insert"
+msgstr "Inserir"
+
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
+msgid "Confirm"
+msgstr "Confirmar"
+
+#: src/ui/popup/shortcut_window.blp:14
+msgid "Note"
+msgstr "Nota"
+
+#: src/ui/popup/shortcut_window.blp:22
+msgid "Edit Note"
+msgstr "Editar nota"
+
+#: src/ui/popup/shortcut_window.blp:27
+msgid "Save Note"
+msgstr "Gardar nota"
+
+#: src/ui/popup/shortcut_window.blp:34
+msgid "Notebook"
+msgstr "Caderno"
+
+#: src/ui/popup/shortcut_window.blp:49
+msgid "General"
+msgstr "Xeral"
+
+#: src/ui/popup/shortcut_window.blp:52
+msgid "Show Keyboard Shortcuts"
+msgstr "Mostrar atallos de teclado"
+
+#: src/ui/popup/shortcut_window.blp:57
+msgid "Quit"
+msgstr "Saír"
+
+#: src/ui/popup/shortcut_window.blp:69
+msgid "Formatting"
+msgstr "Formatado"
+
+#: src/ui/popup/shortcut_window.blp:99
+msgid "Navigation"
+msgstr "Navegación"
+
+#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:188
+msgid "Toggle Sidebar"
+msgstr "Trocar barra lateral"
+
+#: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:63
+msgid "Search Notes"
+msgstr "Buscar notas"
+
+#: src/ui/preferences/preferences.blp:21
+msgid "Pick a font for displaying the notes' content"
+msgstr "Escolla un tipo de letra para mostrar o contido das notas"
+
+#: src/ui/preferences/preferences.blp:35
+msgid "Pick a font for displaying code"
+msgstr "Escolla un tipo de letra para mostrar o código"
+
+#: src/ui/preferences/preferences.blp:45
+msgid "Makes the dark theme pitch black"
+msgstr "Fai o tema escuro máis negro"
+
+#: src/ui/preferences/preferences.blp:55
+msgid "Enable Toolbar"
+msgstr "Activar a barra lateral"
+
+#: src/ui/preferences/preferences.blp:65
+msgid "3-Pane Layout"
+msgstr "Disposición de 3 paneis"
+
+#: src/ui/preferences/preferences.blp:77
+msgid "Notes Storage Location"
+msgstr "Localización do almacenamento das notas"
+
+#: src/ui/preferences/preferences.blp:78
+msgid "Where the notebooks are stored (requires app restart)"
+msgstr "Onde se almacenan os cadernos (require reiniciar a aplicación)"
+
+#: src/ui/widgets/theme_selector/theme_selector.blp:15
+msgid "Follow system style"
+msgstr "Seguir o estilo do sistema"
+
+#: src/ui/widgets/theme_selector/theme_selector.blp:23
+msgid "Light style"
+msgstr "Estilo claro"
+
+#: src/ui/widgets/theme_selector/theme_selector.blp:32
+msgid "Dark style"
+msgstr "Estilo escuro"
+
+#: src/ui/window/app_menu/app_menu.blp:24
+msgid "_New Notebook"
+msgstr "_Novo caderno"
+
+#: src/ui/window/app_menu/app_menu.blp:28
+msgid "_Edit Notebook"
+msgstr "_Editar caderno"
+
+#: src/ui/window/app_menu/app_menu.blp:34
+msgid "_Preferences"
+msgstr "_Preferencias"
+
+#: src/ui/window/app_menu/app_menu.blp:38
+msgid "_Keyboard Shortcuts"
+msgstr "Atallos de _teclado"
+
+#: src/ui/window/app_menu/app_menu.blp:42
+msgid "_About"
+msgstr "So_bre"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:54
+msgid "Notebook Name"
+msgstr "Nome do caderno"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:72
+msgid "First Characters"
+msgstr "Primeiros caracters"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:73
+msgid "Initials"
+msgstr "Iniciais"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:74
+msgid "Initials: camelCase"
+msgstr "Iniciais: camelCase"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:75
+msgid "Initials: snake_case"
+msgstr "Iniciais: snake_case"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:76
+msgid "Icon"
+msgstr "Icona"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:106
+msgid "Notebook Color"
+msgstr "Cor do caderno"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:116
+msgid "Create Notebook"
+msgstr "Crear caderno"
+
+#: src/ui/window/notebooks_bar/notebook_menu.blp:16
+msgid "Edit"
+msgstr "Editar"
+
+#: src/ui/window/notebooks_bar/notebook_menu.blp:26
+msgid "Move all to Trash"
+msgstr "Mover todo ao lixo"
+
+#: src/ui/window/sidebar/note_create_popup.blp:37
+msgid "Note Name"
+msgstr "Nome da nota"
+
+#: src/ui/window/sidebar/note_create_popup.blp:45
+msgid "Create Note"
+msgstr "Crear nota"
+
+#: src/ui/window/sidebar/note_menu.blp:16
+msgid "Restore from Trash"
+msgstr "Restaurar do lixo"
+
+#: src/ui/window/sidebar/note_menu.blp:26
+msgid "Delete from Trash"
+msgstr "Eliminar do lixo"
+
+#: src/ui/window/sidebar/note_menu.blp:46
+msgid "Move to Notebook…"
+msgstr "Mover ao caderno…"
+
+#: src/ui/window/sidebar/note_menu.blp:56
+msgid "Move to Trash"
+msgstr "Mover ao lixo"
+
+#: src/ui/window/sidebar/note_menu.blp:66
+msgid "Open Containing Folder"
+msgstr "Abrir o cartafol contedor"
+
+#: src/ui/window/window.blp:115
+msgid "Get started writing"
+msgstr "Comece a escribir"
+
+#: src/ui/window/window.blp:140
+msgid "Create a notebook"
+msgstr "Crear un caderno"
+
+#: src/ui/window/window.blp:165
+msgid "Trash is empty"
+msgstr "O lixo está baleiro"
+
+#: src/ui/window/window.blp:196
+msgid "Back"
+msgstr "Atrás"
+
+#: src/ui/window/window.blp:212
+msgid "Open in Notebook"
+msgstr "Abrir no caderno"
+
+#: src/ui/window/window.blp:233
+msgid "_Rename Note"
+msgstr "_Renamear nota"
+
+#: src/ui/window/window.blp:239
+msgid "_Export Note"
+msgstr "_Exportar nota"
