@@ -18,6 +18,24 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
+    <release type="stable" version="22.10" date="2022-09-17">
+      <description translatable="no">
+	      <p>UI Tweaks:</p>
+        <ul>
+          <li>Added support for non-markdown files</li>
+          <li>Made font scale persist across startups</li>
+          <li>Improved search</li>
+          <li>Note right click menu now appears below the note, instead of above it</li>
+          <li>Added more notebook icon options</li>
+          <li>Reduced maximum text view width</li>
+        </ul>
+	      <p>Fixes:</p>
+        <ul>
+          <li>OLED theme dissapearing after restart</li>
+          <li>Note cards not showing outline when in focus</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="22.9" date="2022-08-01">
       <description translatable="no">
 	      <p>UI Tweaks:</p>
