@@ -29,8 +29,8 @@ public class Paper.NoteCreatePopup : Adw.Window {
     }
 
 	private void change (Window window, Note note) {
-        var name = entry.text;
+        var file_name = entry.text;
         close ();
-        window.try_change_note (note, name);
+        window.try_rename_note (note, file_name);
     }
 }

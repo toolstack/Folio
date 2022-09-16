@@ -197,8 +197,8 @@ public class Paper.WindowModel : Object {
 	    }
 	}
 
-	public void change_note (Note note, string name) {
-        note.notebook.change_note (note, name);
+	public void change_note (Note note, string name, string extension = note.extension) {
+        note.notebook.change_note (note, name, extension);
         update_note (note);
 	}
 

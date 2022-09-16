@@ -11,6 +11,8 @@ public class Paper.NoteCard : Gtk.Box {
 	            label.label = value.name;
 	            var time_string = value.time_modified.format ("%e %b, %R").strip ();
 	            subtitle.label = _window.window_model.state == WindowModel.State.NOTEBOOK ? time_string : @"%s - %s".printf (time_string, value.notebook.name);
+	            extension.label = value.extension;
+	            extension.visible = !value.is_markdown;
 	            tooltip_text = value.name;
                 var v = Value (typeof (Note));
                 v.set_object (value);
@@ -24,6 +26,7 @@ public class Paper.NoteCard : Gtk.Box {
 	[GtkChild] unowned Gtk.Button button_edit;
 	[GtkChild] unowned Gtk.Button button_apply;
 	[GtkChild] unowned Gtk.Label subtitle;
+	[GtkChild] unowned Gtk.Label extension;
 
 	private Gtk.DragSource drag_controller;
 
@@ -65,7 +68,7 @@ public class Paper.NoteCard : Gtk.Box {
 	}
 
 	public void request_rename () {
-        entry.buffer.set_text (_note.name.data);
+        entry.buffer.set_text ((_note.is_markdown ? _note.name : _note.file_name).data);
         entry.visible = true;
         entry.grab_focus ();
         _window.notify["focus-widget"].connect (maybe_exit_rename);
@@ -91,9 +94,9 @@ public class Paper.NoteCard : Gtk.Box {
         _window.notify["focus-widget"].disconnect (maybe_exit_rename);
 	}
 
-	private void rename (string name) {
+	private void rename (string file_name) {
         exit_rename ();
-        if (_window.try_change_note (_note, name))
+        if (_window.try_rename_note (_note, file_name))
             note = _note;
 	}
 

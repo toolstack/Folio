@@ -43,6 +43,8 @@ public class Paper.EditView : Gtk.Box {
 
         set_note_font (note_font);
 
+        markdown_view.notify["text-mode"].connect (update_toolbar_visibility);
+
         markdown_view.notify["buffer"].connect (() => markdown_view.buffer.notify["cursor-position"].connect (() => {
             var ins = markdown_view.buffer.get_insert ();
             Gtk.TextIter cur;
@@ -214,7 +216,7 @@ public class Paper.EditView : Gtk.Box {
     }
 
 	private void update_toolbar_visibility () {
-	    toolbar.visible = is_editable && toolbar_enabled;
+	    toolbar.visible = is_editable && toolbar_enabled && !markdown_view.text_mode;
 	}
 }
 

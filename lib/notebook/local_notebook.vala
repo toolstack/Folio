@@ -35,7 +35,7 @@ public class Paper.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
             FileInfo file_info;
             while ((file_info = enumerator.next_file ()) != null) {
                 var content_type = file_info.get_content_type ();
-                if (content_type == null || !content_type.has_prefix ("text"))
+                if (content_type == null || !(content_type.has_prefix ("text") || content_type.has_prefix ("application")))
                     continue;
                 var name = file_info.get_name ();
                 if (name[0] == '.')
@@ -89,7 +89,7 @@ public class Paper.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
 
     public void change_note (Note note, string name, string extension) throws ProviderError {
         load ();
-        if (note.name != name) {
+        if (note.name != name || note.extension != extension) {
             var original_path = note.path;
             var original_file = File.new_for_path (original_path);
             var file_name = @"$name.$extension";

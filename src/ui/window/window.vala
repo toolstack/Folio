@@ -456,7 +456,10 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    }
 	}
 
-	public bool try_change_note (Note note, string name) {
+	public bool try_rename_note (Note note, string file_name) {
+        var dot_i = file_name.last_index_of_char ('.');
+        var extension = (dot_i == -1) ? "md" : file_name.substring (dot_i + 1);
+        var name = (dot_i == -1) ? file_name : file_name.substring (0, dot_i);
 	    if (name.contains (".") || name.contains ("/")) {
             toast (Strings.NOTE_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
             return false;
@@ -466,7 +469,7 @@ public class Paper.Window : Adw.ApplicationWindow {
             return false;
 	    }
 		try {
-		    window_model.change_note (note, name);
+		    window_model.change_note (note, name, extension);
 	        return true;
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS)

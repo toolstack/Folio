@@ -353,6 +353,16 @@ window.tiled-bottom .notebooks-bar > .trash-button:checked {
   min-height: 0;
 }
 
+.note-card > box .extension {
+  background-color: alpha(@window_fg_color, .05);
+  color: alpha(@window_fg_color, .5);
+  padding: 0 4px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-size: .7em;
+  font-weight: 700;
+}
+
 
 /*
  *

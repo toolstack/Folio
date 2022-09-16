@@ -44,9 +44,20 @@ template PaperNoteCard : Box {
     }
   }
 
-  Label subtitle {
-    ellipsize: end;
-    halign: start;
-    styles ["caption", "dim-label"]
+
+  Box {
+    hexpand: true;
+    orientation: horizontal;
+
+    Label subtitle {
+      ellipsize: end;
+      hexpand: true;
+      halign: start;
+      styles ["caption", "dim-label"]
+    }
+
+    Label extension {
+      styles ["caption", "extension"]
+    }
   }
 }

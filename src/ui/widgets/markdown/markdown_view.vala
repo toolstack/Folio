@@ -397,6 +397,7 @@ public class GtkMarkdown.View : GtkSource.View {
         buffer.remove_tag (text_tag_strikethrough, start, end);
         buffer.remove_tag (text_tag_highlight, start, end);
         buffer.remove_tag (text_tag_blockquote, start, end);
+        buffer.remove_tag (text_tag_blockquote_marker, start, end);
         foreach (var t in text_tags_title)
             buffer.remove_tag (t, start, end);
 	}
