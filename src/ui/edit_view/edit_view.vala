@@ -8,28 +8,30 @@ public class Paper.EditView : Gtk.Box {
 
     public int scale { get; set; default = 100; }
 
+    public bool text_mode { set { markdown_view.text_mode = value; } }
+
     public const int MIN_SCALE = 10;
     public const int MAX_SCALE = 600;
 
 	public Gdk.RGBA theme_color {
-	    get { return text_view.theme_color; }
+	    get { return markdown_view.theme_color; }
 	    set {
-            text_view.theme_color = value;
+            markdown_view.theme_color = value;
 	    }
 	}
 
 	public Gtk.TextBuffer buffer {
-	    get { return text_view.buffer; }
+	    get { return markdown_view.buffer; }
 	    set {
-            text_view.buffer = value;
+            markdown_view.buffer = value;
             Gtk.TextIter start;
-            text_view.buffer.get_start_iter (out start);
-            text_view.buffer.place_cursor (start);
+            markdown_view.buffer.get_start_iter (out start);
+            markdown_view.buffer.place_cursor (start);
 	    }
 	}
 
 	[GtkChild] public unowned Toolbar toolbar;
-	[GtkChild] unowned GtkMarkdown.View text_view;
+	[GtkChild] unowned GtkMarkdown.View markdown_view;
 	[GtkChild] public unowned Gtk.ScrolledWindow scrolled_window;
 
     private Gtk.CssProvider note_font_provider = new Gtk.CssProvider ();
@@ -41,23 +43,23 @@ public class Paper.EditView : Gtk.Box {
 
         set_note_font (note_font);
 
-        text_view.notify["buffer"].connect (() => text_view.buffer.notify["cursor-position"].connect (() => {
-            var ins = text_view.buffer.get_insert ();
+        markdown_view.notify["buffer"].connect (() => markdown_view.buffer.notify["cursor-position"].connect (() => {
+            var ins = markdown_view.buffer.get_insert ();
             Gtk.TextIter cur;
-            text_view.buffer.get_iter_at_mark (out cur, ins);
-            toolbar.heading_i = (int) text_view.get_title_level (cur.get_line ());
+            markdown_view.buffer.get_iter_at_mark (out cur, ins);
+            toolbar.heading_i = (int) markdown_view.get_title_level (cur.get_line ());
         }));
         toolbar.heading_i_changed.connect ((i) => {
-            var ins = text_view.buffer.get_insert ();
+            var ins = markdown_view.buffer.get_insert ();
             Gtk.TextIter cur;
-            text_view.buffer.get_iter_at_mark (out cur, ins);
-            text_view.set_title_level (cur.get_line (), i);
+            markdown_view.buffer.get_iter_at_mark (out cur, ins);
+            markdown_view.set_title_level (cur.get_line (), i);
         });
 
         scrolled_window.get_vscrollbar ().margin_top = 48;
 
 	    settings.bind ("toolbar-enabled", this, "toolbar-enabled", SettingsBindFlags.DEFAULT);
-	    settings.bind ("note-font-monospace", text_view, "font-monospace", SettingsBindFlags.DEFAULT);
+	    settings.bind ("note-font-monospace", markdown_view, "font-monospace", SettingsBindFlags.DEFAULT);
 	    settings.changed["note-font"].connect(() => set_note_font (settings.get_string ("note-font")));
 
 	    var window_state = new Settings (@"$(Config.APP_ID).WindowState");
@@ -66,7 +68,7 @@ public class Paper.EditView : Gtk.Box {
         notify["toolbar-enabled"].connect (update_toolbar_visibility);
         notify["is-editable"].connect (() => {
             update_toolbar_visibility ();
-	        text_view.sensitive = is_editable;
+	        markdown_view.sensitive = is_editable;
         });
         update_toolbar_visibility ();
 
@@ -94,7 +96,7 @@ public class Paper.EditView : Gtk.Box {
 	        return false;
 	    });
 	    add_controller (key_controller);
-	    text_view.add_controller (scroll_controller);
+	    markdown_view.add_controller (scroll_controller);
     }
 
     public void zoom_in () {
@@ -110,11 +112,11 @@ public class Paper.EditView : Gtk.Box {
     }
 
     public void on_dark_changed (bool dark) {
-        text_view.dark = dark;
+        markdown_view.dark = dark;
     }
 
 	public void format_selection_bold () {
-	    var b = text_view.buffer;
+	    var b = markdown_view.buffer;
 	    b.begin_user_action ();
 	    var mark = b.get_selection_bound ();
 	    Gtk.TextIter iter;
@@ -125,7 +127,7 @@ public class Paper.EditView : Gtk.Box {
 	}
 
 	public void format_selection_italic () {
-	    var b = text_view.buffer;
+	    var b = markdown_view.buffer;
 	    b.begin_user_action ();
 	    var mark = b.get_selection_bound ();
 	    Gtk.TextIter iter;
@@ -136,7 +138,7 @@ public class Paper.EditView : Gtk.Box {
 	}
 
 	public void format_selection_strikethrough () {
-	    var b = text_view.buffer;
+	    var b = markdown_view.buffer;
 	    b.begin_user_action ();
 	    var mark = b.get_selection_bound ();
 	    Gtk.TextIter iter;
@@ -147,7 +149,7 @@ public class Paper.EditView : Gtk.Box {
 	}
 
 	public void format_selection_highlight () {
-	    var b = text_view.buffer;
+	    var b = markdown_view.buffer;
 	    b.begin_user_action ();
 	    var mark = b.get_selection_bound ();
 	    Gtk.TextIter iter;
@@ -158,7 +160,7 @@ public class Paper.EditView : Gtk.Box {
 	}
 
 	public void insert_link () {
-	    var b = text_view.buffer;
+	    var b = markdown_view.buffer;
 	    b.begin_user_action ();
 	    Gtk.TextIter iter_a, iter_b, iter;
 	    {
@@ -181,7 +183,7 @@ public class Paper.EditView : Gtk.Box {
 	}
 
 	public void insert_code_span () {
-	    var b = text_view.buffer;
+	    var b = markdown_view.buffer;
 	    b.begin_user_action ();
 	    var mark = b.get_selection_bound ();
 	    Gtk.TextIter iter;
@@ -192,7 +194,7 @@ public class Paper.EditView : Gtk.Box {
 	}
 
 	public void insert_horizontal_rule () {
-	    var b = text_view.buffer;
+	    var b = markdown_view.buffer;
 	    b.begin_user_action ();
 	    var mark = b.get_selection_bound ();
 	    Gtk.TextIter iter;
@@ -203,12 +205,12 @@ public class Paper.EditView : Gtk.Box {
 
     public void set_font_scale () {
 	    font_scale_provider.load_from_data (@"textview{font-size:$(scale / 100f)em;}".data);
-	    text_view.get_style_context ().add_provider (font_scale_provider, -1);
+	    markdown_view.get_style_context ().add_provider (font_scale_provider, -1);
     }
 
     private void set_note_font (string font) {
 	    note_font_provider.load_from_data (@"textview{font-family:'$font';}".data);
-	    text_view.get_style_context ().add_provider (note_font_provider, -1);
+	    markdown_view.get_style_context ().add_provider (note_font_provider, -1);
     }
 
 	private void update_toolbar_visibility () {

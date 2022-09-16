@@ -56,17 +56,24 @@ public class Paper.Trash : Object, ListModel, NoteContainer {
 
     private void load_notebook (TrashedNotebook notebook) {
         var dir = File.new_for_path (notebook.path);
-        var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.TIME_MODIFIED, 0);
+        var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.TIME_MODIFIED + "," + FileAttribute.STANDARD_CONTENT_TYPE, 0);
         FileInfo file_info;
         while ((file_info = enumerator.next_file ()) != null) {
+            var content_type = file_info.get_content_type ();
+            if (content_type == null || !content_type.has_prefix ("text"))
+                continue;
             var name = file_info.get_name ();
-            if (name[0] == '.') continue;
-            if (name.has_suffix (".md"))
-                name = name.substring (0, name.length - 3);
-            else continue;
+            if (name[0] == '.')
+                continue;
+            var dot_i = name.last_index_of (".");
+            if (dot_i == -1)
+                continue;
+            var extension = name.substring (dot_i + 1);
+            name = name.substring (0, dot_i);
             var mod_time = (!) file_info.get_modification_date_time ();
             _loaded_notes.add (new Note (
                 name,
+                extension,
                 notebook,
                 mod_time
             ));

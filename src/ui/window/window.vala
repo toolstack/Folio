@@ -196,7 +196,14 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    update_editability ();
         edit_view.buffer = window_model.current_buffer;
 	    if (note != null) {
-	        note_title.label = note.name;
+	        edit_view.text_mode = !note.is_markdown;
+	        if (!note.is_markdown) {
+	            var b = edit_view.buffer;
+	            if (b is GtkSource.Buffer)
+                    (b as GtkSource.Buffer).language =
+                        GtkSource.LanguageManager.get_default ().guess_language (note.file_name, null);
+	        }
+	        note_title.label = (note.is_markdown) ? note.name : note.file_name;
 	        set_text_view_state (TextViewState.TEXT_VIEW);
 	        var n = note.notebook.loaded_notes;
             // Zen mode

@@ -1,5 +1,6 @@
 using Gtk 4.0;
 using Adw 1;
+using GtkSource 5;
 
 template PaperEditView : Box {
 
@@ -12,9 +13,9 @@ template PaperEditView : Box {
     hexpand: true;
     vexpand: true;
 
-    .GtkMarkdownView text_view {
+    .GtkMarkdownView markdown_view {
 
-      width-request: 960;
+      width-request: 720;
       halign: center;
       hexpand: true;
       vexpand: true;

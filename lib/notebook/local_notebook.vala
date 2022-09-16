@@ -31,17 +31,24 @@ public class Paper.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
         _loaded_notes = new ArrayList<Note> ();
         var dir = File.new_for_path (path);
         try {
-            var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.TIME_MODIFIED, 0);
+            var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.TIME_MODIFIED + "," + FileAttribute.STANDARD_CONTENT_TYPE, 0);
             FileInfo file_info;
             while ((file_info = enumerator.next_file ()) != null) {
+                var content_type = file_info.get_content_type ();
+                if (content_type == null || !content_type.has_prefix ("text"))
+                    continue;
                 var name = file_info.get_name ();
-                if (name[0] == '.') continue;
-                if (name.has_suffix (".md"))
-                    name = name.substring (0, name.length - 3);
-                else continue;
+                if (name[0] == '.')
+                    continue;
+                var dot_i = name.last_index_of_char ('.');
+                if (dot_i == -1)
+                    continue;
+                var extension = name.substring (dot_i + 1);
+                name = name.substring (0, dot_i);
 	            var mod_time = (!) file_info.get_modification_date_time ().to_timezone (new TimeZone.local ());
                 _loaded_notes.add (new Note (
                     name,
+                    extension,
                     this,
                     mod_time
                 ));
@@ -61,9 +68,9 @@ public class Paper.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
         this._info = info;
     }
 
-    public Note new_note (string name) throws ProviderError {
+    public Note new_note (string name, string extension) throws ProviderError {
         load ();
-        var file_name = @"$name.md";
+        var file_name = @"$name.$extension";
         var path = @"$path/$file_name";
         var file = File.new_for_path (path);
         if (file.query_exists ()) {
@@ -74,18 +81,18 @@ public class Paper.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
         } catch (Error e) {
              throw new ProviderError.COULDNT_CREATE_FILE("Couldn't create note at \"$path\"");
         }
-        var note = new Note (name, this, new DateTime.now ());
+        var note = new Note (name, extension, this, new DateTime.now ());
         _loaded_notes.insert (0, note);
         items_changed (0, 0, 1);
         return note;
     }
 
-    public void change_note (Note note, string name) throws ProviderError {
+    public void change_note (Note note, string name, string extension) throws ProviderError {
         load ();
         if (note.name != name) {
             var original_path = note.path;
             var original_file = File.new_for_path (original_path);
-            var file_name = @"$name.md";
+            var file_name = @"$name.$extension";
             var path = @"$path/$file_name";
             var file = File.new_for_path (path);
             if (file.query_exists ()) {
@@ -97,7 +104,7 @@ public class Paper.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
                 throw new ProviderError.COULDNT_CREATE_FILE (@"Couldn't change $original_path to $path: $(e.message)");
             }
 
-            note.change (name, this, new DateTime.now ());
+            note.change (name, extension, this, new DateTime.now ());
             int i = _loaded_notes.index_of (note);
             items_changed (i, 1, 1);
         }

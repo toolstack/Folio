@@ -5,8 +5,16 @@ public class Paper.Note : Object {
         get { return _name; }
     }
 
+    public string extension {
+        get { return _extension; }
+    }
+
     public inline string file_name {
-        owned get { return @"$_name.md"; }
+        owned get { return @"$_name.$_extension"; }
+    }
+
+    public inline bool is_markdown {
+        get { return _extension == "md"; }
     }
 
     public string path {
@@ -26,17 +34,20 @@ public class Paper.Note : Object {
     }
 
     string _name;
+    string _extension;
     Notebook _notebook;
     DateTime _time_modified;
 
-    public Note (string name, Notebook notebook, DateTime time_modified) {
+    public Note (string name, string extension, Notebook notebook, DateTime time_modified) {
         this._name = name;
+        this._extension = extension;
         this._notebook = notebook;
         this._time_modified = time_modified;
     }
 
-    public void change (string name, Notebook notebook, DateTime time_modified) {
+    public void change (string name, string extension, Notebook notebook, DateTime time_modified) {
         this._name = name;
+        this._extension = extension;
         this._notebook = notebook;
         this._time_modified = time_modified;
     }

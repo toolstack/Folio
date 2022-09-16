@@ -27,11 +27,11 @@ public class Paper.TrashedNotebook : Object, ListModel, NoteContainer, Notebook 
     public void load () {}
     public void unload () {}
 
-    public Note new_note (string name) throws ProviderError {
+    public Note new_note (string name, string extension) throws ProviderError {
         error ("Can't create notes in trash");
     }
 
-    public void change_note (Note note, string name) throws ProviderError {
+    public void change_note (Note note, string name, string extension) throws ProviderError {
         error ("Can't edit notes in trash");
     }
 

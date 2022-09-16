@@ -1,6 +1,8 @@
 
 public class GtkMarkdown.View : GtkSource.View {
 
+    public bool text_mode { get; set; default = false; }
+
     public bool dark { get; set; default = false; }
     public Gdk.RGBA theme_color { get; set; }
     public string font_monospace { get; set; default = "Monospace"; }
@@ -159,8 +161,7 @@ public class GtkMarkdown.View : GtkSource.View {
 	        is_link = new Regex ("\\[([^\\[]+?)\\](\\([^\\)\\n]+?\\))", f, 0);
 	        is_escape = new Regex ("\\\\[\\\\`*_{}\\[\\]()#+\\-.!]", f, 0);
 
-	        /*
-             * Example:
+	        /* Example:
              * > Quoted text.
              * > Quoted text with `code span`.
              * >> Blockquote **nested**.
@@ -169,29 +170,25 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	        is_horizontal_rule = new Regex ("^[ ]{0,3}((-[ ]{0,2}){3,}|(_[ ]{0,2}){3,}|(\\*[ ]{0,2}){3,})[ \\t]*$", f | RegexCompileFlags.MULTILINE, 0);
 
-            /*
-             * Examples:
+            /* Examples:
              * Lorem *ipsum dolor* sit amet.
              * Here's an *emphasized text containing an asterisk (\*)*.
              */
 	        is_italic_0 = new Regex ("((?<!\\*)\\*)([^\\* \\t].*?(?<!\\\\|\\*| |\\t))(\\*(?!\\*))", f, 0);
 
-            /*
-             * Examples:
+            /* Examples:
              * Lorem _ipsum dolor_ sit amet.
              * Here's an _emphasized text containing an underscore (\_)_.
              */
 	        is_italic_1 = new Regex ("((?<!_)_)([^_ \\t].*?(?<!\\\\|_| |\\t))(_(?!_))", f, 0);
 
-            /*
-             * Examples:
+            /* Examples:
              * Lorem **ipsum dolor** sit amet.
              * Here's a **strongly emphasized text containing an asterisk (\*).**
              */
 	        is_bold_0 = new Regex ("(\\*\\*)([^\\* \\t].*?(?<!\\\\|\\*| |\\t))(\\*\\*)", f, 0);
 
-            /*
-             * Examples:
+            /* Examples:
              * Lorem __ipsum dolor__ sit amet.
              * Here's a __strongly emphasized text containing an underscore (\_)__.
              */
@@ -207,6 +204,25 @@ public class GtkMarkdown.View : GtkSource.View {
 	        error (e.message);
 	    }
 
+        notify["text-mode"].connect (() => {
+            if (text_mode) {
+                Gtk.TextIter buffer_start, buffer_end;
+                buffer.get_bounds (out buffer_start, out buffer_end);
+                remove_tags_format (buffer_start, buffer_end);
+                remove_tags_cursor (buffer_start, buffer_end);
+            } else {
+                update_color_scheme ();
+                if (buffer is GtkSource.Buffer) {
+                    (buffer as GtkSource.Buffer).language = GtkSource.LanguageManager.get_default ().get_language ("markdownpp");
+                }
+                restyle_text_all ();
+            }
+        });
+
+        if (buffer is GtkSource.Buffer) {
+            (buffer as GtkSource.Buffer).language = GtkSource.LanguageManager.get_default ().get_language ("markdownpp");
+        }
+
         notify["dark"].connect ((s, p) => update_color_scheme ());
         notify["theme-color"].connect ((s, p) => update_color_scheme ());
         notify["font-monospace"].connect ((s, p) => update_font ());
@@ -220,7 +236,7 @@ public class GtkMarkdown.View : GtkSource.View {
             renderer.yalign = 0.5f;
             renderer.query_data.connect ((lines, line) => {
                 var title_level = get_title_level (line);
-                if (title_level != 0 && show_gutter) {
+                if (title_level != 0 && show_gutter && !text_mode) {
                     renderer.text = @"H$title_level";
                 } else {
                     renderer.text = null;
@@ -292,7 +308,11 @@ public class GtkMarkdown.View : GtkSource.View {
 
         if (buffer is GtkSource.Buffer) {
             var buffer = buffer as GtkSource.Buffer;
+
             buffer.style_scheme = GtkSource.StyleSchemeManager.get_default ().get_scheme (dark ? "paper-dark" : "paper");
+
+            if (text_mode)
+                return;
 
             var block_color = block_color;
             var tinted_foreground = tinted_foreground;
@@ -387,6 +407,7 @@ public class GtkMarkdown.View : GtkSource.View {
 	}
 
 	private void restyle_text_format () {
+	    if (text_mode) return;
         renderer.queue_draw ();
         Gtk.TextIter buffer_start, buffer_end;
         buffer.get_bounds (out buffer_start, out buffer_end);
@@ -457,6 +478,7 @@ public class GtkMarkdown.View : GtkSource.View {
     }
 
 	private void restyle_text_cursor () {
+	    if (text_mode) return;
         renderer.queue_draw ();
         Gtk.TextIter buffer_start, buffer_end, cursor_location;
         buffer.get_bounds (out buffer_start, out buffer_end);
