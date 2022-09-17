@@ -135,7 +135,6 @@ public class Paper.Window : Adw.ApplicationWindow {
             update_title_buttons ();
             if (leaflet.folded) {
 	            update_editability ();
-	            window_model.select_note (null);
 	            navigate_to_edit_view ();
             } else {
 	            update_editability ();
@@ -297,8 +296,10 @@ public class Paper.Window : Adw.ApplicationWindow {
 
 	private void update_note_title () {
 	    var is_sidebar_hidden = leaflet.folded || !sidebar_revealer.reveal_child;
-        note_subtitle.label = is_sidebar_hidden ? window_model.note.notebook.name : null;
-        note_subtitle.visible = is_sidebar_hidden;
+	    var note = window_model.note;
+	    var show = is_sidebar_hidden && note != null;
+        note_subtitle.label = show ? note.notebook.name : null;
+        note_subtitle.visible = show;
 	}
 
 	private void on_update_state (WindowModel.State state, NoteContainer? container) {

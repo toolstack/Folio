@@ -172,7 +172,9 @@ public class Paper.WindowModel : Object {
         return current_buffer;
 	}
 
-    public void open_note_in_notebook (Note note) requires (notebooks_model != null) {
+    public void open_note_in_notebook (Note note)
+        requires (notebooks_model != null)
+        requires (note.notebook != null) {
         select_notebook (note.notebook);
         select_note (note);
     }
@@ -197,7 +199,8 @@ public class Paper.WindowModel : Object {
 	    }
 	}
 
-	public void change_note (Note note, string name, string extension = note.extension) {
+	public void change_note (Note note, string name, string extension = note.extension)
+	    requires (note.notebook != null) {
         note.notebook.change_note (note, name, extension);
         update_note (note);
 	}
@@ -212,7 +215,9 @@ public class Paper.WindowModel : Object {
         notebook_provider.trash.restore_note (note);
     }
 
-	public bool move_note (Note note, Notebook dest_notebook) requires (notebooks_model != null) {
+	public bool move_note (Note note, Notebook dest_notebook)
+	    requires (notebooks_model != null)
+	    requires (note.notebook != null) {
         var l = note.notebook.loaded_notes;
         if (l != null) {
             var i = l.index_of (note);
