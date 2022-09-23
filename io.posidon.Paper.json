@@ -1,17 +1,17 @@
 {
-    "app-id": "io.posidon.Paper",
-    "runtime": "org.gnome.Platform",
-    "runtime-version": "42",
-    "sdk": "org.gnome.Sdk",
-    "command": "io.posidon.Paper",
-    "finish-args": [
+    "app-id" : "io.posidon.Paper",
+    "runtime" : "org.gnome.Platform",
+    "runtime-version" : "43",
+    "sdk" : "org.gnome.Sdk",
+    "command" : "io.posidon.Paper",
+    "finish-args" : [
         "--share=ipc",
         "--socket=fallback-x11",
         "--device=dri",
         "--socket=wayland",
         "--filesystem=host"
     ],
-    "cleanup": [
+    "cleanup" : [
         "/include",
         "/lib/pkgconfig",
         "/man",
@@ -34,12 +34,12 @@
             }]
         },
         {
-            "name": "Paper",
-            "builddir": true,
-            "buildsystem": "meson",
-            "sources": [{
-                "type": "git",
-                "url": "https://gitlab.com/posidon_software/paper"
+            "name" : "Paper",
+            "builddir" : true,
+            "buildsystem" : "meson",
+            "sources" : [{
+                "type" : "git",
+                "url" : "https://gitlab.com/posidon_software/paper"
             }]
         }
     ]

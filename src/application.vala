@@ -120,14 +120,16 @@ public class Paper.Application : Adw.Application {
 	}
 
 	private void on_about_action () {
-		string[] authors = {"Zagura"};
-		Gtk.show_about_dialog(this.active_window,
-		                      "logo-icon-name", Config.APP_ID,
-			                  "program-name", "Paper",
-			                  "authors", authors,
-			                  "version", Config.VERSION,
-			                  "license-type", Gtk.License.GPL_3_0,
-			                  "website", "https://posidon.io/paper");
+	    var about = new Adw.AboutWindow ();
+	    about.application_icon = Config.APP_ID;
+	    about.application_name = "Paper";
+	    about.developers = {"Zagura"};
+	    about.issue_url = "https://gitlab.com/posidon_software/paper/issues";
+	    about.license_type = Gtk.License.GPL_3_0;
+	    about.version = Config.VERSION;
+	    about.website = "https://zagura.posidon.io/paper";
+		about.transient_for = this.active_window;
+		about.present ();
 	}
 
 	private void on_preferences_action () {

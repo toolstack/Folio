@@ -609,22 +609,20 @@ public class Paper.Window : Adw.ApplicationWindow {
 	    string action_description,
 	    owned Runnable callback
 	) {
-        var dialog = new Gtk.MessageDialog (
+        var dialog = new Adw.MessageDialog (
             this,
-            Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT,
-            Gtk.MessageType.QUESTION,
-            Gtk.ButtonsType.CANCEL,
-            action_title
+            action_title,
+            action_description
         );
 
-        dialog.secondary_text = action_description;
+        dialog.close_response = "cancel";
+        dialog.add_response ("cancel", Strings.CANCEL);
 
-        dialog.add_button (action_title, 1)
-            .get_style_context ()
-            .add_class ("destructive-action");
+        dialog.add_response ("do", action_title);
+        dialog.set_response_appearance ("do", Adw.ResponseAppearance.DESTRUCTIVE);
 
         dialog.response.connect ((response_id) => {
-            if (response_id == 1) {
+            if (response_id == "do") {
 	            callback ();
 	        }
             dialog.close ();
