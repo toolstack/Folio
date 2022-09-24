@@ -25,7 +25,8 @@ public class SearchProvider : Object {
     }
 
     public void update_storage_dir () {
-		var notes_dir = settings.get_string ("notes-dir");
+		var path = settings.get_string ("notes-dir");
+		var notes_dir = path.has_prefix ("~/") ? Environment.get_home_dir () + path[1:] : path;
 		notebook_provider.set_directory (notes_dir);
 		notebook_provider.load ();
 		update_notes ();

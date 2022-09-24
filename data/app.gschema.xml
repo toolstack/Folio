@@ -25,7 +25,7 @@
       <default>false</default>
     </key>
     <key name="notes-dir" type="s">
-      <default>'.var/app/io.posidon.Paper/data'</default>
+      <default>'~/.var/app/io.posidon.Paper/data'</default>
       <summary>Notes Directory</summary>
       <description>Where the notebooks are stored</description>
     </key>

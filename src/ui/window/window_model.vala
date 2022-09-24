@@ -36,7 +36,8 @@ public class Paper.WindowModel : Object {
 	construct {
 	    {
             var settings = new Settings (Config.APP_ID);
-	        var notes_dir = settings.get_string ("notes-dir");
+			var path = settings.get_string ("notes-dir");
+			var notes_dir = path.has_prefix ("~/") ? Environment.get_home_dir () + path[1:] : path;
 
 	        notebook_provider = new Provider (Strings.TRASH);
 	        notebook_provider.set_directory (notes_dir);

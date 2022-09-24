@@ -21,7 +21,7 @@ Contributions are appreciated!
 
 ## Get Paper
 
-The recommended way of installing Paper is through [Flatpak](https://flatpak.org/)
+The recommended way of installing Paper is through [Flatpak](https://flatpak.org)
 
 <a href="https://flathub.org/apps/details/io.posidon.Paper"><img src="https://flathub.org/assets/badges/flathub-badge-en.png" width="200"/></a>
 
@@ -36,4 +36,4 @@ The source code is GPLv3
 By default, notes are stored in `~/.var/app/io.posidon.Paper/data`,
 but that can be changed in preferences
 
-## Paper [website](https://posidon.io/paper/)
+## Paper [website](https://zagura.posidon.io/paper)
