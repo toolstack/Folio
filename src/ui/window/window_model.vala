@@ -101,6 +101,8 @@ public class Paper.WindowModel : Object {
 	}
 	public void update_selected_notebook () requires (notebooks_model != null) {
 	    select_notebook_at (notebooks_model.selected);
+    	if (notebooks_model.selected != -1)
+    		notebooks_model.selection_changed (notebooks_model.selected, 1);
 	}
 
 	public void set_notebook (Notebook? notebook) {
@@ -182,6 +184,7 @@ public class Paper.WindowModel : Object {
 	public Notebook create_notebook (NotebookInfo info) requires (notebooks_model != null) {
         var notebook = notebook_provider.new_notebook (info);
         select_notebook (notebook);
+        update_selected_notebook ();
         return notebook;
 	}
 

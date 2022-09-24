@@ -87,6 +87,7 @@ public class Paper.Window : Adw.ApplicationWindow {
                 });
             }
 	    });
+    	on_update_state (WindowModel.State.NO_NOTEBOOK, null);
 
 		add_action_entries (ACTIONS, this);
 
@@ -311,6 +312,7 @@ public class Paper.Window : Adw.ApplicationWindow {
         recolor (notebook);
 
         if (container != null) {
+		    set_text_view_state (TextViewState.EMPTY_NOTEBOOK);
             notebook_title.title = container.name;
             notebook_title.subtitle = state == WindowModel.State.TRASH ? Strings.X_NOTES.printf (container.get_n_items ()) : null;
 
