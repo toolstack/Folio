@@ -87,7 +87,7 @@ public class Paper.Window : Adw.ApplicationWindow {
                 });
             }
 	    });
-    	on_update_state (WindowModel.State.NO_NOTEBOOK, null);
+    	window_model.set_notebook (null);
 
 		add_action_entries (ACTIONS, this);
 

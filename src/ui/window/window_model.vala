@@ -98,6 +98,8 @@ public class Paper.WindowModel : Object {
 
 	public void update_selected_note () requires (notes_model != null) {
 	    select_note_at (notes_model.selected);
+    	if (notes_model.selected != -1)
+    		notes_model.selection_changed (notes_model.selected, 1);
 	}
 	public void update_selected_notebook () requires (notebooks_model != null) {
 	    select_notebook_at (notebooks_model.selected);
@@ -125,7 +127,6 @@ public class Paper.WindowModel : Object {
 
         if (container != null) {
             container.load ();
-
             var model = new Gtk.SingleSelection (
                 new Gtk.SortListModel (container, search_sorter)
             );
@@ -139,16 +140,13 @@ public class Paper.WindowModel : Object {
 	            else update_note (null);
 		    });
 	        notes_model = model;
-
-            if (container.loaded_notes.size != 0) {
-	            select_note_at (-1);
-	            select_note_at (0);
-            }
         } else {
             notes_model = null;
         }
 
 	    state_changed (state, note_container);
+
+    	update_selected_note ();
 
         if (last_container != null && last_container != container && state != State.ALL)
             last_container.unload ();
