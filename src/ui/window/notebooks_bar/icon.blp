@@ -1,3 +1,19 @@
 using Gtk 4.0;
 
-template PaperNotebookIcon : .PaperNotebookPreview {}
+template PaperNotebookIcon : Box {
+
+  hexpand: true;
+
+  Overlay {
+    hexpand: true;
+
+    [overlay]
+    Box {
+      halign: start;
+      styles ["marker"]
+    }
+
+    [overlay]
+    .PaperNotebookPreview icon {}
+  }
+}

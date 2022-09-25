@@ -18,6 +18,7 @@
 @define-color suggest_button_bg_color_hover shade(@suggest_button_bg_color, 0.85);
 
 @define-color selected_bg_color alpha(mix(@theme_color, #efffa0, 0.34), 0.3);
+@define-color hover_bg_color rgba(0, 0, 0, .05);
 
 
 listview, window.transparent {
@@ -57,80 +58,74 @@ headerbar.overlaid {
   padding: 0;
 }
 
-.notebooks-bar .all-button {
-  border-radius: 0;
-}
-
-.notebooks-bar > .trash-button {
-  border-radius: 0 0 0 10px;
-}
-
 .notebooks-bar .all-button,
-.notebooks-bar > .trash-button,
-.notebooks-bar listview row.activatable {
+.notebooks-bar .trash-button,
+.notebooks-bar listview row {
   margin: 0px;
   min-width: 26px;
   min-height: 34px;
-  padding-bottom: 8px;
-  padding-top: 8px;
-  transition: box-shadow .2s, background-color .1s;
+  padding: 8px 10px;
+  border-radius: 0;
+  transition: background-color .1s;
 }
 
-.notebooks-bar > .trash-button.overlaid {
+.notebooks-bar .trash-button.overlaid {
   border-top: solid 1px @borders;
 }
 
 .notebooks-bar .all-button:checked,
-.notebooks-bar > .trash-button:checked,
-.notebooks-bar listview row.activatable:selected {
-  box-shadow:
-    inset 0 1px 0 0 @borders,
-    inset 0 -1px 0 0 @borders,
-    inset 3px 0 0 0 @accent_color;
-  background-color: @window_bg_color;
+.notebooks-bar .trash-button:checked,
+.notebooks-bar listview row:selected {
+  background-color: @selected_bg_color;
 }
 
-.notebooks-bar > .trash-button:checked {
-  box-shadow:
-    inset 0 1px 0 0 @borders,
-    inset 0 -1px 0 0 @borders,
-    inset 3px -3px 0 0 @accent_color;
+.notebooks-bar:not(.paned) .all-button:checked,
+.notebooks-bar:not(.paned) listview row:selected {
+  background-color: @selected_bg_color;
+  box-shadow: inset 0 1px @borders, inset 0 -1px @borders;
+}
+
+.notebooks-bar .all-button:checked .marker,
+.notebooks-bar .trash-button:checked .marker,
+.notebooks-bar listview row:selected .marker {
+  background-color: @accent_color;
+  margin: 4px 6px 4px -9px;
+  border-radius: 0 99px 99px 0;
+}
+
+.notebooks-bar .all-button:checked .marker,
+.notebooks-bar .trash-button:checked .marker {
+  background-color: @notebooks_bar_fg_color;
 }
 
 .notebooks-bar .all-button:hover:not(:checked),
-.notebooks-bar > .trash-button:hover:not(:checked),
+.notebooks-bar .trash-button:hover:not(:checked),
 .notebooks-bar listview row.activatable:hover:not(:selected) {
-  background-color: alpha(@window_fg_color, 0.06);
+  background-color: @hover_bg_color;
 }
 
-.notebooks-bar .all-button:checked
-.notebooks-bar > .trash-button:checked {
-  box-shadow:
-    0 -1px 0 0 @borders,
-    0 1px 0 0 @borders,
-    inset 3px -3px 0 0 @notebooks_bar_fg_color;
-}
-
-.notebooks-bar.paned listview row {
+.notebooks-bar.paned listview row,
+.notebooks-bar.paned .all-button,
+.notebooks-bar.paned .trash-button {
   padding: 2px;
+  font-weight: normal;
+  border-radius: 6px;
+  margin: 1px 6px;
 }
 
 .notebooks-bar.paned listview row .notebook {
-  margin-left: 6px;
-  margin-right: 6px;
-  transform: scale(.7);
+  margin: 3px 8px;
+  font-size: .72em;
+}
+
+.notebooks-bar.paned > .trash-button {
+  margin: 6px;
 }
 
 .notebooks-bar.paned .all-button image,
 .notebooks-bar.paned .trash-button image {
   margin-left: 10px;
   margin-right: 10px;
-}
-
-.notebooks-bar.paned .all-button,
-.notebooks-bar.paned .trash-button {
-  padding: 2px;
-  font-weight: normal;
 }
 
 .notebook {
@@ -202,19 +197,6 @@ row.activatable:selected .notebook {
 
 .icon-selector > popover > contents > scrolledwindow > * {
   padding: 8px;
-}
-
-window.tiled-left .notebooks-bar > .trash-button,
-window.tiled-bottom .notebooks-bar > .trash-button {
-  border-radius: 0;
-}
-
-window.tiled-left .notebooks-bar > .trash-button:checked,
-window.tiled-bottom .notebooks-bar > .trash-button:checked {
-  box-shadow:
-    0 -1px 0 0 @borders,
-    0 1px 0 0 @borders,
-    inset 3px 0 0 0 @notebooks_bar_fg_color;
 }
 
 /* Taken from Gnome Text Editor, thanks uwu */
@@ -295,12 +277,11 @@ window.tiled-bottom .notebooks-bar > .trash-button:checked {
 
 .notebook-sidebar listview row:focus {
   border: none;
-  box-shadow: none;
   outline: none;
 }
 
 .notebook-sidebar listview row > .note-card {
-  transition: box-shadow .1s, background-color .2s, outline .1s, outline-offset .1s;
+  transition: background-color .2s, outline .1s, outline-offset .1s;
   outline: 3px solid transparent;
   outline-offset: 5px;
   padding: 7px 10px 12px 10px;
@@ -309,22 +290,22 @@ window.tiled-bottom .notebooks-bar > .trash-button:checked {
 }
 
 .notebook-sidebar listview row:hover:not(:selected):not(:active) > .note-card:not(.dragged) {
-  transition: box-shadow .2s, background-color .1s, outline .1s, outline-offset .1s;
-  background-color: rgba(0, 0, 0, .05);
+  transition: background-color .1s, outline .1s, outline-offset .1s;
+  background-color: @hover_bg_color;
 }
 
 .notebook-sidebar listview row:active > .note-card:not(.dragged) {
-  transition: box-shadow .3s, background-color .4s, outline .1s, outline-offset .1s;
+  transition: background-color .4s, outline .1s, outline-offset .1s;
   background-color: rgba(0, 0, 0, .12);
 }
 
 .notebook-sidebar listview row:selected > .note-card:not(.dragged) {
-  transition: box-shadow .2s, background-color 0, outline .1s, outline-offset .1s;
+  transition:  background-color 0, outline .1s, outline-offset .1s;
   background-color: @selected_bg_color;
 }
 
 .notebook-sidebar listview row:focus-visible:not(:selected):not(:active):not(.dragged) > .note-card {
-  transition: box-shadow .1s, background-color .2s, outline .2s, outline-offset .2s;
+  transition: background-color .2s, outline .2s, outline-offset .2s;
   outline: 2px solid alpha(@accent_color, .5);
   outline-offset: -1px;
 }
@@ -421,7 +402,6 @@ window.tiled-bottom .notebooks-bar > .trash-button:checked {
 
 .notebook-list row:focus {
   border: none;
-  box-shadow: none;
   outline: none;
 }
 
@@ -442,8 +422,8 @@ window.tiled-bottom .notebooks-bar > .trash-button:checked {
 }
 
 .notebook-list row:selected > box {
-  background-color: @accent_bg_color;
-  color: @accent_fg_color;
+  background-color: @selected_bg_color;
+  color: @window_fg_color;
 }
 
 .notebook-list row:focus:not(:selected):not(:active) > box {

@@ -10,13 +10,21 @@ public class Paper.NoteCard : Gtk.Box {
 	        if (value != null) {
 	            label.label = value.name;
 	            var time_string = value.time_modified.format ("%e %b, %R").strip ();
-	            subtitle.label = _window.window_model.state == WindowModel.State.NOTEBOOK ? time_string : @"%s - %s".printf (time_string, value.notebook.name);
+	            subtitle.label = _window.window_model.state == WindowModel.State.NOTEBOOK
+	            	? time_string
+	            	: @"$(time_string) - $(value.notebook.name)";
 	            extension.label = value.extension;
 	            extension.visible = !value.is_markdown;
 	            tooltip_text = value.name;
                 var v = Value (typeof (Note));
                 v.set_object (value);
                 drag_controller.content = new Gdk.ContentProvider.for_value (v);
+	            extension.update_property (Gtk.AccessibleProperty.LABEL, @"$(Strings.EXTENSION) $(value.extension)", -1);
+ 				var accessible_time_string = @"$(Strings.LAST_MODIFIED) " + value.time_modified.format ("%e %B, %X").strip ();
+	            var accessible_description = _window.window_model.state == WindowModel.State.NOTEBOOK
+	            	? accessible_time_string
+	            	: @"$(accessible_time_string), $(Strings.NOTEBOOK) $(value.notebook.name)";
+ 				subtitle.update_property (Gtk.AccessibleProperty.LABEL, accessible_description, -1);
 	        }
 	    }
 	}

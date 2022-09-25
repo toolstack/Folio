@@ -1,12 +1,15 @@
 
 [GtkTemplate (ui = "/io/posidon/Paper/notebooks_bar/icon.ui")]
-public class Paper.NotebookIcon : NotebookPreview {
+public class Paper.NotebookIcon : Gtk.Box {
+
+	[GtkChild]
+	private unowned NotebookPreview icon;
 
 	public Notebook notebook {
 	    get { return _notebook; }
 	    set {
 	        _notebook = value;
-	        notebook_info = notebook.info;
+	        icon.notebook_info = notebook.info;
 	    }
 	}
 

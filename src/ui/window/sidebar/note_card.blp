@@ -2,6 +2,11 @@ using Gtk 4.0;
 
 template PaperNoteCard : Box {
 
+  accessibility {
+    labelled-by: label;
+    described-by: descrption_box;
+  }
+
   hexpand: true;
   orientation: vertical;
 
@@ -45,7 +50,7 @@ template PaperNoteCard : Box {
   }
 
 
-  Box {
+  Box descrption_box {
     hexpand: true;
     orientation: horizontal;
 

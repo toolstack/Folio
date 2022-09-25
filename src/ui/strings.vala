@@ -44,4 +44,7 @@ public class Paper.Strings {
     public abstract const string CANCEL = _("Cancel");
     public abstract const string PICK_NOTES_DIR = _("Pick where the notebooks will be stored");
     public abstract const string ALL_NOTES = _("All Notes");
+    public abstract const string NOTEBOOK = _("Notebook");
+    public abstract const string LAST_MODIFIED = _("Last Modified");
+    public abstract const string EXTENSION = _("Extension");
 }

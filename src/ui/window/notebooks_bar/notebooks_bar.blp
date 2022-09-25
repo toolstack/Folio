@@ -50,11 +50,26 @@ template PaperNotebooksBar : Box {
           ToggleButton all_button {
 
             visible: bind PaperNotebooksBar.paned inverted;
-            icon-name: "view-list-symbolic";
             hexpand: true;
             vexpand: false;
 
             styles ["flat", "all-button"]
+
+            Overlay {
+              hexpand: true;
+
+              [overlay]
+              Box {
+                halign: start;
+                styles ["marker"]
+              }
+
+              [overlay]
+              Image {
+                icon-name: "view-list-symbolic";
+                halign: center;
+              }
+            }
           }
 
           ToggleButton {
@@ -101,6 +116,22 @@ template PaperNotebooksBar : Box {
     vexpand: false;
 
     styles ["flat", "trash-button"]
+
+    Overlay {
+      hexpand: true;
+
+      [overlay]
+      Box {
+        halign: start;
+        styles ["marker"]
+      }
+
+      [overlay]
+      Image {
+        icon-name: "user-trash-symbolic";
+        halign: center;
+      }
+    }
   }
 
   ToggleButton {
