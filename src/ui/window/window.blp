@@ -76,7 +76,11 @@ template PaperWindow : Adw.ApplicationWindow {
                 hscrollbar-policy: never;
                 vscrollbar-policy: external;
 
-                ListView notebook_notes_list {}
+                ListView notebook_notes_list {
+                  accessibility {
+                    labelled-by: notebook_title;
+                  }
+                }
               }
             }
           };

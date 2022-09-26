@@ -55,6 +55,10 @@ template PaperNotebooksBar : Box {
 
             styles ["flat", "all-button"]
 
+            accessibility {
+              label: _("All Notes");
+            }
+
             Overlay {
               hexpand: true;
 
@@ -104,6 +108,10 @@ template PaperNotebooksBar : Box {
       ListView list {
         hexpand: false;
         vexpand: true;
+
+        accessibility {
+          label: _("Notebooks");
+        }
       }
     }
   }
@@ -116,6 +124,10 @@ template PaperNotebooksBar : Box {
     vexpand: false;
 
     styles ["flat", "trash-button"]
+
+    accessibility {
+      label: _("Trash");
+    }
 
     Overlay {
       hexpand: true;

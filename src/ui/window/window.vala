@@ -315,6 +315,7 @@ public class Paper.Window : Adw.ApplicationWindow {
 		    set_text_view_state (TextViewState.EMPTY_NOTEBOOK);
             notebook_title.title = container.name;
             notebook_title.subtitle = state == WindowModel.State.TRASH ? Strings.X_NOTES.printf (container.get_n_items ()) : null;
+			notebook_title.update_property (Gtk.AccessibleProperty.LABEL, container.name, -1);
 
             var factory = new Gtk.SignalListItemFactory ();
             factory.setup.connect (list_item => {

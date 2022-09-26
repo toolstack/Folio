@@ -2,6 +2,10 @@
 [GtkTemplate (ui = "/io/posidon/Paper/notebooks_bar/icon.ui")]
 public class Paper.NotebookIcon : Gtk.Box {
 
+	construct {
+		accessible_role = Gtk.AccessibleRole.LABEL;
+	}
+
 	[GtkChild]
 	private unowned NotebookPreview icon;
 
@@ -10,6 +14,7 @@ public class Paper.NotebookIcon : Gtk.Box {
 	    set {
 	        _notebook = value;
 	        icon.notebook_info = notebook.info;
+			update_property (Gtk.AccessibleProperty.LABEL, notebook.name, -1);
 	    }
 	}
 

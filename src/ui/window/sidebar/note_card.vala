@@ -9,7 +9,7 @@ public class Paper.NoteCard : Gtk.Box {
 	        this._note = value;
 	        if (value != null) {
 	            label.label = value.name;
-	            var time_string = value.time_modified.format ("%e %b, %R").strip ();
+	            var time_string = value.time_modified.format ("%-d %b, %-H:%M").strip ();
 	            subtitle.label = _window.window_model.state == WindowModel.State.NOTEBOOK
 	            	? time_string
 	            	: @"$(time_string) - $(value.notebook.name)";
@@ -20,7 +20,7 @@ public class Paper.NoteCard : Gtk.Box {
                 v.set_object (value);
                 drag_controller.content = new Gdk.ContentProvider.for_value (v);
 	            extension.update_property (Gtk.AccessibleProperty.LABEL, @"$(Strings.EXTENSION) $(value.extension)", -1);
- 				var accessible_time_string = @"$(Strings.LAST_MODIFIED) " + value.time_modified.format ("%e %B, %X").strip ();
+ 				var accessible_time_string = @"$(Strings.LAST_MODIFIED) " + value.time_modified.format ("%-d %B, %-H:%-M").strip ();
 	            var accessible_description = _window.window_model.state == WindowModel.State.NOTEBOOK
 	            	? accessible_time_string
 	            	: @"$(accessible_time_string), $(Strings.NOTEBOOK) $(value.notebook.name)";
