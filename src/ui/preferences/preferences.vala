@@ -11,26 +11,20 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
 	[GtkChild] unowned Gtk.Button notes_dir_button;
 	[GtkChild] unowned Gtk.Button notes_dir_button_reset;
 	[GtkChild] unowned Gtk.Label notes_dir_label;
+	[GtkChild] unowned Gtk.Switch limit_note_width;
 
 	public PreferencesWindow (Application app) {
 		Object ();
 
 	    var settings = new Settings (Config.APP_ID);
-		var note_font = settings.get_string ("note-font");
-		var note_font_monospace = settings.get_string ("note-font-monospace");
-		var theme_oled = settings.get_boolean ("theme-oled");
-		var toolbar_enabled = settings.get_boolean ("toolbar-enabled");
-		var cheatsheet_enabled = settings.get_boolean ("cheatsheet-enabled");
-		var is_3_pane_enabled = settings.get_boolean ("enable-3-pane");
-		var notes_dir = settings.get_string ("notes-dir");
 
-        font_button.font = note_font;
+        font_button.font = settings.get_string ("note-font");
         font_button.font_set.connect (() => {
             var font = font_button.get_font_family ().get_name ();
             settings.set_string ("note-font", font);
         });
 
-        font_button_monospace.font = note_font_monospace;
+        font_button_monospace.font = settings.get_string ("note-font-monospace");
         font_button_monospace.set_filter_func ((family) => {
             return family.is_monospace ();
         });
@@ -39,32 +33,39 @@ public class Paper.PreferencesWindow : Adw.PreferencesWindow {
             settings.set_string ("note-font-monospace", font);
         });
 
-        oled_mode.state = theme_oled;
+        oled_mode.state = settings.get_boolean ("theme-oled");
         oled_mode.state_set.connect ((state) => {
             settings.set_boolean ("theme-oled", state);
             app.update_theme ();
             return false;
         });
 
-        enable_toolbar.state = toolbar_enabled;
+        enable_toolbar.state = settings.get_boolean ("toolbar-enabled");
         enable_toolbar.state_set.connect ((state) => {
             settings.set_boolean ("toolbar-enabled", state);
             return false;
         });
 
-        enable_cheatsheet.state = cheatsheet_enabled;
+        enable_cheatsheet.state = settings.get_boolean ("cheatsheet-enabled");
         enable_cheatsheet.state_set.connect ((state) => {
             settings.set_boolean ("cheatsheet-enabled", state);
             return false;
         });
 
-        enable_3_pane.state = is_3_pane_enabled;
+        enable_3_pane.state = settings.get_boolean ("enable-3-pane");
         enable_3_pane.state_set.connect ((state) => {
             settings.set_boolean ("enable-3-pane", state);
             return false;
         });
 
-        notes_dir_label.label = notes_dir;
+        limit_note_width.state = settings.get_int ("note-max-width") != -1;
+        limit_note_width.state_set.connect ((state) => {
+            settings.set_int ("note-max-width", state ? 720 : -1);
+            return false;
+        });
+
+		var notes_dir = settings.get_string ("notes-dir");
+        notes_dir_label.label = settings.get_string ("notes-dir");
         notes_dir_label.tooltip_text = notes_dir;
         notes_dir_button.clicked.connect (() => {
             var chooser = new Gtk.FileChooserNative (

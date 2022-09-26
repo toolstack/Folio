@@ -39,9 +39,9 @@ public class Paper.EditView : Gtk.Box {
 
     construct {
 	    var settings = new Settings (Config.APP_ID);
-		var note_font = settings.get_string ("note-font");
 
-        set_note_font (note_font);
+        set_note_font (settings.get_string ("note-font"));
+ 		set_max_width (settings.get_int ("note-max-width"));
 
         markdown_view.notify["text-mode"].connect (update_toolbar_visibility);
 
@@ -63,6 +63,7 @@ public class Paper.EditView : Gtk.Box {
 	    settings.bind ("toolbar-enabled", this, "toolbar-enabled", SettingsBindFlags.DEFAULT);
 	    settings.bind ("note-font-monospace", markdown_view, "font-monospace", SettingsBindFlags.DEFAULT);
 	    settings.changed["note-font"].connect(() => set_note_font (settings.get_string ("note-font")));
+	    settings.changed["note-max-width"].connect(() => set_max_width (settings.get_int ("note-max-width")));
 
 	    var window_state = new Settings (@"$(Config.APP_ID).WindowState");
 	    window_state.bind ("text-scale", this, "scale", SettingsBindFlags.DEFAULT);
@@ -213,6 +214,11 @@ public class Paper.EditView : Gtk.Box {
     private void set_note_font (string font) {
 	    note_font_provider.load_from_data (@"textview{font-family:'$font';}".data);
 	    markdown_view.get_style_context ().add_provider (note_font_provider, -1);
+    }
+
+    private void set_max_width (int w) {
+	    markdown_view.width_request = w;
+    	markdown_view.halign = w == -1 ? Gtk.Align.FILL : Gtk.Align.CENTER;
     }
 
 	private void update_toolbar_visibility () {

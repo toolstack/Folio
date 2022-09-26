@@ -42,6 +42,7 @@
     <file preprocess="xml-stripblanks">graphics/scalable/actions/insert-horizontal-rule-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/insert-code-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/reset-symbolic.svg</file>
+    <file preprocess="xml-stripblanks">graphics/scalable/actions/stretch-horizontal-symbolic.svg</file>
     <file preprocess="xml-stripblanks">graphics/scalable/actions/toolbar-symbolic.svg</file>
 
     <file preprocess="xml-stripblanks">graphics/scalable/actions/icon-car-symbolic.svg</file>

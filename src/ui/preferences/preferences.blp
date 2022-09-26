@@ -39,6 +39,8 @@ template PaperPreferencesWindow : Adw.PreferencesWindow {
           preview-text: "function var struct enum type impl >= <= => =< == === <== ==> >- <- -> -< :: != ~= := =: >> << >>=";
         }
       }
+    }
+    Adw.PreferencesGroup {
       Adw.ActionRow {
 
         title: _("OLED Mode");
@@ -50,6 +52,8 @@ template PaperPreferencesWindow : Adw.PreferencesWindow {
           valign: center;
         }
       }
+    }
+    Adw.PreferencesGroup {
       Adw.ActionRow {
 
         title: _("Enable Toolbar");
@@ -70,6 +74,8 @@ template PaperPreferencesWindow : Adw.PreferencesWindow {
           valign: center;
         }
       }
+    }
+    Adw.PreferencesGroup {
       Adw.ActionRow {
 
         title: _("3-Pane Layout");
@@ -77,6 +83,17 @@ template PaperPreferencesWindow : Adw.PreferencesWindow {
         activatable-widget: enable_3_pane;
 
         Switch enable_3_pane {
+          valign: center;
+        }
+      }
+      Adw.ActionRow {
+
+        title: _("Limit Note Width");
+        subtitle: _("Limits how wide the text area can stretch");
+        icon-name: "stretch-horizontal-symbolic";
+        activatable-widget: limit_note_width;
+
+        Switch limit_note_width {
           valign: center;
         }
       }
