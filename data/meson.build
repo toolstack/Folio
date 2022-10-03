@@ -1,10 +1,11 @@
 conf = configuration_data()
 conf.set('app_id', app_id)
 conf.set('version', version)
+conf.set('bindir', get_option('prefix') / get_option('bindir'))
 
 service_file = configure_file(
   input: 'app.service.in',
-  output: 'io.posidon.Paper.service',
+  output: '@0@.service'.format(app_id),
   configuration: conf,
 )
 
