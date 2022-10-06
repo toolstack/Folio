@@ -364,6 +364,7 @@ row.activatable:selected .notebook {
 
 .text-area headerbar {
   background: @view_bg_color;
+  color: @view_fg_color;
 }
 
 .markdown-view {
