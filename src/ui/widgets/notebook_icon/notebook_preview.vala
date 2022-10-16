@@ -58,9 +58,9 @@ public class Paper.NotebookPreview : Gtk.Box {
             var hsl = Color.rgb_to_hsl (rgb);
             var l = Color.get_luminance(rgb.r, rgb.g, rgb.b);
             var is_notebook_light = l > 0.7f;
-            hsl.l = is_notebook_light ? 0.1f : 0.645f;
+            hsl.l = is_notebook_light ? 0.05f : 0.6f;
             hsl.s = 1.0f;
-            var m = is_notebook_light ? 1.0f : 3.0f;
+            var m = is_notebook_light ? 1.0f : 4.0f;
             Color.hsl_to_rgb (hsl, out rgb);
             Color.rgb_to_RGBA (rgb.multiply (m), out fg_rgba);
         }
