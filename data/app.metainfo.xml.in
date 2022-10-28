@@ -18,6 +18,23 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
+    <release type="stable" version="22.11" date="2022-10-20">
+      <description translatable="no">
+	      <p>UI Tweaks:</p>
+        <ul>
+          <li>Added setting to stretch text area to fill the window</li>
+          <li>Updated to libadwaita 1.2</li>
+          <li>Tweaked styling</li>
+          <li>Simplified notebook icons</li>
+          <li>Improved compatibility with screen readers</li>
+        </ul>
+	      <p>Fixes:</p>
+        <ul>
+          <li>Not using the right directory for note storage</li>
+          <li>Glitchy creating/deleting notebooks</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="22.10" date="2022-09-17">
       <description translatable="no">
 	      <p>UI Tweaks:</p>
@@ -204,19 +221,19 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>https://zagura.posidon.io/paper/screenshot/22_0801_desktop.png</image>
+      <image>https://zagura.one/dev/paper/screenshot/22_0801_desktop.png</image>
       <caption>Markdown document</caption>
     </screenshot>
     <screenshot type="default">
-      <image>https://zagura.posidon.io/paper/screenshot/22_0801_desktop_minimal.png</image>
+      <image>https://zagura.one/dev/paper/screenshot/22_0801_desktop_minimal.png</image>
       <caption>Markdown document</caption>
     </screenshot>
     <screenshot>
-      <image>https://zagura.posidon.io/paper/screenshot/22_0801_mobile.png</image>
+      <image>https://zagura.one/dev/paper/screenshot/22_0801_mobile.png</image>
       <caption>Markdown document</caption>
     </screenshot>
     <screenshot>
-      <image>https://zagura.posidon.io/paper/screenshot/22_0801_mobile_list.png</image>
+      <image>https://zagura.one/dev/paper/screenshot/22_0801_mobile_list.png</image>
       <caption>List of notes</caption>
     </screenshot>
   </screenshots>
@@ -228,7 +245,7 @@
   <developer_name translatable="no">Zagura</developer_name>
   <project_group translatable="no">posidon</project_group>
 
-  <url type="homepage">https://zagura.posidon.io/paper</url>
+  <url type="homepage">https://gitlab.com/posidon_software/paper</url>
   <url type="bugtracker">https://gitlab.com/posidon_software/paper/issues</url>
 
   <branding>

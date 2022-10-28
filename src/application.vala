@@ -127,7 +127,7 @@ public class Paper.Application : Adw.Application {
 	    about.issue_url = "https://gitlab.com/posidon_software/paper/issues";
 	    about.license_type = Gtk.License.GPL_3_0;
 	    about.version = Config.VERSION;
-	    about.website = "https://zagura.posidon.io/paper";
+	    about.website = "https://gitlab.com/posidon_software/paper";
 		about.transient_for = this.active_window;
 		about.present ();
 	}

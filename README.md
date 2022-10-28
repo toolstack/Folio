@@ -35,5 +35,3 @@ The source code is GPLv3
 ## Notes Storage
 By default, notes are stored in `~/.var/app/io.posidon.Paper/data`,
 but that can be changed in preferences
-
-## Paper [website](https://zagura.posidon.io/paper)
