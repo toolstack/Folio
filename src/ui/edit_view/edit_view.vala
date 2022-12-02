@@ -118,48 +118,41 @@ public class Paper.EditView : Gtk.Box {
         markdown_view.dark = dark;
     }
 
-	public void format_selection_bold () {
+    private void format_selection (string affix) {
 	    var b = markdown_view.buffer;
 	    b.begin_user_action ();
 	    var mark = b.get_selection_bound ();
-	    Gtk.TextIter iter;
+	    Gtk.TextIter iter, cursor;
 	    b.get_iter_at_mark (out iter, mark);
-	    b.insert (ref iter, "**", 2);
-	    b.insert_at_cursor ("**", 2);
+
+	    b.insert (ref iter, affix, affix.length);
+	    b.insert_at_cursor (affix, affix.length);
+
+	    b.get_iter_at_mark (out iter, mark);
+        b.get_iter_at_mark (out cursor, b.get_insert());
+
+        if(iter.equal(cursor)) {
+            cursor.backward_cursor_positions (affix.length);
+            b.place_cursor (cursor);
+        }
+
 	    b.end_user_action ();
+    }
+
+	public void format_selection_bold () {
+        format_selection("**");
 	}
 
 	public void format_selection_italic () {
-	    var b = markdown_view.buffer;
-	    b.begin_user_action ();
-	    var mark = b.get_selection_bound ();
-	    Gtk.TextIter iter;
-	    b.get_iter_at_mark (out iter, mark);
-	    b.insert (ref iter, "_", 1);
-	    b.insert_at_cursor ("_", 1);
-	    b.end_user_action ();
+        format_selection("_");
 	}
 
 	public void format_selection_strikethrough () {
-	    var b = markdown_view.buffer;
-	    b.begin_user_action ();
-	    var mark = b.get_selection_bound ();
-	    Gtk.TextIter iter;
-	    b.get_iter_at_mark (out iter, mark);
-	    b.insert (ref iter, "~~", 2);
-	    b.insert_at_cursor ("~~", 2);
-	    b.end_user_action ();
+        format_selection("~~");
 	}
 
 	public void format_selection_highlight () {
-	    var b = markdown_view.buffer;
-	    b.begin_user_action ();
-	    var mark = b.get_selection_bound ();
-	    Gtk.TextIter iter;
-	    b.get_iter_at_mark (out iter, mark);
-	    b.insert (ref iter, "==", 2);
-	    b.insert_at_cursor ("==", 2);
-	    b.end_user_action ();
+        format_selection("==");
 	}
 
 	public void insert_link () {
@@ -186,14 +179,7 @@ public class Paper.EditView : Gtk.Box {
 	}
 
 	public void insert_code_span () {
-	    var b = markdown_view.buffer;
-	    b.begin_user_action ();
-	    var mark = b.get_selection_bound ();
-	    Gtk.TextIter iter;
-	    b.get_iter_at_mark (out iter, mark);
-	    b.insert (ref iter, "`", 1);
-	    b.insert_at_cursor ("`", 1);
-	    b.end_user_action ();
+        format_selection("`");
 	}
 
 	public void insert_horizontal_rule () {
