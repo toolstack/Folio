@@ -121,17 +121,17 @@ public class Paper.EditView : Gtk.Box {
     private void format_selection (string affix) {
 	    var b = markdown_view.buffer;
 	    b.begin_user_action ();
-	    var mark = b.get_selection_bound ();
-	    Gtk.TextIter iter, cursor;
-	    b.get_iter_at_mark (out iter, mark);
 
-	    b.insert (ref iter, affix, affix.length);
+	    Gtk.TextIter start, cursor;
+	    b.get_iter_at_mark (out start, b.get_selection_bound ());
+
+	    b.insert (ref start, affix, affix.length);
 	    b.insert_at_cursor (affix, affix.length);
 
-	    b.get_iter_at_mark (out iter, mark);
+	    b.get_iter_at_mark (out start, b.get_selection_bound ());
         b.get_iter_at_mark (out cursor, b.get_insert());
 
-        if(iter.equal(cursor)) {
+        if(start.equal(cursor)) {
             cursor.backward_cursor_positions (affix.length);
             b.place_cursor (cursor);
         }
