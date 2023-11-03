@@ -53,11 +53,13 @@ public class Paper.NotebooksBar : Gtk.Box {
 	    this.window_model = window.window_model;
         {
             var factory = new Gtk.SignalListItemFactory ();
-            factory.setup.connect (list_item => {
+            factory.setup.connect (object => {
+                var list_item = object as Gtk.ListItem;
                 var widget = new NotebookIcon (window);
                 list_item.child = widget;
             });
-            factory.bind.connect (list_item => {
+            factory.bind.connect (object => {
+                var list_item = object as Gtk.ListItem;
                 var widget = list_item.child as NotebookIcon;
                 var item = list_item.item as Notebook;
                 widget.notebook = item;
@@ -66,11 +68,12 @@ public class Paper.NotebooksBar : Gtk.Box {
         }
         {
             var factory = new Gtk.SignalListItemFactory ();
-            factory.setup.connect (list_item => {
+            factory.setup.connect (object => {
                 var widget = new NotebookSidebarItem (window);
-                list_item.child = widget;
+                (object as Gtk.ListItem).child = widget;
             });
-            factory.bind.connect (list_item => {
+            factory.bind.connect (object => {
+                var list_item = object as Gtk.ListItem;
                 var widget = list_item.child as NotebookSidebarItem;
                 var item = list_item.item as Notebook;
                 widget.notebook = item;

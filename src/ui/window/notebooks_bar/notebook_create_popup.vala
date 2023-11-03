@@ -61,10 +61,11 @@ public class Paper.NotebookCreatePopup : Adw.Window {
 
         var factory = new Gtk.SignalListItemFactory ();
 
-        factory.setup.connect ((it) => it.child = new Gtk.Image ());
-        factory.bind.connect ((it) => {
-            var icon_name = (it.item as Gtk.StringObject).string;
-            (it.child as Gtk.Image).icon_name = icon_name;
+        factory.setup.connect (obj => (obj as Gtk.ListItem).child = new Gtk.Image ());
+        factory.bind.connect (obj => {
+            var list_item = obj as Gtk.ListItem;
+            var icon_name = (list_item.item as Gtk.StringObject).string;
+            (list_item.child as Gtk.Image).icon_name = icon_name;
         });
 
         icon_grid.model = model;
