@@ -305,7 +305,7 @@ public class Paper.Application : Adw.Application {
 
 		if (open_note != null) {
             if (temp_command == null) temp_command =
-                new HashTable<string, Value> (str_hash, str_equal);
+                new HashTable<string, Value?> (str_hash, str_equal);
             temp_command.insert(
                 "open-note",
                 window_model.try_get_note_from_path (open_note)
@@ -314,7 +314,7 @@ public class Paper.Application : Adw.Application {
 
 		if (launch_search != null) {
             if (temp_command == null) temp_command =
-                new HashTable<string, Value> (str_hash, str_equal);
+                new HashTable<string, Value?> (str_hash, str_equal);
             temp_command.insert("launch-search", launch_search);
 		}
 
