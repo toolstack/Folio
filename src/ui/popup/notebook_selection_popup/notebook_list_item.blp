@@ -1,11 +1,11 @@
 using Gtk 4.0;
 
-template PaperNotebookListItem : Box {
+template $PaperNotebookListItem : Box {
 
   hexpand: true;
   orientation: horizontal;
 
-  .PaperNotebookPreview icon {}
+  $PaperNotebookPreview icon {}
 
   Label label {
     ellipsize: end;

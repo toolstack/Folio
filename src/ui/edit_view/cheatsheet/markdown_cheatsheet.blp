@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template PaperMarkdownCheatsheet : Adw.Window {
+template $PaperMarkdownCheatsheet : Adw.Window {
 
   default-width: 500;
   default-height: 440;
@@ -25,7 +25,7 @@ template PaperMarkdownCheatsheet : Adw.Window {
 
       styles ["md-cheatsheet"]
 
-      .GtkMarkdownView text_view {
+      $GtkMarkdownView text_view {
 
         tab-width: 4;
         auto-indent: true;

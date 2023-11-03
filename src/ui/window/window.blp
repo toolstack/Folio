@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template PaperWindow : Adw.ApplicationWindow {
+template $PaperWindow : Adw.ApplicationWindow {
 
   styles ["transparent"]
 
@@ -25,7 +25,7 @@ template PaperWindow : Adw.ApplicationWindow {
             vexpand: true;
             width-request: 224;
 
-            .PaperNotebooksBar notebooks_bar {}
+            $PaperNotebooksBar notebooks_bar {}
 
             Box {
 
@@ -100,7 +100,7 @@ template PaperWindow : Adw.ApplicationWindow {
           styles ["text-area"]
 
           [overlay]
-          .PaperEditView edit_view {
+          $PaperEditView edit_view {
             hexpand: true;
             vexpand: true;
           }

@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template PaperFileEditorWindow : Adw.ApplicationWindow {
+template $PaperFileEditorWindow : Adw.ApplicationWindow {
   default-width: 720;
   default-height: 512;
 
@@ -15,7 +15,7 @@ template PaperFileEditorWindow : Adw.ApplicationWindow {
 
       styles ["text-area"]
 
-      .PaperEditView edit_view {
+      $PaperEditView edit_view {
         hexpand: true;
         vexpand: true;
         width-request: 390;
@@ -57,7 +57,7 @@ template PaperFileEditorWindow : Adw.ApplicationWindow {
         }
 
         [end]
-        .PaperAppMenu {}
+        $PaperAppMenu {}
       }
     }
   }

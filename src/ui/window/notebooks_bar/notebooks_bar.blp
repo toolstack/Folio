@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template PaperNotebooksBar : Box {
+template $PaperNotebooksBar : Box {
 
   hexpand: false;
   vexpand: true;
@@ -11,23 +11,23 @@ template PaperNotebooksBar : Box {
 
   Adw.HeaderBar header_bar {
 
-    show-start-title-buttons: bind PaperNotebooksBar.paned;
+    show-start-title-buttons: bind template.paned;
     show-end-title-buttons: false;
 
     [title]
     Box {
-      .PaperAppMenu {
-        visible: bind PaperNotebooksBar.paned inverted;
+      $PaperAppMenu {
+        visible: bind template.paned inverted;
       }
 
       Adw.WindowTitle window_title {
-        visible: bind PaperNotebooksBar.paned;
+        visible: bind template.paned;
       }
     }
 
     [end]
-    .PaperAppMenu {
-      visible: bind PaperNotebooksBar.paned;
+    $PaperAppMenu {
+      visible: bind template.paned;
     }
   }
 
@@ -49,7 +49,7 @@ template PaperNotebooksBar : Box {
 
           ToggleButton all_button {
 
-            visible: bind PaperNotebooksBar.paned inverted;
+            visible: bind template.paned inverted;
             hexpand: true;
             vexpand: false;
 
@@ -78,7 +78,7 @@ template PaperNotebooksBar : Box {
 
           ToggleButton {
 
-            visible: bind PaperNotebooksBar.paned;
+            visible: bind template.paned;
             hexpand: true;
             vexpand: false;
             active: bind all_button.active bidirectional;
@@ -118,7 +118,7 @@ template PaperNotebooksBar : Box {
 
   ToggleButton trash_button {
 
-    visible: bind PaperNotebooksBar.paned inverted;
+    visible: bind template.paned inverted;
     icon-name: "user-trash-symbolic";
     hexpand: false;
     vexpand: false;
@@ -148,7 +148,7 @@ template PaperNotebooksBar : Box {
 
   ToggleButton {
 
-    visible: bind PaperNotebooksBar.paned;
+    visible: bind template.paned;
     hexpand: false;
     vexpand: false;
     active: bind trash_button.active bidirectional;

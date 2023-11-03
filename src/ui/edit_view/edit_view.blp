@@ -2,7 +2,7 @@ using Gtk 4.0;
 using Adw 1;
 using GtkSource 5;
 
-template PaperEditView : Box {
+template $PaperEditView : Box {
 
   orientation: vertical;
 
@@ -13,7 +13,7 @@ template PaperEditView : Box {
     hexpand: true;
     vexpand: true;
 
-    .GtkMarkdownView markdown_view {
+    $GtkMarkdownView markdown_view {
 
       halign: center;
       hexpand: true;
@@ -29,7 +29,7 @@ template PaperEditView : Box {
     }
   }
 
-  .PaperToolbar toolbar {
+  $PaperToolbar toolbar {
     hexpand: true;
     vexpand: false;
   }
