@@ -168,7 +168,7 @@ public class Paper.Provider : Object, ListModel {
         var notebooks = new ArrayList<Notebook> ();
         var dir = File.new_for_path (notes_dir);
         try {
-            var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+            var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE, 0);
             FileInfo file_info;
             while ((file_info = enumerator.next_file ()) != null) {
                 if (file_info.get_file_type () != FileType.DIRECTORY) continue;

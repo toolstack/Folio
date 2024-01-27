@@ -318,12 +318,13 @@ public class Paper.Window : Adw.ApplicationWindow {
 			notebook_title.update_property (Gtk.AccessibleProperty.LABEL, container.name, -1);
 
             var factory = new Gtk.SignalListItemFactory ();
-            factory.setup.connect (list_item => {
+            factory.setup.connect (obj => {
                 var widget = new NoteCard ();
                 widget.window = this;
-                list_item.child = widget;
+                (obj as Gtk.ListItem).child = widget;
             });
-            factory.bind.connect (list_item => {
+            factory.bind.connect (obj => {
+                var list_item = obj as Gtk.ListItem;
                 var widget = list_item.child as NoteCard;
                 var item = list_item.item as Note;
                 widget.note = item;

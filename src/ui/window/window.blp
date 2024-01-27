@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template PaperWindow : Adw.ApplicationWindow {
+template $PaperWindow : Adw.ApplicationWindow {
 
   styles ["transparent"]
 
@@ -25,7 +25,7 @@ template PaperWindow : Adw.ApplicationWindow {
             vexpand: true;
             width-request: 224;
 
-            .PaperNotebooksBar notebooks_bar {}
+            $PaperNotebooksBar notebooks_bar {}
 
             Box {
 
@@ -61,7 +61,7 @@ template PaperWindow : Adw.ApplicationWindow {
                 ToggleButton {
                   icon-name: "system-search-symbolic";
                   tooltip-text: _("Search Notes");
-                  active: bind notes_search_bar.search_mode_enabled bidirectional;
+                  active: bind notes_search_bar.search-mode-enabled bidirectional;
                 }
               }
 
@@ -100,7 +100,7 @@ template PaperWindow : Adw.ApplicationWindow {
           styles ["text-area"]
 
           [overlay]
-          .PaperEditView edit_view {
+          $PaperEditView edit_view {
             hexpand: true;
             vexpand: true;
           }
@@ -214,7 +214,7 @@ template PaperWindow : Adw.ApplicationWindow {
               ToggleButton {
                 icon-name: "sidebar-show-symbolic";
                 tooltip-text: _("Toggle Sidebar");
-                active: bind sidebar_revealer.reveal_child bidirectional;
+                active: bind sidebar_revealer.reveal-child bidirectional;
                 visible: bind leaflet.folded inverted;
               }
 

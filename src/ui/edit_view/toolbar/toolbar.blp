@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template PaperToolbar : Box {
+template $PaperToolbar : Box {
 
   Adw.Squeezer squeezer {
 
@@ -85,7 +85,7 @@ template PaperToolbar : Box {
       }
 
       Button {
-        visible: bind PaperToolbar.cheatsheet-enabled;
+        visible: bind template.cheatsheet-enabled;
         icon-name: "dialog-information-symbolic";
         tooltip-text: _("Markdown Cheatsheet");
         action-name: "app.markdown-cheatsheet";
