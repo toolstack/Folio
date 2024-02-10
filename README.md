@@ -35,3 +35,16 @@ The source code is GPLv3
 ## Notes Storage
 By default, notes are stored in `~/.var/app/io.posidon.Paper/data`,
 but that can be changed in preferences
+
+## Build Instructions
+Flatpak build requires flatpak-building installed.
+
+ - change into the top level source directory
+ - to configure the build enviroment (required only once), run ```meson build```
+ - change into the build directory
+ - to build Paper, run ```ninja```
+ - change back to top level source directory
+ - to create the flatpak, run ```flatpak-builder flatpak io.posidon.Paper.json```
+ - to install the flatpak, run ```flatpak-builder --user --install --force-clean flatpak io.posidon.Paper.json```
+
+You may now run the flatpak with ```flatpak run io.posidon.Paper``` or through your lancher.

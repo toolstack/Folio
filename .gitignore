@@ -3,3 +3,5 @@
 _build
 .flatpak
 .var
+.flatpak-builder
+flatpak
