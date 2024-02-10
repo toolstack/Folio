@@ -39,7 +39,8 @@
             "buildsystem" : "meson",
             "sources" : [{
                 "type" : "git",
-                "url" : "https://gitlab.com/posidon_software/paper"
+                "url" : "https://gitlab.com/toolstack/paper",
+                "branch" : "main"
             }]
         }
     ]
