@@ -1,7 +1,7 @@
 project(
   'io.posidon.Paper',
   ['c', 'vala'],
-  version: '22.11',
+  version: '24.01',
   meson_version: '>= 0.59.4',
   default_options: [
     'warning_level=2',
