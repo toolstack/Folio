@@ -71,9 +71,9 @@ Adds ==highlight== effect to the text
 ## Code
 
 ##### Code span
-`\`code\``
+`code`
 
 ##### Code block
-`\`\`\``language-name
+```language-name
 code
-`\`\`\``
+```
