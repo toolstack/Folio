@@ -39,7 +39,7 @@
             "buildsystem" : "meson",
             "sources" : [{
                 "type" : "git",
-                "url" : "https://gitlab.com/toolstack/Folio",
+                "url" : "https://github.com/toolstack/Folio",
                 "branch" : "main"
             }]
         }
