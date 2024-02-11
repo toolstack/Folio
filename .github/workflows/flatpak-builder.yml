@@ -1,7 +1,6 @@
 on:
-  push:
-    branches: [main]
-  pull_request:
+  release:
+    types: [published]
 name: CI
 jobs:
   flatpak:
