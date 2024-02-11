@@ -18,6 +18,19 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
+    <release type="stable" version="24.01" date="2022-02-11">
+      <description translatable="no">
+	      <p>UI Changes:</p>
+        <ul>
+          <li>Place cursor between formatting characters when using formatting shortcuts (thanks u1f98e@gitlab)</li>
+        </ul>
+	      <p>Fixes:</p>
+        <ul>
+          <li>Updated to libadwaita 1.4.2</li>
+          <li>Upgrade to Gnome runtime version 45 (thanks @tpikonen)</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="22.11" date="2022-10-20">
       <description translatable="no">
 	      <p>UI Tweaks:</p>
