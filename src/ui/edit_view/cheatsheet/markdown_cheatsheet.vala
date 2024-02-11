@@ -16,8 +16,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-[GtkTemplate (ui = "/io/posidon/Paper/markdown_cheatsheet.ui")]
-public class Paper.MarkdownCheatsheet : Adw.Window {
+[GtkTemplate (ui = "/com/toolstack/Folio/markdown_cheatsheet.ui")]
+public class Folio.MarkdownCheatsheet : Adw.Window {
 
     [GtkChild]
     unowned GtkMarkdown.View text_view;
@@ -31,7 +31,7 @@ public class Paper.MarkdownCheatsheet : Adw.Window {
         try {
             var buffer = new GtkMarkdown.Buffer ();
             buffer.text = (string) resources_lookup_data (
-                "/io/posidon/Paper/markdown_cheatsheet.md",
+                "/com/toolstack/Folio/markdown_cheatsheet.md",
                 ResourceLookupFlags.NONE
             ).get_data ();
             text_view.buffer = buffer;

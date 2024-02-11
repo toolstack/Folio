@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <gresources>
-  <gresource prefix="/io/posidon/Paper/">
+  <gresource prefix="/com/toolstack/Folio/">
     <file alias="style.css">css/style.css</file>
     <file alias="style-dark.css">css/style-dark.css</file>
     <file alias="style-black.css">css/style-black.css</file>

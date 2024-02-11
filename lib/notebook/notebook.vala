@@ -1,6 +1,6 @@
 using Gee;
 
-public interface Paper.Notebook : Object, ListModel, NoteContainer {
+public interface Folio.Notebook : Object, ListModel, NoteContainer {
 
     public Gdk.RGBA color { get { return info.color; } }
     public NotebookIconType icon_type { get { return info.icon_type; } }

@@ -5,7 +5,7 @@ Exec=@app_id@
 DBusActivatable=true
 StartupWMClass=@app_id@
 
-Name=Paper
+Name=Folio
 GenericName=Notes Manager
 Comment=Take notes
 

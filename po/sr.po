@@ -1,11 +1,11 @@
-# Serbian translation for io.posidon.Paper package.
-# Copyright (C) 2022 THE io.posidon.Paper'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the io.posidon.Paper package.
+# Serbian translation for com.toolstack.Folio package.
+# Copyright (C) 2022 THE com.toolstack.Folio'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.toolstack.Folio package.
 # Марко М. Костић <marko.m.kostic@gmail.com>, 2022.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: io.posidon.Paper\n"
+"Project-Id-Version: com.toolstack.Folio\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-19 17:20+0200\n"
 "PO-Revision-Date: 2022-12-18 10:03+0100\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 3.1.1\n"
 
 #: data/app.desktop.in:8 src/ui/strings.vala:3
-msgid "Paper"
+msgid "Folio"
 msgstr "Папир"
 
 #: data/app.desktop.in:9

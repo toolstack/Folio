@@ -1,6 +1,6 @@
 
-[GtkTemplate (ui = "/io/posidon/Paper/sidebar/note_menu.ui")]
-public class Paper.NoteMenuPopover : Gtk.Popover {
+[GtkTemplate (ui = "/com/toolstack/Folio/sidebar/note_menu.ui")]
+public class Folio.NoteMenuPopover : Gtk.Popover {
 
 	[GtkChild]
 	unowned Gtk.Button button_edit;

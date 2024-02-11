@@ -1,9 +1,9 @@
 {
-    "app-id" : "io.posidon.Paper",
+    "app-id" : "com.toolstack.Folio",
     "runtime" : "org.gnome.Platform",
     "runtime-version" : "45",
     "sdk" : "org.gnome.Sdk",
-    "command" : "io.posidon.Paper",
+    "command" : "com.toolstack.Folio",
     "finish-args" : [
         "--share=ipc",
         "--socket=fallback-x11",
@@ -34,12 +34,12 @@
             }]
         },
         {
-            "name" : "Paper",
+            "name" : "Folio",
             "builddir" : true,
             "buildsystem" : "meson",
             "sources" : [{
                 "type" : "git",
-                "url" : "https://gitlab.com/toolstack/paper",
+                "url" : "https://gitlab.com/toolstack/Folio",
                 "branch" : "main"
             }]
         }

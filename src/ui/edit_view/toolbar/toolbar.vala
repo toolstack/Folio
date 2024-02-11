@@ -1,6 +1,6 @@
 
-[GtkTemplate (ui = "/io/posidon/Paper/toolbar.ui")]
-public class Paper.Toolbar : Gtk.Box {
+[GtkTemplate (ui = "/com/toolstack/Folio/toolbar.ui")]
+public class Folio.Toolbar : Gtk.Box {
 
 	public bool compacted {
 	    get { return squeezer.visible_child == small_toolbar; }

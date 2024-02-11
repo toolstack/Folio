@@ -1,5 +1,5 @@
 project(
-  'io.posidon.Paper',
+  'com.toolstack.Folio',
   ['c', 'vala'],
   version: '24.01',
   meson_version: '>= 0.59.4',

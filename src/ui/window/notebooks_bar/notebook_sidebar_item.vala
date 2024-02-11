@@ -1,5 +1,5 @@
 
-public class Paper.NotebookSidebarItem : NotebookListItem {
+public class Folio.NotebookSidebarItem : NotebookListItem {
 
 	private Window window;
     private Gtk.Popover? current_popover = null;

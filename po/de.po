@@ -1,12 +1,12 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the io.posidon.Paper package.
+# This file is distributed under the same license as the com.toolstack.Folio package.
 # Jan Krings <liquidsky42@gmail.com>, 2022.
 # Jürgen Benvenuti <gastornis@posteo.org>, 2022.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: io.posidon.Paper\n"
+"Project-Id-Version: com.toolstack.Folio\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-19 17:20+0200\n"
 "PO-Revision-Date: 2022-08-10 13:42+0200\n"
@@ -20,8 +20,8 @@ msgstr ""
 "X-Generator: Poedit 3.1.1\n"
 
 #: data/app.desktop.in:8 src/ui/strings.vala:3
-msgid "Paper"
-msgstr "Paper"
+msgid "Folio"
+msgstr "Folio"
 
 #: data/app.desktop.in:9
 msgid "Notes Manager"

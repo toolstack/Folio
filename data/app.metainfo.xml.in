@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
 	<id>@app_id@</id>
-  <name translatable="no">Paper</name>
+  <name translatable="no">Folio</name>
   <summary>Take notes in Markdown</summary>
 	<description>
 	  <p>Create notebooks, take notes in markdown</p>
@@ -9,8 +9,8 @@
     <ul>
       <li>Almost WYSIWYG markdown rendering</li>
       <li>Searchable through GNOME search</li>
-      <li>Highlight &amp; Strikethrough text formatting</li>
-      <li>App recoloring based on notebook color</li>
+      <li>Highlight &amp; strikethrough text formatting</li>
+      <li>App themeing based on notebook color</li>
       <li>Trash can</li>
     </ul>
 	</description>
@@ -221,19 +221,19 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>https://zagura.one/dev/paper/screenshot/22_0801_desktop.png</image>
+      <image>https://github.com/toolstack/Folio/blob/main/meta/folio-desktop.png</image>
       <caption>Markdown document</caption>
     </screenshot>
     <screenshot type="default">
-      <image>https://zagura.one/dev/paper/screenshot/22_0801_desktop_minimal.png</image>
+      <image>https://github.com/toolstack/Folio/blob/main/meta/folio-desktop-minimal.png</image>
       <caption>Markdown document</caption>
     </screenshot>
     <screenshot>
-      <image>https://zagura.one/dev/paper/screenshot/22_0801_mobile.png</image>
+      <image>https://github.com/toolstack/Folio/blob/main/meta/folio-mobile.png</image>
       <caption>Markdown document</caption>
     </screenshot>
     <screenshot>
-      <image>https://zagura.one/dev/paper/screenshot/22_0801_mobile_list.png</image>
+      <image>https://github.com/toolstack/Folio/blob/main/meta/folio-mobile-list.png</image>
       <caption>List of notes</caption>
     </screenshot>
   </screenshots>
@@ -245,8 +245,8 @@
   <developer_name translatable="no">Zagura</developer_name>
   <project_group translatable="no">posidon</project_group>
 
-  <url type="homepage">https://gitlab.com/posidon_software/paper</url>
-  <url type="bugtracker">https://gitlab.com/posidon_software/paper/issues</url>
+  <url type="homepage">https://github.com/toolstack/Folio</url>
+  <url type="bugtracker">https://github.com/toolstack/Folio/issues</url>
 
   <branding>
     <color type="primary" scheme_preference="light">#c6eabf</color>

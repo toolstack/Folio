@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist gettext-domain="notebook">
-	<schema id="io.posidon.Paper" path="/io/posidon/Paper/">
+	<schema id="com.toolstack.Folio" path="/com/toolstack/Folio/">
     <key name="note-font" type="s">
       <default>'Sans'</default>
       <summary>Note Font</summary>
@@ -29,24 +29,24 @@
       <default>false</default>
     </key>
     <key name="notes-dir" type="s">
-      <default>'~/.var/app/io.posidon.Paper/data'</default>
+      <default>'~/.var/app/com.toolstack.Folio/data'</default>
       <summary>Notes Directory</summary>
       <description>Where the notebooks are stored</description>
     </key>
   </schema>
-  <enum id="io.posidon.Paper.ThemeVariantEnum">
+  <enum id="com.toolstack.Folio.ThemeVariantEnum">
     <value nick="default" value="0"/>
     <value nick="force-light" value="1"/>
     <value nick="force-dark" value="2"/>
     <value nick="prefer-light" value="3"/>
     <value nick="prefer-dark" value="4"/>
   </enum>
-  <schema id="io.posidon.Paper.Theme" path="/io/posidon/Paper/Theme/">
-    <key name="variant" enum="io.posidon.Paper.ThemeVariantEnum">
+  <schema id="com.toolstack.Folio.Theme" path="/com/toolstack/Folio/Theme/">
+    <key name="variant" enum="com.toolstack.Folio.ThemeVariantEnum">
       <default>'default'</default>
     </key>
   </schema>
-  <schema id="io.posidon.Paper.WindowState" path="/io/posidon/Paper/WindowState/">
+  <schema id="com.toolstack.Folio.WindowState" path="/com/toolstack/Folio/WindowState/">
     <key name="width" type="i">
       <default>720</default>
     </key>

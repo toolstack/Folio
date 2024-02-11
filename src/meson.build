@@ -1,4 +1,4 @@
-paper_sources = [
+folio_sources = [
   'main.vala',
   'application.vala',
 
@@ -46,14 +46,14 @@ paper_sources = [
 subdir('ui')
 generated_resources_dir = meson.current_build_dir()
 
-paper_sources += gnome.compile_resources('paper-resources',
-  'paper.gresource.xml',
+folio_sources += gnome.compile_resources('folio-resources',
+  'folio.gresource.xml',
   dependencies: blueprints,
   source_dir: ['src', generated_resources_dir],
-  c_name: 'paper'
+  c_name: 'folio'
 )
 
-paper_sources += custom_target('blueprint-hack',
+folio_sources += custom_target('blueprint-hack',
   input: blueprints,
   output: 'blueprint.vala',
   command: [find_program('touch'), '@OUTPUT@']
@@ -69,7 +69,7 @@ configure_file(output: 'config.h', configuration: conf)
 cc = meson.get_compiler('c')
 m_dep = cc.find_library('m', required: false)
 
-paper_deps = [
+folio_deps = [
   dependency('glib-2.0'),
   dependency('gobject-2.0'),
   dependency('gmodule-2.0'),
@@ -83,7 +83,7 @@ paper_deps = [
 
 executable(
   meson.project_name(),
-  paper_sources,
+  folio_sources,
   c_args: [
     '-DGETTEXT_PACKAGE="' + app_id + '"'
   ],
@@ -92,7 +92,7 @@ executable(
     '--target-glib=2.72.1',
     '--gresourcesdir=' + generated_resources_dir,
   ],
-  dependencies: paper_deps,
+  dependencies: folio_deps,
   implicit_include_directories: true,
   install: true,
 )

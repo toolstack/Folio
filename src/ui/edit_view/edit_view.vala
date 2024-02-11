@@ -1,6 +1,6 @@
 
-[GtkTemplate (ui = "/io/posidon/Paper/edit_view.ui")]
-public class Paper.EditView : Gtk.Box {
+[GtkTemplate (ui = "/com/toolstack/Folio/edit_view.ui")]
+public class Folio.EditView : Gtk.Box {
 
     public bool toolbar_enabled { get; set; }
 
@@ -211,4 +211,3 @@ public class Paper.EditView : Gtk.Box {
 	    toolbar.visible = is_editable && toolbar_enabled && !markdown_view.text_mode;
 	}
 }
-

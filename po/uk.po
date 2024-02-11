@@ -1,11 +1,11 @@
-# Ukrainian translation for Paper
-# Copyright (C) 2023 THE io.posidon.Paper'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the io.posidon.Paper package.
+# Ukrainian translation for Folio
+# Copyright (C) 2023 THE com.toolstack.Folio'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.toolstack.Folio package.
 # Mykyta Opanasiuk <nikitaopanassiuk@outlook.com>, 2023.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: io.posidon.Paper\n"
+"Project-Id-Version: com.toolstack.Folio\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-19 17:20+0200\n"
 "PO-Revision-Date: 2023-01-17 23:33+0200\n"
@@ -19,8 +19,8 @@ msgstr ""
 "X-Generator: Poedit 3.2.2\n"
 
 #: data/app.desktop.in:8 src/ui/strings.vala:3
-msgid "Paper"
-msgstr "Paper"
+msgid "Folio"
+msgstr "Folio"
 
 #: data/app.desktop.in:9
 msgid "Notes Manager"

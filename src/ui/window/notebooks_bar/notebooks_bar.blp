@@ -1,7 +1,7 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $PaperNotebooksBar : Box {
+template $FolioNotebooksBar : Box {
 
   hexpand: false;
   vexpand: true;
@@ -16,7 +16,7 @@ template $PaperNotebooksBar : Box {
 
     [title]
     Box {
-      $PaperAppMenu {
+      $FolioAppMenu {
         visible: bind template.paned inverted;
       }
 
@@ -26,7 +26,7 @@ template $PaperNotebooksBar : Box {
     }
 
     [end]
-    $PaperAppMenu {
+    $FolioAppMenu {
       visible: bind template.paned;
     }
   }

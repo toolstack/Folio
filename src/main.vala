@@ -21,8 +21,8 @@ int main (string[] args) {
     Intl.bindtextdomain (Config.APP_ID, Config.GNOMELOCALEDIR);
     Intl.bind_textdomain_codeset (Config.APP_ID, "UTF-8");
     Intl.textdomain (Config.APP_ID);
-    Environment.set_application_name (Paper.Strings.APP_NAME);
+    Environment.set_application_name (Folio.Strings.APP_NAME);
 	GtkSource.init ();
-	var app = new Paper.Application ();
+	var app = new Folio.Application ();
 	return app.run (args);
 }

@@ -1,6 +1,6 @@
 
-[GtkTemplate (ui = "/io/posidon/Paper/notebook_preview.ui")]
-public class Paper.NotebookPreview : Gtk.Box {
+[GtkTemplate (ui = "/com/toolstack/Folio/notebook_preview.ui")]
+public class Folio.NotebookPreview : Gtk.Box {
 
 	[GtkChild] private unowned Gtk.Label label;
 	[GtkChild] private unowned Gtk.Image icon;
@@ -139,4 +139,3 @@ public class Paper.NotebookPreview : Gtk.Box {
 	    else return a + original.get_char (a.length).to_string ();
 	}
 }
-

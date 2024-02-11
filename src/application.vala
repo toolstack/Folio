@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-public class Paper.Application : Adw.Application {
+public class Folio.Application : Adw.Application {
 
 	private ActionEntry[] APP_ACTIONS = {
 		{ "new-note", on_new_note },
@@ -122,12 +122,12 @@ public class Paper.Application : Adw.Application {
 	private void on_about_action () {
 	    var about = new Adw.AboutWindow ();
 	    about.application_icon = Config.APP_ID;
-	    about.application_name = "Paper";
-	    about.developers = {"Zagura"};
-	    about.issue_url = "https://gitlab.com/posidon_software/paper/issues";
+	    about.application_name = "Folio";
+	    about.developers = {"Zagura", "toolstack"};
+	    about.issue_url = "https://github.com/toolstack/Folio/issues";
 	    about.license_type = Gtk.License.GPL_3_0;
 	    about.version = Config.VERSION;
-	    about.website = "https://gitlab.com/posidon_software/paper";
+	    about.website = "https://github.com/toolstack/Folio";
 		about.transient_for = this.active_window;
 		about.present ();
 	}
@@ -332,4 +332,3 @@ public class Paper.Application : Adw.Application {
 		return res;
 	}
 }
-

@@ -1,6 +1,6 @@
 
-[GtkTemplate (ui = "/io/posidon/Paper/notebooks_bar/create_popup.ui")]
-public class Paper.NotebookCreatePopup : Adw.Window {
+[GtkTemplate (ui = "/com/toolstack/Folio/notebooks_bar/create_popup.ui")]
+public class Folio.NotebookCreatePopup : Adw.Window {
 
 	[GtkChild]
 	unowned Gtk.Entry entry;

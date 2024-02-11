@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<style-scheme id="paper" name="Paper" version="1.0">
+<style-scheme id="folio-dark" name="Folio dark" version="1.0">
   <author>Zagura</author>
-  <_description>The style scheme for paper</_description>
+  <_description>The style scheme for Folio</_description>
 
   <metadata>
-    <property name="variant">light</property>
-    <property name="dark-variant">paper-dark</property>
+    <property name="variant">dark</property>
+    <property name="light-variant">folio</property>
   </metadata>
 
-	<style name="markdown:list-marker"        foreground="#rgba(0,0,0,0.3)"/>
-	<style name="markdown:image-marker"       foreground="#rgba(0,0,0,0.3)" bold="true"/>
+	<style name="markdown:list-marker"        foreground="#rgba(255,255,255,0.3)"/>
+	<style name="markdown:image-marker"       foreground="#rgba(255,255,255,0.3)" bold="true"/>
 
-  <color name="keyword"               value="#000000"/>
-  <color name="preprocessor"          value="#4251cf"/>
-  <color name="literals"              value="#0eba9e"/>
-  <color name="strings"               value="#4251cf"/>
-  <color name="function"              value="#087dc1"/>
-  <color name="type"                  value="#b60525"/>
+  <color name="keyword"               value="#ffffff"/>
+  <color name="preprocessor"          value="#717EEC"/>
+  <color name="literals"              value="#66cdbc"/>
+  <color name="strings"               value="#717EEC"/>
+  <color name="function"              value="#55afe1"/>
+  <color name="type"                  value="#f5738b"/>
 
   <!-- Comments -->
-  <style name="def:comment"                 foreground="#rgba(0,0,0,0.3)"/>
-  <style name="def:shebang"                 foreground="#rgba(0,0,0,0.3)" bold="true"/>
+  <style name="def:comment"                 foreground="#rgba(255,255,255,0.3)"/>
+  <style name="def:shebang"                 foreground="#rgba(255,255,255,0.3)" bold="true"/>
   <style name="def:doc-comment-element"     italic="true"/>
 
   <!-- Constants -->
@@ -44,7 +44,7 @@
 
   <!-- Others -->
   <style name="def:preprocessor"            foreground="preprocessor"/>
-  <style name="def:note"                    foreground="#rgba(0,0,0,0.3)" bold="true"/>
+  <style name="def:note"                    foreground="#rgba(255,255,255,0.3)" bold="true"/>
   <style name="def:net-address"             italic="true" underline="single"/>
 
   <!-- XML -->
@@ -64,4 +64,3 @@
   <style name="js:template-placeholder"     foreground="preprocessor"/>
   <style name="json:keyname"                foreground="function"/>
 </style-scheme>
-

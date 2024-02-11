@@ -1,6 +1,6 @@
 using Gee;
 
-public class Paper.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
+public class Folio.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
 
     public string name { get { return info.name; } }
 

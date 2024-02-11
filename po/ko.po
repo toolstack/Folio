@@ -1,11 +1,11 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the io.posidon.Paper package.
+# This file is distributed under the same license as the com.toolstack.Folio package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: io.posidon.Paper\n"
+"Project-Id-Version: com.toolstack.Folio\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-19 17:20+0200\n"
 "PO-Revision-Date: 2022-06-24 21:17+0900\n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 3.0.1\n"
 
 #: data/app.desktop.in:8 src/ui/strings.vala:3
-msgid "Paper"
+msgid "Folio"
 msgstr "페이퍼"
 
 #: data/app.desktop.in:9

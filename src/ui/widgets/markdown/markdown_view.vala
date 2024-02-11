@@ -309,7 +309,7 @@ public class GtkMarkdown.View : GtkSource.View {
         if (buffer is GtkSource.Buffer) {
             var buffer = buffer as GtkSource.Buffer;
 
-            buffer.style_scheme = GtkSource.StyleSchemeManager.get_default ().get_scheme (dark ? "paper-dark" : "paper");
+            buffer.style_scheme = GtkSource.StyleSchemeManager.get_default ().get_scheme (dark ? "folio-dark" : "folio");
 
             if (text_mode)
                 return;

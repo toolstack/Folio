@@ -1,6 +1,6 @@
 
-public class Paper.Strings {
-    public static string APP_NAME { get { return _("Paper"); } }
+public class Folio.Strings {
+    public static string APP_NAME { get { return _("Folio"); } }
     public static string TRASH { get { return _("Trash"); } }
     public static string X_NOTES { get { return _("%d Notes"); } }
     public static string EMPTY_TRASH_CONFIRMATION { get { return _("Are you sure you want to delete everything in the trash?"); } }

@@ -1,8 +1,8 @@
 
-public delegate void Paper.OnNotebookSelected (Notebook notebook);
+public delegate void Folio.OnNotebookSelected (Notebook notebook);
 
-[GtkTemplate (ui = "/io/posidon/Paper/popup/notebook_selection_popup.ui")]
-public class Paper.NotebookSelectionPopup : Adw.Window {
+[GtkTemplate (ui = "/com/toolstack/Folio/popup/notebook_selection_popup.ui")]
+public class Folio.NotebookSelectionPopup : Adw.Window {
 
 	[GtkChild]
 	unowned Gtk.ListView notebooks_list;

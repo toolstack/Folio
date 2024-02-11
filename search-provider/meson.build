@@ -16,7 +16,7 @@ sp_sources = gnome.gdbus_codegen(
   'shell-search-provider-generated',
   sources: 'org.gnome.Shell.SearchProvider2.xml',
   interface_prefix : 'org.gnome.',
-  namespace : 'Paper',
+  namespace : 'Folio',
 )
 
 conf = configuration_data()
@@ -24,7 +24,7 @@ conf.set_quoted('APP_ID', app_id)
 conf.set_quoted('VERSION', version)
 configure_file(output: 'config.h', configuration: conf)
 
-exec_name = 'paper-search-provider'
+exec_name = 'folio-search-provider'
 
 executable(
   exec_name,

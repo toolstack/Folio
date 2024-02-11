@@ -1,6 +1,6 @@
 
-[GtkTemplate (ui = "/io/posidon/Paper/sidebar/note_card.ui")]
-public class Paper.NoteCard : Gtk.Box {
+[GtkTemplate (ui = "/com/toolstack/Folio/sidebar/note_card.ui")]
+public class Folio.NoteCard : Gtk.Box {
 
 	public Window window { set { this._window = value; } }
 

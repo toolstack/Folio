@@ -1,29 +1,31 @@
-# <img src="./data/icons/hicolor/scalable/apps/io.posidon.Paper.svg" height="64"/>Paper
+# <img src="./data/icons/hicolor/scalable/apps/com.toolstack.Folio.svg" height="64"/>Folio
 
-## Take notes in Markdown
+## Take notes in markdown
+
+A fork of [Paper](https://gitlab.com/posidon_software/paper).
 
 Contributions are appreciated!
 
 
-## Some of Paper features:
+## Some of Folio's features:
 
  - Almost WYSIWYG markdown rendering
 
  - Searchable through GNOME search
 
- - Highlight and Strikethrough text formatting
+ - Highlight and strikethrough text formatting
 
- - App recoloring based on notebook color
+ - Application theming based on notebook color
 
  - Trash can
 
  - Markdown document
 
-## Get Paper
+## Get Folio
 
-The recommended way of installing Paper is through [Flatpak](https://flatpak.org)
+The recommended way of installing Folio is through [Flatpak](https://flatpak.org)
 
-<a href="https://flathub.org/apps/details/io.posidon.Paper"><img src="https://flathub.org/assets/badges/flathub-badge-en.png" width="200"/></a>
+Coming soon!
 
 ## Libraries Used
  - [libadwaita](https://gitlab.gnome.org/GNOME/libadwaita)
@@ -33,18 +35,18 @@ The recommended way of installing Paper is through [Flatpak](https://flatpak.org
 The source code is GPLv3
 
 ## Notes Storage
-By default, notes are stored in `~/.var/app/io.posidon.Paper/data`,
+By default, notes are stored in `~/.var/app/com.toolstack.Folio/data`,
 but that can be changed in preferences
 
 ## Build Instructions
 Flatpak build requires flatpak-building installed.
 
  - change into the top level source directory
- - to configure the build enviroment (required only once), run ```meson build```
+ - to configure the build environment (required only once), run ```meson build```
  - change into the build directory
- - to build Paper, run ```ninja```
+ - to build Folio, run ```ninja```
  - change back to top level source directory
- - to create the flatpak, run ```flatpak-builder flatpak io.posidon.Paper.json```
- - to install the flatpak, run ```flatpak-builder --user --install --force-clean flatpak io.posidon.Paper.json```
+ - to create the flatpak, run ```flatpak-builder flatpak com.toolstack.Folio.json```
+ - to install the flatpak, run ```flatpak-builder --user --install --force-clean flatpak com.toolstack.Folio.json```
 
-You may now run the flatpak with ```flatpak run io.posidon.Paper``` or through your lancher.
+You may now run the flatpak with ```flatpak run com.toolstack.Folio``` or through your launcher.

@@ -1,5 +1,5 @@
 
-public class Paper.WindowModel : Object {
+public class Folio.WindowModel : Object {
 
     public signal void state_changed (State state, NoteContainer? container);
     public signal void note_changed (Note? note);
@@ -285,4 +285,3 @@ public class Paper.WindowModel : Object {
 	    update_selected_notebook ();
 	}
 }
-
