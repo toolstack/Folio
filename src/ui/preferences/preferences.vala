@@ -33,32 +33,32 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
             settings.set_string ("note-font-monospace", font);
         });
 
-        oled_mode.state = settings.get_boolean ("theme-oled");
+        oled_mode.active = settings.get_boolean ("theme-oled");
         oled_mode.state_set.connect ((state) => {
             settings.set_boolean ("theme-oled", state);
             app.update_theme ();
             return false;
         });
 
-        enable_toolbar.state = settings.get_boolean ("toolbar-enabled");
+        enable_toolbar.active = settings.get_boolean ("toolbar-enabled");
         enable_toolbar.state_set.connect ((state) => {
             settings.set_boolean ("toolbar-enabled", state);
             return false;
         });
 
-        enable_cheatsheet.state = settings.get_boolean ("cheatsheet-enabled");
+        enable_cheatsheet.active = settings.get_boolean ("cheatsheet-enabled");
         enable_cheatsheet.state_set.connect ((state) => {
             settings.set_boolean ("cheatsheet-enabled", state);
             return false;
         });
 
-        enable_3_pane.state = settings.get_boolean ("enable-3-pane");
+        enable_3_pane.active = settings.get_boolean ("enable-3-pane");
         enable_3_pane.state_set.connect ((state) => {
             settings.set_boolean ("enable-3-pane", state);
             return false;
         });
 
-        limit_note_width.state = settings.get_int ("note-max-width") != -1;
+        limit_note_width.active = settings.get_int ("note-max-width") != -1;
         limit_note_width.state_set.connect ((state) => {
             settings.set_int ("note-max-width", state ? 720 : -1);
             return false;
