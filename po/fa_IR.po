@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: com.toolstack.Folio\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-19 17:20+0200\n"
-"PO-Revision-Date: 2022-07-01 17:08+0430\n"
+"PO-Revision-Date: 2023-07-01 16:33+0330\n"
 "Last-Translator: MohammadSaleh Kamyab <mskf1383@envs.net>\n"
 "Language-Team: \n"
 "Language: fa_IR\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n==0 || n==1);\n"
-"X-Generator: Poedit 3.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: data/app.desktop.in:8 src/ui/strings.vala:3
 msgid "Folio"
@@ -65,14 +65,12 @@ msgid "The font notes will be displayed in"
 msgstr "قلمی که یادداشت‌ها با آن نمایش داده می‌شوند"
 
 #: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:29
-#, fuzzy
 msgid "Monospace Font"
-msgstr "قلم یادداشت"
+msgstr "قلم تک‌عرض"
 
 #: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:30
-#, fuzzy
 msgid "The font code will be displayed in"
-msgstr "قلمی که یادداشت‌ها با آن نمایش داده می‌شوند"
+msgstr "قلمی که کدها با آن نمایش داده می‌شوند"
 
 #: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:44
 msgid "OLED Mode"
@@ -369,17 +367,15 @@ msgstr "درج کد"
 #: src/ui/edit_view/toolbar/toolbar.blp:90
 #: src/ui/edit_view/toolbar/toolbar.blp:188
 msgid "Insert Horizontal Rule"
-msgstr ""
+msgstr "درج خط افقی"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:103
-#, fuzzy
 msgid "Format"
-msgstr "قالب‌بندی"
+msgstr "قالب"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:167
-#, fuzzy
 msgid "Insert"
-msgstr "درج پیوند"
+msgstr "درج"
 
 #: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
 msgid "Confirm"
@@ -394,9 +390,8 @@ msgid "Edit Note"
 msgstr "ویرایش یادداشت"
 
 #: src/ui/popup/shortcut_window.blp:27
-#, fuzzy
 msgid "Save Note"
-msgstr "یادداشت جدید"
+msgstr "ذخیرهٔ یادداشت"
 
 #: src/ui/popup/shortcut_window.blp:34
 msgid "Notebook"
@@ -435,9 +430,8 @@ msgid "Pick a font for displaying the notes' content"
 msgstr "یک قلم برای نمایش محتوای یادداشت‌ها برگزینید"
 
 #: src/ui/preferences/preferences.blp:35
-#, fuzzy
 msgid "Pick a font for displaying code"
-msgstr "یک قلم برای نمایش محتوای یادداشت‌ها برگزینید"
+msgstr "یک قلم برای نمایش کدها برگزینید"
 
 #: src/ui/preferences/preferences.blp:45
 msgid "Makes the dark theme pitch black"
@@ -445,11 +439,11 @@ msgstr "سیاه مطلق کردن حالت تاریک"
 
 #: src/ui/preferences/preferences.blp:55
 msgid "Enable Toolbar"
-msgstr ""
+msgstr "به کار انداختن جعبه‌ابزار"
 
 #: src/ui/preferences/preferences.blp:65
 msgid "3-Pane Layout"
-msgstr ""
+msgstr "چیدمان سه‌ستونه"
 
 #: src/ui/preferences/preferences.blp:77
 msgid "Notes Storage Location"
@@ -461,15 +455,15 @@ msgstr "جایی که یادداشت‌ها ذخیره می‌شوند (نیاز
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
 msgid "Follow system style"
-msgstr ""
+msgstr "پیروی از سبک سامانه"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:23
 msgid "Light style"
-msgstr ""
+msgstr "سبک روشن"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:32
 msgid "Dark style"
-msgstr ""
+msgstr "سبک تاریک"
 
 #: src/ui/window/app_menu/app_menu.blp:24
 msgid "_New Notebook"
