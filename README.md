@@ -41,12 +41,24 @@ but that can be changed in preferences
 ## Build Instructions
 Flatpak build requires flatpak-building installed.
 
+### Local builds (NOT RECOMMENDED)
  - change into the top level source directory
  - to configure the build environment (required only once), run ```meson build```
  - change into the build directory
  - to build Folio, run ```ninja```
- - change back to top level source directory
- - to create the flatpak, run ```flatpak-builder flatpak com.toolstack.Folio.json```
- - to install the flatpak, run ```flatpak-builder --user --install --force-clean flatpak com.toolstack.Folio.json```
+ - to install Folio, run ```ninja install```
 
-You may now run the flatpak with ```flatpak run com.toolstack.Folio``` or through your launcher.
+### Flatpak builds
+ - change into the top level source directory
+ - to build the flatpak, run ```flatpak-builder flatpak com.toolstack.Folio.json```
+ - to install the flatpak, run ```flatpak-builder --user --install --force-clean flatpak com.toolstack.Folio.json```
+ - to launch the flatpak, run ```flatpak run com.toolstack.Folio```
+
+## Release instructions
+ Folio uses a YY.## version format string, where YY is the two digit year (aka 23, 24, 25, etc) and ## is the release number of the year (aka 01 for the first release, 02 for the second release, etc., not the month number).
+
+ The release version is located in the main `meson.build` file, no other files contian the version number.
+
+ The changelog is located in `data/app.metainfo.xml.in`.
+
+ 
