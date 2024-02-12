@@ -58,7 +58,7 @@ public class SearchProvider : Object {
                 var xd = Util.search_distance (name, query);
                 return ResultWithDistance (x, xd);
             })
-            .filter (x => x.distance < 15)
+            .filter (x => x.distance < 5)
             .order_by ((a, b) => a.distance - b.distance)
             .foreach (x => results.add (x.result));
         return results.to_array ();

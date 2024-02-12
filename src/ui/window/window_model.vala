@@ -147,7 +147,8 @@ public class Folio.WindowModel : Object {
 
 	    state_changed (state, note_container);
 
-    	update_selected_note ();
+        if (notes_model != null)
+        	    update_selected_note ();
 
         if (last_container != null && last_container != container && state != State.ALL)
             last_container.unload ();
@@ -260,11 +261,14 @@ public class Folio.WindowModel : Object {
             .first_match ((it) => it.name == note_name);
 	}
 
-	public string? generate_new_note_name () {
-		if (notebook != null) {
-		    return notebook.get_available_name ();
-		}
-		return null;
+	public string generate_new_note_name (int i = 0) requires (notebook != null) {
+        var name = i == 0 ? _("Note") : @"$(_("Note")) $i";
+        var s = notebook.loaded_notes.size;
+        for (int j = 0; j < s; j++) {
+            if (notebook.loaded_notes.@get (j).name == name)
+                return generate_new_note_name (++i);
+        }
+        return name;
 	}
 
 	public void search (string? query) {
@@ -285,3 +289,4 @@ public class Folio.WindowModel : Object {
 	    update_selected_notebook ();
 	}
 }
+

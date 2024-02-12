@@ -124,6 +124,26 @@ public class Folio.Application : Adw.Application {
 	    about.application_icon = Config.APP_ID;
 	    about.application_name = "Folio";
 	    about.developers = {"Zagura", "toolstack"};
+	    about.translator_credits =
+	        "Zagura <me@zagura.one>, 2022\n" +
+	        "Jan Krings <liquidsky42@gmail.com>, 2022\n" +
+	        "Jürgen Benvenuti <gastornis@posteo.org>, 2022\n" +
+	        "Sergio Varela <sergiovg01@outlook.com>, 2022\n" +
+	        "MohammadSaleh Kamyab <mskf1383@envs.net>, 2022\n" +
+	        "Iikka Hauhio <fergusq@kaivos.org>, 2022\n" +
+	        "Irénée Thirion <irenee.thirion@e.email>, 2022\n" +
+	        "Fran Dieguez <frandieguez@gnome.org>, 2022\n" +
+	        "Musiclover382 <musiclover382@protonmail.com>, 2022\n" +
+	        "Albano Battistella <albano_battistella@hotmail.com>, 2022\n" +
+	        "TokaiTeio, 2022\n" +
+	        "Gregory <gregorydk@proton.me>, 2022\n" +
+	        "Quentin PAGÈS, 2022\n" +
+	        "Marcin Wolski <martinwolski04@gmail.com>, 2022\n" +
+	        "Juliano Dorneles dos Santos <juliano.dorneles@gmail.com>, 2022\n" +
+	        "Марко М. Костић <marko.m.kostic@gmail.com>, 2022\n" +
+	        "Sabri Ünal <libreajans@gmail.com>, 2022\n" +
+	        "Mykyta Opanasiuk <nikitaopanassiuk@outlook.com>, 2023\n" +
+	        "Guoyi Zhang <guoyizhang@malacology.net>, 2022";
 	    about.issue_url = "https://github.com/toolstack/Folio/issues";
 	    about.license_type = Gtk.License.GPL_3_0;
 	    about.version = Config.VERSION;

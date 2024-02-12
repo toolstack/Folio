@@ -3,8 +3,8 @@
 namespace Util {
 
     public int search_distance (string item, string query) {
-        var words = item.split_set (" _");
-        var query_words = query.split_set (" _");
+        var words = item.split_set (" _-");
+        var query_words = query.split_set (" _-");
         var base_distance = 0;
         var min_word = int.MAX;
         foreach (var i in words) {
@@ -12,12 +12,12 @@ namespace Util {
             var min = int.MAX;
             foreach (var q in query_words) {
                 if (q.length == 0) continue;
-                min = int.min (min, damerau_levenshtein_distance (i, q, 2, 4, 6, 1));
+                min = int.min (min, damerau_levenshtein_distance (i, q, 5, 3, 2, 1));
             }
-            base_distance += min / words.length;
-            min_word = int.min (min_word, min / words.length);
+            base_distance += min;
+            min_word = int.min (min_word, min);
         }
-        return (base_distance + min_word) / 2;
+        return (base_distance + min_word) / words.length / 2;
     }
 
     /**
