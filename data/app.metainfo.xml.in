@@ -18,6 +18,18 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
+    <release type="stable" version="24.02" date="2022-02-11">
+      <description translatable="no">
+	      <p>UI Changes:</p>
+        <ul>
+          <li>None</li>
+        </ul>
+	      <p>Fixes:</p>
+        <ul>
+          <li>Fix incorrect display of switches in the preferences window</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="24.01" date="2022-02-11">
       <description translatable="no">
 	      <p>UI Changes:</p>
