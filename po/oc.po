@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: com.toolstack.Folio\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-07-19 17:20+0200\n"
-"PO-Revision-Date: 2022-05-28 16:42+0200\n"
+"PO-Revision-Date: 2024-01-13 12:02+0100\n"
 "Last-Translator: Quentin PAGÈS\n"
 "Language-Team: \n"
 "Language: oc\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.0.1\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: data/app.desktop.in:8 src/ui/strings.vala:3
 msgid "Folio"
@@ -64,14 +64,12 @@ msgid "The font notes will be displayed in"
 msgstr "Las nòtas seràns afichadas dins aquesta polissa"
 
 #: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:29
-#, fuzzy
 msgid "Monospace Font"
-msgstr "Polissa de caractèrs de las nòtas"
+msgstr "Polissa de chassa fixa"
 
 #: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:30
-#, fuzzy
 msgid "The font code will be displayed in"
-msgstr "Las nòtas seràns afichadas dins aquesta polissa"
+msgstr "Lo còdi serà afichat dins aquesta polissa"
 
 #: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:44
 msgid "OLED Mode"
@@ -368,17 +366,15 @@ msgstr "Inserir de còdi"
 #: src/ui/edit_view/toolbar/toolbar.blp:90
 #: src/ui/edit_view/toolbar/toolbar.blp:188
 msgid "Insert Horizontal Rule"
-msgstr ""
+msgstr "Inserir barra orizontala"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:103
-#, fuzzy
 msgid "Format"
-msgstr "Formatatge"
+msgstr "Format"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:167
-#, fuzzy
 msgid "Insert"
-msgstr "Inserir un ligam"
+msgstr "Inserir"
 
 #: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
 msgid "Confirm"
@@ -393,9 +389,8 @@ msgid "Edit Note"
 msgstr "Modificar la nòta"
 
 #: src/ui/popup/shortcut_window.blp:27
-#, fuzzy
 msgid "Save Note"
-msgstr "Nòta novèla"
+msgstr "Enregistrar la nòta"
 
 #: src/ui/popup/shortcut_window.blp:34
 msgid "Notebook"
@@ -434,9 +429,8 @@ msgid "Pick a font for displaying the notes' content"
 msgstr "Causissètz una polissa per afichar lo contengut de las nòtas"
 
 #: src/ui/preferences/preferences.blp:35
-#, fuzzy
 msgid "Pick a font for displaying code"
-msgstr "Causissètz una polissa per afichar lo contengut de las nòtas"
+msgstr "Causissètz una polissa per afichar lo còdi"
 
 #: src/ui/preferences/preferences.blp:45
 msgid "Makes the dark theme pitch black"
@@ -444,11 +438,11 @@ msgstr "Fa venir lo tèma escur negre"
 
 #: src/ui/preferences/preferences.blp:55
 msgid "Enable Toolbar"
-msgstr ""
+msgstr "Activar la barra d’aisinas"
 
 #: src/ui/preferences/preferences.blp:65
 msgid "3-Pane Layout"
-msgstr ""
+msgstr "Disposicion en 3 panèls"
 
 #: src/ui/preferences/preferences.blp:77
 msgid "Notes Storage Location"
@@ -461,15 +455,15 @@ msgstr ""
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
 msgid "Follow system style"
-msgstr ""
+msgstr "Seguir lo tèma del sistèma"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:23
 msgid "Light style"
-msgstr ""
+msgstr "Estil clar"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:32
 msgid "Dark style"
-msgstr ""
+msgstr "Estil escur"
 
 #: src/ui/window/app_menu/app_menu.blp:24
 msgid "_New Notebook"
@@ -573,7 +567,7 @@ msgstr "Lo bordilhièr es void"
 
 #: src/ui/window/window.blp:196
 msgid "Back"
-msgstr ""
+msgstr "Tornar"
 
 #: src/ui/window/window.blp:212
 msgid "Open in Notebook"
