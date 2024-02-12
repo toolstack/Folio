@@ -27,6 +27,10 @@ The recommended way of installing Folio is through [Flatpak](https://flatpak.org
 
 Coming soon!
 
+In the mean time, head over to the [GitHub Actions](https://github.com/toolstack/Folio/actions) page, select the latest release, and download the Artifacts package called `Folio-x86-64`.  Once downloaded, unzip it, and use `flatpak install Folio.flatpak` to install Folio on your computer.
+
+You can use the same process to update to a newer release as well.
+
 ## Libraries Used
  - [libadwaita](https://gitlab.gnome.org/GNOME/libadwaita)
  - [gtksourceview-5](https://gitlab.gnome.org/GNOME/gtksourceview)
@@ -57,6 +61,6 @@ Flatpak build requires flatpak-building installed.
 ## Release instructions
  Folio uses a YY.## version format string, where YY is the two digit year (aka 23, 24, 25, etc) and ## is the release number of the year (aka 01 for the first release, 02 for the second release, etc., not the month number).
 
- The release version is located in the main `meson.build` file, no other files contian the version number.
+ The release version is located in the main `meson.build` file, no other files contain the version number.
 
  The changelog is located in `data/app.metainfo.xml.in`.
