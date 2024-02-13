@@ -24,7 +24,7 @@ public class Folio.SimpleNoteContainer : Object, ListModel, NoteContainer {
 
     public SimpleNoteContainer (string name, Loader loader) {
         _name = name;
-        _load = loader;
+        _load = () => { return loader (); };
     }
 
     public void load () {

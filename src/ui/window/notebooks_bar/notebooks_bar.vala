@@ -70,7 +70,10 @@ public class Folio.NotebooksBar : Gtk.Box {
             var factory = new Gtk.SignalListItemFactory ();
             factory.setup.connect (object => {
                 var widget = new NotebookSidebarItem (window);
-                (object as Gtk.ListItem).child = widget;
+                var li = object as Gtk.ListItem;
+                if (li != null) {
+                    li.child = widget;
+                }
             });
             factory.bind.connect (object => {
                 var list_item = object as Gtk.ListItem;

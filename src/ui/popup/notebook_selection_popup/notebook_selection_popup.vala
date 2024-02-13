@@ -29,8 +29,21 @@ public class Folio.NotebookSelectionPopup : Adw.Window {
 		button_cancel.clicked.connect (close);
 		var model = new Gtk.SingleSelection (provider);
 		var factory = new Gtk.SignalListItemFactory ();
-		factory.setup.connect (obj => (obj as Gtk.ListItem).child = new NotebookListItem ());
-		factory.bind.connect (obj => ((obj as Gtk.ListItem).child as NotebookListItem).notebook = (obj as Gtk.ListItem).item as Notebook);
+		factory.setup.connect (obj => {
+			var li = obj as Gtk.ListItem;
+			if (li != null) {
+				li.child = new NotebookListItem ();
+			}
+		});
+		factory.bind.connect (obj => {
+			var li = obj as Gtk.ListItem;
+			if (li != null) {
+				var nli = li.child as NotebookListItem;
+				if (nli != null) {
+					nli.notebook = li.item as Notebook;
+				}
+			}
+		});
 		notebooks_list.model = model;
 		notebooks_list.factory = factory;
         button_confirm.clicked.connect (() => {

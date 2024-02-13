@@ -199,13 +199,16 @@ public class Folio.Window : Adw.ApplicationWindow {
 	        edit_view.text_mode = !note.is_markdown;
 	        if (!note.is_markdown) {
 	            var b = edit_view.buffer;
-	            if (b is GtkSource.Buffer)
-                    (b as GtkSource.Buffer).language =
-                        GtkSource.LanguageManager.get_default ().guess_language (note.file_name, null);
+	            if (b is GtkSource.Buffer) {
+					var buf = b as GtkSource.Buffer;
+					if (buf != null) {
+						buf.language =
+							GtkSource.LanguageManager.get_default ().guess_language (note.file_name, null);
+					}
+				}
 	        }
 	        note_title.label = (note.is_markdown) ? note.name : note.file_name;
 	        set_text_view_state (TextViewState.TEXT_VIEW);
-	        var n = note.notebook.loaded_notes;
             // Zen mode
             // Autohide headerbar_edit_view when typing in desktop no sidebar mode
             window_model.current_buffer.begin_user_action.connect (() => {
@@ -321,7 +324,10 @@ public class Folio.Window : Adw.ApplicationWindow {
             factory.setup.connect (obj => {
                 var widget = new NoteCard ();
                 widget.window = this;
-                (obj as Gtk.ListItem).child = widget;
+				var li = obj as Gtk.ListItem;
+				if (li != null ) {
+              		li.child = widget;
+				}
             });
             factory.bind.connect (obj => {
                 var list_item = obj as Gtk.ListItem;

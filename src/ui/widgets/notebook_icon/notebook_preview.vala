@@ -91,18 +91,22 @@ public class Folio.NotebookPreview : Gtk.Box {
 	            label.label = initials_split (info.name, "_");
                 break;
 	        case NotebookIconType.INITIALS_CAMEL_CASE:
-                var regex = new Regex ("[A-Z]");
-                MatchInfo matches;
-                var matchable = info.name.substring (int.min(info.name.length, 1));
-                if (regex.match_full (matchable, matchable.length, 0, 0, out matches)) {
-                    var _1 = matches.fetch (0);
-                    var result = (info.name.length == 0) ? "" : info.name.get_char (0).to_string ();
-                    if (_1 != null) {
-                        result += _1;
-                    }
-                    label.label = result;
-                }
-                else label.label = first_chars (info.name);
+                try {
+					var regex = new Regex ("[A-Z]");
+					MatchInfo matches;
+					var matchable = info.name.substring (int.min(info.name.length, 1));
+					if (regex.match_full (matchable, matchable.length, 0, 0, out matches)) {
+						var _1 = matches.fetch (0);
+						var result = (info.name.length == 0) ? "" : info.name.get_char (0).to_string ();
+						if (_1 != null) {
+							result += _1;
+						}
+						label.label = result;
+					}
+					else label.label = first_chars (info.name);
+				} catch (RegexError e) {
+			        error (e.message);
+				}
                 break;
 	        case NotebookIconType.FIRST:
                 label.label = first_chars (info.name);

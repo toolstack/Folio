@@ -27,9 +27,11 @@ public class SearchProvider : Object {
     public void update_storage_dir () {
 		var path = settings.get_string ("notes-dir");
 		var notes_dir = path.has_prefix ("~/") ? Environment.get_home_dir () + path[1:] : path;
-		notebook_provider.set_directory (notes_dir);
-		notebook_provider.load ();
-		update_notes ();
+        try {
+            notebook_provider.set_directory (notes_dir);
+            notebook_provider.load ();
+            update_notes ();
+        } catch (Error e) {}
     }
 
     public void update_notes () {
@@ -46,7 +48,7 @@ public class SearchProvider : Object {
 
     public string[] get_initial_result_set (string[] terms) throws Error {
         update_notes ();
-        return get_subsearch_result_set (null, terms);
+        return get_subsearch_result_set ({}, terms);
     }
 
     public string[] get_subsearch_result_set (string[] _, string[] terms) throws Error {

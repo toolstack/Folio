@@ -31,6 +31,7 @@ namespace Color {
     }
 
     public inline HSL rgb_to_hsl (RGB rgb, out HSL hsl = null) {
+        hsl = HSL();
         float s, v;
         Gtk.rgb_to_hsv(rgb.r, rgb.g, rgb.b, out hsl.h, out s, out v);
         hsl.l = v - v * s / 2;
@@ -40,6 +41,7 @@ namespace Color {
     }
 
     public inline RGB hsl_to_rgb (HSL hsl, out RGB rgb = null) {
+        rgb = RGB();
         float v = hsl.s * float.min (hsl.l, 1 - hsl.l) + hsl.l;
         float s = (v != 0) ? 2-2*hsl.l/v : 0;
         Gtk.hsv_to_rgb(hsl.h, s, v, out rgb.r, out rgb.g, out rgb.b);
@@ -47,6 +49,7 @@ namespace Color {
     }
 
     public inline RGB RGBA_to_rgb (Gdk.RGBA rgba, out RGB rgb = null) {
+        rgb = RGB();
         rgb.r = rgba.red;
         rgb.g = rgba.green;
         rgb.b = rgba.blue;
@@ -54,6 +57,7 @@ namespace Color {
     }
 
     public inline Gdk.RGBA rgb_to_RGBA (RGB rgb, out Gdk.RGBA rgba = null) {
+        rgba = Gdk.RGBA();
         rgba.red = rgb.r;
         rgba.green = rgb.g;
         rgba.blue = rgb.b;

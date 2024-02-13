@@ -40,8 +40,10 @@ public class Folio.WindowModel : Object {
 			var notes_dir = path.has_prefix ("~/") ? Environment.get_home_dir () + path[1:] : path;
 
 	        notebook_provider = new Provider (Strings.TRASH);
-	        notebook_provider.set_directory (notes_dir);
-	        notebook_provider.load ();
+			try {
+	        	notebook_provider.set_directory (notes_dir);
+	        	notebook_provider.load ();
+			} catch (Error e) {}
 	    }
 
 	    all_notes = new SimpleNoteContainer (Strings.ALL_NOTES, notebook_provider.get_all_notes);
@@ -157,7 +159,6 @@ public class Folio.WindowModel : Object {
 	public GtkMarkdown.Buffer? update_note (Note? note) {
 	    if (this.note == note) return current_buffer;
         save_note ();
-	    var old_note = this.note;
 	    this.note = note;
         is_unsaved = false;
 
@@ -181,21 +182,21 @@ public class Folio.WindowModel : Object {
         select_note (note);
     }
 
-	public Notebook create_notebook (NotebookInfo info) requires (notebooks_model != null) {
+	public Notebook create_notebook (NotebookInfo info) throws ProviderError requires (notebooks_model != null) {
         var notebook = notebook_provider.new_notebook (info);
         select_notebook (notebook);
         update_selected_notebook ();
         return notebook;
 	}
 
-	public Note create_note (string name) requires (notes_model != null) {
+	public Note create_note (string name) throws ProviderError requires (notes_model != null) {
 	    var n = notebook.new_note (name);
         select_note_at (0);
         update_note (n);
         return n;
 	}
 
-	public void change_notebook (Notebook notebook, NotebookInfo info) {
+	public void change_notebook (Notebook notebook, NotebookInfo info) throws ProviderError {
 	    notebook_provider.change_notebook (notebook, info);
 	    if (note_container == notebook) {
 	        set_notebook (notebook);
@@ -203,18 +204,19 @@ public class Folio.WindowModel : Object {
 	}
 
 	public void change_note (Note note, string name, string extension = note.extension)
+		throws ProviderError
 	    requires (note.notebook != null) {
         note.notebook.change_note (note, name, extension);
         update_note (note);
 	}
 
-	public void delete_notebook (Notebook notebook) {
+	public void delete_notebook (Notebook notebook) throws ProviderError {
 	    set_notebook (null);
 	    notebook_provider.delete_notebook (notebook);
         update_selected_notebook ();
 	}
 
-    public void restore_note (Note note) {
+    public void restore_note (Note note) throws ProviderError {
         notebook_provider.trash.restore_note (note);
     }
 
@@ -235,13 +237,19 @@ public class Folio.WindowModel : Object {
         if (dest.query_exists ()) {
             return false;
         }
-        file.move (dest, FileCopyFlags.NONE);
+		try {
+        	file.move (dest, FileCopyFlags.NONE);
+		} catch (Error e) {
+			return false;
+		}
         select_notebook (dest_notebook);
         return true;
 	}
 
     public void empty_trash () {
-        notebook_provider.trash.delete_all ();
+		try {
+        	notebook_provider.trash.delete_all ();
+		} catch (Error e) {}
     }
 
 	public Note? try_get_note_from_path (string path) {

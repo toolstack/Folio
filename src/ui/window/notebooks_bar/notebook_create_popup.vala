@@ -54,18 +54,34 @@ public class Folio.NotebookCreatePopup : Adw.Window {
         }));
 
         model.selection_changed.connect (() => {
-            var icon_name = (model.selected_item as Gtk.StringObject).string;
-            button_icon.icon_name = icon_name;
-            preview.icon_name = icon_name;
+            var so = model.selected_item as Gtk.StringObject;
+            if (so != null) {
+                var icon_name = so.string;
+                button_icon.icon_name = icon_name;
+                preview.icon_name = icon_name;
+            }
         });
 
         var factory = new Gtk.SignalListItemFactory ();
 
-        factory.setup.connect (obj => (obj as Gtk.ListItem).child = new Gtk.Image ());
+        factory.setup.connect (obj => {
+            var li = obj as Gtk.ListItem;
+            if (li != null) {
+                li.child = new Gtk.Image ();
+            }
+        });
         factory.bind.connect (obj => {
             var list_item = obj as Gtk.ListItem;
-            var icon_name = (list_item.item as Gtk.StringObject).string;
-            (list_item.child as Gtk.Image).icon_name = icon_name;
+            if (list_item != null) {
+                var so = list_item.item as Gtk.StringObject;
+                if (so != null) {
+                    var icon_name = so.string;
+                    var img = list_item.child as Gtk.Image;
+                    if (img != null) {
+                        img.icon_name = icon_name;
+                    }
+                }
+            }
         });
 
         icon_grid.model = model;
@@ -84,10 +100,13 @@ public class Folio.NotebookCreatePopup : Adw.Window {
 	        icon_type_combobox.active = notebook.icon_type;
 	        for (uint i = 0; i < model.get_n_items (); i++) {
 	            var v = model.get_item (i);
-	            if ((v as Gtk.StringObject).string == notebook.info.icon_name) {
-	                model.set_selected (i);
-	                break;
-	            }
+                var so = v as Gtk.StringObject;
+                if (so != null) {
+                    if (so.string == notebook.info.icon_name) {
+                        model.set_selected (i);
+                        break;
+                    }
+                }
 	        }
 		    entry.activate.connect (() => change (window, notebook));
             button_create.clicked.connect (() => change (window, notebook));

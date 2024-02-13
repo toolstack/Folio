@@ -213,14 +213,20 @@ public class GtkMarkdown.View : GtkSource.View {
             } else {
                 update_color_scheme ();
                 if (buffer is GtkSource.Buffer) {
-                    (buffer as GtkSource.Buffer).language = GtkSource.LanguageManager.get_default ().get_language ("markdownpp");
+                    var buf = buffer as GtkSource.Buffer;
+                    if (buf != null ) {
+                        buf.language = GtkSource.LanguageManager.get_default ().get_language ("markdownpp");
+                    }
                 }
                 restyle_text_all ();
             }
         });
 
         if (buffer is GtkSource.Buffer) {
-            (buffer as GtkSource.Buffer).language = GtkSource.LanguageManager.get_default ().get_language ("markdownpp");
+            var buf = buffer as GtkSource.Buffer;
+            if (buf != null ) {
+                buf.language = GtkSource.LanguageManager.get_default ().get_language ("markdownpp");
+            }
         }
 
         notify["dark"].connect ((s, p) => update_color_scheme ());

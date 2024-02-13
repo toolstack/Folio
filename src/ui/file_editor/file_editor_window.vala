@@ -50,7 +50,12 @@ public class Folio.FileEditorWindow : Adw.ApplicationWindow {
 
         string etag_out;
         uint8[] text_data = {};
-        file.load_contents (null, out text_data, out etag_out);
+        try {
+            file.load_contents (null, out text_data, out etag_out);
+        } catch (Error e) {
+            // Probably need to do something else here...
+            return;
+        }
         current_buffer = new GtkMarkdown.Buffer ((string) text_data);
         edit_view.buffer = current_buffer;
         edit_view.is_editable = true;

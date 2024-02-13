@@ -76,7 +76,12 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
                 Strings.CANCEL
             );
             chooser.modal = true;
-            chooser.set_file (File.new_for_path (notes_dir));
+            try {
+                chooser.set_file (File.new_for_path (notes_dir));
+            } catch (Error e) {
+                // Should probably do something else here.
+                return;
+            }
             chooser.response.connect ((id) => {
                 if (id == Gtk.ResponseType.ACCEPT) {
                     notes_dir = chooser.get_file ().get_path ();

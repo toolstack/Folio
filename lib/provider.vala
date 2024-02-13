@@ -83,16 +83,19 @@ public class Folio.Provider : Object, ListModel {
         var path = @"$notes_dir/$(info.name)";
 
         if (notebook.name != info.name) {
-            var origina_path = (notebook as LocalNotebook).path;
-            var original_file = File.new_for_path (origina_path);
-            var file = File.new_for_path (path);
-            if (file.query_exists ()) {
-                throw new ProviderError.ALREADY_EXISTS (@"Notebook at $path already exists");
-            }
-            try {
-                original_file.set_display_name(info.name);
-            } catch (Error e) {
-                throw new ProviderError.COULDNT_CREATE_FILE (@"Couldn't change $origina_path to $path: $(e.message)");
+            var lnb = notebook as LocalNotebook;
+            if (lnb != null) {
+                var origina_path = lnb.path;
+                var original_file = File.new_for_path (origina_path);
+                var file = File.new_for_path (path);
+                if (file.query_exists ()) {
+                    throw new ProviderError.ALREADY_EXISTS (@"Notebook at $path already exists");
+                }
+                try {
+                    original_file.set_display_name(info.name);
+                } catch (Error e) {
+                    throw new ProviderError.COULDNT_CREATE_FILE (@"Couldn't change $origina_path to $path: $(e.message)");
+                }
             }
         }
         write_notebook_info (path, info);
@@ -102,7 +105,13 @@ public class Folio.Provider : Object, ListModel {
     }
 
     public void delete_notebook (Notebook notebook) throws ProviderError {
-        var path = (notebook as LocalNotebook).path;
+        var lnb = notebook as LocalNotebook;
+        var path = "";
+        if (lnb != null) {
+            path = lnb.path;
+        } else {
+            throw new ProviderError.COULDNT_DELETE (@"Notebook doesn't exist");
+        }
         var file = File.new_for_path (path);
         if (!file.query_exists ()) {
             throw new ProviderError.COULDNT_DELETE (@"Notebook at '$path' doesn't exist");
@@ -113,7 +122,11 @@ public class Folio.Provider : Object, ListModel {
             FileInfo file_info;
             var trash_dir = File.new_for_path (trashed_path);
             if (!trash_dir.query_exists ()) {
-                trash_dir.make_directory_with_parents ();
+                try {
+                    trash_dir.make_directory_with_parents ();
+                } catch (Error e) {
+                    throw new ProviderError.COULDNT_CREATE_FILE (@"Couldn't create trash folder at '$path'");
+                }
             }
             while ((file_info = enumerator.next_file ()) != null) {
                 try {
