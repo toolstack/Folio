@@ -56,6 +56,16 @@ template $FolioNotebookCreatePopup : Adw.Window {
         }
       }
 
+      Label notebook_name_warning {
+        margin-start: 18;
+        margin-end: 18;
+        justify: center;
+        wrap: true;
+        visible: false;
+
+        label: _("Duplicate notebook names are not allowed!");
+      }
+
       Box {
 
         orientation: horizontal;

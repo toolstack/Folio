@@ -23,6 +23,9 @@ public class Folio.NotebookCreatePopup : Adw.Window {
 	[GtkChild]
 	unowned NotebookPreview preview;
 
+	[GtkChild]
+	unowned Gtk.Label notebook_name_warning;
+
 	public NotebookCreatePopup (Window window, Notebook? notebook = null) {
 		Object ();
 
@@ -114,10 +117,28 @@ public class Folio.NotebookCreatePopup : Adw.Window {
 	        icon_type_combobox.active = 0;
             entry.activate.connect (() => create (window));
             button_create.clicked.connect (() => create (window));
+            button_create.set_sensitive (false);
         }
+
+        var settings = new Settings (Config.APP_ID);
+        var path = settings.get_string ("notes-dir");
+        var notes_dir = path.has_prefix ("~/") ? Environment.get_home_dir () + path[1:] : path;
 
         entry.changed.connect (() => {
             preview.notebook_name = entry.text;
+            var file = File.new_for_path (notes_dir + "/" + entry.text);
+            if (entry.text != "") {
+                if (file.query_exists ()) {
+                    notebook_name_warning.show ();
+                    button_create.set_sensitive (false);
+                } else {
+                    notebook_name_warning.hide ();
+                    button_create.set_sensitive (true);
+                }
+            } else {
+                notebook_name_warning.hide ();
+                button_create.set_sensitive (false);
+            }
         });
         icon_type_combobox.changed.connect (() => {
             preview.icon_type = icon_type_combobox.active;
