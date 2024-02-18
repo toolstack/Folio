@@ -4,8 +4,6 @@
 @define-color accent_color shade(@theme_color, 0.8);
 @define-color accent_bg_color @theme_color;
 
-@define-color card_shade_color shade(@theme_color, 0.8);
-
 @define-color headerbar_bg_color transparent;
 @define-color headerbar_fg_color @window_fg_color;
 @define-color headerbar_border_color @borders;
