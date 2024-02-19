@@ -419,6 +419,23 @@ public class GtkMarkdown.View : GtkSource.View {
         Gtk.TextIter buffer_start, buffer_end;
         buffer.get_bounds (out buffer_start, out buffer_end);
         remove_tags_format (buffer_start, buffer_end);
+
+        // Check to see if the last character in the buffer is a LF, if not, add it, otherwise
+        // some of the tagging operations will crash.
+        var buffer_end_minus_one = buffer_end.copy ();
+        buffer_end_minus_one.backward_char ();
+        string end_text = buffer.get_text (buffer_end_minus_one, buffer_end, true);
+        if (end_text != "\n") {
+            var cursor = buffer.get_insert ();
+            Gtk.TextIter cursor_location;
+            buffer.get_iter_at_mark (out cursor_location, cursor);
+            var cursor_mark = buffer.create_mark (null, cursor_location, true);
+            buffer.insert (ref buffer_end, "\n", 1);
+            buffer.get_iter_at_mark (out cursor_location, cursor_mark);
+            buffer.place_cursor (cursor_location);
+            buffer.get_bounds (out buffer_start, out buffer_end);
+        }
+
         string buffer_text = buffer.get_text (buffer_start, buffer_end, true);
 
         {
