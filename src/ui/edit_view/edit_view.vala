@@ -118,78 +118,181 @@ public class Folio.EditView : Gtk.Box {
         markdown_view.dark = dark;
     }
 
-    private void format_selection (string affix) {
-	    var b = markdown_view.buffer;
-	    b.begin_user_action ();
+    private void format_selection (string affix, string second_affix) {
+	    var buffer = markdown_view.buffer;
 
-	    Gtk.TextIter start, cursor;
-	    b.get_iter_at_mark (out start, b.get_selection_bound ());
+	    buffer.begin_user_action ();
 
-	    b.insert (ref start, affix, affix.length);
-	    b.insert_at_cursor (affix, affix.length);
+		if ( !markdown_view.remove_formatting (markdown_view, affix) &&
+		     !markdown_view.remove_formatting (markdown_view, second_affix))
+			{
+			Gtk.TextIter selection_start, selection_end, cursor;
+			Gtk.TextMark cursor_mark, selection_start_mark, selection_end_mark;
+			buffer.get_selection_bounds (out selection_start, out selection_end);
+			buffer.get_iter_at_mark (out cursor, buffer.get_insert ());
+			cursor_mark = buffer.create_mark (null, cursor, true);
+			selection_start_mark = buffer.create_mark (null, selection_start, true);
+			selection_end_mark = buffer.create_mark (null, selection_end, true);
 
-	    b.get_iter_at_mark (out start, b.get_selection_bound ());
-        b.get_iter_at_mark (out cursor, b.get_insert());
+			var is_selected = true;
 
-        if(start.equal(cursor)) {
-            cursor.backward_cursor_positions (affix.length);
-            b.place_cursor (cursor);
-        }
+			if (selection_start.equal (selection_end)) {
+				is_selected = false;
 
-	    b.end_user_action ();
+				find_word_selection (ref selection_start, ref selection_end);
+
+				buffer.select_range (selection_start, selection_end);
+				selection_start_mark = buffer.create_mark (null, selection_start, true);
+				selection_end_mark = buffer.create_mark (null, selection_end, true);
+			}
+
+			buffer.insert (ref selection_start, affix, affix.length);
+
+			buffer.get_selection_bounds (out selection_start, out selection_end);
+			buffer.insert (ref selection_end, affix, affix.length);
+
+			buffer.get_iter_at_mark (out selection_start, selection_start_mark);
+			buffer.get_iter_at_mark (out cursor, cursor_mark);
+
+			if (cursor.equal (selection_start)) {
+				cursor.forward_chars (affix.length);
+			}
+
+			buffer.place_cursor (cursor);
+
+			if (is_selected) {
+				buffer.get_iter_at_mark (out selection_start, selection_start_mark);
+				buffer.get_iter_at_mark (out selection_end, selection_end_mark);
+				selection_end.forward_chars (affix.length);
+				buffer.select_range (selection_start, selection_end);
+			} else {
+				buffer.select_range (cursor, cursor);
+			}
+
+			markdown_view.grab_focus ();
+		}
+
+	    buffer.end_user_action ();
     }
 
 	public void format_selection_bold () {
-        format_selection("**");
+        format_selection("**", "__");
 	}
 
 	public void format_selection_italic () {
-        format_selection("_");
+        format_selection("_", "*");
 	}
 
 	public void format_selection_strikethrough () {
-        format_selection("~~");
+        format_selection("~~", "~");
 	}
 
 	public void format_selection_highlight () {
-        format_selection("==");
+        format_selection("==", "");
 	}
 
 	public void insert_link () {
-	    var b = markdown_view.buffer;
-	    b.begin_user_action ();
-	    Gtk.TextIter iter_a, iter_b, iter;
-	    {
-	        var mark = b.get_selection_bound ();
-	        b.get_iter_at_mark (out iter_a, mark);
-	        b.get_iter_at_offset (out iter_b, b.cursor_position);
-	        iter = iter_a.compare (iter_b) == -1 ? iter_a : iter_b;
-	        b.insert (ref iter, "[", 1);
-	    }
-	    {
-	        var mark = b.get_selection_bound ();
-	        b.get_iter_at_mark (out iter_a, mark);
-	        b.get_iter_at_offset (out iter_b, b.cursor_position);
-	        iter = iter_a.compare (iter_b) == 1 ? iter_a : iter_b;
-	        b.insert (ref iter, "]()", 3);
-	    }
-	    iter.backward_chars (3);
-	    b.place_cursor (iter);
-	    b.end_user_action ();
+	    var buffer = markdown_view.buffer;
+	    buffer.begin_user_action ();
+
+		if (!markdown_view.check_if_in_link (markdown_view)) {
+			var url_found = false;
+			Gtk.TextIter selection_start, selection_end;
+			buffer.get_selection_bounds (out selection_start, out selection_end);
+
+			if (selection_start.equal (selection_end)) {
+				find_word_selection (ref selection_start, ref selection_end);
+
+				buffer.select_range (selection_start, selection_end);
+			}
+
+			try {
+				Regex is_url = new Regex ("(http|ftp|https):\\/\\/([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:\\/~+#-]*[\\w@?^=%&\\/~+#-])", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS, 0);
+
+				buffer.get_selection_bounds (out selection_start, out selection_end);
+
+				var selection_text = buffer.get_slice (selection_start, selection_end, true);
+				MatchInfo matches;
+
+				if( is_url.match_full (selection_text, selection_text.length, 0, 0, out matches) ) {
+					url_found = true;
+				}
+			} catch (RegexError e) {}
+
+			Gtk.TextMark start_mark, end_mark;
+			buffer.get_selection_bounds (out selection_start, out selection_end);
+			// Make sure our marks in in accending order to simplify things later.
+			if (selection_start.compare (selection_end) > 1) {
+				start_mark = buffer.create_mark (null, selection_end, true);
+				end_mark = buffer.create_mark (null, selection_start, true);
+			} else {
+				start_mark = buffer.create_mark (null, selection_start, true);
+				end_mark = buffer.create_mark (null, selection_end, true);
+			}
+
+			{
+				buffer.get_iter_at_mark (out selection_start, start_mark);
+				if (url_found) {
+					buffer.insert (ref selection_start, "[](", 3);
+				} else {
+					buffer.insert (ref selection_start, "[", 1);
+				}
+			}
+			{
+				buffer.get_iter_at_mark (out selection_end, end_mark);
+				if (url_found) {
+					buffer.insert (ref selection_end, ")", 1);
+				} else {
+					buffer.insert (ref selection_end, "]()", 3);
+				}
+			}
+			buffer.get_iter_at_mark (out selection_start, start_mark);
+			buffer.get_iter_at_mark (out selection_end, end_mark);
+			if (url_found) {
+				selection_start.forward_char ();
+				buffer.place_cursor (selection_start);
+			} else {
+				selection_end.forward_chars (2);
+				buffer.place_cursor (selection_end);
+			}
+		}
+
+		markdown_view.grab_focus ();
+	    buffer.end_user_action ();
 	}
 
 	public void insert_code_span () {
-        format_selection("`");
+        format_selection("`", "");
 	}
 
 	public void insert_horizontal_rule () {
-	    var b = markdown_view.buffer;
-	    b.begin_user_action ();
-	    var mark = b.get_selection_bound ();
-	    Gtk.TextIter iter;
-	    b.get_iter_at_mark (out iter, mark);
-	    b.insert (ref iter, "\n- - -\n", 7);
-	    b.end_user_action ();
+	    var buffer = markdown_view.buffer;
+
+	    buffer.begin_user_action ();
+
+	    var mark = buffer.get_selection_bound ();
+	    Gtk.TextIter iter, current_line_start, current_line_end;
+	    buffer.get_iter_at_mark (out iter, mark);
+		current_line_start = iter.copy ();
+		current_line_start.backward_line ();
+		current_line_start.forward_char ();
+		current_line_end = iter.copy ();
+		current_line_end.forward_line ();
+		current_line_end.backward_char ();
+
+		string current_line = buffer.get_slice (current_line_start, current_line_end, true);
+
+		if (current_line != "- - -") {
+			current_line_start.backward_char ();
+			current_line_start.forward_line ();
+			buffer.insert (ref current_line_start, "- - -\n", 6);
+			buffer.get_iter_at_mark (out iter, mark);
+			buffer.place_cursor (iter);
+		}
+
+		markdown_view.grab_focus ();
+
+		buffer.end_user_action ();
 	}
 
     public void set_font_scale () {
@@ -209,5 +312,38 @@ public class Folio.EditView : Gtk.Box {
 
 	private void update_toolbar_visibility () {
 	    toolbar.visible = is_editable && toolbar_enabled && !markdown_view.text_mode;
+	}
+
+	private void find_word_selection (ref Gtk.TextIter selection_start, ref Gtk.TextIter selection_end) {
+		var current_char = selection_start.get_char ();
+		// If we're at the end of line, move back one.
+		if( current_char == '\n') {
+			selection_start.backward_char ();
+			current_char = selection_start.get_char ();
+		}
+		// If the cursor is in a blank spot (1 or more spaces/tabs) then go backwards until
+		// we find a word/start of line/start of buffer.
+		while ((current_char == ' ' || current_char == '\t') && current_char != '\n' && !selection_start.is_start()) {
+			selection_start.backward_char ();
+			current_char = selection_start.get_char ();
+		}
+		// Now continue going backwards until we find the start of the word of end condition.
+		while (current_char != '\n' && current_char != ' ' && current_char != '\t' && !selection_start.is_start()){
+			selection_start.backward_char ();
+			current_char = selection_start.get_char ();
+		}
+		// Since we are now on the end condition, move forward one character as long as
+		// we're not at the very begining of the buffer.
+		if (!selection_start.is_start()) {
+			selection_start.forward_char();
+		}
+		current_char = selection_end.get_char ();
+		// If we're at the end of line, we're done.
+		if( current_char != '\n') {
+			while (current_char != '\n' && current_char != ' ' && current_char != '\t' && !selection_end.is_end ()) {
+				selection_end.forward_char();
+				current_char = selection_end.get_char ();
+			}
+		}
 	}
 }

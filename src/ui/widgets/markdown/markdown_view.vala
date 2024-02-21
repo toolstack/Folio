@@ -136,6 +136,143 @@ public class GtkMarkdown.View : GtkSource.View {
         }
 	}
 
+    public bool check_if_in_link (GtkMarkdown.View markdown_view) {
+		Gtk.TextIter buffer_start, buffer_end;
+		buffer.get_bounds (out buffer_start, out buffer_end);
+		var buffer_text = buffer.get_text (buffer_start, buffer_end, true);
+
+	    Gtk.TextIter selection_start, selection_end, cursor;
+		buffer.get_selection_bounds (out selection_start, out selection_end);
+		buffer.get_iter_at_mark (out cursor, buffer.get_insert ());
+		var cursor_offset = cursor.get_offset ();
+
+		bool found_match = false;
+		MatchInfo matches;
+
+        if (is_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches) ) {
+            do {
+                int start_text_pos, end_text_pos;
+                int start_url_pos, end_url_pos;
+                bool have_text = matches.fetch_pos (1, out start_text_pos, out end_text_pos);
+                bool have_url = matches.fetch_pos (2, out start_url_pos, out end_url_pos);
+
+                if (have_text && have_url) {
+
+                    start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
+                    end_url_pos = buffer_text.char_count ((ssize_t) end_url_pos);
+
+                    if( cursor_offset <= end_url_pos && cursor_offset >= start_text_pos ) {
+                        found_match = true;
+                    }
+                }
+            } while (matches.next());
+        }
+
+        return found_match;
+    }
+
+    public bool remove_formatting (GtkMarkdown.View markdown_view, string affix) {
+        var buffer = markdown_view.buffer;
+        Regex affix_regex;
+
+        switch( affix ) {
+            case "**":
+                affix_regex = is_bold_0;
+                break;
+            case "__":
+                affix_regex = is_bold_1;
+                break;
+            case "*":
+                affix_regex = is_italic_0;
+                break;
+            case "_":
+                affix_regex = is_italic_0;
+                break;
+            case "~":
+                affix_regex = is_strikethrough_0;
+                break;
+            case "~~":
+                affix_regex = is_strikethrough_1;
+                break;
+            case "==":
+                affix_regex = is_highlight;
+                break;
+            case "`":
+                affix_regex = is_code_span;
+                break;
+            default:
+                return false;
+        }
+
+		Gtk.TextIter buffer_start, buffer_end;
+		buffer.get_bounds (out buffer_start, out buffer_end);
+		var buffer_text = buffer.get_text (buffer_start, buffer_end, true);
+
+	    Gtk.TextIter selection_start, selection_end, cursor;
+		buffer.get_selection_bounds (out selection_start, out selection_end);
+		buffer.get_iter_at_mark (out cursor, buffer.get_insert ());
+		var cursor_offset = cursor.get_offset ();
+
+		bool found_match = false;
+		MatchInfo matches;
+
+        if (affix_regex.match_full (buffer_text, buffer_text.length, 0, 0, out matches) ) {
+            do {
+                int start_before_pos, end_before_pos;
+                int start_code_pos,   end_code_pos;
+                int start_after_pos,  end_after_pos;
+                bool have_code_start = matches.fetch_pos (1, out start_before_pos, out end_before_pos);
+                bool have_code = matches.fetch_pos (2, out start_code_pos, out end_code_pos);
+                bool have_code_close = matches.fetch_pos (3, out start_after_pos, out end_after_pos);
+
+                if (have_code_start && have_code && have_code_close) {
+                    start_before_pos = buffer_text.char_count ((ssize_t) start_before_pos);
+                    end_before_pos = buffer_text.char_count ((ssize_t) end_before_pos);
+                    start_code_pos = buffer_text.char_count ((ssize_t) start_code_pos);
+                    end_code_pos = buffer_text.char_count ((ssize_t) end_code_pos);
+                    start_after_pos = buffer_text.char_count ((ssize_t) start_after_pos);
+                    end_after_pos = buffer_text.char_count ((ssize_t) end_after_pos);
+
+                    // Convert the character offsets to TextIter's
+                    Gtk.TextIter start_before_iter, end_before_iter;
+                    Gtk.TextIter start_code_iter,   end_code_iter;
+                    Gtk.TextIter start_after_iter,  end_after_iter;
+                    buffer.get_iter_at_offset (out start_before_iter, start_before_pos);
+                    buffer.get_iter_at_offset (out end_before_iter, end_before_pos);
+                    buffer.get_iter_at_offset (out start_code_iter, start_code_pos);
+                    buffer.get_iter_at_offset (out end_code_iter, end_code_pos);
+                    buffer.get_iter_at_offset (out start_after_iter, start_after_pos);
+                    buffer.get_iter_at_offset (out end_after_iter, end_after_pos);
+
+                    if( cursor_offset <= end_after_pos && cursor_offset >= start_before_pos ) {
+                        // First remove the tag from the text buffer.
+                        buffer.remove_tag (buffer.tag_table.lookup ("markdown-bold"), start_before_iter, end_after_iter);
+
+                        // Now delete the trailing markdown.
+                        buffer.delete (ref start_after_iter, ref end_after_iter);
+
+                        // We have to recalculate the iterators since we change the buffer, but since
+                        // we deleted the traling markdown first, the actual positions for the starting
+                        // markdown are still the same.
+                        buffer.get_iter_at_offset (out start_code_iter, start_code_pos);
+                        buffer.get_iter_at_offset (out start_before_iter, start_before_pos);
+
+                        // Now delete the starting markdown.
+                        buffer.delete (ref start_before_iter, ref start_code_iter);
+
+                        // Since we clicked on the toolbar, giving it focus, grab the focus from it background_rgba
+                        // to the editor window.
+                        markdown_view.grab_focus ();
+
+                        found_match = true;
+                    }
+                }
+            } while (matches.next());
+        }
+
+        return found_match;
+    }
+
     private GtkSource.GutterRendererText renderer;
 
 	private Regex is_link;
@@ -158,7 +295,7 @@ public class GtkMarkdown.View : GtkSource.View {
     construct {
         try {
             var f = RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS;
-	        is_link = new Regex ("\\[([^\\[]+?)\\](\\([^\\)\\n]+?\\))", f, 0);
+	        is_link = new Regex ("\\[([^\\[]*?)\\](\\([^\\)\\n]*?\\))", f, 0);
 	        is_escape = new Regex ("\\\\[\\\\`*_{}\\[\\]()#+\\-.!]", f, 0);
 
 	        /* Example:
