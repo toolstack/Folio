@@ -2,8 +2,8 @@
 [GtkTemplate (ui = "/com/toolstack/Folio/preferences.ui")]
 public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 
-	[GtkChild] unowned Gtk.FontButton font_button;
-	[GtkChild] unowned Gtk.FontButton font_button_monospace;
+	[GtkChild] unowned Gtk.FontDialogButton font_button;
+	[GtkChild] unowned Gtk.FontDialogButton font_button_monospace;
 	[GtkChild] unowned Gtk.Switch oled_mode;
 	[GtkChild] unowned Gtk.Switch enable_toolbar;
 	[GtkChild] unowned Gtk.Switch enable_cheatsheet;
@@ -17,21 +17,30 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 		Object ();
 
 	    var settings = new Settings (Config.APP_ID);
+        var font_dialog = new Gtk.FontDialog ();
+        var font_desc = Pango.FontDescription.from_string (settings.get_string ("note-font"));
 
-        font_button.font = settings.get_string ("note-font");
-        font_button.font_set.connect (() => {
-            var font = font_button.get_font_family ().get_name ();
+        font_dialog.set_title (_("Pick a font for displaying the notes' content"));
+        font_button.set_font_desc (font_desc);
+        font_button.notify["font-desc"].connect (() => {
+            var font = font_button.get_font_desc ().to_string ();
             settings.set_string ("note-font", font);
         });
 
-        font_button_monospace.font = settings.get_string ("note-font-monospace");
-        font_button_monospace.set_filter_func ((family) => {
-            return family.is_monospace ();
-        });
-        font_button_monospace.font_set.connect (() => {
-            var font = font_button_monospace.get_font_family ().get_name ();
+        font_button.set_dialog (font_dialog);
+
+        var font_dialog_monospace = new Gtk.FontDialog ();
+        var font_desc_monospace = Pango.FontDescription.from_string (settings.get_string ("note-font-monospace"));
+        var monospace_filter = new Folio.MonospaceFilter ();
+        font_dialog_monospace.set_filter (monospace_filter);
+        font_dialog_monospace.set_title (_("Pick a font for displaying code"));
+        font_button_monospace.set_font_desc (font_desc_monospace);
+        font_button_monospace.notify["font-desc"].connect (() => {
+            var font = font_button_monospace.get_font_desc ().to_string ();
             settings.set_string ("note-font-monospace", font);
         });
+
+        font_button_monospace.set_dialog (font_dialog_monospace);
 
         oled_mode.active = settings.get_boolean ("theme-oled");
         oled_mode.state_set.connect ((state) => {
@@ -100,3 +109,10 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
         });
 	}
 }
+
+public class Folio.MonospaceFilter : Gtk.Filter {
+    public override bool match (GLib.Object? item) {
+        var family = item as Pango.FontFamily;
+        return family.is_monospace ();
+    }
+ }

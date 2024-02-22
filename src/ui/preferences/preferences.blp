@@ -17,8 +17,7 @@ template $FolioPreferencesWindow : Adw.PreferencesWindow {
         icon-name: "font-x-generic-symbolic";
         activatable-widget: font_button;
 
-        FontButton font_button {
-          title: _("Pick a font for displaying the notes' content");
+        FontDialogButton font_button {
           use-size: false;
           level: family;
           valign: center;
@@ -31,12 +30,10 @@ template $FolioPreferencesWindow : Adw.PreferencesWindow {
         icon-name: "font-x-generic-symbolic";
         activatable-widget: font_button_monospace;
 
-        FontButton font_button_monospace {
-          title: _("Pick a font for displaying code");
+        FontDialogButton font_button_monospace {
           use-size: false;
           level: family;
           valign: center;
-          preview-text: "function var struct enum type impl >= <= => =< == === <== ==> >- <- -> -< :: != ~= := =: >> << >>=";
         }
       }
     }
