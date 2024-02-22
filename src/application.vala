@@ -152,7 +152,7 @@ public class Folio.Application : Adw.Application {
 		about.set_release_notes ("""
 <p>Changes:</p>
 <ul>
-	<li>Rework the format bar so that it works more like a standard toolbar.  Toggle foramts on and off, format around current word if none selected, place the text/url parts into the right area when creating a new link, don't split current line when inserting a new HR, return focus to the editor after clicking a format button, and return the cursor to the right position.</li>
+	<li>Rework the format bar so that it works more like a standard toolbar.  Toggle formats on and off, format around current word if none selected, place the text/url parts into the right area when creating a new link, don't split current line when inserting a new HR, return focus to the editor after clicking a format button, and return the cursor to the right position.</li>
 	<li>Update deprecated font selector dialogs.</li>
 	<li>Fixed note title not being updated when renamed.</li>
 	<li>Renaming a not active note no longer makes it active.</li>
