@@ -63,4 +63,4 @@ Flatpak build requires flatpak-building installed.
 
  The release version is located in the main `meson.build` file, no other files contain the version number.
 
- The changelog is located in `data/app.metainfo.xml.in`.
+ The full changelog is located in `data/app.metainfo.xml.in` and the current release for the about dialog is in `source/application.vala`.
