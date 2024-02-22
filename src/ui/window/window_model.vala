@@ -203,11 +203,12 @@ public class Folio.WindowModel : Object {
 	    }
 	}
 
-	public void change_note (Note note, string name, string extension = note.extension)
-		throws ProviderError
+	public void change_note (Note note, string name, string extension = note.extension, bool do_update)
 	    requires (note.notebook != null) {
         note.notebook.change_note (note, name, extension);
-        update_note (note);
+		if (do_update) {
+        	update_note (note);
+		}
 	}
 
 	public void delete_notebook (Notebook notebook) throws ProviderError {

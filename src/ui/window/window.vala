@@ -480,8 +480,14 @@ public class Folio.Window : Adw.ApplicationWindow {
             return false;
 	    }
 		try {
-		    window_model.change_note (note, name, extension);
-			note_title.label = (note.is_markdown) ? note.name : note.file_name;
+			// Check to see if the note we're renaming is the current note displayed, if so, update
+			// The note title and note display, otherwise just update the note on disk.
+			if (window_model.note == note) {
+		    	window_model.change_note (note, name, extension, true);
+				note_title.label = (note.is_markdown) ? note.name : note.file_name;
+			} else {
+		    	window_model.change_note (note, name, extension, false);
+			}
 	        return true;
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS)
