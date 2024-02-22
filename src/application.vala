@@ -150,17 +150,16 @@ public class Folio.Application : Adw.Application {
 	    about.website = "https://github.com/toolstack/Folio";
 		about.transient_for = this.active_window;
 		about.set_release_notes ("""
-<p>UI Changes:</p>
+<p>Changes:</p>
 <ul>
 	<li>Rework the format bar so that it works more like a standard toolbar.  Toggle foramts on and off, format around current word if none selected, place the text/url parts into the right area when creating a new link, don't split current line when inserting a new HR, return focus to the editor after clicking a format button, and return the cursor to the right position.</li>
 	<li>Update deprecated font selector dialogs.</li>
-</ul>
-<p>Fixes:</p>
-<ul>
+	<li>Fixed note title not being updated when renamed.</li>
+	<li>Renaming a not active note no longer makes it active.</li>
     <li>Make sure to update the title bar when renaming a note.</li>
 	<li>Add translator credits.</li>
 	<li>Fixed GNOME search results.</li>
-	<li>Fixed new notes names not being traslated.</li>
+	<li>Fixed new notes names not being translated.</li>
 	<li>Remove dialog highlights between boxes.</li>
 	<li>Fixed crashes when the last line of a file doesn't contain a terminating LF.</li>
 	<li>Warn about duplicate notebook names when creating new notebooks.</li>
