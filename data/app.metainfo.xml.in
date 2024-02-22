@@ -286,8 +286,8 @@
 	<project_license>GPL-3.0+</project_license>
   <content_rating type="oars-1.1"/>
 
-  <developer_name translatable="no">Zagura</developer_name>
-  <project_group translatable="no">posidon</project_group>
+  <developer_name translatable="no">Greg Ross</developer_name>
+  <project_group translatable="no">toolstack.com</project_group>
 
   <url type="homepage">https://github.com/toolstack/Folio</url>
   <url type="bugtracker">https://github.com/toolstack/Folio/issues</url>
