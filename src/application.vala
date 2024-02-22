@@ -157,6 +157,7 @@ public class Folio.Application : Adw.Application {
 </ul>
 <p>Fixes:</p>
 <ul>
+    <li>Make sure to update the title bar when renaming a note.</li>
 	<li>Add translator credits.</li>
 	<li>Fixed GNOME search results.</li>
 	<li>Fixed new notes names not being traslated.</li>

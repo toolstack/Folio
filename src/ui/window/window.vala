@@ -481,6 +481,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 	    }
 		try {
 		    window_model.change_note (note, name, extension);
+			note_title.label = (note.is_markdown) ? note.name : note.file_name;
 	        return true;
 	    } catch (ProviderError e) {
 	        if (e is ProviderError.ALREADY_EXISTS)
