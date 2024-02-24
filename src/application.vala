@@ -144,8 +144,7 @@ Juliano Dorneles dos Santos <juliano.dorneles@gmail.com>, 2022
 Sabri Ünal <libreajans@gmail.com>, 2022
 Mykyta Opanasiuk <nikitaopanassiuk@outlook.com>, 2023
 Guoyi Zhang <guoyizhang@malacology.net>, 2022
-"""
-		);
+""";
 	    about.issue_url = "https://github.com/toolstack/Folio/issues";
 	    about.license_type = Gtk.License.GPL_3_0;
 	    about.version = Config.VERSION;
