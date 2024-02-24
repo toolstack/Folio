@@ -292,6 +292,8 @@ public class GtkMarkdown.View : GtkSource.View {
 	private Regex is_code_span;
 	private Regex is_code_block;
 
+    private Regex filter_escapes;
+
     construct {
         try {
             var f = RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS;
@@ -337,6 +339,8 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	        is_code_span = new Regex ("(?<!`)(`)([^`]+(?:`{2,}[^`]+)*)(`)(?!`)", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS | RegexCompileFlags.MULTILINE, 0);
 	        is_code_block = new Regex ("(?<![^\\n])(```[^`\\n]*)\\n([^`]*)(```)(?=\\n)", f, 0);
+
+            filter_escapes = new Regex ("(\\\\\\\\|\\\\`|\\\\\\*|\\\\_|\\\\\\{|\\\\\\}|\\\\\\[|\\\\\\]|\\\\\\(|\\\\\\)|\\\\#|\\\\\\+|\\\\-|\\\\\\.|\\\\!)", f, 0);
 	    } catch (RegexError e) {
 	        error (e.message);
 	    }
@@ -591,6 +595,10 @@ public class GtkMarkdown.View : GtkSource.View {
         try {
             MatchInfo matches;
 
+            // Create a filtered buffer that replaces escaped backticks with a placeholder so that
+            // we can use to ensure code spans/blocks don't misinterpret them.
+            string filtered_buffer_text = filter_escapes.replace (buffer_text, buffer_text.length, 0, "\\\\\\x40", 0);
+
             format_horizontal_rule (buffer_text, out matches);
 
             format_blockquote (buffer_text, out matches);
@@ -633,8 +641,8 @@ public class GtkMarkdown.View : GtkSource.View {
 
             format_escape_format (buffer_text, out matches);
 
-            do_formatting_pass_format (is_code_span, text_tag_code_span, buffer_text, out matches, true);
-            format_code_block_format (buffer_text, out matches);
+            do_formatting_pass_format (is_code_span, text_tag_code_span, filtered_buffer_text, out matches, true);
+            format_code_block_format (filtered_buffer_text, out matches);
         } catch (RegexError e) {}
     }
 
@@ -664,6 +672,10 @@ public class GtkMarkdown.View : GtkSource.View {
 
         try {
             MatchInfo matches;
+
+            // Create a filtered buffer that replaces escaped backticks with a placeholder so that
+            // we can use to ensure code spans/blocks don't misinterpret them.
+            string filtered_buffer_text = filter_escapes.replace (buffer_text, buffer_text.length, 0, "\\\\\\x40", 0);
 
             // Check for links
             if (is_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
@@ -715,8 +727,8 @@ public class GtkMarkdown.View : GtkSource.View {
 
             format_escape_cursor (buffer_text, cursor_location, out matches);
 
-            do_formatting_pass_cursor (is_code_span, buffer_text, cursor_location, out matches, true);
-            format_code_block_cursor (buffer_text, cursor_location, out matches);
+            do_formatting_pass_cursor (is_code_span, filtered_buffer_text, cursor_location, out matches, true);
+            format_code_block_cursor (filtered_buffer_text, cursor_location, out matches);
         } catch (RegexError e) {
             critical (e.message);
         }
