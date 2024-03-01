@@ -276,19 +276,19 @@
 
   <screenshots>
     <screenshot type="default">
-      <image>https://github.com/toolstack/Folio/blob/main/meta/folio-desktop.png?raw=true</image>
-      <caption>Markdown document</caption>
-    </screenshot>
-    <screenshot type="default">
-      <image>https://github.com/toolstack/Folio/blob/main/meta/folio-desktop-minimal.png?raw=true</image>
+      <image>https://raw.githubusercontent.com/toolstack/Folio/main/meta/folio-desktop.png</image>
       <caption>Markdown document</caption>
     </screenshot>
     <screenshot>
-      <image>https://github.com/toolstack/Folio/blob/main/meta/folio-mobile.png?raw=true</image>
+      <image>https://raw.githubusercontent.com/toolstack/Folio/main/meta/folio-desktop-minimal.png</image>
       <caption>Markdown document</caption>
     </screenshot>
     <screenshot>
-      <image>https://github.com/toolstack/Folio/blob/main/meta/folio-mobile-list.png?raw=true</image>
+      <image>https://raw.githubusercontent.com/toolstack/Folio/main/meta/folio-mobile.png</image>
+      <caption>Markdown document</caption>
+    </screenshot>
+    <screenshot>
+      <image>https://raw.githubusercontent.com/toolstack/Folio/main/meta/folio-mobile-list.png</image>
       <caption>List of notes</caption>
     </screenshot>
   </screenshots>
