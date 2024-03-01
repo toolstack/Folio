@@ -2,10 +2,9 @@
 
 ## Take notes in markdown
 
-A fork of [Paper](https://gitlab.com/posidon_software/paper).
+A beautiful markdown note-taking app for GNOME (forked from [Paper](https://gitlab.com/posidon_software/paper)).
 
 Contributions are appreciated!
-
 
 ## Some of Folio's features:
 
@@ -25,9 +24,9 @@ Contributions are appreciated!
 
 The recommended way of installing Folio is through [Flatpak](https://flatpak.org)
 
-Coming soon!
+Coming soon! (Submitted to flathub on March 1, 2024 for review)
 
-In the mean time, head over to the [GitHub Actions](https://github.com/toolstack/Folio/actions) page, select the latest release, and download the Artifacts package called `Folio-x86-64`.  Once downloaded, unzip it, and use `flatpak install Folio.flatpak` to install Folio on your computer.
+In the mean time, head over to the current [GitHub Releases](https://github.com/toolstack/Folio/releases) page, select the latest release, and download the asset called `Folio-YY.##.flatpak`.  Once downloaded, use `flatpak install Folio-YY.##.flatpak` to install Folio on your computer.
 
 You can use the same process to update to a newer release as well.
 
@@ -51,11 +50,12 @@ Flatpak build requires flatpak-building installed.
  - change into the build directory
  - to build Folio, run ```ninja```
  - to install Folio, run ```ninja install```
+ - to run Folio, run ```src/com.toolstack.Folio```
 
 ### Flatpak builds
  - change into the top level source directory
- - to build the flatpak, run ```flatpak-builder flatpak com.toolstack.Folio.json```
- - to install the flatpak, run ```flatpak-builder --user --install --force-clean flatpak com.toolstack.Folio.json```
+ - to build the flatpak, run ```flatpak-builder --force-clean flatpak com.toolstack.Folio.json```
+ - to build and install the flatpak, run ```flatpak-builder --user --install --force-clean flatpak com.toolstack.Folio.json```
  - to launch the flatpak, run ```flatpak run com.toolstack.Folio```
 
 ## Release instructions
