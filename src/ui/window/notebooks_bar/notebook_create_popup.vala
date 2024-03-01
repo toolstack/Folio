@@ -90,7 +90,11 @@ public class Folio.NotebookCreatePopup : Adw.Window {
         icon_grid.model = model;
         icon_grid.factory = factory;
 
+        // Setup a variable to use if we're editing a notebook name.
+        var original_notebook_name = "";
+
         if (notebook != null) {
+            original_notebook_name = notebook.name;
             button_create.label = Strings.APPLY;
             preview.notebook_info = new NotebookInfo (
                 notebook.name,
@@ -128,7 +132,8 @@ public class Folio.NotebookCreatePopup : Adw.Window {
             preview.notebook_name = entry.text;
             var file = File.new_for_path (notes_dir + "/" + entry.text);
             if (entry.text != "") {
-                if (file.query_exists ()) {
+                // If we're editing a notebook name, we can allow for that name to already exist.
+                if (entry.text != original_notebook_name && file.query_exists ()) {
                     notebook_name_warning.show ();
                     button_create.set_sensitive (false);
                 } else {
