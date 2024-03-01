@@ -18,6 +18,17 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
+    <release type="stable" version="24.04" date="2024-03-01">
+      <description translatable="no">
+        <p>Changes:</p>
+        <ul>
+          <li>Fixed unable to save changes editing of notebook details without changing notebook name.</li>
+          <li>New icon.</li>
+          <li>Handle escaped characters inside code span/blocks.</li>
+          <li>Fixed dark mode in flatpak.</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="24.03" date="2024-02-22">
       <description translatable="no">
         <p>Changes:</p>

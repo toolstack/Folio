@@ -153,18 +153,10 @@ Guoyi Zhang <guoyizhang@malacology.net>, 2022
 		about.set_release_notes ("""
 <p>Changes:</p>
 <ul>
-	<li>Rework the format bar so that it works more like a standard toolbar.  Toggle formats on and off, format around current word if none selected, place the text/url parts into the right area when creating a new link, don't split current line when inserting a new HR, return focus to the editor after clicking a format button, and return the cursor to the right position.</li>
-	<li>Update deprecated font selector dialogs.</li>
-	<li>Fixed note title not being updated when renamed.</li>
-	<li>Renaming a not active note no longer makes it active.</li>
-    <li>Make sure to update the title bar when renaming a note.</li>
-	<li>Add translator credits.</li>
-	<li>Fixed GNOME search results.</li>
-	<li>Fixed new notes names not being translated.</li>
-	<li>Remove dialog highlights between boxes.</li>
-	<li>Fixed crashes when the last line of a file doesn't contain a terminating LF.</li>
-	<li>Warn about duplicate notebook names when creating new notebooks.</li>
-	<li>Cleanup complier warnings during build.</li>
+	<li>Fixed unable to save changes editing of notebook details without changing notebook name.</li>
+	<li>New icon.</li>
+	<li>Handle escaped characters inside code span/blocks.</li>
+	<li>Fixed dark mode in flatpak.</li>
 </ul>
 """
 		);
