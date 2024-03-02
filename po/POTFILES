@@ -1,7 +1,7 @@
 data/app.desktop.in
 data/app.gschema.xml
 data/app.metainfo.xml.in
-src/ui/strings.vala
+data/app.service.in
 src/ui/edit_view/cheatsheet/markdown_cheatsheet.blp
 src/ui/edit_view/edit_view.blp
 src/ui/edit_view/toolbar/toolbar.blp
@@ -10,11 +10,12 @@ src/ui/popup/notebook_selection_popup/notebook_list_item.blp
 src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp
 src/ui/popup/shortcut_window.blp
 src/ui/preferences/preferences.blp
+src/ui/strings.vala
 src/ui/widgets/markdown/heading_popover.blp
 src/ui/widgets/notebook_icon/notebook_preview.blp
-src/ui/widgets/save_indicator/save_indicator.blp
 src/ui/widgets/theme_selector/theme_selector.blp
 src/ui/window/app_menu/app_menu.blp
+src/ui/window/font_scale/font_scale.blp
 src/ui/window/notebooks_bar/icon.blp
 src/ui/window/notebooks_bar/notebook_create_popup.blp
 src/ui/window/notebooks_bar/notebook_menu.blp

@@ -64,3 +64,14 @@ Flatpak build requires flatpak-building installed.
  The release version is located in the main `meson.build` file, no other files contain the version number.
 
  The full changelog is located in `data/app.metainfo.xml.in` and the current release for the about dialog is in `src/application.vala`.
+
+## Generate translation POT
+ Folio uses POT/PO files for it's translations, the POT file defines all the strings that are used by Folio.
+
+ Before generating the POT file you must have already run meson for the first time and have run a local build.
+
+ To generate the POT file:
+ - change into the PO directory
+ - run ```./print-source-files.sh > POTFILES```
+ - change into the build directory: ```cd ../build```
+ - run ```meson compile com.toolstack.Folio-pot```

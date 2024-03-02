@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.toolstack.Folio\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-19 17:20+0200\n"
+"POT-Creation-Date: 2024-03-01 22:41-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,39 +17,39 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: data/app.desktop.in:8 src/ui/strings.vala:3
+#: data/app.desktop.in:9 src/ui/strings.vala:3
 msgid "Folio"
 msgstr ""
 
-#: data/app.desktop.in:9
+#: data/app.desktop.in:10
 msgid "Notes Manager"
 msgstr ""
 
-#: data/app.desktop.in:10
+#: data/app.desktop.in:11
 msgid "Take notes"
 msgstr ""
 
-#: data/app.desktop.in:12
+#: data/app.desktop.in:13
 msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
 msgstr ""
 
-#: data/app.desktop.in:21 src/ui/strings.vala:8
-#: src/ui/popup/shortcut_window.blp:17 src/ui/window/window.blp:47
-#: src/ui/window/window.blp:121
+#: data/app.desktop.in:22 src/ui/popup/shortcut_window.blp:17
+#: src/ui/strings.vala:8 src/ui/window/window.blp:47
+#: src/ui/window/window.blp:124
 msgid "New Note"
 msgstr ""
 
-#: data/app.desktop.in:25 src/ui/strings.vala:14
-#: src/ui/popup/shortcut_window.blp:37 src/ui/window/window.blp:146
+#: data/app.desktop.in:26 src/ui/popup/shortcut_window.blp:37
+#: src/ui/strings.vala:14 src/ui/window/window.blp:149
 msgid "New Notebook"
 msgstr ""
 
-#: data/app.desktop.in:29 src/ui/strings.vala:39
-#: src/ui/edit_view/toolbar/toolbar.blp:175 src/ui/window/window.blp:219
+#: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:90
+#: src/ui/strings.vala:39 src/ui/window/window.blp:245
 msgid "Markdown Cheatsheet"
 msgstr ""
 
-#: data/app.desktop.in:33 src/ui/popup/shortcut_window.blp:62
+#: data/app.desktop.in:34 src/ui/popup/shortcut_window.blp:62
 msgid "Preferences"
 msgstr ""
 
@@ -61,23 +61,27 @@ msgstr ""
 msgid "The font notes will be displayed in"
 msgstr ""
 
-#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:29
+#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:28
 msgid "Monospace Font"
 msgstr ""
 
-#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:30
+#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:29
 msgid "The font code will be displayed in"
 msgstr ""
 
-#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:44
+#: data/app.gschema.xml:16
+msgid "Max Note Width"
+msgstr ""
+
+#: data/app.gschema.xml:20 src/ui/preferences/preferences.blp:43
 msgid "OLED Mode"
 msgstr ""
 
-#: data/app.gschema.xml:26
+#: data/app.gschema.xml:33
 msgid "Notes Directory"
 msgstr ""
 
-#: data/app.gschema.xml:27
+#: data/app.gschema.xml:34
 msgid "Where the notebooks are stored"
 msgstr ""
 
@@ -102,22 +106,208 @@ msgid "Searchable through GNOME search"
 msgstr ""
 
 #: data/app.metainfo.xml.in:12
-msgid "Highlight &amp; Strikethrough text formatting"
+msgid "Highlight &amp; strikethrough text formatting"
 msgstr ""
 
 #: data/app.metainfo.xml.in:13
-msgid "App recoloring based on notebook color"
+msgid "App themeing based on notebook color"
 msgstr ""
 
 #: data/app.metainfo.xml.in:14
 msgid "Trash can"
 msgstr ""
 
-#: data/app.metainfo.xml.in:143
+#: data/app.metainfo.xml.in:280 data/app.metainfo.xml.in:284
+#: data/app.metainfo.xml.in:288
 msgid "Markdown document"
 msgstr ""
 
-#: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:125
+#: data/app.metainfo.xml.in:292
+msgid "List of notes"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:23
+#: src/ui/edit_view/toolbar/toolbar.blp:131
+#: src/ui/widgets/markdown/heading_popover.blp:48
+msgid "Plain Text"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:24
+#: src/ui/edit_view/toolbar/toolbar.blp:132
+#: src/ui/widgets/markdown/heading_popover.blp:12
+msgid "Heading 1"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:25
+#: src/ui/edit_view/toolbar/toolbar.blp:133
+#: src/ui/widgets/markdown/heading_popover.blp:18
+msgid "Heading 2"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:26
+#: src/ui/edit_view/toolbar/toolbar.blp:134
+#: src/ui/widgets/markdown/heading_popover.blp:24
+msgid "Heading 3"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:27
+#: src/ui/edit_view/toolbar/toolbar.blp:135
+#: src/ui/widgets/markdown/heading_popover.blp:30
+msgid "Heading 4"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:28
+#: src/ui/edit_view/toolbar/toolbar.blp:136
+#: src/ui/widgets/markdown/heading_popover.blp:36
+msgid "Heading 5"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:29
+#: src/ui/edit_view/toolbar/toolbar.blp:137
+#: src/ui/widgets/markdown/heading_popover.blp:42
+msgid "Heading 6"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:39
+#: src/ui/edit_view/toolbar/toolbar.blp:104
+#: src/ui/edit_view/toolbar/toolbar.blp:148
+#: src/ui/edit_view/toolbar/toolbar.blp:201 src/ui/popup/shortcut_window.blp:72
+msgid "Bold"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:45
+#: src/ui/edit_view/toolbar/toolbar.blp:111
+#: src/ui/edit_view/toolbar/toolbar.blp:155
+#: src/ui/edit_view/toolbar/toolbar.blp:202 src/ui/popup/shortcut_window.blp:77
+msgid "Italic"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:51
+#: src/ui/edit_view/toolbar/toolbar.blp:162
+#: src/ui/edit_view/toolbar/toolbar.blp:203 src/ui/popup/shortcut_window.blp:82
+msgid "Strikethrough"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:57
+#: src/ui/edit_view/toolbar/toolbar.blp:169
+#: src/ui/edit_view/toolbar/toolbar.blp:204 src/ui/popup/shortcut_window.blp:87
+msgid "Highlight"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:67
+#: src/ui/edit_view/toolbar/toolbar.blp:193 src/ui/popup/shortcut_window.blp:92
+msgid "Insert Link"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:73
+#: src/ui/edit_view/toolbar/toolbar.blp:194
+msgid "Insert Code"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:79
+#: src/ui/edit_view/toolbar/toolbar.blp:195
+msgid "Insert Horizontal Rule"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:118
+msgid "Format"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:181
+msgid "Insert"
+msgstr ""
+
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:34
+#: src/ui/strings.vala:44
+msgid "Cancel"
+msgstr ""
+
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
+msgid "Confirm"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:14
+msgid "Note"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:22
+msgid "Edit Note"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:27
+msgid "Save Note"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:34 src/ui/strings.vala:47
+msgid "Notebook"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:42 src/ui/strings.vala:23
+msgid "Edit Notebook"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:49
+msgid "General"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:52
+msgid "Show Keyboard Shortcuts"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:57
+msgid "Quit"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:69
+msgid "Formatting"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:99
+msgid "Navigation"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:216
+msgid "Toggle Sidebar"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:63
+msgid "Search Notes"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:44
+msgid "Makes the dark theme pitch black"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:56
+msgid "Enable Toolbar"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:66
+msgid "Enable Cheatsheet"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:78
+msgid "3-Pane Layout"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:88
+msgid "Limit Note Width"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:89
+msgid "Limits how wide the text area can stretch"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:101
+msgid "Notes Storage Location"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:102
+msgid "Where the notebooks are stored (requires app restart)"
+msgstr ""
+
+#: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:129
+#: src/ui/window/notebooks_bar/notebooks_bar.blp:171
 msgid "Trash"
 msgstr ""
 
@@ -187,10 +377,6 @@ msgstr ""
 
 #: src/ui/strings.vala:22
 msgid "Delete Notebook"
-msgstr ""
-
-#: src/ui/strings.vala:23 src/ui/popup/shortcut_window.blp:42
-msgid "Edit Notebook"
 msgstr ""
 
 #: src/ui/strings.vala:24
@@ -272,182 +458,21 @@ msgstr ""
 msgid "Apply"
 msgstr ""
 
-#: src/ui/strings.vala:44
-#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:34
-msgid "Cancel"
-msgstr ""
-
 #: src/ui/strings.vala:45
 msgid "Pick where the notebooks will be stored"
 msgstr ""
 
-#: src/ui/strings.vala:46 src/ui/window/notebooks_bar/notebooks_bar.blp:80
+#: src/ui/strings.vala:46 src/ui/window/notebooks_bar/notebooks_bar.blp:59
+#: src/ui/window/notebooks_bar/notebooks_bar.blp:101
 msgid "All Notes"
 msgstr ""
 
-#: src/ui/edit_view/toolbar/toolbar.blp:25
-#: src/ui/edit_view/toolbar/toolbar.blp:116
-#: src/ui/widgets/markdown/heading_popover.blp:48
-msgid "Plain Text"
+#: src/ui/strings.vala:48
+msgid "Last Modified"
 msgstr ""
 
-#: src/ui/edit_view/toolbar/toolbar.blp:26
-#: src/ui/edit_view/toolbar/toolbar.blp:117
-#: src/ui/widgets/markdown/heading_popover.blp:12
-msgid "Heading 1"
-msgstr ""
-
-#: src/ui/edit_view/toolbar/toolbar.blp:27
-#: src/ui/edit_view/toolbar/toolbar.blp:118
-#: src/ui/widgets/markdown/heading_popover.blp:18
-msgid "Heading 2"
-msgstr ""
-
-#: src/ui/edit_view/toolbar/toolbar.blp:28
-#: src/ui/edit_view/toolbar/toolbar.blp:119
-#: src/ui/widgets/markdown/heading_popover.blp:24
-msgid "Heading 3"
-msgstr ""
-
-#: src/ui/edit_view/toolbar/toolbar.blp:29
-#: src/ui/edit_view/toolbar/toolbar.blp:120
-#: src/ui/widgets/markdown/heading_popover.blp:30
-msgid "Heading 4"
-msgstr ""
-
-#: src/ui/edit_view/toolbar/toolbar.blp:30
-#: src/ui/edit_view/toolbar/toolbar.blp:121
-#: src/ui/widgets/markdown/heading_popover.blp:36
-msgid "Heading 5"
-msgstr ""
-
-#: src/ui/edit_view/toolbar/toolbar.blp:31
-#: src/ui/edit_view/toolbar/toolbar.blp:122
-#: src/ui/widgets/markdown/heading_popover.blp:42
-msgid "Heading 6"
-msgstr ""
-
-#: src/ui/edit_view/toolbar/toolbar.blp:43
-#: src/ui/edit_view/toolbar/toolbar.blp:133
-#: src/ui/edit_view/toolbar/toolbar.blp:194 src/ui/popup/shortcut_window.blp:72
-msgid "Bold"
-msgstr ""
-
-#: src/ui/edit_view/toolbar/toolbar.blp:50
-#: src/ui/edit_view/toolbar/toolbar.blp:140
-#: src/ui/edit_view/toolbar/toolbar.blp:195 src/ui/popup/shortcut_window.blp:77
-msgid "Italic"
-msgstr ""
-
-#: src/ui/edit_view/toolbar/toolbar.blp:57
-#: src/ui/edit_view/toolbar/toolbar.blp:147
-#: src/ui/edit_view/toolbar/toolbar.blp:196 src/ui/popup/shortcut_window.blp:82
-msgid "Strikethrough"
-msgstr ""
-
-#: src/ui/edit_view/toolbar/toolbar.blp:64
-#: src/ui/edit_view/toolbar/toolbar.blp:154
-#: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:87
-msgid "Highlight"
-msgstr ""
-
-#: src/ui/edit_view/toolbar/toolbar.blp:76
-#: src/ui/edit_view/toolbar/toolbar.blp:186 src/ui/popup/shortcut_window.blp:92
-msgid "Insert Link"
-msgstr ""
-
-#: src/ui/edit_view/toolbar/toolbar.blp:83
-#: src/ui/edit_view/toolbar/toolbar.blp:187
-msgid "Insert Code"
-msgstr ""
-
-#: src/ui/edit_view/toolbar/toolbar.blp:90
-#: src/ui/edit_view/toolbar/toolbar.blp:188
-msgid "Insert Horizontal Rule"
-msgstr ""
-
-#: src/ui/edit_view/toolbar/toolbar.blp:103
-msgid "Format"
-msgstr ""
-
-#: src/ui/edit_view/toolbar/toolbar.blp:167
-msgid "Insert"
-msgstr ""
-
-#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
-msgid "Confirm"
-msgstr ""
-
-#: src/ui/popup/shortcut_window.blp:14
-msgid "Note"
-msgstr ""
-
-#: src/ui/popup/shortcut_window.blp:22
-msgid "Edit Note"
-msgstr ""
-
-#: src/ui/popup/shortcut_window.blp:27
-msgid "Save Note"
-msgstr ""
-
-#: src/ui/popup/shortcut_window.blp:34
-msgid "Notebook"
-msgstr ""
-
-#: src/ui/popup/shortcut_window.blp:49
-msgid "General"
-msgstr ""
-
-#: src/ui/popup/shortcut_window.blp:52
-msgid "Show Keyboard Shortcuts"
-msgstr ""
-
-#: src/ui/popup/shortcut_window.blp:57
-msgid "Quit"
-msgstr ""
-
-#: src/ui/popup/shortcut_window.blp:69
-msgid "Formatting"
-msgstr ""
-
-#: src/ui/popup/shortcut_window.blp:99
-msgid "Navigation"
-msgstr ""
-
-#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:188
-msgid "Toggle Sidebar"
-msgstr ""
-
-#: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:63
-msgid "Search Notes"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:21
-msgid "Pick a font for displaying the notes' content"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:35
-msgid "Pick a font for displaying code"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:45
-msgid "Makes the dark theme pitch black"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:55
-msgid "Enable Toolbar"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:65
-msgid "3-Pane Layout"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:77
-msgid "Notes Storage Location"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:78
-msgid "Where the notebooks are stored (requires app restart)"
+#: src/ui/strings.vala:49
+msgid "Extension"
 msgstr ""
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
@@ -486,31 +511,35 @@ msgstr ""
 msgid "Notebook Name"
 msgstr ""
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:72
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:66
+msgid "Duplicate notebook names are not allowed!"
+msgstr ""
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:82
 msgid "First Characters"
 msgstr ""
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:73
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:83
 msgid "Initials"
 msgstr ""
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:74
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:84
 msgid "Initials: camelCase"
 msgstr ""
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:75
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:85
 msgid "Initials: snake_case"
 msgstr ""
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:76
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:86
 msgid "Icon"
 msgstr ""
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:106
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:116
 msgid "Notebook Color"
 msgstr ""
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:116
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:126
 msgid "Create Notebook"
 msgstr ""
 
@@ -520,6 +549,10 @@ msgstr ""
 
 #: src/ui/window/notebooks_bar/notebook_menu.blp:26
 msgid "Move all to Trash"
+msgstr ""
+
+#: src/ui/window/notebooks_bar/notebooks_bar.blp:113
+msgid "Notebooks"
 msgstr ""
 
 #: src/ui/window/sidebar/note_create_popup.blp:37
@@ -550,30 +583,30 @@ msgstr ""
 msgid "Open Containing Folder"
 msgstr ""
 
-#: src/ui/window/window.blp:115
+#: src/ui/window/window.blp:118
 msgid "Get started writing"
 msgstr ""
 
-#: src/ui/window/window.blp:140
+#: src/ui/window/window.blp:143
 msgid "Create a notebook"
 msgstr ""
 
-#: src/ui/window/window.blp:165
+#: src/ui/window/window.blp:168
 msgid "Trash is empty"
 msgstr ""
 
-#: src/ui/window/window.blp:196
+#: src/ui/window/window.blp:224
 msgid "Back"
 msgstr ""
 
-#: src/ui/window/window.blp:212
+#: src/ui/window/window.blp:239
 msgid "Open in Notebook"
 msgstr ""
 
-#: src/ui/window/window.blp:233
+#: src/ui/window/window.blp:264
 msgid "_Rename Note"
 msgstr ""
 
-#: src/ui/window/window.blp:239
+#: src/ui/window/window.blp:270
 msgid "_Export Note"
 msgstr ""
