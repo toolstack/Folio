@@ -22,11 +22,13 @@ Contributions are appreciated!
 
 ## Get Folio
 
-The recommended way of installing Folio is through [Flatpak](https://flatpak.org)
+The recommended way of installing Folio is through our [Flatpak](https://flatpak.org):
 
-Coming soon! (Submitted to flathub on March 1, 2024 for review)
+### From Flathub
+<a href="https://flathub.org/apps/com.toolstack.Folio"><img src="https://flathub.org/assets/badges/flathub-badge-en.png" width="200"/></a>
 
-In the mean time, head over to the current [GitHub Releases](https://github.com/toolstack/Folio/releases) page, select the latest release, and download the asset called `Folio-YY.##.flatpak`.  Once downloaded, use `flatpak install Folio-YY.##.flatpak` to install Folio on your computer.
+### Manual
+Go to the current [GitHub Releases](https://github.com/toolstack/Folio/releases) page, select the latest release, and download the asset called `Folio-YY.##.flatpak`.  Once downloaded, use `flatpak install Folio-YY.##.flatpak` to install Folio on your computer.
 
 You can use the same process to update to a newer release as well.
 
