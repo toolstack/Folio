@@ -207,21 +207,17 @@ public class Folio.EditView : Gtk.Box {
 			}
 
 			try {
-				Regex is_url = new Regex ("(http|ftp|https):\\/\\/([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:\\/~+#-]*[\\w@?^=%&\\/~+#-])", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS, 0);
-
 				buffer.get_selection_bounds (out selection_start, out selection_end);
 
 				var selection_text = buffer.get_slice (selection_start, selection_end, true);
 				MatchInfo matches;
 
-				if( is_url.match_full (selection_text, selection_text.length, 0, 0, out matches) ) {
-					url_found = true;
-				}
+				url_found = markdown_view.check_if_bare_link (selection_text);
 			} catch (RegexError e) {}
 
 			Gtk.TextMark start_mark, end_mark;
 			buffer.get_selection_bounds (out selection_start, out selection_end);
-			// Make sure our marks in in accending order to simplify things later.
+			// Make sure our marks in in ascending order to simplify things later.
 			if (selection_start.compare (selection_end) > 1) {
 				start_mark = buffer.create_mark (null, selection_end, true);
 				end_mark = buffer.create_mark (null, selection_start, true);

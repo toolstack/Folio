@@ -136,6 +136,14 @@ public class GtkMarkdown.View : GtkSource.View {
         }
 	}
 
+    public bool check_if_bare_link (string text) {
+        MatchInfo matches;
+        if( is_bare_link.match_full (text, text.length, 0, 0, out matches) ) {
+            return true;
+        }
+        return false;
+    }
+
     public bool check_if_in_link (GtkMarkdown.View markdown_view) {
 		Gtk.TextIter buffer_start, buffer_end;
 		buffer.get_bounds (out buffer_start, out buffer_end);
@@ -276,6 +284,7 @@ public class GtkMarkdown.View : GtkSource.View {
     private GtkSource.GutterRendererText renderer;
 
 	private Regex is_link;
+    private Regex is_bare_link;
 	private Regex is_escape;
 	private Regex is_blockquote;
 
@@ -298,6 +307,7 @@ public class GtkMarkdown.View : GtkSource.View {
         try {
             var f = RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS;
 	        is_link = new Regex ("\\[([^\\[]*?)\\](\\([^\\)\\n]*?\\))", f, 0);
+			is_bare_link = new Regex ("(?i)\\b((?:[a-z][\\w-]+:(?:\\/{1,3}|[a-z0-9%])|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,4}\\/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:'\".,<>?«»“”‘’]))", f, 0);
 	        is_escape = new Regex ("\\\\[\\\\`*_{}\\[\\]()#+\\-.!]", f, 0);
 
 	        /* Example:
@@ -501,7 +511,6 @@ public class GtkMarkdown.View : GtkSource.View {
 
 
             text_tag_around = get_or_create_tag ("markdown-code-block-around");
-            text_tag_around.scale = 0.7;
             var around_block_color = block_color;
             around_block_color.alpha = 0.8f;
             text_tag_around.foreground_rgba = around_block_color;
@@ -623,6 +632,27 @@ public class GtkMarkdown.View : GtkSource.View {
                         buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
                         buffer.get_iter_at_offset (out start_url_iter, start_url_pos);
                         buffer.get_iter_at_offset (out end_url_iter, end_url_pos);
+
+                        // Apply our styling
+                        buffer.apply_tag (text_tag_url, start_text_iter, end_text_iter);
+                    }
+                } while (matches.next ());
+            }
+
+            // Check for bare links
+            if (is_bare_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+                do {
+                    int start_text_pos, end_text_pos;
+                    bool have_text = matches.fetch_pos (1, out start_text_pos, out end_text_pos);
+
+                    if (have_text) {
+                        start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
+                        end_text_pos = buffer_text.char_count ((ssize_t) end_text_pos);
+
+                        // Convert the character offsets to TextIter's
+                        Gtk.TextIter start_text_iter, end_text_iter;
+                        buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
+                        buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
 
                         // Apply our styling
                         buffer.apply_tag (text_tag_url, start_text_iter, end_text_iter);
