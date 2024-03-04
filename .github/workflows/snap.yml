@@ -22,6 +22,7 @@ jobs:
         path: ${{ steps.snapcraft.outputs.snap }}
 
   publish-snap:
+    if: ${{ github.event_name != 'pull_request' }}
     name: Publish the snap
     runs-on: ubuntu-latest
     needs: get-architectures
