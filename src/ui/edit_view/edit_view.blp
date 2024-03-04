@@ -13,19 +13,22 @@ template $FolioEditView : Box {
     hexpand: true;
     vexpand: true;
 
-    $GtkMarkdownView markdown_view {
+    Adw.ToastOverlay toast_overlay {
 
-      halign: center;
-      hexpand: true;
-      vexpand: true;
-      tab-width: 4;
-      auto-indent: true;
-      wrap-mode: word-char;
-      top-margin: 64;
-      bottom-margin: 64;
-      show-gutter: true;
+      $GtkMarkdownView markdown_view {
 
-      styles ["markdown-view"]
+        halign: center;
+        hexpand: true;
+        vexpand: true;
+        tab-width: 4;
+        auto-indent: true;
+        wrap-mode: word-char;
+        top-margin: 64;
+        bottom-margin: 64;
+        show-gutter: true;
+
+        styles ["markdown-view"]
+      }
     }
   }
 
