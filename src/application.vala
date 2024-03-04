@@ -123,29 +123,30 @@ public class Folio.Application : Adw.Application {
 	    var about = new Adw.AboutWindow ();
 	    about.application_icon = Config.APP_ID;
 	    about.application_name = "Folio";
-	    about.developers = {"Greg Ross", "Zagura"};
+	    about.developers = {"Greg Ross <greg@toolstack.com>", "Zagura"};
 	    about.translator_credits = """
-Zagura <me@zagura.one>, 2022
-Jan Krings <liquidsky42@gmail.com>, 2022
-Jürgen Benvenuti <gastornis@posteo.org>, 2022
-Sergio Varela <sergiovg01@outlook.com>, 2022
-MohammadSaleh Kamyab <mskf1383@envs.net>, 2022
-Iikka Hauhio <fergusq@kaivos.org>, 2022
-Irénée Thirion <irenee.thirion@e.email>, 2022
-Fran Dieguez <frandieguez@gnome.org>, 2022
-Musiclover382 <musiclover382@protonmail.com>, 2022
-Albano Battistella <albano_battistella@hotmail.com>, 2022
-TokaiTeio, 2022
-Gregory <gregorydk@proton.me>, 2022
-Quentin PAGÈS, 2022
-Marcin Wolski <martinwolski04@gmail.com>, 2022
-Juliano Dorneles dos Santos <juliano.dorneles@gmail.com>, 2022
-Марко М. Костић <marko.m.kostic@gmail.com>, 2022
-Sabri Ünal <libreajans@gmail.com>, 2022
-Mykyta Opanasiuk <nikitaopanassiuk@outlook.com>, 2023
-Guoyi Zhang <guoyizhang@malacology.net>, 2022
-rene-coty, 2024
+Zagura <me@zagura.one>
+Jan Krings <liquidsky42@gmail.com>
+Jürgen Benvenuti <gastornis@posteo.org>
+Sergio Varela <sergiovg01@outlook.com>
+MohammadSaleh Kamyab <mskf1383@envs.net>
+Iikka Hauhio <fergusq@kaivos.org>
+Irénée Thirion <irenee.thirion@e.email>
+Fran Dieguez <frandieguez@gnome.org>
+Musiclover382 <musiclover382@protonmail.com>
+Albano Battistella <albano_battistella@hotmail.com>
+TokaiTeio
+Gregory <gregorydk@proton.me>
+Quentin PAGÈS
+Marcin Wolski <martinwolski04@gmail.com>
+Juliano Dorneles dos Santos <juliano.dorneles@gmail.com>
+Марко М. Костић <marko.m.kostic@gmail.com>
+Sabri Ünal <libreajans@gmail.com>
+Mykyta Opanasiuk <nikitaopanassiuk@outlook.com>
+Guoyi Zhang <guoyizhang@malacology.net>
+rene-coty
 """;
+		about.translator_credits = about.translator_credits.chomp ().chug ();
 	    about.issue_url = "https://github.com/toolstack/Folio/issues";
 	    about.license_type = Gtk.License.GPL_3_0;
 	    about.version = Config.VERSION;
