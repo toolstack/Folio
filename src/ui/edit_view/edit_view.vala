@@ -33,6 +33,7 @@ public class Folio.EditView : Gtk.Box {
 	[GtkChild] public unowned Toolbar toolbar;
 	[GtkChild] unowned GtkMarkdown.View markdown_view;
 	[GtkChild] public unowned Gtk.ScrolledWindow scrolled_window;
+	[GtkChild] unowned Adw.ToastOverlay toast_overlay;
 
     private Gtk.CssProvider note_font_provider = new Gtk.CssProvider ();
     private Gtk.CssProvider font_scale_provider = new Gtk.CssProvider ();
@@ -90,7 +91,9 @@ public class Folio.EditView : Gtk.Box {
 
 						try {
 							GLib.AppInfo.launch_default_for_uri (url_text, null);
-						} catch (Error e) {}
+						} catch (Error e) {
+							toast (Strings.COULDNT_FIND_APP_TO_HANDLE_URIS);
+						}
 					} else {
 						// Since it wasn't an e-mail address, check to see if we have a valid url
 						// to open.  check_if_bare_link will validate a real url for us.
@@ -101,7 +104,11 @@ public class Folio.EditView : Gtk.Box {
 
 							try {
 								GLib.AppInfo.launch_default_for_uri (url_text, null);
-							} catch (Error e) {}
+							} catch (Error e) {
+								toast (Strings.COULDNT_FIND_APP_TO_HANDLE_URIS);
+							}
+						} else {
+							toast (Strings.COULDNT_FIND_APP_TO_HANDLE_URIS);
 						}
 					}
 				}
@@ -152,6 +159,11 @@ public class Folio.EditView : Gtk.Box {
 	    add_controller (key_controller);
 	    markdown_view.add_controller (scroll_controller);
     }
+
+	private void toast (string text) {
+        var toast = new Adw.Toast (text);
+        toast_overlay.add_toast (toast);
+	}
 
     public void zoom_in () {
         var new_scale = scale + 10;

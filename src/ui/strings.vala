@@ -39,7 +39,7 @@ public class Folio.Strings {
     public abstract const string MARKDOWN_CHEATSHEET = _("Markdown Cheatsheet");
     public abstract const string SEARCH = _("Search");
     public abstract const string RENAME = _("Rename");
-    public abstract const string COULDNT_FIND_APP_TO_HANDLE_URIS = _("Couldn’t find an app to handle file uris");
+    public abstract const string COULDNT_FIND_APP_TO_HANDLE_URIS = _("Couldn’t find an app to handle file URIs");
     public abstract const string APPLY = _("Apply");
     public abstract const string CANCEL = _("Cancel");
     public abstract const string PICK_NOTES_DIR = _("Pick where the notebooks will be stored");
@@ -47,4 +47,5 @@ public class Folio.Strings {
     public abstract const string NOTEBOOK = _("Notebook");
     public abstract const string LAST_MODIFIED = _("Last Modified");
     public abstract const string EXTENSION = _("Extension");
+    public abstract const string UNRECOGNIZED_URI = _("Unable to recognize URI");
 }
