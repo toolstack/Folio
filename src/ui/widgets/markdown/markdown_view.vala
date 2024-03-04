@@ -138,9 +138,21 @@ public class GtkMarkdown.View : GtkSource.View {
 
     public bool check_if_bare_link (string text) {
         MatchInfo matches;
-        if( is_bare_link.match_full (text, text.length, 0, 0, out matches) ) {
-            return true;
-        }
+        try {
+            if( is_bare_link.match_full (text, text.length, 0, 0, out matches) ) {
+                return true;
+            }
+        } catch (Error e) {}
+        return false;
+    }
+
+    public bool check_if_email_link (string text) {
+        MatchInfo matches;
+        try {
+            if( is_email_link.match_full (text, text.length, 0, 0, out matches) ) {
+                return true;
+            }
+        } catch (Error e) {}
         return false;
     }
 
@@ -285,6 +297,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	private Regex is_link;
     private Regex is_bare_link;
+    private Regex is_email_link;
 	private Regex is_escape;
 	private Regex is_blockquote;
 
@@ -308,6 +321,7 @@ public class GtkMarkdown.View : GtkSource.View {
             var f = RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS;
 	        is_link = new Regex ("\\[([^\\[]*?)\\](\\([^\\)\\n]*?\\))", f, 0);
 			is_bare_link = new Regex ("(?i)\\b((?:[a-z][\\w-]+:(?:\\/{1,3}|[a-z0-9%])|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,4}\\/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:'\".,<>?«»“”‘’]))", f, 0);
+            is_email_link = new Regex ("[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*", f, 0);
 	        is_escape = new Regex ("\\\\[\\\\`*_{}\\[\\]()#+\\-.!]", f, 0);
 
 	        /* Example:
@@ -644,6 +658,27 @@ public class GtkMarkdown.View : GtkSource.View {
                 do {
                     int start_text_pos, end_text_pos;
                     bool have_text = matches.fetch_pos (1, out start_text_pos, out end_text_pos);
+
+                    if (have_text) {
+                        start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
+                        end_text_pos = buffer_text.char_count ((ssize_t) end_text_pos);
+
+                        // Convert the character offsets to TextIter's
+                        Gtk.TextIter start_text_iter, end_text_iter;
+                        buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
+                        buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
+
+                        // Apply our styling
+                        buffer.apply_tag (text_tag_url, start_text_iter, end_text_iter);
+                    }
+                } while (matches.next ());
+            }
+
+            // Check for email links
+            if (is_email_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+                do {
+                    int start_text_pos, end_text_pos;
+                    bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
 
                     if (have_text) {
                         start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
