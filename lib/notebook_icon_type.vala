@@ -41,4 +41,21 @@ public enum Folio.NotebookIconType {
                 assert_not_reached();
         }
     }
+
+    public static NotebookIconType from_int (int integer) {
+        switch (integer) {
+            case 0:
+                return FIRST;
+            case 1:
+                return INITIALS;
+            case 2:
+                return INITIALS_CAMEL_CASE;
+            case 3:
+                return INITIALS_SNAKE_CASE;
+            case 4:
+                return PREDEFINED_ICON;
+            default:
+                assert_not_reached();
+        }
+    }
 }
