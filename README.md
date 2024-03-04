@@ -1,10 +1,10 @@
-# <img src="./data/icons/hicolor/scalable/apps/com.toolstack.Folio.svg" height="64"/>Folio
+# <img src="./data/icons/hicolor/scalable/apps/com.toolstack.Folio.svg" height="64"/> Folio
 
 ## Take notes in markdown
 
 A beautiful markdown note-taking app for GNOME (forked from [Paper](https://gitlab.com/posidon_software/paper)).
 
-Contributions are appreciated!
+Contributions are appreciated, see below for how to help translate Folio!
 
 ## Some of Folio's features:
 
@@ -27,7 +27,11 @@ The recommended way of installing Folio is through our [Flatpak](https://flatpak
 ### From Flathub
 <a href="https://flathub.org/apps/com.toolstack.Folio" target="_blank"><img src="https://flathub.org/assets/badges/flathub-badge-en.png" width="200"/></a>
 
-### Manual
+### From Snapcraft
+
+Coming soon!
+
+### Manually
 Go to the current [GitHub Releases](https://github.com/toolstack/Folio/releases) page, select the latest release, and download the asset called `Folio-YY.##.flatpak`.  Once downloaded, use `flatpak install Folio-YY.##.flatpak` to install Folio on your computer.
 
 You can use the same process to update to a newer release as well.
@@ -82,3 +86,19 @@ Flatpak build requires flatpak-building installed.
  - run ```./print-source-files.sh > POTFILES```
  - change into the build directory: ```cd ../build```
  - run ```meson compile com.toolstack.Folio-pot```
+
+## FAQ
+
+### Why fork Paper?
+Unfortunately Paper is out of date and the developer does not have the time/interest to maintain it any more.
+
+### Ok, so what is Folio's main focous
+The primary focus of my fork is getting everything up to date and supported for the long term.
+
+A secondary focus is feature additions.  Some new features that have already been added are:
+- Better handling of escaped characters in code spans.
+- Reworking of the format bar to act more like use user expect, including toggling formatting and smarter formatting.
+- Control-click to open links in a browser.
+- Marking non-markdown formatted links and email addresses.
+- Fixed a ton of crashes caused by files without ending EOL markers.
+- Automatically pace inserted formatting around current words instead of in the middle of them.
