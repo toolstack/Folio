@@ -203,8 +203,8 @@ public class Folio.WindowModel : Object {
 	    }
 	}
 
-	public void change_note (Note note, string name, string extension = note.extension, bool do_update)
-	    requires (note.notebook != null) {
+	public void change_note (Note note, string name, string extension = note.extension, bool do_update = true)
+		throws ProviderError requires (note.notebook != null) {
         note.notebook.change_note (note, name, extension);
 		if (do_update) {
         	update_note (note);
@@ -298,4 +298,3 @@ public class Folio.WindowModel : Object {
 	    update_selected_notebook ();
 	}
 }
-

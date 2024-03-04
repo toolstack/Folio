@@ -269,14 +269,9 @@ public class Folio.EditView : Gtk.Box {
 				buffer.select_range (selection_start, selection_end);
 			}
 
-			try {
-				buffer.get_selection_bounds (out selection_start, out selection_end);
-
-				var selection_text = buffer.get_slice (selection_start, selection_end, true);
-				MatchInfo matches;
-
-				url_found = markdown_view.check_if_bare_link (selection_text);
-			} catch (RegexError e) {}
+			buffer.get_selection_bounds (out selection_start, out selection_end);
+			var selection_text = buffer.get_slice (selection_start, selection_end, true);
+			url_found = markdown_view.check_if_bare_link (selection_text);
 
 			Gtk.TextMark start_mark, end_mark;
 			buffer.get_selection_bounds (out selection_start, out selection_end);

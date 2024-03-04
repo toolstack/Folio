@@ -146,7 +146,7 @@ public class Folio.NotebookCreatePopup : Adw.Window {
             }
         });
         icon_type_combobox.changed.connect (() => {
-            preview.icon_type = icon_type_combobox.active;
+            preview.icon_type = NotebookIconType.from_int (icon_type_combobox.active);
             button_icon.visible = icon_type_combobox.active == NotebookIconType.PREDEFINED_ICON;
         });
         button_color.color_set.connect (() => {

@@ -118,7 +118,6 @@ public class Folio.Provider : Object, ListModel {
         }
         {
             var trashed_path = @"$(notes_dir)/.trash/$(notebook.name)";
-            var enumerator = file.enumerate_children (FileAttribute.STANDARD_NAME, 0);
             FileInfo file_info;
             var trash_dir = File.new_for_path (trashed_path);
             if (!trash_dir.query_exists ()) {
@@ -128,15 +127,16 @@ public class Folio.Provider : Object, ListModel {
                     throw new ProviderError.COULDNT_CREATE_FILE (@"Couldn't create trash folder at '$path'");
                 }
             }
-            while ((file_info = enumerator.next_file ()) != null) {
-                try {
+            try {
+                var enumerator = file.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+                while ((file_info = enumerator.next_file ()) != null) {
                     var name = file_info.get_name ();
                     var orig_file = enumerator.get_child (file_info);
                     var trashed_file = File.new_for_path (@"$trashed_path/$name");
                     orig_file.move (trashed_file, FileCopyFlags.OVERWRITE);
-                } catch (Error e) {
-                    throw new ProviderError.COULDNT_DELETE (@"Couldn't move notebook from $path, to $trashed_path");
                 }
+            } catch (Error e) {
+                throw new ProviderError.COULDNT_DELETE (@"Couldn't move notebook from $path, to $trashed_path");
             }
             trash.unload ();
         }

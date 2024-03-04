@@ -34,7 +34,7 @@ public class Folio.Trash : Object, ListModel, NoteContainer {
         } else try {
             dir.make_directory_with_parents ();
         } catch (Error err) {
-            throw new ProviderError.COULDNT_CREATE_FILE (@"Trash directory $(dir.get_path ()) couldn't be created");
+            error (@"Trash directory $(dir.get_path ()) couldn't be created");
         }
         try {
             var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME, 0);

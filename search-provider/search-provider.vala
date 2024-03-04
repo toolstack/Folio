@@ -7,9 +7,13 @@ public class SearchProvider : Object {
 
     public SearchProvider () {
 		settings.changed["notes-dir"].connect (() => {
-            update_storage_dir ();
+            try {
+                update_storage_dir ();
+            } catch (Error e) {}
 		});
-        update_storage_dir ();
+        try {
+            update_storage_dir ();
+        } catch (Error e) {}
     }
 
     private HashTable<string, Folio.Note> notes;
@@ -24,7 +28,7 @@ public class SearchProvider : Object {
         }
     }
 
-    public void update_storage_dir () {
+    public void update_storage_dir () throws Error {
 		var path = settings.get_string ("notes-dir");
 		var notes_dir = path.has_prefix ("~/") ? Environment.get_home_dir () + path[1:] : path;
         try {
@@ -34,7 +38,7 @@ public class SearchProvider : Object {
         } catch (Error e) {}
     }
 
-    public void update_notes () {
+    public void update_notes () throws Error {
         var notebooks = notebook_provider.notebooks;
         notes = new HashTable<string, Folio.Note> (str_hash, str_equal);
         foreach (var notebook in notebooks) {
