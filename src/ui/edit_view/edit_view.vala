@@ -37,6 +37,8 @@ public class Folio.EditView : Gtk.Box {
     private Gtk.CssProvider note_font_provider = new Gtk.CssProvider ();
     private Gtk.CssProvider font_scale_provider = new Gtk.CssProvider ();
 
+	private bool is_ctrl = false;
+
     construct {
 	    var settings = new Settings (Config.APP_ID);
 
@@ -58,6 +60,45 @@ public class Folio.EditView : Gtk.Box {
             markdown_view.set_title_level (cur.get_line (), i);
         });
 
+		Gtk.GestureClick click_controller;
+		click_controller = new Gtk.GestureClick () {
+            button = Gdk.BUTTON_PRIMARY
+        };
+
+		click_controller.released.connect ((n, x, y) => {
+			if (is_ctrl) {
+				var ins = markdown_view.buffer.get_insert ();
+				Gtk.TextIter cur;
+				markdown_view.buffer.get_iter_at_mark (out cur, ins);
+				var text_tag_url = markdown_view.buffer.tag_table.lookup ("markdown-link");
+
+				if (cur.has_tag (text_tag_url)) {
+					Gtk.TextIter start_url, end_url;
+					start_url = cur;
+					end_url = cur;
+					start_url.backward_to_tag_toggle (text_tag_url);
+					end_url.forward_to_tag_toggle (text_tag_url);
+
+					var url_text = markdown_view.buffer.get_slice (start_url, end_url, true);
+					url_text = url_text.chomp ().chug ();
+
+					// Check to make sure we have a valid url before trying to open it.
+					// check_if_bare_link will validate a real url for us.
+					if (markdown_view.check_if_bare_link (url_text)) {
+						// If it's bare, add in http by default.
+						if (!url_text.contains ("://"))
+							url_text = "http://" + url_text;
+
+						try {
+							GLib.AppInfo.launch_default_for_uri (url_text, null);
+						} catch (Error e) {}
+					}
+				}
+			}
+		});
+
+		markdown_view.add_controller (click_controller);
+
         scrolled_window.get_vscrollbar ().margin_top = 48;
 
 	    settings.bind ("toolbar-enabled", this, "toolbar-enabled", SettingsBindFlags.DEFAULT);
@@ -78,7 +119,6 @@ public class Folio.EditView : Gtk.Box {
 	    notify["scale"].connect(set_font_scale);
 
 	    var key_controller = new Gtk.EventControllerKey ();
-	    var is_ctrl = false;
 	    key_controller.key_pressed.connect ((keyval, keycode, state) => {
 	        if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R)
 	            is_ctrl = true;
