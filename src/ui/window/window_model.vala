@@ -69,6 +69,7 @@ public class Folio.WindowModel : Object {
 	    if (i == -1) notes_model.unselect_item (notes_model.selected);
 	    else notes_model.select_item (i, true);
     }
+
 	public void select_notebook_at (uint i) requires (notebooks_model != null) {
 	    if (i == -1) notebooks_model.unselect_item (notebooks_model.selected);
 	    else notebooks_model.select_item (i, true);
@@ -201,7 +202,10 @@ public class Folio.WindowModel : Object {
 	    if (note_container == notebook) {
 	        set_notebook (notebook);
 	    }
+		var current_note = notes_model.selected;
 		update_notebooks ();
+		select_note_at (-1);
+		select_note_at (current_note);
 	}
 
 	public void change_note (Note note, string name, string extension = note.extension, bool do_update = true)
