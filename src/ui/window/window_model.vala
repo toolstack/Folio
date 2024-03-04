@@ -201,6 +201,7 @@ public class Folio.WindowModel : Object {
 	    if (note_container == notebook) {
 	        set_notebook (notebook);
 	    }
+		update_notebooks ();
 	}
 
 	public void change_note (Note note, string name, string extension = note.extension, bool do_update = true)
