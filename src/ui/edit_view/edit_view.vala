@@ -82,16 +82,27 @@ public class Folio.EditView : Gtk.Box {
 					var url_text = markdown_view.buffer.get_slice (start_url, end_url, true);
 					url_text = url_text.chomp ().chug ();
 
-					// Check to make sure we have a valid url before trying to open it.
-					// check_if_bare_link will validate a real url for us.
-					if (markdown_view.check_if_bare_link (url_text)) {
-						// If it's bare, add in http by default.
+					// Check to see if we have an e-mail link to open.
+					// check_if_email_link will validate a real url for us.
+					if (markdown_view.check_if_email_link (url_text)) {
 						if (!url_text.contains ("://"))
-							url_text = "http://" + url_text;
+							url_text = "mailto:" + url_text;
 
 						try {
 							GLib.AppInfo.launch_default_for_uri (url_text, null);
 						} catch (Error e) {}
+					} else {
+						// Since it wasn't an e-mail address, check to see if we have a valid url
+						// to open.  check_if_bare_link will validate a real url for us.
+						if (markdown_view.check_if_bare_link (url_text)) {
+							// If it's bare, add in http by default.
+							if (!url_text.contains ("://"))
+								url_text = "http://" + url_text;
+
+							try {
+								GLib.AppInfo.launch_default_for_uri (url_text, null);
+							} catch (Error e) {}
+						}
 					}
 				}
 			}
