@@ -1,0 +1,42 @@
+name: Build & Publish Snap
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+  release:
+    types: [published]
+
+jobs:
+  test-snap:
+    name: Build & Test the snap
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: snapcore/action-build@v1
+    - uses: actions/upload-artifact@v3
+      with:
+        name: snap
+        path: ${{ steps.snapcraft.outputs.snap }}
+
+  publish-snap:
+    name: Publish the snap
+    runs-on: ubuntu-latest
+    needs: get-architectures
+    environment: "Main Branch"
+    strategy:
+      matrix:
+        architecture: [amd64, arm64, armhf]
+    steps:
+    - uses: snapcrafters/ci/release-to-candidate@main
+      env:
+        CHANNEL: ${{ if(github.event == release && even.action == 'published', 'stable', 'edge') }}
+      with:
+        architecture: ${{ matrix.architecture }}
+        launchpad-token: ${{ secrets.LAUNCHPAD_TOKEN }}
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        store-token: ${{ secrets.SNAP_STORE_TOKEN }}
+        channel: ${{ env.CHANNEL }}
+
