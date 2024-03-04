@@ -169,24 +169,26 @@ public class GtkMarkdown.View : GtkSource.View {
 		bool found_match = false;
 		MatchInfo matches;
 
-        if (is_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches) ) {
-            do {
-                int start_text_pos, end_text_pos;
-                int start_url_pos, end_url_pos;
-                bool have_text = matches.fetch_pos (1, out start_text_pos, out end_text_pos);
-                bool have_url = matches.fetch_pos (2, out start_url_pos, out end_url_pos);
+        try {
+            if (is_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches) ) {
+                do {
+                    int start_text_pos, end_text_pos;
+                    int start_url_pos, end_url_pos;
+                    bool have_text = matches.fetch_pos (1, out start_text_pos, out end_text_pos);
+                    bool have_url = matches.fetch_pos (2, out start_url_pos, out end_url_pos);
 
-                if (have_text && have_url) {
+                    if (have_text && have_url) {
 
-                    start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
-                    end_url_pos = buffer_text.char_count ((ssize_t) end_url_pos);
+                        start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
+                        end_url_pos = buffer_text.char_count ((ssize_t) end_url_pos);
 
-                    if( cursor_offset <= end_url_pos && cursor_offset >= start_text_pos ) {
-                        found_match = true;
+                        if( cursor_offset <= end_url_pos && cursor_offset >= start_text_pos ) {
+                            found_match = true;
+                        }
                     }
-                }
-            } while (matches.next());
-        }
+                } while (matches.next());
+            }
+        } catch (RegexError e) {}
 
         return found_match;
     }
