@@ -11,6 +11,13 @@ namespace FileUtils {
                 }
                 file.delete ();
             }
+            // Let's make sure the directory exists we're trying to save to.
+            // If it doesn't, create it.
+            var path = file.get_parent ().get_parse_name ();
+            var dir = File.new_for_path (path);
+            if (!dir.query_exists ()) {
+                dir.make_directory_with_parents ();
+            }
             var data_stream = new DataOutputStream (
                 file.create (FileCreateFlags.REPLACE_DESTINATION)
             );
