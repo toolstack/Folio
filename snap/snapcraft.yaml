@@ -1,0 +1,41 @@
+name: folio 
+base: core22
+adopt-info: folio
+grade: stable
+confinement: strict
+
+parts:
+  folio:
+    plugin: meson
+    source: https://github.com/toolstack/Folio.git
+    source-tag: '24.04'
+    source-depth: 1
+    build-snaps:
+      - blueprint-compiler
+    meson-parameters:
+      - --prefix=/usr
+    organize:
+      snap/folio/current: .
+    prime:
+      - -snap/folio
+    parse-info: [usr/share/metainfo/com.toolstack.Folio.appdata.xml]
+
+slots:
+  folio:
+    interface: dbus
+    bus: session
+    name: com.toolstack.Folio
+
+apps:
+  folio:
+    command: usr/bin/com.toolstack.Folio
+    desktop: usr/share/applications/com.toolstack.Folio.desktop
+    extensions: [gnome]
+    plugs: &folio
+      - home
+      - removable-media
+  editor:
+    command: usr/bin/com.toolstack.Folio
+    desktop: usr/share/applications/com.toolstack.Folio-editor.desktop
+    extensions: [gnome]
+    plugs: *folio
