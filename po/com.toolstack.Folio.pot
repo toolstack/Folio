@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.toolstack.Folio\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-01 22:41-0500\n"
+"POT-Creation-Date: 2024-03-04 23:15-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,12 +117,12 @@ msgstr ""
 msgid "Trash can"
 msgstr ""
 
-#: data/app.metainfo.xml.in:280 data/app.metainfo.xml.in:284
-#: data/app.metainfo.xml.in:288
+#: data/app.metainfo.xml.in:294 data/app.metainfo.xml.in:298
+#: data/app.metainfo.xml.in:302
 msgid "Markdown document"
 msgstr ""
 
-#: data/app.metainfo.xml.in:292
+#: data/app.metainfo.xml.in:306
 msgid "List of notes"
 msgstr ""
 
@@ -451,7 +451,7 @@ msgid "Rename"
 msgstr ""
 
 #: src/ui/strings.vala:42
-msgid "Couldn’t find an app to handle file uris"
+msgid "Couldn’t find an app to handle file URIs"
 msgstr ""
 
 #: src/ui/strings.vala:43
@@ -475,6 +475,10 @@ msgstr ""
 msgid "Extension"
 msgstr ""
 
+#: src/ui/strings.vala:50
+msgid "Unable to recognize URI"
+msgstr ""
+
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
 msgid "Follow system style"
 msgstr ""
@@ -487,23 +491,23 @@ msgstr ""
 msgid "Dark style"
 msgstr ""
 
-#: src/ui/window/app_menu/app_menu.blp:24
+#: src/ui/window/app_menu/app_menu.blp:25
 msgid "_New Notebook"
 msgstr ""
 
-#: src/ui/window/app_menu/app_menu.blp:28
+#: src/ui/window/app_menu/app_menu.blp:29
 msgid "_Edit Notebook"
 msgstr ""
 
-#: src/ui/window/app_menu/app_menu.blp:34
+#: src/ui/window/app_menu/app_menu.blp:35
 msgid "_Preferences"
 msgstr ""
 
-#: src/ui/window/app_menu/app_menu.blp:38
+#: src/ui/window/app_menu/app_menu.blp:39
 msgid "_Keyboard Shortcuts"
 msgstr ""
 
-#: src/ui/window/app_menu/app_menu.blp:42
+#: src/ui/window/app_menu/app_menu.blp:43
 msgid "_About"
 msgstr ""
 
