@@ -18,6 +18,20 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
+    <release type="stable" version="24.05" date="TBD">
+      <description translatable="no">
+        <p>Changes:</p>
+        <ul>
+          <li>Translation updates: Spanish &amp; French</li>
+          <li>Support Control-Click to open links in your default browser</li>
+          <li>Add formatting to links that do not have markdown syntax</li>
+          <li>Add formatting to e-mail address</li>
+          <li>Fix main menu box size</li>
+          <li>Fix more build warnings</li>
+          <li>Fix notebook icon not being updated after it is renamed</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="24.04" date="2024-03-01">
       <description translatable="no">
         <p>Changes:</p>

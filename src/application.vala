@@ -155,10 +155,13 @@ rene-coty
 		about.set_release_notes ("""
 <p>Changes:</p>
 <ul>
-	<li>Fixed unable to save changes editing of notebook details without changing notebook name.</li>
-	<li>New icon.</li>
-	<li>Handle escaped characters inside code span/blocks.</li>
-	<li>Fixed dark mode in flatpak.</li>
+	<li>Translation updates: Spanish & French</li>
+	<li>Support Control-Click to open links in your default browser</li>
+	<li>Add formatting to links that do not have markdown syntax</li>
+	<li>Add formatting to e-mail address</li>
+	<li>Fix main menu box size</li>
+	<li>Fix more build warnings</li>
+	<li>Fix notebook icon not being updated after it is renamed</li>
 </ul>
 """
 		);
