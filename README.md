@@ -64,10 +64,18 @@ Flatpak build requires flatpak-building installed.
  - to run Folio, run ```src/com.toolstack.Folio```
 
 ### Flatpak builds
+ - install flatpak-builder if not already installed
  - change into the top level source directory
  - to build the flatpak, run ```flatpak-builder --force-clean flatpak com.toolstack.Folio.json```
  - to build and install the flatpak, run ```flatpak-builder --user --install --force-clean flatpak com.toolstack.Folio.json```
  - to launch the flatpak, run ```flatpak run com.toolstack.Folio```
+
+### Snap builds
+ - Install snapcraft if not already installed
+ - change into the top level source directory
+ - to build the snap, run ```snapcraft```
+ - to install locally, run ```sudo snap install ./folio_24.04_amd64.snap --dangerous```
+ - to lanuch the snap, run ```folio```
 
 ## Release instructions
  Folio uses a YY.## version format string, where YY is the two digit year (aka 23, 24, 25, etc) and ## is the release number of the year (aka 01 for the first release, 02 for the second release, etc., not the month number).
@@ -76,6 +84,11 @@ Flatpak build requires flatpak-building installed.
 
  The full changelog is located in `data/app.metainfo.xml.in` and the current release for the about dialog is in `src/application.vala`.
 
+### Flathub release
+
+### Snap release
+ - after build, login to your snapcraft account ```snapcraft login```
+ - upload the build ```snapcraft upload --release=stable folio_YY.##_amd64.snap```
 ## Generate translation POT
  Folio uses POT/PO files for it's translations, the POT file defines all the strings that are used by Folio.
 
