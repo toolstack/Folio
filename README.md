@@ -6,18 +6,13 @@ A beautiful markdown note-taking app for GNOME (forked from [Paper](https://gitl
 
 Contributions are appreciated, see below for how to help translate Folio!
 
-## Some of Folio's features:
+## Some of Folio's features are:
 
  - Almost WYSIWYG markdown rendering
-
  - Searchable through GNOME search
-
  - Highlight and strikethrough text formatting
-
  - Application theming based on notebook color
-
  - Trash can
-
  - Markdown document
 
 ## Get Folio
@@ -76,18 +71,45 @@ Flatpak build requires flatpak-building installed.
 ### Snap builds
  - Install snapcraft if not already installed
  - change into the top level source directory
- - to build the snap, run ```snapcraft```
- - to install locally, run ```sudo snap install ./folio_24.04_amd64.snap --dangerous```
- - to lanuch the snap, run ```folio```
+ - to build the snap, run `snapcraft`
+ - to install locally, run `sudo snap install ./folio_24.04_amd64.snap --dangerous`
+ - to lanuch the snap, run `folio`
 
 ## Release instructions
- Folio uses a YY.## version format string, where YY is the two digit year (aka 23, 24, 25, etc) and ## is the release number of the year (aka 01 for the first release, 02 for the second release, etc., not the month number).
+Folio uses a YY.## version format string, where YY is the two digit year (aka 23, 24, 25, etc) and ## is the release number of the year (aka 01 for the first release, 02 for the second release, etc., not the month number).
 
- The release version is located in the main `meson.build` file, no other files contain the version number.
+The release version is located in the main `meson.build` file, no other files contain the version number.
 
- The full changelog is located in `data/app.metainfo.xml.in` and the current release for the about dialog is in `src/application.vala`.
+The full changelog is located in `data/app.metainfo.xml.in` and the current release for the about dialog is in `src/application.vala`.
+
+Once updated edit the flatpak and snap files:
+ - change into the top level source directory
+ - edit `com.toolstack.Folio.json` and update the `tag` value for sources, also **remove** the `commit` hash (don't forget to remove the comma on the line above) temporarily (we'll add it back later)
+ - change into the `snap` directory
+ - edit `snapcraft.yaml` and update the `source-tag`
+
+Commit everything to git.
+
+Now go to github and do the release.
+
+After the release is done get the hash value for the commit for the new release tag and then add back the `commit` line in `com.toolstack.Folio.json`.  Commit it back to git as well.
+
+Two actions should have been kicked off on the github release, one to build the flatpak and the other to build the snap.  These will take a few minutes to complete, but once they do, go to each one and download the built assets.
+
+Extract both zips that you downloaded and rename the resulting flatpak/snap to "Folio=YY.XX.\[flatpak/snap\]".
+
+Go back to the release and attach these files to the release assets.
+
+Now do the releases on Flathub and Snapcraft.
 
 ### Flathub release
+ - get a clone of the flathub repo: `https://github.com/flathub/com.toolstack.Folio.git`
+ - create a new branch labeled "YY.XX"
+ - switch to the new branch
+ - edit `com.toolstack.Folio.json` and update both the `tag` and `commit` lines to reflect the new release
+ - commit the changes
+ - go to github and create a new PR to merge the branch into master
+ - commit the PR
 
 ### Snap release
  - after build, login to your snapcraft account ```snapcraft login```
