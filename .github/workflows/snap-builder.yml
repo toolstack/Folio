@@ -1,0 +1,15 @@
+on:
+  release:
+    types: [published]
+name: CI
+jobs:
+  snap:
+    name: Build snap
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: snapcore/action-build@v1
+    - uses: actions/upload-artifact@v3
+      with:
+        name: snap
+        path: ${{ steps.snapcraft.outputs.snap }}
