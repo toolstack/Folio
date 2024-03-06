@@ -22,14 +22,17 @@ Contributions are appreciated, see below for how to help translate Folio!
 
 ## Get Folio
 
-The recommended way of installing Folio is through our [Flatpak](https://flatpak.org):
+The recommended way of installing Folio is through [Flatpak](https://flatpak.org) or [Snap](https://snapcraft.io):
 
 ### From Flathub
-<a href="https://flathub.org/apps/com.toolstack.Folio" target="_blank"><img src="https://flathub.org/assets/badges/flathub-badge-en.png" width="200"/></a>
+<a href="https://flathub.org/apps/com.toolstack.Folio" target="_blank">
+  <img src="https://flathub.org/assets/badges/flathub-badge-en.png" width="200"/>
+</a>
 
 ### From Snapcraft
-
-Coming soon!
+<a href="https://snapcraft.io/folio">
+  <img alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" />
+</a>
 
 ### Manually
 Go to the current [GitHub Releases](https://github.com/toolstack/Folio/releases) page, select the latest release, and download the asset called `Folio-YY.##.flatpak`.  Once downloaded, use `flatpak install Folio-YY.##.flatpak` to install Folio on your computer.
