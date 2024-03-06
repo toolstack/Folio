@@ -155,6 +155,7 @@ rene-coty
 		about.set_release_notes ("""
 <p>Changes:</p>
 <ul>
+	<li>Add snap release (thanks @soumyaDghosh)</li>
 	<li>Translation updates: Spanish & French</li>
 	<li>Support Control-Click to open links in your default browser</li>
 	<li>Add formatting to links that do not have markdown syntax</li>
@@ -162,6 +163,8 @@ rene-coty
 	<li>Fix main menu box size</li>
 	<li>Fix more build warnings</li>
 	<li>Fix notebook icon not being updated after it is renamed</li>
+    <li>Fix crash if the note's directory has been moved/deleted</li>
+	<li>Fix missing scroll bars on notebook/note list</li>
 </ul>
 """
 		);

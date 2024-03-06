@@ -1,4 +1,4 @@
-name: folio 
+name: folio
 base: core22
 adopt-info: folio
 grade: stable
@@ -8,7 +8,7 @@ parts:
   folio:
     plugin: meson
     source: https://github.com/toolstack/Folio.git
-    source-tag: '24.04'
+    source-tag: '24.05'
     source-depth: 1
     build-snaps:
       - blueprint-compiler
