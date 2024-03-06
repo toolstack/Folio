@@ -9,6 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - uses: snapcore/action-build@v1
+      id: snapcraft
     - uses: actions/upload-artifact@v3
       with:
         name: snap
