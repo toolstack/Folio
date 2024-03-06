@@ -1,7 +1,7 @@
 on:
   release:
     types: [published]
-name: CI
+name: Build flapak on release
 jobs:
   flatpak:
     name: "Flatpak"
