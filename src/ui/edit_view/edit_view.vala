@@ -75,13 +75,16 @@ public class Folio.EditView : Gtk.Box {
 
 				if (cur.has_tag (text_tag_url)) {
 					Gtk.TextIter start_url, end_url;
-					start_url = cur;
-					end_url = cur;
-					start_url.backward_to_tag_toggle (text_tag_url);
-					end_url.forward_to_tag_toggle (text_tag_url);
+					string url_text = "";
+					if (!markdown_view.check_if_in_link (markdown_view, out url_text)) {
+						start_url = cur;
+						end_url = cur;
+						start_url.backward_to_tag_toggle (text_tag_url);
+						end_url.forward_to_tag_toggle (text_tag_url);
 
-					var url_text = markdown_view.buffer.get_slice (start_url, end_url, true);
-					url_text = url_text.chomp ().chug ();
+						url_text = markdown_view.buffer.get_slice (start_url, end_url, true);
+						url_text = url_text.chomp ().chug ();
+					}
 
 					// Check to see if we have an e-mail link to open.
 					// check_if_email_link will validate a real url for us.
@@ -101,6 +104,8 @@ public class Folio.EditView : Gtk.Box {
 							// If it's bare, add in http by default.
 							if (!url_text.contains ("://"))
 								url_text = "http://" + url_text;
+
+							stdout.printf ("url: %s\n", url_text);
 
 							try {
 								GLib.AppInfo.launch_default_for_uri (url_text, null);

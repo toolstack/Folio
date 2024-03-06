@@ -156,7 +156,7 @@ public class GtkMarkdown.View : GtkSource.View {
         return false;
     }
 
-    public bool check_if_in_link (GtkMarkdown.View markdown_view) {
+    public bool check_if_in_link (GtkMarkdown.View markdown_view, out string? link_url = null) {
 		Gtk.TextIter buffer_start, buffer_end;
 		buffer.get_bounds (out buffer_start, out buffer_end);
 		var buffer_text = buffer.get_text (buffer_start, buffer_end, true);
@@ -168,6 +168,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 		bool found_match = false;
 		MatchInfo matches;
+        link_url = "";
 
         try {
             if (is_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches) ) {
@@ -184,6 +185,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
                         if( cursor_offset <= end_url_pos && cursor_offset >= start_text_pos ) {
                             found_match = true;
+                            link_url = buffer_text.slice (start_url_pos + 1, end_url_pos - 1);
                         }
                     }
                 } while (matches.next());
