@@ -46,15 +46,15 @@ public class Folio.NotebookSelectionPopup : Adw.Window {
 		});
 		notebooks_list.model = model;
 		notebooks_list.factory = factory;
-        button_confirm.clicked.connect (() => {
-	        close ();
-	        this.callback (model.selected_item as Notebook);
-	    });
+		button_confirm.clicked.connect (() => {
+			close ();
+			this.callback (model.selected_item as Notebook);
+		});
 
-        scrolled_window.vadjustment.notify["value"].connect (() => {
-            var v = scrolled_window.vadjustment.value;
-            if (v == 0) headerbar.get_style_context ().remove_class ("overlaid");
-            else headerbar.get_style_context ().add_class ("overlaid");
-        });
+		scrolled_window.vadjustment.notify["value"].connect (() => {
+			var v = scrolled_window.vadjustment.value;
+			if (v == 0) headerbar.get_style_context ().remove_class ("overlaid");
+			else headerbar.get_style_context ().add_class ("overlaid");
+		});
 	}
 }

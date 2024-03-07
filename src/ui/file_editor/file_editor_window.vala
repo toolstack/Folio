@@ -25,97 +25,97 @@ public class Folio.FileEditorWindow : Adw.ApplicationWindow {
 		{ "toggle-fullscreen", toggle_fullscreen },
 	};
 
-    private GtkMarkdown.Buffer current_buffer;
-    private File current_file;
+	private GtkMarkdown.Buffer current_buffer;
+	private File current_file;
 
 	construct {
 		add_action_entries (ACTIONS, this);
 
-        Gtk.IconTheme.get_for_display (display).add_resource_path ("/com/toolstack/Folio/graphics/");
+		Gtk.IconTheme.get_for_display (display).add_resource_path ("/com/toolstack/Folio/graphics/");
 	}
 
 	public FileEditorWindow (Application app, File file) {
 		Object (
-		    application: app,
-		    title: @"$(file.get_basename ()) ($(file.get_path ())) - $(Strings.APP_NAME)",
-		    icon_name: Config.APP_ID
-	    );
+			application: app,
+			title: @"$(file.get_basename ()) ($(file.get_path ())) - $(Strings.APP_NAME)",
+			icon_name: Config.APP_ID
+		);
 
-        current_file = file;
-        edit_view.on_dark_changed(app.style_manager.dark);
-        app.style_manager.notify["dark"].connect (() => edit_view.on_dark_changed(app.style_manager.dark));
+		current_file = file;
+		edit_view.on_dark_changed(app.style_manager.dark);
+		app.style_manager.notify["dark"].connect (() => edit_view.on_dark_changed(app.style_manager.dark));
 
-        file_title.label = file.get_basename ();
-        file_subtitle.label = file.get_path ();
+		file_title.label = file.get_basename ();
+		file_subtitle.label = file.get_path ();
 
-        string etag_out;
-        uint8[] text_data = {};
-        try {
-            file.load_contents (null, out text_data, out etag_out);
-        } catch (Error e) {
-            // Probably need to do something else here...
-            return;
-        }
-        // Make sure the last character of the file is a return, otherwise some of the regex's will break.
-        if (text_data[text_data.length - 1] != 10) { text_data += 10; }
-        current_buffer = new GtkMarkdown.Buffer ((string) text_data);
-        edit_view.buffer = current_buffer;
-        edit_view.is_editable = true;
+		string etag_out;
+		uint8[] text_data = {};
+		try {
+			file.load_contents (null, out text_data, out etag_out);
+		} catch (Error e) {
+			// Probably need to do something else here...
+			return;
+		}
+		// Make sure the last character of the file is a return, otherwise some of the regex's will break.
+		if (text_data[text_data.length - 1] != 10) { text_data += 10; }
+		current_buffer = new GtkMarkdown.Buffer ((string) text_data);
+		edit_view.buffer = current_buffer;
+		edit_view.is_editable = true;
 
-        close_request.connect (() => {
-            save_file ();
-            return false;
-        });
+		close_request.connect (() => {
+			save_file ();
+			return false;
+		});
 
-        edit_view.scrolled_window.vadjustment.notify["value"].connect (() => {
-            var v = edit_view.scrolled_window.vadjustment.value;
-            if (v == 0) headerbar.get_style_context ().remove_class ("overlaid");
-            else headerbar.get_style_context ().add_class ("overlaid");
-        });
+		edit_view.scrolled_window.vadjustment.notify["value"].connect (() => {
+			var v = edit_view.scrolled_window.vadjustment.value;
+			if (v == 0) headerbar.get_style_context ().remove_class ("overlaid");
+			else headerbar.get_style_context ().add_class ("overlaid");
+		});
 
-        recolor (Color.RGB ());
+		recolor (Color.RGB ());
 
-        current_buffer.begin_user_action.connect (() => {
-            save_indicator.visible = true;
-        });
+		current_buffer.begin_user_action.connect (() => {
+			save_indicator.visible = true;
+		});
 
-        save_indicator.visible = false;
+		save_indicator.visible = false;
 	}
 
-    public void save_file () {
-	    FileUtils.save_to (current_file, current_buffer.get_all_text ());
-    }
+	public void save_file () {
+		FileUtils.save_to (current_file, current_buffer.get_all_text ());
+	}
 
-    public void save () {
-        save_file ();
-        save_indicator.visible = false;
-    }
+	public void save () {
+		save_file ();
+		save_indicator.visible = false;
+	}
 
 	public void toast (string text) {
-        var toast = new Adw.Toast (text);
-        toast_overlay.add_toast (toast);
+		var toast = new Adw.Toast (text);
+		toast_overlay.add_toast (toast);
 	}
 
 	private void recolor (Color.RGB rgb) {
-        var rgba = Gdk.RGBA ();
-        var light_rgba = Gdk.RGBA ();
-        var hsl = Color.rgb_to_hsl (rgb);
-        {
-            hsl.l = 0.5f;
-            Color.hsl_to_rgb (hsl, out rgb);
-            Color.rgb_to_RGBA (rgb, out rgba);
-            hsl.l = 0.7f;
-            Color.hsl_to_rgb (hsl, out rgb);
-            Color.rgb_to_RGBA (rgb, out light_rgba);
-        }
-        var css = new Gtk.CssProvider ();
-        css.load_from_data (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;".data);
-        get_style_context ().add_provider (css, -1);
-        edit_view.theme_color = rgba;
+		var rgba = Gdk.RGBA ();
+		var light_rgba = Gdk.RGBA ();
+		var hsl = Color.rgb_to_hsl (rgb);
+		{
+			hsl.l = 0.5f;
+			Color.hsl_to_rgb (hsl, out rgb);
+			Color.rgb_to_RGBA (rgb, out rgba);
+			hsl.l = 0.7f;
+			Color.hsl_to_rgb (hsl, out rgb);
+			Color.rgb_to_RGBA (rgb, out light_rgba);
+		}
+		var css = new Gtk.CssProvider ();
+		css.load_from_data (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;".data);
+		get_style_context ().add_provider (css, -1);
+		edit_view.theme_color = rgba;
 	}
 
 	private void toggle_fullscreen () {
-	    fullscreened = !fullscreened;
+		fullscreened = !fullscreened;
 	}
 
 	private void on_format_bold () { edit_view.format_selection_bold (); }

@@ -16,103 +16,103 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 	public PreferencesWindow (Application app) {
 		Object ();
 
-	    var settings = new Settings (Config.APP_ID);
-        var font_dialog = new Gtk.FontDialog ();
-        var font_desc = Pango.FontDescription.from_string (settings.get_string ("note-font"));
+		var settings = new Settings (Config.APP_ID);
+		var font_dialog = new Gtk.FontDialog ();
+		var font_desc = Pango.FontDescription.from_string (settings.get_string ("note-font"));
 
-        font_dialog.set_title (_("Pick a font for displaying the notes' content"));
-        font_button.set_font_desc (font_desc);
-        font_button.notify["font-desc"].connect (() => {
-            var font = font_button.get_font_desc ().to_string ();
-            settings.set_string ("note-font", font);
-        });
+		font_dialog.set_title (_("Pick a font for displaying the notes' content"));
+		font_button.set_font_desc (font_desc);
+		font_button.notify["font-desc"].connect (() => {
+			var font = font_button.get_font_desc ().to_string ();
+			settings.set_string ("note-font", font);
+		});
 
-        font_button.set_dialog (font_dialog);
+		font_button.set_dialog (font_dialog);
 
-        var font_dialog_monospace = new Gtk.FontDialog ();
-        var font_desc_monospace = Pango.FontDescription.from_string (settings.get_string ("note-font-monospace"));
-        var monospace_filter = new Folio.MonospaceFilter ();
-        font_dialog_monospace.set_filter (monospace_filter);
-        font_dialog_monospace.set_title (_("Pick a font for displaying code"));
-        font_button_monospace.set_font_desc (font_desc_monospace);
-        font_button_monospace.notify["font-desc"].connect (() => {
-            var font = font_button_monospace.get_font_desc ().to_string ();
-            settings.set_string ("note-font-monospace", font);
-        });
+		var font_dialog_monospace = new Gtk.FontDialog ();
+		var font_desc_monospace = Pango.FontDescription.from_string (settings.get_string ("note-font-monospace"));
+		var monospace_filter = new Folio.MonospaceFilter ();
+		font_dialog_monospace.set_filter (monospace_filter);
+		font_dialog_monospace.set_title (_("Pick a font for displaying code"));
+		font_button_monospace.set_font_desc (font_desc_monospace);
+		font_button_monospace.notify["font-desc"].connect (() => {
+			var font = font_button_monospace.get_font_desc ().to_string ();
+			settings.set_string ("note-font-monospace", font);
+		});
 
-        font_button_monospace.set_dialog (font_dialog_monospace);
+		font_button_monospace.set_dialog (font_dialog_monospace);
 
-        oled_mode.active = settings.get_boolean ("theme-oled");
-        oled_mode.state_set.connect ((state) => {
-            settings.set_boolean ("theme-oled", state);
-            app.update_theme ();
-            return false;
-        });
+		oled_mode.active = settings.get_boolean ("theme-oled");
+		oled_mode.state_set.connect ((state) => {
+			settings.set_boolean ("theme-oled", state);
+			app.update_theme ();
+			return false;
+		});
 
-        enable_toolbar.active = settings.get_boolean ("toolbar-enabled");
-        enable_toolbar.state_set.connect ((state) => {
-            settings.set_boolean ("toolbar-enabled", state);
-            return false;
-        });
+		enable_toolbar.active = settings.get_boolean ("toolbar-enabled");
+		enable_toolbar.state_set.connect ((state) => {
+			settings.set_boolean ("toolbar-enabled", state);
+			return false;
+		});
 
-        enable_cheatsheet.active = settings.get_boolean ("cheatsheet-enabled");
-        enable_cheatsheet.state_set.connect ((state) => {
-            settings.set_boolean ("cheatsheet-enabled", state);
-            return false;
-        });
+		enable_cheatsheet.active = settings.get_boolean ("cheatsheet-enabled");
+		enable_cheatsheet.state_set.connect ((state) => {
+			settings.set_boolean ("cheatsheet-enabled", state);
+			return false;
+		});
 
-        enable_3_pane.active = settings.get_boolean ("enable-3-pane");
-        enable_3_pane.state_set.connect ((state) => {
-            settings.set_boolean ("enable-3-pane", state);
-            return false;
-        });
+		enable_3_pane.active = settings.get_boolean ("enable-3-pane");
+		enable_3_pane.state_set.connect ((state) => {
+			settings.set_boolean ("enable-3-pane", state);
+			return false;
+		});
 
-        limit_note_width.active = settings.get_int ("note-max-width") != -1;
-        limit_note_width.state_set.connect ((state) => {
-            settings.set_int ("note-max-width", state ? 720 : -1);
-            return false;
-        });
+		limit_note_width.active = settings.get_int ("note-max-width") != -1;
+		limit_note_width.state_set.connect ((state) => {
+			settings.set_int ("note-max-width", state ? 720 : -1);
+			return false;
+		});
 
 		var notes_dir = settings.get_string ("notes-dir");
-        notes_dir_label.label = settings.get_string ("notes-dir");
-        notes_dir_label.tooltip_text = notes_dir;
-        notes_dir_button.clicked.connect (() => {
-            var chooser = new Gtk.FileChooserNative (
-                Strings.PICK_NOTES_DIR,
-                this,
-                Gtk.FileChooserAction.SELECT_FOLDER,
-                Strings.APPLY,
-                Strings.CANCEL
-            );
-            chooser.modal = true;
-            try {
-                chooser.set_file (File.new_for_path (notes_dir));
-            } catch (Error e) {
-                // Should probably do something else here.
-                return;
-            }
-            chooser.response.connect ((id) => {
-                if (id == Gtk.ResponseType.ACCEPT) {
-                    notes_dir = chooser.get_file ().get_path ();
-		            settings.set_string ("notes-dir", notes_dir);
-                    notes_dir_label.label = notes_dir;
-                    notes_dir_label.tooltip_text = notes_dir;
-                }
-            });
-            chooser.show ();
-        });
-        notes_dir_button_reset.clicked.connect (() => {
-            settings.reset ("notes-dir");
-		    notes_dir = settings.get_string ("notes-dir");
-            notes_dir_label.label = notes_dir;
-            notes_dir_label.tooltip_text = notes_dir;
-        });
+		notes_dir_label.label = settings.get_string ("notes-dir");
+		notes_dir_label.tooltip_text = notes_dir;
+		notes_dir_button.clicked.connect (() => {
+			var chooser = new Gtk.FileChooserNative (
+				Strings.PICK_NOTES_DIR,
+				this,
+				Gtk.FileChooserAction.SELECT_FOLDER,
+				Strings.APPLY,
+				Strings.CANCEL
+			);
+			chooser.modal = true;
+			try {
+				chooser.set_file (File.new_for_path (notes_dir));
+			} catch (Error e) {
+				// Should probably do something else here.
+				return;
+			}
+			chooser.response.connect ((id) => {
+				if (id == Gtk.ResponseType.ACCEPT) {
+					notes_dir = chooser.get_file ().get_path ();
+					settings.set_string ("notes-dir", notes_dir);
+					notes_dir_label.label = notes_dir;
+					notes_dir_label.tooltip_text = notes_dir;
+				}
+			});
+			chooser.show ();
+		});
+		notes_dir_button_reset.clicked.connect (() => {
+			settings.reset ("notes-dir");
+			notes_dir = settings.get_string ("notes-dir");
+			notes_dir_label.label = notes_dir;
+			notes_dir_label.tooltip_text = notes_dir;
+		});
 	}
 }
 
 public class Folio.MonospaceFilter : Gtk.Filter {
-    public override bool match (GLib.Object? item) {
-        var family = item as Pango.FontFamily;
-        return family.is_monospace ();
-    }
+	public override bool match (GLib.Object? item) {
+		var family = item as Pango.FontFamily;
+		return family.is_monospace ();
+	}
  }

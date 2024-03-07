@@ -19,25 +19,25 @@
 [GtkTemplate (ui = "/com/toolstack/Folio/markdown_cheatsheet.ui")]
 public class Folio.MarkdownCheatsheet : Adw.Window {
 
-    [GtkChild]
-    unowned GtkMarkdown.View text_view;
+	[GtkChild]
+	unowned GtkMarkdown.View text_view;
 
 	public MarkdownCheatsheet (Application app) {
 		Object (
-		    title: Strings.MARKDOWN_CHEATSHEET,
-		    icon_name: Config.APP_ID
-	    );
+			title: Strings.MARKDOWN_CHEATSHEET,
+			icon_name: Config.APP_ID
+		);
 
-        try {
-            var buffer = new GtkMarkdown.Buffer ();
-            buffer.text = (string) resources_lookup_data (
-                "/com/toolstack/Folio/markdown_cheatsheet.md",
-                ResourceLookupFlags.NONE
-            ).get_data ();
-            text_view.buffer = buffer;
-        } catch (Error e) {}
+		try {
+			var buffer = new GtkMarkdown.Buffer ();
+			buffer.text = (string) resources_lookup_data (
+				"/com/toolstack/Folio/markdown_cheatsheet.md",
+				ResourceLookupFlags.NONE
+			).get_data ();
+			text_view.buffer = buffer;
+		} catch (Error e) {}
 
-        app.style_manager.notify["dark"].connect (() => text_view.dark = app.style_manager.dark);
-        text_view.dark = app.style_manager.dark;
+		app.style_manager.notify["dark"].connect (() => text_view.dark = app.style_manager.dark);
+		text_view.dark = app.style_manager.dark;
 	}
 }

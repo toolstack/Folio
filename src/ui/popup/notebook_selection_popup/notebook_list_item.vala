@@ -9,12 +9,12 @@ public class Folio.NotebookListItem : Gtk.Box {
 	unowned Gtk.Label label;
 
 	public Notebook notebook {
-	    get { return _notebook; }
-	    set {
-	        this._notebook = value;
-	        label.label = value.name;
-	        icon.notebook_info = value.info;
-	    }
+		get { return _notebook; }
+		set {
+			this._notebook = value;
+			label.label = value.name;
+			icon.notebook_info = value.info;
+		}
 	}
 
 	private Notebook _notebook;

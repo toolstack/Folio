@@ -85,12 +85,12 @@ executable(
   meson.project_name(),
   folio_sources,
   c_args: [
-    '-DGETTEXT_PACKAGE="' + app_id + '"'
+	'-DGETTEXT_PACKAGE="' + app_id + '"'
   ],
   vala_args: [
-    meson.project_source_root() + '/src/config.vapi',
-    '--target-glib=2.72.1',
-    '--gresourcesdir=' + generated_resources_dir,
+	meson.project_source_root() + '/src/config.vapi',
+	'--target-glib=2.72.1',
+	'--gresourcesdir=' + generated_resources_dir,
   ],
   dependencies: folio_deps,
   implicit_include_directories: true,

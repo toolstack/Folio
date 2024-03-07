@@ -2,32 +2,32 @@
 [GtkTemplate (ui = "/com/toolstack/Folio/edit_view.ui")]
 public class Folio.EditView : Gtk.Box {
 
-    public bool toolbar_enabled { get; set; }
+	public bool toolbar_enabled { get; set; }
 
 	public bool is_editable { get; set; }
 
-    public int scale { get; set; default = 100; }
+	public int scale { get; set; default = 100; }
 
-    public bool text_mode { set { markdown_view.text_mode = value; } }
+	public bool text_mode { set { markdown_view.text_mode = value; } }
 
-    public const int MIN_SCALE = 10;
-    public const int MAX_SCALE = 600;
+	public const int MIN_SCALE = 10;
+	public const int MAX_SCALE = 600;
 
 	public Gdk.RGBA theme_color {
-	    get { return markdown_view.theme_color; }
-	    set {
-            markdown_view.theme_color = value;
-	    }
+		get { return markdown_view.theme_color; }
+		set {
+			markdown_view.theme_color = value;
+		}
 	}
 
 	public Gtk.TextBuffer buffer {
-	    get { return markdown_view.buffer; }
-	    set {
-            markdown_view.buffer = value;
-            Gtk.TextIter start;
-            markdown_view.buffer.get_start_iter (out start);
-            markdown_view.buffer.place_cursor (start);
-	    }
+		get { return markdown_view.buffer; }
+		set {
+			markdown_view.buffer = value;
+			Gtk.TextIter start;
+			markdown_view.buffer.get_start_iter (out start);
+			markdown_view.buffer.place_cursor (start);
+		}
 	}
 
 	[GtkChild] public unowned Toolbar toolbar;
@@ -35,36 +35,36 @@ public class Folio.EditView : Gtk.Box {
 	[GtkChild] public unowned Gtk.ScrolledWindow scrolled_window;
 	[GtkChild] unowned Adw.ToastOverlay toast_overlay;
 
-    private Gtk.CssProvider note_font_provider = new Gtk.CssProvider ();
-    private Gtk.CssProvider font_scale_provider = new Gtk.CssProvider ();
+	private Gtk.CssProvider note_font_provider = new Gtk.CssProvider ();
+	private Gtk.CssProvider font_scale_provider = new Gtk.CssProvider ();
 
 	private bool is_ctrl = false;
 
-    construct {
-	    var settings = new Settings (Config.APP_ID);
+	construct {
+		var settings = new Settings (Config.APP_ID);
 
-        set_note_font (settings.get_string ("note-font"));
+		set_note_font (settings.get_string ("note-font"));
  		set_max_width (settings.get_int ("note-max-width"));
 
-        markdown_view.notify["text-mode"].connect (update_toolbar_visibility);
+		markdown_view.notify["text-mode"].connect (update_toolbar_visibility);
 
-        markdown_view.notify["buffer"].connect (() => markdown_view.buffer.notify["cursor-position"].connect (() => {
-            var ins = markdown_view.buffer.get_insert ();
-            Gtk.TextIter cur;
-            markdown_view.buffer.get_iter_at_mark (out cur, ins);
-            toolbar.heading_i = (int) markdown_view.get_title_level (cur.get_line ());
-        }));
-        toolbar.heading_i_changed.connect ((i) => {
-            var ins = markdown_view.buffer.get_insert ();
-            Gtk.TextIter cur;
-            markdown_view.buffer.get_iter_at_mark (out cur, ins);
-            markdown_view.set_title_level (cur.get_line (), i);
-        });
+		markdown_view.notify["buffer"].connect (() => markdown_view.buffer.notify["cursor-position"].connect (() => {
+			var ins = markdown_view.buffer.get_insert ();
+			Gtk.TextIter cur;
+			markdown_view.buffer.get_iter_at_mark (out cur, ins);
+			toolbar.heading_i = (int) markdown_view.get_title_level (cur.get_line ());
+		}));
+		toolbar.heading_i_changed.connect ((i) => {
+			var ins = markdown_view.buffer.get_insert ();
+			Gtk.TextIter cur;
+			markdown_view.buffer.get_iter_at_mark (out cur, ins);
+			markdown_view.set_title_level (cur.get_line (), i);
+		});
 
 		Gtk.GestureClick click_controller;
 		click_controller = new Gtk.GestureClick () {
-            button = Gdk.BUTTON_PRIMARY
-        };
+			button = Gdk.BUTTON_PRIMARY
+		};
 
 		click_controller.released.connect ((n, x, y) => {
 			if (is_ctrl) {
@@ -122,77 +122,77 @@ public class Folio.EditView : Gtk.Box {
 
 		markdown_view.add_controller (click_controller);
 
-        scrolled_window.get_vscrollbar ().margin_top = 48;
+		scrolled_window.get_vscrollbar ().margin_top = 48;
 
-	    settings.bind ("toolbar-enabled", this, "toolbar-enabled", SettingsBindFlags.DEFAULT);
-	    settings.bind ("note-font-monospace", markdown_view, "font-monospace", SettingsBindFlags.DEFAULT);
-	    settings.changed["note-font"].connect(() => set_note_font (settings.get_string ("note-font")));
-	    settings.changed["note-max-width"].connect(() => set_max_width (settings.get_int ("note-max-width")));
+		settings.bind ("toolbar-enabled", this, "toolbar-enabled", SettingsBindFlags.DEFAULT);
+		settings.bind ("note-font-monospace", markdown_view, "font-monospace", SettingsBindFlags.DEFAULT);
+		settings.changed["note-font"].connect(() => set_note_font (settings.get_string ("note-font")));
+		settings.changed["note-max-width"].connect(() => set_max_width (settings.get_int ("note-max-width")));
 
-	    var window_state = new Settings (@"$(Config.APP_ID).WindowState");
-	    window_state.bind ("text-scale", this, "scale", SettingsBindFlags.DEFAULT);
+		var window_state = new Settings (@"$(Config.APP_ID).WindowState");
+		window_state.bind ("text-scale", this, "scale", SettingsBindFlags.DEFAULT);
 
-        notify["toolbar-enabled"].connect (update_toolbar_visibility);
-        notify["is-editable"].connect (() => {
-            update_toolbar_visibility ();
-	        markdown_view.sensitive = is_editable;
-        });
-        update_toolbar_visibility ();
+		notify["toolbar-enabled"].connect (update_toolbar_visibility);
+		notify["is-editable"].connect (() => {
+			update_toolbar_visibility ();
+			markdown_view.sensitive = is_editable;
+		});
+		update_toolbar_visibility ();
 
-	    notify["scale"].connect(set_font_scale);
+		notify["scale"].connect(set_font_scale);
 
-	    var key_controller = new Gtk.EventControllerKey ();
-	    key_controller.key_pressed.connect ((keyval, keycode, state) => {
-	        if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R)
-	            is_ctrl = true;
-	        return false;
-	    });
-	    key_controller.key_released.connect ((keyval, keycode, state) => {
-	        if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R)
-	            is_ctrl = false;
-	    });
-	    var scroll_controller = new Gtk.EventControllerScroll (Gtk.EventControllerScrollFlags.DISCRETE | Gtk.EventControllerScrollFlags.VERTICAL);
-	    scroll_controller.scroll.connect ((dx, dy) => {
-	        if (is_ctrl) {
-	            if (dy < 0)
-	                zoom_in ();
-	            else zoom_out ();
-	            return true;
-	        }
-	        return false;
-	    });
-	    add_controller (key_controller);
-	    markdown_view.add_controller (scroll_controller);
-    }
-
-	private void toast (string text) {
-        var toast = new Adw.Toast (text);
-        toast_overlay.add_toast (toast);
+		var key_controller = new Gtk.EventControllerKey ();
+		key_controller.key_pressed.connect ((keyval, keycode, state) => {
+			if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R)
+				is_ctrl = true;
+			return false;
+		});
+		key_controller.key_released.connect ((keyval, keycode, state) => {
+			if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R)
+				is_ctrl = false;
+		});
+		var scroll_controller = new Gtk.EventControllerScroll (Gtk.EventControllerScrollFlags.DISCRETE | Gtk.EventControllerScrollFlags.VERTICAL);
+		scroll_controller.scroll.connect ((dx, dy) => {
+			if (is_ctrl) {
+				if (dy < 0)
+					zoom_in ();
+				else zoom_out ();
+				return true;
+			}
+			return false;
+		});
+		add_controller (key_controller);
+		markdown_view.add_controller (scroll_controller);
 	}
 
-    public void zoom_in () {
-        var new_scale = scale + 10;
-        if (new_scale <= MAX_SCALE)
-            scale = new_scale;
-    }
+	private void toast (string text) {
+		var toast = new Adw.Toast (text);
+		toast_overlay.add_toast (toast);
+	}
 
-    public void zoom_out () {
-        var new_scale = scale - 10;
-        if (new_scale >= MIN_SCALE)
-            scale = new_scale;
-    }
+	public void zoom_in () {
+		var new_scale = scale + 10;
+		if (new_scale <= MAX_SCALE)
+			scale = new_scale;
+	}
 
-    public void on_dark_changed (bool dark) {
-        markdown_view.dark = dark;
-    }
+	public void zoom_out () {
+		var new_scale = scale - 10;
+		if (new_scale >= MIN_SCALE)
+			scale = new_scale;
+	}
 
-    private void format_selection (string affix, string second_affix) {
-	    var buffer = markdown_view.buffer;
+	public void on_dark_changed (bool dark) {
+		markdown_view.dark = dark;
+	}
 
-	    buffer.begin_user_action ();
+	private void format_selection (string affix, string second_affix) {
+		var buffer = markdown_view.buffer;
+
+		buffer.begin_user_action ();
 
 		if ( !markdown_view.remove_formatting (markdown_view, affix) &&
-		     !markdown_view.remove_formatting (markdown_view, second_affix))
+			 !markdown_view.remove_formatting (markdown_view, second_affix))
 			{
 			Gtk.TextIter selection_start, selection_end, cursor;
 			Gtk.TextMark cursor_mark, selection_start_mark, selection_end_mark;
@@ -240,28 +240,28 @@ public class Folio.EditView : Gtk.Box {
 			markdown_view.grab_focus ();
 		}
 
-	    buffer.end_user_action ();
-    }
+		buffer.end_user_action ();
+	}
 
 	public void format_selection_bold () {
-        format_selection("**", "__");
+		format_selection("**", "__");
 	}
 
 	public void format_selection_italic () {
-        format_selection("_", "*");
+		format_selection("_", "*");
 	}
 
 	public void format_selection_strikethrough () {
-        format_selection("~~", "~");
+		format_selection("~~", "~");
 	}
 
 	public void format_selection_highlight () {
-        format_selection("==", "");
+		format_selection("==", "");
 	}
 
 	public void insert_link () {
-	    var buffer = markdown_view.buffer;
-	    buffer.begin_user_action ();
+		var buffer = markdown_view.buffer;
+		buffer.begin_user_action ();
 
 		if (!markdown_view.check_if_in_link (markdown_view)) {
 			var url_found = false;
@@ -317,21 +317,21 @@ public class Folio.EditView : Gtk.Box {
 		}
 
 		markdown_view.grab_focus ();
-	    buffer.end_user_action ();
+		buffer.end_user_action ();
 	}
 
 	public void insert_code_span () {
-        format_selection("`", "");
+		format_selection("`", "");
 	}
 
 	public void insert_horizontal_rule () {
-	    var buffer = markdown_view.buffer;
+		var buffer = markdown_view.buffer;
 
-	    buffer.begin_user_action ();
+		buffer.begin_user_action ();
 
-	    var mark = buffer.get_selection_bound ();
-	    Gtk.TextIter iter, current_line_start, current_line_end;
-	    buffer.get_iter_at_mark (out iter, mark);
+		var mark = buffer.get_selection_bound ();
+		Gtk.TextIter iter, current_line_start, current_line_end;
+		buffer.get_iter_at_mark (out iter, mark);
 		current_line_start = iter.copy ();
 		current_line_start.backward_line ();
 		current_line_start.forward_char ();
@@ -354,23 +354,23 @@ public class Folio.EditView : Gtk.Box {
 		buffer.end_user_action ();
 	}
 
-    public void set_font_scale () {
-	    font_scale_provider.load_from_data (@"textview{font-size:$(scale / 100f)em;}".data);
-	    markdown_view.get_style_context ().add_provider (font_scale_provider, -1);
-    }
+	public void set_font_scale () {
+		font_scale_provider.load_from_data (@"textview{font-size:$(scale / 100f)em;}".data);
+		markdown_view.get_style_context ().add_provider (font_scale_provider, -1);
+	}
 
-    private void set_note_font (string font) {
-	    note_font_provider.load_from_data (@"textview{font-family:'$font';}".data);
-	    markdown_view.get_style_context ().add_provider (note_font_provider, -1);
-    }
+	private void set_note_font (string font) {
+		note_font_provider.load_from_data (@"textview{font-family:'$font';}".data);
+		markdown_view.get_style_context ().add_provider (note_font_provider, -1);
+	}
 
-    private void set_max_width (int w) {
-	    markdown_view.width_request = w;
-    	markdown_view.halign = w == -1 ? Gtk.Align.FILL : Gtk.Align.CENTER;
-    }
+	private void set_max_width (int w) {
+		markdown_view.width_request = w;
+		markdown_view.halign = w == -1 ? Gtk.Align.FILL : Gtk.Align.CENTER;
+	}
 
 	private void update_toolbar_visibility () {
-	    toolbar.visible = is_editable && toolbar_enabled && !markdown_view.text_mode;
+		toolbar.visible = is_editable && toolbar_enabled && !markdown_view.text_mode;
 	}
 
 	private void find_word_selection (ref Gtk.TextIter selection_start, ref Gtk.TextIter selection_end) {
