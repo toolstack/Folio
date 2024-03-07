@@ -10,3 +10,18 @@ indent_size = 4
 
 [*.po]
 insert_final_newline = false
+
+[*.pot]
+insert_final_newline = false
+
+[*.build]
+indent_style = space
+indent_size = 2
+
+[*.xml]
+indent_style = space
+indent_size = 2
+
+[*.blp]
+indent_style = space
+indent_size = 2
