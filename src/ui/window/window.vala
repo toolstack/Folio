@@ -195,6 +195,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 		update_note_title ();
 		update_editability ();
 		edit_view.buffer = window_model.current_buffer;
+		edit_view.reset_scroll_position ();
 		if (note != null) {
 			edit_view.text_mode = !note.is_markdown;
 			if (!note.is_markdown) {
