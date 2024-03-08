@@ -12,6 +12,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 	[GtkChild] unowned Gtk.Button notes_dir_button_reset;
 	[GtkChild] unowned Gtk.Label notes_dir_label;
 	[GtkChild] unowned Gtk.Switch limit_note_width;
+	[GtkChild] unowned Adw.SpinRow custom_note_width;
 
 	public PreferencesWindow (Application app) {
 		Object ();
@@ -70,8 +71,23 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 		limit_note_width.active = settings.get_int ("note-max-width") != -1;
 		limit_note_width.state_set.connect ((state) => {
 			settings.set_int ("note-max-width", state ? 720 : -1);
+			custom_note_width.set_sensitive (state);
 			return false;
 		});
+
+		int note_width = settings.get_int ("note-max-width");
+		if (note_width == -1 ) {
+			custom_note_width.set_sensitive (false);
+			note_width = 720;
+		}
+		var width_adjustment = new Gtk.Adjustment (note_width, 100, 2000, 1.0, 100.0, 1.0);
+		custom_note_width.set_adjustment (width_adjustment);
+        custom_note_width.notify["value"].connect (() => {
+			if (limit_note_width.active) {
+                settings.set_int ("note-max-width", (int) custom_note_width.value);
+			}
+        });
+
 
 		var notes_dir = settings.get_string ("notes-dir");
 		notes_dir_label.label = settings.get_string ("notes-dir");

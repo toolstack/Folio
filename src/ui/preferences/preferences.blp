@@ -4,7 +4,7 @@ using Adw 1;
 template $FolioPreferencesWindow : Adw.PreferencesWindow {
 
   default-width: 560;
-  default-height: 480;
+  default-height: 700;
   search-enabled: false;
   modal: true;
 
@@ -85,14 +85,19 @@ template $FolioPreferencesWindow : Adw.PreferencesWindow {
       }
       Adw.ActionRow {
 
-        title: _("Limit Note Width");
-        subtitle: _("Limits how wide the text area can stretch");
+        title: _("Use Fixed Width For Notes");
+        subtitle: _("Use a fixed width for the text area of a note");
         icon-name: "stretch-horizontal-symbolic";
         activatable-widget: limit_note_width;
 
         Switch limit_note_width {
           valign: center;
         }
+      }
+      Adw.SpinRow custom_note_width {
+
+        title: _("Fixed Width To Use For Notes");
+        subtitle: _("Sets the fixed width size of a note");
       }
     }
     Adw.PreferencesGroup {
