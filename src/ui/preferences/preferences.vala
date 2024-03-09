@@ -13,6 +13,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 	[GtkChild] unowned Gtk.Label notes_dir_label;
 	[GtkChild] unowned Gtk.Switch limit_note_width;
 	[GtkChild] unowned Adw.SpinRow custom_note_width;
+	[GtkChild] unowned Gtk.Switch show_line_numbers;
 
 	public PreferencesWindow (Application app) {
 		Object ();
@@ -68,6 +69,12 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 			return false;
 		});
 
+		show_line_numbers.active = settings.get_boolean ("show-line-numbers");
+		show_line_numbers.state_set.connect ((state) => {
+			settings.set_boolean ("show-line-numbers", state);
+			return false;
+		});
+
 		limit_note_width.active = settings.get_int ("note-max-width") != -1;
 		limit_note_width.state_set.connect ((state) => {
 			settings.set_int ("note-max-width", state ? 720 : -1);
@@ -87,7 +94,6 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
                 settings.set_int ("note-max-width", (int) custom_note_width.value);
 			}
         });
-
 
 		var notes_dir = settings.get_string ("notes-dir");
 		notes_dir_label.label = settings.get_string ("notes-dir");

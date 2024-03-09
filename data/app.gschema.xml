@@ -13,25 +13,38 @@
     </key>
     <key name="note-max-width" type="i">
       <default>720</default>
-      <summary>Max Note Width</summary>
+      <summary>Use Fixed Width For Notes</summary>
+      <description>Use a fixed width for the text area of a note</description>
     </key>
     <key name="theme-oled" type="b">
       <default>false</default>
       <summary>OLED Mode</summary>
+      <description>Makes the dark theme pitch black</description>
     </key>
     <key name="toolbar-enabled" type="b">
       <default>true</default>
+      <summary>Enable Toolbar</summary>
+      <description>Displays the foramtting toolbar at the bottom of the note</description>
     </key>
     <key name="cheatsheet-enabled" type="b">
       <default>true</default>
+      <summary>Enable Cheatsheet</summary>
+      <description>Adds a button to the markdown refrence sheet on the right of the formatting toolbar</description>
     </key>
     <key name="enable-3-pane" type="b">
       <default>false</default>
+      <summary>3-Pane Layout</summary>
+      <description>Expands the notebook list to include the notebook name</description>
     </key>
     <key name="notes-dir" type="s">
       <default>'~/.var/app/com.toolstack.Folio/data'</default>
       <summary>Notes Directory</summary>
-      <description>Where the notebooks are stored</description>
+      <description>Where the notebooks are stored (requires app restart)</description>
+    </key>
+    <key name="show-line-numbers" type="b">
+      <default>false</default>
+      <summary>Show line numbers</summary>
+      <description>Displays line numbers at the left of the note</description>
     </key>
   </schema>
   <enum id="com.toolstack.Folio.ThemeVariantEnum">

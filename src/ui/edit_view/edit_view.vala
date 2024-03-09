@@ -46,6 +46,7 @@ public class Folio.EditView : Gtk.Box {
 
 		set_note_font (settings.get_string ("note-font"));
  		set_max_width (settings.get_int ("note-max-width"));
+		markdown_view.set_show_line_numbers (settings.get_boolean ("show-line-numbers"));
 
 		markdown_view.notify["text-mode"].connect (update_toolbar_visibility);
 
@@ -188,6 +189,11 @@ public class Folio.EditView : Gtk.Box {
 
 	public void on_dark_changed (bool dark) {
 		markdown_view.dark = dark;
+	}
+
+	public void set_line_numbers () {
+		var settings = new Settings (Config.APP_ID);
+		markdown_view.set_show_line_numbers (settings.get_boolean ("show-line-numbers"));
 	}
 
 	private void format_selection (string affix, string second_affix) {
