@@ -20,6 +20,7 @@
 public class Folio.Window : Adw.ApplicationWindow {
 
 	public bool cheatsheet_enabled { get; set; }
+	public bool show_line_numbers { get; set; }
 
 	public WindowModel window_model = new WindowModel ();
 
@@ -176,11 +177,15 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 		var settings = new Settings (Config.APP_ID);
 		settings.bind ("cheatsheet-enabled", this, "cheatsheet-enabled", SettingsBindFlags.DEFAULT);
+		settings.bind ("show-line-numbers", this, "show-line-numbers", SettingsBindFlags.DEFAULT);
 
 		notify["cheatsheet-enabled"].connect (update_cheatsheet_visibility);
 		edit_view.toolbar.notify["compacted"].connect (update_cheatsheet_visibility);
 		update_cheatsheet_visibility ();
 		notebooks_bar.init (this);
+
+		notify["show-line-numbers"].connect (update_show_line_numbers);
+
 	}
 
 	private void toggle_fullscreen () {
@@ -259,6 +264,10 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	public void update_cheatsheet_visibility () {
 		button_md_cheatsheet_headerbar.visible = cheatsheet_enabled && edit_view.toolbar.compacted;
+	}
+
+	public void update_show_line_numbers () {
+		edit_view.set_line_numbers ();
 	}
 
 	private void on_format_bold () { edit_view.format_selection_bold (); }
