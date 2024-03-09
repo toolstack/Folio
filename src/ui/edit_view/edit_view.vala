@@ -33,7 +33,8 @@ public class Folio.EditView : Gtk.Box {
 	[GtkChild] public unowned Toolbar toolbar;
 	[GtkChild] unowned GtkMarkdown.View markdown_view;
 	[GtkChild] public unowned Gtk.ScrolledWindow scrolled_window;
-	[GtkChild] unowned Adw.ToastOverlay toast_overlay;
+
+	private Adw.ToastOverlay toast_overlay = null;
 
 	private Gtk.CssProvider note_font_provider = new Gtk.CssProvider ();
 	private Gtk.CssProvider font_scale_provider = new Gtk.CssProvider ();
@@ -166,6 +167,9 @@ public class Folio.EditView : Gtk.Box {
 	}
 
 	private void toast (string text) {
+		if (toast_overlay == null) {
+			toast_overlay = (Adw.ToastOverlay)get_ancestor (typeof (Adw.ToastOverlay));
+		}
 		var toast = new Adw.Toast (text);
 		toast_overlay.add_toast (toast);
 	}
