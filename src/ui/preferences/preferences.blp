@@ -53,8 +53,19 @@ template $FolioPreferencesWindow : Adw.PreferencesWindow {
     Adw.PreferencesGroup {
       Adw.ActionRow {
 
+        title: _("Show all notes");
+        subtitle: _("Displays the \"All Notes\" notebook at the top of the notebook list");
+        icon-name: "view-list-symbolic";
+        activatable-widget: show_all_notes;
+
+        Switch show_all_notes {
+          valign: center;
+        }
+      }
+      Adw.ActionRow {
+
         title: _("Enable Toolbar");
-        subtitle: _("Displays the foramtting toolbar at the bottom of the note");
+        subtitle: _("Displays the formatting toolbar at the bottom of the note");
         icon-name: "toolbar-symbolic";
         activatable-widget: enable_toolbar;
 
@@ -65,7 +76,7 @@ template $FolioPreferencesWindow : Adw.PreferencesWindow {
       Adw.ActionRow {
 
         title: _("Enable Cheatsheet");
-        subtitle: _("Adds a button to the markdown refrence sheet on the right of the formatting toolbar");
+        subtitle: _("Adds a button to the markdown reference sheet on the right of the formatting toolbar");
         icon-name: "dialog-information-symbolic";
         activatable-widget: enable_cheatsheet;
 

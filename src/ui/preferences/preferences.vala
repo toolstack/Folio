@@ -14,6 +14,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 	[GtkChild] unowned Gtk.Switch limit_note_width;
 	[GtkChild] unowned Adw.SpinRow custom_note_width;
 	[GtkChild] unowned Gtk.Switch show_line_numbers;
+	[GtkChild] unowned Gtk.Switch show_all_notes;
 
 	public PreferencesWindow (Application app) {
 		Object ();
@@ -72,6 +73,12 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 		show_line_numbers.active = settings.get_boolean ("show-line-numbers");
 		show_line_numbers.state_set.connect ((state) => {
 			settings.set_boolean ("show-line-numbers", state);
+			return false;
+		});
+
+		show_all_notes.active = settings.get_boolean ("show-all-notes");
+		show_all_notes.state_set.connect ((state) => {
+			settings.set_boolean ("show-all-notes", state);
 			return false;
 		});
 
