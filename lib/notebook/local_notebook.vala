@@ -140,12 +140,14 @@ public class Folio.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
 	}
 
 	public uint get_n_items () {
+		load ();
 		if (_loaded_notes == null)
 			error (@"Notebook \"$name\": Notes haven't loaded yet");
 		return _loaded_notes.size;
 	}
 
 	public uint get_index_of(Note? note){
+		load ();
 		if (note != null && _loaded_notes != null){
 			return loaded_notes.index_of (note);
 		}
@@ -153,6 +155,7 @@ public class Folio.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
 	}
 
 	public Object? get_item (uint i) {
+		load ();
 		if (_loaded_notes == null)
 			error (@"Notebook \"$name\": Notes haven't loaded yet");
 		return (i >= _loaded_notes.size) ? null : _loaded_notes.@get((int) i);
