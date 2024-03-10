@@ -59,9 +59,30 @@ public class Folio.WindowModel : Object {
 	}
 
 	public void save_note () {
-		if (note != null) {
+		if (note != null && is_unsaved) {
 			note.save (current_buffer.get_all_text ());
 			is_unsaved = false;
+
+			// Need to force the item in the notes list to get an updated timestamp, the only way
+			// to do this is apparently deselect the current item and then reselect it.  So let's do
+			// this, but we need to keep track of the cursor so we put it back in the right spot, as
+			// well as the currently selected not.
+			Gtk.TextMark cursor;
+			Gtk.TextIter cursor_iter;
+			int current_pos;
+			uint current_selected;
+			cursor = current_buffer.get_insert ();
+			current_buffer.get_iter_at_mark (out cursor_iter, cursor);
+			current_pos = cursor_iter.get_offset ();
+			current_selected = notes_model.selected;
+
+			// Now deselect the note and then reselect it.
+			select_note_at (-1);
+			select_note_at (current_selected);
+
+			// Time to return the cursor to the right spot.
+			current_buffer.get_iter_at_offset (out cursor_iter, current_pos);
+			current_buffer.place_cursor (cursor_iter);
 		}
 	}
 
@@ -162,7 +183,6 @@ public class Folio.WindowModel : Object {
 		save_note ();
 		this.note = note;
 		is_unsaved = false;
-
 		if (note != null) {
 			current_buffer = new GtkMarkdown.Buffer (note.load_text ());
 			var settings = new Settings (@"$(Config.APP_ID).WindowState");
@@ -202,10 +222,7 @@ public class Folio.WindowModel : Object {
 		if (note_container == notebook) {
 			set_notebook (notebook);
 		}
-		var current_note = notes_model.selected;
 		update_notebooks ();
-		select_note_at (-1);
-		select_note_at (current_note);
 	}
 
 	public void change_note (Note note, string name, string extension = note.extension, bool do_update = true)
