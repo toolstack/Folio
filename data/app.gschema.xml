@@ -46,6 +46,11 @@
       <summary>Show line numbers</summary>
       <description>Displays line numbers at the left of the note</description>
     </key>
+    <key name="show-all-notes" type="b">
+      <default>false</default>
+      <summary>Show all notes</summary>
+      <description>Displays the "All Notes" notebook at the top of the notebook list</description>
+    </key>
   </schema>
   <enum id="com.toolstack.Folio.ThemeVariantEnum">
     <value nick="default" value="0"/>

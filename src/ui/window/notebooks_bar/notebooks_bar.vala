@@ -5,7 +5,14 @@ public class Folio.NotebooksBar : Gtk.Box {
 	public bool paned { get; set; default = false; }
 
 	public bool all_button_enabled {
-		set { all_button_revealer.reveal_child = value; }
+		set {
+			var settings = new Settings (Config.APP_ID);
+			if (settings.get_boolean ("show-all-notes")) {
+				all_button_revealer.reveal_child = true;
+			} else {
+				all_button_revealer.reveal_child = value;
+			}
+		}
 	}
 
 	[GtkChild] unowned Gtk.ListView list;
@@ -29,6 +36,7 @@ public class Folio.NotebooksBar : Gtk.Box {
 
 		var settings = new Settings (Config.APP_ID);
 		settings.bind ("enable-3-pane", this, "paned", SettingsBindFlags.DEFAULT);
+		all_button_revealer.set_reveal_child (settings.get_boolean ("show-all-notes"));
 
 		window_title.title = Strings.APP_NAME;
 
@@ -37,6 +45,7 @@ public class Folio.NotebooksBar : Gtk.Box {
 			else get_style_context ().remove_class ("paned");
 			list.factory = paned ? item_factory_paned : item_factory;
 		});
+
 	}
 
 	private void update_scroll () {
