@@ -73,6 +73,7 @@ public class Folio.Note : Object {
 
 	public void save (string text) {
 		FileUtils.save_to (File.new_for_path (path), text);
+		this._time_modified = new DateTime.now ();
 	}
 
 	public bool equals (Note other) {
