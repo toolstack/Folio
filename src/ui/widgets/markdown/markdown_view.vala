@@ -318,6 +318,7 @@ public class GtkMarkdown.View : GtkSource.View {
 	private Regex is_highlight;
 
 	private Regex is_code_span;
+	private Regex is_code_span_double;
 	private Regex is_code_block;
 
 	private Regex filter_escapes;
@@ -368,6 +369,7 @@ public class GtkMarkdown.View : GtkSource.View {
 			is_highlight = new Regex ("(\\=\\=)([^\\= \\t].*?(?<!\\\\|\\=| |\\t))(\\=\\=)", f, 0);
 
 			is_code_span = new Regex ("(?<!`)(`)([^`]+(?:`{2,}[^`]+)*)(`)(?!`)", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS | RegexCompileFlags.MULTILINE, 0);
+			is_code_span_double = new Regex ("(``)(.*)(``)", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS | RegexCompileFlags.MULTILINE | RegexCompileFlags.UNGREEDY, 0);
 			is_code_block = new Regex ("(?<![^\\n])(```[^`\\n]*)\\n([^`]*)(```)(?=\\n)", f, 0);
 
 			filter_escapes = new Regex ("(\\\\\\\\|\\\\`|\\\\\\*|\\\\_|\\\\\\{|\\\\\\}|\\\\\\[|\\\\\\]|\\\\\\(|\\\\\\)|\\\\#|\\\\\\+|\\\\-|\\\\\\.|\\\\!)", f, 0);
@@ -583,6 +585,39 @@ public class GtkMarkdown.View : GtkSource.View {
 		buffer.remove_tag (text_tag_invisible, start, end);
 	}
 
+	private string create_filtered_buffer (string buffer_text) {
+		MatchInfo matches;
+
+		if (buffer_text == null || buffer_text.length <= 5) { return buffer_text; }
+
+		try {
+			// Create a filtered buffer that replaces escaped backticks with a placeholder so that
+			// we can use to ensure code spans/blocks don't misinterpret them.
+			string filtered_buffer_text = (string)filter_escapes.replace (buffer_text, buffer_text.length, 0, "\\\\'", 0);
+
+			// Filter out any single backticks inside of double backticks as well.
+			if (is_code_span_double.match_full (filtered_buffer_text, filtered_buffer_text.length, 0, 0, out matches)) {
+				do {
+					int start_code_pos, end_code_pos;
+
+					if (matches.fetch_pos (2, out start_code_pos, out end_code_pos)) {
+						end_code_pos = end_code_pos - 2;
+
+						for (var i = start_code_pos; i <= end_code_pos; i++) {
+							if (filtered_buffer_text[i] == '`') {
+								filtered_buffer_text = filtered_buffer_text.substring (0, i) + " " + filtered_buffer_text.substring (i + 1);
+							}
+						}
+					}
+				} while (matches.next ());
+			}
+			return filtered_buffer_text;
+		}
+		catch (Error e) {}
+
+		return buffer_text;
+	}
+
 	private void restyle_text_format () {
 		if (text_mode) return;
 		renderer.queue_draw ();
@@ -624,9 +659,8 @@ public class GtkMarkdown.View : GtkSource.View {
 		try {
 			MatchInfo matches;
 
-			// Create a filtered buffer that replaces escaped backticks with a placeholder so that
-			// we can use to ensure code spans/blocks don't misinterpret them.
-			string filtered_buffer_text = filter_escapes.replace (buffer_text, buffer_text.length, 0, "\\\\\\x40", 0);
+			// Create a filtered buffer that replaces some characters we don't want to match on.
+			string filtered_buffer_text = create_filtered_buffer (buffer_text);
 
 			format_horizontal_rule (buffer_text, out matches);
 
@@ -712,6 +746,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 			format_escape_format (buffer_text, out matches);
 
+			do_formatting_pass_format (is_code_span_double, text_tag_code_span, filtered_buffer_text, out matches, true);
 			do_formatting_pass_format (is_code_span, text_tag_code_span, filtered_buffer_text, out matches, true);
 			format_code_block_format (filtered_buffer_text, out matches);
 		} catch (RegexError e) {}
@@ -744,9 +779,8 @@ public class GtkMarkdown.View : GtkSource.View {
 		try {
 			MatchInfo matches;
 
-			// Create a filtered buffer that replaces escaped backticks with a placeholder so that
-			// we can use to ensure code spans/blocks don't misinterpret them.
-			string filtered_buffer_text = filter_escapes.replace (buffer_text, buffer_text.length, 0, "\\\\\\x40", 0);
+			// Create a filtered buffer that replaces some characters we don't want to match on.
+			string filtered_buffer_text = create_filtered_buffer (buffer_text);
 
 			// Check for links
 			if (is_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
@@ -798,6 +832,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 			format_escape_cursor (buffer_text, cursor_location, out matches);
 
+			do_formatting_pass_cursor (is_code_span_double, filtered_buffer_text, cursor_location, out matches, true);
 			do_formatting_pass_cursor (is_code_span, filtered_buffer_text, cursor_location, out matches, true);
 			format_code_block_cursor (filtered_buffer_text, cursor_location, out matches);
 		} catch (RegexError e) {
@@ -1058,6 +1093,15 @@ public class GtkMarkdown.View : GtkSource.View {
 					buffer.get_iter_at_offset (out end_code_iter, end_code_pos);
 					buffer.get_iter_at_offset (out start_after_iter, start_after_pos);
 					buffer.get_iter_at_offset (out end_after_iter, end_after_pos);
+
+					// Check to see if the tag has already been applied, if so, skip it.
+					if (start_code_iter.has_tag (text_tag) &&
+					    end_code_iter.has_tag (text_tag) &&
+						start_before_iter.has_tag (text_tag_around) &&
+						start_after_iter.has_tag (text_tag_around)
+					) {
+						continue;
+					}
 
 					// Apply styling
 					if (remove_other_tags)
