@@ -83,6 +83,7 @@ Flatpak build requires flatpak-building installed.
  - set the `DESTDIR` environment variable as follows: `export DESTDIR=../AppImage`
  - run build/install with `ninja install`
  - change to the `AppImage` directory
+ - copy the AppStream data so linuxdeploy can find it: `cp -R usr/local/share/metainfo usr/share/metainfo`
  - use linuxdeploy to build the AppImage: `linuxdeploy --appdir=. -d usr/local/share/applications/com.toolstack.Folio.desktop  -i usr/local/share/icons/hicolor/scalable/apps/com.toolstack.Folio.svg -e usr/local/bin/com.toolstack.Folio --output appimage`
  - to launch the AppImage, run `Folio-x86_64.AppImage`
 
