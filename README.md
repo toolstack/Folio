@@ -75,6 +75,17 @@ Flatpak build requires flatpak-building installed.
  - to install locally, run `sudo snap install ./folio_24.04_amd64.snap --dangerous`
  - to lanuch the snap, run `folio`
 
+### AppImage builds
+ - Install linuxdeploy if not already installed
+ - change into the top level source directory
+ - create the directory `AppImage` (if it already exists, ensure to remove all of its contents)
+ - change into the build directory
+ - set the `DESTDIR` environment variable as follows: `export DESTDIR=../AppImage`
+ - run build/install with `ninja install`
+ - change to the `AppImage` directory
+ - use linuxdeploy to build the AppImage: `linuxdeploy --appdir=. -d usr/local/share/applications/com.toolstack.Folio.desktop  -i usr/local/share/icons/hicolor/scalable/apps/com.toolstack.Folio.svg -e usr/local/bin/com.toolstack.Folio --output appimage`
+ - to launch the AppImage, run `Folio-x86_64.AppImage`
+
 ## Release instructions
 Folio uses a YY.## version format string, where YY is the two digit year (aka 23, 24, 25, etc) and ## is the release number of the year (aka 01 for the first release, 02 for the second release, etc., not the month number).
 
@@ -82,7 +93,7 @@ The release version is located in the main `meson.build` file, no other files co
 
 The full changelog is located in `data/app.metainfo.xml.in` and the current release for the about dialog is in `src/application.vala`.
 
-Once updated edit the flatpak and snap files:
+Once updated, edit the flatpak and snap files:
  - change into the top level source directory
  - edit `com.toolstack.Folio.json` and update the `tag` value for sources, also **remove** the `commit` hash (don't forget to remove the comma on the line above) temporarily (we'll add it back later)
  - change into the `snap` directory
@@ -96,7 +107,9 @@ After the release is done get the hash value for the commit for the new release 
 
 Two actions should have been kicked off on the github release, one to build the flatpak and the other to build the snap.  These will take a few minutes to complete, but once they do, go to each one and download the built assets.
 
-Extract both zips that you downloaded and rename the resulting flatpak/snap to "Folio=YY.XX.\[flatpak/snap\]".
+You will need to build the AppImage manually, follow the instructions above on how to do that and retreive the generated Folio-x86_64.AppImage file.
+
+Extract both zips that you downloaded and rename the resulting flatpak/snap/AppImage to "Folio=YY.XX.\[flatpak/snap/AppImage\]".
 
 Go back to the release and attach these files to the release assets.
 
@@ -114,6 +127,7 @@ Now do the releases on Flathub and Snapcraft.
 ### Snap release
  - after build, login to your snapcraft account ```snapcraft login```
  - upload the build ```snapcraft upload --release=stable folio_YY.##_amd64.snap```
+
 ## Generate translation POT
  Folio uses POT/PO files for it's translations, the POT file defines all the strings that are used by Folio.
 
