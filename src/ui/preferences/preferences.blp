@@ -129,6 +129,17 @@ template $FolioPreferencesWindow : Adw.PreferencesWindow {
     Adw.PreferencesGroup {
       Adw.ActionRow {
 
+        title: _("Enable autosave");
+        subtitle: _("Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)");
+        icon-name: "document-save-symbolic";
+        activatable-widget: enable_autosave;
+
+        Switch enable_autosave {
+          valign: center;
+        }
+      }
+      Adw.ActionRow {
+
         title: _("Notes Storage Location");
         subtitle: _("Where the notebooks are stored (requires app restart)");
         icon-name: "folder-symbolic";

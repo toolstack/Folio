@@ -15,6 +15,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 	[GtkChild] unowned Adw.SpinRow custom_note_width;
 	[GtkChild] unowned Gtk.Switch show_line_numbers;
 	[GtkChild] unowned Gtk.Switch show_all_notes;
+	[GtkChild] unowned Gtk.Switch enable_autosave;
 
 	public PreferencesWindow (Application app) {
 		Object ();
@@ -79,6 +80,12 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 		show_all_notes.active = settings.get_boolean ("show-all-notes");
 		show_all_notes.state_set.connect ((state) => {
 			settings.set_boolean ("show-all-notes", state);
+			return false;
+		});
+
+		enable_autosave.active = settings.get_boolean ("enable-autosave");
+		enable_autosave.state_set.connect ((state) => {
+			settings.set_boolean ("enable-autosave", state);
 			return false;
 		});
 

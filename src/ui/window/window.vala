@@ -189,6 +189,12 @@ public class Folio.Window : Adw.ApplicationWindow {
 		notify["show-line-numbers"].connect (update_show_line_numbers);
 		notify["show-all-notes"].connect (update_show_all_notes);
 
+		if (settings.get_boolean ("enable-autosave")) {
+			GLib.Timeout.add (5000, () => {
+				window_model.save_note ();
+				return true;
+			}, 0 );
+		}
 	}
 
 	private void toggle_fullscreen () {

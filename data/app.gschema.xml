@@ -51,6 +51,11 @@
       <summary>Show all notes</summary>
       <description>Displays the "All Notes" notebook at the top of the notebook list</description>
     </key>
+    <key name="enable-autosave" type="b">
+      <default>false</default>
+      <summary>Enable autosave</summary>
+      <description>Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)</description>
+    </key>
   </schema>
   <enum id="com.toolstack.Folio.ThemeVariantEnum">
     <value nick="default" value="0"/>
