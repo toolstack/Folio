@@ -156,7 +156,7 @@ rene-coty
 <p>Changes:</p>
 <ul>
 	<li>Add snap release (thanks @soumyaDghosh)</li>
-	<li>Translation updates: Spanish & French</li>
+	<li>Translation updates: Spanish and French</li>
 	<li>Support Control-Click to open links in your default browser</li>
 	<li>Add formatting to links that do not have markdown syntax</li>
 	<li>Add formatting to e-mail address</li>

@@ -9,7 +9,7 @@
     <ul>
       <li>Almost WYSIWYG markdown rendering</li>
       <li>Searchable through GNOME search</li>
-      <li>Highlight &amp; strikethrough text formatting</li>
+      <li>Highlight and strikethrough text formatting</li>
       <li>App themeing based on notebook color</li>
       <li>Trash can</li>
     </ul>
@@ -23,7 +23,7 @@
         <p>Changes:</p>
         <ul>
           <li>Add snap release (thanks @soumyaDghosh)</li>
-          <li>Translation updates: Spanish &amp; French</li>
+          <li>Translation updates: Spanish and French</li>
           <li>Support Control-Click to open links in your default browser</li>
           <li>Add formatting to links that do not have markdown syntax</li>
           <li>Add formatting to e-mail address</li>
@@ -232,7 +232,7 @@
           <li>Blurry icon in notebook creation popup</li>
           <li>Sidebar folding glitchiness</li>
           <li>Emojis not being properly displayed in notebook icons</li>
-          <li>Random bugs with deleting &amp; creating notes</li>
+          <li>Random bugs with deleting and creating notes</li>
         </ul>
       </description>
     </release>
@@ -264,7 +264,7 @@
           <li>i18n: Spanish, Catalan, toki pona</li>
           <li>Open Containing Folder option in note context menus</li>
           <li>Different ways to choose the icon characters</li>
-          <li>UI &amp; Markdown rendering tweaks</li>
+          <li>UI and Markdown rendering tweaks</li>
           <li>Better confirmation dialogs</li>
         </ul>
       </description>
