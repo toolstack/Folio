@@ -4,11 +4,14 @@ using Adw 1;
 template $FolioPreferencesWindow : Adw.PreferencesWindow {
 
   default-width: 560;
-  default-height: 700;
+  default-height: 400;
   search-enabled: false;
   modal: true;
 
   Adw.PreferencesPage {
+    title: _("General");
+    icon-name: "icon-settings-symbolic";
+
     Adw.PreferencesGroup {
       Adw.ActionRow {
 
@@ -50,7 +53,24 @@ template $FolioPreferencesWindow : Adw.PreferencesWindow {
         }
       }
     }
+  }
+
+  Adw.PreferencesPage {
+    title: _("Tools");
+    icon-name: "format-text-highlight-symbolic";
+
     Adw.PreferencesGroup {
+      Adw.ActionRow {
+
+        title: _("Show line numbers");
+        subtitle: _("Displays line numbers at the left of the note");
+        icon-name: "view-list-ordered-symbolic";
+        activatable-widget: show_line_numbers;
+
+        Switch show_line_numbers {
+          valign: center;
+        }
+      }
       Adw.ActionRow {
 
         title: _("Show all notes");
@@ -85,6 +105,12 @@ template $FolioPreferencesWindow : Adw.PreferencesWindow {
         }
       }
     }
+  }
+
+  Adw.PreferencesPage {
+    title: _("Layout");
+    icon-name: "sidebar-show-symbolic";
+
     Adw.PreferencesGroup {
       Adw.ActionRow {
 
@@ -94,17 +120,6 @@ template $FolioPreferencesWindow : Adw.PreferencesWindow {
         activatable-widget: enable_3_pane;
 
         Switch enable_3_pane {
-          valign: center;
-        }
-      }
-      Adw.ActionRow {
-
-        title: _("Show line numbers");
-        subtitle: _("Displays line numbers at the left of the note");
-        icon-name: "view-list-ordered-symbolic";
-        activatable-widget: show_line_numbers;
-
-        Switch show_line_numbers {
           valign: center;
         }
       }
@@ -126,6 +141,12 @@ template $FolioPreferencesWindow : Adw.PreferencesWindow {
         icon-name: "object-flip-horizontal-symbolic";
       }
     }
+  }
+
+  Adw.PreferencesPage {
+    title: _("Files");
+    icon-name: "folder-symbolic";
+
     Adw.PreferencesGroup {
       Adw.ActionRow {
 
