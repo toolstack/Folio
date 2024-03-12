@@ -77,8 +77,8 @@ Flatpak build requires flatpak-building installed.
  - Install snapcraft if not already installed
  - change into the top level source directory
  - to build the snap, run `snapcraft`
- - to install locally, run `sudo snap install ./folio_24.04_amd64.snap --dangerous`
- - to lanuch the snap, run `folio`
+ - to install locally, run `sudo snap install ./folio_YY.XX_amd64.snap --dangerous`
+ - to launch the snap, run `folio`
 
 ### AppImage builds
  - Install linuxdeploy if not already installed
