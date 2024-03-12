@@ -687,8 +687,12 @@ public class GtkMarkdown.View : GtkSource.View {
 						buffer.get_iter_at_offset (out start_url_iter, start_url_pos);
 						buffer.get_iter_at_offset (out end_url_iter, end_url_pos);
 
-						// Apply our styling
-						buffer.apply_tag (text_tag_url, start_text_iter, end_text_iter);
+						// If the styling has already been applied, don't both re-applying it.
+						if (!start_text_iter.has_tag (text_tag_url) && !end_text_iter.has_tag (text_tag_url) && !start_url_iter.has_tag (text_tag_url) && !end_url_iter.has_tag (text_tag_url)) {
+							// Apply our styling
+							buffer.apply_tag (text_tag_url, start_text_iter, end_text_iter);
+							buffer.apply_tag (text_tag_url, start_url_iter, end_url_iter);
+						}
 					}
 				} while (matches.next ());
 			}
@@ -708,8 +712,11 @@ public class GtkMarkdown.View : GtkSource.View {
 						buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
 						buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
 
-						// Apply our styling
-						buffer.apply_tag (text_tag_url, start_text_iter, end_text_iter);
+						// If the styling has already been applied, don't both re-applying it.
+						if (!start_text_iter.has_tag (text_tag_url) && !end_text_iter.has_tag (text_tag_url)) {
+							// Apply our styling
+							buffer.apply_tag (text_tag_url, start_text_iter, end_text_iter);
+						}
 					}
 				} while (matches.next ());
 			}
@@ -729,8 +736,11 @@ public class GtkMarkdown.View : GtkSource.View {
 						buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
 						buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
 
-						// Apply our styling
-						buffer.apply_tag (text_tag_url, start_text_iter, end_text_iter);
+						// If the styling has already been applied, don't both re-applying it.
+						if (!start_text_iter.has_tag (text_tag_url) && !end_text_iter.has_tag (text_tag_url)) {
+							// Apply our styling
+							buffer.apply_tag (text_tag_url, start_text_iter, end_text_iter);
+						}
 					}
 				} while (matches.next ());
 			}
