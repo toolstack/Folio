@@ -155,16 +155,19 @@ rene-coty
 		about.set_release_notes ("""
 <p>Changes:</p>
 <ul>
-	<li>Add snap release (thanks @soumyaDghosh)</li>
-	<li>Translation updates: Spanish and French</li>
-	<li>Support Control-Click to open links in your default browser</li>
-	<li>Add formatting to links that do not have markdown syntax</li>
-	<li>Add formatting to e-mail address</li>
-	<li>Fix main menu box size</li>
-	<li>Fix more build warnings</li>
-	<li>Fix notebook icon not being updated after it is renamed</li>
-	<li>Fix crash if the note's directory has been moved/deleted</li>
-	<li>Fix missing scroll bars on notebook/note list</li>
+	<li>Add support for naming a new note based on currently selected text in an existing note</li>
+	<li>Add support to link to other notes and be able to ctrl-click to open them</li>
+	<li>Add support for double backticks for code spans</li>
+	<li>Add AppImage packaging instructions</li>
+	<li>Add auto save option (disabled by default)</li>
+	<li>Add option to display the "All notes" notebook all the time (disabled by default)</li>
+	<li>Add option to show line numbers</li>
+	<li>Add option to set the fixed width of the note area</li>
+	<li>Reorganized the preferences page</li>
+	<li>Fix amperands in the changelog</li>
+	<li>Fix possible crash if notes were not loaded in time</li>
+	<li>Fix when saving a note the timestamp not being updated in the note list</li>
+	<li>Fix when selecting a different note, the scroll position should be returned to the top</li>
 </ul>
 """
 		);
