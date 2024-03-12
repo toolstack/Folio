@@ -99,16 +99,43 @@ public class Folio.EditView : Gtk.Box {
 						} catch (Error e) {
 							toast (Strings.COULDNT_FIND_APP_TO_HANDLE_URIS);
 						}
-					} else {
+					} else if ( ( url_text.substring (0,2) == "./" ) ||
+						( url_text.substring (0, 3) == "../" ) ||
+						( url_text.down ().substring (0, 9) == "file://./" ) ||
+						( url_text.down ().substring (0, 10) == "file://../" )
+						) {
+						if (url_text.down ().substring (0, 7) == "file://" ) {
+							url_text = url_text.substring (7, -1);
+						}
+						var window = (Folio.Window)get_ancestor (typeof (Folio.Window));
+						var app = (Folio.Application)window.get_application ();
+						var window_model = app.window_model;
+						// Is this a link to another note in the current notebook?
+						if ( ( url_text[0] == '.' && url_text[1] == '/' ) ) {
+							url_text = window_model.notebook.name + url_text.substring (1, -1);
+						}
+						// Is this a link to another note in another notebook?
+						if ( ( url_text[0] == '.' && url_text[1] == '.' && url_text[2] == '/' ) ) {
+							url_text = url_text.substring (3, -1);
+						}
+						// Trim off the .md extension if it exists.
+						if (url_text.substring (-3, -1) == ".md") {
+							url_text = url_text.substring (0, url_text.length - 3);
+						}
+						// Try and get the note object.
+						var note = window_model.try_get_note_from_path (url_text);
+						if (note != null)
+							window_model.open_note_in_notebook (note);
+						else
+							toast ("Failed to find note!");
+					}
+					else {
 						// Since it wasn't an e-mail address, check to see if we have a valid url
 						// to open.  check_if_bare_link will validate a real url for us.
 						if (markdown_view.check_if_bare_link (url_text)) {
 							// If it's bare, add in http by default.
 							if (!url_text.contains ("://"))
 								url_text = "http://" + url_text;
-
-							stdout.printf ("url: %s\n", url_text);
-
 							try {
 								GLib.AppInfo.launch_default_for_uri (url_text, null);
 							} catch (Error e) {
