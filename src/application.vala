@@ -200,7 +200,15 @@ rene-coty
 	private void on_new_note () {
 		activate ();
 		if (window_model.notebook != null) {
-			var name = window_model.generate_new_note_name ();
+			var buffer = window_model.current_buffer;
+			var sel_name = "";
+			if (buffer != null) {
+				Gtk.TextIter start, end;
+				if (buffer.get_selection_bounds (out start, out end) ) {
+					sel_name = buffer.get_text (start, end, true);
+				}
+			}
+			var name = window_model.generate_new_note_name (0, sel_name);
 			main_window.try_create_note (name);
 		} else {
 			toast (Strings.CREATE_NOTEBOOK_BEFORE_CREATING_NOTE);

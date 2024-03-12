@@ -292,12 +292,17 @@ public class Folio.WindowModel : Object {
 			.first_match ((it) => it.name == note_name);
 	}
 
-	public string generate_new_note_name (int i = 0) requires (notebook != null) {
-		var name = i == 0 ? _("Note") : @"$(_("Note")) $i";
+	public string generate_new_note_name (int i = 0, string? full_name = null) requires (notebook != null) {
+		var name = "";
 		var s = notebook.loaded_notes.size;
+		if (full_name != null && full_name != "") {
+			name = i == 0 ? full_name : @"$full_name $i";
+		} else {
+			name = i == 0 ? _("Note") : @"$(_("Note")) $i";
+		}
 		for (int j = 0; j < s; j++) {
 			if (notebook.loaded_notes.@get (j).name == name)
-				return generate_new_note_name (++i);
+				return generate_new_note_name (++i, full_name);
 		}
 		return name;
 	}
