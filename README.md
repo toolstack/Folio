@@ -10,10 +10,15 @@ Contributions are appreciated, see below for how to help translate Folio!
 
  - Almost WYSIWYG markdown rendering
  - Searchable through GNOME search
- - Highlight and strikethrough text formatting
+ - Highlight and strike-through text formatting
  - Application theming based on notebook color
  - Trash can
  - Markdown document
+ - Optional line numbers
+ - Optional auto save
+ - Open links with Control-Click
+ - Link to other notes in Folio
+ - Automatically create links for bare URL's and e-mail addresses
 
 ## Get Folio
 
