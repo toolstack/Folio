@@ -268,7 +268,7 @@ rene-coty
 	}
 
 	public override void shutdown () {
-		window_model.save_note ();
+		window_model.save_note (main_window);
 		base.shutdown ();
 	}
 

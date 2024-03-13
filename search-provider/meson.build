@@ -30,6 +30,9 @@ executable(
   exec_name,
   search_provider_sources,
   dependencies: search_provider_deps,
+  c_args: [
+	'-DGETTEXT_PACKAGE="' + app_id + '"'
+  ],
   vala_args: [
     meson.project_source_root() + '/src/config.vapi',
     '--target-glib=2.70',
