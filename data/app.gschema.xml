@@ -38,8 +38,13 @@
     </key>
     <key name="notes-dir" type="s">
       <default>'~/.var/app/com.toolstack.Folio/data'</default>
-      <summary>Notes Directory</summary>
+      <summary>Notes Storage Location</summary>
       <description>Where the notebooks are stored (requires app restart)</description>
+    </key>
+    <key name="trash-dir" type="s">
+      <default>'~/.var/app/com.toolstack.Folio/data'</default>
+      <summary>Trash Storage Location</summary>
+      <description>Where the trash folder is located (requires app restart)</description>
     </key>
     <key name="show-line-numbers" type="b">
       <default>false</default>

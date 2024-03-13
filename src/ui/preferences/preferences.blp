@@ -4,7 +4,7 @@ using Adw 1;
 template $FolioPreferencesWindow : Adw.PreferencesWindow {
 
   default-width: 560;
-  default-height: 400;
+  default-height: 430;
   search-enabled: false;
   modal: true;
 
@@ -193,6 +193,34 @@ template $FolioPreferencesWindow : Adw.PreferencesWindow {
           }
 
           Button notes_dir_button_reset {
+            valign: center;
+            icon-name: "reset-symbolic";
+          }
+        }
+      }
+      Adw.ActionRow {
+
+        title: _("Trash Storage Location");
+        subtitle: _("Where the trash folder is located (requires app restart)");
+        icon-name: "folder-symbolic";
+        activatable-widget: trash_dir_button;
+
+        Box {
+
+          orientation: horizontal;
+
+          styles ["linked"]
+
+          Button trash_dir_button {
+            valign: center;
+            width-request: 128;
+
+            child: Label trash_dir_label {
+              ellipsize: start;
+            };
+          }
+
+          Button trash_dir_button_reset {
             valign: center;
             icon-name: "reset-symbolic";
           }

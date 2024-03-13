@@ -126,9 +126,9 @@ public class Folio.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
 		}
 		var trashed_dir_path = "";
 		if (disable_hidden_trash) {
-			trashed_dir_path = @"$(provider.notes_dir)/Trash/$(note.notebook.name)";
+			trashed_dir_path = @"$(provider.trash_dir)/Trash/$(note.notebook.name)";
 		} else {
-			trashed_dir_path = @"$(provider.notes_dir)/.trash/$(note.notebook.name)";
+			trashed_dir_path = @"$(provider.trash_dir)/.trash/$(note.notebook.name)";
 		}
 		var trashed_path = @"$trashed_dir_path/$(note.file_name)";
 		try {
