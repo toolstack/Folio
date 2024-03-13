@@ -71,9 +71,40 @@ public class Folio.Note : Object {
 		return null;
 	}
 
+	public bool validate_save () {
+		// Lets make sure the file hasn't changed on disk before saving it.
+		var file_handle = File.new_for_path (path);
+		FileInfo file_info;
+		DateTime file_time;
+
+		try {
+			file_info = file_handle.query_info (FileAttribute.TIME_MODIFIED, FileQueryInfoFlags.NONE);
+			file_time = file_info.get_modification_date_time ();
+		} catch (Error e) {
+			file_time = this._time_modified;
+		}
+
+		if ( !file_time.to_local ().equal (this._time_modified)) {
+			return false;
+		}
+
+		return true;
+	}
+
 	public void save (string text) {
-		FileUtils.save_to (File.new_for_path (path), text);
-		this._time_modified = new DateTime.now ();
+		// Lets make sure the file hasn't changed on disk before saving it.
+		var file_handle = File.new_for_path (path);
+		FileInfo file_info;
+		DateTime file_time;
+
+		// Save the file.
+		FileUtils.save_to (file_handle, text);
+		// Now get the updated file time and store it in the note.
+		try {
+			file_info = file_handle.query_info (FileAttribute.TIME_MODIFIED, FileQueryInfoFlags.NONE);
+			file_time = file_info.get_modification_date_time ();
+			this._time_modified = file_time;
+		} catch (Error e) {}
 	}
 
 	public bool equals (Note other) {

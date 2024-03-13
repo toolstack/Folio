@@ -191,7 +191,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 		if (settings.get_boolean ("enable-autosave")) {
 			GLib.Timeout.add (5000, () => {
-				window_model.save_note ();
+				window_model.save_note (this);
 				return true;
 			}, 0 );
 		}
@@ -259,7 +259,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	public void save_current_note () {
 		message ("saving");
-		window_model.save_note ();
+		window_model.save_note (this);
 	}
 
 	public void navigate_to_notes () {
@@ -442,7 +442,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 			Strings.EMPTY_TRASH,
 			Strings.EMPTY_TRASH_CONFIRMATION,
 			() => {
-				window_model.update_note (null);
+				window_model.update_note (null, this);
 				window_model.empty_trash ();
 			}
 		);
@@ -526,7 +526,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	public void try_delete_note (Note note) {
 		try {
-			window_model.update_note (null);
+			window_model.update_note (null, this);
 			//upon deletion of a note, we will select the next note DOWN the list (or none).
 			var idx = note.notebook.get_index_of (note);
 
@@ -540,7 +540,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 				new_active_note = (Note) note.notebook.get_item (idx - 1);
 			}
 
-			window_model.update_note (new_active_note);
+			window_model.update_note (new_active_note, this);
 
 			//if we are removing the last item we need to select a different index.
 			//we really should be doing this somewhere else.

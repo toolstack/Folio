@@ -58,31 +58,67 @@ public class Folio.WindowModel : Object {
 		}
 	}
 
-	public void save_note () {
+	private void _update_note_list_item_timestamp () {
+		// Need to force the item in the notes list to get an updated timestamp, the only way
+		// to do this is apparently deselect the current item and then reselect it.  So let's do
+		// this, but we need to keep track of the cursor so we put it back in the right spot, as
+		// well as the currently selected not.
+		Gtk.TextMark cursor;
+		Gtk.TextIter cursor_iter;
+		int current_pos;
+		uint current_selected;
+		cursor = current_buffer.get_insert ();
+		current_buffer.get_iter_at_mark (out cursor_iter, cursor);
+		current_pos = cursor_iter.get_offset ();
+		current_selected = notes_model.selected;
+
+		// Now deselect the note and then reselect it.
+		select_note_at (-1);
+		select_note_at (current_selected);
+
+		// Time to return the cursor to the right spot.
+		current_buffer.get_iter_at_offset (out cursor_iter, current_pos);
+		current_buffer.place_cursor (cursor_iter);
+	}
+
+	public void save_note ( Window? window = null) {
 		if (note != null && is_unsaved) {
-			note.save (current_buffer.get_all_text ());
-			is_unsaved = false;
+			bool result = note.validate_save ();
 
-			// Need to force the item in the notes list to get an updated timestamp, the only way
-			// to do this is apparently deselect the current item and then reselect it.  So let's do
-			// this, but we need to keep track of the cursor so we put it back in the right spot, as
-			// well as the currently selected not.
-			Gtk.TextMark cursor;
-			Gtk.TextIter cursor_iter;
-			int current_pos;
-			uint current_selected;
-			cursor = current_buffer.get_insert ();
-			current_buffer.get_iter_at_mark (out cursor_iter, cursor);
-			current_pos = cursor_iter.get_offset ();
-			current_selected = notes_model.selected;
+			if (!result) {
+				var confirm = new Gtk.AlertDialog ("");
+				confirm.set_message (_("File Changed On Disk"));
+				confirm.set_detail ("The file has changed on disk since it was last saved/loaded by Folio.\n\nYou may do one of the following:\n\n • Reload the file (discarding any changes you have made in Folio)\n • Overwrite the file (discarding any changes made outside of Folio)\n • Cancel the operation and manually resolve the issue\n\nNote: Canceling the save if you have already moved to a new note/notebook this will discard your changes.");
+				confirm.set_buttons ({_("Reload"), _("Overwrite"), _("Cancel")});
+				confirm.set_cancel_button (2);
+				confirm.set_default_button (2);
+				confirm.set_modal (true);
+				confirm.choose.begin (window, null, (obj, res) => {
+					int button_result = 2;
+					try {
+						button_result = confirm.choose.end (res);
+					} catch (Error e) {}
 
-			// Now deselect the note and then reselect it.
-			select_note_at (-1);
-			select_note_at (current_selected);
-
-			// Time to return the cursor to the right spot.
-			current_buffer.get_iter_at_offset (out cursor_iter, current_pos);
-			current_buffer.place_cursor (cursor_iter);
+					switch (button_result) {
+						case 0:
+							note.save (note.load_text());
+							is_unsaved = false;
+							_update_note_list_item_timestamp ();
+							break;
+						case 1:
+							note.save (current_buffer.get_all_text ());
+							is_unsaved = false;
+							_update_note_list_item_timestamp ();
+							break;
+						default:
+							break;
+					}
+				});
+			} else {
+				note.save (current_buffer.get_all_text ());
+				is_unsaved = false;
+				_update_note_list_item_timestamp ();
+			}
 		}
 	}
 
@@ -178,9 +214,9 @@ public class Folio.WindowModel : Object {
 			last_container.unload ();
 	}
 
-	public GtkMarkdown.Buffer? update_note (Note? note) {
+	public GtkMarkdown.Buffer? update_note (Note? note, Window? window = null) {
 		if (this.note == note) return current_buffer;
-		save_note ();
+		save_note (window);
 		this.note = note;
 		is_unsaved = false;
 		if (note != null) {
