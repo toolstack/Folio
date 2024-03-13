@@ -161,6 +161,17 @@ template $FolioPreferencesWindow : Adw.PreferencesWindow {
       }
       Adw.ActionRow {
 
+        title: _("Don't hide the Trash folder");
+        subtitle: _("The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)");
+        icon-name: "empty-trash-symbolic";
+        activatable-widget: disable_hidden_trash;
+
+        Switch disable_hidden_trash {
+          valign: center;
+        }
+      }
+      Adw.ActionRow {
+
         title: _("Notes Storage Location");
         subtitle: _("Where the notebooks are stored (requires app restart)");
         icon-name: "folder-symbolic";

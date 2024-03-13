@@ -11,12 +11,25 @@ public class Folio.Trash : Object, ListModel, NoteContainer {
 	}
 
 	public string path {
-		owned get { return @"$(provider.notes_dir)/.trash"; }
+		owned get {
+			if (disable_hidden_trash) {
+				return @"$(provider.notes_dir)/Trash";
+			} else {
+				return @"$(provider.notes_dir)/.trash";
+			}
+		}
 	}
 
 	private ArrayList<Note>? _loaded_notes = null;
 	private Provider provider;
 	private string _name;
+
+	private bool disable_hidden_trash;
+
+	construct {
+		var settings = new Settings (Config.APP_ID);
+		disable_hidden_trash = settings.get_boolean ("disable-hidden-trash");
+	}
 
 	public Trash (Provider provider, string name) {
 		this.provider = provider;

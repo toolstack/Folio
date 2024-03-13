@@ -56,6 +56,11 @@
       <summary>Enable autosave</summary>
       <description>Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)</description>
     </key>
+    <key name="disable-hidden-trash" type="b">
+      <default>false</default>
+      <summary>Don't hide the Trash folder</summary>
+      <description>The trash folder is set as a hidden folder by default, this option makes it visible</description>
+    </key>
   </schema>
   <enum id="com.toolstack.Folio.ThemeVariantEnum">
     <value nick="default" value="0"/>

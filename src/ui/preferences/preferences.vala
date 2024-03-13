@@ -16,6 +16,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 	[GtkChild] unowned Gtk.Switch show_line_numbers;
 	[GtkChild] unowned Gtk.Switch show_all_notes;
 	[GtkChild] unowned Gtk.Switch enable_autosave;
+	[GtkChild] unowned Gtk.Switch disable_hidden_trash;
 
 	public PreferencesWindow (Application app) {
 		Object ();
@@ -86,6 +87,12 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 		enable_autosave.active = settings.get_boolean ("enable-autosave");
 		enable_autosave.state_set.connect ((state) => {
 			settings.set_boolean ("enable-autosave", state);
+			return false;
+		});
+
+		disable_hidden_trash.active = settings.get_boolean ("disable-hidden-trash");
+		disable_hidden_trash.state_set.connect ((state) => {
+			settings.set_boolean ("disable-hidden-trash", state);
 			return false;
 		});
 
