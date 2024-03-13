@@ -11,6 +11,9 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 	[GtkChild] unowned Gtk.Button notes_dir_button;
 	[GtkChild] unowned Gtk.Button notes_dir_button_reset;
 	[GtkChild] unowned Gtk.Label notes_dir_label;
+	[GtkChild] unowned Gtk.Button trash_dir_button;
+	[GtkChild] unowned Gtk.Button trash_dir_button_reset;
+	[GtkChild] unowned Gtk.Label trash_dir_label;
 	[GtkChild] unowned Gtk.Switch limit_note_width;
 	[GtkChild] unowned Adw.SpinRow custom_note_width;
 	[GtkChild] unowned Gtk.Switch show_line_numbers;
@@ -149,6 +152,40 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 			notes_dir = settings.get_string ("notes-dir");
 			notes_dir_label.label = notes_dir;
 			notes_dir_label.tooltip_text = notes_dir;
+		});
+		var trash_dir = settings.get_string ("trash-dir");
+		trash_dir_label.label = settings.get_string ("trash-dir");
+		trash_dir_label.tooltip_text = notes_dir;
+		trash_dir_button.clicked.connect (() => {
+			var chooser = new Gtk.FileChooserNative (
+				Strings.PICK_TRASH_DIR,
+				this,
+				Gtk.FileChooserAction.SELECT_FOLDER,
+				Strings.APPLY,
+				Strings.CANCEL
+			);
+			chooser.modal = true;
+			try {
+				chooser.set_file (File.new_for_path (trash_dir));
+			} catch (Error e) {
+				// Should probably do something else here.
+				return;
+			}
+			chooser.response.connect ((id) => {
+				if (id == Gtk.ResponseType.ACCEPT) {
+					trash_dir = chooser.get_file ().get_path ();
+					settings.set_string ("trash-dir", trash_dir);
+					trash_dir_label.label = trash_dir;
+					trash_dir_label.tooltip_text = trash_dir;
+				}
+			});
+			chooser.show ();
+		});
+		trash_dir_button_reset.clicked.connect (() => {
+			settings.reset ("trash-dir");
+			trash_dir = settings.get_string ("trash-dir");
+			trash_dir_label.label = trash_dir;
+			trash_dir_label.tooltip_text = trash_dir;
 		});
 	}
 }

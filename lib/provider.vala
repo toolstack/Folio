@@ -34,6 +34,7 @@ public class Folio.Provider : Object, ListModel {
 	private ArrayList<Notebook>? _notebooks = null;
 
 	public string notes_dir;
+	public string trash_dir;
 
 	public Provider (string? trash_name = null) {
 		this._trash = new Trash (this, trash_name ?? "");
@@ -119,9 +120,9 @@ public class Folio.Provider : Object, ListModel {
 		{
 			var trashed_path = "";
 			if (disable_hidden_trash) {
-				trashed_path = @"$(notes_dir)/Trash/$(notebook.name)";
+				trashed_path = @"$(this.trash_dir)/Trash/$(notebook.name)";
 			} else {
-				trashed_path = @"$(notes_dir)/.trash/$(notebook.name)";
+				trashed_path = @"$(this.trash_dir)/.trash/$(notebook.name)";
 			}
 			FileInfo file_info;
 			var trash_dir = File.new_for_path (trashed_path);
@@ -256,6 +257,7 @@ public class Folio.Provider : Object, ListModel {
 
 		var settings = new Settings (Config.APP_ID);
 		disable_hidden_trash = settings.get_boolean ("disable-hidden-trash");
+		trash_dir = settings.get_string ("trash-dir");
 	}
 
 	private void write_notebook_info (string notebook_path, NotebookInfo info) {

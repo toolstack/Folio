@@ -13,9 +13,9 @@ public class Folio.Trash : Object, ListModel, NoteContainer {
 	public string path {
 		owned get {
 			if (disable_hidden_trash) {
-				return @"$(provider.notes_dir)/Trash";
+				return @"$(provider.trash_dir)/Trash";
 			} else {
-				return @"$(provider.notes_dir)/.trash";
+				return @"$(provider.trash_dir)/.trash";
 			}
 		}
 	}

@@ -43,6 +43,7 @@ public class Folio.Strings {
 	public abstract const string APPLY = _("Apply");
 	public abstract const string CANCEL = _("Cancel");
 	public abstract const string PICK_NOTES_DIR = _("Pick where the notebooks will be stored");
+	public abstract const string PICK_TRASH_DIR = _("Pick where the trash can will be stored");
 	public abstract const string ALL_NOTES = _("All Notes");
 	public abstract const string NOTEBOOK = _("Notebook");
 	public abstract const string LAST_MODIFIED = _("Last Modified");
