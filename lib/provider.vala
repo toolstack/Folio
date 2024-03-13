@@ -117,7 +117,12 @@ public class Folio.Provider : Object, ListModel {
 			throw new ProviderError.COULDNT_DELETE (@"Notebook at '$path' doesn't exist");
 		}
 		{
-			var trashed_path = @"$(notes_dir)/.trash/$(notebook.name)";
+			var trashed_path = "";
+			if (disable_hidden_trash) {
+				trashed_path = @"$(notes_dir)/Trash/$(notebook.name)";
+			} else {
+				trashed_path = @"$(notes_dir)/.trash/$(notebook.name)";
+			}
 			FileInfo file_info;
 			var trash_dir = File.new_for_path (trashed_path);
 			if (!trash_dir.query_exists ()) {
@@ -186,6 +191,7 @@ public class Folio.Provider : Object, ListModel {
 			while ((file_info = enumerator.next_file ()) != null) {
 				if (file_info.get_file_type () != FileType.DIRECTORY) continue;
 				var name = file_info.get_name ();
+				if (disable_hidden_trash && name == "Trash") continue;
 				if (name[0] == '.') continue;
 				var path = @"$notes_dir/$name";
 				notebooks.add (new LocalNotebook (
@@ -243,8 +249,13 @@ public class Folio.Provider : Object, ListModel {
 
 	private Gdk.RGBA default_color = Gdk.RGBA ();
 
+	private bool disable_hidden_trash;
+
 	construct {
 		default_color.parse ("#2ec27eff");
+
+		var settings = new Settings (Config.APP_ID);
+		disable_hidden_trash = settings.get_boolean ("disable-hidden-trash");
 	}
 
 	private void write_notebook_info (string notebook_path, NotebookInfo info) {

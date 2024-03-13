@@ -21,6 +21,13 @@ public class Folio.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
 	NotebookInfo _info;
 	Provider provider;
 
+	private bool disable_hidden_trash;
+
+	construct {
+		var settings = new Settings (Config.APP_ID);
+		disable_hidden_trash = settings.get_boolean ("disable-hidden-trash");
+	}
+
 	public LocalNotebook (Provider provider, NotebookInfo info) {
 		this.provider = provider;
 		this._info = info;
@@ -117,7 +124,12 @@ public class Folio.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
 		if (!file.query_exists ()) {
 			throw new ProviderError.COULDNT_DELETE (@"Couldn't delete note at $path");
 		}
-		var trashed_dir_path = @"$(provider.notes_dir)/.trash/$(note.notebook.name)";
+		var trashed_dir_path = "";
+		if (disable_hidden_trash) {
+			trashed_dir_path = @"$(provider.notes_dir)/Trash/$(note.notebook.name)";
+		} else {
+			trashed_dir_path = @"$(provider.notes_dir)/.trash/$(note.notebook.name)";
+		}
 		var trashed_path = @"$trashed_dir_path/$(note.file_name)";
 		try {
 			var trashed_dir = File.new_for_path (trashed_dir_path);
