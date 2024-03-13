@@ -128,6 +128,7 @@ Now do the releases on Flathub and Snapcraft.
  - commit the changes
  - go to github and create a new PR to merge the branch into master
  - commit the PR
+ - monitor the [buildbot](https://buildbot.flathub.org/#/)
 
 ### Snap release
  - after build, login to your snapcraft account `snapcraft login`
