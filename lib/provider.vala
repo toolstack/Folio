@@ -85,8 +85,8 @@ public class Folio.Provider : Object, ListModel {
 		if (notebook.name != info.name) {
 			var lnb = notebook as LocalNotebook;
 			if (lnb != null) {
-				var origina_path = lnb.path;
-				var original_file = File.new_for_path (origina_path);
+				var original_path = lnb.path;
+				var original_file = File.new_for_path (original_path);
 				var file = File.new_for_path (path);
 				if (file.query_exists ()) {
 					throw new ProviderError.ALREADY_EXISTS (@"Notebook at $path already exists");
@@ -94,7 +94,7 @@ public class Folio.Provider : Object, ListModel {
 				try {
 					original_file.set_display_name(info.name);
 				} catch (Error e) {
-					throw new ProviderError.COULDNT_CREATE_FILE (@"Couldn't change $origina_path to $path: $(e.message)");
+					throw new ProviderError.COULDNT_CREATE_FILE (@"Couldn't change $original_path to $path: $(e.message)");
 				}
 			}
 		}
