@@ -60,18 +60,18 @@ Flatpak build requires flatpak-building installed.
 
 ### Local builds (NOT RECOMMENDED)
  - change into the top level source directory
- - to configure the build environment (required only once), run ```meson build```
+ - to configure the build environment (required only once), run `meson build`
  - change into the build directory
- - to build Folio, run ```ninja```
- - to install Folio, run ```ninja install```
- - to run Folio, run ```src/com.toolstack.Folio```
+ - to build Folio, run `ninja`
+ - to install Folio, run `ninja install`
+ - to run Folio, run `src/com.toolstack.Folio`
 
 ### Flatpak builds
  - install flatpak-builder if not already installed
  - change into the top level source directory
- - to build the flatpak, run ```flatpak-builder --force-clean flatpak com.toolstack.Folio.json```
- - to build and install the flatpak, run ```flatpak-builder --user --install --force-clean flatpak com.toolstack.Folio.json```
- - to launch the flatpak, run ```flatpak run com.toolstack.Folio```
+ - to build the flatpak, run `flatpak-builder --force-clean flatpak com.toolstack.Folio.json`
+ - to build and install the flatpak, run `flatpak-builder --user --install --force-clean flatpak com.toolstack.Folio.json`
+ - to launch the flatpak, run `flatpak run com.toolstack.Folio`
 
 ### Snap builds
  - Install snapcraft if not already installed
@@ -130,8 +130,8 @@ Now do the releases on Flathub and Snapcraft.
  - commit the PR
 
 ### Snap release
- - after build, login to your snapcraft account ```snapcraft login```
- - upload the build ```snapcraft upload --release=stable folio_YY.##_amd64.snap```
+ - after build, login to your snapcraft account `snapcraft login`
+ - upload the build `snapcraft upload --release=stable folio_YY.##_amd64.snap`
 
 ## Generate translation POT
  Folio uses POT/PO files for it's translations, the POT file defines all the strings that are used by Folio.
@@ -140,16 +140,16 @@ Now do the releases on Flathub and Snapcraft.
 
  To generate the POT file:
  - change into the PO directory
- - run ```./print-source-files.sh > POTFILES```
- - change into the build directory: ```cd ../build```
- - run ```meson compile com.toolstack.Folio-pot```
+ - run `./print-source-files.sh > POTFILES`
+ - change into the build directory: `cd ../build`
+ - run `meson compile com.toolstack.Folio-pot`
 
 ## FAQ
 
 ### Why fork Paper?
 Unfortunately Paper is out of date and the developer does not have the time/interest to maintain it any more.
 
-### Ok, so what is Folio's main focous
+### Ok, so what is Folio's main focus
 The primary focus of my fork is getting everything up to date and supported for the long term.
 
 A secondary focus is feature additions.  Some new features that have already been added are:
