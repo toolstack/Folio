@@ -33,10 +33,10 @@ public class Folio.Note : Object {
 		owned get { return @"$(_notebook.name)/$name"; }
 	}
 
-	string _name;
-	string _extension;
-	Notebook _notebook;
-	DateTime _time_modified;
+	private string _name;
+	private string _extension;
+	private Notebook _notebook;
+	private DateTime _time_modified;
 
 	public Note (string name, string extension, Notebook notebook, DateTime time_modified) {
 		this._name = name;
