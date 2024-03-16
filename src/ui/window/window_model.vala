@@ -87,9 +87,13 @@ public class Folio.WindowModel : Object {
 
 			if (!result) {
 				var confirm = new Gtk.AlertDialog ("");
-				confirm.set_message (_("File Changed On Disk"));
-				confirm.set_detail ("The file has changed on disk since it was last saved/loaded by Folio.\n\nYou may do one of the following:\n\n • Reload the file (discarding any changes you have made in Folio)\n • Overwrite the file (discarding any changes made outside of Folio)\n • Cancel the operation and manually resolve the issue\n\nNote: Canceling the save if you have already moved to a new note/notebook this will discard your changes.");
-				confirm.set_buttons ({_("Reload"), _("Overwrite"), _("Cancel")});
+				confirm.set_message (Strings.FILE_CHANGED_ON_DISK);
+				confirm.set_detail (Strings.FILE_CHANGED_DIALOG_TRIPLE);
+				confirm.set_buttons ({
+					Strings.FILE_CHANGED_RELOAD,
+					Strings.FILE_CHANGED_OVERWRITE,
+					Strings.FILE_CHANGED_CANCEL
+					});
 				confirm.set_cancel_button (2);
 				confirm.set_default_button (2);
 				confirm.set_modal (true);
@@ -243,9 +247,12 @@ public class Folio.WindowModel : Object {
 									if (is_unsaved) {
 										is_unsaved = false;
 										var confirm = new Gtk.AlertDialog ("");
-										confirm.set_message (_("File Changed On Disk"));
-										confirm.set_detail ("The file has changed on disk by another application.\n\nYou may do one of the following:\n\n • Reload the file (discarding any changes you have made in Folio)\n • Overwrite the file (discarding any changes made outside of Folio)");
-										confirm.set_buttons ({_("Reload"), _("Overwrite")});
+										confirm.set_message (Strings.FILE_CHANGED_ON_DISK);
+										confirm.set_detail (Strings.FILE_CHANGED_DIALOG_DOUBLE);
+										confirm.set_buttons ({
+											Strings.FILE_CHANGED_RELOAD,
+											Strings.FILE_CHANGED_OVERWRITE
+											});
 										confirm.set_cancel_button (1);
 										confirm.set_default_button (1);
 										confirm.set_modal (true);
@@ -415,7 +422,7 @@ public class Folio.WindowModel : Object {
 		if (full_name != null && full_name != "") {
 			name = i == 0 ? full_name : @"$full_name $i";
 		} else {
-			name = i == 0 ? _("Note") : @"$(_("Note")) $i";
+			name = i == 0 ? Strings.NEW_NOTE_NAME : Strings.NEW_NOTE_NAME_X.printf (i);
 		}
 		for (int j = 0; j < s; j++) {
 			if (notebook.loaded_notes.@get (j).name == name)

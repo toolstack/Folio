@@ -28,7 +28,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 		var font_dialog = new Gtk.FontDialog ();
 		var font_desc = Pango.FontDescription.from_string (settings.get_string ("note-font"));
 
-		font_dialog.set_title (_("Pick a font for displaying the notes' content"));
+		font_dialog.set_title (Strings.PICK_NOTE_FONT);
 		font_button.set_font_desc (font_desc);
 		font_button.notify["font-desc"].connect (() => {
 			var font = font_button.get_font_desc ().to_string ();
@@ -41,7 +41,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 		var font_desc_monospace = Pango.FontDescription.from_string (settings.get_string ("note-font-monospace"));
 		var monospace_filter = new Folio.MonospaceFilter ();
 		font_dialog_monospace.set_filter (monospace_filter);
-		font_dialog_monospace.set_title (_("Pick a font for displaying code"));
+		font_dialog_monospace.set_title (Strings.PICK_CODE_FONT);
 		font_button_monospace.set_font_desc (font_desc_monospace);
 		font_button_monospace.notify["font-desc"].connect (() => {
 			var font = font_button_monospace.get_font_desc ().to_string ();

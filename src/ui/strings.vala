@@ -49,4 +49,14 @@ public class Folio.Strings {
 	public abstract const string LAST_MODIFIED = _("Last Modified");
 	public abstract const string EXTENSION = _("Extension");
 	public abstract const string UNRECOGNIZED_URI = _("Unable to recognize URI");
+	public abstract const string PICK_NOTE_FONT = _("Pick a font for displaying the notes' content");
+	public abstract const string PICK_CODE_FONT = _("Pick a font for displaying code");
+	public abstract const string FILE_CHANGED_ON_DISK = _("File Changed On Disk");
+	public abstract const string FILE_CHANGED_DIALOG_TRIPLE = _("The file has changed on disk since it was last saved/loaded by Folio.\n\nYou may do one of the following:\n\n • Reload the file (discarding any changes you have made in Folio)\n • Overwrite the file (discarding any changes made outside of Folio)\n • Cancel the operation and manually resolve the issue\n\nNote: Canceling the save if you have already moved to a new note/notebook this will discard your changes.");
+	public abstract const string FILE_CHANGED_RELOAD = _("Reload");
+	public abstract const string FILE_CHANGED_OVERWRITE = _("Overwrite");
+	public abstract const string FILE_CHANGED_CANCEL = _("Cancel");
+	public abstract const string FILE_CHANGED_DIALOG_DOUBLE = _("The file has changed on disk by another application.\n\nYou may do one of the following:\n\n • Reload the file (discarding any changes you have made in Folio)\n • Overwrite the file (discarding any changes made outside of Folio)");
+	public abstract const string NEW_NOTE_NAME = _("Note");
+	public abstract const string NEW_NOTE_NAME_X = _("Note %i");
 }
