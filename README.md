@@ -148,7 +148,7 @@ Now do the releases on Flathub and Snapcraft.
 
  To generate the POT file:
  - change into the PO directory
- - run `./generate-POT-file`
+ - run `./generate-POT-file.sh`
 
 ## FAQ
 
