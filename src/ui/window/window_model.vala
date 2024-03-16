@@ -214,6 +214,86 @@ public class Folio.WindowModel : Object {
 			last_container.unload ();
 	}
 
+	private FileMonitor _monitor = null;
+
+	private void _monitor_note (Note note, Window? window) {
+		File file = File.new_for_path (note.path);
+
+		if (_monitor != null) {
+			_monitor.cancel();
+		}
+
+		// Setup a monitor to watch for changes on disk.
+		if (file != null) {
+			try {
+				_monitor = file.monitor_file (FileMonitorFlags.WATCH_HARD_LINKS);
+				_monitor.changed.connect ((monitor, file, other, event) => {
+						switch (event) {
+							case FileMonitorEvent.CHANGES_DONE_HINT:
+								FileInfo file_info;
+								DateTime file_time;
+								try {
+									file_info = file.query_info (FileAttribute.TIME_MODIFIED, FileQueryInfoFlags.NONE);
+									file_time = file_info.get_modification_date_time ();
+								} catch (Error e) {
+									file_time = new DateTime.now ();
+								}
+
+								if (!note.time_modified.equal (file_time)) {
+									if (is_unsaved) {
+										is_unsaved = false;
+										var confirm = new Gtk.AlertDialog ("");
+										confirm.set_message (_("File Changed On Disk"));
+										confirm.set_detail ("The file has changed on disk by another application.\n\nYou may do one of the following:\n\n • Reload the file (discarding any changes you have made in Folio)\n • Overwrite the file (discarding any changes made outside of Folio)");
+										confirm.set_buttons ({_("Reload"), _("Overwrite")});
+										confirm.set_cancel_button (1);
+										confirm.set_default_button (1);
+										confirm.set_modal (true);
+										confirm.choose.begin (window, null, (obj, res) => {
+											int button_result = 1;
+											try {
+												button_result = confirm.choose.end (res);
+											} catch (Error e) {}
+
+											switch (button_result) {
+												case 0:
+													current_buffer = new GtkMarkdown.Buffer (note.load_text ());
+													note.update_note_time ();
+													_update_note_list_item_timestamp ();
+													break;
+												default:
+													note.save (current_buffer.get_all_text ());
+													note.update_note_time ();
+													_update_note_list_item_timestamp ();
+													break;
+											}
+										});
+									} else {
+										current_buffer = new GtkMarkdown.Buffer (note.load_text ());
+										note.update_note_time ();
+										_update_note_list_item_timestamp ();
+									}
+								}
+
+								break;
+							case FileMonitorEvent.CREATED:
+							case FileMonitorEvent.ATTRIBUTE_CHANGED:
+							case FileMonitorEvent.PRE_UNMOUNT:
+							case FileMonitorEvent.UNMOUNTED:
+							case FileMonitorEvent.MOVED:
+							case FileMonitorEvent.RENAMED:
+							case FileMonitorEvent.CHANGED:
+							case FileMonitorEvent.DELETED:
+							case FileMonitorEvent.MOVED_IN:
+							case FileMonitorEvent.MOVED_OUT:
+							default:
+								break;
+						}
+				});
+			} catch (Error e) {}
+		}
+	}
+
 	public GtkMarkdown.Buffer? update_note (Note? note, Window? window = null) {
 		if (this.note == note) return current_buffer;
 		save_note (window);
@@ -221,6 +301,7 @@ public class Folio.WindowModel : Object {
 		is_unsaved = false;
 		if (note != null) {
 			current_buffer = new GtkMarkdown.Buffer (note.load_text ());
+			_monitor_note (note, window);
 			var settings = new Settings (@"$(Config.APP_ID).WindowState");
 			settings.set_string ("note", note.id);
 		} else {
