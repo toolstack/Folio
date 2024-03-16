@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.toolstack.Folio\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-12 21:09-0400\n"
+"POT-Creation-Date: 2024-03-15 20:57-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,45 +111,53 @@ msgstr ""
 msgid "Expands the notebook list to include the notebook name"
 msgstr ""
 
-#: data/app.gschema.xml:41
-msgid "Notes Directory"
+#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:175
+msgid "Notes Storage Location"
 msgstr ""
 
 #: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:176
 msgid "Where the notebooks are stored (requires app restart)"
 msgstr ""
 
-#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:65
+#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:203
+msgid "Trash Storage Location"
+msgstr ""
+
+#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:204
+msgid "Where the trash folder is located (requires app restart)"
+msgstr ""
+
+#: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:65
 msgid "Show line numbers"
 msgstr ""
 
-#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:66
+#: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:66
 msgid "Displays line numbers at the left of the note"
 msgstr ""
 
-#: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:76
+#: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:76
 msgid "Show all notes"
 msgstr ""
 
-#: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:77
+#: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:77
 msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
 msgstr ""
 
-#: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:153
+#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:153
 msgid "Enable autosave"
 msgstr ""
 
-#: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:154
+#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:154
 msgid ""
 "Automatically saves the current note every 30 seconds if the contents have "
 "changed (requires app restart)"
 msgstr ""
 
-#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:164
+#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:164
 msgid "Don't hide the Trash folder"
 msgstr ""
 
-#: data/app.gschema.xml:62
+#: data/app.gschema.xml:67
 msgid ""
 "The trash folder is set as a hidden folder by default, this option makes it "
 "visible"
@@ -319,7 +327,7 @@ msgstr ""
 msgid "Save Note"
 msgstr ""
 
-#: src/ui/popup/shortcut_window.blp:34 src/ui/strings.vala:47
+#: src/ui/popup/shortcut_window.blp:34 src/ui/strings.vala:48
 msgid "Notebook"
 msgstr ""
 
@@ -389,10 +397,6 @@ msgstr ""
 msgid ""
 "The trash folder is set as a hidden folder by default, this option makes it "
 "visible (requires app restart)"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:175
-msgid "Notes Storage Location"
 msgstr ""
 
 #: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:129
@@ -551,20 +555,24 @@ msgstr ""
 msgid "Pick where the notebooks will be stored"
 msgstr ""
 
-#: src/ui/strings.vala:46 src/ui/window/notebooks_bar/notebooks_bar.blp:59
+#: src/ui/strings.vala:46
+msgid "Pick where the trash can will be stored"
+msgstr ""
+
+#: src/ui/strings.vala:47 src/ui/window/notebooks_bar/notebooks_bar.blp:59
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:101
 msgid "All Notes"
 msgstr ""
 
-#: src/ui/strings.vala:48
+#: src/ui/strings.vala:49
 msgid "Last Modified"
 msgstr ""
 
-#: src/ui/strings.vala:49
+#: src/ui/strings.vala:50
 msgid "Extension"
 msgstr ""
 
-#: src/ui/strings.vala:50
+#: src/ui/strings.vala:51
 msgid "Unable to recognize URI"
 msgstr ""
 
