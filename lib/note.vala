@@ -53,20 +53,24 @@ public class Folio.Note : Object {
 	}
 
 	public string? load_text () {
+		uint8[] text_data = {};
+
 		try {
 			var file = File.new_for_path (path);
 			if (!file.query_exists ()) {
 				file.create (FileCreateFlags.REPLACE_DESTINATION);
 			} else {
 				string etag_out;
-				uint8[] text_data = {};
 				file.load_contents (null, out text_data, out etag_out);
 				// Make sure the last character of the file is a return, otherwise some of the regex's will break.
 				if (text_data[text_data.length - 1] != 10) { text_data += 10; }
-				return (string) text_data;
 			}
+			update_note_time ();
 		} catch (Error e) {
 			error (e.message);
+		}
+		if (text_data.length > 0) {
+			return (string)text_data;
 		}
 		return null;
 	}
@@ -91,20 +95,30 @@ public class Folio.Note : Object {
 		return true;
 	}
 
-	public void save (string text) {
-		// Lets make sure the file hasn't changed on disk before saving it.
+	public DateTime update_note_time () {
 		var file_handle = File.new_for_path (path);
 		FileInfo file_info;
-		DateTime file_time;
+		DateTime file_time = _time_modified;
 
-		// Save the file.
-		FileUtils.save_to (file_handle, text);
-		// Now get the updated file time and store it in the note.
 		try {
 			file_info = file_handle.query_info (FileAttribute.TIME_MODIFIED, FileQueryInfoFlags.NONE);
 			file_time = file_info.get_modification_date_time ();
-			this._time_modified = file_time;
 		} catch (Error e) {}
+
+		if (!file_time.equal (_time_modified)) {
+			_time_modified = file_time;
+		}
+
+		return _time_modified;
+	}
+
+	public void save (string text) {
+		// Lets make sure the file hasn't changed on disk before saving it.
+		var file_handle = File.new_for_path (path);
+		// Save the file.
+		FileUtils.save_to (file_handle, text);
+		// Now get the updated file time and store it in the note.
+		update_note_time ();
 	}
 
 	public bool equals (Note other) {
