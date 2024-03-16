@@ -76,6 +76,8 @@ public class Folio.Window : Adw.ApplicationWindow {
 		{ "search-notes", toggle_search },
 		{ "save-note", save_current_note },
 		{ "toggle-fullscreen", toggle_fullscreen },
+		{ "zoom-in", zoom_in },
+		{ "zoom-out", zoom_out },
 	};
 
 	construct {
@@ -199,6 +201,14 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	private void toggle_fullscreen () {
 		fullscreened = !fullscreened;
+	}
+
+	private void zoom_in () {
+		edit_view.zoom_in ();
+	}
+
+	private void zoom_out () {
+		edit_view.zoom_out ();
 	}
 
 	public void on_update_note (Note? note) {

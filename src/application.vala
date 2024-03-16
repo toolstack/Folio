@@ -76,6 +76,10 @@ public class Folio.Application : Adw.Application {
 
 		set_accels_for_action ("win.save-note", {"<primary>s"});
 		set_accels_for_action ("win.toggle-fullscreen", { "F11" });
+		set_accels_for_action ("win.zoom-out", { "<primary>minus"});
+		set_accels_for_action ("win.zoom-in", { "<primary>plus"});
+		set_accels_for_action ("win.zoom-out", { "<primary>KP_Add"});
+		set_accels_for_action ("win.zoom-in", { "<primary>KP_Subtract"});
 
 		command_line.connect (_command_line);
 
