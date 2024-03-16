@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.toolstack.Folio\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-15 20:57-0400\n"
+"POT-Creation-Date: 2024-03-15 21:20-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -307,7 +307,7 @@ msgid "Insert"
 msgstr ""
 
 #: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:34
-#: src/ui/strings.vala:44
+#: src/ui/strings.vala:44 src/ui/strings.vala:58
 msgid "Cancel"
 msgstr ""
 
@@ -315,7 +315,7 @@ msgstr ""
 msgid "Confirm"
 msgstr ""
 
-#: src/ui/popup/shortcut_window.blp:14
+#: src/ui/popup/shortcut_window.blp:14 src/ui/strings.vala:60
 msgid "Note"
 msgstr ""
 
@@ -574,6 +574,55 @@ msgstr ""
 
 #: src/ui/strings.vala:51
 msgid "Unable to recognize URI"
+msgstr ""
+
+#: src/ui/strings.vala:52
+msgid "Pick a font for displaying the notes' content"
+msgstr ""
+
+#: src/ui/strings.vala:53
+msgid "Pick a font for displaying code"
+msgstr ""
+
+#: src/ui/strings.vala:54
+msgid "File Changed On Disk"
+msgstr ""
+
+#: src/ui/strings.vala:55
+msgid ""
+"The file has changed on disk since it was last saved/loaded by Folio.\n"
+"\n"
+"You may do one of the following:\n"
+"\n"
+" • Reload the file (discarding any changes you have made in Folio)\n"
+" • Overwrite the file (discarding any changes made outside of Folio)\n"
+" • Cancel the operation and manually resolve the issue\n"
+"\n"
+"Note: Canceling the save if you have already moved to a new note/notebook "
+"this will discard your changes."
+msgstr ""
+
+#: src/ui/strings.vala:56
+msgid "Reload"
+msgstr ""
+
+#: src/ui/strings.vala:57
+msgid "Overwrite"
+msgstr ""
+
+#: src/ui/strings.vala:59
+msgid ""
+"The file has changed on disk by another application.\n"
+"\n"
+"You may do one of the following:\n"
+"\n"
+" • Reload the file (discarding any changes you have made in Folio)\n"
+" • Overwrite the file (discarding any changes made outside of Folio)"
+msgstr ""
+
+#: src/ui/strings.vala:61
+#, c-format
+msgid "Note %i"
 msgstr ""
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
