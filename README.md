@@ -148,9 +148,7 @@ Now do the releases on Flathub and Snapcraft.
 
  To generate the POT file:
  - change into the PO directory
- - run `./print-source-files.sh > POTFILES`
- - change into the build directory: `cd ../build`
- - run `meson compile com.toolstack.Folio-pot`
+ - run `./generate-POT-file`
 
 ## FAQ
 
