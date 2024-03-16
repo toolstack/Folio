@@ -18,6 +18,16 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
+    <release type="stable" version="24.07" date="TBD">
+      <description translatable="no">
+        <p>Changes:</p>
+        <ul>
+			<li>Add option to make the trash can visible</li>
+			<li>Monitor for disk changes and reload note as required</li>
+			<li>Fix translation of new note names</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="24.06" date="2024-03-12">
       <description translatable="no">
         <p>Changes:</p>

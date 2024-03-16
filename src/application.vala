@@ -155,19 +155,9 @@ rene-coty
 		about.set_release_notes ("""
 <p>Changes:</p>
 <ul>
-	<li>Add support for naming a new note based on currently selected text in an existing note</li>
-	<li>Add support to link to other notes and be able to ctrl-click to open them</li>
-	<li>Add support for double backticks for code spans</li>
-	<li>Add AppImage packaging instructions</li>
-	<li>Add auto save option (disabled by default)</li>
-	<li>Add option to display the "All notes" notebook all the time (disabled by default)</li>
-	<li>Add option to show line numbers</li>
-	<li>Add option to set the fixed width of the note area</li>
-	<li>Reorganized the preferences page</li>
-	<li>Fix amperands in the changelog</li>
-	<li>Fix possible crash if notes were not loaded in time</li>
-	<li>Fix when saving a note the timestamp not being updated in the note list</li>
-	<li>Fix when selecting a different note, the scroll position should be returned to the top</li>
+	<li>Add option to make the trash can visible</li>
+	<li>Monitor for disk changes and reload note as required</li>
+	<li>Fix translation of new note names</li>
 </ul>
 """
 		);
