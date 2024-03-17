@@ -327,7 +327,7 @@ public class GtkMarkdown.View : GtkSource.View {
 		try {
 			var f = RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS;
 			is_link = new Regex ("\\[([^\\[]*?)\\](\\([^\\)\\n]*?\\))", f, 0);
-			is_bare_link = new Regex ("(?i)\\b((?:[a-z][\\w-]+:(?:\\/{1,3}|[a-z0-9%])|www\\d{0,3}[.]|[a-z0-9.\\-]+[.][a-z]{2,4}\\/)(?:[^\\s()<>]+|\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\))+(?:\\(([^\\s()<>]+|(\\([^\\s()<>]+\\)))*\\)|[^\\s`!()\\[\\]{};:'\".,<>?«»“”‘’]))", f, 0);
+			is_bare_link = new Regex ("((?:http|ftp|https):\\/\\/)?([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:\\/~+#-]*[\\w@?^=%&\\/~+#-])", f, 0);
 			is_email_link = new Regex ("[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*", f, 0);
 			is_escape = new Regex ("\\\\[\\\\`*_{}\\[\\]()#+\\-.!]", f, 0);
 
@@ -656,16 +656,20 @@ public class GtkMarkdown.View : GtkSource.View {
 			}
 		}
 
+		MatchInfo matches;
+
+		// Create a filtered buffer that replaces some characters we don't want to match on.
+		string filtered_buffer_text = create_filtered_buffer (buffer_text);
+
 		try {
-			MatchInfo matches;
-
-			// Create a filtered buffer that replaces some characters we don't want to match on.
-			string filtered_buffer_text = create_filtered_buffer (buffer_text);
-
 			format_horizontal_rule (buffer_text, out matches);
+		} catch (Error e) {}
 
+		try {
 			format_blockquote (buffer_text, out matches);
+		} catch (Error e) {}
 
+		try {
 			// Check for links
 			if (is_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
 				do {
@@ -696,12 +700,14 @@ public class GtkMarkdown.View : GtkSource.View {
 					}
 				} while (matches.next ());
 			}
+		} catch (Error e) {}
 
+		try {
 			// Check for bare links
 			if (is_bare_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
 				do {
 					int start_text_pos, end_text_pos;
-					bool have_text = matches.fetch_pos (1, out start_text_pos, out end_text_pos);
+					bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
 
 					if (have_text) {
 						start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
@@ -720,7 +726,9 @@ public class GtkMarkdown.View : GtkSource.View {
 					}
 				} while (matches.next ());
 			}
+		} catch (Error e) {}
 
+		try {
 			// Check for email links
 			if (is_email_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
 				do {
@@ -744,22 +752,52 @@ public class GtkMarkdown.View : GtkSource.View {
 					}
 				} while (matches.next ());
 			}
+		} catch (Error e) {}
 
-			// Check for formatting
+		// Check for formatting
+		try {
 			do_formatting_pass_format (is_bold_0, text_tag_bold, buffer_text, out matches);
+		} catch (Error e) {}
+
+		try {
 			do_formatting_pass_format (is_bold_1, text_tag_bold, buffer_text, out matches);
+		} catch (Error e) {}
+
+		try {
 			do_formatting_pass_format (is_italic_0, text_tag_italic, buffer_text, out matches);
+		} catch (Error e) {}
+
+		try {
 			do_formatting_pass_format (is_italic_1, text_tag_italic, buffer_text, out matches);
+		} catch (Error e) {}
+
+		try {
 			do_formatting_pass_format (is_strikethrough_0, text_tag_strikethrough, buffer_text, out matches);
+		} catch (Error e) {}
+
+		try {
 			do_formatting_pass_format (is_strikethrough_1, text_tag_strikethrough, buffer_text, out matches);
+		} catch (Error e) {}
+
+		try {
 			do_formatting_pass_format (is_highlight, text_tag_highlight, buffer_text, out matches);
+		} catch (Error e) {}
 
+		try {
 			format_escape_format (buffer_text, out matches);
+		} catch (Error e) {}
 
+		try {
 			do_formatting_pass_format (is_code_span_double, text_tag_code_span, filtered_buffer_text, out matches, true);
+		} catch (Error e) {}
+
+		try {
 			do_formatting_pass_format (is_code_span, text_tag_code_span, filtered_buffer_text, out matches, true);
+		} catch (Error e) {}
+
+		try {
 			format_code_block_format (filtered_buffer_text, out matches);
-		} catch (RegexError e) {}
+		} catch (Error e) {}
 	}
 
 	private void restyle_text_cursor () {
