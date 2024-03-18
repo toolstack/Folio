@@ -56,6 +56,13 @@ Adds ==highlight== effect to the text
 
 ##### Link
 `[link label](https://linkurl.io)`
+Relative file paths can be used to link to other notes:
+- `[link label](file://./My big list of links)`
+- `[link label](./My big list of links)`
+- `[link label](./My big list of links.md)`
+- `[link label](file://../Junk links/My big list of links)`
+- `[link label](../Junk links/My big list of links)`
+- `[link label](../Junk links/My big list of links.md)`
 
 ##### Image
 `![Image alt text](https://imageurl.io)`
@@ -67,11 +74,17 @@ Adds ==highlight== effect to the text
 ## Horizontal Rule
 
 `- - -`
+`* * *`
+`---------`
+`*********`
 
 ## Code
 
 ##### Code span
 `code`
+
+##### Escaped code span
+``tis a ` backtick inside``
 
 ##### Code block
 ```language-name
