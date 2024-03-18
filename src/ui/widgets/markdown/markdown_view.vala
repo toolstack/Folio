@@ -547,9 +547,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 			text_tag_table = get_or_create_tag ("markdown-table");
 			text_tag_table.justification = Gtk.Justification.CENTER;
-			stdout.printf ("before mono: %s\n", text_tag_table.family);
 			text_tag_table.family = font_monospace;
-			stdout.printf ("after mono: %s\n", text_tag_table.family);
 
 			text_tag_list = get_or_create_tag ("markdown-list");
 			text_tag_list.indent = 16;
