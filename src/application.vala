@@ -161,6 +161,7 @@ rene-coty
 <ul>
 	<li>Add option to make the trash can visible</li>
 	<li>Add option to set the trash can directory</li>
+	<li>Add auto-save option (disabled by default)</li>
 	<li>Add keyboard shortcuts for zoom in/out</li>
 	<li>Add support for font sizes to the font preferences.</li>
 	<li>Add table formatting (monospace fonts/centered)</li>
