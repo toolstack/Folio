@@ -192,7 +192,8 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 
 public class Folio.MonospaceFilter : Gtk.Filter {
 	public override bool match (GLib.Object? item) {
-		var family = item as Pango.FontFamily;
+		var font = item as Pango.FontFace;
+		var family = font.get_family ();
 		return family.is_monospace ();
 	}
  }

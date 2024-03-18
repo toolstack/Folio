@@ -547,7 +547,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 			text_tag_table = get_or_create_tag ("markdown-table");
 			text_tag_table.justification = Gtk.Justification.CENTER;
-			text_tag_table.family = font_monospace;
+			text_tag_table.font = font_monospace;
 
 			text_tag_list = get_or_create_tag ("markdown-list");
 			text_tag_list.indent = 16;
@@ -585,16 +585,16 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	private void update_font () {
 		text_tag_around = get_or_create_tag ("markdown-code-block-around");
-		text_tag_around.family = font_monospace;
+		text_tag_around.font = font_monospace;
 
 		text_tag_code_span = get_or_create_tag ("markdown-code-span");
-		text_tag_code_span.family = font_monospace;
+		text_tag_code_span.font = font_monospace;
 
 		text_tag_code_block = get_or_create_tag ("markdown-code-block");
-		text_tag_code_block.family = font_monospace;
+		text_tag_code_block.font = font_monospace;
 
 		text_tag_table = get_or_create_tag ("markdown-table");
-		text_tag_table.family = font_monospace;
+		text_tag_table.font = font_monospace;
 	}
 
 	private void remove_tags_format (Gtk.TextIter start, Gtk.TextIter end) {

@@ -397,7 +397,15 @@ public class Folio.EditView : Gtk.Box {
 	}
 
 	private void set_note_font (string font) {
-		note_font_provider.load_from_data (@"textview{font-family:'$font';}".data);
+		var font_desc = Pango.FontDescription.from_string (font);
+		var font_family = font_desc.get_family ();
+		var font_weight = (int)font_desc.get_weight ();
+		var font_size = font_desc.get_size ();
+		var font_units = "pt";
+		if (!font_desc.get_size_is_absolute ()) {
+			font_size = font_size / Pango.SCALE;
+		}
+		note_font_provider.load_from_data (@"textview{font-family:'$font_family';font-weight:$font_weight;font-size:$font_size$font_units;}".data);
 		markdown_view.get_style_context ().add_provider (note_font_provider, -1);
 	}
 
