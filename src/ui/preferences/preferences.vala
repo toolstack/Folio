@@ -39,7 +39,6 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 
 		var font_dialog_monospace = new Gtk.FontDialog ();
 		var font_desc_monospace = Pango.FontDescription.from_string (settings.get_string ("note-font-monospace"));
-		font_desc_monospace.set_size (10 * Pango.SCALE);
 		var monospace_filter = new Folio.MonospaceFilter ();
 		font_dialog_monospace.set_filter (monospace_filter);
 		font_dialog_monospace.set_title (Strings.PICK_CODE_FONT);
