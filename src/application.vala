@@ -160,7 +160,14 @@ rene-coty
 <p>Changes:</p>
 <ul>
 	<li>Add option to make the trash can visible</li>
+	<li>Add option to set the trash can directory</li>
+	<li>Add keyboard shortcuts for zoom in/out</li>
+	<li>Add support for font sizes to the font preferences.</li>
+	<li>Add table formatting (monospace fonts/centered)</li>
+	<li>Add ordered/unordered list formatting (indent only)</li>
 	<li>Monitor for disk changes and reload note as required</li>
+	<li>Fix race condition for bare links causing formatting not to be applied correctly</li>
+	<li>Fix warning message on the console about def:text nto found</li>
 	<li>Fix translation of new note names</li>
 </ul>
 """
