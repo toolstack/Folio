@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.toolstack.Folio\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-15 21:26-0400\n"
+"POT-Creation-Date: 2024-03-18 13:47-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -195,23 +195,23 @@ msgstr ""
 msgid "Trash can"
 msgstr ""
 
-#: data/app.metainfo.xml.in:317
+#: data/app.metainfo.xml.in:327
 msgid "Main Folio window in light mode"
 msgstr ""
 
-#: data/app.metainfo.xml.in:321
+#: data/app.metainfo.xml.in:331
 msgid "Main Folio window in dark mode"
 msgstr ""
 
-#: data/app.metainfo.xml.in:325
+#: data/app.metainfo.xml.in:335
 msgid "Folio on small/mobile screens"
 msgstr ""
 
-#: data/app.metainfo.xml.in:329
+#: data/app.metainfo.xml.in:339
 msgid "Folio preferences screen"
 msgstr ""
 
-#: data/app.metainfo.xml.in:333
+#: data/app.metainfo.xml.in:343
 msgid "Folio in three pane mode"
 msgstr ""
 
@@ -361,6 +361,22 @@ msgstr ""
 
 #: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:63
 msgid "Search Notes"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:114
+msgid "Display"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:117
+msgid "Full Screen"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:122
+msgid "Zoom In"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:127
+msgid "Zoom Out"
 msgstr ""
 
 #: src/ui/preferences/preferences.blp:59
@@ -577,11 +593,11 @@ msgid "Unable to recognize URI"
 msgstr ""
 
 #: src/ui/strings.vala:52
-msgid "Pick a font for displaying the notes' content"
+msgid "Pick primary font for notes"
 msgstr ""
 
 #: src/ui/strings.vala:53
-msgid "Pick a font for displaying code"
+msgid "Pick monospace font for code"
 msgstr ""
 
 #: src/ui/strings.vala:54
