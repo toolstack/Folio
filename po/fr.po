@@ -1,22 +1,198 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the com.toolstack.Folio package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# Translation of Folio in French (France)
+# This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"Project-Id-Version: com.toolstack.Folio\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-01 22:41-0500\n"
-"PO-Revision-Date: 2024-03-04 17:07+0100\n"
-"Last-Translator: Irénée Thirion <irenee.thirion@e.email>\n"
-"Language-Team: \n"
-"Language: fr\n"
+"PO-Revision-Date: 2024-03-13 08:26:39+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: GlotPress/4.0.0\n"
+"Language: fr\n"
+"Project-Id-Version: Folio\n"
+
+#: src/ui/popup/shortcut_window.blp:114
+msgid "Display"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:117
+msgid "Full Screen"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:122
+msgid "Zoom In"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:127
+msgid "Zoom Out"
+msgstr ""
+
+#: src/ui/strings.vala:52
+msgid "Pick primary font for notes"
+msgstr ""
+
+#: src/ui/strings.vala:53
+msgid "Pick monospace font for code"
+msgstr ""
+
+#: src/ui/strings.vala:54
+msgid "File Changed On Disk"
+msgstr ""
+
+#: src/ui/strings.vala:55
+msgid ""
+"The file has changed on disk since it was last saved/loaded by Folio.\n"
+"\n"
+"You may do one of the following:\n"
+"\n"
+" • Reload the file (discarding any changes you have made in Folio)\n"
+" • Overwrite the file (discarding any changes made outside of Folio)\n"
+" • Cancel the operation and manually resolve the issue\n"
+"\n"
+"Note: Canceling the save if you have already moved to a new note/notebook will discard your changes."
+msgstr ""
+
+#: src/ui/strings.vala:56
+msgid "Reload"
+msgstr ""
+
+#: src/ui/strings.vala:57
+msgid "Overwrite"
+msgstr ""
+
+#: src/ui/strings.vala:59
+msgid ""
+"The file has changed on disk by another application.\n"
+"\n"
+"You may do one of the following:\n"
+"\n"
+" • Reload the file (discarding any changes you have made in Folio)\n"
+" • Overwrite the file (discarding any changes made outside of Folio)"
+msgstr ""
+
+#: src/ui/strings.vala:61
+msgid "Note %i"
+msgstr ""
+
+#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:203
+msgid "Trash Storage Location"
+msgstr ""
+
+#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:204
+msgid "Where the trash folder is located (requires app restart)"
+msgstr ""
+
+#: src/ui/strings.vala:46
+msgid "Pick where the trash can will be stored"
+msgstr ""
+
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:128
+msgid "Use Fixed Width For Notes"
+msgstr "Utiliser une largeur fixe pour les notes"
+
+#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:129
+msgid "Use a fixed width for the text area of a note"
+msgstr "Utiliser une largeur maximale pour la zone de texte d’une note"
+
+#: data/app.gschema.xml:27
+msgid "Displays the foramtting toolbar at the bottom of the note"
+msgstr "Affiche la barre de formatage en bas de la note"
+
+#: data/app.gschema.xml:32
+msgid "Adds a button to the markdown refrence sheet on the right of the formatting toolbar"
+msgstr "Ajoute une bouton pour la feuille de références Markdown à droit de la barre de formatage"
+
+#: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:118
+msgid "Expands the notebook list to include the notebook name"
+msgstr "Étend la liste de carnet pour inclure le nom du carnet"
+
+#: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:65
+msgid "Show line numbers"
+msgstr "Afficher les numéros de ligne"
+
+#: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:66
+msgid "Displays line numbers at the left of the note"
+msgstr "Affiche les numéros de ligne sur la gauche de la note"
+
+#: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:76
+msgid "Show all notes"
+msgstr "Afficher toutes les notes"
+
+#: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:77
+msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
+msgstr "Affiche le carne « Toutes les notes » en haut de la liste des carnets"
+
+#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:153
+msgid "Enable autosave"
+msgstr "Activer l’enregistrement automatique"
+
+#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:154
+msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
+msgstr "Enregistre automatiquement la note actuelle toutes les 30 secondes si le contenu est modifié (nécessite un redémarrage de l’application)"
+
+#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:164
+msgid "Don't hide the Trash folder"
+msgstr "Ne pas masquer la corbeille"
+
+#: data/app.gschema.xml:67
+msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
+msgstr "Le dossier de la corbeille est masqué par défaut, cette option le rend visible"
+
+#: data/app.metainfo.xml.in:327
+msgid "Main Folio window in light mode"
+msgstr "Fenêtre principale de Folio en mode clair"
+
+#: data/app.metainfo.xml.in:331
+msgid "Main Folio window in dark mode"
+msgstr "Fenêtre principale de Folio en mode sombre"
+
+#: data/app.metainfo.xml.in:335
+msgid "Folio on small/mobile screens"
+msgstr "Folio sur écran format mobile"
+
+#: data/app.metainfo.xml.in:339
+msgid "Folio preferences screen"
+msgstr "Écran des préférences de Folio"
+
+#: data/app.metainfo.xml.in:343
+msgid "Folio in three pane mode"
+msgstr "Folio en mode 3 panneaux"
+
+#: src/ui/preferences/preferences.blp:59
+msgid "Tools"
+msgstr "Outils"
+
+#: src/ui/preferences/preferences.blp:88
+msgid "Displays the formatting toolbar at the bottom of the note"
+msgstr "Affiche la barre d’outils de formatage en bas de la note"
+
+#: src/ui/preferences/preferences.blp:99
+msgid "Adds a button to the markdown reference sheet on the right of the formatting toolbar"
+msgstr "Ajoute un bouton vers la feuille de référence Markdown sur la droite de la barre d’outils de formatage"
+
+#: src/ui/preferences/preferences.blp:111
+msgid "Layout"
+msgstr "Affichage"
+
+#: src/ui/preferences/preferences.blp:139
+msgid "Fixed Width To Use For Notes"
+msgstr "Largeur fixe à utiliser pour les notes"
+
+#: src/ui/preferences/preferences.blp:140
+msgid "Sets the fixed width size of a note in px"
+msgstr "Largeur d’une note en px"
+
+#: src/ui/preferences/preferences.blp:147
+msgid "Files"
+msgstr "Fichiers"
+
+#: src/ui/preferences/preferences.blp:165
+msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
+msgstr "Le dossier de la corbeille est masqué par défaut, cette option le rend visible (nécessite un redémarrage de l’application)"
+
+#: src/ui/strings.vala:51
+msgid "Unable to recognize URI"
+msgstr "Impossible de reconnaître l’URI"
 
 #: data/app.desktop.in:9 src/ui/strings.vala:3
 msgid "Folio"
@@ -54,37 +230,25 @@ msgstr "Feuille technique Markdown"
 msgid "Preferences"
 msgstr "Préférences"
 
-#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:15
+#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:18
 msgid "Note Font"
 msgstr "Police de note"
 
-#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:16
+#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:19
 msgid "The font notes will be displayed in"
 msgstr "Les notes seront affichées en police"
 
-#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:28
+#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:31
 msgid "Monospace Font"
 msgstr "Police monospace"
 
-#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:29
+#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:32
 msgid "The font code will be displayed in"
 msgstr "Le code de la police sera affiché en"
 
-#: data/app.gschema.xml:16
-msgid "Max Note Width"
-msgstr "Largeur maximale de la note"
-
-#: data/app.gschema.xml:20 src/ui/preferences/preferences.blp:43
+#: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:46
 msgid "OLED Mode"
 msgstr "Mode OLED"
-
-#: data/app.gschema.xml:33
-msgid "Notes Directory"
-msgstr "Répertoire des notes"
-
-#: data/app.gschema.xml:34
-msgid "Where the notebooks are stored"
-msgstr "Emplacement de stockage des carnets de notes"
 
 #: data/app.metainfo.xml.in:5
 msgid "Take notes in Markdown"
@@ -107,8 +271,8 @@ msgid "Searchable through GNOME search"
 msgstr "Recherche possible directement sur le bureau GNOME"
 
 #: data/app.metainfo.xml.in:12
-msgid "Highlight &amp; strikethrough text formatting"
-msgstr "Mise en forme du texte en surbrillance &amp; en barré"
+msgid "Highlight and strikethrough text formatting"
+msgstr "Mise en forme du texte en surbrillance et en barré"
 
 #: data/app.metainfo.xml.in:13
 msgid "App themeing based on notebook color"
@@ -117,15 +281,6 @@ msgstr "Coloration de l’application selon la couleur du carnet de notes"
 #: data/app.metainfo.xml.in:14
 msgid "Trash can"
 msgstr "Corbeille"
-
-#: data/app.metainfo.xml.in:280 data/app.metainfo.xml.in:284
-#: data/app.metainfo.xml.in:288
-msgid "Markdown document"
-msgstr "Document Markdown"
-
-#: data/app.metainfo.xml.in:292
-msgid "List of notes"
-msgstr "Liste des notes"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:23
 #: src/ui/edit_view/toolbar/toolbar.blp:131
@@ -219,7 +374,7 @@ msgid "Insert"
 msgstr "Insérer"
 
 #: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:34
-#: src/ui/strings.vala:44
+#: src/ui/strings.vala:44 src/ui/strings.vala:58
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -227,7 +382,7 @@ msgstr "Annuler"
 msgid "Confirm"
 msgstr "Confirmer"
 
-#: src/ui/popup/shortcut_window.blp:14
+#: src/ui/popup/shortcut_window.blp:14 src/ui/strings.vala:60
 msgid "Note"
 msgstr "Note"
 
@@ -239,7 +394,7 @@ msgstr "Éditer la note"
 msgid "Save Note"
 msgstr "Enregistrer la note"
 
-#: src/ui/popup/shortcut_window.blp:34 src/ui/strings.vala:47
+#: src/ui/popup/shortcut_window.blp:34 src/ui/strings.vala:48
 msgid "Notebook"
 msgstr "Carnet de notes"
 
@@ -247,7 +402,7 @@ msgstr "Carnet de notes"
 msgid "Edit Notebook"
 msgstr "Modifier le carnet de notes"
 
-#: src/ui/popup/shortcut_window.blp:49
+#: src/ui/popup/shortcut_window.blp:49 src/ui/preferences/preferences.blp:12
 msgid "General"
 msgstr "Général"
 
@@ -275,35 +430,27 @@ msgstr "Basculer la barre latérale"
 msgid "Search Notes"
 msgstr "Rechercher des notes"
 
-#: src/ui/preferences/preferences.blp:44
+#: data/app.gschema.xml:22 src/ui/preferences/preferences.blp:47
 msgid "Makes the dark theme pitch black"
 msgstr "Rend le thème sombre noir"
 
-#: src/ui/preferences/preferences.blp:56
+#: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:87
 msgid "Enable Toolbar"
 msgstr "Activer la barre d’outils"
 
-#: src/ui/preferences/preferences.blp:66
+#: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:98
 msgid "Enable Cheatsheet"
 msgstr "Activer la fiche technique"
 
-#: src/ui/preferences/preferences.blp:78
+#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:117
 msgid "3-Pane Layout"
 msgstr "Disposition en 3 volets"
 
-#: src/ui/preferences/preferences.blp:88
-msgid "Limit Note Width"
-msgstr "Limiter la largeur de la note"
-
-#: src/ui/preferences/preferences.blp:89
-msgid "Limits how wide the text area can stretch"
-msgstr "Limiter l’espace latéral sur lequel la note s’étendre"
-
-#: src/ui/preferences/preferences.blp:101
+#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:175
 msgid "Notes Storage Location"
 msgstr "Emplacement de stockage des notes"
 
-#: src/ui/preferences/preferences.blp:102
+#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:176
 msgid "Where the notebooks are stored (requires app restart)"
 msgstr "Où les carnets de notes sont stockés (requiert un redémarrage de l’appli)"
 
@@ -313,7 +460,6 @@ msgid "Trash"
 msgstr "Mettre à la corbeille"
 
 #: src/ui/strings.vala:5
-#, c-format
 msgid "%d Notes"
 msgstr "%d notes"
 
@@ -358,12 +504,10 @@ msgid "Move"
 msgstr "Déplacer"
 
 #: src/ui/strings.vala:18
-#, c-format
 msgid "Note “%s” already exists in notebook “%s”"
 msgstr "La note « %s » existe déjà dans le carnet de notes « %s »"
 
 #: src/ui/strings.vala:19
-#, c-format
 msgid "Are you sure you want to delete the note “%s”?"
 msgstr "Êtes-vous sûr de vouloir supprimer la note « %s » ?"
 
@@ -372,7 +516,6 @@ msgid "Delete Note"
 msgstr "Supprimer la note"
 
 #: src/ui/strings.vala:21
-#, c-format
 msgid "Are you sure you want to delete the notebook “%s”?"
 msgstr "Êtes-vous sûr de vouloir supprimer le carnet de notes « %s » ?"
 
@@ -389,7 +532,6 @@ msgid "Note name shouldn’t be blank"
 msgstr "Le nom de la note ne devrait pas être vide"
 
 #: src/ui/strings.vala:26
-#, c-format
 msgid "Note “%s” already exists"
 msgstr "La note « %s » existe déjà"
 
@@ -410,7 +552,6 @@ msgid "Couldn’t restore note"
 msgstr "Impossible de restaurer la note"
 
 #: src/ui/strings.vala:31
-#, c-format
 msgid "Saved “%s” to “%s”"
 msgstr "« %s » enregistré dans « %s »"
 
@@ -427,7 +568,6 @@ msgid "Notebook name shouldn’t be blank"
 msgstr "Le nom du carnet de notes ne devrait pas être vide"
 
 #: src/ui/strings.vala:35
-#, c-format
 msgid "Notebook “%s” already exists"
 msgstr "Le carnet de notes « %s » existe déjà"
 
@@ -452,8 +592,8 @@ msgid "Rename"
 msgstr "Renommer"
 
 #: src/ui/strings.vala:42
-msgid "Couldn’t find an app to handle file uris"
-msgstr "Impossible de trouver une application pour gérer les uris des fichiers"
+msgid "Couldn’t find an app to handle file URIs"
+msgstr "Impossible de trouver une application pour gérer les URI des fichiers"
 
 #: src/ui/strings.vala:43
 msgid "Apply"
@@ -463,16 +603,16 @@ msgstr "Appliquer"
 msgid "Pick where the notebooks will be stored"
 msgstr "Choisir où les carnets de note seront stockés"
 
-#: src/ui/strings.vala:46 src/ui/window/notebooks_bar/notebooks_bar.blp:59
+#: src/ui/strings.vala:47 src/ui/window/notebooks_bar/notebooks_bar.blp:59
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:101
 msgid "All Notes"
 msgstr "Toutes les notes"
 
-#: src/ui/strings.vala:48
+#: src/ui/strings.vala:49
 msgid "Last Modified"
 msgstr "Dernière modification"
 
-#: src/ui/strings.vala:49
+#: src/ui/strings.vala:50
 msgid "Extension"
 msgstr "Extension"
 
@@ -488,23 +628,23 @@ msgstr "Thème clair"
 msgid "Dark style"
 msgstr "Thème sombre"
 
-#: src/ui/window/app_menu/app_menu.blp:24
+#: src/ui/window/app_menu/app_menu.blp:25
 msgid "_New Notebook"
 msgstr "_Nouveau carnet de notes"
 
-#: src/ui/window/app_menu/app_menu.blp:28
+#: src/ui/window/app_menu/app_menu.blp:29
 msgid "_Edit Notebook"
 msgstr "_Modifier le carnet de notes"
 
-#: src/ui/window/app_menu/app_menu.blp:34
+#: src/ui/window/app_menu/app_menu.blp:35
 msgid "_Preferences"
 msgstr "_Préférences"
 
-#: src/ui/window/app_menu/app_menu.blp:38
+#: src/ui/window/app_menu/app_menu.blp:39
 msgid "_Keyboard Shortcuts"
 msgstr "_Raccourcis clavier"
 
-#: src/ui/window/app_menu/app_menu.blp:42
+#: src/ui/window/app_menu/app_menu.blp:43
 msgid "_About"
 msgstr "À _propos"
 
@@ -611,12 +751,3 @@ msgstr "_Renommer la note"
 #: src/ui/window/window.blp:270
 msgid "_Export Note"
 msgstr "_Exporter la note"
-
-#~ msgid "Pick a font for displaying the notes' content"
-#~ msgstr "Choisir une police pour l'affichage du contenu de la note"
-
-#~ msgid "Pick a font for displaying code"
-#~ msgstr "Choisissez une police pour l’affichage du code"
-
-#~ msgid "Font"
-#~ msgstr "Police"
