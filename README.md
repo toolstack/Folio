@@ -152,6 +152,35 @@ Now do the releases on Flathub and Snapcraft.
 
 ## FAQ
 
+### How to link to other notes
+Folio supports linking to other notes via the standard markdown link syntax, with the url being a relative path to another note.  For example, if you want to link to a note called "My big list of links" in the same notebook, then any of the following will work:
+
+- `[my link](file://./My big list of links)`
+- `[my link](./My big list of links)`
+- `[my link](./My big list of links.md)`
+
+If you want to link to another notebook called "Junk links", you can use any of the following formats:
+
+- `[my link](file://../Junk links/My big list of links)`
+- `[my link](../Junk links/My big list of links)`
+- `[my link](../Junk links/My big list of links.md)`
+
+### Integrating with Nextcloud Notes
+Nextcloud notes uses markdown files to store it's information in and has an API to access these, however Folio does not support the API, but can still integrate with Nextcloud notes.
+
+You have two options, either connect with WebDav and expose the notes directory as a filesystem or use the Nextcloud desktop client to synchronize the notes directory to your desktop.
+
+In either case you can then go into Folio's preferences and change the storage location to the Nextcloud Notes folder.  You might want to unhide the trash folder, otherwise you'll see a ".trash" folder in your Nextcloud Notes on other clients (unhiding renames it to "Trash").
+
+You may also want to change the trash folder's location to somewhere else on the file system to avoid synchronizing it back to Nextcloud.
+
+There are a few cavitates when using Folio with Nextcloud notes:
+
+- Folio will monitor the currently displayed note for any changes on the filesystem and reload it automatically if no changes have been made in Folio.  If a change has been made, Folio will prompt you to either reload the note or overwrite it.
+- Folio will also check if a note has been changed when you save it, once more prompting for what to do if it sees a change on the file system that Folio did not make itself.
+- Folio will *not* monitor for new notes or notebooks at this time, issue #[58](https://github.com/toolstack/Folio/issues/58) is open to address this at some point in the future.
+- Folio only supports a single level of notebooks, so any Nextcloud notes that are store more than one level deep (aka in subfolders of subfolders) will not be displayed in Folio.  Issue #[11](https://github.com/toolstack/Folio/issues/11) is open to address this at some point in the future.
+
 ### Why fork Paper?
 Unfortunately Paper is out of date and the developer does not have the time/interest to maintain it any more.
 
@@ -164,4 +193,18 @@ A secondary focus is feature additions.  Some new features that have already bee
 - Control-click to open links in a browser.
 - Marking non-markdown formatted links and email addresses.
 - Fixed a ton of crashes caused by files without ending EOL markers.
-- Automatically pace inserted formatting around current words instead of in the middle of them.
+- Automatically insert formatting around current words instead of in the middle of them.
+
+You can see what's planned via the [issue tracker at GitHub](https://github.com/toolstack/Folio/issues?q=is%3Aissue+is%3Aopen+label%3Aenhancement).
+
+### So what isn't planned
+Folio is not a replacement for applications like OneNote or other advanced note taking apps, as such, there are some features that will never be added to Folio, like:
+
+- Image markup
+- Handwriting support
+- MathML
+- PDF or other document type embedding
+
+Basically anything that tries to make Folio into something other than a markdown editor.
+
+Of course if someone created a PR that added one or more of those things, I'd be open to reviewing it and see if the implementation fits well or not.
