@@ -310,6 +310,7 @@ public class GtkMarkdown.View : GtkSource.View {
 	private Regex is_horizontal_rule;
 
 	private Regex is_list_row;
+	private Regex is_table_row;
 
 	private Regex is_bold_0;
 	private Regex is_bold_1;
@@ -355,6 +356,13 @@ public class GtkMarkdown.View : GtkSource.View {
 			 * 0. list item
 			 */
 			is_list_row = new Regex ("^[\\t ]*([-*+]|[.0-9])+[\\t ]+", f | RegexCompileFlags.MULTILINE, 0);
+
+			/* Examples:
+			 * |column 1|column 2|
+			 * |--------|--------|
+			 * |value 1 |value 2 |
+			 */
+			is_table_row = new Regex ("^[\\t ]*[|].*$", f | RegexCompileFlags.MULTILINE, 0);
 
 			/* Examples:
 			 * Lorem *ipsum dolor* sit amet.
@@ -466,6 +474,7 @@ public class GtkMarkdown.View : GtkSource.View {
 	private Gtk.TextTag text_tag_horizontal_rule;
 
 	private Gtk.TextTag text_tag_list;
+	private Gtk.TextTag text_tag_table;
 
 	private Gtk.TextTag text_tag_bold;
 	private Gtk.TextTag text_tag_italic;
@@ -536,6 +545,12 @@ public class GtkMarkdown.View : GtkSource.View {
 			text_tag_horizontal_rule.justification = Gtk.Justification.CENTER;
 			text_tag_horizontal_rule.foreground_rgba = marking_color;
 
+			text_tag_table = get_or_create_tag ("markdown-table");
+			text_tag_table.justification = Gtk.Justification.CENTER;
+			stdout.printf ("before mono: %s\n", text_tag_table.family);
+			text_tag_table.family = font_monospace;
+			stdout.printf ("after mono: %s\n", text_tag_table.family);
+
 			text_tag_list = get_or_create_tag ("markdown-list");
 			text_tag_list.indent = 16;
 
@@ -551,19 +566,16 @@ public class GtkMarkdown.View : GtkSource.View {
 			text_tag_highlight = get_or_create_tag ("markdown-highlight");
 			text_tag_highlight.background_rgba = highlight_color;
 
-
 			text_tag_around = get_or_create_tag ("markdown-code-block-around");
 			var around_block_color = block_color;
 			around_block_color.alpha = 0.8f;
 			text_tag_around.foreground_rgba = around_block_color;
-
 
 			text_tag_code_span = get_or_create_tag ("markdown-code-span");
 			text_tag_code_span.background_rgba = block_color;
 
 			text_tag_code_block = get_or_create_tag ("markdown-code-block");
 			text_tag_code_block.indent = 16;
-
 
 			text_tag_hidden = get_or_create_tag ("hidden-character");
 			text_tag_hidden.invisible = true;
@@ -582,6 +594,9 @@ public class GtkMarkdown.View : GtkSource.View {
 
 		text_tag_code_block = get_or_create_tag ("markdown-code-block");
 		text_tag_code_block.family = font_monospace;
+
+		text_tag_table = get_or_create_tag ("markdown-table");
+		text_tag_table.family = font_monospace;
 	}
 
 	private void remove_tags_format (Gtk.TextIter start, Gtk.TextIter end) {
@@ -596,6 +611,8 @@ public class GtkMarkdown.View : GtkSource.View {
 		buffer.remove_tag (text_tag_highlight, start, end);
 		buffer.remove_tag (text_tag_blockquote, start, end);
 		buffer.remove_tag (text_tag_blockquote_marker, start, end);
+		buffer.remove_tag (text_tag_list, start, end);
+		buffer.remove_tag (text_tag_table, start, end);
 		foreach (var t in text_tags_title)
 			buffer.remove_tag (t, start, end);
 	}
@@ -768,6 +785,32 @@ public class GtkMarkdown.View : GtkSource.View {
 						if (!start_text_iter.has_tag (text_tag_list) && !end_text_iter.has_tag (text_tag_list)) {
 							// Apply our styling
 							buffer.apply_tag (text_tag_list, start_text_iter, end_text_iter);
+						}
+					}
+				} while (matches.next ());
+			}
+		} catch (Error e) {}
+
+		try {
+			// Check tables
+			if (is_table_row.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+				do {
+					int start_text_pos, end_text_pos;
+					bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
+
+					if (have_text) {
+						start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
+						end_text_pos = buffer_text.char_count ((ssize_t) end_text_pos);
+
+						// Convert the character offsets to TextIter's
+						Gtk.TextIter start_text_iter, end_text_iter;
+						buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
+						buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
+
+						// If the styling has already been applied, don't both re-applying it.
+						if (!start_text_iter.has_tag (text_tag_table) && !end_text_iter.has_tag (text_tag_table)) {
+							// Apply our styling
+							buffer.apply_tag (text_tag_table, start_text_iter, end_text_iter);
 						}
 					}
 				} while (matches.next ());
