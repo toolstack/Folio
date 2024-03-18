@@ -309,6 +309,8 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	private Regex is_horizontal_rule;
 
+	private Regex is_list_row;
+
 	private Regex is_bold_0;
 	private Regex is_bold_1;
 	private Regex is_italic_0;
@@ -331,14 +333,28 @@ public class GtkMarkdown.View : GtkSource.View {
 			is_email_link = new Regex ("[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*", f, 0);
 			is_escape = new Regex ("\\\\[\\\\`*_{}\\[\\]()#+\\-.!]", f, 0);
 
-			/* Example:
+			/* Examples:
 			 * > Quoted text.
 			 * > Quoted text with `code span`.
 			 * >> Blockquote **nested**.
 			 */
 			is_blockquote = new Regex ("^( {0,3}>( {0,4}>)*).*", f | RegexCompileFlags.MULTILINE, 0);
 
+			/* Examples:
+			 * - - -
+			 * * * *
+			 * ***
+			 * ************
+			 */
 			is_horizontal_rule = new Regex ("^[ ]{0,3}((-[ ]{0,2}){3,}|(_[ ]{0,2}){3,}|(\\*[ ]{0,2}){3,})[ \\t]*$", f | RegexCompileFlags.MULTILINE, 0);
+
+			/* Examples:
+			 * - list item
+			 * + list item
+			 * * list item
+			 * 0. list item
+			 */
+			is_list_row = new Regex ("^[\\t ]*([-*+]|[.0-9])+[\\t ]+", f | RegexCompileFlags.MULTILINE, 0);
 
 			/* Examples:
 			 * Lorem *ipsum dolor* sit amet.
@@ -449,6 +465,8 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	private Gtk.TextTag text_tag_horizontal_rule;
 
+	private Gtk.TextTag text_tag_list;
+
 	private Gtk.TextTag text_tag_bold;
 	private Gtk.TextTag text_tag_italic;
 	private Gtk.TextTag text_tag_strikethrough;
@@ -518,6 +536,8 @@ public class GtkMarkdown.View : GtkSource.View {
 			text_tag_horizontal_rule.justification = Gtk.Justification.CENTER;
 			text_tag_horizontal_rule.foreground_rgba = marking_color;
 
+			text_tag_list = get_or_create_tag ("markdown-list");
+			text_tag_list.indent = 16;
 
 			text_tag_bold = get_or_create_tag ("markdown-bold");
 			text_tag_bold.weight = 700;
@@ -722,6 +742,32 @@ public class GtkMarkdown.View : GtkSource.View {
 						if (!start_text_iter.has_tag (text_tag_url) && !end_text_iter.has_tag (text_tag_url)) {
 							// Apply our styling
 							buffer.apply_tag (text_tag_url, start_text_iter, end_text_iter);
+						}
+					}
+				} while (matches.next ());
+			}
+		} catch (Error e) {}
+
+		try {
+			// Check lists
+			if (is_list_row.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+				do {
+					int start_text_pos, end_text_pos;
+					bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
+
+					if (have_text) {
+						start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
+						end_text_pos = buffer_text.char_count ((ssize_t) end_text_pos);
+
+						// Convert the character offsets to TextIter's
+						Gtk.TextIter start_text_iter, end_text_iter;
+						buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
+						buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
+
+						// If the styling has already been applied, don't both re-applying it.
+						if (!start_text_iter.has_tag (text_tag_list) && !end_text_iter.has_tag (text_tag_list)) {
+							// Apply our styling
+							buffer.apply_tag (text_tag_list, start_text_iter, end_text_iter);
 						}
 					}
 				} while (matches.next ());
