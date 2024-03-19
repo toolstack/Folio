@@ -5,7 +5,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	public bool dark { get; set; default = false; }
 	public Gdk.RGBA theme_color { get; set; }
-	public string font_monospace { get; set; default = "Monospace"; }
+	public string font_monospace { get; set; default = "Monospace 10"; }
 
 	public Gdk.RGBA h6_color {
 		get {
@@ -429,6 +429,17 @@ public class GtkMarkdown.View : GtkSource.View {
 		notify["dark"].connect ((s, p) => update_color_scheme ());
 		notify["theme-color"].connect ((s, p) => update_color_scheme ());
 		notify["font-monospace"].connect ((s, p) => update_font ());
+
+		var font_desc = Pango.FontDescription.from_string (font_monospace);
+		var font_size = font_desc.get_size ();
+		if (!font_desc.get_size_is_absolute ()) {
+			font_size = font_size / Pango.SCALE;
+		}
+		if (font_size < 3) {
+			font_desc.set_size (10 * Pango.SCALE);
+			font_monospace = font_desc.to_string ();
+		}
+
 		update_color_scheme ();
 		update_font ();
 
@@ -584,6 +595,16 @@ public class GtkMarkdown.View : GtkSource.View {
 	}
 
 	private void update_font () {
+		var font_desc = Pango.FontDescription.from_string (font_monospace);
+		var font_size = font_desc.get_size ();
+		if (!font_desc.get_size_is_absolute ()) {
+			font_size = font_size / Pango.SCALE;
+		}
+		if (font_size < 3) {
+			font_desc.set_size (10 * Pango.SCALE);
+			font_monospace = font_desc.to_string ();
+		}
+
 		text_tag_around = get_or_create_tag ("markdown-code-block-around");
 		text_tag_around.font = font_monospace;
 

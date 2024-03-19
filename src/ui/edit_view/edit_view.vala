@@ -405,6 +405,7 @@ public class Folio.EditView : Gtk.Box {
 		if (!font_desc.get_size_is_absolute ()) {
 			font_size = font_size / Pango.SCALE;
 		}
+		if (font_size < 4) { font_size = 10; }
 		note_font_provider.load_from_data (@"textview{font-family:'$font_family';font-weight:$font_weight;font-size:$font_size$font_units;}".data);
 		markdown_view.get_style_context ().add_provider (note_font_provider, -1);
 	}
