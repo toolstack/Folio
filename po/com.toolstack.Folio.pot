@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.toolstack.Folio\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-18 13:47-0400\n"
+"POT-Creation-Date: 2024-03-19 17:09-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,8 +89,8 @@ msgstr ""
 msgid "Enable Toolbar"
 msgstr ""
 
-#: data/app.gschema.xml:27
-msgid "Displays the foramtting toolbar at the bottom of the note"
+#: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:88
+msgid "Displays the formatting toolbar at the bottom of the note"
 msgstr ""
 
 #: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:98
@@ -111,19 +111,19 @@ msgstr ""
 msgid "Expands the notebook list to include the notebook name"
 msgstr ""
 
-#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:175
+#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:180
 msgid "Notes Storage Location"
 msgstr ""
 
-#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:176
+#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:181
 msgid "Where the notebooks are stored (requires app restart)"
 msgstr ""
 
-#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:203
+#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:208
 msgid "Trash Storage Location"
 msgstr ""
 
-#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:204
+#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:209
 msgid "Where the trash folder is located (requires app restart)"
 msgstr ""
 
@@ -143,17 +143,17 @@ msgstr ""
 msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
 msgstr ""
 
-#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:153
+#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:158
 msgid "Enable autosave"
 msgstr ""
 
-#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:154
+#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:159
 msgid ""
 "Automatically saves the current note every 30 seconds if the contents have "
 "changed (requires app restart)"
 msgstr ""
 
-#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:164
+#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:169
 msgid "Don't hide the Trash folder"
 msgstr ""
 
@@ -161,6 +161,14 @@ msgstr ""
 msgid ""
 "The trash folder is set as a hidden folder by default, this option makes it "
 "visible"
+msgstr ""
+
+#: data/app.gschema.xml:71
+msgid "Note sort order"
+msgstr ""
+
+#: data/app.gschema.xml:72
+msgid "The sort order of the note list"
 msgstr ""
 
 #: data/app.metainfo.xml.in:5
@@ -195,23 +203,23 @@ msgstr ""
 msgid "Trash can"
 msgstr ""
 
-#: data/app.metainfo.xml.in:327
+#: data/app.metainfo.xml.in:354
 msgid "Main Folio window in light mode"
 msgstr ""
 
-#: data/app.metainfo.xml.in:331
+#: data/app.metainfo.xml.in:358
 msgid "Main Folio window in dark mode"
 msgstr ""
 
-#: data/app.metainfo.xml.in:335
+#: data/app.metainfo.xml.in:362
 msgid "Folio on small/mobile screens"
 msgstr ""
 
-#: data/app.metainfo.xml.in:339
+#: data/app.metainfo.xml.in:366
 msgid "Folio preferences screen"
 msgstr ""
 
-#: data/app.metainfo.xml.in:343
+#: data/app.metainfo.xml.in:370
 msgid "Folio in three pane mode"
 msgstr ""
 
@@ -383,10 +391,6 @@ msgstr ""
 msgid "Tools"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:88
-msgid "Displays the formatting toolbar at the bottom of the note"
-msgstr ""
-
 #: src/ui/preferences/preferences.blp:99
 msgid ""
 "Adds a button to the markdown reference sheet on the right of the formatting "
@@ -405,11 +409,15 @@ msgstr ""
 msgid "Sets the fixed width size of a note in px"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:147
+#: src/ui/preferences/preferences.blp:145
+msgid "Sort Order For Notes"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:152
 msgid "Files"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:165
+#: src/ui/preferences/preferences.blp:170
 msgid ""
 "The trash folder is set as a hidden folder by default, this option makes it "
 "visible (requires app restart)"
@@ -639,6 +647,22 @@ msgstr ""
 #: src/ui/strings.vala:61
 #, c-format
 msgid "Note %i"
+msgstr ""
+
+#: src/ui/strings.vala:62
+msgid "Modified Time - Ascending"
+msgstr ""
+
+#: src/ui/strings.vala:63
+msgid "Modified Time - Descending"
+msgstr ""
+
+#: src/ui/strings.vala:64
+msgid "Alphabetical - Ascending"
+msgstr ""
+
+#: src/ui/strings.vala:65
+msgid "Alphabetical - Descending"
 msgstr ""
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
