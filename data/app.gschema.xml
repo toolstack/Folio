@@ -24,7 +24,7 @@
     <key name="toolbar-enabled" type="b">
       <default>true</default>
       <summary>Enable Toolbar</summary>
-      <description>Displays the foramtting toolbar at the bottom of the note</description>
+      <description>Displays the formatting toolbar at the bottom of the note</description>
     </key>
     <key name="cheatsheet-enabled" type="b">
       <default>true</default>
