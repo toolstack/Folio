@@ -105,6 +105,8 @@ The release version is located in the main `meson.build` file, no other files co
 
 The full changelog is located in `data/app.metainfo.xml.in` and the current release for the about dialog is in `src/application.vala`.
 
+Before doing a release, make sure to e-mail the translation editors to let them know to update the translations.  This should be done at least 2 days in advance to give them time to make their updates.  Once they update are done, make sure to export the translations and commit them to git.
+
 Once updated, edit the flatpak and snap files:
  - change into the top level source directory
  - edit `com.toolstack.Folio.json` and update the `tag` value for sources, also **remove** the `commit` hash (don't forget to remove the comma on the line above) temporarily (we'll add it back later)
@@ -121,7 +123,7 @@ Two actions should have been kicked off on the github release, one to build the 
 
 You will need to build the AppImage manually, follow the instructions above on how to do that and retrieve the generated Folio-x86_64.AppImage file.
 
-Extract both zips that you downloaded and rename the resulting flatpak/snap/AppImage to "Folio=YY.XX.\[flatpak/snap/AppImage\]".
+Extract both zips that you downloaded and rename the resulting flatpak/snap/AppImage to "Folio-YY.XX\[-platform\].\[flatpak/snap/AppImage\]".
 
 Go back to the release and attach these files to the release assets.
 
