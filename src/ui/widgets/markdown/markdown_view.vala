@@ -90,7 +90,8 @@ public class GtkMarkdown.View : GtkSource.View {
 		Gtk.TextIter start;
 		Gtk.TextIter end;
 		buffer.get_iter_at_line (out start, (int) line);
-		buffer.get_iter_at_line (out end, (int) line + 1);
+		end = start.copy ();
+		end.forward_to_line_end ();
 		var str = start.get_text (end);
 		var i = 0;
 		while (i < 6 && i < str.length) {
@@ -706,7 +707,8 @@ public class GtkMarkdown.View : GtkSource.View {
 				if (title_level != 0) {
 					Gtk.TextIter start, end;
 					buffer.get_iter_at_line (out start, line);
-					buffer.get_iter_at_line (out end, line + 1);
+					end = start.copy ();
+					end.forward_to_line_end ();
 					buffer.apply_tag (text_tags_title[title_level - 1], start, end);
 				}
 			}
