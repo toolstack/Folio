@@ -22,6 +22,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 	public bool cheatsheet_enabled { get; set; }
 	public bool show_line_numbers { get; set; }
 	public bool show_all_notes { get; set; }
+	public int note_sort_order { get; set; }
 
 	public WindowModel window_model = new WindowModel ();
 
@@ -182,6 +183,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 		settings.bind ("cheatsheet-enabled", this, "cheatsheet-enabled", SettingsBindFlags.DEFAULT);
 		settings.bind ("show-line-numbers", this, "show-line-numbers", SettingsBindFlags.DEFAULT);
 		settings.bind ("show-all-notes", this, "show-all-notes", SettingsBindFlags.DEFAULT);
+		settings.bind ("note-sort-order", this, "note-sort-order", SettingsBindFlags.DEFAULT);
 
 		notify["cheatsheet-enabled"].connect (update_cheatsheet_visibility);
 		edit_view.toolbar.notify["compacted"].connect (update_cheatsheet_visibility);
@@ -190,6 +192,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 		notify["show-line-numbers"].connect (update_show_line_numbers);
 		notify["show-all-notes"].connect (update_show_all_notes);
+		notify["note-sort-order"].connect (update_note_sort_order);
 
 		if (settings.get_boolean ("enable-autosave")) {
 			GLib.Timeout.add (5000, () => {
@@ -292,6 +295,17 @@ public class Folio.Window : Adw.ApplicationWindow {
 	public void update_show_all_notes () {
 		var settings = new Settings (Config.APP_ID);
 		notebooks_bar.all_button_enabled = settings.get_boolean ("show-all-notes");
+	}
+
+	public void update_note_sort_order () {
+		var settings = new Settings (Config.APP_ID);
+		var notebook = window_model.notebook;
+		if (notebook != null) {
+			notebook.sort_notes (settings.get_int ("note-sort-order"));
+			notebook_notes_list.model = null;
+			notebook_notes_list.model = window_model.notes_model;
+			window_model.open_note_in_notebook (window_model.note);
+		}
 	}
 
 	private void on_format_bold () { edit_view.format_selection_bold (); }

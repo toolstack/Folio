@@ -22,10 +22,12 @@ public class Folio.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
 	Provider provider;
 
 	private bool disable_hidden_trash;
+	private int note_sort_order;
 
 	construct {
 		var settings = new Settings (Config.APP_ID);
 		disable_hidden_trash = settings.get_boolean ("disable-hidden-trash");
+		note_sort_order = settings.get_int ("note-sort-order");
 	}
 
 	public LocalNotebook (Provider provider, NotebookInfo info) {
@@ -63,7 +65,26 @@ public class Folio.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
 		} catch (Error e) {
 			error (@"Notebook loading failed: $(e.message)\n");
 		}
-		_loaded_notes.sort ((a, b) => b.time_modified.compare(a.time_modified));
+		sort_notes (note_sort_order);
+	}
+
+	public void sort_notes (int note_sort_order) {
+		this.note_sort_order = note_sort_order;
+
+		switch (note_sort_order) {
+			case 1:
+				_loaded_notes.sort ((a, b) => a.time_modified.compare(b.time_modified));
+				break;
+			case 2:
+				_loaded_notes.sort ((a, b) => strcmp (a.name, b.name));
+				break;
+			case 3:
+				_loaded_notes.sort ((a, b) => strcmp (b.name, a.name));
+				break;
+			default:
+				_loaded_notes.sort ((a, b) => b.time_modified.compare(a.time_modified));
+				break;
+		}
 	}
 
 	public void unload () {

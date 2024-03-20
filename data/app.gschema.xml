@@ -2,12 +2,12 @@
 <schemalist gettext-domain="notebook">
 	<schema id="com.toolstack.Folio" path="/com/toolstack/Folio/">
     <key name="note-font" type="s">
-      <default>'Sans'</default>
+      <default>'Sans 10'</default>
       <summary>Note Font</summary>
       <description>The font notes will be displayed in</description>
     </key>
     <key name="note-font-monospace" type="s">
-      <default>'Monospace'</default>
+      <default>'Monospace 10'</default>
       <summary>Monospace Font</summary>
       <description>The font code will be displayed in</description>
     </key>
@@ -65,6 +65,11 @@
       <default>false</default>
       <summary>Don't hide the Trash folder</summary>
       <description>The trash folder is set as a hidden folder by default, this option makes it visible</description>
+    </key>
+    <key name="note-sort-order" type="i">
+      <default>0</default>
+      <summary>Note sort order</summary>
+      <description>The sort order of the note list</description>
     </key>
   </schema>
   <enum id="com.toolstack.Folio.ThemeVariantEnum">

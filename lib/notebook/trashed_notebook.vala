@@ -27,6 +27,8 @@ public class Folio.TrashedNotebook : Object, ListModel, NoteContainer, Notebook 
 	public void load () {}
 	public void unload () {}
 
+	public void sort_notes (int note_sort_order) {}
+
 	public Note new_note (string name, string extension) throws ProviderError {
 		error ("Can't create notes in trash");
 	}
