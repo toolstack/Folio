@@ -13,6 +13,7 @@ public interface Folio.Notebook : Object, ListModel, NoteContainer {
 	public abstract void change_note (Note note, string name, string extension = note.extension) throws ProviderError;
 	public abstract void delete_note (Note note) throws ProviderError;
 	public abstract uint get_index_of(Note? note);
+	public abstract void sort_notes (int note_sort_order);
 
 	public bool equals (Notebook other) {
 		return this.name == other.name;

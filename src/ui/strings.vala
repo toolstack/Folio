@@ -59,4 +59,8 @@ public class Folio.Strings {
 	public abstract const string FILE_CHANGED_DIALOG_DOUBLE = _("The file has changed on disk by another application.\n\nYou may do one of the following:\n\n • Reload the file (discarding any changes you have made in Folio)\n • Overwrite the file (discarding any changes made outside of Folio)");
 	public abstract const string NEW_NOTE_NAME = _("Note");
 	public abstract const string NEW_NOTE_NAME_X = _("Note %i");
+	public abstract const string NOTE_SORT_ORDER_TIME_ASC = _("Modified Time - Ascending");
+	public abstract const string NOTE_SORT_ORDER_TIME_DSC = _("Modified Time - Descending");
+	public abstract const string NOTE_SORT_ORDER_ALPHA_ASC = _("Alphabetical - Ascending");
+	public abstract const string NOTE_SORT_ORDER_ALPHA_DSC = _("Alphabetical - Descending");
 }

@@ -20,6 +20,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 	[GtkChild] unowned Gtk.Switch show_all_notes;
 	[GtkChild] unowned Gtk.Switch enable_autosave;
 	[GtkChild] unowned Gtk.Switch disable_hidden_trash;
+	[GtkChild] unowned Adw.ComboRow note_sort_order;
 
 	public PreferencesWindow (Application app) {
 		Object ();
@@ -111,6 +112,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 			custom_note_width.set_sensitive (false);
 			note_width = 720;
 		}
+
 		var width_adjustment = new Gtk.Adjustment (note_width, 100, 2000, 1.0, 100.0, 1.0);
 		custom_note_width.set_adjustment (width_adjustment);
         custom_note_width.notify["value"].connect (() => {
@@ -153,6 +155,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 			notes_dir_label.label = notes_dir;
 			notes_dir_label.tooltip_text = notes_dir;
 		});
+
 		var trash_dir = settings.get_string ("trash-dir");
 		trash_dir_label.label = settings.get_string ("trash-dir");
 		trash_dir_label.tooltip_text = notes_dir;
@@ -187,6 +190,18 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 			trash_dir_label.label = trash_dir;
 			trash_dir_label.tooltip_text = trash_dir;
 		});
+
+		note_sort_order.model = new Gtk.StringList ({
+			Strings.NOTE_SORT_ORDER_TIME_DSC,
+			Strings.NOTE_SORT_ORDER_TIME_ASC,
+			Strings.NOTE_SORT_ORDER_ALPHA_ASC,
+			Strings.NOTE_SORT_ORDER_ALPHA_DSC
+			});
+		var selected_sort_order = settings.get_int ("note-sort-order");
+		note_sort_order.set_selected ((int)selected_sort_order);
+        note_sort_order.notify["selected-item"].connect (() => {
+            settings.set_int ("note-sort-order", (int)note_sort_order.get_selected ());
+        });
 	}
 }
 
