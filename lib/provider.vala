@@ -159,6 +159,8 @@ public class Folio.Provider : Object, ListModel {
 
 	public void load () {
 		_notebooks = list_directory (notes_dir);
+		var settings = new Settings (Config.APP_ID);
+		sort_notebooks (settings.get_int ("notebook-sort-order"));
 		items_changed (0, 0, _notebooks.size);
 	}
 
@@ -187,22 +189,47 @@ public class Folio.Provider : Object, ListModel {
 		var notebooks = new ArrayList<Notebook> ();
 		var dir = File.new_for_path (notes_dir);
 		try {
-			var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE, 0);
+			var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE + "," + FileAttribute.TIME_MODIFIED, 0);
 			FileInfo file_info;
 			while ((file_info = enumerator.next_file ()) != null) {
 				if (file_info.get_file_type () != FileType.DIRECTORY) continue;
 				var name = file_info.get_name ();
+				var time = file_info.get_modification_date_time ();
 				if (disable_hidden_trash && name == "Trash") continue;
 				if (name[0] == '.') continue;
+				if (name == ".trash" || name== "Trash") continue;
 				var path = @"$notes_dir/$name";
 				notebooks.add (new LocalNotebook (
 					this,
-					read_notebook_info (name, path)
+					read_notebook_info (name, time, path)
 				));
 			}
 		} catch (Error err) {
 			stderr.printf ("Error: list_directory failed: %s\n", err.message);
 		}
+
+		return notebooks;
+	}
+
+	public ArrayList sort_notebooks (int notebook_sort_order) {
+		var notebooks = this._notebooks;
+		this.notebook_sort_order = notebook_sort_order;
+
+		switch (notebook_sort_order) {
+			case 1:
+				notebooks.sort ((a, b) => a.info.time_modified.compare(b.info.time_modified));
+				break;
+			case 2:
+				notebooks.sort ((a, b) => strcmp (b.name, a.name));
+				break;
+			case 3:
+				notebooks.sort ((a, b) => strcmp (a.name, b.name));
+				break;
+			default:
+				notebooks.sort ((a, b) => b.info.time_modified.compare(a.info.time_modified));
+				break;
+		}
+
 		return notebooks;
 	}
 
@@ -252,12 +279,15 @@ public class Folio.Provider : Object, ListModel {
 
 	private bool disable_hidden_trash;
 
+	private int notebook_sort_order = 0;
+
 	construct {
 		default_color.parse ("#2ec27eff");
 
 		var settings = new Settings (Config.APP_ID);
 		disable_hidden_trash = settings.get_boolean ("disable-hidden-trash");
 		trash_dir = settings.get_string ("trash-dir");
+		notebook_sort_order = settings.get_int ("notebook-sort-order");
 	}
 
 	private void write_notebook_info (string notebook_path, NotebookInfo info) {
@@ -278,12 +308,13 @@ public class Folio.Provider : Object, ListModel {
 		}
 	}
 
-	private NotebookInfo read_notebook_info (string name, string notebook_path) throws Error {
+	private NotebookInfo read_notebook_info (string name, DateTime time_modified, string notebook_path) throws Error {
 		return new NotebookInfo (
 			name,
 			read_color (notebook_path),
 			read_icon_type (notebook_path),
-			read_data_file (notebook_path, "icon_name")
+			read_data_file (notebook_path, "icon_name"),
+			time_modified
 		);
 	}
 
