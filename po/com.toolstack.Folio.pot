@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.toolstack.Folio\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-19 17:09-0400\n"
+"POT-Creation-Date: 2024-03-23 17:35-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -111,19 +111,19 @@ msgstr ""
 msgid "Expands the notebook list to include the notebook name"
 msgstr ""
 
-#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:180
+#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:185
 msgid "Notes Storage Location"
 msgstr ""
 
-#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:181
+#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:186
 msgid "Where the notebooks are stored (requires app restart)"
 msgstr ""
 
-#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:208
+#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:213
 msgid "Trash Storage Location"
 msgstr ""
 
-#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:209
+#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:214
 msgid "Where the trash folder is located (requires app restart)"
 msgstr ""
 
@@ -143,17 +143,17 @@ msgstr ""
 msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
 msgstr ""
 
-#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:158
+#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:163
 msgid "Enable autosave"
 msgstr ""
 
-#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:159
+#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:164
 msgid ""
 "Automatically saves the current note every 30 seconds if the contents have "
 "changed (requires app restart)"
 msgstr ""
 
-#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:169
+#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:174
 msgid "Don't hide the Trash folder"
 msgstr ""
 
@@ -169,6 +169,14 @@ msgstr ""
 
 #: data/app.gschema.xml:72
 msgid "The sort order of the note list"
+msgstr ""
+
+#: data/app.gschema.xml:76
+msgid "Notebook sort order"
+msgstr ""
+
+#: data/app.gschema.xml:77
+msgid "The sort order of the notebook list"
 msgstr ""
 
 #: data/app.metainfo.xml.in:5
@@ -410,14 +418,18 @@ msgid "Sets the fixed width size of a note in px"
 msgstr ""
 
 #: src/ui/preferences/preferences.blp:145
+msgid "Sort Order For Notebooks"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:150
 msgid "Sort Order For Notes"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:152
+#: src/ui/preferences/preferences.blp:157
 msgid "Files"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:170
+#: src/ui/preferences/preferences.blp:175
 msgid ""
 "The trash folder is set as a hidden folder by default, this option makes it "
 "visible (requires app restart)"
