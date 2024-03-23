@@ -21,6 +21,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 	[GtkChild] unowned Gtk.Switch enable_autosave;
 	[GtkChild] unowned Gtk.Switch disable_hidden_trash;
 	[GtkChild] unowned Adw.ComboRow note_sort_order;
+	[GtkChild] unowned Adw.ComboRow notebook_sort_order;
 
 	public PreferencesWindow (Application app) {
 		Object ();
@@ -201,6 +202,13 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 		note_sort_order.set_selected ((int)selected_sort_order);
         note_sort_order.notify["selected-item"].connect (() => {
             settings.set_int ("note-sort-order", (int)note_sort_order.get_selected ());
+        });
+
+		notebook_sort_order.model = note_sort_order.model;
+		selected_sort_order = settings.get_int ("notebook-sort-order");
+		notebook_sort_order.set_selected ((int)selected_sort_order);
+        notebook_sort_order.notify["selected-item"].connect (() => {
+            settings.set_int ("notebook-sort-order", (int)notebook_sort_order.get_selected ());
         });
 	}
 }
