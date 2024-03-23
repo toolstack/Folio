@@ -18,6 +18,19 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
+
+    <release type="stable" version="24.09" date="2024-03-27">
+      <description translatable="no">
+        <p>Changes:</p>
+        <ul>
+			<li>Add sort order to notebook and note lists</li>
+			<li>Updated note sort after update process</li>
+			<li>Fixed misc translation items (thanks @yakushabb)</li>
+			<li>Fixed line formatting spilling over into the next line (thanks @HighKingofMelons)</li>
+			<li>Other minor fixes</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="24.08" date="2024-03-18">
       <description translatable="no">
         <p>Changes:</p>
