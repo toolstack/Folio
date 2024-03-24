@@ -99,7 +99,7 @@ msgstr ""
 
 #: data/app.gschema.xml:32
 msgid ""
-"Adds a button to the markdown refrence sheet on the right of the formatting "
+"Adds a button to the markdown reference sheet on the right of the formatting "
 "toolbar"
 msgstr ""
 
