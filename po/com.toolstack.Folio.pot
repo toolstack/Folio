@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.toolstack.Folio\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-23 17:35-0400\n"
+"POT-Creation-Date: 2024-03-24 21:02-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,9 +97,9 @@ msgstr ""
 msgid "Enable Cheatsheet"
 msgstr ""
 
-#: data/app.gschema.xml:32
+#: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:99
 msgid ""
-"Adds a button to the markdown refrence sheet on the right of the formatting "
+"Adds a button to the markdown reference sheet on the right of the formatting "
 "toolbar"
 msgstr ""
 
@@ -211,23 +211,23 @@ msgstr ""
 msgid "Trash can"
 msgstr ""
 
-#: data/app.metainfo.xml.in:354
+#: data/app.metainfo.xml.in:367
 msgid "Main Folio window in light mode"
 msgstr ""
 
-#: data/app.metainfo.xml.in:358
+#: data/app.metainfo.xml.in:371
 msgid "Main Folio window in dark mode"
 msgstr ""
 
-#: data/app.metainfo.xml.in:362
+#: data/app.metainfo.xml.in:375
 msgid "Folio on small/mobile screens"
 msgstr ""
 
-#: data/app.metainfo.xml.in:366
+#: data/app.metainfo.xml.in:379
 msgid "Folio preferences screen"
 msgstr ""
 
-#: data/app.metainfo.xml.in:370
+#: data/app.metainfo.xml.in:383
 msgid "Folio in three pane mode"
 msgstr ""
 
@@ -397,12 +397,6 @@ msgstr ""
 
 #: src/ui/preferences/preferences.blp:59
 msgid "Tools"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:99
-msgid ""
-"Adds a button to the markdown reference sheet on the right of the formatting "
-"toolbar"
 msgstr ""
 
 #: src/ui/preferences/preferences.blp:111
