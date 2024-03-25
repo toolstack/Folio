@@ -29,7 +29,7 @@
     <key name="cheatsheet-enabled" type="b">
       <default>true</default>
       <summary>Enable Cheatsheet</summary>
-      <description>Adds a button to the markdown refrence sheet on the right of the formatting toolbar</description>
+      <description>Adds a button to the markdown reference sheet on the right of the formatting toolbar</description>
     </key>
     <key name="enable-3-pane" type="b">
       <default>false</default>
