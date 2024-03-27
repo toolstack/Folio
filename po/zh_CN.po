@@ -1,87 +1,286 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the com.toolstack.Folio package.
-# Guoyi Zhang <guoyizhang@malacology.net>, 2022.
-#
-#, fuzzy
+# Translation of Folio in Chinese (China)
+# This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"Project-Id-Version: com.toolstack.Folio\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-07-19 17:20+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Guoyi Zhang <guoyizhang@malacology.net>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2024-03-02 16:55:21+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/4.0.0\n"
+"Language: zh_CN\n"
+"Project-Id-Version: Folio\n"
 
-#: data/app.desktop.in:8 src/ui/strings.vala:3
+#: data/app.gschema.xml:76
+msgid "Notebook sort order"
+msgstr ""
+
+#: data/app.gschema.xml:77
+msgid "The sort order of the notebook list"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:145
+msgid "Sort Order For Notebooks"
+msgstr ""
+
+#: data/app.gschema.xml:71
+msgid "Note sort order"
+msgstr ""
+
+#: data/app.gschema.xml:72
+msgid "The sort order of the note list"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:150
+msgid "Sort Order For Notes"
+msgstr ""
+
+#: src/ui/strings.vala:62
+msgid "Modified Time - Ascending"
+msgstr ""
+
+#: src/ui/strings.vala:63
+msgid "Modified Time - Descending"
+msgstr ""
+
+#: src/ui/strings.vala:64
+msgid "Alphabetical - Ascending"
+msgstr ""
+
+#: src/ui/strings.vala:65
+msgid "Alphabetical - Descending"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:114
+msgid "Display"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:117
+msgid "Full Screen"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:122
+msgid "Zoom In"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:127
+msgid "Zoom Out"
+msgstr ""
+
+#: src/ui/strings.vala:52
+msgid "Pick primary font for notes"
+msgstr ""
+
+#: src/ui/strings.vala:53
+msgid "Pick monospace font for code"
+msgstr ""
+
+#: src/ui/strings.vala:54
+msgid "File Changed On Disk"
+msgstr ""
+
+#: src/ui/strings.vala:55
+msgid ""
+"The file has changed on disk since it was last saved/loaded by Folio.\n"
+"\n"
+"You may do one of the following:\n"
+"\n"
+" • Reload the file (discarding any changes you have made in Folio)\n"
+" • Overwrite the file (discarding any changes made outside of Folio)\n"
+" • Cancel the operation and manually resolve the issue\n"
+"\n"
+"Note: Canceling the save if you have already moved to a new note/notebook will discard your changes."
+msgstr ""
+
+#: src/ui/strings.vala:56
+msgid "Reload"
+msgstr ""
+
+#: src/ui/strings.vala:57
+msgid "Overwrite"
+msgstr ""
+
+#: src/ui/strings.vala:59
+msgid ""
+"The file has changed on disk by another application.\n"
+"\n"
+"You may do one of the following:\n"
+"\n"
+" • Reload the file (discarding any changes you have made in Folio)\n"
+" • Overwrite the file (discarding any changes made outside of Folio)"
+msgstr ""
+
+#: src/ui/strings.vala:61
+msgid "Note %i"
+msgstr ""
+
+#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:213
+msgid "Trash Storage Location"
+msgstr ""
+
+#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:214
+msgid "Where the trash folder is located (requires app restart)"
+msgstr ""
+
+#: src/ui/strings.vala:46
+msgid "Pick where the trash can will be stored"
+msgstr ""
+
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:128
+msgid "Use Fixed Width For Notes"
+msgstr ""
+
+#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:129
+msgid "Use a fixed width for the text area of a note"
+msgstr ""
+
+#: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:118
+msgid "Expands the notebook list to include the notebook name"
+msgstr ""
+
+#: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:65
+msgid "Show line numbers"
+msgstr ""
+
+#: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:66
+msgid "Displays line numbers at the left of the note"
+msgstr ""
+
+#: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:76
+msgid "Show all notes"
+msgstr ""
+
+#: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:77
+msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
+msgstr ""
+
+#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:163
+msgid "Enable autosave"
+msgstr ""
+
+#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:164
+msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
+msgstr ""
+
+#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:174
+msgid "Don't hide the Trash folder"
+msgstr ""
+
+#: data/app.gschema.xml:67
+msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
+msgstr ""
+
+#: data/app.metainfo.xml.in:367
+msgid "Main Folio window in light mode"
+msgstr ""
+
+#: data/app.metainfo.xml.in:371
+msgid "Main Folio window in dark mode"
+msgstr ""
+
+#: data/app.metainfo.xml.in:375
+msgid "Folio on small/mobile screens"
+msgstr ""
+
+#: data/app.metainfo.xml.in:379
+msgid "Folio preferences screen"
+msgstr ""
+
+#: data/app.metainfo.xml.in:383
+msgid "Folio in three pane mode"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:59
+msgid "Tools"
+msgstr ""
+
+#: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:88
+msgid "Displays the formatting toolbar at the bottom of the note"
+msgstr ""
+
+#: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:99
+msgid "Adds a button to the markdown reference sheet on the right of the formatting toolbar"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:111
+msgid "Layout"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:139
+msgid "Fixed Width To Use For Notes"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:140
+msgid "Sets the fixed width size of a note in px"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:157
+msgid "Files"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:175
+msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
+msgstr ""
+
+#: src/ui/strings.vala:51
+msgid "Unable to recognize URI"
+msgstr ""
+
+#: data/app.desktop.in:9 src/ui/strings.vala:3
 msgid "Folio"
 msgstr ""
 
-#: data/app.desktop.in:9
+#: data/app.desktop.in:10
 msgid "Notes Manager"
 msgstr "笔记管家"
 
-#: data/app.desktop.in:10
+#: data/app.desktop.in:11
 msgid "Take notes"
 msgstr "记笔记"
 
-#: data/app.desktop.in:12
+#: data/app.desktop.in:13
 msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
 msgstr "笔记本;笔记;札记;文本;Markdown;记事本;书写;学校;便利贴;便签"
 
-#: data/app.desktop.in:21 src/ui/strings.vala:8
-#: src/ui/popup/shortcut_window.blp:17 src/ui/window/window.blp:47
-#: src/ui/window/window.blp:121
+#: data/app.desktop.in:22 src/ui/popup/shortcut_window.blp:17
+#: src/ui/strings.vala:8 src/ui/window/window.blp:47
+#: src/ui/window/window.blp:124
 msgid "New Note"
 msgstr "新建笔记"
 
-#: data/app.desktop.in:25 src/ui/strings.vala:14
-#: src/ui/popup/shortcut_window.blp:37 src/ui/window/window.blp:146
+#: data/app.desktop.in:26 src/ui/popup/shortcut_window.blp:37
+#: src/ui/strings.vala:14 src/ui/window/window.blp:149
 msgid "New Notebook"
 msgstr "新建笔记本"
 
-#: data/app.desktop.in:29 src/ui/strings.vala:39
-#: src/ui/edit_view/toolbar/toolbar.blp:175 src/ui/window/window.blp:219
+#: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:90
+#: src/ui/strings.vala:39 src/ui/window/window.blp:245
 msgid "Markdown Cheatsheet"
 msgstr "Markdown 备忘录"
 
-#: data/app.desktop.in:33 src/ui/popup/shortcut_window.blp:62
+#: data/app.desktop.in:34 src/ui/popup/shortcut_window.blp:62
 msgid "Preferences"
 msgstr "首选项"
 
-#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:15
+#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:18
 msgid "Note Font"
 msgstr "笔记字体"
 
-#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:16
+#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:19
 msgid "The font notes will be displayed in"
 msgstr "这个字体将会展示在"
 
-#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:29
-#, fuzzy
+#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:31
 msgid "Monospace Font"
-msgstr "笔记字体"
+msgstr ""
 
-#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:30
-#, fuzzy
+#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:32
 msgid "The font code will be displayed in"
-msgstr "这个字体将会展示在"
+msgstr ""
 
-#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:44
+#: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:46
 msgid "OLED Mode"
 msgstr "OLED 模式"
-
-#: data/app.gschema.xml:26
-msgid "Notes Directory"
-msgstr "笔记文件夹"
-
-#: data/app.gschema.xml:27
-msgid "Where the notebooks are stored"
-msgstr "笔记存储位置"
 
 #: data/app.metainfo.xml.in:5
 msgid "Take notes in Markdown"
@@ -104,27 +303,195 @@ msgid "Searchable through GNOME search"
 msgstr "GNOME search 可搜索"
 
 #: data/app.metainfo.xml.in:12
-msgid "Highlight &amp; Strikethrough text formatting"
-msgstr "亮点 &amp; 删除线文本格式"
+msgid "Highlight and strikethrough text formatting"
+msgstr ""
 
 #: data/app.metainfo.xml.in:13
-msgid "App recoloring based on notebook color"
-msgstr "App 基于笔记本颜色重新着色"
+msgid "App themeing based on notebook color"
+msgstr ""
 
 #: data/app.metainfo.xml.in:14
 msgid "Trash can"
 msgstr "垃圾桶"
 
-#: data/app.metainfo.xml.in:143
-msgid "Markdown document"
-msgstr "Markdown 文件"
+#: src/ui/edit_view/toolbar/toolbar.blp:23
+#: src/ui/edit_view/toolbar/toolbar.blp:131
+#: src/ui/widgets/markdown/heading_popover.blp:48
+msgid "Plain Text"
+msgstr "平文本"
 
-#: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:125
+#: src/ui/edit_view/toolbar/toolbar.blp:24
+#: src/ui/edit_view/toolbar/toolbar.blp:132
+#: src/ui/widgets/markdown/heading_popover.blp:12
+msgid "Heading 1"
+msgstr "1 级标题"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:25
+#: src/ui/edit_view/toolbar/toolbar.blp:133
+#: src/ui/widgets/markdown/heading_popover.blp:18
+msgid "Heading 2"
+msgstr "2 级标题"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:26
+#: src/ui/edit_view/toolbar/toolbar.blp:134
+#: src/ui/widgets/markdown/heading_popover.blp:24
+msgid "Heading 3"
+msgstr "3级标题"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:27
+#: src/ui/edit_view/toolbar/toolbar.blp:135
+#: src/ui/widgets/markdown/heading_popover.blp:30
+msgid "Heading 4"
+msgstr "4 级标题"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:28
+#: src/ui/edit_view/toolbar/toolbar.blp:136
+#: src/ui/widgets/markdown/heading_popover.blp:36
+msgid "Heading 5"
+msgstr "5 级标题"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:29
+#: src/ui/edit_view/toolbar/toolbar.blp:137
+#: src/ui/widgets/markdown/heading_popover.blp:42
+msgid "Heading 6"
+msgstr "6 级标题"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:39
+#: src/ui/edit_view/toolbar/toolbar.blp:104
+#: src/ui/edit_view/toolbar/toolbar.blp:148
+#: src/ui/edit_view/toolbar/toolbar.blp:201 src/ui/popup/shortcut_window.blp:72
+msgid "Bold"
+msgstr "粗体"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:45
+#: src/ui/edit_view/toolbar/toolbar.blp:111
+#: src/ui/edit_view/toolbar/toolbar.blp:155
+#: src/ui/edit_view/toolbar/toolbar.blp:202 src/ui/popup/shortcut_window.blp:77
+msgid "Italic"
+msgstr "斜体"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:51
+#: src/ui/edit_view/toolbar/toolbar.blp:162
+#: src/ui/edit_view/toolbar/toolbar.blp:203 src/ui/popup/shortcut_window.blp:82
+msgid "Strikethrough"
+msgstr "删除线"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:57
+#: src/ui/edit_view/toolbar/toolbar.blp:169
+#: src/ui/edit_view/toolbar/toolbar.blp:204 src/ui/popup/shortcut_window.blp:87
+msgid "Highlight"
+msgstr "高亮"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:67
+#: src/ui/edit_view/toolbar/toolbar.blp:193 src/ui/popup/shortcut_window.blp:92
+msgid "Insert Link"
+msgstr "插入链接"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:73
+#: src/ui/edit_view/toolbar/toolbar.blp:194
+msgid "Insert Code"
+msgstr "插入代码"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:79
+#: src/ui/edit_view/toolbar/toolbar.blp:195
+msgid "Insert Horizontal Rule"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:118
+msgid "Format"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:181
+msgid "Insert"
+msgstr ""
+
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:34
+#: src/ui/strings.vala:44 src/ui/strings.vala:58
+msgid "Cancel"
+msgstr "取消"
+
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
+msgid "Confirm"
+msgstr "确认"
+
+#: src/ui/popup/shortcut_window.blp:14 src/ui/strings.vala:60
+msgid "Note"
+msgstr "笔记"
+
+#: src/ui/popup/shortcut_window.blp:22
+msgid "Edit Note"
+msgstr "编辑笔记"
+
+#: src/ui/popup/shortcut_window.blp:27
+msgid "Save Note"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:34 src/ui/strings.vala:48
+msgid "Notebook"
+msgstr "笔记本"
+
+#: src/ui/popup/shortcut_window.blp:42 src/ui/strings.vala:23
+msgid "Edit Notebook"
+msgstr "编辑笔记本"
+
+#: src/ui/popup/shortcut_window.blp:49 src/ui/preferences/preferences.blp:12
+msgid "General"
+msgstr "常规"
+
+#: src/ui/popup/shortcut_window.blp:52
+msgid "Show Keyboard Shortcuts"
+msgstr "显示快捷键"
+
+#: src/ui/popup/shortcut_window.blp:57
+msgid "Quit"
+msgstr "退出"
+
+#: src/ui/popup/shortcut_window.blp:69
+msgid "Formatting"
+msgstr "格式化"
+
+#: src/ui/popup/shortcut_window.blp:99
+msgid "Navigation"
+msgstr "导航栏"
+
+#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:216
+msgid "Toggle Sidebar"
+msgstr "切换侧栏"
+
+#: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:63
+msgid "Search Notes"
+msgstr "搜索笔记"
+
+#: data/app.gschema.xml:22 src/ui/preferences/preferences.blp:47
+msgid "Makes the dark theme pitch black"
+msgstr "使暗黑主题颜色更深"
+
+#: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:87
+msgid "Enable Toolbar"
+msgstr ""
+
+#: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:98
+msgid "Enable Cheatsheet"
+msgstr ""
+
+#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:117
+msgid "3-Pane Layout"
+msgstr ""
+
+#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:185
+msgid "Notes Storage Location"
+msgstr "笔记本存储位置"
+
+#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:186
+msgid "Where the notebooks are stored (requires app restart)"
+msgstr "笔记本应该存储在哪里（需要重启本 app）"
+
+#: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:129
+#: src/ui/window/notebooks_bar/notebooks_bar.blp:171
 msgid "Trash"
 msgstr "垃圾"
 
 #: src/ui/strings.vala:5
-#, c-format
 msgid "%d Notes"
 msgstr "%d 笔记"
 
@@ -169,12 +536,10 @@ msgid "Move"
 msgstr "移动"
 
 #: src/ui/strings.vala:18
-#, c-format
 msgid "Note “%s” already exists in notebook “%s”"
 msgstr "笔记 “%s” 已经存在于 “%s”笔记本中"
 
 #: src/ui/strings.vala:19
-#, c-format
 msgid "Are you sure you want to delete the note “%s”?"
 msgstr "您真的想删除笔记 “%s” 嘛？"
 
@@ -183,17 +548,12 @@ msgid "Delete Note"
 msgstr "删除笔记"
 
 #: src/ui/strings.vala:21
-#, c-format
 msgid "Are you sure you want to delete the notebook “%s”?"
 msgstr "您真的想删除笔记本 “%s” 嘛？"
 
 #: src/ui/strings.vala:22
 msgid "Delete Notebook"
 msgstr "删除笔记本"
-
-#: src/ui/strings.vala:23 src/ui/popup/shortcut_window.blp:42
-msgid "Edit Notebook"
-msgstr "编辑笔记本"
 
 #: src/ui/strings.vala:24
 msgid "Note name shouldn’t contain “.” or “/”"
@@ -204,7 +564,6 @@ msgid "Note name shouldn’t be blank"
 msgstr "笔记名称不应该为空"
 
 #: src/ui/strings.vala:26
-#, c-format
 msgid "Note “%s” already exists"
 msgstr "笔记 “%s” 已经存在"
 
@@ -225,7 +584,6 @@ msgid "Couldn’t restore note"
 msgstr "无法存储笔记"
 
 #: src/ui/strings.vala:31
-#, c-format
 msgid "Saved “%s” to “%s”"
 msgstr "保存 “%s” 到 “%s”"
 
@@ -242,7 +600,6 @@ msgid "Notebook name shouldn’t be blank"
 msgstr "笔记本名称不应为空"
 
 #: src/ui/strings.vala:35
-#, c-format
 msgid "Notebook “%s” already exists"
 msgstr "笔记本 “%s” 已经存在"
 
@@ -267,194 +624,29 @@ msgid "Rename"
 msgstr "重命名"
 
 #: src/ui/strings.vala:42
-msgid "Couldn’t find an app to handle file uris"
-msgstr "无法找到软件去处理文件的 uris"
+msgid "Couldn’t find an app to handle file URIs"
+msgstr ""
 
 #: src/ui/strings.vala:43
 msgid "Apply"
 msgstr "应用"
 
-#: src/ui/strings.vala:44
-#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:34
-msgid "Cancel"
-msgstr "取消"
-
 #: src/ui/strings.vala:45
 msgid "Pick where the notebooks will be stored"
 msgstr "选择笔记本的存储位置"
 
-#: src/ui/strings.vala:46 src/ui/window/notebooks_bar/notebooks_bar.blp:80
+#: src/ui/strings.vala:47 src/ui/window/notebooks_bar/notebooks_bar.blp:59
+#: src/ui/window/notebooks_bar/notebooks_bar.blp:101
 msgid "All Notes"
 msgstr "所有笔记"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:25
-#: src/ui/edit_view/toolbar/toolbar.blp:116
-#: src/ui/widgets/markdown/heading_popover.blp:48
-msgid "Plain Text"
-msgstr "平文本"
-
-#: src/ui/edit_view/toolbar/toolbar.blp:26
-#: src/ui/edit_view/toolbar/toolbar.blp:117
-#: src/ui/widgets/markdown/heading_popover.blp:12
-msgid "Heading 1"
-msgstr "1 级标题"
-
-#: src/ui/edit_view/toolbar/toolbar.blp:27
-#: src/ui/edit_view/toolbar/toolbar.blp:118
-#: src/ui/widgets/markdown/heading_popover.blp:18
-msgid "Heading 2"
-msgstr "2 级标题"
-
-#: src/ui/edit_view/toolbar/toolbar.blp:28
-#: src/ui/edit_view/toolbar/toolbar.blp:119
-#: src/ui/widgets/markdown/heading_popover.blp:24
-msgid "Heading 3"
-msgstr "3级标题"
-
-#: src/ui/edit_view/toolbar/toolbar.blp:29
-#: src/ui/edit_view/toolbar/toolbar.blp:120
-#: src/ui/widgets/markdown/heading_popover.blp:30
-msgid "Heading 4"
-msgstr "4 级标题"
-
-#: src/ui/edit_view/toolbar/toolbar.blp:30
-#: src/ui/edit_view/toolbar/toolbar.blp:121
-#: src/ui/widgets/markdown/heading_popover.blp:36
-msgid "Heading 5"
-msgstr "5 级标题"
-
-#: src/ui/edit_view/toolbar/toolbar.blp:31
-#: src/ui/edit_view/toolbar/toolbar.blp:122
-#: src/ui/widgets/markdown/heading_popover.blp:42
-msgid "Heading 6"
-msgstr "6 级标题"
-
-#: src/ui/edit_view/toolbar/toolbar.blp:43
-#: src/ui/edit_view/toolbar/toolbar.blp:133
-#: src/ui/edit_view/toolbar/toolbar.blp:194 src/ui/popup/shortcut_window.blp:72
-msgid "Bold"
-msgstr "粗体"
-
-#: src/ui/edit_view/toolbar/toolbar.blp:50
-#: src/ui/edit_view/toolbar/toolbar.blp:140
-#: src/ui/edit_view/toolbar/toolbar.blp:195 src/ui/popup/shortcut_window.blp:77
-msgid "Italic"
-msgstr "斜体"
-
-#: src/ui/edit_view/toolbar/toolbar.blp:57
-#: src/ui/edit_view/toolbar/toolbar.blp:147
-#: src/ui/edit_view/toolbar/toolbar.blp:196 src/ui/popup/shortcut_window.blp:82
-msgid "Strikethrough"
-msgstr "删除线"
-
-#: src/ui/edit_view/toolbar/toolbar.blp:64
-#: src/ui/edit_view/toolbar/toolbar.blp:154
-#: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:87
-msgid "Highlight"
-msgstr "高亮"
-
-#: src/ui/edit_view/toolbar/toolbar.blp:76
-#: src/ui/edit_view/toolbar/toolbar.blp:186 src/ui/popup/shortcut_window.blp:92
-msgid "Insert Link"
-msgstr "插入链接"
-
-#: src/ui/edit_view/toolbar/toolbar.blp:83
-#: src/ui/edit_view/toolbar/toolbar.blp:187
-msgid "Insert Code"
-msgstr "插入代码"
-
-#: src/ui/edit_view/toolbar/toolbar.blp:90
-#: src/ui/edit_view/toolbar/toolbar.blp:188
-msgid "Insert Horizontal Rule"
+#: src/ui/strings.vala:49
+msgid "Last Modified"
 msgstr ""
 
-#: src/ui/edit_view/toolbar/toolbar.blp:103
-#, fuzzy
-msgid "Format"
-msgstr "格式化"
-
-#: src/ui/edit_view/toolbar/toolbar.blp:167
-#, fuzzy
-msgid "Insert"
-msgstr "插入链接"
-
-#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
-msgid "Confirm"
-msgstr "确认"
-
-#: src/ui/popup/shortcut_window.blp:14
-msgid "Note"
-msgstr "笔记"
-
-#: src/ui/popup/shortcut_window.blp:22
-msgid "Edit Note"
-msgstr "编辑笔记"
-
-#: src/ui/popup/shortcut_window.blp:27
-#, fuzzy
-msgid "Save Note"
-msgstr "新建笔记"
-
-#: src/ui/popup/shortcut_window.blp:34
-msgid "Notebook"
-msgstr "笔记本"
-
-#: src/ui/popup/shortcut_window.blp:49
-msgid "General"
-msgstr "常规"
-
-#: src/ui/popup/shortcut_window.blp:52
-msgid "Show Keyboard Shortcuts"
-msgstr "显示快捷键"
-
-#: src/ui/popup/shortcut_window.blp:57
-msgid "Quit"
-msgstr "退出"
-
-#: src/ui/popup/shortcut_window.blp:69
-msgid "Formatting"
-msgstr "格式化"
-
-#: src/ui/popup/shortcut_window.blp:99
-msgid "Navigation"
-msgstr "导航栏"
-
-#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:188
-msgid "Toggle Sidebar"
-msgstr "切换侧栏"
-
-#: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:63
-msgid "Search Notes"
-msgstr "搜索笔记"
-
-#: src/ui/preferences/preferences.blp:21
-msgid "Pick a font for displaying the notes' content"
-msgstr "选择笔记内容的字体"
-
-#: src/ui/preferences/preferences.blp:35
-#, fuzzy
-msgid "Pick a font for displaying code"
-msgstr "选择笔记内容的字体"
-
-#: src/ui/preferences/preferences.blp:45
-msgid "Makes the dark theme pitch black"
-msgstr "使暗黑主题颜色更深"
-
-#: src/ui/preferences/preferences.blp:55
-msgid "Enable Toolbar"
+#: src/ui/strings.vala:50
+msgid "Extension"
 msgstr ""
-
-#: src/ui/preferences/preferences.blp:65
-msgid "3-Pane Layout"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:77
-msgid "Notes Storage Location"
-msgstr "笔记本存储位置"
-
-#: src/ui/preferences/preferences.blp:78
-msgid "Where the notebooks are stored (requires app restart)"
-msgstr "笔记本应该存储在哪里（需要重启本 app）"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
 msgid "Follow system style"
@@ -468,23 +660,23 @@ msgstr ""
 msgid "Dark style"
 msgstr ""
 
-#: src/ui/window/app_menu/app_menu.blp:24
+#: src/ui/window/app_menu/app_menu.blp:25
 msgid "_New Notebook"
 msgstr "_新笔记本"
 
-#: src/ui/window/app_menu/app_menu.blp:28
+#: src/ui/window/app_menu/app_menu.blp:29
 msgid "_Edit Notebook"
 msgstr "_编辑笔记本"
 
-#: src/ui/window/app_menu/app_menu.blp:34
+#: src/ui/window/app_menu/app_menu.blp:35
 msgid "_Preferences"
 msgstr "_首选项"
 
-#: src/ui/window/app_menu/app_menu.blp:38
+#: src/ui/window/app_menu/app_menu.blp:39
 msgid "_Keyboard Shortcuts"
 msgstr "_快捷键"
 
-#: src/ui/window/app_menu/app_menu.blp:42
+#: src/ui/window/app_menu/app_menu.blp:43
 msgid "_About"
 msgstr "_关于"
 
@@ -492,31 +684,35 @@ msgstr "_关于"
 msgid "Notebook Name"
 msgstr "笔记本名称"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:72
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:66
+msgid "Duplicate notebook names are not allowed!"
+msgstr ""
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:82
 msgid "First Characters"
 msgstr "首字符"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:73
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:83
 msgid "Initials"
 msgstr "缩写"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:74
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:84
 msgid "Initials: camelCase"
 msgstr "缩写：camelCase"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:75
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:85
 msgid "Initials: snake_case"
 msgstr "缩写：snake_case"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:76
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:86
 msgid "Icon"
 msgstr "图标"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:106
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:116
 msgid "Notebook Color"
 msgstr "笔记颜色"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:116
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:126
 msgid "Create Notebook"
 msgstr "创建笔记本"
 
@@ -527,6 +723,10 @@ msgstr "编辑"
 #: src/ui/window/notebooks_bar/notebook_menu.blp:26
 msgid "Move all to Trash"
 msgstr "移动所有的笔记到垃圾桶"
+
+#: src/ui/window/notebooks_bar/notebooks_bar.blp:113
+msgid "Notebooks"
+msgstr ""
 
 #: src/ui/window/sidebar/note_create_popup.blp:37
 msgid "Note Name"
@@ -556,33 +756,30 @@ msgstr "移动到垃圾桶"
 msgid "Open Containing Folder"
 msgstr "在文件夹中打开"
 
-#: src/ui/window/window.blp:115
+#: src/ui/window/window.blp:118
 msgid "Get started writing"
 msgstr "开始书写"
 
-#: src/ui/window/window.blp:140
+#: src/ui/window/window.blp:143
 msgid "Create a notebook"
 msgstr "创建笔记本"
 
-#: src/ui/window/window.blp:165
+#: src/ui/window/window.blp:168
 msgid "Trash is empty"
 msgstr "垃圾桶空空如也"
 
-#: src/ui/window/window.blp:196
+#: src/ui/window/window.blp:224
 msgid "Back"
 msgstr "返回"
 
-#: src/ui/window/window.blp:212
+#: src/ui/window/window.blp:239
 msgid "Open in Notebook"
 msgstr "在笔记本中打开"
 
-#: src/ui/window/window.blp:233
+#: src/ui/window/window.blp:264
 msgid "_Rename Note"
 msgstr "_重命名笔记"
 
-#: src/ui/window/window.blp:239
+#: src/ui/window/window.blp:270
 msgid "_Export Note"
 msgstr "_导出笔记"
-
-#~ msgid "Font"
-#~ msgstr "字体"

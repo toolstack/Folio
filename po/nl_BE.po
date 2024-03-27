@@ -1,81 +1,286 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the com.toolstack.Folio package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-# Gregory <gregorydk@proton.me>, 2022.
-#
+# Translation of Folio in Dutch (Belgium)
+# This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"Project-Id-Version: com.toolstack.Folio\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-05-31 10:02+0200\n"
-"PO-Revision-Date: 2022-08-13 14:21+0200\n"
-"Last-Translator: Gregory <gregorydk@proton.me>\n"
-"Language-Team: Dutch - Belgium <gregorydk@proton.me>\n"
-"Language: nl_BE\n"
+"PO-Revision-Date: 2024-03-02 16:58:11+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
-"X-Generator: Gtranslator 42.0\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/4.0.0\n"
+"Language: nl_BE\n"
+"Project-Id-Version: Folio\n"
 
-#: data/app.desktop.in:8 src/ui/strings.vala:3
+#: data/app.gschema.xml:76
+msgid "Notebook sort order"
+msgstr ""
+
+#: data/app.gschema.xml:77
+msgid "The sort order of the notebook list"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:145
+msgid "Sort Order For Notebooks"
+msgstr ""
+
+#: data/app.gschema.xml:71
+msgid "Note sort order"
+msgstr ""
+
+#: data/app.gschema.xml:72
+msgid "The sort order of the note list"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:150
+msgid "Sort Order For Notes"
+msgstr ""
+
+#: src/ui/strings.vala:62
+msgid "Modified Time - Ascending"
+msgstr ""
+
+#: src/ui/strings.vala:63
+msgid "Modified Time - Descending"
+msgstr ""
+
+#: src/ui/strings.vala:64
+msgid "Alphabetical - Ascending"
+msgstr ""
+
+#: src/ui/strings.vala:65
+msgid "Alphabetical - Descending"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:114
+msgid "Display"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:117
+msgid "Full Screen"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:122
+msgid "Zoom In"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:127
+msgid "Zoom Out"
+msgstr ""
+
+#: src/ui/strings.vala:52
+msgid "Pick primary font for notes"
+msgstr ""
+
+#: src/ui/strings.vala:53
+msgid "Pick monospace font for code"
+msgstr ""
+
+#: src/ui/strings.vala:54
+msgid "File Changed On Disk"
+msgstr ""
+
+#: src/ui/strings.vala:55
+msgid ""
+"The file has changed on disk since it was last saved/loaded by Folio.\n"
+"\n"
+"You may do one of the following:\n"
+"\n"
+" • Reload the file (discarding any changes you have made in Folio)\n"
+" • Overwrite the file (discarding any changes made outside of Folio)\n"
+" • Cancel the operation and manually resolve the issue\n"
+"\n"
+"Note: Canceling the save if you have already moved to a new note/notebook will discard your changes."
+msgstr ""
+
+#: src/ui/strings.vala:56
+msgid "Reload"
+msgstr ""
+
+#: src/ui/strings.vala:57
+msgid "Overwrite"
+msgstr ""
+
+#: src/ui/strings.vala:59
+msgid ""
+"The file has changed on disk by another application.\n"
+"\n"
+"You may do one of the following:\n"
+"\n"
+" • Reload the file (discarding any changes you have made in Folio)\n"
+" • Overwrite the file (discarding any changes made outside of Folio)"
+msgstr ""
+
+#: src/ui/strings.vala:61
+msgid "Note %i"
+msgstr ""
+
+#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:213
+msgid "Trash Storage Location"
+msgstr ""
+
+#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:214
+msgid "Where the trash folder is located (requires app restart)"
+msgstr ""
+
+#: src/ui/strings.vala:46
+msgid "Pick where the trash can will be stored"
+msgstr ""
+
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:128
+msgid "Use Fixed Width For Notes"
+msgstr ""
+
+#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:129
+msgid "Use a fixed width for the text area of a note"
+msgstr ""
+
+#: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:118
+msgid "Expands the notebook list to include the notebook name"
+msgstr ""
+
+#: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:65
+msgid "Show line numbers"
+msgstr ""
+
+#: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:66
+msgid "Displays line numbers at the left of the note"
+msgstr ""
+
+#: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:76
+msgid "Show all notes"
+msgstr ""
+
+#: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:77
+msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
+msgstr ""
+
+#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:163
+msgid "Enable autosave"
+msgstr ""
+
+#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:164
+msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
+msgstr ""
+
+#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:174
+msgid "Don't hide the Trash folder"
+msgstr ""
+
+#: data/app.gschema.xml:67
+msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
+msgstr ""
+
+#: data/app.metainfo.xml.in:367
+msgid "Main Folio window in light mode"
+msgstr ""
+
+#: data/app.metainfo.xml.in:371
+msgid "Main Folio window in dark mode"
+msgstr ""
+
+#: data/app.metainfo.xml.in:375
+msgid "Folio on small/mobile screens"
+msgstr ""
+
+#: data/app.metainfo.xml.in:379
+msgid "Folio preferences screen"
+msgstr ""
+
+#: data/app.metainfo.xml.in:383
+msgid "Folio in three pane mode"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:59
+msgid "Tools"
+msgstr ""
+
+#: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:88
+msgid "Displays the formatting toolbar at the bottom of the note"
+msgstr ""
+
+#: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:99
+msgid "Adds a button to the markdown reference sheet on the right of the formatting toolbar"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:111
+msgid "Layout"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:139
+msgid "Fixed Width To Use For Notes"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:140
+msgid "Sets the fixed width size of a note in px"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:157
+msgid "Files"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:175
+msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
+msgstr ""
+
+#: src/ui/strings.vala:51
+msgid "Unable to recognize URI"
+msgstr ""
+
+#: data/app.desktop.in:9 src/ui/strings.vala:3
 msgid "Folio"
 msgstr "Folio"
 
-#: data/app.desktop.in:9
+#: data/app.desktop.in:10
 msgid "Notes Manager"
 msgstr "Notitiebeheerder"
 
-#: data/app.desktop.in:10
+#: data/app.desktop.in:11
 msgid "Take notes"
 msgstr "Notities nemen"
 
-#: data/app.desktop.in:12
+#: data/app.desktop.in:13
 msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
-msgstr ""
-"Notitieboek;Notitie;Notities;Tekst;Markdown;Kladblok;Schrijven;School;Post-"
-"it;Sticky;"
+msgstr "Notitieboek;Notitie;Notities;Tekst;Markdown;Kladblok;Schrijven;School;Post-it;Sticky;"
 
-#: data/app.desktop.in:21 src/ui/strings.vala:8
-#: src/ui/popup/shortcut_window.blp:17 src/ui/window/window.blp:46
-#: src/ui/window/window.blp:167
+#: data/app.desktop.in:22 src/ui/popup/shortcut_window.blp:17
+#: src/ui/strings.vala:8 src/ui/window/window.blp:47
+#: src/ui/window/window.blp:124
 msgid "New Note"
 msgstr "Nieuwe notitie"
 
-#: data/app.desktop.in:25 src/ui/strings.vala:14
-#: src/ui/popup/shortcut_window.blp:32 src/ui/window/window.blp:192
+#: data/app.desktop.in:26 src/ui/popup/shortcut_window.blp:37
+#: src/ui/strings.vala:14 src/ui/window/window.blp:149
 msgid "New Notebook"
 msgstr "Nieuw notitieboek"
 
-#: data/app.desktop.in:29 src/ui/strings.vala:39
-#: src/ui/edit_view/edit_view.blp:113 src/ui/window/window.blp:140
+#: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:90
+#: src/ui/strings.vala:39 src/ui/window/window.blp:245
 msgid "Markdown Cheatsheet"
 msgstr "Markdown cheatsheet"
 
-#: data/app.desktop.in:33 src/ui/popup/shortcut_window.blp:57
+#: data/app.desktop.in:34 src/ui/popup/shortcut_window.blp:62
 msgid "Preferences"
 msgstr "Voorkeuren"
 
-#: data/app.gschema.xml:6
-msgid "Font"
-msgstr "Lettertype"
+#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:18
+msgid "Note Font"
+msgstr "Notitielettertype"
 
-#: data/app.gschema.xml:7 src/ui/preferences.blp:16
+#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:19
 msgid "The font notes will be displayed in"
 msgstr "De lettertypes worden weergegeven in"
 
-#: data/app.gschema.xml:11 src/ui/preferences.blp:28
+#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:31
+msgid "Monospace Font"
+msgstr ""
+
+#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:32
+msgid "The font code will be displayed in"
+msgstr ""
+
+#: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:46
 msgid "OLED Mode"
 msgstr "OLED-modus"
-
-#: data/app.gschema.xml:15
-msgid "Notes Directory"
-msgstr "Notitiesmap"
-
-#: data/app.gschema.xml:16
-msgid "Where the notebooks are stored"
-msgstr "Waar de notitieboeken zijn opgeslagen"
 
 #: data/app.metainfo.xml.in:5
 msgid "Take notes in Markdown"
@@ -98,27 +303,195 @@ msgid "Searchable through GNOME search"
 msgstr "Doorzoekbaar via GNOME Zoeken"
 
 #: data/app.metainfo.xml.in:12
-msgid "Highlight &amp; Strikethrough text formatting"
-msgstr "Tekstopmaak markeren &amp; doorhalen"
+msgid "Highlight and strikethrough text formatting"
+msgstr ""
 
 #: data/app.metainfo.xml.in:13
-msgid "App recoloring based on notebook color"
-msgstr "App herkleuren gebaseerd op notitieboekkleur"
+msgid "App themeing based on notebook color"
+msgstr ""
 
 #: data/app.metainfo.xml.in:14
 msgid "Trash can"
 msgstr "Prullenbak"
 
-#: data/app.metainfo.xml.in:79
-msgid "Markdown document"
-msgstr "Markdown-document"
+#: src/ui/edit_view/toolbar/toolbar.blp:23
+#: src/ui/edit_view/toolbar/toolbar.blp:131
+#: src/ui/widgets/markdown/heading_popover.blp:48
+msgid "Plain Text"
+msgstr "Platte tekst"
 
-#: src/ui/strings.vala:4
+#: src/ui/edit_view/toolbar/toolbar.blp:24
+#: src/ui/edit_view/toolbar/toolbar.blp:132
+#: src/ui/widgets/markdown/heading_popover.blp:12
+msgid "Heading 1"
+msgstr "Kop 1"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:25
+#: src/ui/edit_view/toolbar/toolbar.blp:133
+#: src/ui/widgets/markdown/heading_popover.blp:18
+msgid "Heading 2"
+msgstr "Kop 2"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:26
+#: src/ui/edit_view/toolbar/toolbar.blp:134
+#: src/ui/widgets/markdown/heading_popover.blp:24
+msgid "Heading 3"
+msgstr "Kop 3"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:27
+#: src/ui/edit_view/toolbar/toolbar.blp:135
+#: src/ui/widgets/markdown/heading_popover.blp:30
+msgid "Heading 4"
+msgstr "Kop 4"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:28
+#: src/ui/edit_view/toolbar/toolbar.blp:136
+#: src/ui/widgets/markdown/heading_popover.blp:36
+msgid "Heading 5"
+msgstr "Kop 5"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:29
+#: src/ui/edit_view/toolbar/toolbar.blp:137
+#: src/ui/widgets/markdown/heading_popover.blp:42
+msgid "Heading 6"
+msgstr "Kop 6"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:39
+#: src/ui/edit_view/toolbar/toolbar.blp:104
+#: src/ui/edit_view/toolbar/toolbar.blp:148
+#: src/ui/edit_view/toolbar/toolbar.blp:201 src/ui/popup/shortcut_window.blp:72
+msgid "Bold"
+msgstr "Vet"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:45
+#: src/ui/edit_view/toolbar/toolbar.blp:111
+#: src/ui/edit_view/toolbar/toolbar.blp:155
+#: src/ui/edit_view/toolbar/toolbar.blp:202 src/ui/popup/shortcut_window.blp:77
+msgid "Italic"
+msgstr "Cursief"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:51
+#: src/ui/edit_view/toolbar/toolbar.blp:162
+#: src/ui/edit_view/toolbar/toolbar.blp:203 src/ui/popup/shortcut_window.blp:82
+msgid "Strikethrough"
+msgstr "Doorhalen"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:57
+#: src/ui/edit_view/toolbar/toolbar.blp:169
+#: src/ui/edit_view/toolbar/toolbar.blp:204 src/ui/popup/shortcut_window.blp:87
+msgid "Highlight"
+msgstr "Markeren"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:67
+#: src/ui/edit_view/toolbar/toolbar.blp:193 src/ui/popup/shortcut_window.blp:92
+msgid "Insert Link"
+msgstr "Link toevoegen"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:73
+#: src/ui/edit_view/toolbar/toolbar.blp:194
+msgid "Insert Code"
+msgstr "Code toevoegen"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:79
+#: src/ui/edit_view/toolbar/toolbar.blp:195
+msgid "Insert Horizontal Rule"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:118
+msgid "Format"
+msgstr ""
+
+#: src/ui/edit_view/toolbar/toolbar.blp:181
+msgid "Insert"
+msgstr ""
+
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:34
+#: src/ui/strings.vala:44 src/ui/strings.vala:58
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
+msgid "Confirm"
+msgstr "Bevestigen"
+
+#: src/ui/popup/shortcut_window.blp:14 src/ui/strings.vala:60
+msgid "Note"
+msgstr "Notitie"
+
+#: src/ui/popup/shortcut_window.blp:22
+msgid "Edit Note"
+msgstr "Notitie bewerken"
+
+#: src/ui/popup/shortcut_window.blp:27
+msgid "Save Note"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:34 src/ui/strings.vala:48
+msgid "Notebook"
+msgstr "Notitieboek"
+
+#: src/ui/popup/shortcut_window.blp:42 src/ui/strings.vala:23
+msgid "Edit Notebook"
+msgstr "Notitieboek bewerken"
+
+#: src/ui/popup/shortcut_window.blp:49 src/ui/preferences/preferences.blp:12
+msgid "General"
+msgstr "Algemeen"
+
+#: src/ui/popup/shortcut_window.blp:52
+msgid "Show Keyboard Shortcuts"
+msgstr "Sneltoetsen tonen"
+
+#: src/ui/popup/shortcut_window.blp:57
+msgid "Quit"
+msgstr "Afsluiten"
+
+#: src/ui/popup/shortcut_window.blp:69
+msgid "Formatting"
+msgstr "Opmaken"
+
+#: src/ui/popup/shortcut_window.blp:99
+msgid "Navigation"
+msgstr "Navigatie"
+
+#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:216
+msgid "Toggle Sidebar"
+msgstr "Zijbalk aan/uitzetten"
+
+#: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:63
+msgid "Search Notes"
+msgstr "Notities zoeken"
+
+#: data/app.gschema.xml:22 src/ui/preferences/preferences.blp:47
+msgid "Makes the dark theme pitch black"
+msgstr "Maakt het donker thema pikzwart"
+
+#: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:87
+msgid "Enable Toolbar"
+msgstr ""
+
+#: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:98
+msgid "Enable Cheatsheet"
+msgstr ""
+
+#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:117
+msgid "3-Pane Layout"
+msgstr ""
+
+#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:185
+msgid "Notes Storage Location"
+msgstr "Notities opslaglocatie"
+
+#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:186
+msgid "Where the notebooks are stored (requires app restart)"
+msgstr "Waar de notitieboeken worden opgeslagen (vereist opnieuw opstarten van de app)"
+
+#: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:129
+#: src/ui/window/notebooks_bar/notebooks_bar.blp:171
 msgid "Trash"
 msgstr "Prullenbak"
 
 #: src/ui/strings.vala:5
-#, c-format
 msgid "%d Notes"
 msgstr "%d Notities"
 
@@ -126,7 +499,7 @@ msgstr "%d Notities"
 msgid "Are you sure you want to delete everything in the trash?"
 msgstr "Weet je zeker dat je alles uit de prullenbak wilt verwijderen?"
 
-#: src/ui/strings.vala:7 src/ui/window/window.blp:53
+#: src/ui/strings.vala:7 src/ui/window/window.blp:54
 msgid "Empty Trash"
 msgstr "Prullenbak legen"
 
@@ -163,12 +536,10 @@ msgid "Move"
 msgstr "Verplaatsen"
 
 #: src/ui/strings.vala:18
-#, c-format
 msgid "Note “%s” already exists in notebook “%s”"
 msgstr "Notitie “%s” bestaat al in notitieboek “%s”"
 
 #: src/ui/strings.vala:19
-#, c-format
 msgid "Are you sure you want to delete the note “%s”?"
 msgstr "Weet je zeker dat je notitie “%s” wilt verwijderen?"
 
@@ -177,17 +548,12 @@ msgid "Delete Note"
 msgstr "Notitie verwijderen"
 
 #: src/ui/strings.vala:21
-#, c-format
 msgid "Are you sure you want to delete the notebook “%s”?"
 msgstr "Weet je zeker dat je notitieboek “%s” wilt verwijderen?"
 
 #: src/ui/strings.vala:22
 msgid "Delete Notebook"
 msgstr "Notitieboek verwijderen"
-
-#: src/ui/strings.vala:23 src/ui/popup/shortcut_window.blp:37
-msgid "Edit Notebook"
-msgstr "Notitieboek bewerken"
 
 #: src/ui/strings.vala:24
 msgid "Note name shouldn’t contain “.” or “/”"
@@ -198,7 +564,6 @@ msgid "Note name shouldn’t be blank"
 msgstr "Notitienaam mag niet leeg zijn"
 
 #: src/ui/strings.vala:26
-#, c-format
 msgid "Note “%s” already exists"
 msgstr "Notitie “%s” bestaat al"
 
@@ -219,7 +584,6 @@ msgid "Couldn’t restore note"
 msgstr "Kon notitie niet herstellen"
 
 #: src/ui/strings.vala:31
-#, c-format
 msgid "Saved “%s” to “%s”"
 msgstr "\"%s\" naar \"%s\" opgeslagen"
 
@@ -236,7 +600,6 @@ msgid "Notebook name shouldn’t be blank"
 msgstr "Notitieboeknaam mag niet leeg zijn"
 
 #: src/ui/strings.vala:35
-#, c-format
 msgid "Notebook “%s” already exists"
 msgstr "Notitieboek “%s” bestaat al"
 
@@ -261,114 +624,95 @@ msgid "Rename"
 msgstr "Hernoemen"
 
 #: src/ui/strings.vala:42
-msgid "Couldn’t find an app to handle file uris"
-msgstr "Kon geen app vinden om met de bestanden-uri's om te gaan"
+msgid "Couldn’t find an app to handle file URIs"
+msgstr ""
 
 #: src/ui/strings.vala:43
 msgid "Apply"
 msgstr "Toepassen"
 
-#: src/ui/strings.vala:44
-#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:34
-msgid "Cancel"
-msgstr "Annuleren"
-
 #: src/ui/strings.vala:45
 msgid "Pick where the notebooks will be stored"
 msgstr "Kies waar de notitieboeken worden opgeslagen"
 
-#: src/ui/strings.vala:46
+#: src/ui/strings.vala:47 src/ui/window/notebooks_bar/notebooks_bar.blp:59
+#: src/ui/window/notebooks_bar/notebooks_bar.blp:101
 msgid "All Notes"
 msgstr "Alle notities"
 
-#: src/ui/edit_view/edit_view.blp:50
-#: src/ui/widgets/markdown/heading_popover.blp:48
-msgid "Plain Text"
-msgstr "Platte tekst"
+#: src/ui/strings.vala:49
+msgid "Last Modified"
+msgstr ""
 
-#: src/ui/edit_view/edit_view.blp:51
-#: src/ui/widgets/markdown/heading_popover.blp:12
-msgid "Heading 1"
-msgstr "Kop 1"
+#: src/ui/strings.vala:50
+msgid "Extension"
+msgstr ""
 
-#: src/ui/edit_view/edit_view.blp:52
-#: src/ui/widgets/markdown/heading_popover.blp:18
-msgid "Heading 2"
-msgstr "Kop 2"
+#: src/ui/widgets/theme_selector/theme_selector.blp:15
+msgid "Follow system style"
+msgstr ""
 
-#: src/ui/edit_view/edit_view.blp:53
-#: src/ui/widgets/markdown/heading_popover.blp:24
-msgid "Heading 3"
-msgstr "Kop 3"
+#: src/ui/widgets/theme_selector/theme_selector.blp:23
+msgid "Light style"
+msgstr ""
 
-#: src/ui/edit_view/edit_view.blp:54
-#: src/ui/widgets/markdown/heading_popover.blp:30
-msgid "Heading 4"
-msgstr "Kop 4"
+#: src/ui/widgets/theme_selector/theme_selector.blp:32
+msgid "Dark style"
+msgstr ""
 
-#: src/ui/edit_view/edit_view.blp:55
-#: src/ui/widgets/markdown/heading_popover.blp:36
-msgid "Heading 5"
-msgstr "Kop 5"
+#: src/ui/window/app_menu/app_menu.blp:25
+msgid "_New Notebook"
+msgstr "_Nieuw notitieboek"
 
-#: src/ui/edit_view/edit_view.blp:56
-#: src/ui/widgets/markdown/heading_popover.blp:42
-msgid "Heading 6"
-msgstr "Kop 6"
+#: src/ui/window/app_menu/app_menu.blp:29
+msgid "_Edit Notebook"
+msgstr "Notitieboek _bewerken"
 
-#: src/ui/edit_view/edit_view.blp:67 src/ui/popup/shortcut_window.blp:67
-msgid "Bold"
-msgstr "Vet"
+#: src/ui/window/app_menu/app_menu.blp:35
+msgid "_Preferences"
+msgstr "_Voorkeuren"
 
-#: src/ui/edit_view/edit_view.blp:73 src/ui/popup/shortcut_window.blp:72
-msgid "Italic"
-msgstr "Cursief"
+#: src/ui/window/app_menu/app_menu.blp:39
+msgid "_Keyboard Shortcuts"
+msgstr "_Sneltoetsen"
 
-#: src/ui/edit_view/edit_view.blp:79 src/ui/popup/shortcut_window.blp:77
-msgid "Strikethrough"
-msgstr "Doorhalen"
-
-#: src/ui/edit_view/edit_view.blp:85 src/ui/popup/shortcut_window.blp:82
-msgid "Highlight"
-msgstr "Markeren"
-
-#: src/ui/edit_view/edit_view.blp:95 src/ui/popup/shortcut_window.blp:87
-msgid "Insert Link"
-msgstr "Link toevoegen"
-
-#: src/ui/edit_view/edit_view.blp:101
-msgid "Insert Code"
-msgstr "Code toevoegen"
+#: src/ui/window/app_menu/app_menu.blp:43
+msgid "_About"
+msgstr "_Over"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:54
 msgid "Notebook Name"
 msgstr "Notitieboeknaam"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:72
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:66
+msgid "Duplicate notebook names are not allowed!"
+msgstr ""
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:82
 msgid "First Characters"
 msgstr "Eerste tekens en symbolen"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:73
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:83
 msgid "Initials"
 msgstr "Initialen"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:74
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:84
 msgid "Initials: camelCase"
 msgstr "Initialen: camelCase"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:75
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:85
 msgid "Initials: snake_case"
 msgstr "Initialen: snake_case"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:76
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:86
 msgid "Icon"
 msgstr "Icoon"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:106
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:116
 msgid "Notebook Color"
 msgstr "Notitieboekkleur"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:116
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:126
 msgid "Create Notebook"
 msgstr "Notitieboek maken"
 
@@ -380,31 +724,15 @@ msgstr "Bewerken"
 msgid "Move all to Trash"
 msgstr "Alles naar de prullenbak verplaatsen"
 
-#: src/ui/window/notebooks_bar/notebooks_bar.blp:73
-msgid "_New Notebook"
-msgstr "_Nieuw notitieboek"
-
-#: src/ui/window/notebooks_bar/notebooks_bar.blp:77
-msgid "_Edit Notebook"
-msgstr "Notitieboek _bewerken"
-
-#: src/ui/window/notebooks_bar/notebooks_bar.blp:83
-msgid "_Preferences"
-msgstr "_Voorkeuren"
-
-#: src/ui/window/notebooks_bar/notebooks_bar.blp:87
-msgid "_Keyboard Shortcuts"
-msgstr "_Sneltoetsen"
-
-#: src/ui/window/notebooks_bar/notebooks_bar.blp:91
-msgid "_About"
-msgstr "_Over"
+#: src/ui/window/notebooks_bar/notebooks_bar.blp:113
+msgid "Notebooks"
+msgstr ""
 
 #: src/ui/window/sidebar/note_create_popup.blp:37
 msgid "Note Name"
 msgstr "Notitienaam"
 
-#: src/ui/window/sidebar/note_create_popup.blp:46
+#: src/ui/window/sidebar/note_create_popup.blp:45
 msgid "Create Note"
 msgstr "Notitie maken"
 
@@ -428,96 +756,30 @@ msgstr "Naar prullenbak verplaatsen"
 msgid "Open Containing Folder"
 msgstr "Map openen"
 
-#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
-msgid "Confirm"
-msgstr "Bevestigen"
-
-#: src/ui/preferences.blp:15
-msgid "Note Font"
-msgstr "Notitielettertype"
-
-#: src/ui/preferences.blp:21
-msgid "Pick a font for displaying the notes' content"
-msgstr "Kies een lettertype om de inhoud van de notities weer te geven"
-
-#: src/ui/preferences.blp:29
-msgid "Makes the dark theme pitch black"
-msgstr "Maakt het donker thema pikzwart"
-
-#: src/ui/preferences.blp:41
-msgid "Notes Storage Location"
-msgstr "Notities opslaglocatie"
-
-#: src/ui/preferences.blp:42
-msgid "Where the notebooks are stored (requires app restart)"
-msgstr ""
-"Waar de notitieboeken worden opgeslagen (vereist opnieuw opstarten van de "
-"app)"
-
-#: src/ui/popup/shortcut_window.blp:14
-msgid "Note"
-msgstr "Notitie"
-
-#: src/ui/popup/shortcut_window.blp:22
-msgid "Edit Note"
-msgstr "Notitie bewerken"
-
-#: src/ui/popup/shortcut_window.blp:29
-msgid "Notebook"
-msgstr "Notitieboek"
-
-#: src/ui/popup/shortcut_window.blp:44
-msgid "General"
-msgstr "Algemeen"
-
-#: src/ui/popup/shortcut_window.blp:47
-msgid "Show Keyboard Shortcuts"
-msgstr "Sneltoetsen tonen"
-
-#: src/ui/popup/shortcut_window.blp:52
-msgid "Quit"
-msgstr "Afsluiten"
-
-#: src/ui/popup/shortcut_window.blp:64
-msgid "Formatting"
-msgstr "Opmaken"
-
-#: src/ui/popup/shortcut_window.blp:94
-msgid "Navigation"
-msgstr "Navigatie"
-
-#: src/ui/popup/shortcut_window.blp:97 src/ui/window/window.blp:112
-msgid "Toggle Sidebar"
-msgstr "Zijbalk aan/uitzetten"
-
-#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:62
-msgid "Search Notes"
-msgstr "Notities zoeken"
-
-#: src/ui/window/window.blp:120
-msgid "Back"
-msgstr "Terug"
-
-#: src/ui/window/window.blp:133
-msgid "Open in Notebook"
-msgstr "In notitieboek openen"
-
-#: src/ui/window/window.blp:161
+#: src/ui/window/window.blp:118
 msgid "Get started writing"
 msgstr "Begin met schrijven"
 
-#: src/ui/window/window.blp:186
+#: src/ui/window/window.blp:143
 msgid "Create a notebook"
 msgstr "Een notitieboek maken"
 
-#: src/ui/window/window.blp:211
+#: src/ui/window/window.blp:168
 msgid "Trash is empty"
 msgstr "Prullenbak is leeg"
 
 #: src/ui/window/window.blp:224
+msgid "Back"
+msgstr "Terug"
+
+#: src/ui/window/window.blp:239
+msgid "Open in Notebook"
+msgstr "In notitieboek openen"
+
+#: src/ui/window/window.blp:264
 msgid "_Rename Note"
 msgstr "Notitie _hernoemen"
 
-#: src/ui/window/window.blp:230
+#: src/ui/window/window.blp:270
 msgid "_Export Note"
 msgstr "Notitie _exporteren"
