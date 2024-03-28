@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component type="desktop-application">
 	<id>@app_id@</id>
-  <name translatable="no">Folio</name>
+  <name translate="no">Folio</name>
   <summary>Take notes in Markdown</summary>
 	<description>
 	  <p>Create notebooks, take notes in markdown</p>
@@ -20,7 +20,7 @@
   <releases>
 
     <release type="stable" version="24.09" date="2024-03-27">
-      <description translatable="no">
+      <description translate="no">
         <p>Changes:</p>
         <ul>
 			<li>Add sort order to notebook and note lists</li>
@@ -32,7 +32,7 @@
       </description>
     </release>
     <release type="stable" version="24.08" date="2024-03-18">
-      <description translatable="no">
+      <description translate="no">
         <p>Changes:</p>
         <ul>
 			<li>Emergency fix for 0 size fonts, the following is what changed in 24.07</li>
@@ -51,7 +51,7 @@
       </description>
     </release>
     <release type="stable" version="24.07" date="2024-03-18">
-      <description translatable="no">
+      <description translate="no">
         <p>Changes:</p>
         <ul>
 			<li>Add option to make the trash can visible</li>
@@ -69,7 +69,7 @@
       </description>
     </release>
     <release type="stable" version="24.06" date="2024-03-12">
-      <description translatable="no">
+      <description translate="no">
         <p>Changes:</p>
         <ul>
 		  <li>Add support for naming a new note based on currently selected text in an existing note</li>
@@ -89,7 +89,7 @@
       </description>
     </release>
     <release type="stable" version="24.05" date="2024-03-06">
-      <description translatable="no">
+      <description translate="no">
         <p>Changes:</p>
         <ul>
           <li>Add snap release (thanks @soumyaDghosh)</li>
@@ -106,7 +106,7 @@
       </description>
     </release>
     <release type="stable" version="24.04" date="2024-03-01">
-      <description translatable="no">
+      <description translate="no">
         <p>Changes:</p>
         <ul>
           <li>Fixed unable to save changes editing of notebook details without changing notebook name.</li>
@@ -117,7 +117,7 @@
       </description>
     </release>
     <release type="stable" version="24.03" date="2024-02-22">
-      <description translatable="no">
+      <description translate="no">
         <p>Changes:</p>
         <ul>
           <li>Rework the format bar so that it works more like a standard toolbar.  Toggle formats on and off, format around current word if none selected, place the text/url parts into the right area when creating a new link, don't split current line when inserting a new HR, return focus to the editor after clicking a format button, and return the cursor to the right position.</li>
@@ -136,7 +136,7 @@
       </description>
     </release>
     <release type="stable" version="24.02" date="2024-02-11">
-      <description translatable="no">
+      <description translate="no">
 	      <p>UI Changes:</p>
         <ul>
           <li>None</li>
@@ -148,7 +148,7 @@
       </description>
     </release>
     <release type="stable" version="24.01" date="2024-02-11">
-      <description translatable="no">
+      <description translate="no">
 	      <p>UI Changes:</p>
         <ul>
           <li>Place cursor between formatting characters when using formatting shortcuts (thanks u1f98e@gitlab)</li>
@@ -161,7 +161,7 @@
       </description>
     </release>
     <release type="stable" version="22.11" date="2022-10-20">
-      <description translatable="no">
+      <description translate="no">
 	      <p>UI Tweaks:</p>
         <ul>
           <li>Added setting to stretch text area to fill the window</li>
@@ -178,7 +178,7 @@
       </description>
     </release>
     <release type="stable" version="22.10" date="2022-09-17">
-      <description translatable="no">
+      <description translate="no">
 	      <p>UI Tweaks:</p>
         <ul>
           <li>Added support for non-markdown files</li>
@@ -196,7 +196,7 @@
       </description>
     </release>
     <release type="stable" version="22.9" date="2022-08-01">
-      <description translatable="no">
+      <description translate="no">
 	      <p>UI Tweaks:</p>
         <ul>
           <li>Added font resizing</li>
@@ -214,7 +214,7 @@
       </description>
     </release>
     <release type="stable" version="22.8" date="2022-07-19">
-      <description translatable="no">
+      <description translate="no">
 	      <p>UI Tweaks:</p>
         <ul>
           <li>Inline note renaming</li>
@@ -243,7 +243,7 @@
       </description>
     </release>
     <release type="stable" version="22.7" date="2022-07-09">
-      <description translatable="no">
+      <description translate="no">
 	      <p>UI Tweaks:</p>
         <ul>
           <li>Added subtitle to notebook title when sidebar is not visible</li>
@@ -273,7 +273,7 @@
       </description>
     </release>
     <release type="stable" version="22.6" date="2022-06-02">
-      <description translatable="no">
+      <description translate="no">
 	      <p>New Stuff:</p>
         <ul>
           <li>Added more icons for notebooks</li>
@@ -307,7 +307,7 @@
       </description>
     </release>
     <release type="stable" version="22.5" date="2022-05-24">
-      <description translatable="no">
+      <description translate="no">
 	      <p>This update brings the setting to change where notebooks are stored, among other improvements:</p>
         <ul>
           <li>Unobtrusive headerbars</li>
@@ -320,7 +320,7 @@
       </description>
     </release>
     <release type="stable" version="22.4" date="2022-05-19">
-      <description translatable="no">
+      <description translate="no">
 	      <p>New Features:</p>
         <ul>
           <li>Move to Notebook... option in note context menus</li>
@@ -340,7 +340,7 @@
       </description>
     </release>
     <release type="stable" version="22.3" date="2022-05-04">
-      <description translatable="no">
+      <description translate="no">
 	      <p>Search:</p>
         <ul>
           <li>Gnome search integration</li>
@@ -388,8 +388,8 @@
 	<project_license>GPL-3.0+</project_license>
   <content_rating type="oars-1.1"/>
 
-  <developer_name translatable="no">Greg Ross</developer_name>
-  <project_group translatable="no">toolstack.com</project_group>
+  <developer_name translate="no">Greg Ross</developer_name>
+  <project_group translate="no">toolstack.com</project_group>
 
   <url type="homepage">https://github.com/toolstack/Folio</url>
   <url type="bugtracker">https://github.com/toolstack/Folio/issues</url>
