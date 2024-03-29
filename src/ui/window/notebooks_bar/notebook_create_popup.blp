@@ -11,6 +11,11 @@ StringList icon_types {
   ]
 }
 
+Gtk.ColorDialog color_dialog {
+  title: _("Notebook Color");
+  modal: true;
+}
+
 template $FolioNotebookCreatePopup : Adw.Window {
 
   default-width: 320;
@@ -113,12 +118,10 @@ template $FolioNotebookCreatePopup : Adw.Window {
           };
         }
 
-        ColorButton button_color {
-          title: _("Notebook Color");
-          modal: true;
-          show-editor: false;
+        ColorDialogButton button_color {
           rgba: "#2ec27eff";
           hexpand: false;
+          dialog: color_dialog;
         }
       }
 
