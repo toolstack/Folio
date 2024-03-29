@@ -39,8 +39,6 @@ The recommended way of installing Folio is through [Flatpak](https://flatpak.org
   <img alt="Get it as an AppImage" src="https://raw.githubusercontent.com/KhushrajRathod/TeleDrive/main/icon/vector/download-appimage.svg" />
 </a>
 
-
-
 ### Manually
 Go to the current [GitHub Releases](https://github.com/toolstack/Folio/releases) page, select the latest release, and download the asset called `Folio-YY.##.flatpak`.  Once downloaded, use `flatpak install Folio-YY.##.flatpak` to install Folio on your computer.
 
@@ -210,3 +208,21 @@ Folio is not a replacement for applications like OneNote or other advanced note 
 Basically anything that tries to make Folio into something other than a markdown editor.
 
 Of course if someone created a PR that added one or more of those things, I'd be open to reviewing it and see if the implementation fits well or not.
+
+### Using Folio with cloud storage providers
+You can use Folio with cloud storage providers like Google Drive, however there are a few things to keep in mind:
+
+- Cloud services are slower than local storage, large notebook/note collections may be slow to load on startup.
+- Detection of changes to notes may be impacted, as cloud providers may not indicate a file change on the server in a way that Folio will detect.
+
+#### Google Drive Integration with GNOME
+- Google Drive's integration in GNOME does not use display names on disk, but instead file hashes, so when selecting the notes folder you will see the display names, but after selecting the folder the hash values will be displayed in the file location box on the preferences screen.  Display names will be used in the notebook and notes list.
+- Performance may be impacted as the display names must be retrieved from the cloud, which is of course slow in comparison to local file names.
+
+### Nextcloud Integration with GNOME
+- GNOME's integration with Nextcloud is effectively a WebDAV connection so all data is keep in the cloud.  This may impact performance.
+
+#### Non GNOME Integrated Cloud Providers
+Cloud providers that do not integrate directly with GNOME or have alternatives to GNOME's integration (like Nextcloud) should work and may not have the above mentioned issues.
+
+In general, if your cloud provider has a sync client, that copies your data to your local disk and keeps it up to date, you will have a better experience with Folio than a client that tries to use the cloud directly.
