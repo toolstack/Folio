@@ -9,7 +9,7 @@ public class Folio.NotebookCreatePopup : Adw.Window {
 	unowned Gtk.DropDown icon_type_dropdown;
 
 	[GtkChild]
-	unowned Gtk.ColorButton button_color;
+	unowned Gtk.ColorDialogButton button_color;
 
 	[GtkChild]
 	unowned Gtk.MenuButton button_icon;
@@ -149,13 +149,13 @@ public class Folio.NotebookCreatePopup : Adw.Window {
 			preview.icon_type = NotebookIconType.from_int ((int)icon_type_dropdown.get_selected ());
 			button_icon.visible = icon_type_dropdown.get_selected () == NotebookIconType.PREDEFINED_ICON;
 		});
-		button_color.color_set.connect (() => {
-			preview.color = button_color.rgba;
-			recolor (button_color.rgba);
+		button_color.notify["rgba"].connect (() => {
+			preview.color = button_color.get_rgba ();
+			recolor (button_color.get_rgba  ());
 		});
 		entry.changed ();
 		//icon_type_dropdown.changed ();
-		button_color.color_set ();
+		//button_color.color_set ();
 
 		model.selection_changed (0, 1);
 	}
