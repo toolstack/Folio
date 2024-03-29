@@ -50,10 +50,10 @@ public class Folio.Trash : Object, ListModel, NoteContainer {
 			error (@"Trash directory $(dir.get_path ()) couldn't be created");
 		}
 		try {
-			var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+			var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_DISPLAY_NAME, 0);
 			FileInfo file_info;
 			while ((file_info = enumerator.next_file ()) != null) {
-				var name = file_info.get_name ();
+				var name = file_info.get_display_name ();
 				if (name[0] == '.') continue;
 				var notebook = new TrashedNotebook (this, new NotebookInfo (name));
 				load_notebook (notebook);
@@ -70,13 +70,13 @@ public class Folio.Trash : Object, ListModel, NoteContainer {
 	private void load_notebook (TrashedNotebook notebook) {
 		var dir = File.new_for_path (notebook.path);
 		try {
-			var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.TIME_MODIFIED + "," + FileAttribute.STANDARD_CONTENT_TYPE, 0);
+			var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.TIME_MODIFIED + "," + FileAttribute.STANDARD_CONTENT_TYPE + "," + FileAttribute.STANDARD_DISPLAY_NAME, 0);
 			FileInfo file_info;
 			while ((file_info = enumerator.next_file ()) != null) {
 				var content_type = file_info.get_content_type ();
 				if (content_type == null || !content_type.has_prefix ("text"))
 					continue;
-				var name = file_info.get_name ();
+				var name = file_info.get_display_name ();
 				if (name[0] == '.')
 					continue;
 				var dot_i = name.last_index_of (".");

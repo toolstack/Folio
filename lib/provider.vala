@@ -136,7 +136,7 @@ public class Folio.Provider : Object, ListModel {
 			try {
 				var enumerator = file.enumerate_children (FileAttribute.STANDARD_NAME, 0);
 				while ((file_info = enumerator.next_file ()) != null) {
-					var name = file_info.get_name ();
+					var name = file_info.get_display_name ();
 					var orig_file = enumerator.get_child (file_info);
 					var trashed_file = File.new_for_path (@"$trashed_path/$name");
 					orig_file.move (trashed_file, FileCopyFlags.OVERWRITE);
@@ -189,11 +189,11 @@ public class Folio.Provider : Object, ListModel {
 		var notebooks = new ArrayList<Notebook> ();
 		var dir = File.new_for_path (notes_dir);
 		try {
-			var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE + "," + FileAttribute.TIME_MODIFIED, 0);
+			var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_TYPE + "," + FileAttribute.TIME_MODIFIED + "," + FileAttribute.STANDARD_DISPLAY_NAME, 0);
 			FileInfo file_info;
 			while ((file_info = enumerator.next_file ()) != null) {
 				if (file_info.get_file_type () != FileType.DIRECTORY) continue;
-				var name = file_info.get_name ();
+				var name = file_info.get_display_name ();
 				var time = file_info.get_modification_date_time ();
 				if (disable_hidden_trash && name == "Trash") continue;
 				if (name[0] == '.') continue;
@@ -251,18 +251,18 @@ public class Folio.Provider : Object, ListModel {
 		while (written < l) {
 			written += data_stream.write (data[written:data.length]);
 		}
-		var notebooks_enumerator = File.new_for_path (notes_dir).enumerate_children (FileAttribute.STANDARD_NAME, 0);
+		var notebooks_enumerator = File.new_for_path (notes_dir).enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_DISPLAY_NAME, 0);
 		FileInfo notebook_file_info;
 		while ((notebook_file_info = notebooks_enumerator.next_file ()) != null) {
-			var notebook_path = @"$notes_dir/$(notebook_file_info.get_name ())";
+			var notebook_path = @"$notes_dir/$(notebook_file_info.get_display_name ())";
 			var dir = File.new_for_path (notebook_path);
 			if (dir.query_file_type (0) != FileType.DIRECTORY)
 				continue;
 			try {
-				var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+				var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_DISPLAY_NAME, 0);
 				FileInfo file_info;
 				while ((file_info = enumerator.next_file ()) != null) {
-					var name = file_info.get_name ();
+					var name = file_info.get_display_name ();
 					if (name != ".color") continue;
 					File.new_for_path (@"$notebook_path/.config/").make_directory ();
 					var dest = File.new_for_path (@"$notebook_path/.config/color");
