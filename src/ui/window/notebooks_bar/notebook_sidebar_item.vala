@@ -15,7 +15,7 @@ public class Folio.NotebookSidebarItem : NotebookListItem {
 		add_controller (right_click);
 		var drop_target = new Gtk.DropTarget (typeof (Note), Gdk.DragAction.MOVE);
 		drop_target.preload = true;
-		drop_target.on_drop.connect ((v, x, y) => {
+		drop_target.drop.connect ((v, x, y) => {
 			var note = v.get_object () as Note;
 			if (note.notebook == notebook)
 				return false;
