@@ -126,29 +126,21 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 		notes_dir_label.label = settings.get_string ("notes-dir");
 		notes_dir_label.tooltip_text = notes_dir;
 		notes_dir_button.clicked.connect (() => {
-			var chooser = new Gtk.FileChooserNative (
-				Strings.PICK_NOTES_DIR,
-				this,
-				Gtk.FileChooserAction.SELECT_FOLDER,
-				Strings.APPLY,
-				Strings.CANCEL
-			);
-			chooser.modal = true;
-			try {
-				chooser.set_file (File.new_for_path (notes_dir));
-			} catch (Error e) {
-				// Should probably do something else here.
-				return;
-			}
-			chooser.response.connect ((id) => {
-				if (id == Gtk.ResponseType.ACCEPT) {
-					notes_dir = chooser.get_file ().get_path ();
-					settings.set_string ("notes-dir", notes_dir);
-					notes_dir_label.label = notes_dir;
-					notes_dir_label.tooltip_text = notes_dir;
-				}
-			});
-			chooser.show ();
+			var chooser = new Gtk.FileDialog ();
+			chooser.set_modal (true );
+			chooser.set_title (Strings.PICK_NOTES_DIR);
+			chooser.set_initial_folder (File.new_for_path (notes_dir));
+			chooser.select_folder.begin (this, null, (obj, res) => {
+                try {
+                    var folder = chooser.select_folder.end(res);
+					if (folder.query_exists ()) {
+						notes_dir = folder.get_path ();
+						settings.set_string ("notes-dir", notes_dir);
+						notes_dir_label.label = notes_dir;
+						notes_dir_label.tooltip_text = notes_dir;
+					}
+                } catch (Error error) {}
+            });
 		});
 		notes_dir_button_reset.clicked.connect (() => {
 			settings.reset ("notes-dir");
@@ -161,29 +153,21 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 		trash_dir_label.label = settings.get_string ("trash-dir");
 		trash_dir_label.tooltip_text = notes_dir;
 		trash_dir_button.clicked.connect (() => {
-			var chooser = new Gtk.FileChooserNative (
-				Strings.PICK_TRASH_DIR,
-				this,
-				Gtk.FileChooserAction.SELECT_FOLDER,
-				Strings.APPLY,
-				Strings.CANCEL
-			);
-			chooser.modal = true;
-			try {
-				chooser.set_file (File.new_for_path (trash_dir));
-			} catch (Error e) {
-				// Should probably do something else here.
-				return;
-			}
-			chooser.response.connect ((id) => {
-				if (id == Gtk.ResponseType.ACCEPT) {
-					trash_dir = chooser.get_file ().get_path ();
-					settings.set_string ("trash-dir", trash_dir);
-					trash_dir_label.label = trash_dir;
-					trash_dir_label.tooltip_text = trash_dir;
-				}
-			});
-			chooser.show ();
+			var chooser = new Gtk.FileDialog ();
+			chooser.set_modal (true );
+			chooser.set_title (Strings.PICK_TRASH_DIR);
+			chooser.set_initial_folder (File.new_for_path (trash_dir));
+			chooser.select_folder.begin (this, null, (obj, res) => {
+                try {
+                    var folder = chooser.select_folder.end(res);
+					if (folder.query_exists ()) {
+						trash_dir = folder.get_path ();
+						settings.set_string ("trash-dir", trash_dir);
+						trash_dir_label.label = trash_dir;
+						trash_dir_label.tooltip_text = trash_dir;
+					}
+                } catch (Error error) {}
+            });
 		});
 		trash_dir_button_reset.clicked.connect (() => {
 			settings.reset ("trash-dir");
