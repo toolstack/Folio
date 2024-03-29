@@ -1,6 +1,16 @@
 using Gtk 4.0;
 using Adw 1;
 
+StringList icon_types {
+  strings [
+    _("First Characters"),
+    _("Initials"),
+    _("Initials: camelCase"),
+    _("Initials: snake_case"),
+    _("Icon"),
+  ]
+}
+
 template $FolioNotebookCreatePopup : Adw.Window {
 
   default-width: 320;
@@ -74,17 +84,8 @@ template $FolioNotebookCreatePopup : Adw.Window {
 
         styles ["linked"]
 
-        ComboBoxText icon_type_combobox {
-
-          hexpand: true;
-
-          items [
-            first: _("First Characters"),
-            initials: _("Initials"),
-            camel_case: _("Initials: camelCase"),
-            snake_case: _("Initials: snake_case"),
-            predefined_icon: _("Icon"),
-          ]
+        DropDown icon_type_dropdown {
+          model: icon_types;
         }
 
         MenuButton button_icon {

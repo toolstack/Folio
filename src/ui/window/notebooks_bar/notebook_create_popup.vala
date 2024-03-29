@@ -6,7 +6,7 @@ public class Folio.NotebookCreatePopup : Adw.Window {
 	unowned Gtk.Entry entry;
 
 	[GtkChild]
-	unowned Gtk.ComboBox icon_type_combobox;
+	unowned Gtk.DropDown icon_type_dropdown;
 
 	[GtkChild]
 	unowned Gtk.ColorButton button_color;
@@ -104,7 +104,7 @@ public class Folio.NotebookCreatePopup : Adw.Window {
 			);
 			button_color.rgba = notebook.color;
 			entry.text = notebook.name;
-			icon_type_combobox.active = notebook.icon_type;
+			icon_type_dropdown.set_selected (notebook.icon_type );
 			for (uint i = 0; i < model.get_n_items (); i++) {
 				var v = model.get_item (i);
 				var so = v as Gtk.StringObject;
@@ -118,7 +118,7 @@ public class Folio.NotebookCreatePopup : Adw.Window {
 			entry.activate.connect (() => change (window, notebook));
 			button_create.clicked.connect (() => change (window, notebook));
 		} else {
-			icon_type_combobox.active = 0;
+			icon_type_dropdown.set_selected (0);
 			entry.activate.connect (() => create (window));
 			button_create.clicked.connect (() => create (window));
 			button_create.set_sensitive (false);
@@ -145,16 +145,16 @@ public class Folio.NotebookCreatePopup : Adw.Window {
 				button_create.set_sensitive (false);
 			}
 		});
-		icon_type_combobox.changed.connect (() => {
-			preview.icon_type = NotebookIconType.from_int (icon_type_combobox.active);
-			button_icon.visible = icon_type_combobox.active == NotebookIconType.PREDEFINED_ICON;
+		icon_type_dropdown.notify["selected-item"].connect (() => {
+			preview.icon_type = NotebookIconType.from_int ((int)icon_type_dropdown.get_selected ());
+			button_icon.visible = icon_type_dropdown.get_selected () == NotebookIconType.PREDEFINED_ICON;
 		});
 		button_color.color_set.connect (() => {
 			preview.color = button_color.rgba;
 			recolor (button_color.rgba);
 		});
 		entry.changed ();
-		icon_type_combobox.changed ();
+		//icon_type_dropdown.changed ();
 		button_color.color_set ();
 
 		model.selection_changed (0, 1);

@@ -1,6 +1,18 @@
 using Gtk 4.0;
 using Adw 1;
 
+StringList heading_types {
+  strings [
+    _("Plain Text"),
+    _("Heading 1"),
+    _("Heading 2"),
+    _("Heading 3"),
+    _("Heading 4"),
+    _("Heading 5"),
+    _("Heading 6"),
+  ]
+}
+
 template $FolioToolbar : Box {
 
   Adw.Squeezer squeezer {
@@ -17,17 +29,8 @@ template $FolioToolbar : Box {
 
       styles ["toolbar"]
 
-      ComboBoxText format_heading_type {
-
-        items [
-          _("Plain Text"),
-          _("Heading 1"),
-          _("Heading 2"),
-          _("Heading 3"),
-          _("Heading 4"),
-          _("Heading 5"),
-          _("Heading 6"),
-        ]
+      DropDown format_heading_type {
+        model: heading_types;
       }
 
       Separator {
@@ -125,17 +128,8 @@ template $FolioToolbar : Box {
             orientation: vertical;
             spacing: 6;
 
-            ComboBoxText format_heading_type_mobile {
-
-              items [
-                _("Plain Text"),
-                _("Heading 1"),
-                _("Heading 2"),
-                _("Heading 3"),
-                _("Heading 4"),
-                _("Heading 5"),
-                _("Heading 6"),
-              ]
+            DropDown format_heading_type_mobile {
+              model: heading_types;
             }
 
             Separator {}
