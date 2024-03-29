@@ -54,7 +54,7 @@ public class Folio.NotebooksBar : Gtk.Box {
 		if (v == scrolled_window.vadjustment.lower) header_bar.get_style_context ().remove_class ("overlaid");
 		else header_bar.get_style_context ().add_class ("overlaid");
 
-		if (v >= scrolled_window.vadjustment.upper - scrolled_window.get_allocated_height ()) trash_button.get_style_context ().remove_class ("overlaid");
+		if (v >= scrolled_window.vadjustment.upper - scrolled_window.get_height ()) trash_button.get_style_context ().remove_class ("overlaid");
 		else trash_button.get_style_context ().add_class ("overlaid");
 	}
 
