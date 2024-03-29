@@ -127,7 +127,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 		notes_dir_label.tooltip_text = notes_dir;
 		notes_dir_button.clicked.connect (() => {
 			var chooser = new Gtk.FileDialog ();
-			chooser.set_modal (true );
+			chooser.set_modal (true);
 			chooser.set_title (Strings.PICK_NOTES_DIR);
 			chooser.set_initial_folder (File.new_for_path (notes_dir));
 			chooser.select_folder.begin (this, null, (obj, res) => {
@@ -154,7 +154,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 		trash_dir_label.tooltip_text = notes_dir;
 		trash_dir_button.clicked.connect (() => {
 			var chooser = new Gtk.FileDialog ();
-			chooser.set_modal (true );
+			chooser.set_modal (true);
 			chooser.set_title (Strings.PICK_TRASH_DIR);
 			chooser.set_initial_folder (File.new_for_path (trash_dir));
 			chooser.select_folder.begin (this, null, (obj, res) => {

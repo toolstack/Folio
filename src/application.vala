@@ -231,17 +231,18 @@ rene-coty
 	}
 
 	private void on_export_note () {
-		var chooser = new Gtk.FileChooserNative (Strings.EXPORT_NOTE, active_window, Gtk.FileChooserAction.SAVE, Strings.EXPORT, null);
-		chooser.response.connect ((response_id) => {
-			var file = chooser.get_file ();
-			chooser.unref ();
-			if (file != null && window_model.note != null) {
-				main_window.try_export_note (window_model.note, file);
-			}
+		var chooser = new Gtk.FileDialog ();
+		chooser.set_modal (true);
+		chooser.set_title (Strings.EXPORT_NOTE);
+		//chooser.set_initial_folder (File.new_for_path (trash_dir));
+		chooser.save.begin (active_window, null, (obj, res) => {
+			try {
+				var file = chooser.save.end(res);
+				if (file != null && window_model.note != null) {
+					main_window.try_export_note (window_model.note, file);
+				}
+			} catch (Error error) {}
 		});
-		chooser.modal = true;
-		chooser.ref ();
-		chooser.show ();
 	}
 
 	private void on_new_notebook () {
