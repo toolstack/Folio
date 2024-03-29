@@ -40,13 +40,13 @@ public class Folio.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
 		_loaded_notes = new ArrayList<Note> ();
 		var dir = File.new_for_path (path);
 		try {
-			var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.TIME_MODIFIED + "," + FileAttribute.STANDARD_CONTENT_TYPE, 0);
+			var enumerator = dir.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.TIME_MODIFIED + "," + FileAttribute.STANDARD_CONTENT_TYPE + "," + FileAttribute.STANDARD_DISPLAY_NAME, 0);
 			FileInfo file_info;
 			while ((file_info = enumerator.next_file ()) != null) {
 				var content_type = file_info.get_content_type ();
 				if (content_type == null || !(content_type.has_prefix ("text") || content_type.has_prefix ("application")))
 					continue;
-				var name = file_info.get_name ();
+				var name = file_info.get_display_name ();
 				if (name[0] == '.')
 					continue;
 				var dot_i = name.last_index_of_char ('.');
