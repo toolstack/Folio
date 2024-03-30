@@ -191,7 +191,7 @@ public class Folio.NotebookCreatePopup : Adw.Window {
 			button_create.get_style_context ().remove_provider (last_css_provider);
 		}
 		var css = new Gtk.CssProvider ();
-		css.load_from_data (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;".data);
+		css.load_from_string (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;");
 		entry.get_style_context ().add_provider (css, -1);
 		button_create.get_style_context ().add_provider (css, -1);
 		last_css_provider = css;
