@@ -3,7 +3,7 @@
 public class Folio.Toolbar : Gtk.Box {
 
 	public bool compacted {
-		get { return squeezer.visible_child == small_toolbar; }
+		get { return small_toolbar.visible; }
 	}
 
 	public int heading_i { get; set; }
@@ -12,8 +12,9 @@ public class Folio.Toolbar : Gtk.Box {
 
 	public signal void heading_i_changed (int i);
 
+	[GtkChild] unowned Gtk.Box regular_toolbar;
 	[GtkChild] unowned Gtk.Box small_toolbar;
-	[GtkChild] unowned Adw.Squeezer squeezer;
+	[GtkChild] unowned Gtk.Box squeezer;
 	[GtkChild] unowned Gtk.DropDown format_heading_type;
 	[GtkChild] unowned Gtk.DropDown format_heading_type_mobile;
 
@@ -32,6 +33,17 @@ public class Folio.Toolbar : Gtk.Box {
 		});
 		var settings = new Settings (Config.APP_ID);
 		settings.bind ("cheatsheet-enabled", this, "cheatsheet-enabled", SettingsBindFlags.DEFAULT);
-		squeezer.notify["visible-child"].connect (() => notify_property ("compacted"));
+	}
+
+	public void resize_toolbar () {
+		var width = squeezer.get_width ();
+
+		if ( width < 500 && width > 0) {
+			regular_toolbar.visible = false;
+			small_toolbar.visible = true;
+		} else {
+			regular_toolbar.visible = true;
+			small_toolbar.visible = false;
+		}
 	}
 }

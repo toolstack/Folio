@@ -15,15 +15,14 @@ StringList heading_types {
 
 template $FolioToolbar : Box {
 
-  Adw.Squeezer squeezer {
+  Box squeezer {
 
     hexpand: true;
     vexpand: false;
-    allow-none: false;
 
     styles ["bottom-toolbar"]
 
-    Box {
+    Box regular_toolbar {
 
       orientation: horizontal;
 
@@ -98,6 +97,7 @@ template $FolioToolbar : Box {
     Box small_toolbar {
 
       orientation: horizontal;
+      visible: false;
 
       styles ["toolbar"]
 
