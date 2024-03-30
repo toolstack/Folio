@@ -109,7 +109,7 @@ public class Folio.FileEditorWindow : Adw.ApplicationWindow {
 			Color.rgb_to_RGBA (rgb, out light_rgba);
 		}
 		var css = new Gtk.CssProvider ();
-		css.load_from_data (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;".data);
+		css.load_from_string (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;");
 		get_style_context ().add_provider (css, -1);
 		edit_view.theme_color = rgba;
 	}

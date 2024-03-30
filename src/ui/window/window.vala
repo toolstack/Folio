@@ -439,7 +439,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 		if (last_css_provider != null)
 			Gtk.StyleContext.remove_provider_for_display (display, last_css_provider);
 		var css = new Gtk.CssProvider ();
-		css.load_from_data (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;".data);
+		css.load_from_string (@"@define-color theme_color $rgba;@define-color notebook_light_color $light_rgba;");
 		Gtk.StyleContext.add_provider_for_display (display, css, -1);
 		last_css_provider = css;
 		edit_view.theme_color = rgba;

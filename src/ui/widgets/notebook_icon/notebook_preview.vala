@@ -65,7 +65,7 @@ public class Folio.NotebookPreview : Gtk.Box {
 			Color.rgb_to_RGBA (rgb.multiply (m), out fg_rgba);
 		}
 		var css = new Gtk.CssProvider ();
-		css.load_from_data (@"@define-color notebook_color $(info.color);@define-color notebook_fg_color $fg_rgba;".data);
+		css.load_from_string (@"@define-color notebook_color $(info.color);@define-color notebook_fg_color $fg_rgba;");
 		parent.get_style_context ().add_provider (css, -1);
 		get_style_context ().add_provider (css, -1);
 	}

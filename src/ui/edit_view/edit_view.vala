@@ -396,7 +396,7 @@ public class Folio.EditView : Gtk.Box {
 	}
 
 	public void set_font_scale () {
-		font_scale_provider.load_from_data (@"textview{font-size:$(scale / 100f)em;}".data);
+		font_scale_provider.load_from_string (@"textview{font-size:$(scale / 100f)em;}");
 		markdown_view.get_style_context ().add_provider (font_scale_provider, -1);
 	}
 
@@ -410,7 +410,7 @@ public class Folio.EditView : Gtk.Box {
 			font_size = font_size / Pango.SCALE;
 		}
 		if (font_size < 4) { font_size = 10; }
-		note_font_provider.load_from_data (@"textview{font-family:'$font_family';font-weight:$font_weight;font-size:$font_size$font_units;}".data);
+		note_font_provider.load_from_string (@"textview{font-family:'$font_family';font-weight:$font_weight;font-size:$font_size$font_units;}");
 		markdown_view.get_style_context ().add_provider (note_font_provider, -1);
 	}
 
