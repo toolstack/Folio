@@ -220,10 +220,10 @@ public class Folio.Provider : Object, ListModel {
 				notebooks.sort ((a, b) => a.info.time_modified.compare(b.info.time_modified));
 				break;
 			case 2:
-				notebooks.sort ((a, b) => strcmp (b.name, a.name));
+				notebooks.sort ((a, b) => strcmp (a.name, b.name));
 				break;
 			case 3:
-				notebooks.sort ((a, b) => strcmp (a.name, b.name));
+				notebooks.sort ((a, b) => strcmp (b.name, a.name));
 				break;
 			default:
 				notebooks.sort ((a, b) => b.info.time_modified.compare(a.info.time_modified));
