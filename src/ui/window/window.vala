@@ -707,4 +707,8 @@ public class Folio.Window : Adw.ApplicationWindow {
 		});
 		dialog.present ();
 	}
+
+	public void resize_toolbar () {
+		edit_view.resize_toolbar ();
+	}
 }

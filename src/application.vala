@@ -102,6 +102,20 @@ public class Folio.Application : Adw.Application {
 		update_theme ();
 		execute_temp_command ();
 		win.present ();
+
+		// Watch for the window to be resized and reset the toolbar.
+		main_window.notify["default-width"].connect ((window) => {
+			main_window.resize_toolbar ();
+		});
+		// Also watch for maximize/minimize events.
+		main_window.notify["maximized"].connect ((window) => {
+			// We have to add a delay here as the event fires before the resize happens.
+			GLib.Timeout.add_once (100, () => { main_window.resize_toolbar (); });
+		});
+
+		// Add a delay before resizeing the toolbar for the first time as the window hasn't been
+		// drawn yet.
+		GLib.Timeout.add_once (100, () => { main_window.resize_toolbar (); });
 	}
 
 	private void execute_temp_command () {

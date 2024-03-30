@@ -194,6 +194,10 @@ public class Folio.EditView : Gtk.Box {
 		markdown_view.add_controller (scroll_controller);
 	}
 
+	public void resize_toolbar () {
+		toolbar.resize_toolbar ();
+	}
+
 	private void toast (string text) {
 		if (toast_overlay == null) {
 			toast_overlay = (Adw.ToastOverlay)get_ancestor (typeof (Adw.ToastOverlay));
@@ -417,6 +421,7 @@ public class Folio.EditView : Gtk.Box {
 
 	private void update_toolbar_visibility () {
 		toolbar.visible = is_editable && toolbar_enabled && !markdown_view.text_mode;
+		resize_toolbar ();
 	}
 
 	private void find_word_selection (ref Gtk.TextIter selection_start, ref Gtk.TextIter selection_end) {
