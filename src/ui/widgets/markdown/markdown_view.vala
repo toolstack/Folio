@@ -9,7 +9,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	public Gdk.RGBA h6_color {
 		get {
-			var rgba = get_style_context ().get_color ();
+			var rgba = get_color ();
 			rgba.alpha = 0.6f;
 			return rgba;
 		}
@@ -17,7 +17,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	public Gdk.RGBA marking_color {
 		get {
-			var rgba = get_style_context ().get_color ();
+			var rgba = get_color ();
 			rgba.alpha = 0.6f;
 			return rgba;
 		}
