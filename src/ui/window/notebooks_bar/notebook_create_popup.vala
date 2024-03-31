@@ -156,6 +156,8 @@ public class Folio.NotebookCreatePopup : Adw.Window {
 		entry.changed ();
 		//icon_type_dropdown.changed ();
 		//button_color.color_set ();
+		preview.color = button_color.get_rgba ();
+		recolor (button_color.get_rgba  ());
 
 		model.selection_changed (0, 1);
 	}
