@@ -6,6 +6,8 @@ public class Folio.FileEditorWindow : Adw.ApplicationWindow {
 	[GtkChild] unowned Gtk.Label file_subtitle;
 	[GtkChild] unowned Gtk.Label save_indicator;
 
+	[GtkChild] unowned Adw.HeaderBar headerbar;
+
 	[GtkChild] unowned EditView edit_view;
 	[GtkChild] unowned Adw.ToastOverlay toast_overlay;
 
@@ -63,6 +65,12 @@ public class Folio.FileEditorWindow : Adw.ApplicationWindow {
 		close_request.connect (() => {
 			save_file ();
 			return false;
+		});
+
+		edit_view.scrolled_window.vadjustment.notify["value"].connect (() => {
+			var v = edit_view.scrolled_window.vadjustment.value;
+			if (v == 0) headerbar.remove_css_class ("overlaid");
+			else headerbar.add_css_class ("overlaid");
 		});
 
 		recolor (Color.RGB ());

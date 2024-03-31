@@ -153,8 +153,8 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 		edit_view.scrolled_window.vadjustment.notify["value"].connect (() => {
 			var v = edit_view.scrolled_window.vadjustment.value;
-			if (v == 0) headerbar_edit_view.get_style_context ().remove_class ("overlaid");
-			else headerbar_edit_view.get_style_context ().add_class ("overlaid");
+			if (v == 0) headerbar_edit_view.remove_css_class ("overlaid");
+			else headerbar_edit_view.add_css_class ("overlaid");
 		});
 
 		button_open_in_notebook.clicked.connect (() => window_model.open_note_in_notebook (window_model.note));
@@ -331,10 +331,10 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	private void update_sidebar_scroll () {
 		var v = notebook_notes_list_scroller.vadjustment.value;
-		if (v == 0 || notes_search_bar.search_mode_enabled) headerbar_sidebar.get_style_context ().remove_class ("overlaid");
-		else headerbar_sidebar.get_style_context ().add_class ("overlaid");
-		if (v == 0) notes_search_bar.get_style_context ().remove_class ("overlaid");
-		else notes_search_bar.get_style_context ().add_class ("overlaid");
+		if (v == 0 || notes_search_bar.search_mode_enabled) headerbar_sidebar.remove_css_class ("overlaid");
+		else headerbar_sidebar.add_css_class ("overlaid");
+		if (v == 0) notes_search_bar.remove_css_class ("overlaid");
+		else notes_search_bar.add_css_class ("overlaid");
 	}
 
 	private void on_searchbar_mode_changed (bool enabled) {
