@@ -41,8 +41,8 @@ public class Folio.NotebooksBar : Gtk.Box {
 		window_title.title = Strings.APP_NAME;
 
 		notify["paned"].connect (() => {
-			if (paned) get_style_context ().add_class ("paned");
-			else get_style_context ().remove_class ("paned");
+			if (paned) add_css_class ("paned");
+			else remove_css_class ("paned");
 			list.factory = paned ? item_factory_paned : item_factory;
 		});
 
@@ -51,11 +51,11 @@ public class Folio.NotebooksBar : Gtk.Box {
 	private void update_scroll () {
 		var v = scrolled_window.vadjustment.value;
 
-		if (v == scrolled_window.vadjustment.lower) header_bar.get_style_context ().remove_class ("overlaid");
-		else header_bar.get_style_context ().add_class ("overlaid");
+		if (v == scrolled_window.vadjustment.lower) header_bar.remove_css_class ("overlaid");
+		else header_bar.add_css_class ("overlaid");
 
-		if (v >= scrolled_window.vadjustment.upper - scrolled_window.get_height ()) trash_button.get_style_context ().remove_class ("overlaid");
-		else trash_button.get_style_context ().add_class ("overlaid");
+		if (v >= scrolled_window.vadjustment.upper - scrolled_window.get_height ()) trash_button.remove_css_class ("overlaid");
+		else trash_button.add_css_class ("overlaid");
 	}
 
 	public void init (Window window) {

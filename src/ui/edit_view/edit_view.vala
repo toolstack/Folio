@@ -459,9 +459,10 @@ public class Folio.EditView : Gtk.Box {
 
 	public void reset_scroll_position () {
 		Gtk.TextIter start;
+		Gtk.Adjustment start_scroll = scrolled_window.get_vadjustment ();
 		markdown_view.buffer.get_start_iter (out start);
 		markdown_view.buffer.place_cursor (start);
-		scrolled_window.set_vadjustment (null);
+		scrolled_window.set_vadjustment (start_scroll);
 		markdown_view.grab_focus ();
 	}
 }

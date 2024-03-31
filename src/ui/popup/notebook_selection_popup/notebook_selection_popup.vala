@@ -53,8 +53,8 @@ public class Folio.NotebookSelectionPopup : Adw.Window {
 
 		scrolled_window.vadjustment.notify["value"].connect (() => {
 			var v = scrolled_window.vadjustment.value;
-			if (v == 0) headerbar.get_style_context ().remove_class ("overlaid");
-			else headerbar.get_style_context ().add_class ("overlaid");
+			if (v == 0) headerbar.remove_css_class ("overlaid");
+			else headerbar.add_css_class ("overlaid");
 		});
 	}
 }
