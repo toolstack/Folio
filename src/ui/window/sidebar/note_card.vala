@@ -53,13 +53,13 @@ public class Folio.NoteCard : Gtk.Box {
 		drag_controller = new Gtk.DragSource ();
 		drag_controller.actions = Gdk.DragAction.MOVE;
 		drag_controller.drag_begin.connect ((drag) => {
-			get_style_context ().add_class ("dragged");
+			add_css_class ("dragged");
 			queue_draw ();
 			var paintable = new Gtk.WidgetPaintable (this);
 			drag_controller.set_icon (paintable, 0, 0);
 		});
 		drag_controller.drag_end.connect ((drag) => {
-			get_style_context ().remove_class ("dragged");
+			remove_css_class ("dragged");
 		});
 		add_controller (drag_controller);
 
