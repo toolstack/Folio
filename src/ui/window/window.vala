@@ -376,7 +376,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 		recolor (notebook);
 
 		if (container != null) {
-			set_text_view_state (TextViewState.EMPTY_NOTEBOOK);
+			set_text_view_state (state == WindowModel.State.TRASH ? TextViewState.EMPTY_TRASH : TextViewState.EMPTY_NOTEBOOK);
 			notebook_title.title = container.name;
 			notebook_title.subtitle = state == WindowModel.State.TRASH ? Strings.X_NOTES.printf (container.get_n_items ()) : null;
 			notebook_title.update_property (Gtk.AccessibleProperty.LABEL, container.name, -1);
