@@ -219,7 +219,7 @@ public class Folio.WindowModel : Object {
 		state_changed (state, note_container);
 
 		if (notes_model != null)
-				update_selected_note ();
+			update_selected_note ();
 
 		if (last_container != null && last_container != container && state != State.ALL)
 			last_container.unload ();
