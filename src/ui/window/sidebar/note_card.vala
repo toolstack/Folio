@@ -63,6 +63,11 @@ public class Folio.NoteCard : Gtk.Box {
 		});
 		add_controller (drag_controller);
 
+		var double_click = new Gtk.GestureClick ();
+		double_click.button = Gdk.BUTTON_PRIMARY;
+		double_click.pressed.connect (check_double_click);
+		add_controller (double_click);
+
 		button_edit.clicked.connect (request_rename);
 		var controller = new Gtk.EventControllerKey ();
 		controller.key_pressed.connect ((keyval) => {
@@ -73,6 +78,15 @@ public class Folio.NoteCard : Gtk.Box {
 			return false;
 		});
 		add_controller (controller);
+	}
+
+	public void check_double_click (int n_press, double x, double y) {
+		if (n_press == 2) {
+			// We can't just call the rename request here as after this code runs the default
+			// handler will run and steal the focus away again.  So instead, just add a slight
+			//delay to get the default handler to run before calling the rename request.
+			GLib.Timeout.add_once (100, () => { request_rename (); });
+		}
 	}
 
 	public void request_rename () {
