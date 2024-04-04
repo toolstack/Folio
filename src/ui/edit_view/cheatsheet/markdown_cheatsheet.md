@@ -64,9 +64,6 @@ Relative file paths can be used to link to other notes:
 - `[link label](../Junk links/My big list of links)`
 - `[link label](../Junk links/My big list of links.md)`
 
-##### Image
-`![Image alt text](https://imageurl.io)`
-
 ## Blockquotes
 
 `> quote`
