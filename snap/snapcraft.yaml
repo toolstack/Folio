@@ -39,3 +39,8 @@ apps:
     desktop: usr/share/applications/com.toolstack.Folio-editor.desktop
     extensions: [gnome]
     plugs: *folio
+
+architectures:
+	- build-on: amd64
+	- build-on: arm64
+	- build-on: armhf
