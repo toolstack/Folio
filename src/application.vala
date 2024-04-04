@@ -171,12 +171,14 @@ rene-coty
 		about.website = "https://github.com/toolstack/Folio";
 		about.transient_for = this.active_window;
 		about.set_release_notes ("""
-<p>Changes:</p>
+        <p>Changes:</p>
 <ul>
-	<li>Add sort order to notebook and note lists</li>
-	<li>Updated note sort after update process</li>
-	<li>Fixed misc translation items (thanks @yakushabb)</li>
-	<li>Fixed line formatting spilling over into the next line (thanks @HighKingofMelons)</li>
+	<li>Added a double click action on a note to rename the note</li>
+	<li>Replace multiple deprecated GTK/Adwaita widgets/functions (build warnings down from 58 to 18)</li>
+	<li>Switch to display names for files/folder system calls so cloud drive providers like Google work correctly</li>
+	<li>Fix incorrect template display when the trash was empty</li>
+	<li>Fix headerbar styling in edit window</li>
+	<li>Fix inverted sorting for notebooks</li>
 	<li>Other minor fixes</li>
 </ul>
 """

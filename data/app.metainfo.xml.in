@@ -19,6 +19,20 @@
 
   <releases>
 
+    <release type="stable" version="24.10" date="2024-04-04">
+      <description translate="no">
+        <p>Changes:</p>
+        <ul>
+			<li>Added a double click action on a note to rename the note</li>
+			<li>Replace multiple deprecated GTK/Adwaita widgets/functions (build warnings down from 58 to 18)</li>
+			<li>Switch to display names for files/folder system calls so cloud drive providers like Google work correctly</li>
+			<li>Fix incorrect template display when the trash was empty</li>
+			<li>Fix headerbar styling in edit window</li>
+			<li>Fix inverted sorting for notebooks</li>
+			<li>Other minor fixes</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="24.09" date="2024-03-27">
       <description translate="no">
         <p>Changes:</p>
