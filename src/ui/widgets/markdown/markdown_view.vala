@@ -313,6 +313,9 @@ public class GtkMarkdown.View : GtkSource.View {
 	private Regex is_list_row;
 	private Regex is_table_row;
 
+	private Regex is_empty_checkbox;
+	private Regex is_enabled_checkbox;
+
 	private Regex is_bold_0;
 	private Regex is_bold_1;
 	private Regex is_italic_0;
@@ -326,6 +329,9 @@ public class GtkMarkdown.View : GtkSource.View {
 	private Regex is_code_block;
 
 	private Regex filter_escapes;
+
+	private Gdk.Paintable empty_checkbox = null;
+	private Gdk.Paintable enabled_checkbox = null;
 
 	construct {
 		try {
@@ -349,6 +355,16 @@ public class GtkMarkdown.View : GtkSource.View {
 			 * ************
 			 */
 			is_horizontal_rule = new Regex ("^[ ]{0,3}((-[ ]{0,2}){3,}|(_[ ]{0,2}){3,}|(\\*[ ]{0,2}){3,})[ \\t]*$", f | RegexCompileFlags.MULTILINE, 0);
+
+			/* Example:
+			 * - [ ]
+			*/
+			is_empty_checkbox = new Regex ("^[\\t ]*-[\\t ]*\\[ ]", f | RegexCompileFlags.MULTILINE, 0);
+
+			/* Example:
+			 * - [x]
+			*/
+			is_enabled_checkbox = new Regex ("^[\\t ]*-[\\t ]*\\[x]", f | RegexCompileFlags.MULTILINE, 0);
 
 			/* Examples:
 			 * - list item
@@ -473,6 +489,11 @@ public class GtkMarkdown.View : GtkSource.View {
 			});
 			gutter.insert (renderer, 0);
 		}
+
+		var empty_checkbox_ic = new Gtk.IconTheme ();
+		empty_checkbox = empty_checkbox_ic.lookup_icon ("checkbox-symbolic", null, 16, 1, Gtk.TextDirection.NONE, Gtk.IconLookupFlags.PRELOAD);
+		var enabled_checkbox_image_ic = new Gtk.IconTheme ();
+		enabled_checkbox = enabled_checkbox_image_ic.lookup_icon ("checkbox-checked", null, 16, 1, Gtk.TextDirection.NONE, Gtk.IconLookupFlags.FORCE_SYMBOLIC);
 	}
 
 
@@ -908,6 +929,34 @@ public class GtkMarkdown.View : GtkSource.View {
 		try {
 			format_code_block_format (filtered_buffer_text, out matches);
 		} catch (Error e) {}
+
+		try {
+			// Check for empty checkboxes
+			if (is_empty_checkbox.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+				do {
+					int start_text_pos, end_text_pos;
+					bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
+
+					if (have_text) {
+						start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
+						end_text_pos = buffer_text.char_count ((ssize_t) end_text_pos);
+
+						// Convert the character offsets to TextIter's
+						Gtk.TextIter start_text_iter, end_text_iter;
+						buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
+						buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
+
+						// If the styling has already been applied, don't both re-applying it.
+						if (!start_text_iter.has_tag (text_tag_hidden) && !end_text_iter.has_tag (text_tag_hidden)) {
+							// Apply our styling
+							buffer.apply_tag (text_tag_hidden, start_text_iter, end_text_iter);
+							// Insert the empty checkbox
+							buffer.insert_paintable (end_text_iter, empty_checkbox);
+						}
+					}
+				} while (matches.next ());
+			}
+		} catch (Error e) {}
 	}
 
 	private void restyle_text_cursor () {
@@ -993,6 +1042,30 @@ public class GtkMarkdown.View : GtkSource.View {
 			do_formatting_pass_cursor (is_code_span_double, filtered_buffer_text, cursor_location, out matches, true);
 			do_formatting_pass_cursor (is_code_span, filtered_buffer_text, cursor_location, out matches, true);
 			format_code_block_cursor (filtered_buffer_text, cursor_location, out matches);
+
+			// Check for empty checkboxes
+			if (is_empty_checkbox.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+				do {
+					int start_text_pos, end_text_pos;
+					bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
+
+					if (have_text) {
+						start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
+						end_text_pos = buffer_text.char_count ((ssize_t) end_text_pos);
+
+						// Convert the character offsets to TextIter's
+						Gtk.TextIter start_text_iter, end_text_iter;
+						buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
+						buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
+
+						// If the styling has already been applied, don't both re-applying it.
+						if (!start_text_iter.has_tag (text_tag_hidden) && !end_text_iter.has_tag (text_tag_hidden)) {
+							// Apply our styling
+							buffer.apply_tag (text_tag_hidden, start_text_iter, end_text_iter);
+						}
+					}
+				} while (matches.next ());
+			}
 		} catch (RegexError e) {
 			critical (e.message);
 		}
