@@ -490,12 +490,11 @@ public class GtkMarkdown.View : GtkSource.View {
 			gutter.insert (renderer, 0);
 		}
 
-		var empty_checkbox_ic = new Gtk.IconTheme ();
-		empty_checkbox = empty_checkbox_ic.lookup_icon ("checkbox-symbolic", null, 16, 1, Gtk.TextDirection.NONE, Gtk.IconLookupFlags.PRELOAD);
-		var enabled_checkbox_image_ic = new Gtk.IconTheme ();
-		enabled_checkbox = enabled_checkbox_image_ic.lookup_icon ("checkbox-checked", null, 16, 1, Gtk.TextDirection.NONE, Gtk.IconLookupFlags.FORCE_SYMBOLIC);
+		var empty_checkbox_ic = Gtk.IconTheme.get_for_display (get_display ());
+		empty_checkbox = empty_checkbox_ic.lookup_icon ("checkbox-symbolic", null, 16, 1, Gtk.TextDirection.NONE, 0);
+		var enabled_checkbox_ic = Gtk.IconTheme.get_for_display (get_display ());
+		enabled_checkbox = enabled_checkbox_ic.lookup_icon ("checkbox-checked-symbolic", null, 16, 1, Gtk.TextDirection.NONE, 0);
 	}
-
 
 	private Gtk.TextTag[] text_tags_title;
 
@@ -1045,6 +1044,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 			// Check for empty checkboxes
 			if (is_empty_checkbox.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+				int[] empty_checkbox_list = {};
 				do {
 					int start_text_pos, end_text_pos;
 					bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
@@ -1058,13 +1058,37 @@ public class GtkMarkdown.View : GtkSource.View {
 						buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
 						buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
 
+						// Skip if our cursor is inside the URL text
+						if (cursor_location.in_range (start_text_iter, end_text_iter)) {
+							continue;
+						}
+
+						Gtk.TextIter next_after_end;
+						unichar replacement_char = 65532;
+						stdout.printf ("%li = %li\n", end_text_iter.get_char (), replacement_char);
 						// If the styling has already been applied, don't both re-applying it.
 						if (!start_text_iter.has_tag (text_tag_hidden) && !end_text_iter.has_tag (text_tag_hidden)) {
 							// Apply our styling
 							buffer.apply_tag (text_tag_hidden, start_text_iter, end_text_iter);
+							// We can't insert the checkboxes here or we'll mess up the matches
+							// aka change the buffer size, so store them for later, but only if we
+							// need to.
+							next_after_end = end_text_iter.copy ();
+							next_after_end.forward_char ();
+							if (end_text_iter.get_char () != replacement_char) {
+								empty_checkbox_list += end_text_pos;
+							}
 						}
 					}
 				} while (matches.next ());
+
+				// Go through and add the empty checkboxes now, in reverse order, so we don't have
+				// to recalculate teh stored position as we add them in.
+				for (var i = empty_checkbox_list.length -1; i >= 0; i--) {
+					Gtk.TextIter end_text_iter;
+					buffer.get_iter_at_offset (out end_text_iter, empty_checkbox_list[i]);
+					buffer.insert_paintable (end_text_iter, empty_checkbox);
+				}
 			}
 		} catch (RegexError e) {
 			critical (e.message);
