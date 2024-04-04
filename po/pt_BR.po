@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-03-25 03:20:29+0000\n"
+"PO-Revision-Date: 2024-04-04 03:06:46+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -37,11 +37,11 @@ msgstr "Ordem de classificação para as notas"
 
 #: src/ui/strings.vala:62
 msgid "Modified Time - Ascending"
-msgstr "Horário de modificação - Ascendente"
+msgstr "Hora de alteração - Ascendente"
 
 #: src/ui/strings.vala:63
 msgid "Modified Time - Descending"
-msgstr "Horário de modificação - Descendente"
+msgstr "Hora de alteração - Descendente"
 
 #: src/ui/strings.vala:64
 msgid "Alphabetical - Ascending"
