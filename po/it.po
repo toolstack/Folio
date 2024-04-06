@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-03-02 16:57:19+0000\n"
+"PO-Revision-Date: 2024-04-06 12:00:19+0100\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,71 +13,71 @@ msgstr ""
 
 #: data/app.gschema.xml:76
 msgid "Notebook sort order"
-msgstr ""
+msgstr "Ordinamento del taccuino"
 
 #: data/app.gschema.xml:77
 msgid "The sort order of the notebook list"
-msgstr ""
+msgstr "L'ordinamento dell'elenco dei taccuini"
 
 #: src/ui/preferences/preferences.blp:145
 msgid "Sort Order For Notebooks"
-msgstr ""
+msgstr "Ordinamento per i taccuini"
 
 #: data/app.gschema.xml:71
 msgid "Note sort order"
-msgstr ""
+msgstr "Ordinamento della note"
 
 #: data/app.gschema.xml:72
 msgid "The sort order of the note list"
-msgstr ""
+msgstr "L'ordinamento dell'elenco delle note"
 
 #: src/ui/preferences/preferences.blp:150
 msgid "Sort Order For Notes"
-msgstr ""
+msgstr "Ordinamento per le note"
 
 #: src/ui/strings.vala:62
 msgid "Modified Time - Ascending"
-msgstr ""
+msgstr "Orario modificato - Crescente"
 
 #: src/ui/strings.vala:63
 msgid "Modified Time - Descending"
-msgstr ""
+msgstr "Orario modificato - Discendente"
 
 #: src/ui/strings.vala:64
 msgid "Alphabetical - Ascending"
-msgstr ""
+msgstr "Alfabetico - Ascendente"
 
 #: src/ui/strings.vala:65
 msgid "Alphabetical - Descending"
-msgstr ""
+msgstr "Alfabetico - Discendente"
 
 #: src/ui/popup/shortcut_window.blp:114
 msgid "Display"
-msgstr ""
+msgstr "Schermo"
 
 #: src/ui/popup/shortcut_window.blp:117
 msgid "Full Screen"
-msgstr ""
+msgstr "A schermo intero"
 
 #: src/ui/popup/shortcut_window.blp:122
 msgid "Zoom In"
-msgstr ""
+msgstr "Ingrandire"
 
 #: src/ui/popup/shortcut_window.blp:127
 msgid "Zoom Out"
-msgstr ""
+msgstr "Rimpicciolire"
 
 #: src/ui/strings.vala:52
 msgid "Pick primary font for notes"
-msgstr ""
+msgstr "Scegli il carattere principale per le note"
 
 #: src/ui/strings.vala:53
 msgid "Pick monospace font for code"
-msgstr ""
+msgstr "Scegli il carattere a spaziatura fissa per il codice"
 
 #: src/ui/strings.vala:54
 msgid "File Changed On Disk"
-msgstr ""
+msgstr "File modificato su disco"
 
 #: src/ui/strings.vala:55
 msgid ""
@@ -91,14 +91,23 @@ msgid ""
 "\n"
 "Note: Canceling the save if you have already moved to a new note/notebook will discard your changes."
 msgstr ""
+"Il file è cambiato sul disco dall'ultima volta che è stato salvato/caricato da Folio.\n"
+"\n"
+"Puoi effettuare una delle seguenti operazioni:\n"
+"\n"
+" • Ricarica il file (annullando eventuali modifiche apportate in Folio)\n"
+" • Sovrascrivi il file (annullando eventuali modifiche apportate all'esterno di Folio)\n"
+" • Annulla l'operazione e risolvi manualmente il problema\n"
+"\n"
+"Nota: l'annullamento del salvataggio se sei già passato a una nuova nota/taccuino annullerà le modifiche."
 
 #: src/ui/strings.vala:56
 msgid "Reload"
-msgstr ""
+msgstr "Ricarica"
 
 #: src/ui/strings.vala:57
 msgid "Overwrite"
-msgstr ""
+msgstr "Sovrascrivi"
 
 #: src/ui/strings.vala:59
 msgid ""
@@ -109,122 +118,128 @@ msgid ""
 " • Reload the file (discarding any changes you have made in Folio)\n"
 " • Overwrite the file (discarding any changes made outside of Folio)"
 msgstr ""
+"Il file è stato modificato sul disco da un'altra applicazione.\n"
+"\n"
+"Puoi effettuare una delle seguenti operazioni:\n"
+"\n"
+" • Ricarica il file (annullando eventuali modifiche apportate in Folio)\n"
+" • Sovrascrivi il file (annullando eventuali modifiche apportate al di fuori di Folio)"
 
 #: src/ui/strings.vala:61
 msgid "Note %i"
-msgstr ""
+msgstr "Nota %i"
 
 #: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:213
 msgid "Trash Storage Location"
-msgstr ""
+msgstr "Posizione di archiviazione del cestino"
 
 #: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:214
 msgid "Where the trash folder is located (requires app restart)"
-msgstr ""
+msgstr "Dove si trova la cartella cestino (richiede il riavvio dell'app)"
 
 #: src/ui/strings.vala:46
 msgid "Pick where the trash can will be stored"
-msgstr ""
+msgstr "Scegli dove verrà depositato il cestino"
 
 #: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:128
 msgid "Use Fixed Width For Notes"
-msgstr ""
+msgstr "Usa larghezza fissa per le note"
 
 #: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:129
 msgid "Use a fixed width for the text area of a note"
-msgstr ""
+msgstr "Utilizza una larghezza fissa per l'area di testo di una nota"
 
 #: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:118
 msgid "Expands the notebook list to include the notebook name"
-msgstr ""
+msgstr "Espande l'elenco dei taccuini per includere il nome del taccuino"
 
 #: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:65
 msgid "Show line numbers"
-msgstr ""
+msgstr "Mostra i numeri di riga"
 
 #: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:66
 msgid "Displays line numbers at the left of the note"
-msgstr ""
+msgstr "Visualizza i numeri di riga a sinistra della nota"
 
 #: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:76
 msgid "Show all notes"
-msgstr ""
+msgstr "Mostra tutte le note"
 
 #: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:77
 msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
-msgstr ""
+msgstr "Visualizza il taccuino \"Tutte le note\" nella parte superiore dell'elenco dei taccuini"
 
 #: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:163
 msgid "Enable autosave"
-msgstr ""
+msgstr "Abilita il salvataggio automatico"
 
 #: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:164
 msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
-msgstr ""
+msgstr "Salva automaticamente la nota corrente ogni 30 secondi se i contenuti sono cambiati (richiede il riavvio dell'app)"
 
 #: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:174
 msgid "Don't hide the Trash folder"
-msgstr ""
+msgstr "Non nascondere la cartella Cestino"
 
 #: data/app.gschema.xml:67
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
-msgstr ""
+msgstr "La cartella del cestino è impostata come cartella nascosta per impostazione predefinita, questa opzione la rende visibile"
 
 #: data/app.metainfo.xml.in:367
 msgid "Main Folio window in light mode"
-msgstr ""
+msgstr "Finestra principale di Folio in modalità chiara"
 
 #: data/app.metainfo.xml.in:371
 msgid "Main Folio window in dark mode"
-msgstr ""
+msgstr "Finestra principale di Folio in modalità scura"
 
 #: data/app.metainfo.xml.in:375
 msgid "Folio on small/mobile screens"
-msgstr ""
+msgstr "Folio su schermi piccoli/mobili"
 
 #: data/app.metainfo.xml.in:379
 msgid "Folio preferences screen"
-msgstr ""
+msgstr "Schermata delle preferenze di Folio"
 
 #: data/app.metainfo.xml.in:383
 msgid "Folio in three pane mode"
-msgstr ""
+msgstr "Folio in modalità a tre riquadri"
 
 #: src/ui/preferences/preferences.blp:59
 msgid "Tools"
-msgstr ""
+msgstr "Strumenti"
 
 #: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:88
 msgid "Displays the formatting toolbar at the bottom of the note"
-msgstr ""
+msgstr "Visualizza la barra degli strumenti di formattazione nella parte inferiore della nota"
 
 #: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:99
 msgid "Adds a button to the markdown reference sheet on the right of the formatting toolbar"
-msgstr ""
+msgstr "Aggiunge un pulsante al foglio di riferimento del markdown a destra della barra degli strumenti di formattazione"
 
 #: src/ui/preferences/preferences.blp:111
 msgid "Layout"
-msgstr ""
+msgstr "Layout"
 
 #: src/ui/preferences/preferences.blp:139
 msgid "Fixed Width To Use For Notes"
-msgstr ""
+msgstr "Larghezza fissa da utilizzare per le note"
 
 #: src/ui/preferences/preferences.blp:140
 msgid "Sets the fixed width size of a note in px"
-msgstr ""
+msgstr "Imposta la dimensione della larghezza fissa di una nota in px"
 
 #: src/ui/preferences/preferences.blp:157
 msgid "Files"
-msgstr ""
+msgstr "File"
 
 #: src/ui/preferences/preferences.blp:175
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
-msgstr ""
+msgstr "La cartella del cestino è impostata come cartella nascosta per impostazione predefinita, questa opzione la rende visibile (richiede il riavvio dell'app)"
 
 #: src/ui/strings.vala:51
 msgid "Unable to recognize URI"
-msgstr ""
+msgstr "Impossibile riconoscere l'URI"
 
 #: data/app.desktop.in:9 src/ui/strings.vala:3
 msgid "Folio"
@@ -304,11 +319,11 @@ msgstr "Ricerca direttamente dal desktop GNOME"
 
 #: data/app.metainfo.xml.in:12
 msgid "Highlight and strikethrough text formatting"
-msgstr ""
+msgstr "Evidenzia e barra la formattazione del testo"
 
 #: data/app.metainfo.xml.in:13
 msgid "App themeing based on notebook color"
-msgstr ""
+msgstr "Temi dell'app basati sul colore del taccuino"
 
 #: data/app.metainfo.xml.in:14
 msgid "Trash can"
@@ -472,7 +487,7 @@ msgstr "abilita barra degli strumenti"
 
 #: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:98
 msgid "Enable Cheatsheet"
-msgstr ""
+msgstr "Abilita il foglio informativo"
 
 #: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:117
 msgid "3-Pane Layout"
@@ -625,7 +640,7 @@ msgstr "Rinomina"
 
 #: src/ui/strings.vala:42
 msgid "Couldn’t find an app to handle file URIs"
-msgstr ""
+msgstr "Impossibile trovare un'app per gestire gli URI dei file"
 
 #: src/ui/strings.vala:43
 msgid "Apply"
@@ -642,11 +657,11 @@ msgstr "Tutte le note"
 
 #: src/ui/strings.vala:49
 msgid "Last Modified"
-msgstr ""
+msgstr "Ultima modifica"
 
 #: src/ui/strings.vala:50
 msgid "Extension"
-msgstr ""
+msgstr "Estensione"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
 msgid "Follow system style"
@@ -726,7 +741,7 @@ msgstr "Sposta tutto nel cestino"
 
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:113
 msgid "Notebooks"
-msgstr ""
+msgstr "Taccuini"
 
 #: src/ui/window/sidebar/note_create_popup.blp:37
 msgid "Note Name"
