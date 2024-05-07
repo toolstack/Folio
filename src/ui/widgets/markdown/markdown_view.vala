@@ -662,6 +662,11 @@ public class GtkMarkdown.View : GtkSource.View {
 		buffer.remove_tag (text_tag_invisible, start, end);
 	}
 
+	private string clean_images_from_buffer (string buffer_text) {
+
+		return buffer_text;
+	}
+
 	private string create_filtered_buffer (string buffer_text) {
 		MatchInfo matches;
 
@@ -1065,7 +1070,6 @@ public class GtkMarkdown.View : GtkSource.View {
 
 						Gtk.TextIter next_after_end;
 						unichar replacement_char = 65532;
-						stdout.printf ("%li = %li\n", end_text_iter.get_char (), replacement_char);
 						// If the styling has already been applied, don't both re-applying it.
 						if (!start_text_iter.has_tag (text_tag_hidden) && !end_text_iter.has_tag (text_tag_hidden)) {
 							// Apply our styling
