@@ -17,7 +17,7 @@
  */
 
 [GtkTemplate (ui = "/com/toolstack/Folio/markdown_cheatsheet.ui")]
-public class Folio.MarkdownCheatsheet : Adw.Window {
+public class Folio.MarkdownCheatsheet : Gtk.Window {
 
 	[GtkChild]
 	unowned GtkMarkdown.View text_view;
@@ -41,3 +41,4 @@ public class Folio.MarkdownCheatsheet : Adw.Window {
 		text_view.dark = app.style_manager.dark;
 	}
 }
+
