@@ -1,5 +1,3 @@
-# Markdown Syntax
-
 ## Headings
 
 ##### Heading 1
@@ -87,3 +85,4 @@ Relative file paths can be used to link to other notes:
 ```language-name
 code
 ```
+
