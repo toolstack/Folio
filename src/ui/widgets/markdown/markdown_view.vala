@@ -1083,7 +1083,7 @@ public class GtkMarkdown.View : GtkSource.View {
 				} while (matches.next ());
 
 				// Go through and add the empty checkboxes now, in reverse order, so we don't have
-				// to recalculate teh stored position as we add them in.
+				// to recalculate the stored position as we add them in.
 				for (var i = empty_checkbox_list.length -1; i >= 0; i--) {
 					Gtk.TextIter end_text_iter;
 					buffer.get_iter_at_offset (out end_text_iter, empty_checkbox_list[i]);
