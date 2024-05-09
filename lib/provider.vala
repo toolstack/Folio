@@ -134,7 +134,7 @@ public class Folio.Provider : Object, ListModel {
 				}
 			}
 			try {
-				var enumerator = file.enumerate_children (FileAttribute.STANDARD_NAME, 0);
+				var enumerator = file.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_DISPLAY_NAME, 0);
 				while ((file_info = enumerator.next_file ()) != null) {
 					var name = file_info.get_display_name ();
 					var orig_file = enumerator.get_child (file_info);
