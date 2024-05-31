@@ -30,6 +30,7 @@ apps:
   folio:
     command: usr/bin/com.toolstack.Folio
     desktop: usr/share/applications/com.toolstack.Folio.desktop
+    common-id: com.toolstack.Folio
     extensions: [gnome]
     plugs: &folio
       - home
