@@ -508,7 +508,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 	}
 
 	public void try_create_note (string name) {
-		if (name.contains (".") || name.contains ("/")) {
+		if (name.contains ("/")) {
 			toast (Strings.NOTE_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
 			return;
 		}
@@ -532,7 +532,8 @@ public class Folio.Window : Adw.ApplicationWindow {
 		var dot_i = file_name.last_index_of_char ('.');
 		var extension = (dot_i == -1) ? "md" : file_name.substring (dot_i + 1);
 		var name = (dot_i == -1) ? file_name : file_name.substring (0, dot_i);
-		if (name.contains (".") || name.contains ("/")) {
+
+		if (name.contains ("/")) {
 			toast (Strings.NOTE_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
 			return false;
 		}
@@ -630,7 +631,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 	}
 
 	public void try_create_notebook (NotebookInfo info) {
-		if (info.name.contains (".") || info.name.contains ("/")) {
+		if (info.name.contains ("/")) {
 			toast (Strings.NOTEBOOK_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
 			return;
 		}
@@ -651,7 +652,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 	}
 
 	public void try_change_notebook (Notebook notebook, NotebookInfo info) {
-		if (info.name.contains (".") || info.name.contains ("/")) {
+		if (info.name.contains ("/")) {
 			toast (Strings.NOTEBOOK_NAME_SHOULDNT_CONTAIN_RESERVED_CHAR);
 			return;
 		}

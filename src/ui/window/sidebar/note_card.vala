@@ -90,7 +90,7 @@ public class Folio.NoteCard : Gtk.Box {
 	}
 
 	public void request_rename () {
-		entry.buffer.set_text ((_note.is_markdown ? _note.name : _note.file_name).data);
+		entry.buffer.set_text (_note.file_name.data);
 		entry.visible = true;
 		entry.grab_focus ();
 		_window.notify["focus-widget"].connect (maybe_exit_rename);
