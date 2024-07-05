@@ -8,7 +8,7 @@ parts:
   folio:
     plugin: meson
     source: https://github.com/toolstack/Folio.git
-    source-tag: '24.10'
+    source-tag: '24.11'
     source-depth: 1
     build-snaps:
       - blueprint-compiler
