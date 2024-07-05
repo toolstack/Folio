@@ -19,6 +19,18 @@
 
   <releases>
 
+    <release type="stable" version="24.11" date="2024-07-04">
+      <description translate="no">
+        <p>Changes:</p>
+        <ul>
+			<li>Added title bar widget to markdown scheatsheet (thanks @heldderarbeit)</li>
+			<li>Added support for notebooks with periods in their names</li>
+			<li>Fix deletion of notebooks</li>
+			<li>Translation updates</li>
+			<li>Other minor fixes</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="24.10" date="2024-04-04">
       <description translate="no">
         <p>Changes:</p>
