@@ -2,12 +2,12 @@
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-03-03 16:06:22+0000\n"
+"PO-Revision-Date: 2024-07-05 01:50:29+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/4.0.0\n"
+"X-Generator: GlotPress/4.0.1\n"
 "Language: es\n"
 "Project-Id-Version: Folio\n"
 
@@ -468,7 +468,7 @@ msgstr "Cambia el tema oscuro a color negro"
 
 #: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:87
 msgid "Enable Toolbar"
-msgstr "Activar barra de berramientas"
+msgstr "Activar barra de herramientas"
 
 #: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:98
 msgid "Enable Cheatsheet"
