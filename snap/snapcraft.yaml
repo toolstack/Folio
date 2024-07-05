@@ -42,6 +42,6 @@ apps:
     plugs: *folio
 
 architectures:
-	- build-on: amd64
-	- build-on: arm64
-	- build-on: armhf
+    - build-on: amd64
+    - build-on: arm64
+    - build-on: armhf
