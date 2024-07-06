@@ -137,7 +137,14 @@ Now do the releases on Flathub and Snapcraft.
  - commit the PR
  - monitor the [buildbot](https://buildbot.flathub.org/#/)
 
-### Snap release
+### Snap release (old way)
+ - after build, login to your snapcraft [account](https://snapcraft.io)
+ - go to the folio page, then select releases
+ - find the new build  in the "Revisions available to release" section
+ - click on "Promote/close" and select latest/stable
+ - click on "Save"
+
+### Snap release (new way)
  - after build, login to your snapcraft account `snapcraft login`
  - upload the build `snapcraft upload --release=stable folio_YY.##_amd64.snap`
 
