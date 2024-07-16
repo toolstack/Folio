@@ -358,8 +358,11 @@ rene-coty
 		if (file != null) {
 			var f = File.new_for_path (file);
 			if (!f.query_exists ()) {
-				command_line.print ("File at %s doesn't exist\n", f.get_path ());
-				return 0;
+				f = File.new_for_uri (file);
+				if (!f.query_exists ()) {
+					command_line.print ("File %s doesn't exist\n", file);
+					return 0;
+				}
 			}
 			var w = new FileEditorWindow (this, f);
 			w.present ();
