@@ -1261,10 +1261,20 @@ public class GtkMarkdown.View : GtkSource.View {
 						continue;
 					}
 
-					// Apply styling
+					// Check to see if we're already in a link, in which case skip formatting.
+					if (start_code_iter.has_tag (text_tag_url) &&
+					    end_code_iter.has_tag (text_tag_url) &&
+						start_before_iter.has_tag (text_tag_url) &&
+						start_after_iter.has_tag (text_tag_url)
+					) {
+						continue;
+					}
+
+					// Remove other tags if directed to.
 					if (remove_other_tags)
 						remove_tags_format (start_before_iter, end_after_iter);
 
+					// Apply styling.
 					buffer.apply_tag (text_tag, start_code_iter, end_code_iter);
 					buffer.apply_tag (text_tag_around, start_before_iter, end_before_iter);
 					buffer.apply_tag (text_tag_around, start_after_iter, end_after_iter);
@@ -1307,6 +1317,15 @@ public class GtkMarkdown.View : GtkSource.View {
 					buffer.get_iter_at_offset (out end_code_iter, end_code_pos);
 					buffer.get_iter_at_offset (out start_after_iter, start_after_pos);
 					buffer.get_iter_at_offset (out end_after_iter, end_after_pos);
+
+					// Check to see if we're already in a link, in which case skip formatting.
+					if (start_code_iter.has_tag (text_tag_url) &&
+					    end_code_iter.has_tag (text_tag_url) &&
+						start_before_iter.has_tag (text_tag_url) &&
+						start_after_iter.has_tag (text_tag_url)
+					) {
+						continue;
+					}
 
 					if (remove_other_tags)
 						remove_tags_cursor (start_before_iter, end_after_iter);
