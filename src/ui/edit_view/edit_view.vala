@@ -177,7 +177,7 @@ public class Folio.EditView : Gtk.Box {
 			return false;
 		});
 		key_controller.key_released.connect ((keyval, keycode, state) => {
-			if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R)
+			if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R || (state & Gdk.ModifierType.CONTROL_MASK) != 0)
 				is_ctrl = false;
 		});
 		var scroll_controller = new Gtk.EventControllerScroll (Gtk.EventControllerScrollFlags.DISCRETE | Gtk.EventControllerScrollFlags.VERTICAL);
