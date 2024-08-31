@@ -39,8 +39,6 @@ public class Folio.EditView : Gtk.Box {
 	private Gtk.CssProvider note_font_provider = new Gtk.CssProvider ();
 	private Gtk.CssProvider font_scale_provider = new Gtk.CssProvider ();
 
-	private bool is_ctrl = false;
-
 	construct {
 		var settings = new Settings (Config.APP_ID);
 
@@ -69,7 +67,8 @@ public class Folio.EditView : Gtk.Box {
 		};
 
 		click_controller.released.connect ((n, x, y) => {
-			if (is_ctrl) {
+			var state = click_controller.get_current_event_state ();
+			if ((state & Gdk.ModifierType.CONTROL_MASK) != 0) {
 				var ins = markdown_view.buffer.get_insert ();
 				Gtk.TextIter cur;
 				markdown_view.buffer.get_iter_at_mark (out cur, ins);
@@ -181,27 +180,10 @@ public class Folio.EditView : Gtk.Box {
 
 		notify["scale"].connect(set_font_scale);
 
-		var key_controller = new Gtk.EventControllerKey ();
-		key_controller.key_pressed.connect ((keyval, keycode, state) => {
-			if ((state & Gdk.ModifierType.CONTROL_MASK) == 0)
-				is_ctrl = true;
-			return false;
-		});
-		key_controller.key_released.connect ((keyval, keycode, state) => {
-			if ((state & Gdk.ModifierType.CONTROL_MASK) != 0)
-				is_ctrl = false;
-		});
 		var scroll_controller = new Gtk.EventControllerScroll (Gtk.EventControllerScrollFlags.DISCRETE | Gtk.EventControllerScrollFlags.VERTICAL);
 		scroll_controller.scroll.connect ((dx, dy) => {
-			// Let's double check the control key state, just in case we didn't unset it due to window focus loss.
 			var state = scroll_controller.get_current_event_state ();
 			if ((state & Gdk.ModifierType.CONTROL_MASK) != 0) {
-				is_ctrl = true;
-			} else {
-				is_ctrl = false;
-			}
-
-			if (is_ctrl) {
 				if (dy < 0)
 					zoom_in ();
 				else zoom_out ();
@@ -209,7 +191,6 @@ public class Folio.EditView : Gtk.Box {
 			}
 			return false;
 		});
-		add_controller (key_controller);
 		markdown_view.add_controller (scroll_controller);
 	}
 
