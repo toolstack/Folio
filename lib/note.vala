@@ -14,7 +14,11 @@ public class Folio.Note : Object {
 	}
 
 	public inline bool is_markdown {
-		get { return _extension == "md"; }
+		get { return _extension.down () == "md"; }
+	}
+
+	public inline bool is_text {
+		get { return _extension.down () == "txt"; }
 	}
 
 	public string path {

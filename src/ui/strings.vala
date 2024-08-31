@@ -63,4 +63,5 @@ public class Folio.Strings {
 	public abstract const string NOTE_SORT_ORDER_TIME_DSC = _("Modified Time - Descending");
 	public abstract const string NOTE_SORT_ORDER_ALPHA_ASC = _("Alphabetical - Ascending");
 	public abstract const string NOTE_SORT_ORDER_ALPHA_DSC = _("Alphabetical - Descending");
+	public abstract const string UNABLE_TO_LAUNCH_EXTERNAL_APPLICATION = _("Unable to launch external application for file %s.");
 }

@@ -56,6 +56,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	[GtkChild] unowned EditView edit_view;
 	[GtkChild] unowned Gtk.Box text_view_empty_notebook;
+	[GtkChild] unowned Gtk.Box external_file_type_notebook;
 	[GtkChild] unowned Gtk.Box text_view_empty_trash;
 	[GtkChild] unowned Gtk.Box text_view_no_notebook;
 	[GtkChild] unowned Gtk.PopoverMenu more_popover;
@@ -227,8 +228,11 @@ public class Folio.Window : Adw.ApplicationWindow {
 		edit_view.buffer = window_model.current_buffer;
 		edit_view.reset_scroll_position ();
 		if (note != null) {
-			edit_view.text_mode = !note.is_markdown;
-			if (!note.is_markdown) {
+			var is_markdown = note.is_markdown;
+			var is_text = note.is_text;
+
+			edit_view.text_mode = !is_markdown;
+			if (is_text) {
 				var b = edit_view.buffer;
 				if (b is GtkSource.Buffer) {
 					var buf = b as GtkSource.Buffer;
@@ -238,8 +242,13 @@ public class Folio.Window : Adw.ApplicationWindow {
 					}
 				}
 			}
+
 			note_title.label = (note.is_markdown) ? note.name : note.file_name;
-			set_text_view_state (TextViewState.TEXT_VIEW);
+			if (is_markdown || is_text) {
+				set_text_view_state (TextViewState.TEXT_VIEW);
+			} else {
+				set_text_view_state (TextViewState.EXTERNAL_FILE);
+			}
 			// Zen mode
 			// Autohide headerbar_edit_view when typing in desktop no sidebar mode
 			window_model.current_buffer.begin_user_action.connect (() => {
@@ -411,7 +420,8 @@ public class Folio.Window : Adw.ApplicationWindow {
 		TEXT_VIEW,
 		EMPTY_NOTEBOOK,
 		EMPTY_TRASH,
-		NO_NOTEBOOK
+		NO_NOTEBOOK,
+		EXTERNAL_FILE
 	}
 
 	private void set_text_view_state (TextViewState state) {
@@ -421,6 +431,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 		edit_view.visible = state == TextViewState.TEXT_VIEW;
 		button_more_menu.visible = state == TextViewState.TEXT_VIEW && edit_view.is_editable;
 		button_open_in_notebook.visible = state == TextViewState.TEXT_VIEW && window_model.state == WindowModel.State.ALL;
+		external_file_type_notebook.visible = state == TextViewState.EXTERNAL_FILE;
 	}
 
 	private void recolor (Notebook? notebook) {
