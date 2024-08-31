@@ -172,16 +172,24 @@ public class Folio.EditView : Gtk.Box {
 
 		var key_controller = new Gtk.EventControllerKey ();
 		key_controller.key_pressed.connect ((keyval, keycode, state) => {
-			if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R)
+			if ((state & Gdk.ModifierType.CONTROL_MASK) == 0)
 				is_ctrl = true;
 			return false;
 		});
 		key_controller.key_released.connect ((keyval, keycode, state) => {
-			if (keyval == Gdk.Key.Control_L || keyval == Gdk.Key.Control_R)
+			if ((state & Gdk.ModifierType.CONTROL_MASK) != 0)
 				is_ctrl = false;
 		});
 		var scroll_controller = new Gtk.EventControllerScroll (Gtk.EventControllerScrollFlags.DISCRETE | Gtk.EventControllerScrollFlags.VERTICAL);
 		scroll_controller.scroll.connect ((dx, dy) => {
+			// Let's double check the control key state, just in case we didn't unset it due to window focus loss.
+			var state = scroll_controller.get_current_event_state ();
+			if ((state & Gdk.ModifierType.CONTROL_MASK) != 0) {
+				is_ctrl = true;
+			} else {
+				is_ctrl = false;
+			}
+
 			if (is_ctrl) {
 				if (dy < 0)
 					zoom_in ();
