@@ -24,6 +24,8 @@ public class Folio.Application : Adw.Application {
 		{ "delete-note", on_delete_note },
 		{ "export-note", on_export_note },
 
+		{ "open-external-file", on_open_external_file },
+
 		{ "new-notebook", on_new_notebook },
 		{ "edit-notebook", on_edit_notebook },
 		{ "delete-notebook", on_delete_notebook },
@@ -210,6 +212,14 @@ rene-coty
 
 	private void on_empty_trash () {
 		main_window.request_empty_trash ();
+	}
+
+	private void on_open_external_file () {
+		try {
+			GLib.AppInfo.launch_default_for_uri ("file://" + window_model.note.path, null);
+		} catch (Error e) {
+			toast (Strings.UNABLE_TO_LAUNCH_EXTERNAL_APPLICATION.printf (window_model.note.file_name));
+		}
 	}
 
 	private void on_new_note () {

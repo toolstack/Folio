@@ -131,6 +131,31 @@ template $FolioWindow : Adw.ApplicationWindow {
           }
 
           [overlay]
+          Box external_file_type_notebook {
+
+            hexpand: true;
+            vexpand: true;
+            orientation: vertical;
+            halign: center;
+            valign: center;
+
+            Label {
+              label: _("Open file in external application");
+              styles ["title-1"]
+            }
+
+            Button {
+
+              label: _("Open file");
+              action-name: "app.open-external-file";
+              margin-bottom: 32;
+              margin-top: 32;
+
+              styles ["pill", "suggested-action"]
+            }
+          }
+
+          [overlay]
           Box text_view_no_notebook {
 
             hexpand: true;
