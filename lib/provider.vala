@@ -306,6 +306,11 @@ public class Folio.Provider : Object, ListModel {
 		} catch (Error e) {
 			stderr.printf ("Couldn't write icon name: %s\n", e.message);
 		}
+		try {
+			write_data_file (notebook_path, "custom_icon_label", info.custom_icon_label);
+		} catch (Error e) {
+			stderr.printf ("Couldn't write custom icon label: %s\n", e.message);
+		}
 	}
 
 	private NotebookInfo read_notebook_info (string name, DateTime time_modified, string notebook_path) throws Error {
@@ -314,7 +319,8 @@ public class Folio.Provider : Object, ListModel {
 			read_color (notebook_path),
 			read_icon_type (notebook_path),
 			read_data_file (notebook_path, "icon_name"),
-			time_modified
+			time_modified,
+			read_data_file (notebook_path, "custom_icon_label")
 		);
 	}
 

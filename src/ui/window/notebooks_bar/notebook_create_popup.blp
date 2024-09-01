@@ -8,6 +8,7 @@ StringList icon_types {
     _("Initials: camelCase"),
     _("Initials: snake_case"),
     _("Icon"),
+    _("Custom"),
   ]
 }
 
@@ -91,6 +92,13 @@ template $FolioNotebookCreatePopup : Adw.Window {
 
         DropDown icon_type_dropdown {
           model: icon_types;
+        }
+
+        Entry custom_icon_label {
+          visible: false;
+          hexpand: false;
+          max-width-chars: 2;
+
         }
 
         MenuButton button_icon {

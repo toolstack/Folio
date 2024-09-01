@@ -111,6 +111,9 @@ public class Folio.NotebookPreview : Gtk.Box {
 			case NotebookIconType.FIRST:
 				label.label = first_chars (info.name);
 				break;
+			case NotebookIconType.CUSTOM_ICON:
+				label.label = info.custom_icon_label;
+				break;
 			default:
 				assert_not_reached();
 		}

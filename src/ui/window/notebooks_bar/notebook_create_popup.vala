@@ -9,6 +9,9 @@ public class Folio.NotebookCreatePopup : Adw.Window {
 	unowned Gtk.DropDown icon_type_dropdown;
 
 	[GtkChild]
+	unowned Gtk.Entry custom_icon_label;
+
+	[GtkChild]
 	unowned Gtk.ColorDialogButton button_color;
 
 	[GtkChild]
@@ -100,11 +103,14 @@ public class Folio.NotebookCreatePopup : Adw.Window {
 				notebook.name,
 				notebook.color,
 				notebook.icon_type,
-				notebook.info.icon_name
+				notebook.info.icon_name,
+				notebook.info.time_modified,
+				notebook.info.custom_icon_label
 			);
 			button_color.rgba = notebook.color;
 			entry.text = notebook.name;
-			icon_type_dropdown.set_selected (notebook.icon_type );
+			icon_type_dropdown.set_selected (notebook.icon_type);
+			if (notebook.icon_type == NotebookIconType.PREDEFINED_ICON) { button_icon.visible = true; }
 			for (uint i = 0; i < model.get_n_items (); i++) {
 				var v = model.get_item (i);
 				var so = v as Gtk.StringObject;
@@ -115,6 +121,8 @@ public class Folio.NotebookCreatePopup : Adw.Window {
 					}
 				}
 			}
+			if (notebook.icon_type == NotebookIconType.CUSTOM_ICON) { custom_icon_label.visible = true; }
+			custom_icon_label.set_text (notebook.info.custom_icon_label);
 			entry.activate.connect (() => change (window, notebook));
 			button_create.clicked.connect (() => change (window, notebook));
 		} else {
@@ -148,10 +156,14 @@ public class Folio.NotebookCreatePopup : Adw.Window {
 		icon_type_dropdown.notify["selected-item"].connect (() => {
 			preview.icon_type = NotebookIconType.from_int ((int)icon_type_dropdown.get_selected ());
 			button_icon.visible = icon_type_dropdown.get_selected () == NotebookIconType.PREDEFINED_ICON;
+			custom_icon_label.visible = icon_type_dropdown.get_selected () == NotebookIconType.CUSTOM_ICON;
 		});
 		button_color.notify["rgba"].connect (() => {
 			preview.color = button_color.get_rgba ();
 			recolor (button_color.get_rgba  ());
+		});
+		custom_icon_label.changed.connect (() => {
+			preview.notebook_info.custom_icon_label = custom_icon_label.get_text ();
 		});
 		entry.changed ();
 		//icon_type_dropdown.changed ();
