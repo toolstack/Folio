@@ -4,7 +4,8 @@ public enum Folio.NotebookIconType {
 	INITIALS,
 	INITIALS_CAMEL_CASE,
 	INITIALS_SNAKE_CASE,
-	PREDEFINED_ICON;
+	PREDEFINED_ICON,
+	CUSTOM_ICON;
 
 	public const NotebookIconType DEFAULT = FIRST;
 
@@ -20,6 +21,8 @@ public enum Folio.NotebookIconType {
 				return "snake_case";
 			case PREDEFINED_ICON:
 				return "predefined_icon";
+			case CUSTOM_ICON:
+				return "custom_icon";
 			default:
 				assert_not_reached();
 		}
@@ -37,6 +40,8 @@ public enum Folio.NotebookIconType {
 				return INITIALS_SNAKE_CASE;
 			case "predefined_icon":
 				return PREDEFINED_ICON;
+			case "custom_icon":
+				return CUSTOM_ICON;
 			default:
 				assert_not_reached();
 		}
@@ -54,6 +59,8 @@ public enum Folio.NotebookIconType {
 				return INITIALS_SNAKE_CASE;
 			case 4:
 				return PREDEFINED_ICON;
+			case 5:
+				return CUSTOM_ICON;
 			default:
 				assert_not_reached();
 		}
