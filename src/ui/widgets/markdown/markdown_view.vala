@@ -81,6 +81,7 @@ public class GtkMarkdown.View : GtkSource.View {
 			update_color_scheme ();
 			update_font ();
 			buffer.changed.connect (restyle_text_partial);
+			buffer.paste_done.connect (restyle_text_all_after_paste); 
 			buffer.notify["cursor-position"].connect (restyle_text_cursor);
 			restyle_text_all ();
 		}
@@ -681,6 +682,7 @@ public class GtkMarkdown.View : GtkSource.View {
 		renderer.queue_draw ();
 		Gtk.TextIter buffer_start, buffer_end;
 		buffer.get_bounds (out buffer_start, out buffer_end);
+		// TODO: Remove this?
 		remove_tags_format (buffer_start, buffer_end);
 
 		// Check to see if the last character in the buffer is a LF, if not, add it, otherwise
@@ -998,6 +1000,10 @@ public class GtkMarkdown.View : GtkSource.View {
 		} catch (RegexError e) {
 			critical (e.message);
 		}
+	}
+
+	private void restyle_text_all_after_paste (Gdk.Clipboard _) {
+		restyle_text_partial ();
 	}
 
 	private void restyle_text_partial () {
