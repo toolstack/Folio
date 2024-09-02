@@ -80,7 +80,7 @@ public class GtkMarkdown.View : GtkSource.View {
 			base.buffer = value;
 			update_color_scheme ();
 			update_font ();
-			buffer.changed.connect (restyle_text_all);
+			buffer.changed.connect (restyle_text_partial);
 			buffer.notify["cursor-position"].connect (restyle_text_cursor);
 			restyle_text_all ();
 		}
@@ -675,7 +675,8 @@ public class GtkMarkdown.View : GtkSource.View {
 		return buffer_text;
 	}
 
-	private void restyle_text_format () {
+	// TODO: Remove the parameter.
+	private void restyle_text_format (bool only_changed_line = false) {
 		if (text_mode) return;
 		renderer.queue_draw ();
 		Gtk.TextIter buffer_start, buffer_end;
@@ -698,21 +699,22 @@ public class GtkMarkdown.View : GtkSource.View {
 			buffer.get_bounds (out buffer_start, out buffer_end);
 		}
 
-		string buffer_text = buffer.get_text (buffer_start, buffer_end, true);
+		if (only_changed_line) {
+			Gtk.TextIter insert_iter, selection_bound_iter;
+			buffer.get_iter_at_mark (out insert_iter, buffer.get_insert ());
+			// TODO: What to do with this?
+			buffer.get_iter_at_mark (out selection_bound_iter, buffer.get_selection_bound ());
+			int changed_line = insert_iter.get_line ();
 
-		{
+			format_line_heading (changed_line);
+		} else {
 			var lines = buffer.get_line_count ();
 			for (var line = 0; line < lines; line++) {
-				var title_level = get_title_level (line);
-				if (title_level != 0) {
-					Gtk.TextIter start, end;
-					buffer.get_iter_at_line (out start, line);
-					end = start.copy ();
-					end.forward_to_line_end ();
-					buffer.apply_tag (text_tags_title[title_level - 1], start, end);
-				}
+				format_line_heading (line);
 			}
 		}
+
+		string buffer_text = buffer.get_text (buffer_start, buffer_end, true);
 
 		MatchInfo matches;
 
@@ -998,9 +1000,25 @@ public class GtkMarkdown.View : GtkSource.View {
 		}
 	}
 
+	private void restyle_text_partial () {
+		restyle_text_format (true);
+		restyle_text_cursor ();
+	}
+
 	private void restyle_text_all () {
 		restyle_text_format ();
 		restyle_text_cursor ();
+	}
+
+	void format_line_heading(int line) {
+		var title_level = get_title_level (line);
+		if (title_level != 0) {
+			Gtk.TextIter start, end;
+			buffer.get_iter_at_line (out start, line);
+			end = start.copy ();
+			end.forward_to_line_end ();
+			buffer.apply_tag (text_tags_title[title_level - 1], start, end);
+		}
 	}
 
 	void format_horizontal_rule (
