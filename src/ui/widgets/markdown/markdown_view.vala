@@ -356,7 +356,7 @@ public class GtkMarkdown.View : GtkSource.View {
 			 * * list item
 			 * 0. list item
 			 */
-			is_list_row = new Regex ("^[\\t ]*([-*+]|[.0-9])+[\\t ]+", f | RegexCompileFlags.MULTILINE, 0);
+			is_list_row = new Regex ("^[\\t ]*([-*+]|[0-9]\\.)+[\\t ]+", f | RegexCompileFlags.MULTILINE, 0);
 
 			/* Examples:
 			 * |column 1|column 2|
