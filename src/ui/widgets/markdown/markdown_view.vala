@@ -707,6 +707,11 @@ public class GtkMarkdown.View : GtkSource.View {
 			int changed_line = insert_iter.get_line ();
 
             format_line (changed_line);
+            // TODO: Fix this?
+            // Strangely, when inserting a new line before a line, the line tags gets removed, and
+            // the formatting performs on the empty new line instead. Work around the issue by
+            // formatting the line next to the changed line.
+            format_line (changed_line + 1);
 		} else {
 			var lines = buffer.get_line_count ();
 			for (var line = 0; line < lines; line++) {
@@ -833,6 +838,7 @@ public class GtkMarkdown.View : GtkSource.View {
         line_end.forward_to_line_end ();
         string line_text = buffer.get_text (line_start, line_end, true);
 
+        warning("%s", line_text);
         remove_tags_format (line_start, line_end);
 
         format_heading (line_start, line_end);
