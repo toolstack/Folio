@@ -724,32 +724,6 @@ public class GtkMarkdown.View : GtkSource.View {
 		string filtered_buffer_text = create_filtered_buffer (buffer_text);
 
 		try {
-			// Check tables
-			if (is_table_row.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
-				do {
-					int start_text_pos, end_text_pos;
-					bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
-
-					if (have_text) {
-						start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
-						end_text_pos = buffer_text.char_count ((ssize_t) end_text_pos);
-
-						// Convert the character offsets to TextIter's
-						Gtk.TextIter start_text_iter, end_text_iter;
-						buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
-						buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
-
-						// If the styling has already been applied, don't both re-applying it.
-						if (!start_text_iter.has_tag (text_tag_table) && !end_text_iter.has_tag (text_tag_table)) {
-							// Apply our styling
-							buffer.apply_tag (text_tag_table, start_text_iter, end_text_iter);
-						}
-					}
-				} while (matches.next ());
-			}
-		} catch (Error e) {}
-
-		try {
 			// Check for email links
 			if (is_email_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
 				do {
@@ -947,6 +921,9 @@ public class GtkMarkdown.View : GtkSource.View {
 		try {
 			format_list_row (line_start, line_end, ref line_text);
 		} catch (Error e) {}
+		try {
+			format_table_row (line_start, line_end, ref line_text);
+		} catch (Error e) {}
     }
 
 	void format_heading (Gtk.TextIter line_start, Gtk.TextIter line_end) {
@@ -1098,6 +1075,38 @@ public class GtkMarkdown.View : GtkSource.View {
                     if (!start_text_iter.has_tag (text_tag_list) && !end_text_iter.has_tag (text_tag_list)) {
                         // Apply our styling
                         buffer.apply_tag (text_tag_list, start_text_iter, end_text_iter);
+                    }
+                }
+            } while (matches.next ());
+        }
+    }
+
+    void format_table_row (
+        Gtk.TextIter line_start,
+        Gtk.TextIter line_end, 
+        ref string line_text
+    ) throws RegexError {
+        // Check tables
+        GLib.MatchInfo matches;
+        if (is_table_row.match_full (line_text, line_text.length, 0, 0, out matches)) {
+            int line = line_start.get_line ();
+            do {
+                int start_text_pos, end_text_pos;
+                bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
+
+                if (have_text) {
+                    start_text_pos = line_text.char_count ((ssize_t) start_text_pos);
+                    end_text_pos = line_text.char_count ((ssize_t) end_text_pos);
+
+                    // Convert the character offsets to TextIter's
+                    Gtk.TextIter start_text_iter, end_text_iter;
+                    buffer.get_iter_at_line_offset (out start_text_iter, line, start_text_pos);
+                    buffer.get_iter_at_line_offset (out end_text_iter, line, end_text_pos);
+
+                    // If the styling has already been applied, don't both re-applying it.
+                    if (!start_text_iter.has_tag (text_tag_table) && !end_text_iter.has_tag (text_tag_table)) {
+                        // Apply our styling
+                        buffer.apply_tag (text_tag_table, start_text_iter, end_text_iter);
                     }
                 }
             } while (matches.next ());
