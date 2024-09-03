@@ -724,39 +724,6 @@ public class GtkMarkdown.View : GtkSource.View {
 		string filtered_buffer_text = create_filtered_buffer (buffer_text);
 
 		try {
-			// Check for links
-			if (is_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
-				do {
-					int start_text_pos, end_text_pos;
-					int start_url_pos, end_url_pos;
-					bool have_text = matches.fetch_pos (1, out start_text_pos, out end_text_pos);
-					bool have_url = matches.fetch_pos (2, out start_url_pos, out end_url_pos);
-
-					if (have_text && have_url) {
-						start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
-						end_text_pos = buffer_text.char_count ((ssize_t) end_text_pos);
-						start_url_pos = buffer_text.char_count ((ssize_t) start_url_pos);
-						end_url_pos = buffer_text.char_count ((ssize_t) end_url_pos);
-
-						// Convert the character offsets to TextIter's
-						Gtk.TextIter start_text_iter, end_text_iter, start_url_iter, end_url_iter;
-						buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
-						buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
-						buffer.get_iter_at_offset (out start_url_iter, start_url_pos);
-						buffer.get_iter_at_offset (out end_url_iter, end_url_pos);
-
-						// If the styling has already been applied, don't both re-applying it.
-						if (!start_text_iter.has_tag (text_tag_url) && !end_text_iter.has_tag (text_tag_url) && !start_url_iter.has_tag (text_tag_url) && !end_url_iter.has_tag (text_tag_url)) {
-							// Apply our styling
-							buffer.apply_tag (text_tag_url, start_text_iter, end_text_iter);
-							buffer.apply_tag (text_tag_url, start_url_iter, end_url_iter);
-						}
-					}
-				} while (matches.next ());
-			}
-		} catch (Error e) {}
-
-		try {
 			// Check for bare links
 			if (is_bare_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
 				do {
@@ -1023,6 +990,9 @@ public class GtkMarkdown.View : GtkSource.View {
 		try {
 			format_blockquote (line_start, line_end, ref line_text);
 		} catch (Error e) {}
+		try {
+			format_link (line_start, line_end, ref line_text);
+		} catch (Error e) {}
     }
 
 	void format_heading (Gtk.TextIter line_start, Gtk.TextIter line_end) {
@@ -1076,6 +1046,45 @@ public class GtkMarkdown.View : GtkSource.View {
             }
 		}
 	}
+
+    void format_link (
+        Gtk.TextIter line_start,
+        Gtk.TextIter line_end, 
+        ref string line_text
+    ) throws RegexError {
+        // Check for links
+        GLib.MatchInfo matches;
+        if (is_link.match_full (line_text, line_text.length, 0, 0, out matches)) {
+            int line = line_start.get_line ();
+            do {
+                int start_text_pos, end_text_pos;
+                int start_url_pos, end_url_pos;
+                bool have_text = matches.fetch_pos (1, out start_text_pos, out end_text_pos);
+                bool have_url = matches.fetch_pos (2, out start_url_pos, out end_url_pos);
+
+                if (have_text && have_url) {
+                    start_text_pos = line_text.char_count ((ssize_t) start_text_pos);
+                    end_text_pos = line_text.char_count ((ssize_t) end_text_pos);
+                    start_url_pos = line_text.char_count ((ssize_t) start_url_pos);
+                    end_url_pos = line_text.char_count ((ssize_t) end_url_pos);
+
+                    // Convert the character offsets to TextIter's
+                    Gtk.TextIter start_text_iter, end_text_iter, start_url_iter, end_url_iter;
+                    buffer.get_iter_at_line_offset (out start_text_iter, line, start_text_pos);
+                    buffer.get_iter_at_line_offset (out end_text_iter, line, end_text_pos);
+                    buffer.get_iter_at_line_offset (out start_url_iter, line, start_url_pos);
+                    buffer.get_iter_at_line_offset (out end_url_iter, line, end_url_pos);
+
+                    // If the styling has already been applied, don't both re-applying it.
+                    if (!start_text_iter.has_tag (text_tag_url) && !end_text_iter.has_tag (text_tag_url) && !start_url_iter.has_tag (text_tag_url) && !end_url_iter.has_tag (text_tag_url)) {
+                        // Apply our styling
+                        buffer.apply_tag (text_tag_url, start_text_iter, end_text_iter);
+                        buffer.apply_tag (text_tag_url, start_url_iter, end_url_iter);
+                    }
+                }
+            } while (matches.next ());
+        }
+    }
 
 	void format_escape_format (
 		string buffer_text,
