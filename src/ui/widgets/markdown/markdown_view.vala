@@ -712,7 +712,7 @@ public class GtkMarkdown.View : GtkSource.View {
 		} else {
 			var lines = buffer.get_line_count ();
 			for (var line = 0; line < lines; line++) {
-                format_line(line);
+                format_line (line);
 			}
 		}
 
@@ -722,11 +722,6 @@ public class GtkMarkdown.View : GtkSource.View {
 
 		// Create a filtered buffer that replaces some characters we don't want to match on.
 		string filtered_buffer_text = create_filtered_buffer (buffer_text);
-
-
-		try {
-			format_blockquote (buffer_text, out matches);
-		} catch (Error e) {}
 
 		try {
 			// Check for links
@@ -1020,61 +1015,65 @@ public class GtkMarkdown.View : GtkSource.View {
         line_end.forward_to_line_end ();
         string line_text = buffer.get_text (line_start, line_end, true);
 
-        format_line_heading (line_start, line_end);
+        format_heading (line_start, line_end);
         // TODO: Remove these try-catches?
 		try {
-			format_line_horizontal_rule (line_start, line_end, ref line_text);
+			format_horizontal_rule (line_start, line_end, ref line_text);
+		} catch (Error e) {}
+		try {
+			format_blockquote (line_start, line_end, ref line_text);
 		} catch (Error e) {}
     }
 
-	void format_line_heading (Gtk.TextIter line_start, Gtk.TextIter line_end) {
+	void format_heading (Gtk.TextIter line_start, Gtk.TextIter line_end) {
 		var title_level = get_title_level (line_start.get_line ());
 		if (title_level != 0) {
 			buffer.apply_tag (text_tags_title[title_level - 1], line_start, line_end);
 		}
 	}
 
-	void format_line_horizontal_rule (
+	void format_horizontal_rule (
         Gtk.TextIter line_start,
         Gtk.TextIter line_end, 
 		ref string line_text
 	) throws RegexError {
-		if (is_horizontal_rule.match_full (line_text, line_text.length)) {
+		if (is_horizontal_rule.match (line_text)) {
             buffer.apply_tag (text_tag_horizontal_rule, line_start, line_end);
 		}
 	}
 
 	void format_blockquote (
-		string buffer_text,
-		out MatchInfo matches
+        Gtk.TextIter line_start,
+        Gtk.TextIter line_end, 
+		ref string line_text
 	) throws RegexError {
-		// Check for code blocks
-		if (is_blockquote.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
-			do {
-				int start_marker_pos, end_marker_pos;
-				int start_full_pos,   end_full_pos;
-				bool have_marker = matches.fetch_pos (1, out start_marker_pos, out end_marker_pos);
-				bool have_full = matches.fetch_pos (0, out start_full_pos, out end_full_pos);
+        GLib.MatchInfo matches;
+		if (is_blockquote.match (line_text, 0, out matches)) {
+            int start_marker_pos, end_marker_pos;
+            int start_full_pos,   end_full_pos;
+            int line = line_start.get_line ();
+            bool have_marker = matches.fetch_pos (1, out start_marker_pos, out end_marker_pos);
+            bool have_full = matches.fetch_pos (0, out start_full_pos, out end_full_pos);
 
-				if (have_marker && have_full) {
-					start_marker_pos = buffer_text.char_count ((ssize_t) start_marker_pos);
-					end_marker_pos = buffer_text.char_count ((ssize_t) end_marker_pos);
-					start_full_pos = buffer_text.char_count ((ssize_t) start_full_pos);
-					end_full_pos = buffer_text.char_count ((ssize_t) end_full_pos);
+            if (have_marker && have_full) {
+                // TODO: What is the purpose of these?
+                start_marker_pos = line_text.char_count ((ssize_t) start_marker_pos);
+                end_marker_pos = line_text.char_count ((ssize_t) end_marker_pos);
+                start_full_pos = line_text.char_count ((ssize_t) start_full_pos);
+                end_full_pos = line_text.char_count ((ssize_t) end_full_pos);
 
-					// Convert the character offsets to TextIter's
-					Gtk.TextIter start_marker_iter, end_marker_iter;
-					Gtk.TextIter start_full_iter,   end_full_iter;
-					buffer.get_iter_at_offset (out start_marker_iter, start_marker_pos);
-					buffer.get_iter_at_offset (out end_marker_iter, end_marker_pos);
-					buffer.get_iter_at_offset (out start_full_iter, start_full_pos);
-					buffer.get_iter_at_offset (out end_full_iter, end_full_pos);
+                // Convert the character offsets to TextIter's
+                Gtk.TextIter start_marker_iter, end_marker_iter;
+                Gtk.TextIter start_full_iter,   end_full_iter;
+                buffer.get_iter_at_line_offset (out start_marker_iter, line, start_marker_pos);
+                buffer.get_iter_at_line_offset (out end_marker_iter, line, end_marker_pos);
+                buffer.get_iter_at_line_offset (out start_full_iter, line, start_full_pos);
+                buffer.get_iter_at_line_offset (out end_full_iter, line, end_full_pos);
 
-					// Apply styling
-					buffer.apply_tag (text_tag_blockquote, start_full_iter, end_full_iter);
-					buffer.apply_tag (text_tag_blockquote_marker, start_marker_iter, end_marker_iter);
-				}
-			} while (matches.next ());
+                // Apply styling
+                buffer.apply_tag (text_tag_blockquote, start_full_iter, end_full_iter);
+                buffer.apply_tag (text_tag_blockquote_marker, start_marker_iter, end_marker_iter);
+            }
 		}
 	}
 
