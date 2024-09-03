@@ -723,11 +723,6 @@ public class GtkMarkdown.View : GtkSource.View {
 		// Create a filtered buffer that replaces some characters we don't want to match on.
 		string filtered_buffer_text = create_filtered_buffer (buffer_text);
 
-		// Check for formatting
-		try {
-			format_escape_format (buffer_text, out matches);
-		} catch (Error e) {}
-
 		try {
 			format_code_block_format (filtered_buffer_text, out matches);
 		} catch (Error e) {}
@@ -885,6 +880,10 @@ public class GtkMarkdown.View : GtkSource.View {
 		} catch (Error e) {}
 		try {
 			do_formatting_pass_format (is_highlight, text_tag_highlight, line_start, line_end, ref line_text);
+		} catch (Error e) {}
+
+		try {
+			format_escape (line_start, line_end, line_text);
 		} catch (Error e) {}
 
 		// Create a filtered buffer that replaces some characters we don't want to match on.
@@ -1119,24 +1118,27 @@ public class GtkMarkdown.View : GtkSource.View {
         }
     }
 
-	void format_escape_format (
-		string buffer_text,
-		out MatchInfo matches
+	void format_escape (
+        Gtk.TextIter line_start,
+        Gtk.TextIter line_end, 
+		string line_text
 	) throws RegexError {
 		// Check for escapes
-		if (is_escape.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+        GLib.MatchInfo matches;
+		if (is_escape.match_full (line_text, line_text.length, 0, 0, out matches)) {
+            int line = line_start.get_line ();
 			do {
 				int start_text_pos, end_text_pos;
 				bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
 
 				if (have_text) {
-					start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
-					end_text_pos = buffer_text.char_count ((ssize_t) end_text_pos);
+					start_text_pos = line_text.char_count ((ssize_t) start_text_pos);
+					end_text_pos = line_text.char_count ((ssize_t) end_text_pos);
 
 					// Convert the character offsets to TextIter's
 					Gtk.TextIter start_text_iter, end_text_iter;
-					buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
-					buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
+					buffer.get_iter_at_line_offset (out start_text_iter, line, start_text_pos);
+					buffer.get_iter_at_line_offset (out end_text_iter, line, end_text_pos);
 
 					// Apply styling
 					buffer.apply_tag (text_tag_escaped, start_text_iter, end_text_iter);
