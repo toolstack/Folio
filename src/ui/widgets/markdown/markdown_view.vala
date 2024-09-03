@@ -682,8 +682,6 @@ public class GtkMarkdown.View : GtkSource.View {
 		renderer.queue_draw ();
 		Gtk.TextIter buffer_start, buffer_end;
 		buffer.get_bounds (out buffer_start, out buffer_end);
-		// TODO: Remove this?
-		remove_tags_format (buffer_start, buffer_end);
 
 		// Check to see if the last character in the buffer is a LF, if not, add it, otherwise
 		// some of the tagging operations will crash.
@@ -718,13 +716,11 @@ public class GtkMarkdown.View : GtkSource.View {
 
 		string buffer_text = buffer.get_text (buffer_start, buffer_end, true);
 
-		MatchInfo matches;
-
 		// Create a filtered buffer that replaces some characters we don't want to match on.
 		string filtered_buffer_text = create_filtered_buffer (buffer_text);
 
 		try {
-			format_code_block_format (filtered_buffer_text, out matches);
+			format_code_block_format (filtered_buffer_text);
 		} catch (Error e) {}
 	}
 
@@ -836,6 +832,8 @@ public class GtkMarkdown.View : GtkSource.View {
         line_end = line_start;
         line_end.forward_to_line_end ();
         string line_text = buffer.get_text (line_start, line_end, true);
+
+        remove_tags_format (line_start, line_end);
 
         format_heading (line_start, line_end);
         // TODO: Remove these try-catches?
@@ -1183,10 +1181,10 @@ public class GtkMarkdown.View : GtkSource.View {
 	}
 
 	void format_code_block_format (
-		string buffer_text,
-		out MatchInfo matches
+		string buffer_text
 	) throws RegexError {
 		// Check for code blocks
+        GLib.MatchInfo matches;
 		if (is_code_block.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
 			do {
 				int start_before_pos, end_before_pos;
