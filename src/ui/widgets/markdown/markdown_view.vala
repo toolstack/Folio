@@ -723,9 +723,6 @@ public class GtkMarkdown.View : GtkSource.View {
 		// Create a filtered buffer that replaces some characters we don't want to match on.
 		string filtered_buffer_text = create_filtered_buffer (buffer_text);
 
-		try {
-			format_horizontal_rule (buffer_text, out matches);
-		} catch (Error e) {}
 
 		try {
 			format_blockquote (buffer_text, out matches);
@@ -1021,8 +1018,13 @@ public class GtkMarkdown.View : GtkSource.View {
         buffer.get_iter_at_line (out line_start, line);
         line_end = line_start;
         line_end.forward_to_line_end ();
+        string line_text = buffer.get_text (line_start, line_end, true);
 
         format_line_heading (line_start, line_end);
+        // TODO: Remove these try-catches?
+		try {
+			format_line_horizontal_rule (line_start, line_end, ref line_text);
+		} catch (Error e) {}
     }
 
 	void format_line_heading (Gtk.TextIter line_start, Gtk.TextIter line_end) {
@@ -1032,29 +1034,13 @@ public class GtkMarkdown.View : GtkSource.View {
 		}
 	}
 
-	void format_horizontal_rule (
-		string buffer_text,
-		out MatchInfo matches
+	void format_line_horizontal_rule (
+        Gtk.TextIter line_start,
+        Gtk.TextIter line_end, 
+		ref string line_text
 	) throws RegexError {
-		// Check for code blocks
-		if (is_horizontal_rule.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
-			do {
-				int start_pos, end_pos;
-				bool have = matches.fetch_pos (0, out start_pos, out end_pos);
-
-				if (have) {
-					start_pos = buffer_text.char_count ((ssize_t) start_pos);
-					end_pos = buffer_text.char_count ((ssize_t) end_pos);
-
-					// Convert the character offsets to TextIter's
-					Gtk.TextIter start_iter,   end_iter;
-					buffer.get_iter_at_offset (out start_iter, start_pos);
-					buffer.get_iter_at_offset (out end_iter, end_pos);
-
-					// Apply styling
-					buffer.apply_tag (text_tag_horizontal_rule, start_iter, end_iter);
-				}
-			} while (matches.next ());
+		if (is_horizontal_rule.match_full (line_text, line_text.length)) {
+            buffer.apply_tag (text_tag_horizontal_rule, line_start, line_end);
 		}
 	}
 
