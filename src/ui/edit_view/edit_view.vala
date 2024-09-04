@@ -165,6 +165,7 @@ public class Folio.EditView : Gtk.Box {
 
 		settings.bind ("toolbar-enabled", this, "toolbar-enabled", SettingsBindFlags.DEFAULT);
 		settings.bind ("note-font-monospace", markdown_view, "font-monospace", SettingsBindFlags.DEFAULT);
+		settings.bind ("url-detection-level", markdown_view, "url-detection-level", SettingsBindFlags.DEFAULT);
 		settings.changed["note-font"].connect(() => set_note_font (settings.get_string ("note-font")));
 		settings.changed["note-max-width"].connect(() => set_max_width (settings.get_int ("note-max-width")));
 

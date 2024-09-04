@@ -4,7 +4,7 @@ using Adw 1;
 template $FolioPreferencesWindow : Adw.PreferencesWindow {
 
   default-width: 560;
-  default-height: 430;
+  default-height: 470;
   search-enabled: false;
   modal: true;
 
@@ -51,6 +51,14 @@ template $FolioPreferencesWindow : Adw.PreferencesWindow {
         Switch oled_mode {
           valign: center;
         }
+      }
+    }
+    Adw.PreferencesGroup {
+      Adw.ComboRow url_detection_level {
+
+        title: _("Markdown URL Detection");
+        subtitle: _("Determines the level of detection of URLs in\nfree form text is used:\n - Aggressive tries to find all URLs\n - Strict requires a protocol identifier (ie http://)\n - Disabled turns detection off.");
+        icon-name: "icon-code-symbolic";
       }
     }
   }

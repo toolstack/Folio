@@ -5,6 +5,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 	[GtkChild] unowned Gtk.FontDialogButton font_button;
 	[GtkChild] unowned Gtk.FontDialogButton font_button_monospace;
 	[GtkChild] unowned Gtk.Switch oled_mode;
+	[GtkChild] unowned Adw.ComboRow url_detection_level;
 	[GtkChild] unowned Gtk.Switch enable_toolbar;
 	[GtkChild] unowned Gtk.Switch enable_cheatsheet;
 	[GtkChild] unowned Gtk.Switch enable_3_pane;
@@ -58,6 +59,17 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 			app.update_theme ();
 			return false;
 		});
+
+		url_detection_level.model = new Gtk.StringList ({
+			Strings.URL_DETECTION_AGGRESSIVE,
+			Strings.URL_DETECTION_STRICT,
+			Strings.URL_DETECTION_DISABLED
+			});
+		var selected_url_detection_level = settings.get_int ("url-detection-level");
+		url_detection_level.set_selected ((int)selected_url_detection_level);
+        url_detection_level.notify["selected-item"].connect (() => {
+            settings.set_int ("url-detection-level", (int)url_detection_level.get_selected ());
+        });
 
 		enable_toolbar.active = settings.get_boolean ("toolbar-enabled");
 		enable_toolbar.state_set.connect ((state) => {

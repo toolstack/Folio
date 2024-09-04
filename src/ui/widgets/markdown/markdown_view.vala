@@ -6,6 +6,7 @@ public class GtkMarkdown.View : GtkSource.View {
 	public bool dark { get; set; default = false; }
 	public Gdk.RGBA theme_color { get; set; }
 	public string font_monospace { get; set; default = "Monospace 10"; }
+	public int url_detection_level { get; set; default = 0; }
 
 	public Gdk.RGBA h6_color {
 		get {
@@ -139,11 +140,20 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	public bool check_if_bare_link (string text) {
 		MatchInfo matches;
+
 		try {
-			if( is_bare_link.match_full (text, text.length, 0, 0, out matches) ) {
-				return true;
+			var matches_found = false;
+
+			// Check for bare links
+			if (this.url_detection_level == 0 ) {
+				matches_found = is_bare_link.match_full (text, text.length, 0, 0, out matches);
+			} else if( this.url_detection_level == 1 ) {
+				matches_found = is_bare_link_strick.match_full (text, text.length, 0, 0, out matches);
 			}
+
+			return matches_found;
 		} catch (Error e) {}
+
 		return false;
 	}
 
@@ -304,6 +314,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	private Regex is_link;
 	private Regex is_bare_link;
+	private Regex is_bare_link_strick;
 	private Regex is_email_link;
 	private Regex is_escape;
 	private Regex is_blockquote;
@@ -331,7 +342,8 @@ public class GtkMarkdown.View : GtkSource.View {
 		try {
 			var f = RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS;
 			is_link = new Regex ("\\[([^\\[]*?)\\](\\([^\\)\\n]*?\\))", f, 0);
-			is_bare_link = new Regex ("((?:http|ftp|https):\\/\\/)?([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:\\/~+#-]*[\\w@?^=%&\\/~+#-])", f, 0);
+			is_bare_link = new Regex ("((?:http|ftp|https|file):\\/\\/)?([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:\\/~+#-]*[\\w@?^=%&\\/~+#-])", f, 0);
+			is_bare_link_strick = new Regex ("((?:http|ftp|https|file):\\/\\/)+([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:\\/~+#-]*[\\w@?^=%&\\/~+#-])", f, 0);
 			is_email_link = new Regex ("[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*", f, 0);
 			is_escape = new Regex ("\\\\[\\\\`*_{}\\[\\]()#+\\-.!]", f, 0);
 
@@ -430,6 +442,7 @@ public class GtkMarkdown.View : GtkSource.View {
 		notify["dark"].connect ((s, p) => update_color_scheme ());
 		notify["theme-color"].connect ((s, p) => update_color_scheme ());
 		notify["font-monospace"].connect ((s, p) => update_font ());
+		notify["url-detection-level"].connect ((s, p) => update_url_detection ());
 
 		var font_desc = Pango.FontDescription.from_string (font_monospace);
 		var font_size = font_desc.get_size ();
@@ -619,6 +632,10 @@ public class GtkMarkdown.View : GtkSource.View {
 		text_tag_table.font = font_monospace;
 	}
 
+	private void update_url_detection () {
+		restyle_text_all ();
+	}
+
 	private void remove_tags_format (Gtk.TextIter start, Gtk.TextIter end) {
 		buffer.remove_tag (text_tag_url, start, end);
 		buffer.remove_tag (text_tag_escaped, start, end);
@@ -761,8 +778,16 @@ public class GtkMarkdown.View : GtkSource.View {
 		} catch (Error e) {}
 
 		try {
+			var matches_found = false;
+
 			// Check for bare links
-			if (is_bare_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+			if (this.url_detection_level == 0 ) {
+				matches_found = is_bare_link.match_full (buffer_text, buffer_text.length, 0, 0, out matches);
+			} else if( this.url_detection_level == 1 ) {
+				matches_found = is_bare_link_strick.match_full (buffer_text, buffer_text.length, 0, 0, out matches);
+			}
+
+			if (matches_found) {
 				do {
 					int start_text_pos, end_text_pos;
 					bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);

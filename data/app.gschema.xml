@@ -76,6 +76,11 @@
       <summary>Notebook sort order</summary>
       <description>The sort order of the notebook list</description>
     </key>
+    <key name="url-detection-level" type="i">
+      <default>0</default>
+      <summary>URL detection level</summary>
+      <description>How agressive to look for URLs in markdown text</description>
+    </key>
   </schema>
   <enum id="com.toolstack.Folio.ThemeVariantEnum">
     <value nick="default" value="0"/>
