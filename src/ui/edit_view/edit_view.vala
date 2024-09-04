@@ -89,7 +89,7 @@ public class Folio.EditView : Gtk.Box {
 						var last_one = url_text.substring (-1, 1);
 						var last_two = url_text.substring (-2, 2);
 
-						// Strip off any markdown formating tags from the end of the url.
+						// Strip off any markdown formatting tags from the end of the url.
 						if (last_two == "**" || last_two == "__" || last_two == "~~" || last_two == "==") {
 							url_text = url_text.substring (0, url_text.length - 2);
 						}
