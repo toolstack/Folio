@@ -64,4 +64,7 @@ public class Folio.Strings {
 	public abstract const string NOTE_SORT_ORDER_ALPHA_ASC = _("Alphabetical - Ascending");
 	public abstract const string NOTE_SORT_ORDER_ALPHA_DSC = _("Alphabetical - Descending");
 	public abstract const string UNABLE_TO_LAUNCH_EXTERNAL_APPLICATION = _("Unable to launch external application for file %s.");
+	public abstract const string URL_DETECTION_AGGRESSIVE = _("Aggressive");
+	public abstract const string URL_DETECTION_STRICT = _("Strict");
+	public abstract const string URL_DETECTION_DISABLED = _("Disabled");
 }
