@@ -81,6 +81,11 @@
       <summary>URL detection level</summary>
       <description>How agressive to look for URLs in markdown text</description>
     </key>
+    <key name="line-spacing" type="s">
+      <default>'1.0'</default>
+      <summary>Line spacing</summary>
+      <description>The line spacing for the note text</description>
+    </key>
   </schema>
   <enum id="com.toolstack.Folio.ThemeVariantEnum">
     <value nick="default" value="0"/>

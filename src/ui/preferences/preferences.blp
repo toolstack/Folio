@@ -15,6 +15,33 @@ template $FolioPreferencesWindow : Adw.PreferencesWindow {
     Adw.PreferencesGroup {
       Adw.ActionRow {
 
+        title: _("OLED Mode");
+        subtitle: _("Makes the dark theme pitch black");
+        icon-name: "dark-mode-symbolic";
+        activatable-widget: oled_mode;
+
+        Switch oled_mode {
+          valign: center;
+        }
+      }
+    }
+    Adw.PreferencesGroup {
+      Adw.ComboRow url_detection_level {
+
+        title: _("Markdown URL Detection");
+        subtitle: _("Determines the level of detection of URLs in\nfree form text is used:\n - Aggressive tries to find all URLs\n - Strict requires a protocol identifier (ie http://)\n - Disabled turns detection off.");
+        icon-name: "icon-code-symbolic";
+      }
+    }
+  }
+
+  Adw.PreferencesPage {
+    title: _("Fonts");
+    icon-name: "font-x-generic-symbolic";
+
+    Adw.PreferencesGroup {
+      Adw.ActionRow {
+
         title: _("Note Font");
         subtitle: _("The font notes will be displayed in");
         icon-name: "font-x-generic-symbolic";
@@ -41,24 +68,11 @@ template $FolioPreferencesWindow : Adw.PreferencesWindow {
       }
     }
     Adw.PreferencesGroup {
-      Adw.ActionRow {
+        Adw.ComboRow line_spacing {
 
-        title: _("OLED Mode");
-        subtitle: _("Makes the dark theme pitch black");
-        icon-name: "dark-mode-symbolic";
-        activatable-widget: oled_mode;
-
-        Switch oled_mode {
-          valign: center;
-        }
-      }
-    }
-    Adw.PreferencesGroup {
-      Adw.ComboRow url_detection_level {
-
-        title: _("Markdown URL Detection");
-        subtitle: _("Determines the level of detection of URLs in\nfree form text is used:\n - Aggressive tries to find all URLs\n - Strict requires a protocol identifier (ie http://)\n - Disabled turns detection off.");
-        icon-name: "icon-code-symbolic";
+        title: _("Line Spacing");
+        subtitle: _("The line spacing for the note text");
+        icon-name: "insert-horizontal-rule-symbolic";
       }
     }
   }

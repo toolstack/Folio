@@ -42,7 +42,7 @@ public class Folio.EditView : Gtk.Box {
 	construct {
 		var settings = new Settings (Config.APP_ID);
 
-		set_note_font (settings.get_string ("note-font"));
+		set_note_font (settings.get_string ("note-font"), settings.get_string ("line-spacing"));
  		set_max_width (settings.get_int ("note-max-width"));
 		markdown_view.set_show_line_numbers (settings.get_boolean ("show-line-numbers"));
 
@@ -166,7 +166,8 @@ public class Folio.EditView : Gtk.Box {
 		settings.bind ("toolbar-enabled", this, "toolbar-enabled", SettingsBindFlags.DEFAULT);
 		settings.bind ("note-font-monospace", markdown_view, "font-monospace", SettingsBindFlags.DEFAULT);
 		settings.bind ("url-detection-level", markdown_view, "url-detection-level", SettingsBindFlags.DEFAULT);
-		settings.changed["note-font"].connect(() => set_note_font (settings.get_string ("note-font")));
+		settings.changed["note-font"].connect(() => set_note_font (settings.get_string ("note-font"), settings.get_string ("line-spacing")));
+		settings.changed["line-spacing"].connect(() => set_note_font (settings.get_string ("note-font"), settings.get_string ("line-spacing")));
 		settings.changed["note-max-width"].connect(() => set_max_width (settings.get_int ("note-max-width")));
 
 		var window_state = new Settings (@"$(Config.APP_ID).WindowState");
@@ -401,7 +402,7 @@ public class Folio.EditView : Gtk.Box {
 		markdown_view.get_style_context ().add_provider (font_scale_provider, -1);
 	}
 
-	private void set_note_font (string font) {
+	private void set_note_font (string font, string line_spacing) {
 		var font_desc = Pango.FontDescription.from_string (font);
 		var font_family = font_desc.get_family ();
 		var font_weight = (int)font_desc.get_weight ();
@@ -411,7 +412,8 @@ public class Folio.EditView : Gtk.Box {
 			font_size = font_size / Pango.SCALE;
 		}
 		if (font_size < 4) { font_size = 10; }
-		note_font_provider.load_from_string (@"textview{font-family:'$font_family';font-weight:$font_weight;font-size:$font_size$font_units;}");
+		if (line_spacing == "") { line_spacing = "1.0"; }
+		note_font_provider.load_from_string (@"textview{font-family:'$font_family';font-weight:$font_weight;font-size:$font_size$font_units; line-height: $line_spacing;}");
 		markdown_view.get_style_context ().add_provider (note_font_provider, -1);
 	}
 
