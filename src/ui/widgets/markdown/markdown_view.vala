@@ -767,8 +767,6 @@ public class GtkMarkdown.View : GtkSource.View {
 
 			// Check for formatting
 
-			format_escape_cursor (buffer_text, cursor_location, out matches);
-
 			format_code_block_cursor (filtered_buffer_text, cursor_location, out matches);
 		} catch (RegexError e) {
 			critical (e.message);
@@ -878,6 +876,8 @@ public class GtkMarkdown.View : GtkSource.View {
 			do_formatting_pass_cursor (is_strikethrough_1, line_start, line_end, cursor_location, ref line_text);
 			do_formatting_pass_cursor (is_highlight, line_start, line_end, cursor_location, ref line_text);
 			
+			format_escape_cursor (line_start, line_end, cursor_location, ref line_text);
+
 			// Create a filtered buffer that replaces some characters we don't want to match on.
 			string filtered_buffer_text = create_filtered_buffer (line_text);
 
@@ -1201,24 +1201,27 @@ public class GtkMarkdown.View : GtkSource.View {
 	}
 
 	void format_escape_cursor (
-		string buffer_text,
+        Gtk.TextIter line_start,
+        Gtk.TextIter line_end, 
 		Gtk.TextIter cursor_location,
-		out MatchInfo matches
+        ref string line_text
 	) throws RegexError {
 		// Check for escapes
-		if (is_escape.match_full (buffer_text, buffer_text.length, 0, 0, out matches)) {
+		GLib.MatchInfo matches;
+		if (is_escape.match_full (line_text, line_text.length, 0, 0, out matches)) {
+			int line = line_start.get_line ();
 			do {
 				int start_text_pos, end_text_pos;
 				bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
 
 				if (have_text) {
-					start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
-					end_text_pos = buffer_text.char_count ((ssize_t) end_text_pos);
+					start_text_pos = line_text.char_count ((ssize_t) start_text_pos);
+					end_text_pos = line_text.char_count ((ssize_t) end_text_pos);
 
 					// Convert the character offsets to TextIter's
 					Gtk.TextIter start_text_iter, end_text_iter;
-					buffer.get_iter_at_offset (out start_text_iter, start_text_pos);
-					buffer.get_iter_at_offset (out end_text_iter, end_text_pos);
+					buffer.get_iter_at_line_offset (out start_text_iter, line, start_text_pos);
+					buffer.get_iter_at_line_offset (out end_text_iter, line, end_text_pos);
 
 					var start_escaped_char_iter = start_text_iter.copy ();
 					start_escaped_char_iter.forward_char ();
