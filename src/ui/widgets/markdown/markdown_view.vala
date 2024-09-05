@@ -82,7 +82,7 @@ public class GtkMarkdown.View : GtkSource.View {
 			update_font ();
 			buffer.changed.connect (restyle_text_partial);
 			buffer.paste_done.connect (restyle_text_all_after_paste); 
-			buffer.notify["cursor-position"].connect (restyle_text_cursor);
+			buffer.notify["cursor-position"].connect (restyle_text_cursor_partial);
 			restyle_text_all ();
 		}
 	}
@@ -728,28 +728,34 @@ public class GtkMarkdown.View : GtkSource.View {
 			format_code_block_format (filtered_buffer_text);
 		} catch (Error e) {}
 	}
+	
+	private void restyle_text_cursor_partial () {
+		restyle_text_cursor (true);
+	}
 
-	private void restyle_text_cursor () {
+	private void restyle_text_cursor (bool only_changed_line = true) {
 		if (text_mode) return;
 		renderer.queue_draw ();
 		Gtk.TextIter buffer_start, buffer_end, cursor_location;
 		buffer.get_bounds (out buffer_start, out buffer_end);
+		// TODO: Remove this
 		remove_tags_cursor (buffer_start, buffer_end);
 		var cursor = buffer.get_insert ();
 		buffer.get_iter_at_mark (out cursor_location, cursor);
 		string buffer_text = buffer.get_text (buffer_start, buffer_end, true);
 
-		{
+		if (only_changed_line) {
+			Gtk.TextIter insert_iter, selection_bound_iter;
+			buffer.get_iter_at_mark (out insert_iter, buffer.get_insert ());
+			// TODO: What to do with this?
+			buffer.get_iter_at_mark (out selection_bound_iter, buffer.get_selection_bound ());
+			int changed_line = insert_iter.get_line ();
+
+            format_line_cursor (changed_line);
+		} else {
 			var lines = buffer.get_line_count ();
 			for (var line = 0; line < lines; line++) {
-				var title_level = get_title_level (line);
-				if (title_level != 0) {
-					Gtk.TextIter start, end;
-					buffer.get_iter_at_line (out start, line);
-					end = start.copy ();
-					end.forward_chars ((int) title_level + 1);
-					buffer.apply_tag (text_tag_hidden, start, end);
-				}
+                format_line_cursor (line);
 			}
 		}
 
@@ -838,7 +844,6 @@ public class GtkMarkdown.View : GtkSource.View {
         line_end.forward_to_line_end ();
         string line_text = buffer.get_text (line_start, line_end, true);
 
-        warning("%s", line_text);
         remove_tags_format (line_start, line_end);
 
         format_heading (line_start, line_end);
@@ -900,6 +905,16 @@ public class GtkMarkdown.View : GtkSource.View {
 		} catch (Error e) {}
     }
 
+    void format_line_cursor (int line) {
+        Gtk.TextIter line_start, line_end;
+        buffer.get_iter_at_line (out line_start, line);
+        line_end = line_start;
+        line_end.forward_to_line_end ();
+        string line_text = buffer.get_text (line_start, line_end, true);
+	
+		format_heading_cursor (line_start, line_end);
+	}
+
 	void format_heading (
         Gtk.TextIter line_start,
         Gtk.TextIter line_end
@@ -907,6 +922,18 @@ public class GtkMarkdown.View : GtkSource.View {
 		var title_level = get_title_level (line_start.get_line ());
 		if (title_level != 0) {
 			buffer.apply_tag (text_tags_title[title_level - 1], line_start, line_end);
+		}
+	}
+
+	void format_heading_cursor (
+        Gtk.TextIter line_start,
+        Gtk.TextIter line_end
+	) {
+		var title_level = get_title_level (line_start.get_line ());
+		if (title_level != 0) {
+			Gtk.TextIter end = line_start;
+			end.forward_chars ((int) title_level + 1);
+			buffer.apply_tag (text_tag_hidden, line_start, end);
 		}
 	}
 
