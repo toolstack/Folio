@@ -213,7 +213,9 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 			Strings.NOTE_SORT_ORDER_TIME_DSC,
 			Strings.NOTE_SORT_ORDER_TIME_ASC,
 			Strings.NOTE_SORT_ORDER_ALPHA_ASC,
-			Strings.NOTE_SORT_ORDER_ALPHA_DSC
+			Strings.NOTE_SORT_ORDER_ALPHA_DSC,
+			Strings.NOTE_SORT_ORDER_NATURAL_ASC,
+			Strings.NOTE_SORT_ORDER_NATURAL_DSC
 			});
 		var selected_sort_order = settings.get_int ("note-sort-order");
 		note_sort_order.set_selected ((int)selected_sort_order);

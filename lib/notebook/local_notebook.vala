@@ -1,4 +1,5 @@
 using Gee;
+using NaturalCollate;
 
 public class Folio.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
 
@@ -80,6 +81,12 @@ public class Folio.LocalNotebook : Object, ListModel, NoteContainer, Notebook {
 				break;
 			case 3:
 				_loaded_notes.sort ((a, b) => strcmp (b.name, a.name));
+				break;
+			case 4:
+				_loaded_notes.sort ((a, b) => NaturalCollate.compare (a.name, b.name));
+				break;
+			case 5:
+				_loaded_notes.sort ((a, b) => NaturalCollate.compare (b.name, a.name));
 				break;
 			default:
 				_loaded_notes.sort ((a, b) => b.time_modified.compare(a.time_modified));
