@@ -869,39 +869,23 @@ public class GtkMarkdown.View : GtkSource.View {
 		format_heading_cursor (line_start, line_end);
 		try {
 			format_link_cursor (line_start, line_end, cursor_location, ref line_text);
-		} catch (Error e) {}
 
-		try {
 			do_formatting_pass_cursor (is_bold_0, line_start, line_end, cursor_location, ref line_text);
-		} catch (Error e) {}
-		try {
 			do_formatting_pass_cursor (is_bold_1, line_start, line_end, cursor_location, ref line_text);
-		} catch (Error e) {}
-		try {
 			do_formatting_pass_cursor (is_italic_0, line_start, line_end, cursor_location, ref line_text);
-		} catch (Error e) {}
-		try {
 			do_formatting_pass_cursor (is_italic_1, line_start, line_end, cursor_location, ref line_text);
-		} catch (Error e) {}
-		try {
 			do_formatting_pass_cursor (is_strikethrough_0, line_start, line_end, cursor_location, ref line_text);
-		} catch (Error e) {}
-		try {
 			do_formatting_pass_cursor (is_strikethrough_1, line_start, line_end, cursor_location, ref line_text);
-		} catch (Error e) {}
-		try {
 			do_formatting_pass_cursor (is_highlight, line_start, line_end, cursor_location, ref line_text);
-		} catch (Error e) {}
+			
+			// Create a filtered buffer that replaces some characters we don't want to match on.
+			string filtered_buffer_text = create_filtered_buffer (line_text);
 
-		// Create a filtered buffer that replaces some characters we don't want to match on.
-		string filtered_buffer_text = create_filtered_buffer (line_text);
-
-		try {
 			do_formatting_pass_cursor (is_code_span_double, line_start, line_end, cursor_location, ref filtered_buffer_text, true);
-		} catch (Error e) {}
-		try {
 			do_formatting_pass_cursor (is_code_span, line_start, line_end, cursor_location, ref filtered_buffer_text, true);
-		} catch (Error e) {}
+		} catch (RegexError e) {
+			critical (e.message);
+		}
 	}
 
 	void format_heading (
