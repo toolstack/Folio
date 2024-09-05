@@ -1,4 +1,5 @@
 using Gee;
+using NaturalCollate;
 
 public errordomain Folio.ProviderError {
 	ALREADY_EXISTS,
@@ -224,6 +225,12 @@ public class Folio.Provider : Object, ListModel {
 				break;
 			case 3:
 				notebooks.sort ((a, b) => strcmp (b.name, a.name));
+				break;
+			case 4:
+				notebooks.sort ((a, b) => NaturalCollate.compare (a.name, b.name));
+				break;
+			case 5:
+				notebooks.sort ((a, b) => NaturalCollate.compare (b.name, a.name));
 				break;
 			default:
 				notebooks.sort ((a, b) => b.info.time_modified.compare(a.info.time_modified));
