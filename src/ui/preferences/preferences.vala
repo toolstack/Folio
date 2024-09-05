@@ -23,6 +23,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 	[GtkChild] unowned Gtk.Switch disable_hidden_trash;
 	[GtkChild] unowned Adw.ComboRow note_sort_order;
 	[GtkChild] unowned Adw.ComboRow notebook_sort_order;
+	[GtkChild] unowned Adw.ComboRow line_spacing;
 
 	public PreferencesWindow (Application app) {
 		Object ();
@@ -69,6 +70,26 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 		url_detection_level.set_selected ((int)selected_url_detection_level);
         url_detection_level.notify["selected-item"].connect (() => {
             settings.set_int ("url-detection-level", (int)url_detection_level.get_selected ());
+        });
+
+		line_spacing.model = new Gtk.StringList ({
+			"1.0",
+			"1.5",
+			"2.0"
+			});
+		line_spacing.set_selected (0);
+		var line_spacing_setting = settings.get_string ("line-spacing");
+		for (var i = 0; i < line_spacing.model.get_n_items (); i++) {
+			if( ((Gtk.StringList)line_spacing.model).get_string (i) == line_spacing_setting ) {
+					line_spacing.set_selected (i);
+			}
+		}
+        line_spacing.notify["selected-item"].connect (() => {
+			for (var i = 0; i < line_spacing.model.get_n_items (); i++) {
+				if( (int)line_spacing.get_selected () == i ) {
+			        	settings.set_string ("line-spacing", ((Gtk.StringList)line_spacing.model).get_string (i));
+				}
+			}
         });
 
 		enable_toolbar.active = settings.get_boolean ("toolbar-enabled");
