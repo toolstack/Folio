@@ -708,11 +708,9 @@ public class GtkMarkdown.View : GtkSource.View {
 		}
 
 		if (only_changed_line) {
-			Gtk.TextIter insert_iter, selection_bound_iter;
-			buffer.get_iter_at_mark (out insert_iter, buffer.get_insert ());
-			// TODO: What to do with this?
-			buffer.get_iter_at_mark (out selection_bound_iter, buffer.get_selection_bound ());
-			int changed_line = insert_iter.get_line ();
+			Gtk.TextIter cursor_iter;
+			buffer.get_iter_at_mark (out cursor_iter, buffer.get_insert ());
+			int changed_line = cursor_iter.get_line ();
 
             format_line (changed_line);
             // TODO: Fix this?
@@ -757,11 +755,9 @@ public class GtkMarkdown.View : GtkSource.View {
 		string buffer_text = buffer.get_text (buffer_start, buffer_end, true);
 
 		if (only_changed_line) {
-			Gtk.TextIter insert_iter, selection_bound_iter;
-			buffer.get_iter_at_mark (out insert_iter, buffer.get_insert ());
-			// TODO: What to do with this?
-			buffer.get_iter_at_mark (out selection_bound_iter, buffer.get_selection_bound ());
-			int changed_line = insert_iter.get_line ();
+			Gtk.TextIter cursor_iter;
+			buffer.get_iter_at_mark (out cursor_iter, buffer.get_insert ());
+			int changed_line = cursor_iter.get_line ();
 
 			Gtk.TextIter prev_cursor_iter;
 			buffer.get_iter_at_mark (out prev_cursor_iter, prev_cursor);
@@ -813,7 +809,6 @@ public class GtkMarkdown.View : GtkSource.View {
         remove_tags_format (line_start, line_end);
 
         format_heading (line_start, line_end);
-        // TODO: Remove these try-catches?
 		try {
 			format_horizontal_rule (line_start, line_end, ref line_text);
 		} catch (Error e) {}
