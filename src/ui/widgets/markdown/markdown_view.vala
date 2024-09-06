@@ -74,12 +74,20 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	public bool show_gutter { get; set; default = true; }
 
+	private Gtk.TextMark prev_cursor;
+
 	public new Gtk.TextBuffer? buffer {
 		get { return base.buffer; }
 		set {
 			base.buffer = value;
 			update_color_scheme ();
 			update_font ();
+
+			// Init previous cursor location to the start of the buffer text
+			Gtk.TextIter buffer_start_iter;
+			buffer.get_start_iter (out buffer_start_iter);
+			prev_cursor = buffer.create_mark ("prev-cursor", buffer_start_iter, true);
+
 			buffer.changed.connect (restyle_text_partial);
 			buffer.paste_done.connect (restyle_text_all_after_paste); 
 			buffer.notify["cursor-position"].connect (restyle_text_cursor_partial);
@@ -731,15 +739,19 @@ public class GtkMarkdown.View : GtkSource.View {
 	
 	private void restyle_text_cursor_partial () {
 		restyle_text_cursor (true);
+	
+		// Update the previous cursor position
+		Gtk.TextMark current_cursor = buffer.get_insert ();
+		Gtk.TextIter current_cursor_iter;
+		buffer.get_iter_at_mark (out current_cursor_iter, current_cursor);
+		buffer.move_mark (prev_cursor, current_cursor_iter);
 	}
 
-	private void restyle_text_cursor (bool only_changed_line = true) {
+	private void restyle_text_cursor (bool only_changed_line = false) {
 		if (text_mode) return;
 		renderer.queue_draw ();
 		Gtk.TextIter buffer_start, buffer_end, cursor_location;
 		buffer.get_bounds (out buffer_start, out buffer_end);
-		// TODO: Remove this
-		remove_tags_cursor (buffer_start, buffer_end);
 		var cursor = buffer.get_insert ();
 		buffer.get_iter_at_mark (out cursor_location, cursor);
 		string buffer_text = buffer.get_text (buffer_start, buffer_end, true);
@@ -751,7 +763,11 @@ public class GtkMarkdown.View : GtkSource.View {
 			buffer.get_iter_at_mark (out selection_bound_iter, buffer.get_selection_bound ());
 			int changed_line = insert_iter.get_line ();
 
+			Gtk.TextIter prev_cursor_iter;
+			buffer.get_iter_at_mark (out prev_cursor_iter, prev_cursor);
+
             format_line_cursor (changed_line);
+			format_line_cursor (prev_cursor_iter.get_line ());
 		} else {
 			var lines = buffer.get_line_count ();
 			for (var line = 0; line < lines; line++) {
@@ -765,8 +781,6 @@ public class GtkMarkdown.View : GtkSource.View {
 			// Create a filtered buffer that replaces some characters we don't want to match on.
 			string filtered_buffer_text = create_filtered_buffer (buffer_text);
 
-			// Check for formatting
-
 			format_code_block_cursor (filtered_buffer_text, cursor_location, out matches);
 		} catch (RegexError e) {
 			critical (e.message);
@@ -779,7 +793,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	private void restyle_text_partial () {
 		restyle_text_format (true);
-		restyle_text_cursor ();
+		restyle_text_cursor (true);
 	}
 
 	private void restyle_text_all () {
@@ -864,6 +878,8 @@ public class GtkMarkdown.View : GtkSource.View {
         line_end.forward_to_line_end ();
         string line_text = buffer.get_text (line_start, line_end, true);
 	
+		remove_tags_cursor (line_start, line_end);
+
 		format_heading_cursor (line_start, line_end);
 		try {
 			format_link_cursor (line_start, line_end, cursor_location, ref line_text);
