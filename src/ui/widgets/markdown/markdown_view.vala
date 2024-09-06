@@ -767,6 +767,8 @@ public class GtkMarkdown.View : GtkSource.View {
 			buffer.get_iter_at_mark (out prev_cursor_iter, prev_cursor);
 
             format_line_cursor (changed_line);
+			// Refer to the same line in restyle_text_format() for more information
+			format_line_cursor (changed_line + 1);
 			format_line_cursor (prev_cursor_iter.get_line ());
 		} else {
 			var lines = buffer.get_line_count ();
