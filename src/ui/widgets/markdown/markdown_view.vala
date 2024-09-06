@@ -189,11 +189,10 @@ public class GtkMarkdown.View : GtkSource.View {
 					bool have_url = matches.fetch_pos (2, out start_url_pos, out end_url_pos);
 
 					if (have_text && have_url) {
-
 						start_text_pos = buffer_text.char_count ((ssize_t) start_text_pos);
 						end_url_pos = buffer_text.char_count ((ssize_t) end_url_pos);
 
-						if( cursor_offset <= end_url_pos && cursor_offset >= start_text_pos ) {
+						if (cursor_offset <= end_url_pos && cursor_offset >= start_text_pos) {
 							found_match = true;
 							link_url = buffer_text.slice (start_url_pos + 1, end_url_pos - 1);
 						}
@@ -947,19 +946,12 @@ public class GtkMarkdown.View : GtkSource.View {
             bool have_full = matches.fetch_pos (0, out start_full_pos, out end_full_pos);
 
             if (have_marker && have_full) {
-                // TODO: What is the purpose of these?
-                start_marker_pos = line_text.char_count ((ssize_t) start_marker_pos);
-                end_marker_pos = line_text.char_count ((ssize_t) end_marker_pos);
-                start_full_pos = line_text.char_count ((ssize_t) start_full_pos);
-                end_full_pos = line_text.char_count ((ssize_t) end_full_pos);
-
-                // Convert the character offsets to TextIter's
                 Gtk.TextIter start_marker_iter, end_marker_iter;
                 Gtk.TextIter start_full_iter,   end_full_iter;
-                buffer.get_iter_at_line_offset (out start_marker_iter, line, start_marker_pos);
-                buffer.get_iter_at_line_offset (out end_marker_iter, line, end_marker_pos);
-                buffer.get_iter_at_line_offset (out start_full_iter, line, start_full_pos);
-                buffer.get_iter_at_line_offset (out end_full_iter, line, end_full_pos);
+                buffer.get_iter_at_line_index (out start_marker_iter, line, start_marker_pos);
+                buffer.get_iter_at_line_index (out end_marker_iter, line, end_marker_pos);
+                buffer.get_iter_at_line_index (out start_full_iter, line, start_full_pos);
+                buffer.get_iter_at_line_index (out end_full_iter, line, end_full_pos);
 
                 // Apply styling
                 buffer.apply_tag (text_tag_blockquote, start_full_iter, end_full_iter);
@@ -984,17 +976,11 @@ public class GtkMarkdown.View : GtkSource.View {
                 bool have_url = matches.fetch_pos (2, out start_url_pos, out end_url_pos);
 
                 if (have_text && have_url) {
-                    start_text_pos = line_text.char_count ((ssize_t) start_text_pos);
-                    end_text_pos = line_text.char_count ((ssize_t) end_text_pos);
-                    start_url_pos = line_text.char_count ((ssize_t) start_url_pos);
-                    end_url_pos = line_text.char_count ((ssize_t) end_url_pos);
-
-                    // Convert the character offsets to TextIter's
                     Gtk.TextIter start_text_iter, end_text_iter, start_url_iter, end_url_iter;
-                    buffer.get_iter_at_line_offset (out start_text_iter, line, start_text_pos);
-                    buffer.get_iter_at_line_offset (out end_text_iter, line, end_text_pos);
-                    buffer.get_iter_at_line_offset (out start_url_iter, line, start_url_pos);
-                    buffer.get_iter_at_line_offset (out end_url_iter, line, end_url_pos);
+                    buffer.get_iter_at_line_index (out start_text_iter, line, start_text_pos);
+                    buffer.get_iter_at_line_index (out end_text_iter, line, end_text_pos);
+                    buffer.get_iter_at_line_index (out start_url_iter, line, start_url_pos);
+                    buffer.get_iter_at_line_index (out end_url_iter, line, end_url_pos);
 
                     // If the styling has already been applied, don't both re-applying it.
                     if (!start_text_iter.has_tag (text_tag_url) && !end_text_iter.has_tag (text_tag_url) && !start_url_iter.has_tag (text_tag_url) && !end_url_iter.has_tag (text_tag_url)) {
@@ -1024,17 +1010,11 @@ public class GtkMarkdown.View : GtkSource.View {
 				bool have_url = matches.fetch_pos (2, out start_url_pos, out end_url_pos);
 
 				if (have_text && have_url) {
-					start_text_pos = line_text.char_count ((ssize_t) start_text_pos);
-					end_text_pos = line_text.char_count ((ssize_t) end_text_pos);
-					start_url_pos = line_text.char_count ((ssize_t) start_url_pos);
-					end_url_pos = line_text.char_count ((ssize_t) end_url_pos);
-
-					// Convert the character offsets to TextIter's
 					Gtk.TextIter start_text_iter, end_text_iter, start_url_iter, end_url_iter;
-					buffer.get_iter_at_line_offset (out start_text_iter, line, start_text_pos);
-					buffer.get_iter_at_line_offset (out end_text_iter, line, end_text_pos);
-					buffer.get_iter_at_line_offset (out start_url_iter, line, start_url_pos);
-					buffer.get_iter_at_line_offset (out end_url_iter, line, end_url_pos);
+					buffer.get_iter_at_line_index (out start_text_iter, line, start_text_pos);
+					buffer.get_iter_at_line_index (out end_text_iter, line, end_text_pos);
+					buffer.get_iter_at_line_index (out start_url_iter, line, start_url_pos);
+					buffer.get_iter_at_line_index (out end_url_iter, line, end_url_pos);
 
 					// Skip if our cursor is inside the URL text
 					if (cursor_location.in_range (start_text_iter, end_url_iter)) {
@@ -1070,13 +1050,9 @@ public class GtkMarkdown.View : GtkSource.View {
                 bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
 
                 if (have_text) {
-                    start_text_pos = line_text.char_count ((ssize_t) start_text_pos);
-                    end_text_pos = line_text.char_count ((ssize_t) end_text_pos);
-
-                    // Convert the character offsets to TextIter's
                     Gtk.TextIter start_text_iter, end_text_iter;
-                    buffer.get_iter_at_line_offset (out start_text_iter, line, start_text_pos);
-                    buffer.get_iter_at_line_offset (out end_text_iter, line, end_text_pos);
+                    buffer.get_iter_at_line_index (out start_text_iter, line, start_text_pos);
+                    buffer.get_iter_at_line_index (out end_text_iter, line, end_text_pos);
 
                     // If the styling has already been applied, don't both re-applying it.
                     if (!start_text_iter.has_tag (text_tag_url) && !end_text_iter.has_tag (text_tag_url)) {
@@ -1102,13 +1078,9 @@ public class GtkMarkdown.View : GtkSource.View {
                 bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
 
                 if (have_text) {
-                    start_text_pos = line_text.char_count ((ssize_t) start_text_pos);
-                    end_text_pos = line_text.char_count ((ssize_t) end_text_pos);
-
-                    // Convert the character offsets to TextIter's
                     Gtk.TextIter start_text_iter, end_text_iter;
-                    buffer.get_iter_at_line_offset (out start_text_iter, line, start_text_pos);
-                    buffer.get_iter_at_line_offset (out end_text_iter, line, end_text_pos);
+                    buffer.get_iter_at_line_index (out start_text_iter, line, start_text_pos);
+                    buffer.get_iter_at_line_index (out end_text_iter, line, end_text_pos);
 
                     // If the styling has already been applied, don't both re-applying it.
                     if (!start_text_iter.has_tag (text_tag_list) && !end_text_iter.has_tag (text_tag_list)) {
@@ -1134,13 +1106,9 @@ public class GtkMarkdown.View : GtkSource.View {
                 bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
 
                 if (have_text) {
-                    start_text_pos = line_text.char_count ((ssize_t) start_text_pos);
-                    end_text_pos = line_text.char_count ((ssize_t) end_text_pos);
-
-                    // Convert the character offsets to TextIter's
                     Gtk.TextIter start_text_iter, end_text_iter;
-                    buffer.get_iter_at_line_offset (out start_text_iter, line, start_text_pos);
-                    buffer.get_iter_at_line_offset (out end_text_iter, line, end_text_pos);
+                    buffer.get_iter_at_line_index (out start_text_iter, line, start_text_pos);
+                    buffer.get_iter_at_line_index (out end_text_iter, line, end_text_pos);
 
                     // If the styling has already been applied, don't both re-applying it.
                     if (!start_text_iter.has_tag (text_tag_table) && !end_text_iter.has_tag (text_tag_table)) {
@@ -1166,13 +1134,9 @@ public class GtkMarkdown.View : GtkSource.View {
                 bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
 
                 if (have_text) {
-                    start_text_pos = line_text.char_count ((ssize_t) start_text_pos);
-                    end_text_pos = line_text.char_count ((ssize_t) end_text_pos);
-
-                    // Convert the character offsets to TextIter's
                     Gtk.TextIter start_text_iter, end_text_iter;
-                    buffer.get_iter_at_line_offset (out start_text_iter, line, start_text_pos);
-                    buffer.get_iter_at_line_offset (out end_text_iter, line, end_text_pos);
+                    buffer.get_iter_at_line_index (out start_text_iter, line, start_text_pos);
+                    buffer.get_iter_at_line_index (out end_text_iter, line, end_text_pos);
 
                     // If the styling has already been applied, don't both re-applying it.
                     if (!start_text_iter.has_tag (text_tag_url) && !end_text_iter.has_tag (text_tag_url)) {
@@ -1198,13 +1162,9 @@ public class GtkMarkdown.View : GtkSource.View {
 				bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
 
 				if (have_text) {
-					start_text_pos = line_text.char_count ((ssize_t) start_text_pos);
-					end_text_pos = line_text.char_count ((ssize_t) end_text_pos);
-
-					// Convert the character offsets to TextIter's
 					Gtk.TextIter start_text_iter, end_text_iter;
-					buffer.get_iter_at_line_offset (out start_text_iter, line, start_text_pos);
-					buffer.get_iter_at_line_offset (out end_text_iter, line, end_text_pos);
+					buffer.get_iter_at_line_index (out start_text_iter, line, start_text_pos);
+					buffer.get_iter_at_line_index (out end_text_iter, line, end_text_pos);
 
 					// Apply styling
 					buffer.apply_tag (text_tag_escaped, start_text_iter, end_text_iter);
@@ -1228,13 +1188,9 @@ public class GtkMarkdown.View : GtkSource.View {
 				bool have_text = matches.fetch_pos (0, out start_text_pos, out end_text_pos);
 
 				if (have_text) {
-					start_text_pos = line_text.char_count ((ssize_t) start_text_pos);
-					end_text_pos = line_text.char_count ((ssize_t) end_text_pos);
-
-					// Convert the character offsets to TextIter's
 					Gtk.TextIter start_text_iter, end_text_iter;
-					buffer.get_iter_at_line_offset (out start_text_iter, line, start_text_pos);
-					buffer.get_iter_at_line_offset (out end_text_iter, line, end_text_pos);
+					buffer.get_iter_at_line_index (out start_text_iter, line, start_text_pos);
+					buffer.get_iter_at_line_index (out end_text_iter, line, end_text_pos);
 
 					var start_escaped_char_iter = start_text_iter.copy ();
 					start_escaped_char_iter.forward_char ();
@@ -1365,23 +1321,15 @@ public class GtkMarkdown.View : GtkSource.View {
 				bool have_code_close = matches.fetch_pos (3, out start_after_pos, out end_after_pos);
 
 				if (have_code_start && have_code && have_code_close) {
-					start_before_pos = line_text.char_count ((ssize_t) start_before_pos);
-					end_before_pos = line_text.char_count ((ssize_t) end_before_pos);
-					start_code_pos = line_text.char_count ((ssize_t) start_code_pos);
-					end_code_pos = line_text.char_count ((ssize_t) end_code_pos);
-					start_after_pos = line_text.char_count ((ssize_t) start_after_pos);
-					end_after_pos = line_text.char_count ((ssize_t) end_after_pos);
-
-					// Convert the character offsets to TextIter's
 					Gtk.TextIter start_before_iter, end_before_iter;
 					Gtk.TextIter start_code_iter,   end_code_iter;
 					Gtk.TextIter start_after_iter,  end_after_iter;
-					buffer.get_iter_at_line_offset (out start_before_iter, line, start_before_pos);
-					buffer.get_iter_at_line_offset (out end_before_iter, line, end_before_pos);
-					buffer.get_iter_at_line_offset (out start_code_iter, line, start_code_pos);
-					buffer.get_iter_at_line_offset (out end_code_iter, line, end_code_pos);
-					buffer.get_iter_at_line_offset (out start_after_iter, line, start_after_pos);
-					buffer.get_iter_at_line_offset (out end_after_iter, line, end_after_pos);
+					buffer.get_iter_at_line_index (out start_before_iter, line, start_before_pos);
+					buffer.get_iter_at_line_index (out end_before_iter, line, end_before_pos);
+					buffer.get_iter_at_line_index (out start_code_iter, line, start_code_pos);
+					buffer.get_iter_at_line_index (out end_code_iter, line, end_code_pos);
+					buffer.get_iter_at_line_index (out start_after_iter, line, start_after_pos);
+					buffer.get_iter_at_line_index (out end_after_iter, line, end_after_pos);
 
 					// Check to see if the tag has already been applied, if so, skip it.
 					if (start_code_iter.has_tag (text_tag) &&
@@ -1434,23 +1382,15 @@ public class GtkMarkdown.View : GtkSource.View {
 				bool have_code_close = matches.fetch_pos (3, out start_after_pos, out end_after_pos);
 
 				if (have_code_start && have_code && have_code_close) {
-					start_before_pos = line_text.char_count ((ssize_t) start_before_pos);
-					end_before_pos = line_text.char_count ((ssize_t) end_before_pos);
-					start_code_pos = line_text.char_count ((ssize_t) start_code_pos);
-					end_code_pos = line_text.char_count ((ssize_t) end_code_pos);
-					start_after_pos = line_text.char_count ((ssize_t) start_after_pos);
-					end_after_pos = line_text.char_count ((ssize_t) end_after_pos);
-
-					// Convert the character offsets to TextIter's
 					Gtk.TextIter start_before_iter, end_before_iter;
 					Gtk.TextIter start_code_iter,   end_code_iter;
 					Gtk.TextIter start_after_iter,  end_after_iter;
-					buffer.get_iter_at_line_offset (out start_before_iter, line, start_before_pos);
-					buffer.get_iter_at_line_offset (out end_before_iter, line, end_before_pos);
-					buffer.get_iter_at_line_offset (out start_code_iter, line, start_code_pos);
-					buffer.get_iter_at_line_offset (out end_code_iter, line, end_code_pos);
-					buffer.get_iter_at_line_offset (out start_after_iter, line, start_after_pos);
-					buffer.get_iter_at_line_offset (out end_after_iter, line, end_after_pos);
+					buffer.get_iter_at_line_index (out start_before_iter, line, start_before_pos);
+					buffer.get_iter_at_line_index (out end_before_iter, line, end_before_pos);
+					buffer.get_iter_at_line_index (out start_code_iter, line, start_code_pos);
+					buffer.get_iter_at_line_index (out end_code_iter, line, end_code_pos);
+					buffer.get_iter_at_line_index (out start_after_iter, line, start_after_pos);
+					buffer.get_iter_at_line_index (out end_after_iter, line, end_after_pos);
 
 					// Check to see if we're already in a link, in which case skip formatting.
 					if (start_code_iter.has_tag (text_tag_url) &&
