@@ -1,7 +1,7 @@
 {
     "app-id" : "com.toolstack.Folio",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "45",
+    "runtime-version" : "47",
     "sdk" : "org.gnome.Sdk",
     "command" : "com.toolstack.Folio",
     "finish-args" : [
