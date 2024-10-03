@@ -31,4 +31,29 @@ namespace FileUtils {
 			error (e.message);
 		}
 	}
+
+	// Recursively delete a directory and all of it's contents.
+	public void recursive_delete (File path) {
+		// Enumerate the children of the path we're deleting.
+		var enumerator = path.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_DISPLAY_NAME, FileQueryInfoFlags.NOFOLLOW_SYMLINKS);
+
+		FileInfo file_info;
+
+		// Loop through the children.
+		while ((file_info = enumerator.next_file ()) != null) {
+			// Get a handle to the child.
+			var child = enumerator.get_child (file_info);
+
+			// If the child is a directory, descend into it.
+			// Otherwise just delete it.
+			if (file_info.get_file_type() == FileType.DIRECTORY) {
+				recursive_delete (child);
+			} else {
+				child.@delete ();
+			}
+		}
+
+		// Once we're done, delete the root.
+		path.@delete ();
+	}
 }
