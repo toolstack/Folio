@@ -420,7 +420,7 @@ public class Folio.WindowModel : Object {
 		notebook.load ();
 		var note_name = note_data[1];
 		return notebook.loaded_notes
-			.first_match ((it) => it.name == note_name);
+			.first_match ((it) => it.file_name == note_name);
 	}
 
 	public string generate_new_note_name (int i = 0, string? full_name = null) requires (notebook != null) {

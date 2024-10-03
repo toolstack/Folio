@@ -115,7 +115,7 @@ public class Folio.Application : Adw.Application {
 			GLib.Timeout.add_once (100, () => { main_window.resize_toolbar (); });
 		});
 
-		// Add a delay before resizeing the toolbar for the first time as the window hasn't been
+		// Add a delay before resizing the toolbar for the first time as the window hasn't been
 		// drawn yet.
 		GLib.Timeout.add_once (100, () => { main_window.resize_toolbar (); });
 	}
@@ -125,9 +125,9 @@ public class Folio.Application : Adw.Application {
 		bool exists;
 		var _note = temp_command.take ("open-note", out exists);
 		if (exists) {
-			var note = _note.get_object () as Note;
+			var note = window_model.try_get_note_from_path (_note.get_string ());
 			if (note != null) {
-				window_model.open_note_in_notebook (window_model.note);
+				window_model.open_note_in_notebook (note);
 			}
 			temp_command.remove ("open-note");
 		}
@@ -384,7 +384,7 @@ rene-coty
 				new HashTable<string, Value?> (str_hash, str_equal);
 			temp_command.insert(
 				"open-note",
-				window_model.try_get_note_from_path (open_note)
+				open_note
 			);
 		}
 
