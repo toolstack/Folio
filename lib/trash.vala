@@ -74,7 +74,7 @@ public class Folio.Trash : Object, ListModel, NoteContainer {
 			FileInfo file_info;
 			while ((file_info = enumerator.next_file ()) != null) {
 				var content_type = file_info.get_content_type ();
-				if (content_type == null || !content_type.has_prefix ("text"))
+				if (content_type == null || (!content_type.has_prefix ("text") && content_type != "application/x-zerosize"))
 					continue;
 				var name = file_info.get_display_name ();
 				if (name[0] == '.')
