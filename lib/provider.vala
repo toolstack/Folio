@@ -109,44 +109,61 @@ public class Folio.Provider : Object, ListModel {
 	public void delete_notebook (Notebook notebook) throws ProviderError {
 		var lnb = notebook as LocalNotebook;
 		var path = "";
+
+		// Get the path from the notebook.
 		if (lnb != null) {
 			path = lnb.path;
 		} else {
 			throw new ProviderError.COULDNT_DELETE (@"Notebook doesn't exist");
 		}
+
+		// Get a file handle for the notebook directory.
 		var file = File.new_for_path (path);
 		if (!file.query_exists ()) {
 			throw new ProviderError.COULDNT_DELETE (@"Notebook at '$path' doesn't exist");
 		}
-		{
-			var trashed_path = "";
-			if (disable_hidden_trash) {
-				trashed_path = @"$(this.trash_dir)/Trash/$(notebook.name)";
-			} else {
-				trashed_path = @"$(this.trash_dir)/.trash/$(notebook.name)";
-			}
-			FileInfo file_info;
-			var trash_dir = File.new_for_path (trashed_path);
-			if (!trash_dir.query_exists ()) {
-				try {
-					trash_dir.make_directory_with_parents ();
-				} catch (Error e) {
-					throw new ProviderError.COULDNT_CREATE_FILE (@"Couldn't create trash folder at '$path'");
-				}
-			}
-			try {
-				var enumerator = file.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_DISPLAY_NAME, 0);
-				while ((file_info = enumerator.next_file ()) != null) {
-					var name = file_info.get_display_name ();
-					var orig_file = enumerator.get_child (file_info);
-					var trashed_file = File.new_for_path (@"$trashed_path/$name");
-					orig_file.move (trashed_file, FileCopyFlags.OVERWRITE);
-				}
-			} catch (Error e) {
-				throw new ProviderError.COULDNT_DELETE (@"Couldn't move notebook from $path, to $trashed_path");
-			}
-			trash.unload ();
+
+		// Setup the path to the new trashed notebook.
+		var trashed_nb_path = "";
+		if (disable_hidden_trash) {
+			trashed_nb_path = @"$(this.trash_dir)/Trash/$(notebook.name)";
+		} else {
+			trashed_nb_path = @"$(this.trash_dir)/.trash/$(notebook.name)";
 		}
+		FileInfo file_info;
+		var trash_dir = File.new_for_path (trashed_nb_path);
+
+		// If the directory doesn't exists then create it.
+		if (!trash_dir.query_exists ()) {
+			try {
+				trash_dir.make_directory_with_parents ();
+			} catch (Error e) {
+				throw new ProviderError.COULDNT_CREATE_FILE (@"Couldn't create trash folder at '$path'");
+			}
+		}
+
+		// Loop through all the children and move them to the trash.
+		try {
+			var enumerator = file.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_DISPLAY_NAME, 0);
+			while ((file_info = enumerator.next_file ()) != null) {
+				var name = file_info.get_display_name ();
+				var orig_file = enumerator.get_child (file_info);
+				var trashed_file = File.new_for_path (@"$trashed_nb_path/$name");
+
+				// If the child is a directory (aka .config) and it already exists in the trash,
+				// remove it recursively before moving the new child into position.
+				if (orig_file.query_file_type(FileQueryInfoFlags.NOFOLLOW_SYMLINKS) == FileType.DIRECTORY && trashed_file.query_exists ()) {
+					FileUtils.recursive_delete (trashed_file);
+				}
+
+				orig_file.move (trashed_file, FileCopyFlags.OVERWRITE);
+			}
+		} catch (Error e) {
+			throw new ProviderError.COULDNT_DELETE (@"Couldn't move notebook from $path, to $trashed_nb_path");
+		}
+		trash.unload ();
+
+		// Delete the notebook directory which should now be empty.
 		try {
 			file.@delete ();
 		} catch (Error e) {
