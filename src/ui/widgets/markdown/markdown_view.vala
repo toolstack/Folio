@@ -712,11 +712,6 @@ public class GtkMarkdown.View : GtkSource.View {
 			int changed_line = cursor_iter.get_line ();
 
             format_line (changed_line);
-            // TODO: Fix this?
-            // Strangely, when inserting a new line before a line, the line tags gets removed, and
-            // the formatting performs on the empty new line instead. Work around the issue by
-            // formatting the line next to the changed line.
-            format_line (changed_line + 1);
 		} else {
 			var lines = buffer.get_line_count ();
 			for (var line = 0; line < lines; line++) {
@@ -761,9 +756,7 @@ public class GtkMarkdown.View : GtkSource.View {
 			Gtk.TextIter prev_cursor_iter;
 			buffer.get_iter_at_mark (out prev_cursor_iter, prev_cursor);
 
-            format_line_cursor (changed_line);
-			// Refer to the same line in restyle_text_format() for more information
-			format_line_cursor (changed_line + 1);
+			format_line_cursor (changed_line);
 			format_line_cursor (prev_cursor_iter.get_line ());
 		} else {
 			var lines = buffer.get_line_count ();
@@ -803,6 +796,14 @@ public class GtkMarkdown.View : GtkSource.View {
         buffer.get_iter_at_line (out line_start, line);
         line_end = line_start;
         line_end.forward_to_line_end ();
+
+		// When the inserted character is a new line, it will not be counted as a separate line;
+		// instead, it will be prepended to the next line. Therefore, formatting a whole line by
+		// its beginning characters will fail. So ignore it as an exception.
+		if (line_start.get_char () == '\n') {
+			line_start.forward_char ();
+		}
+
         string line_text = buffer.get_text (line_start, line_end, true);
 
         remove_tags_format (line_start, line_end);
@@ -872,6 +873,12 @@ public class GtkMarkdown.View : GtkSource.View {
 		buffer.get_iter_at_mark (out cursor_location, cursor);
         line_end = line_start;
         line_end.forward_to_line_end ();
+
+		// Refer to format_line() for more information
+		if (line_start.get_char () == '\n') {
+			line_start.forward_char ();
+		}
+	
         string line_text = buffer.get_text (line_start, line_end, true);
 	
 		remove_tags_cursor (line_start, line_end);
