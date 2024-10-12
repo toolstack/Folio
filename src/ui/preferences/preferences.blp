@@ -1,12 +1,12 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $FolioPreferencesWindow : Adw.PreferencesWindow {
+template $FolioPreferencesWindow : Adw.PreferencesDialog {
 
-  default-width: 560;
-  default-height: 470;
+  content-width: 560;
+  content-height: 470;
   search-enabled: false;
-  modal: true;
+
 
   Adw.PreferencesPage {
     title: _("General");

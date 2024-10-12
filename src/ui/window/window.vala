@@ -498,16 +498,14 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	public void request_new_notebook () {
 		var popup = new NotebookCreatePopup (this);
-		popup.transient_for = this;
 		popup.title = Strings.NEW_NOTEBOOK;
-		popup.present ();
+		popup.present (this);
 	}
 
 	public void request_edit_notebook (Notebook notebook) {
 		var popup = new NotebookCreatePopup (this, notebook);
-		popup.transient_for = this;
 		popup.title = Strings.EDIT_NOTEBOOK;
-		popup.present ();
+		popup.present (this);
 	}
 
 	public void request_delete_notebook (Notebook notebook) {

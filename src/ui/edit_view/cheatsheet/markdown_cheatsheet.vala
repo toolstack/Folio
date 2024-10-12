@@ -17,15 +17,14 @@
  */
 
 [GtkTemplate (ui = "/com/toolstack/Folio/markdown_cheatsheet.ui")]
-public class Folio.MarkdownCheatsheet : Gtk.Window {
+public class Folio.MarkdownCheatsheet : Adw.Dialog {
 
 	[GtkChild]
 	unowned GtkMarkdown.View text_view;
 
 	public MarkdownCheatsheet (Application app) {
 		Object (
-			title: Strings.MARKDOWN_CHEATSHEET,
-			icon_name: Config.APP_ID
+			title: Strings.MARKDOWN_CHEATSHEET
 		);
 
 		try {

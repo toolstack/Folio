@@ -17,21 +17,9 @@ Gtk.ColorDialog color_dialog {
   modal: true;
 }
 
-template $FolioNotebookCreatePopup : Adw.Window {
+template $FolioNotebookCreatePopup : Adw.Dialog {
 
-  default-width: 320;
-  resizable: false;
-  modal: true;
-
-  ShortcutController {
-
-    scope: managed;
-
-    Shortcut {
-      trigger: "Escape";
-      action: "action(window.close)";
-    }
-  }
+  content-width: 320;
 
   WindowHandle {
     Box {
