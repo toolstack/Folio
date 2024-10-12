@@ -70,4 +70,5 @@ public class Folio.Strings {
 	public abstract const string URL_DETECTION_STRICT = _("Strict");
 	public abstract const string URL_DETECTION_DISABLED = _("Disabled");
 	public abstract const string NOTE_TRASHED = _("“%s” moved to trash");
+	public abstract const string NOTE_RESTORED = _("“%s” restored");
 }

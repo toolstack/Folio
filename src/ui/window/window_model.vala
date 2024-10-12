@@ -3,6 +3,7 @@ public class Folio.WindowModel : Object {
 
 	public signal void state_changed (State state, NoteContainer? container, bool is_clicked = false);
 	public signal void note_changed (Note? note);
+	public signal void present_dialog (Adw.Dialog dialog);
 
 	public Provider notebook_provider;
 
@@ -118,7 +119,7 @@ public class Folio.WindowModel : Object {
 							break;
 					}
 				});
-				confirm.present (window);
+				present_dialog (confirm);
 			} else {
 				note.save (current_buffer.get_all_text ());
 				is_unsaved = false;
@@ -247,24 +248,17 @@ public class Folio.WindowModel : Object {
 								if (!note.time_modified.equal (file_time)) {
 									if (is_unsaved) {
 										is_unsaved = false;
-										var confirm = new Gtk.AlertDialog ("");
-										confirm.set_message (Strings.FILE_CHANGED_ON_DISK);
-										confirm.set_detail (Strings.FILE_CHANGED_DIALOG_DOUBLE);
-										confirm.set_buttons ({
-											Strings.FILE_CHANGED_RELOAD,
-											Strings.FILE_CHANGED_OVERWRITE
-											});
-										confirm.set_cancel_button (1);
-										confirm.set_default_button (1);
-										confirm.set_modal (true);
-										confirm.choose.begin (window, null, (obj, res) => {
-											int button_result = 1;
-											try {
-												button_result = confirm.choose.end (res);
-											} catch (Error e) {}
-
-											switch (button_result) {
-												case 0:
+										var confirm = new Adw.AlertDialog (
+											Strings.FILE_CHANGED_ON_DISK,
+											Strings.FILE_CHANGED_DIALOG_DOUBLE);
+										confirm.add_responses (
+											"reload", Strings.FILE_CHANGED_RELOAD,
+											"overwrite", Strings.FILE_CHANGED_OVERWRITE);
+										confirm.close_response = "overwrite";
+										confirm.default_response = "overwrite";
+										confirm.response.connect (response => {
+											switch (response) {
+												case "reload":
 													current_buffer = new GtkMarkdown.Buffer (note.load_text ());
 													note.update_note_time ();
 													_update_note_list_item_timestamp (window);
@@ -276,6 +270,7 @@ public class Folio.WindowModel : Object {
 													break;
 											}
 										});
+										present_dialog (confirm);
 									} else {
 										current_buffer = new GtkMarkdown.Buffer (note.load_text ());
 										note.update_note_time ();

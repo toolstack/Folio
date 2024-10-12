@@ -85,6 +85,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 	construct {
 		window_model.note_changed.connect (on_update_note);
 		window_model.state_changed.connect (on_update_state);
+		window_model.present_dialog.connect (on_present_dialog);
 		window_model.notify["notes-model"].connect (() => {
 			notebook_notes_list.model = window_model.notes_model;
 			if (window_model.state == WindowModel.State.TRASH) {
@@ -140,7 +141,6 @@ public class Folio.Window : Adw.ApplicationWindow {
 			update_title_buttons ();
 			if (leaflet.collapsed) {
 				update_editability ();
-				navigate_to_edit_view ();
 			} else {
 				update_editability ();
 				window_model.select_note (window_model.note);
@@ -264,6 +264,10 @@ public class Folio.Window : Adw.ApplicationWindow {
 	public void toast (string text) {
 		var toast = new Adw.Toast (text);
 		toast_overlay.add_toast (toast);
+	}
+
+	public void on_present_dialog (Adw.Dialog dialog) {
+		dialog.present (this);
 	}
 
 	public void toggle_sidebar_visibility () {
@@ -568,7 +572,6 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	public void try_delete_note (Note note, bool is_trash = false) {
 		try {
-			string name = note.name;
 			window_model.update_note (null, this);
 			//upon deletion of a note, we will select the next note DOWN the list (or none).
 			var idx = note.notebook.get_index_of (note);
@@ -594,7 +597,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 			window_model.update_selected_note ();
 
-			if (!is_trash) toast (Strings.NOTE_TRASHED.printf (name));
+			if (!is_trash) toast (Strings.NOTE_TRASHED.printf (note.name));
 		} catch (ProviderError e) {
 			if (e is ProviderError.COULDNT_DELETE)
 				toast (Strings.COULDNT_DELETE_NOTE);
@@ -625,6 +628,8 @@ public class Folio.Window : Adw.ApplicationWindow {
 					window_model.update_notebooks ();
 				}
 			}
+
+			toast (Strings.NOTE_RESTORED.printf (note.name));
 			window_model.select_notebook (note.notebook);
 		} catch (ProviderError e) {
 			if (e is ProviderError.COULDNT_MOVE) {
