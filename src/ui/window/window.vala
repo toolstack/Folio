@@ -86,6 +86,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 		window_model.note_changed.connect (on_update_note);
 		window_model.state_changed.connect (on_update_state);
 		window_model.present_dialog.connect (on_present_dialog);
+		window_model.navigate_to_notes.connect (navigate_to_notes);
 		window_model.notify["notes-model"].connect (() => {
 			notebook_notes_list.model = window_model.notes_model;
 			if (window_model.state == WindowModel.State.TRASH) {
@@ -201,6 +202,8 @@ public class Folio.Window : Adw.ApplicationWindow {
 				return true;
 			}, 0 );
 		}
+
+		leaflet.show_content = false; // Don't start in note view.
 	}
 
 	private void toggle_fullscreen () {

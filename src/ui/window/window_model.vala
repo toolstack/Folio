@@ -4,6 +4,7 @@ public class Folio.WindowModel : Object {
 	public signal void state_changed (State state, NoteContainer? container, bool is_clicked = false);
 	public signal void note_changed (Note? note);
 	public signal void present_dialog (Adw.Dialog dialog);
+	public signal void navigate_to_notes ();
 
 	public Provider notebook_provider;
 
@@ -130,7 +131,10 @@ public class Folio.WindowModel : Object {
 
 	public void select_note_at (uint i) requires (notes_model != null) {
 		if (i == -1) notes_model.unselect_item (notes_model.selected);
-		else notes_model.select_item (i, true);
+		else {
+			notes_model.select_item (i, true);
+			navigate_to_notes ();
+		}
 	}
 
 	public void select_notebook_at (uint i) requires (notebooks_model != null) {
@@ -161,6 +165,7 @@ public class Folio.WindowModel : Object {
 			.first_match ((it) => it.name == note.name);
 		int i = note_container.loaded_notes.index_of (n);
 		select_note_at (i);
+		navigate_to_notes ();
 	}
 
 	public void update_selected_note () requires (notes_model != null) {
