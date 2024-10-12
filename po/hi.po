@@ -2,244 +2,16 @@
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
+"Project-Id-Version: Folio\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-10-12 16:53+0200\n"
 "PO-Revision-Date: 2024-05-18 16:05:52+0000\n"
+"Language: hi_IN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/4.0.1\n"
-"Language: hi_IN\n"
-"Project-Id-Version: Folio\n"
-
-#: data/app.gschema.xml:76
-msgid "Notebook sort order"
-msgstr "नोटबुक छंटाई क्रम"
-
-#: data/app.gschema.xml:77
-msgid "The sort order of the notebook list"
-msgstr "नोटबुक सूची का छंटाई क्रम"
-
-#: src/ui/preferences/preferences.blp:145
-msgid "Sort Order For Notebooks"
-msgstr "नोटबुक के लिए छंटाई क्रम"
-
-#: data/app.gschema.xml:71
-msgid "Note sort order"
-msgstr "नोट छंटाई क्रम"
-
-#: data/app.gschema.xml:72
-msgid "The sort order of the note list"
-msgstr "नोट सूची का छंटाई क्रम"
-
-#: src/ui/preferences/preferences.blp:150
-msgid "Sort Order For Notes"
-msgstr "नोट्स के लिए छंटाई क्रम"
-
-#: src/ui/strings.vala:62
-msgid "Modified Time - Ascending"
-msgstr "संशोधित समय - आरोही"
-
-#: src/ui/strings.vala:63
-msgid "Modified Time - Descending"
-msgstr "संशोधित समय - अवरोही"
-
-#: src/ui/strings.vala:64
-msgid "Alphabetical - Ascending"
-msgstr "वर्णानुक्रम - आरोही"
-
-#: src/ui/strings.vala:65
-msgid "Alphabetical - Descending"
-msgstr "वर्णानुक्रम - अवरोहण"
-
-#: src/ui/popup/shortcut_window.blp:114
-msgid "Display"
-msgstr "प्रदर्शन"
-
-#: src/ui/popup/shortcut_window.blp:117
-msgid "Full Screen"
-msgstr "पूर्ण स्क्रीन"
-
-#: src/ui/popup/shortcut_window.blp:122
-msgid "Zoom In"
-msgstr "जूम इन"
-
-#: src/ui/popup/shortcut_window.blp:127
-msgid "Zoom Out"
-msgstr "जूम आउट"
-
-#: src/ui/strings.vala:52
-msgid "Pick primary font for notes"
-msgstr "नोट्स के लिए प्राथमिक फॉन्ट चुनें"
-
-#: src/ui/strings.vala:53
-msgid "Pick monospace font for code"
-msgstr "कोड के लिए मोनोस्पेस फॉन्ट चुनें"
-
-#: src/ui/strings.vala:54
-msgid "File Changed On Disk"
-msgstr "डिस्क पर फाइल परिवर्तित"
-
-#: src/ui/strings.vala:55
-msgid ""
-"The file has changed on disk since it was last saved/loaded by Folio.\n"
-"\n"
-"You may do one of the following:\n"
-"\n"
-" • Reload the file (discarding any changes you have made in Folio)\n"
-" • Overwrite the file (discarding any changes made outside of Folio)\n"
-" • Cancel the operation and manually resolve the issue\n"
-"\n"
-"Note: Canceling the save if you have already moved to a new note/notebook will discard your changes."
-msgstr ""
-"फोलियो द्वारा अंतिम बार सहेजे/लोड किए जाने के बाद से फाइल डिस्क पर बदल गई है।\n"
-"\n"
-"आप निम्न में से एक कर सकते हैं:\n"
-"\n"
-" • फाइल को पुनः लोड करें (फोलियो में आपके द्वारा किए गए किसी भी परिवर्तन को खारिज करके)\n"
-" • फाइल को अधिलेखित करें (फोलियो के बाहर किए गए किसी भी परिवर्तन को खारिज करके)\n"
-" • अभियान रद्द करें और समस्या को हस्तचालित रूप से हल करें\n"
-"\n"
-"नोट: यदि आप पहले ही किसी नए नोट/नोटबुक में चले गए हैं तो सहेजना रद्द करने से आपके परिवर्तन खारिज हो जाएंगे।"
-
-#: src/ui/strings.vala:56
-msgid "Reload"
-msgstr "पुनः लोड करें"
-
-#: src/ui/strings.vala:57
-msgid "Overwrite"
-msgstr "अधिलेखित"
-
-#: src/ui/strings.vala:59
-msgid ""
-"The file has changed on disk by another application.\n"
-"\n"
-"You may do one of the following:\n"
-"\n"
-" • Reload the file (discarding any changes you have made in Folio)\n"
-" • Overwrite the file (discarding any changes made outside of Folio)"
-msgstr ""
-"फाइल किसी अन्य अनुप्रयोग द्वारा डिस्क पर बदल दी गई है।\n"
-"\n"
-"आप निम्न में से एक कर सकते हैं:\n"
-"\n"
-" • फाइल को पुनः लोड करें (फोलियो में आपके द्वारा किए गए किसी भी परिवर्तन को खारिज करके)\n"
-" • फाइल को अधिलेखित करें (फोलियो के बाहर किए गए किसी भी परिवर्तन को खारिज करके)"
-
-#: src/ui/strings.vala:61
-msgid "Note %i"
-msgstr "नोट %i"
-
-#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:213
-msgid "Trash Storage Location"
-msgstr "रद्दी संग्रहण स्थान"
-
-#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:214
-msgid "Where the trash folder is located (requires app restart)"
-msgstr "जहां रद्दी फोल्डर संग्रहीत हैं (ऐप पुनरारंभ की आवश्यकता है)"
-
-#: src/ui/strings.vala:46
-msgid "Pick where the trash can will be stored"
-msgstr "चुनें कि कूड़ादान कहां रखें"
-
-#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:128
-msgid "Use Fixed Width For Notes"
-msgstr "नोट्स के लिए निश्चित चौड़ाई का उपयोग करें"
-
-#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:129
-msgid "Use a fixed width for the text area of a note"
-msgstr "नोट के पाठ क्षेत्र के लिए एक निश्चित चौड़ाई का उपयोग करें"
-
-#: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:118
-msgid "Expands the notebook list to include the notebook name"
-msgstr "नोटबुक का नाम शामिल करने के लिए नोटबुक सूची का विस्तार करता है"
-
-#: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:65
-msgid "Show line numbers"
-msgstr "पंक्ति संख्याएं दिखाएं"
-
-#: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:66
-msgid "Displays line numbers at the left of the note"
-msgstr "नोट के बाईं ओर पंक्ति संख्याएँ प्रदर्शित करता है"
-
-#: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:76
-msgid "Show all notes"
-msgstr "सभी नोटों को दिखाएं"
-
-#: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:77
-msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
-msgstr "नोटबुक सूची के शीर्ष पर \"सभी नोट्स\" नोटबुक प्रदर्शित करता है"
-
-#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:163
-msgid "Enable autosave"
-msgstr "स्वतः सहेजना सक्षम करें"
-
-#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:164
-msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
-msgstr "यदि सामग्री बदल गई है तो प्रत्येक 30 सेकंड में वर्तमान नोट स्वचालित रूप से सहेजता है (ऐप पुनरारंभ की आवश्यकता है)"
-
-#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:174
-msgid "Don't hide the Trash folder"
-msgstr "रद्दी फोल्डर को नहीं छुपाएं"
-
-#: data/app.gschema.xml:67
-msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
-msgstr "रद्दी फोल्डर तयशुदा रूप से एक छिपे हुए फोल्डर के रूप में निर्धारित होता है, यह विकल्प इसे दृश्यमान बनाता है"
-
-#: data/app.metainfo.xml.in:367
-msgid "Main Folio window in light mode"
-msgstr "मुख्य फोलियो विंडो हल्के मोड में"
-
-#: data/app.metainfo.xml.in:371
-msgid "Main Folio window in dark mode"
-msgstr "मुख्य फोलियो विंडो गहरे मोड में"
-
-#: data/app.metainfo.xml.in:375
-msgid "Folio on small/mobile screens"
-msgstr "छोटे/मोबाइल स्क्रीन पर फोलियो"
-
-#: data/app.metainfo.xml.in:379
-msgid "Folio preferences screen"
-msgstr "फोलियो की प्राथमिकता स्क्रीन"
-
-#: data/app.metainfo.xml.in:383
-msgid "Folio in three pane mode"
-msgstr "तीन फलक मोड में फोलियो"
-
-#: src/ui/preferences/preferences.blp:59
-msgid "Tools"
-msgstr "टूल्स"
-
-#: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:88
-msgid "Displays the formatting toolbar at the bottom of the note"
-msgstr "नोट के नीचे प्रारूपण टूलबार प्रदर्शित करता है"
-
-#: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:99
-msgid "Adds a button to the markdown reference sheet on the right of the formatting toolbar"
-msgstr "प्रारूपण टूलबार के दाईं ओर मार्कडाउन संदर्भ पत्रक में एक बटन जोड़ता है"
-
-#: src/ui/preferences/preferences.blp:111
-msgid "Layout"
-msgstr "अभिन्यास"
-
-#: src/ui/preferences/preferences.blp:139
-msgid "Fixed Width To Use For Notes"
-msgstr "नोट्स के लिए उपयोग हेतु निश्चित चौड़ाई"
-
-#: src/ui/preferences/preferences.blp:140
-msgid "Sets the fixed width size of a note in px"
-msgstr "किसी नोट की निश्चित चौड़ाई का आकार px में निर्धारित करता है"
-
-#: src/ui/preferences/preferences.blp:157
-msgid "Files"
-msgstr "फाइलें"
-
-#: src/ui/preferences/preferences.blp:175
-msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
-msgstr "रद्दी फोल्डर को तयशुदा रूप से एक छिपे हुए फोल्डर के रूप में निर्धारित किया गया है, यह विकल्प इसे दृश्यमान बनाता है (ऐप पुनरारंभ की आवश्यकता है)"
-
-#: src/ui/strings.vala:51
-msgid "Unable to recognize URI"
-msgstr "URI को पहचानने में असमर्थ"
 
 #: data/app.desktop.in:9 src/ui/strings.vala:3
 msgid "Folio"
@@ -258,18 +30,18 @@ msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
 msgstr "नोटबुक;नोट;नोट्स;पाठ;मार्कडाउन;नोटपैड;लिखें;स्कूल;इसे पोस्ट करें;स्टिकी;"
 
 #: data/app.desktop.in:22 src/ui/popup/shortcut_window.blp:17
-#: src/ui/strings.vala:8 src/ui/window/window.blp:47
-#: src/ui/window/window.blp:124
+#: src/ui/strings.vala:8 src/ui/window/window.blp:54
+#: src/ui/window/window.blp:131
 msgid "New Note"
 msgstr "नया नोट"
 
 #: data/app.desktop.in:26 src/ui/popup/shortcut_window.blp:37
-#: src/ui/strings.vala:14 src/ui/window/window.blp:149
+#: src/ui/strings.vala:14 src/ui/window/window.blp:189
 msgid "New Notebook"
 msgstr "नई नोटबुक"
 
-#: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:90
-#: src/ui/strings.vala:39 src/ui/window/window.blp:245
+#: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:92
+#: src/ui/strings.vala:39 src/ui/window/window.blp:291
 msgid "Markdown Cheatsheet"
 msgstr "मार्कडाउन चीटशीट"
 
@@ -277,25 +49,151 @@ msgstr "मार्कडाउन चीटशीट"
 msgid "Preferences"
 msgstr "प्राथमिकताएं"
 
-#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:18
+#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:45
 msgid "Note Font"
 msgstr "नोट फॉन्ट"
 
-#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:19
+#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:46
 msgid "The font notes will be displayed in"
 msgstr "फॉन्ट नोट्स इसमें प्रदर्शित होंगे"
 
-#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:31
+#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:58
 msgid "Monospace Font"
 msgstr "मोनोस्पेस फॉन्ट"
 
-#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:32
+#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:59
 msgid "The font code will be displayed in"
 msgstr "फॉन्ट कोड इसमें प्रदर्शित होंगे"
 
-#: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:46
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:150
+msgid "Use Fixed Width For Notes"
+msgstr "नोट्स के लिए निश्चित चौड़ाई का उपयोग करें"
+
+#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:151
+msgid "Use a fixed width for the text area of a note"
+msgstr "नोट के पाठ क्षेत्र के लिए एक निश्चित चौड़ाई का उपयोग करें"
+
+#: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:18
 msgid "OLED Mode"
 msgstr "OLED मोड"
+
+#: data/app.gschema.xml:22 src/ui/preferences/preferences.blp:19
+msgid "Makes the dark theme pitch black"
+msgstr "गहरे रंग की थीम को गहरा काला बना देता है"
+
+#: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:109
+msgid "Enable Toolbar"
+msgstr "टूलबार सक्षम करें"
+
+#: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:110
+msgid "Displays the formatting toolbar at the bottom of the note"
+msgstr "नोट के नीचे प्रारूपण टूलबार प्रदर्शित करता है"
+
+#: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:120
+msgid "Enable Cheatsheet"
+msgstr "चीटशीट सक्षम करें"
+
+#: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:121
+msgid ""
+"Adds a button to the markdown reference sheet on the right of the formatting "
+"toolbar"
+msgstr "प्रारूपण टूलबार के दाईं ओर मार्कडाउन संदर्भ पत्रक में एक बटन जोड़ता है"
+
+#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:139
+msgid "3-Pane Layout"
+msgstr "3-फलक अभिन्यास"
+
+#: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:140
+msgid "Expands the notebook list to include the notebook name"
+msgstr "नोटबुक का नाम शामिल करने के लिए नोटबुक सूची का विस्तार करता है"
+
+#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:207
+msgid "Notes Storage Location"
+msgstr "नोट्स संग्रहण स्थान"
+
+#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:208
+msgid "Where the notebooks are stored (requires app restart)"
+msgstr "जहां नोटबुक संग्रहीत हैं (ऐप पुनरारंभ की आवश्यकता है)"
+
+#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:235
+msgid "Trash Storage Location"
+msgstr "रद्दी संग्रहण स्थान"
+
+#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:236
+msgid "Where the trash folder is located (requires app restart)"
+msgstr "जहां रद्दी फोल्डर संग्रहीत हैं (ऐप पुनरारंभ की आवश्यकता है)"
+
+#: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:87
+msgid "Show line numbers"
+msgstr "पंक्ति संख्याएं दिखाएं"
+
+#: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:88
+msgid "Displays line numbers at the left of the note"
+msgstr "नोट के बाईं ओर पंक्ति संख्याएँ प्रदर्शित करता है"
+
+#: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:98
+msgid "Show all notes"
+msgstr "सभी नोटों को दिखाएं"
+
+#: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:99
+msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
+msgstr "नोटबुक सूची के शीर्ष पर \"सभी नोट्स\" नोटबुक प्रदर्शित करता है"
+
+#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:185
+msgid "Enable autosave"
+msgstr "स्वतः सहेजना सक्षम करें"
+
+#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:186
+msgid ""
+"Automatically saves the current note every 30 seconds if the contents have "
+"changed (requires app restart)"
+msgstr ""
+"यदि सामग्री बदल गई है तो प्रत्येक 30 सेकंड में वर्तमान नोट स्वचालित रूप से सहेजता है (ऐप "
+"पुनरारंभ की आवश्यकता है)"
+
+#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:196
+msgid "Don't hide the Trash folder"
+msgstr "रद्दी फोल्डर को नहीं छुपाएं"
+
+#: data/app.gschema.xml:67
+msgid ""
+"The trash folder is set as a hidden folder by default, this option makes it "
+"visible"
+msgstr ""
+"रद्दी फोल्डर तयशुदा रूप से एक छिपे हुए फोल्डर के रूप में निर्धारित होता है, यह विकल्प इसे "
+"दृश्यमान बनाता है"
+
+#: data/app.gschema.xml:71
+msgid "Note sort order"
+msgstr "नोट छंटाई क्रम"
+
+#: data/app.gschema.xml:72
+msgid "The sort order of the note list"
+msgstr "नोट सूची का छंटाई क्रम"
+
+#: data/app.gschema.xml:76
+msgid "Notebook sort order"
+msgstr "नोटबुक छंटाई क्रम"
+
+#: data/app.gschema.xml:77
+msgid "The sort order of the notebook list"
+msgstr "नोटबुक सूची का छंटाई क्रम"
+
+#: data/app.gschema.xml:81
+msgid "URL detection level"
+msgstr ""
+
+#: data/app.gschema.xml:82
+msgid "How agressive to look for URLs in markdown text"
+msgstr ""
+
+#: data/app.gschema.xml:86
+msgid "Line spacing"
+msgstr ""
+
+#: data/app.gschema.xml:87 src/ui/preferences/preferences.blp:74
+msgid "The line spacing for the note text"
+msgstr ""
 
 #: data/app.metainfo.xml.in:5
 msgid "Take notes in Markdown"
@@ -329,103 +227,116 @@ msgstr "नोटबुक रंग पर आधारित ऐप थीम"
 msgid "Trash can"
 msgstr "कूड़ेदान"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:23
-#: src/ui/edit_view/toolbar/toolbar.blp:131
+#: data/app.metainfo.xml.in:393
+msgid "Main Folio window in light mode"
+msgstr "मुख्य फोलियो विंडो हल्के मोड में"
+
+#: data/app.metainfo.xml.in:397
+msgid "Main Folio window in dark mode"
+msgstr "मुख्य फोलियो विंडो गहरे मोड में"
+
+#: data/app.metainfo.xml.in:401
+msgid "Folio on small/mobile screens"
+msgstr "छोटे/मोबाइल स्क्रीन पर फोलियो"
+
+#: data/app.metainfo.xml.in:405
+msgid "Folio preferences screen"
+msgstr "फोलियो की प्राथमिकता स्क्रीन"
+
+#: data/app.metainfo.xml.in:409
+msgid "Folio in three pane mode"
+msgstr "तीन फलक मोड में फोलियो"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:6
 #: src/ui/widgets/markdown/heading_popover.blp:48
 msgid "Plain Text"
 msgstr "सादा पाठ"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:24
-#: src/ui/edit_view/toolbar/toolbar.blp:132
+#: src/ui/edit_view/toolbar/toolbar.blp:7
 #: src/ui/widgets/markdown/heading_popover.blp:12
 msgid "Heading 1"
 msgstr "शीर्षक 1"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:25
-#: src/ui/edit_view/toolbar/toolbar.blp:133
+#: src/ui/edit_view/toolbar/toolbar.blp:8
 #: src/ui/widgets/markdown/heading_popover.blp:18
 msgid "Heading 2"
 msgstr "शीर्षक 2"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:26
-#: src/ui/edit_view/toolbar/toolbar.blp:134
+#: src/ui/edit_view/toolbar/toolbar.blp:9
 #: src/ui/widgets/markdown/heading_popover.blp:24
 msgid "Heading 3"
 msgstr "शीर्षक 3"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:27
-#: src/ui/edit_view/toolbar/toolbar.blp:135
+#: src/ui/edit_view/toolbar/toolbar.blp:10
 #: src/ui/widgets/markdown/heading_popover.blp:30
 msgid "Heading 4"
 msgstr "शीर्षक 4"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:28
-#: src/ui/edit_view/toolbar/toolbar.blp:136
+#: src/ui/edit_view/toolbar/toolbar.blp:11
 #: src/ui/widgets/markdown/heading_popover.blp:36
 msgid "Heading 5"
 msgstr "शीर्षक 5"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:29
-#: src/ui/edit_view/toolbar/toolbar.blp:137
+#: src/ui/edit_view/toolbar/toolbar.blp:12
 #: src/ui/widgets/markdown/heading_popover.blp:42
 msgid "Heading 6"
 msgstr "शीर्षक 6"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:39
-#: src/ui/edit_view/toolbar/toolbar.blp:104
-#: src/ui/edit_view/toolbar/toolbar.blp:148
-#: src/ui/edit_view/toolbar/toolbar.blp:201 src/ui/popup/shortcut_window.blp:72
+#: src/ui/edit_view/toolbar/toolbar.blp:41
+#: src/ui/edit_view/toolbar/toolbar.blp:107
+#: src/ui/edit_view/toolbar/toolbar.blp:142
+#: src/ui/edit_view/toolbar/toolbar.blp:195 src/ui/popup/shortcut_window.blp:72
 msgid "Bold"
 msgstr "बोल्ड"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:45
-#: src/ui/edit_view/toolbar/toolbar.blp:111
-#: src/ui/edit_view/toolbar/toolbar.blp:155
-#: src/ui/edit_view/toolbar/toolbar.blp:202 src/ui/popup/shortcut_window.blp:77
+#: src/ui/edit_view/toolbar/toolbar.blp:47
+#: src/ui/edit_view/toolbar/toolbar.blp:114
+#: src/ui/edit_view/toolbar/toolbar.blp:149
+#: src/ui/edit_view/toolbar/toolbar.blp:196 src/ui/popup/shortcut_window.blp:77
 msgid "Italic"
 msgstr "इटैलिक"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:51
-#: src/ui/edit_view/toolbar/toolbar.blp:162
-#: src/ui/edit_view/toolbar/toolbar.blp:203 src/ui/popup/shortcut_window.blp:82
+#: src/ui/edit_view/toolbar/toolbar.blp:53
+#: src/ui/edit_view/toolbar/toolbar.blp:156
+#: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:82
 msgid "Strikethrough"
 msgstr "स्ट्राइकथ्रू"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:57
-#: src/ui/edit_view/toolbar/toolbar.blp:169
-#: src/ui/edit_view/toolbar/toolbar.blp:204 src/ui/popup/shortcut_window.blp:87
+#: src/ui/edit_view/toolbar/toolbar.blp:59
+#: src/ui/edit_view/toolbar/toolbar.blp:163
+#: src/ui/edit_view/toolbar/toolbar.blp:198 src/ui/popup/shortcut_window.blp:87
 msgid "Highlight"
 msgstr "चिन्हांकन"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:67
-#: src/ui/edit_view/toolbar/toolbar.blp:193 src/ui/popup/shortcut_window.blp:92
+#: src/ui/edit_view/toolbar/toolbar.blp:69
+#: src/ui/edit_view/toolbar/toolbar.blp:187 src/ui/popup/shortcut_window.blp:92
 msgid "Insert Link"
 msgstr "लिंक डालें"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:73
-#: src/ui/edit_view/toolbar/toolbar.blp:194
+#: src/ui/edit_view/toolbar/toolbar.blp:75
+#: src/ui/edit_view/toolbar/toolbar.blp:188
 msgid "Insert Code"
 msgstr "कोड डालें"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:79
-#: src/ui/edit_view/toolbar/toolbar.blp:195
+#: src/ui/edit_view/toolbar/toolbar.blp:81
+#: src/ui/edit_view/toolbar/toolbar.blp:189
 msgid "Insert Horizontal Rule"
 msgstr "क्षैतिज कायदा डालें"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:118
+#: src/ui/edit_view/toolbar/toolbar.blp:121
 msgid "Format"
 msgstr "प्रारूप"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:181
+#: src/ui/edit_view/toolbar/toolbar.blp:175
 msgid "Insert"
 msgstr "डालें"
 
-#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:34
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:18
 #: src/ui/strings.vala:44 src/ui/strings.vala:58
 msgid "Cancel"
 msgstr "रद्द करें"
 
-#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:23
 msgid "Confirm"
 msgstr "पुष्टि करें"
 
@@ -469,37 +380,87 @@ msgstr "प्रारूपण"
 msgid "Navigation"
 msgstr "पथ-प्रदर्शन"
 
-#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:216
+#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:268
 msgid "Toggle Sidebar"
 msgstr "पार्श्वपट्टी टॉगल करें"
 
-#: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:63
+#: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:70
 msgid "Search Notes"
 msgstr "नोट्स खोजें"
 
-#: data/app.gschema.xml:22 src/ui/preferences/preferences.blp:47
-msgid "Makes the dark theme pitch black"
-msgstr "गहरे रंग की थीम को गहरा काला बना देता है"
+#: src/ui/popup/shortcut_window.blp:114
+msgid "Display"
+msgstr "प्रदर्शन"
 
-#: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:87
-msgid "Enable Toolbar"
-msgstr "टूलबार सक्षम करें"
+#: src/ui/popup/shortcut_window.blp:117
+msgid "Full Screen"
+msgstr "पूर्ण स्क्रीन"
 
-#: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:98
-msgid "Enable Cheatsheet"
-msgstr "चीटशीट सक्षम करें"
+#: src/ui/popup/shortcut_window.blp:122
+msgid "Zoom In"
+msgstr "जूम इन"
 
-#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:117
-msgid "3-Pane Layout"
-msgstr "3-फलक अभिन्यास"
+#: src/ui/popup/shortcut_window.blp:127
+msgid "Zoom Out"
+msgstr "जूम आउट"
 
-#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:185
-msgid "Notes Storage Location"
-msgstr "नोट्स संग्रहण स्थान"
+#: src/ui/preferences/preferences.blp:31
+#, fuzzy
+msgid "Markdown URL Detection"
+msgstr "मार्कडाउन चीटशीट"
 
-#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:186
-msgid "Where the notebooks are stored (requires app restart)"
-msgstr "जहां नोटबुक संग्रहीत हैं (ऐप पुनरारंभ की आवश्यकता है)"
+#: src/ui/preferences/preferences.blp:32
+msgid ""
+"Determines the level of detection of URLs in\n"
+"free form text is used:\n"
+" - Aggressive tries to find all URLs\n"
+" - Strict requires a protocol identifier (ie http://)\n"
+" - Disabled turns detection off."
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:39
+msgid "Fonts"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:73
+msgid "Line Spacing"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:81
+msgid "Tools"
+msgstr "टूल्स"
+
+#: src/ui/preferences/preferences.blp:133
+msgid "Layout"
+msgstr "अभिन्यास"
+
+#: src/ui/preferences/preferences.blp:161
+msgid "Fixed Width To Use For Notes"
+msgstr "नोट्स के लिए उपयोग हेतु निश्चित चौड़ाई"
+
+#: src/ui/preferences/preferences.blp:162
+msgid "Sets the fixed width size of a note in px"
+msgstr "किसी नोट की निश्चित चौड़ाई का आकार px में निर्धारित करता है"
+
+#: src/ui/preferences/preferences.blp:167
+msgid "Sort Order For Notebooks"
+msgstr "नोटबुक के लिए छंटाई क्रम"
+
+#: src/ui/preferences/preferences.blp:172
+msgid "Sort Order For Notes"
+msgstr "नोट्स के लिए छंटाई क्रम"
+
+#: src/ui/preferences/preferences.blp:179
+msgid "Files"
+msgstr "फाइलें"
+
+#: src/ui/preferences/preferences.blp:197
+msgid ""
+"The trash folder is set as a hidden folder by default, this option makes it "
+"visible (requires app restart)"
+msgstr ""
+"रद्दी फोल्डर को तयशुदा रूप से एक छिपे हुए फोल्डर के रूप में निर्धारित किया गया है, यह "
+"विकल्प इसे दृश्यमान बनाता है (ऐप पुनरारंभ की आवश्यकता है)"
 
 #: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:129
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:171
@@ -507,6 +468,7 @@ msgid "Trash"
 msgstr "रद्दी"
 
 #: src/ui/strings.vala:5
+#, c-format
 msgid "%d Notes"
 msgstr "%d नोट्स"
 
@@ -514,7 +476,7 @@ msgstr "%d नोट्स"
 msgid "Are you sure you want to delete everything in the trash?"
 msgstr "क्या आप वाकई कूड़ेदान में मौजूद सभी चीज़ों को मिटाना चाहते हैं?"
 
-#: src/ui/strings.vala:7 src/ui/window/window.blp:54
+#: src/ui/strings.vala:7 src/ui/window/window.blp:61
 msgid "Empty Trash"
 msgstr "रद्दी खाली करें"
 
@@ -551,10 +513,12 @@ msgid "Move"
 msgstr "स्थानान्तर"
 
 #: src/ui/strings.vala:18
+#, c-format
 msgid "Note “%s” already exists in notebook “%s”"
 msgstr "नोट “%s” नोटबुक “%s” में पहले से मौजूद है"
 
 #: src/ui/strings.vala:19
+#, c-format
 msgid "Are you sure you want to delete the note “%s”?"
 msgstr "क्या आप वाकई “%s” नोट को मिटाना चाहते हैं?"
 
@@ -563,6 +527,7 @@ msgid "Delete Note"
 msgstr "नोट मिटाएं"
 
 #: src/ui/strings.vala:21
+#, c-format
 msgid "Are you sure you want to delete the notebook “%s”?"
 msgstr "क्या आप वाकई नोटबुक “%s” को मिटाना चाहते हैं?"
 
@@ -571,34 +536,42 @@ msgid "Delete Notebook"
 msgstr "नोटबुक मिटाएं"
 
 #: src/ui/strings.vala:24
-msgid "Note name shouldn’t contain “.” or “/”"
+#, fuzzy
+msgid "Note names cannot contain a “/”"
 msgstr "नोट के नाम में “.” या “/” नहीं होना चाहिए"
 
 #: src/ui/strings.vala:25
-msgid "Note name shouldn’t be blank"
+#, fuzzy
+msgid "Note names cannot be blank"
 msgstr "नोट का नाम रिक्त नहीं होना चाहिए"
 
 #: src/ui/strings.vala:26
+#, c-format
 msgid "Note “%s” already exists"
 msgstr "नोट “%s” पहले से मौजूद है"
 
 #: src/ui/strings.vala:27
-msgid "Couldn’t create note"
+#, fuzzy
+msgid "Could not create note"
 msgstr "नोट नहीं बना सके"
 
 #: src/ui/strings.vala:28
-msgid "Couldn’t change note"
+#, fuzzy
+msgid "Could not change note"
 msgstr "नोट नहीं बदले जा सके"
 
 #: src/ui/strings.vala:29
-msgid "Couldn’t delete note"
+#, fuzzy
+msgid "Could not delete note"
 msgstr "नोट नहीं मिटा सके"
 
 #: src/ui/strings.vala:30
-msgid "Couldn’t restore note"
+#, fuzzy
+msgid "Could not restore note"
 msgstr "नोट पुनर्स्थापित नहीं कर सके"
 
 #: src/ui/strings.vala:31
+#, c-format
 msgid "Saved “%s” to “%s”"
 msgstr "“%s” को “%s” में सहेजा गया"
 
@@ -607,27 +580,33 @@ msgid "Unknown error"
 msgstr "अज्ञात त्रुटि"
 
 #: src/ui/strings.vala:33
-msgid "Notebook name shouldn’t contain “.” or “/”"
+#, fuzzy
+msgid "Notebook names cannot contain a “/”"
 msgstr "नोटबुक के नाम में “.” या “/” नहीं होना चाहिए"
 
 #: src/ui/strings.vala:34
-msgid "Notebook name shouldn’t be blank"
+#, fuzzy
+msgid "Notebook names cannot be blank"
 msgstr "नोटबुक का नाम रिक्त नहीं होना चाहिए"
 
 #: src/ui/strings.vala:35
+#, c-format
 msgid "Notebook “%s” already exists"
 msgstr "नोटबुक “%s” पहले से मौजूद है"
 
 #: src/ui/strings.vala:36
-msgid "Couldn’t create notebook"
+#, fuzzy
+msgid "Could not create notebook"
 msgstr "नोटबुक नहीं बना सके"
 
 #: src/ui/strings.vala:37
-msgid "Couldn’t change notebook"
+#, fuzzy
+msgid "Could not change notebook"
 msgstr "नोटबुक नहीं बदल सके"
 
 #: src/ui/strings.vala:38
-msgid "Couldn’t delete notebook"
+#, fuzzy
+msgid "Could not delete notebook"
 msgstr "नोटबुक नहीं मिटाई जा सकी"
 
 #: src/ui/strings.vala:40
@@ -639,7 +618,8 @@ msgid "Rename"
 msgstr "नाम बदलें"
 
 #: src/ui/strings.vala:42
-msgid "Couldn’t find an app to handle file URIs"
+#, fuzzy
+msgid "Could not find an app to handle file URIs"
 msgstr "फाइल URI को प्रबंधित करने के लिए कोई ऐप नहीं मिला"
 
 #: src/ui/strings.vala:43
@@ -649,6 +629,10 @@ msgstr "लागू करें"
 #: src/ui/strings.vala:45
 msgid "Pick where the notebooks will be stored"
 msgstr "चुनें कि नोटबुक कहां संग्रहित की जाएंगी"
+
+#: src/ui/strings.vala:46
+msgid "Pick where the trash can will be stored"
+msgstr "चुनें कि कूड़ादान कहां रखें"
 
 #: src/ui/strings.vala:47 src/ui/window/notebooks_bar/notebooks_bar.blp:59
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:101
@@ -662,6 +646,130 @@ msgstr "अंतिम संशोधित"
 #: src/ui/strings.vala:50
 msgid "Extension"
 msgstr "एक्सटेंशन"
+
+#: src/ui/strings.vala:51
+msgid "Unable to recognize URI"
+msgstr "URI को पहचानने में असमर्थ"
+
+#: src/ui/strings.vala:52
+msgid "Pick primary font for notes"
+msgstr "नोट्स के लिए प्राथमिक फॉन्ट चुनें"
+
+#: src/ui/strings.vala:53
+msgid "Pick monospace font for code"
+msgstr "कोड के लिए मोनोस्पेस फॉन्ट चुनें"
+
+#: src/ui/strings.vala:54
+msgid "File Changed On Disk"
+msgstr "डिस्क पर फाइल परिवर्तित"
+
+#: src/ui/strings.vala:55
+msgid ""
+"The file has changed on disk since it was last saved/loaded by Folio.\n"
+"\n"
+"You may do one of the following:\n"
+"\n"
+" • Reload the file (discarding any changes you have made in Folio)\n"
+" • Overwrite the file (discarding any changes made outside of Folio)\n"
+" • Cancel the operation and manually resolve the issue\n"
+"\n"
+"Note: Canceling the save if you have already moved to a new note/notebook "
+"will discard your changes."
+msgstr ""
+"फोलियो द्वारा अंतिम बार सहेजे/लोड किए जाने के बाद से फाइल डिस्क पर बदल गई है।\n"
+"\n"
+"आप निम्न में से एक कर सकते हैं:\n"
+"\n"
+" • फाइल को पुनः लोड करें (फोलियो में आपके द्वारा किए गए किसी भी परिवर्तन को खारिज "
+"करके)\n"
+" • फाइल को अधिलेखित करें (फोलियो के बाहर किए गए किसी भी परिवर्तन को खारिज करके)\n"
+" • अभियान रद्द करें और समस्या को हस्तचालित रूप से हल करें\n"
+"\n"
+"नोट: यदि आप पहले ही किसी नए नोट/नोटबुक में चले गए हैं तो सहेजना रद्द करने से आपके "
+"परिवर्तन खारिज हो जाएंगे।"
+
+#: src/ui/strings.vala:56
+msgid "Reload"
+msgstr "पुनः लोड करें"
+
+#: src/ui/strings.vala:57
+msgid "Overwrite"
+msgstr "अधिलेखित"
+
+#: src/ui/strings.vala:59
+msgid ""
+"The file has changed on disk by another application.\n"
+"\n"
+"You may do one of the following:\n"
+"\n"
+" • Reload the file (discarding any changes you have made in Folio)\n"
+" • Overwrite the file (discarding any changes made outside of Folio)"
+msgstr ""
+"फाइल किसी अन्य अनुप्रयोग द्वारा डिस्क पर बदल दी गई है।\n"
+"\n"
+"आप निम्न में से एक कर सकते हैं:\n"
+"\n"
+" • फाइल को पुनः लोड करें (फोलियो में आपके द्वारा किए गए किसी भी परिवर्तन को खारिज "
+"करके)\n"
+" • फाइल को अधिलेखित करें (फोलियो के बाहर किए गए किसी भी परिवर्तन को खारिज करके)"
+
+#: src/ui/strings.vala:61
+#, c-format
+msgid "Note %i"
+msgstr "नोट %i"
+
+#: src/ui/strings.vala:62
+msgid "Modified Time - Ascending"
+msgstr "संशोधित समय - आरोही"
+
+#: src/ui/strings.vala:63
+msgid "Modified Time - Descending"
+msgstr "संशोधित समय - अवरोही"
+
+#: src/ui/strings.vala:64
+msgid "Alphabetical - Ascending"
+msgstr "वर्णानुक्रम - आरोही"
+
+#: src/ui/strings.vala:65
+msgid "Alphabetical - Descending"
+msgstr "वर्णानुक्रम - अवरोहण"
+
+#: src/ui/strings.vala:66
+#, fuzzy
+msgid "Natural - Ascending"
+msgstr "वर्णानुक्रम - आरोही"
+
+#: src/ui/strings.vala:67
+#, fuzzy
+msgid "Natural - Descending"
+msgstr "वर्णानुक्रम - अवरोहण"
+
+#: src/ui/strings.vala:68
+#, c-format
+msgid "Unable to launch external application for file %s."
+msgstr ""
+
+#: src/ui/strings.vala:69
+msgid "Aggressive"
+msgstr ""
+
+#: src/ui/strings.vala:70
+msgid "Strict"
+msgstr ""
+
+#: src/ui/strings.vala:71
+msgid "Disabled"
+msgstr ""
+
+#: src/ui/strings.vala:72
+#, fuzzy, c-format
+msgid "“%s” moved to trash"
+msgstr "रद्दी में ले जाएं"
+
+#: src/ui/strings.vala:73
+#, c-format
+msgid "“%s” restored"
+msgstr ""
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
 msgid "Follow system style"
@@ -692,40 +800,45 @@ msgid "_Keyboard Shortcuts"
 msgstr "कीबोर्ड शॉर्टकट (_K)"
 
 #: src/ui/window/app_menu/app_menu.blp:43
-msgid "_About"
+#, fuzzy
+msgid "_About Folio"
 msgstr "फोलियो के बारे में (_A)"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:54
-msgid "Notebook Name"
-msgstr "नोटबुक नाम"
-
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:66
-msgid "Duplicate notebook names are not allowed!"
-msgstr "डुप्लिकेट नोटबुक नामों की अनुमति नहीं है!"
-
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:82
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:6
 msgid "First Characters"
 msgstr "प्रथम वर्ण"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:83
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:7
 msgid "Initials"
 msgstr "प्रथमाक्षर"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:84
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:8
 msgid "Initials: camelCase"
 msgstr "प्रथमाक्षर: camelCase"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:85
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:9
 msgid "Initials: snake_case"
 msgstr "प्रथमाक्षर: snake_case"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:86
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:10
 msgid "Icon"
 msgstr "आइकन"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:116
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:11
+msgid "Custom"
+msgstr ""
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:16
 msgid "Notebook Color"
 msgstr "नोटबुक रंग"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:58
+msgid "Notebook Name"
+msgstr "नोटबुक नाम"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:70
+msgid "Duplicate notebook names are not allowed!"
+msgstr "डुप्लिकेट नोटबुक नामों की अनुमति नहीं है!"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:126
 msgid "Create Notebook"
@@ -743,11 +856,11 @@ msgstr "सभी रद्दी में ले जाएं"
 msgid "Notebooks"
 msgstr "नोटबुक"
 
-#: src/ui/window/sidebar/note_create_popup.blp:37
+#: src/ui/window/sidebar/note_create_popup.blp:25
 msgid "Note Name"
 msgstr "नोट नाम"
 
-#: src/ui/window/sidebar/note_create_popup.blp:45
+#: src/ui/window/sidebar/note_create_popup.blp:33
 msgid "Create Note"
 msgstr "नोट बनाएँ"
 
@@ -771,30 +884,37 @@ msgstr "रद्दी में ले जाएं"
 msgid "Open Containing Folder"
 msgstr "धारक फोल्डर खोलें"
 
-#: src/ui/window/window.blp:118
+#: src/ui/window/window.blp:123
 msgid "Get started writing"
 msgstr "लिखना शुरू करें"
 
-#: src/ui/window/window.blp:143
+#: src/ui/window/window.blp:152
+msgid "Open file in external application"
+msgstr ""
+
+#: src/ui/window/window.blp:160
+msgid "Open file"
+msgstr ""
+
+#: src/ui/window/window.blp:181
 msgid "Create a notebook"
 msgstr "एक नोटबुक बनाएं"
 
-#: src/ui/window/window.blp:168
+#: src/ui/window/window.blp:210
 msgid "Trash is empty"
 msgstr "रद्दी खाली है"
 
-#: src/ui/window/window.blp:224
-msgid "Back"
-msgstr "पीछे"
-
-#: src/ui/window/window.blp:239
+#: src/ui/window/window.blp:285
 msgid "Open in Notebook"
 msgstr "नोटबुक में खोलें"
 
-#: src/ui/window/window.blp:264
+#: src/ui/window/window.blp:312
 msgid "_Rename Note"
 msgstr "नोट का नाम बदलें (_R)"
 
-#: src/ui/window/window.blp:270
+#: src/ui/window/window.blp:319
 msgid "_Export Note"
 msgstr "नोट निर्यात करें (_E)"
+
+#~ msgid "Back"
+#~ msgstr "पीछे"
