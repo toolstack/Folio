@@ -27,9 +27,9 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	public WindowModel window_model = new WindowModel ();
 
-	[GtkChild] unowned Adw.Leaflet leaflet;
-	[GtkChild] unowned Adw.LeafletPage sidebar;
-	[GtkChild] unowned Adw.LeafletPage edit_view_page;
+	[GtkChild] unowned Adw.NavigationSplitView leaflet;
+	[GtkChild] unowned Adw.NavigationPage sidebar;
+	[GtkChild] unowned Adw.NavigationPage edit_view_page;
 	[GtkChild] unowned NotebooksBar notebooks_bar;
 
 	[GtkChild] unowned Gtk.Revealer sidebar_revealer;
@@ -42,7 +42,6 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	[GtkChild] unowned Gtk.Button button_create_note;
 	[GtkChild] unowned Gtk.Button button_empty_trash;
-	[GtkChild] unowned Gtk.Button button_back;
 	[GtkChild] unowned Gtk.MenuButton button_more_menu;
 	[GtkChild] unowned Gtk.Button button_open_in_notebook;
 	[GtkChild] unowned Gtk.Button button_md_cheatsheet_headerbar;
@@ -113,8 +112,6 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 		set_text_view_state (TextViewState.NO_NOTEBOOK);
 
-		button_back.clicked.connect (() => navigate_to_notes ());
-
 		window_model.search_sorter.changed.connect ((change) => {
 			notebook_notes_list_scroller.vadjustment.@value = 0;
 		});
@@ -139,9 +136,9 @@ public class Folio.Window : Adw.ApplicationWindow {
 		app.style_manager.notify["dark"].connect (() => edit_view.on_dark_changed (app.style_manager.dark));
 		edit_view.on_dark_changed (app.style_manager.dark);
 
-		leaflet.notify["folded"].connect (() => {
+		leaflet.notify["collapsed"].connect (() => {
 			update_title_buttons ();
-			if (leaflet.folded) {
+			if (leaflet.collapsed) {
 				update_editability ();
 				navigate_to_edit_view ();
 			} else {
@@ -219,9 +216,9 @@ public class Folio.Window : Adw.ApplicationWindow {
 	}
 
 	public void on_update_note (Note? note) {
-		if (leaflet.folded) {
+		if (leaflet.collapsed) {
 			if (note == null) navigate_to_notes ();
-			else navigate_to_edit_view ();
+
 		}
 		update_note_title ();
 		update_editability ();
@@ -288,13 +285,13 @@ public class Folio.Window : Adw.ApplicationWindow {
 	}
 
 	public void navigate_to_notes () {
-		leaflet.visible_child = sidebar.child;
-		if (leaflet.folded) {
+		leaflet.show_content = false;
+		if (leaflet.collapsed) {
 			window_model.select_note (null);
 		}
 	}
 
-	public void navigate_to_edit_view () { leaflet.visible_child = edit_view_page.child; }
+	public void navigate_to_edit_view () { leaflet.show_content = true; }
 
 	public void update_cheatsheet_visibility () {
 		button_md_cheatsheet_headerbar.visible = cheatsheet_enabled && edit_view.toolbar.compacted;
@@ -363,20 +360,20 @@ public class Folio.Window : Adw.ApplicationWindow {
 	}
 
 	private void update_title_buttons () {
-		var is_sidebar_hidden = leaflet.folded || !sidebar_revealer.reveal_child;
+		var is_sidebar_hidden = leaflet.collapsed || !sidebar_revealer.reveal_child;
 		headerbar_edit_view.show_start_title_buttons = is_sidebar_hidden;
 		update_note_title ();
 	}
 
 	private void update_note_title () {
-		var is_sidebar_hidden = leaflet.folded || !sidebar_revealer.reveal_child;
+		var is_sidebar_hidden = leaflet.collapsed || !sidebar_revealer.reveal_child;
 		var note = window_model.note;
 		var show = is_sidebar_hidden && note != null;
 		note_subtitle.label = show ? note.notebook.name : null;
 		note_subtitle.visible = show;
 	}
 
-	private void on_update_state (WindowModel.State state, NoteContainer? container) {
+	private void on_update_state (WindowModel.State state, NoteContainer? container, bool is_note_clicked = false) {
 		button_create_note.visible = state == WindowModel.State.NOTEBOOK;
 		button_empty_trash.visible = state == WindowModel.State.TRASH;
 
@@ -475,11 +472,11 @@ public class Folio.Window : Adw.ApplicationWindow {
 		popup.present (this);
 	}
 
-	public void request_delete_note (Note note) {
+	public void request_delete_note (Note note, bool is_trash = false) {
 		show_confirmation_popup (
 			Strings.DELETE_NOTE,
 			Strings.DELETE_NOTE_CONFIRMATION.printf (note.name),
-			() => try_delete_note (note)
+			() => try_delete_note (note, is_trash)
 		);
 	}
 
@@ -569,8 +566,9 @@ public class Folio.Window : Adw.ApplicationWindow {
 		}
 	}
 
-	public void try_delete_note (Note note) {
+	public void try_delete_note (Note note, bool is_trash = false) {
 		try {
+			string name = note.name;
 			window_model.update_note (null, this);
 			//upon deletion of a note, we will select the next note DOWN the list (or none).
 			var idx = note.notebook.get_index_of (note);
@@ -595,6 +593,8 @@ public class Folio.Window : Adw.ApplicationWindow {
 				window_model.select_note_at (idx);
 
 			window_model.update_selected_note ();
+
+			if (!is_trash) toast (Strings.NOTE_TRASHED.printf (name));
 		} catch (ProviderError e) {
 			if (e is ProviderError.COULDNT_DELETE)
 				toast (Strings.COULDNT_DELETE_NOTE);

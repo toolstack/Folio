@@ -1,7 +1,7 @@
 
 public class Folio.WindowModel : Object {
 
-	public signal void state_changed (State state, NoteContainer? container);
+	public signal void state_changed (State state, NoteContainer? container, bool is_clicked = false);
 	public signal void note_changed (Note? note);
 
 	public Provider notebook_provider;
