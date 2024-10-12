@@ -458,9 +458,8 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	public void request_edit_note (Note note) {
 		var popup = new NoteCreatePopup (this, note);
-		popup.transient_for = this;
 		popup.title = Strings.RENAME_NOTE;
-		popup.present ();
+		popup.present (this);
 	}
 
 	public void request_move_note (Note note) {
@@ -473,8 +472,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 					toast (Strings.NOTE_X_ALREADY_EXISTS_IN_X.printf (note.name, dest_notebook.name));
 			}
 		);
-		popup.transient_for = this;
-		popup.present ();
+		popup.present (this);
 	}
 
 	public void request_delete_note (Note note) {
@@ -697,8 +695,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 		string action_description,
 		owned Runnable callback
 	) {
-		var dialog = new Adw.MessageDialog (
-			this,
+		var dialog = new Adw.AlertDialog (
 			action_title,
 			action_description
 		);
@@ -715,7 +712,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 			}
 			dialog.close ();
 		});
-		dialog.present ();
+		dialog.present (this);
 	}
 
 	public void resize_toolbar () {

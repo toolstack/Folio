@@ -1,23 +1,13 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $FolioNoteCreatePopup : Adw.Window {
+template $FolioNoteCreatePopup : Adw.Dialog {
 
-  default-width: 320;
+  content-width: 320;
   resizable: false;
   modal: true;
 
-  ShortcutController {
-
-    scope: managed;
-
-    Shortcut {
-      trigger: "Escape";
-      action: "action(window.close)";
-    }
-  }
-
-  WindowHandle {
+  child: WindowHandle {
     Box {
 
       spacing: 16;
@@ -49,5 +39,5 @@ template $FolioNoteCreatePopup : Adw.Window {
         styles ["suggested-action"]
       }
     }
-  }
+  };
 }

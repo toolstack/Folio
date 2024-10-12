@@ -1,30 +1,14 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $FolioNotebookSelectionPopup : Adw.Window {
+template $FolioNotebookSelectionPopup : Adw.Dialog {
 
-  default-width: 360;
-  default-height: 420;
-  resizable: true;
-  modal: true;
+  content-width: 360;
+  content-height: 420;
 
-  ShortcutController {
-
-    scope: managed;
-
-    Shortcut {
-      trigger: "Escape";
-      action: "action(window.close)";
-    }
-  }
-
-  Box {
-
-    orientation: vertical;
-    hexpand: true;
-
+  child: Adw.ToolbarView {
+    [top]
     Adw.HeaderBar headerbar {
-
       hexpand: true;
       show-start-title-buttons: false;
       show-end-title-buttons: false;
@@ -41,15 +25,15 @@ template $FolioNotebookSelectionPopup : Adw.Window {
       }
     }
 
-    ScrolledWindow scrolled_window {
+    content: ScrolledWindow scrolled_window {
 
       hexpand: true;
       vexpand: true;
 
       ListView notebooks_list {
         hexpand: true;
-        styles ["notebook-list"]
+        styles ["boxed-list", "notebook-list"]
       }
-    }
-  }
+    };
+  };
 }

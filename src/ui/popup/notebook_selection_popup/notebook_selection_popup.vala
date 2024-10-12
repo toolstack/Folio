@@ -2,7 +2,7 @@
 public delegate void Folio.OnNotebookSelected (Notebook notebook);
 
 [GtkTemplate (ui = "/com/toolstack/Folio/popup/notebook_selection_popup.ui")]
-public class Folio.NotebookSelectionPopup : Adw.Window {
+public class Folio.NotebookSelectionPopup : Adw.Dialog {
 
 	[GtkChild]
 	unowned Gtk.ListView notebooks_list;
@@ -26,7 +26,7 @@ public class Folio.NotebookSelectionPopup : Adw.Window {
 		this.title = title;
 		this.button_confirm.label = action_name;
 		this.callback = (owned) callback;
-		button_cancel.clicked.connect (close);
+		button_cancel.clicked.connect (() => { this.close (); });
 		var model = new Gtk.SingleSelection (provider);
 		var factory = new Gtk.SignalListItemFactory ();
 		factory.setup.connect (obj => {
