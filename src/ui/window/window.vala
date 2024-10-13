@@ -27,6 +27,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	public WindowModel window_model = new WindowModel ();
 
+	[GtkChild] unowned Adw.Breakpoint breakpoint;
 	[GtkChild] unowned Adw.NavigationSplitView leaflet;
 	[GtkChild] unowned Adw.NavigationPage sidebar;
 	[GtkChild] unowned Adw.NavigationPage edit_view_page;
@@ -54,6 +55,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 	[GtkChild] unowned Gtk.Revealer headerbar_edit_view_revealer;
 
 	[GtkChild] unowned EditView edit_view;
+	[GtkChild] unowned Gtk.ToggleButton toggle_sidebar;
 	[GtkChild] unowned Gtk.Box text_view_empty_notebook;
 	[GtkChild] unowned Gtk.Box external_file_type_notebook;
 	[GtkChild] unowned Gtk.Box text_view_empty_trash;
@@ -63,6 +65,13 @@ public class Folio.Window : Adw.ApplicationWindow {
 	[GtkChild] unowned Adw.ToastOverlay toast_overlay;
 
 	private Gtk.CssProvider? last_css_provider = null;
+	private bool is_breakpoint = false;
+
+	// Breakpoint conditions with and without 3-pane mode.
+	private Adw.BreakpointCondition[] breakpoint_conditions = {
+		Adw.BreakpointCondition.parse ("max-width: 600sp"),
+		Adw.BreakpointCondition.parse ("max-width: 720sp")
+	};
 
 	private ActionEntry[] ACTIONS = {
 		{ "format-bold", on_format_bold },
@@ -126,6 +135,11 @@ public class Folio.Window : Adw.ApplicationWindow {
 		window_model.notify["is-unsaved"].connect (() => {
 			save_indicator.visible = window_model.is_unsaved;
 		});
+
+		breakpoint.apply.connect (() => { is_breakpoint = true; });
+		breakpoint.unapply.connect (() => { is_breakpoint = false; });
+
+		leaflet.notify["collapsed"].connect (() => { toggle_sidebar_visibility (); });
 	}
 
 	public Window (Application app) {
@@ -196,12 +210,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 		notify["note-sort-order"].connect (update_note_sort_order);
 		notify["notebook-sort-order"].connect (update_notebook_sort_order);
 
-		if (settings.get_boolean ("enable-autosave")) {
-			GLib.Timeout.add (5000, () => {
-				window_model.save_note (this);
-				return true;
-			}, 0 );
-		}
+		this.on_3_pane_change (settings.get_boolean ("enable-3-pane"));
 
 		leaflet.show_content = false; // Don't start in note view.
 	}
@@ -216,6 +225,18 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	private void zoom_out () {
 		edit_view.zoom_out ();
+	}
+
+	public void on_3_pane_change (bool state) {
+		if (state) {
+			notebooks_bar.width_request = 160;
+			breakpoint.set_condition (breakpoint_conditions[1]);
+			this.width_request = 385;
+		} else {
+			notebooks_bar.width_request = 50;
+			breakpoint.set_condition (breakpoint_conditions[0]);
+			this.width_request = 360;
+		}
 	}
 
 	public void on_update_note (Note? note) {
@@ -274,7 +295,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 	}
 
 	public void toggle_sidebar_visibility () {
-		sidebar_revealer.reveal_child = !sidebar_revealer.reveal_child;
+		if (!is_breakpoint) leaflet.show_content = true;
 	}
 
 	public void toggle_search () {

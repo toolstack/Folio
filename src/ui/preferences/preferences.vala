@@ -1,6 +1,7 @@
 
 [GtkTemplate (ui = "/com/toolstack/Folio/preferences.ui")]
 public class Folio.PreferencesWindow : Adw.PreferencesDialog {
+	public signal void three_pane_changed (bool is_three_pane);
 
 	[GtkChild] unowned Gtk.FontDialogButton font_button;
 	[GtkChild] unowned Gtk.FontDialogButton font_button_monospace;
@@ -107,6 +108,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesDialog {
 		enable_3_pane.active = settings.get_boolean ("enable-3-pane");
 		enable_3_pane.state_set.connect ((state) => {
 			settings.set_boolean ("enable-3-pane", state);
+			three_pane_changed (state);
 			return false;
 		});
 
@@ -229,6 +231,8 @@ public class Folio.PreferencesWindow : Adw.PreferencesDialog {
         notebook_sort_order.notify["selected-item"].connect (() => {
             settings.set_int ("notebook-sort-order", (int)notebook_sort_order.get_selected ());
         });
+
+ 		this.three_pane_changed.connect (((Folio.Window) window).on_3_pane_change);
 	}
 }
 

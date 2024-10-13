@@ -11,9 +11,8 @@ template $FolioWindow: Adw.ApplicationWindow {
       width-request: 360;
       height-request: 360;
 
-      Adw.Breakpoint {
-        condition ("max-width: 600sp")
 
+      Adw.Breakpoint breakpoint {
         setters {
           leaflet.collapsed: true;
           toggle_sidebar.visible: false;
@@ -36,6 +35,7 @@ template $FolioWindow: Adw.ApplicationWindow {
                 $FolioNotebooksBar notebooks_bar {}
 
                 Box {
+                  width-request: 225;
                   orientation: vertical;
                   hexpand: true;
                   vexpand: true;
