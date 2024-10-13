@@ -2,16 +2,229 @@
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Folio\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-12 16:53+0200\n"
 "PO-Revision-Date: 2024-03-02 16:57:38+0000\n"
-"Language: ko_KR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: GlotPress/4.0.0\n"
+"Language: ko_KR\n"
+"Project-Id-Version: Folio\n"
+
+#: data/app.gschema.xml:76
+msgid "Notebook sort order"
+msgstr ""
+
+#: data/app.gschema.xml:77
+msgid "The sort order of the notebook list"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:145
+msgid "Sort Order For Notebooks"
+msgstr ""
+
+#: data/app.gschema.xml:71
+msgid "Note sort order"
+msgstr ""
+
+#: data/app.gschema.xml:72
+msgid "The sort order of the note list"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:150
+msgid "Sort Order For Notes"
+msgstr ""
+
+#: src/ui/strings.vala:62
+msgid "Modified Time - Ascending"
+msgstr ""
+
+#: src/ui/strings.vala:63
+msgid "Modified Time - Descending"
+msgstr ""
+
+#: src/ui/strings.vala:64
+msgid "Alphabetical - Ascending"
+msgstr ""
+
+#: src/ui/strings.vala:65
+msgid "Alphabetical - Descending"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:114
+msgid "Display"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:117
+msgid "Full Screen"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:122
+msgid "Zoom In"
+msgstr ""
+
+#: src/ui/popup/shortcut_window.blp:127
+msgid "Zoom Out"
+msgstr ""
+
+#: src/ui/strings.vala:52
+msgid "Pick primary font for notes"
+msgstr ""
+
+#: src/ui/strings.vala:53
+msgid "Pick monospace font for code"
+msgstr ""
+
+#: src/ui/strings.vala:54
+msgid "File Changed On Disk"
+msgstr ""
+
+#: src/ui/strings.vala:55
+msgid ""
+"The file has changed on disk since it was last saved/loaded by Folio.\n"
+"\n"
+"You may do one of the following:\n"
+"\n"
+" • Reload the file (discarding any changes you have made in Folio)\n"
+" • Overwrite the file (discarding any changes made outside of Folio)\n"
+" • Cancel the operation and manually resolve the issue\n"
+"\n"
+"Note: Canceling the save if you have already moved to a new note/notebook will discard your changes."
+msgstr ""
+
+#: src/ui/strings.vala:56
+msgid "Reload"
+msgstr ""
+
+#: src/ui/strings.vala:57
+msgid "Overwrite"
+msgstr ""
+
+#: src/ui/strings.vala:59
+msgid ""
+"The file has changed on disk by another application.\n"
+"\n"
+"You may do one of the following:\n"
+"\n"
+" • Reload the file (discarding any changes you have made in Folio)\n"
+" • Overwrite the file (discarding any changes made outside of Folio)"
+msgstr ""
+
+#: src/ui/strings.vala:61
+msgid "Note %i"
+msgstr ""
+
+#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:213
+msgid "Trash Storage Location"
+msgstr ""
+
+#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:214
+msgid "Where the trash folder is located (requires app restart)"
+msgstr ""
+
+#: src/ui/strings.vala:46
+msgid "Pick where the trash can will be stored"
+msgstr ""
+
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:128
+msgid "Use Fixed Width For Notes"
+msgstr ""
+
+#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:129
+msgid "Use a fixed width for the text area of a note"
+msgstr ""
+
+#: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:118
+msgid "Expands the notebook list to include the notebook name"
+msgstr ""
+
+#: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:65
+msgid "Show line numbers"
+msgstr ""
+
+#: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:66
+msgid "Displays line numbers at the left of the note"
+msgstr ""
+
+#: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:76
+msgid "Show all notes"
+msgstr ""
+
+#: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:77
+msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
+msgstr ""
+
+#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:163
+msgid "Enable autosave"
+msgstr ""
+
+#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:164
+msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
+msgstr ""
+
+#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:174
+msgid "Don't hide the Trash folder"
+msgstr ""
+
+#: data/app.gschema.xml:67
+msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
+msgstr ""
+
+#: data/app.metainfo.xml.in:367
+msgid "Main Folio window in light mode"
+msgstr ""
+
+#: data/app.metainfo.xml.in:371
+msgid "Main Folio window in dark mode"
+msgstr ""
+
+#: data/app.metainfo.xml.in:375
+msgid "Folio on small/mobile screens"
+msgstr ""
+
+#: data/app.metainfo.xml.in:379
+msgid "Folio preferences screen"
+msgstr ""
+
+#: data/app.metainfo.xml.in:383
+msgid "Folio in three pane mode"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:59
+msgid "Tools"
+msgstr ""
+
+#: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:88
+msgid "Displays the formatting toolbar at the bottom of the note"
+msgstr ""
+
+#: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:99
+msgid "Adds a button to the markdown reference sheet on the right of the formatting toolbar"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:111
+msgid "Layout"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:139
+msgid "Fixed Width To Use For Notes"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:140
+msgid "Sets the fixed width size of a note in px"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:157
+msgid "Files"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:175
+msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
+msgstr ""
+
+#: src/ui/strings.vala:51
+msgid "Unable to recognize URI"
+msgstr ""
 
 #: data/app.desktop.in:9 src/ui/strings.vala:3
 msgid "Folio"
@@ -30,18 +243,18 @@ msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
 msgstr ""
 
 #: data/app.desktop.in:22 src/ui/popup/shortcut_window.blp:17
-#: src/ui/strings.vala:8 src/ui/window/window.blp:54
-#: src/ui/window/window.blp:131
+#: src/ui/strings.vala:8 src/ui/window/window.blp:47
+#: src/ui/window/window.blp:124
 msgid "New Note"
 msgstr "새 노트"
 
 #: data/app.desktop.in:26 src/ui/popup/shortcut_window.blp:37
-#: src/ui/strings.vala:14 src/ui/window/window.blp:189
+#: src/ui/strings.vala:14 src/ui/window/window.blp:149
 msgid "New Notebook"
 msgstr "새 필기장"
 
-#: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:92
-#: src/ui/strings.vala:39 src/ui/window/window.blp:291
+#: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:90
+#: src/ui/strings.vala:39 src/ui/window/window.blp:245
 msgid "Markdown Cheatsheet"
 msgstr "마크다운 치트시트"
 
@@ -49,147 +262,25 @@ msgstr "마크다운 치트시트"
 msgid "Preferences"
 msgstr "기본 설정"
 
-#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:45
+#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:18
 msgid "Note Font"
 msgstr "노트 글꼴"
 
-#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:46
+#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:19
 msgid "The font notes will be displayed in"
 msgstr "노트의 내용이 이 글꼴로 표시됨"
 
-#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:58
+#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:31
 msgid "Monospace Font"
 msgstr ""
 
-#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:59
+#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:32
 msgid "The font code will be displayed in"
 msgstr ""
 
-#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:150
-msgid "Use Fixed Width For Notes"
-msgstr ""
-
-#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:151
-msgid "Use a fixed width for the text area of a note"
-msgstr ""
-
-#: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:18
+#: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:46
 msgid "OLED Mode"
 msgstr "OLED 모드"
-
-#: data/app.gschema.xml:22 src/ui/preferences/preferences.blp:19
-msgid "Makes the dark theme pitch black"
-msgstr "다트 테마를 완전한 검은색으로 변경합니다"
-
-#: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:109
-msgid "Enable Toolbar"
-msgstr ""
-
-#: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:110
-msgid "Displays the formatting toolbar at the bottom of the note"
-msgstr ""
-
-#: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:120
-msgid "Enable Cheatsheet"
-msgstr ""
-
-#: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:121
-msgid ""
-"Adds a button to the markdown reference sheet on the right of the formatting "
-"toolbar"
-msgstr ""
-
-#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:139
-msgid "3-Pane Layout"
-msgstr ""
-
-#: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:140
-msgid "Expands the notebook list to include the notebook name"
-msgstr ""
-
-#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:207
-msgid "Notes Storage Location"
-msgstr "노트 저장소 위치"
-
-#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:208
-msgid "Where the notebooks are stored (requires app restart)"
-msgstr "필기장이 저장될 위치 (프로그램 재시작 필요)"
-
-#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:235
-msgid "Trash Storage Location"
-msgstr ""
-
-#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:236
-msgid "Where the trash folder is located (requires app restart)"
-msgstr ""
-
-#: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:87
-msgid "Show line numbers"
-msgstr ""
-
-#: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:88
-msgid "Displays line numbers at the left of the note"
-msgstr ""
-
-#: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:98
-msgid "Show all notes"
-msgstr ""
-
-#: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:99
-msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
-msgstr ""
-
-#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:185
-msgid "Enable autosave"
-msgstr ""
-
-#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:186
-msgid ""
-"Automatically saves the current note every 30 seconds if the contents have "
-"changed (requires app restart)"
-msgstr ""
-
-#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:196
-msgid "Don't hide the Trash folder"
-msgstr ""
-
-#: data/app.gschema.xml:67
-msgid ""
-"The trash folder is set as a hidden folder by default, this option makes it "
-"visible"
-msgstr ""
-
-#: data/app.gschema.xml:71
-msgid "Note sort order"
-msgstr ""
-
-#: data/app.gschema.xml:72
-msgid "The sort order of the note list"
-msgstr ""
-
-#: data/app.gschema.xml:76
-msgid "Notebook sort order"
-msgstr ""
-
-#: data/app.gschema.xml:77
-msgid "The sort order of the notebook list"
-msgstr ""
-
-#: data/app.gschema.xml:81
-msgid "URL detection level"
-msgstr ""
-
-#: data/app.gschema.xml:82
-msgid "How agressive to look for URLs in markdown text"
-msgstr ""
-
-#: data/app.gschema.xml:86
-msgid "Line spacing"
-msgstr ""
-
-#: data/app.gschema.xml:87 src/ui/preferences/preferences.blp:74
-msgid "The line spacing for the note text"
-msgstr ""
 
 #: data/app.metainfo.xml.in:5
 msgid "Take notes in Markdown"
@@ -223,116 +314,103 @@ msgstr ""
 msgid "Trash can"
 msgstr "휴지통"
 
-#: data/app.metainfo.xml.in:393
-msgid "Main Folio window in light mode"
-msgstr ""
-
-#: data/app.metainfo.xml.in:397
-msgid "Main Folio window in dark mode"
-msgstr ""
-
-#: data/app.metainfo.xml.in:401
-msgid "Folio on small/mobile screens"
-msgstr ""
-
-#: data/app.metainfo.xml.in:405
-msgid "Folio preferences screen"
-msgstr ""
-
-#: data/app.metainfo.xml.in:409
-msgid "Folio in three pane mode"
-msgstr ""
-
-#: src/ui/edit_view/toolbar/toolbar.blp:6
+#: src/ui/edit_view/toolbar/toolbar.blp:23
+#: src/ui/edit_view/toolbar/toolbar.blp:131
 #: src/ui/widgets/markdown/heading_popover.blp:48
 msgid "Plain Text"
 msgstr "일반 텍스트"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:7
+#: src/ui/edit_view/toolbar/toolbar.blp:24
+#: src/ui/edit_view/toolbar/toolbar.blp:132
 #: src/ui/widgets/markdown/heading_popover.blp:12
 msgid "Heading 1"
 msgstr "제목 1"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:8
+#: src/ui/edit_view/toolbar/toolbar.blp:25
+#: src/ui/edit_view/toolbar/toolbar.blp:133
 #: src/ui/widgets/markdown/heading_popover.blp:18
 msgid "Heading 2"
 msgstr "제목 2"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:9
+#: src/ui/edit_view/toolbar/toolbar.blp:26
+#: src/ui/edit_view/toolbar/toolbar.blp:134
 #: src/ui/widgets/markdown/heading_popover.blp:24
 msgid "Heading 3"
 msgstr "제목 3"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:10
+#: src/ui/edit_view/toolbar/toolbar.blp:27
+#: src/ui/edit_view/toolbar/toolbar.blp:135
 #: src/ui/widgets/markdown/heading_popover.blp:30
 msgid "Heading 4"
 msgstr "제목 4"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:11
+#: src/ui/edit_view/toolbar/toolbar.blp:28
+#: src/ui/edit_view/toolbar/toolbar.blp:136
 #: src/ui/widgets/markdown/heading_popover.blp:36
 msgid "Heading 5"
 msgstr "제목 5"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:12
+#: src/ui/edit_view/toolbar/toolbar.blp:29
+#: src/ui/edit_view/toolbar/toolbar.blp:137
 #: src/ui/widgets/markdown/heading_popover.blp:42
 msgid "Heading 6"
 msgstr "제목 6"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:41
-#: src/ui/edit_view/toolbar/toolbar.blp:107
-#: src/ui/edit_view/toolbar/toolbar.blp:142
-#: src/ui/edit_view/toolbar/toolbar.blp:195 src/ui/popup/shortcut_window.blp:72
+#: src/ui/edit_view/toolbar/toolbar.blp:39
+#: src/ui/edit_view/toolbar/toolbar.blp:104
+#: src/ui/edit_view/toolbar/toolbar.blp:148
+#: src/ui/edit_view/toolbar/toolbar.blp:201 src/ui/popup/shortcut_window.blp:72
 msgid "Bold"
 msgstr "굵게"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:47
-#: src/ui/edit_view/toolbar/toolbar.blp:114
-#: src/ui/edit_view/toolbar/toolbar.blp:149
-#: src/ui/edit_view/toolbar/toolbar.blp:196 src/ui/popup/shortcut_window.blp:77
+#: src/ui/edit_view/toolbar/toolbar.blp:45
+#: src/ui/edit_view/toolbar/toolbar.blp:111
+#: src/ui/edit_view/toolbar/toolbar.blp:155
+#: src/ui/edit_view/toolbar/toolbar.blp:202 src/ui/popup/shortcut_window.blp:77
 msgid "Italic"
 msgstr "기울임꼴"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:53
-#: src/ui/edit_view/toolbar/toolbar.blp:156
-#: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:82
+#: src/ui/edit_view/toolbar/toolbar.blp:51
+#: src/ui/edit_view/toolbar/toolbar.blp:162
+#: src/ui/edit_view/toolbar/toolbar.blp:203 src/ui/popup/shortcut_window.blp:82
 msgid "Strikethrough"
 msgstr "밑줄"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:59
-#: src/ui/edit_view/toolbar/toolbar.blp:163
-#: src/ui/edit_view/toolbar/toolbar.blp:198 src/ui/popup/shortcut_window.blp:87
+#: src/ui/edit_view/toolbar/toolbar.blp:57
+#: src/ui/edit_view/toolbar/toolbar.blp:169
+#: src/ui/edit_view/toolbar/toolbar.blp:204 src/ui/popup/shortcut_window.blp:87
 msgid "Highlight"
 msgstr "강조"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:69
-#: src/ui/edit_view/toolbar/toolbar.blp:187 src/ui/popup/shortcut_window.blp:92
+#: src/ui/edit_view/toolbar/toolbar.blp:67
+#: src/ui/edit_view/toolbar/toolbar.blp:193 src/ui/popup/shortcut_window.blp:92
 msgid "Insert Link"
 msgstr "링크 삽입"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:75
-#: src/ui/edit_view/toolbar/toolbar.blp:188
+#: src/ui/edit_view/toolbar/toolbar.blp:73
+#: src/ui/edit_view/toolbar/toolbar.blp:194
 msgid "Insert Code"
 msgstr "코드 삽입"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:81
-#: src/ui/edit_view/toolbar/toolbar.blp:189
+#: src/ui/edit_view/toolbar/toolbar.blp:79
+#: src/ui/edit_view/toolbar/toolbar.blp:195
 msgid "Insert Horizontal Rule"
 msgstr ""
 
-#: src/ui/edit_view/toolbar/toolbar.blp:121
+#: src/ui/edit_view/toolbar/toolbar.blp:118
 msgid "Format"
 msgstr ""
 
-#: src/ui/edit_view/toolbar/toolbar.blp:175
+#: src/ui/edit_view/toolbar/toolbar.blp:181
 msgid "Insert"
 msgstr ""
 
-#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:18
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:34
 #: src/ui/strings.vala:44 src/ui/strings.vala:58
 msgid "Cancel"
 msgstr "취소"
 
-#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:23
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
 msgid "Confirm"
 msgstr "계속"
 
@@ -376,85 +454,37 @@ msgstr "형식"
 msgid "Navigation"
 msgstr "탐색"
 
-#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:268
+#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:216
 msgid "Toggle Sidebar"
 msgstr "사이드바 토글"
 
-#: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:70
+#: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:63
 msgid "Search Notes"
 msgstr "노트 찾기"
 
-#: src/ui/popup/shortcut_window.blp:114
-msgid "Display"
+#: data/app.gschema.xml:22 src/ui/preferences/preferences.blp:47
+msgid "Makes the dark theme pitch black"
+msgstr "다트 테마를 완전한 검은색으로 변경합니다"
+
+#: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:87
+msgid "Enable Toolbar"
 msgstr ""
 
-#: src/ui/popup/shortcut_window.blp:117
-msgid "Full Screen"
+#: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:98
+msgid "Enable Cheatsheet"
 msgstr ""
 
-#: src/ui/popup/shortcut_window.blp:122
-msgid "Zoom In"
+#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:117
+msgid "3-Pane Layout"
 msgstr ""
 
-#: src/ui/popup/shortcut_window.blp:127
-msgid "Zoom Out"
-msgstr ""
+#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:185
+msgid "Notes Storage Location"
+msgstr "노트 저장소 위치"
 
-#: src/ui/preferences/preferences.blp:31
-#, fuzzy
-msgid "Markdown URL Detection"
-msgstr "마크다운 치트시트"
-
-#: src/ui/preferences/preferences.blp:32
-msgid ""
-"Determines the level of detection of URLs in\n"
-"free form text is used:\n"
-" - Aggressive tries to find all URLs\n"
-" - Strict requires a protocol identifier (ie http://)\n"
-" - Disabled turns detection off."
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:39
-msgid "Fonts"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:73
-msgid "Line Spacing"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:81
-msgid "Tools"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:133
-msgid "Layout"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:161
-msgid "Fixed Width To Use For Notes"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:162
-msgid "Sets the fixed width size of a note in px"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:167
-msgid "Sort Order For Notebooks"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:172
-msgid "Sort Order For Notes"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:179
-msgid "Files"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:197
-msgid ""
-"The trash folder is set as a hidden folder by default, this option makes it "
-"visible (requires app restart)"
-msgstr ""
+#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:186
+msgid "Where the notebooks are stored (requires app restart)"
+msgstr "필기장이 저장될 위치 (프로그램 재시작 필요)"
 
 #: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:129
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:171
@@ -462,7 +492,6 @@ msgid "Trash"
 msgstr "버리기"
 
 #: src/ui/strings.vala:5
-#, c-format
 msgid "%d Notes"
 msgstr "노트 %d개"
 
@@ -470,7 +499,7 @@ msgstr "노트 %d개"
 msgid "Are you sure you want to delete everything in the trash?"
 msgstr "휴지통에 있는 모든 내용을 삭제하시겠습니까?"
 
-#: src/ui/strings.vala:7 src/ui/window/window.blp:61
+#: src/ui/strings.vala:7 src/ui/window/window.blp:54
 msgid "Empty Trash"
 msgstr "휴지통 비우기"
 
@@ -507,12 +536,10 @@ msgid "Move"
 msgstr "이동"
 
 #: src/ui/strings.vala:18
-#, c-format
 msgid "Note “%s” already exists in notebook “%s”"
 msgstr "노트 \"%s\"(이)가 필기장 \"%s\"에 이미 존재합니다"
 
 #: src/ui/strings.vala:19
-#, c-format
 msgid "Are you sure you want to delete the note “%s”?"
 msgstr "노트 \"%s\"(을)를 삭제하시겠습니까?"
 
@@ -521,7 +548,6 @@ msgid "Delete Note"
 msgstr "노트 삭제"
 
 #: src/ui/strings.vala:21
-#, c-format
 msgid "Are you sure you want to delete the notebook “%s”?"
 msgstr "필기장 \"%s\"(을)를 삭제하시겠습니까?"
 
@@ -530,42 +556,34 @@ msgid "Delete Notebook"
 msgstr "필기장 삭제"
 
 #: src/ui/strings.vala:24
-#, fuzzy
-msgid "Note names cannot contain a “/”"
+msgid "Note name shouldn’t contain “.” or “/”"
 msgstr "노트 이름에는 \".\"이나 \"/\"을 포함할 수 없습니다"
 
 #: src/ui/strings.vala:25
-#, fuzzy
-msgid "Note names cannot be blank"
+msgid "Note name shouldn’t be blank"
 msgstr "노트 이름은 공백으로 설정할 수 없습니다"
 
 #: src/ui/strings.vala:26
-#, c-format
 msgid "Note “%s” already exists"
 msgstr "노트 \"%s\"(이)가 이미 존재함"
 
 #: src/ui/strings.vala:27
-#, fuzzy
-msgid "Could not create note"
+msgid "Couldn’t create note"
 msgstr "필기장을 만들 수 없음"
 
 #: src/ui/strings.vala:28
-#, fuzzy
-msgid "Could not change note"
+msgid "Couldn’t change note"
 msgstr "노트를 변경할 수 없음"
 
 #: src/ui/strings.vala:29
-#, fuzzy
-msgid "Could not delete note"
+msgid "Couldn’t delete note"
 msgstr "노트를 삭제할 수 없음"
 
 #: src/ui/strings.vala:30
-#, fuzzy
-msgid "Could not restore note"
+msgid "Couldn’t restore note"
 msgstr "노트를 복구할 수 없음"
 
 #: src/ui/strings.vala:31
-#, c-format
 msgid "Saved “%s” to “%s”"
 msgstr "\"%s\"(을)를 \"%s\"(으)로 저장하였습니다"
 
@@ -574,33 +592,27 @@ msgid "Unknown error"
 msgstr "알 수 없는 오류"
 
 #: src/ui/strings.vala:33
-#, fuzzy
-msgid "Notebook names cannot contain a “/”"
+msgid "Notebook name shouldn’t contain “.” or “/”"
 msgstr "필기장 이름에는 \".\"이나 \"/\"을 포함할 수 없습니다"
 
 #: src/ui/strings.vala:34
-#, fuzzy
-msgid "Notebook names cannot be blank"
+msgid "Notebook name shouldn’t be blank"
 msgstr "필기장 이름은 공백으로 설정할 수 없습니다"
 
 #: src/ui/strings.vala:35
-#, c-format
 msgid "Notebook “%s” already exists"
 msgstr "필기장 \"%s\"(이)가 이미 존재함"
 
 #: src/ui/strings.vala:36
-#, fuzzy
-msgid "Could not create notebook"
+msgid "Couldn’t create notebook"
 msgstr "필기장을 만들 수 없음"
 
 #: src/ui/strings.vala:37
-#, fuzzy
-msgid "Could not change notebook"
+msgid "Couldn’t change notebook"
 msgstr "필기장을 변경할 수 없음"
 
 #: src/ui/strings.vala:38
-#, fuzzy
-msgid "Could not delete notebook"
+msgid "Couldn’t delete notebook"
 msgstr "필기장을 삭제할 수 없음"
 
 #: src/ui/strings.vala:40
@@ -612,7 +624,7 @@ msgid "Rename"
 msgstr "이름 바꾸기"
 
 #: src/ui/strings.vala:42
-msgid "Could not find an app to handle file URIs"
+msgid "Couldn’t find an app to handle file URIs"
 msgstr ""
 
 #: src/ui/strings.vala:43
@@ -622,10 +634,6 @@ msgstr "적용"
 #: src/ui/strings.vala:45
 msgid "Pick where the notebooks will be stored"
 msgstr "필기장이 저장될 위치를 선택"
-
-#: src/ui/strings.vala:46
-msgid "Pick where the trash can will be stored"
-msgstr ""
 
 #: src/ui/strings.vala:47 src/ui/window/notebooks_bar/notebooks_bar.blp:59
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:101
@@ -638,110 +646,6 @@ msgstr ""
 
 #: src/ui/strings.vala:50
 msgid "Extension"
-msgstr ""
-
-#: src/ui/strings.vala:51
-msgid "Unable to recognize URI"
-msgstr ""
-
-#: src/ui/strings.vala:52
-msgid "Pick primary font for notes"
-msgstr ""
-
-#: src/ui/strings.vala:53
-msgid "Pick monospace font for code"
-msgstr ""
-
-#: src/ui/strings.vala:54
-msgid "File Changed On Disk"
-msgstr ""
-
-#: src/ui/strings.vala:55
-msgid ""
-"The file has changed on disk since it was last saved/loaded by Folio.\n"
-"\n"
-"You may do one of the following:\n"
-"\n"
-" • Reload the file (discarding any changes you have made in Folio)\n"
-" • Overwrite the file (discarding any changes made outside of Folio)\n"
-" • Cancel the operation and manually resolve the issue\n"
-"\n"
-"Note: Canceling the save if you have already moved to a new note/notebook "
-"will discard your changes."
-msgstr ""
-
-#: src/ui/strings.vala:56
-msgid "Reload"
-msgstr ""
-
-#: src/ui/strings.vala:57
-msgid "Overwrite"
-msgstr ""
-
-#: src/ui/strings.vala:59
-msgid ""
-"The file has changed on disk by another application.\n"
-"\n"
-"You may do one of the following:\n"
-"\n"
-" • Reload the file (discarding any changes you have made in Folio)\n"
-" • Overwrite the file (discarding any changes made outside of Folio)"
-msgstr ""
-
-#: src/ui/strings.vala:61
-#, c-format
-msgid "Note %i"
-msgstr ""
-
-#: src/ui/strings.vala:62
-msgid "Modified Time - Ascending"
-msgstr ""
-
-#: src/ui/strings.vala:63
-msgid "Modified Time - Descending"
-msgstr ""
-
-#: src/ui/strings.vala:64
-msgid "Alphabetical - Ascending"
-msgstr ""
-
-#: src/ui/strings.vala:65
-msgid "Alphabetical - Descending"
-msgstr ""
-
-#: src/ui/strings.vala:66
-msgid "Natural - Ascending"
-msgstr ""
-
-#: src/ui/strings.vala:67
-msgid "Natural - Descending"
-msgstr ""
-
-#: src/ui/strings.vala:68
-#, c-format
-msgid "Unable to launch external application for file %s."
-msgstr ""
-
-#: src/ui/strings.vala:69
-msgid "Aggressive"
-msgstr ""
-
-#: src/ui/strings.vala:70
-msgid "Strict"
-msgstr ""
-
-#: src/ui/strings.vala:71
-msgid "Disabled"
-msgstr ""
-
-#: src/ui/strings.vala:72
-#, fuzzy, c-format
-msgid "“%s” moved to trash"
-msgstr "휴지통으로 이동"
-
-#: src/ui/strings.vala:73
-#, c-format
-msgid "“%s” restored"
 msgstr ""
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
@@ -773,45 +677,40 @@ msgid "_Keyboard Shortcuts"
 msgstr "키보드 바로 가기(_K)"
 
 #: src/ui/window/app_menu/app_menu.blp:43
-#, fuzzy
-msgid "_About Folio"
+msgid "_About"
 msgstr "정보(_A)"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:6
-msgid "First Characters"
-msgstr "첫 글자"
-
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:7
-msgid "Initials"
-msgstr "이니셜"
-
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:8
-msgid "Initials: camelCase"
-msgstr ""
-
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:9
-msgid "Initials: snake_case"
-msgstr ""
-
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:10
-msgid "Icon"
-msgstr "아이콘"
-
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:11
-msgid "Custom"
-msgstr ""
-
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:16
-msgid "Notebook Color"
-msgstr "필기장 색상"
-
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:58
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:54
 msgid "Notebook Name"
 msgstr "필기장 이름"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:70
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:66
 msgid "Duplicate notebook names are not allowed!"
 msgstr ""
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:82
+msgid "First Characters"
+msgstr "첫 글자"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:83
+msgid "Initials"
+msgstr "이니셜"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:84
+msgid "Initials: camelCase"
+msgstr ""
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:85
+msgid "Initials: snake_case"
+msgstr ""
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:86
+msgid "Icon"
+msgstr "아이콘"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:116
+msgid "Notebook Color"
+msgstr "필기장 색상"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:126
 msgid "Create Notebook"
@@ -829,11 +728,11 @@ msgstr "모두 휴지통으로 이동"
 msgid "Notebooks"
 msgstr ""
 
-#: src/ui/window/sidebar/note_create_popup.blp:25
+#: src/ui/window/sidebar/note_create_popup.blp:37
 msgid "Note Name"
 msgstr "노트 이름"
 
-#: src/ui/window/sidebar/note_create_popup.blp:33
+#: src/ui/window/sidebar/note_create_popup.blp:45
 msgid "Create Note"
 msgstr "노트 만들기"
 
@@ -857,37 +756,30 @@ msgstr "휴지통으로 이동"
 msgid "Open Containing Folder"
 msgstr "포함하는 폴더 열기"
 
-#: src/ui/window/window.blp:123
+#: src/ui/window/window.blp:118
 msgid "Get started writing"
 msgstr "작성하기"
 
-#: src/ui/window/window.blp:152
-msgid "Open file in external application"
-msgstr ""
-
-#: src/ui/window/window.blp:160
-msgid "Open file"
-msgstr ""
-
-#: src/ui/window/window.blp:181
+#: src/ui/window/window.blp:143
 msgid "Create a notebook"
 msgstr "필기장 만들기"
 
-#: src/ui/window/window.blp:210
+#: src/ui/window/window.blp:168
 msgid "Trash is empty"
 msgstr "휴지통이 비어 있음"
 
-#: src/ui/window/window.blp:285
+#: src/ui/window/window.blp:224
+msgid "Back"
+msgstr "뒤로"
+
+#: src/ui/window/window.blp:239
 msgid "Open in Notebook"
 msgstr "필기장에서 열기"
 
-#: src/ui/window/window.blp:312
+#: src/ui/window/window.blp:264
 msgid "_Rename Note"
 msgstr "노트 이름 바꾸기(_R)"
 
-#: src/ui/window/window.blp:319
+#: src/ui/window/window.blp:270
 msgid "_Export Note"
 msgstr "노트 내보내기(_E)"
-
-#~ msgid "Back"
-#~ msgstr "뒤로"
