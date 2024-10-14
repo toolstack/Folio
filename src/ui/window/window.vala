@@ -140,6 +140,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 		breakpoint.unapply.connect (() => { is_breakpoint = false; });
 
 		leaflet.notify["collapsed"].connect (() => { toggle_sidebar_visibility (); });
+		toggle_sidebar.clicked.connect (() => { toggle_sidebar_visibility_action (); });
 	}
 
 	public Window (Application app) {
@@ -296,6 +297,11 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	public void toggle_sidebar_visibility () {
 		if (!is_breakpoint) leaflet.show_content = true;
+	}
+
+	public void toggle_sidebar_visibility_action () {
+		if (!is_breakpoint) leaflet.show_content = true;
+		leaflet.collapsed = !leaflet.collapsed;
 	}
 
 	public void toggle_search () {
