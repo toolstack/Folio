@@ -26,6 +26,8 @@ template $FolioWindow: Adw.ApplicationWindow {
 
         [sidebar]
         Adw.NavigationPage sidebar {
+          title: "Sidebar";
+
           child: Revealer sidebar_revealer {
             transition-type: slide_right;
             reveal-child: true;
@@ -97,6 +99,8 @@ template $FolioWindow: Adw.ApplicationWindow {
 
         [content]
         Adw.NavigationPage edit_view_page {
+          title: "Edit View";
+
           child: Overlay {
             hexpand: true;
             vexpand: true;
