@@ -415,3 +415,7 @@ headerbar.overlaid {
   margin: 6px 8px;
   font-size: .62em;
 }
+
+dialog.cheatsheet headerbar {
+	background: @view_bg_color;
+}

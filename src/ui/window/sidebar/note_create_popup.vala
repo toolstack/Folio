@@ -1,6 +1,6 @@
 
 [GtkTemplate (ui = "/com/toolstack/Folio/sidebar/create_popup.ui")]
-public class Folio.NoteCreatePopup : Adw.Window {
+public class Folio.NoteCreatePopup : Adw.Dialog {
 
 	[GtkChild]
 	unowned Gtk.Entry entry;

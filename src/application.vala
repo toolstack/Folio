@@ -140,7 +140,7 @@ public class Folio.Application : Adw.Application {
 	}
 
 	private void on_about_action () {
-		var about = new Adw.AboutWindow ();
+		var about = new Adw.AboutDialog ();
 		about.application_icon = Config.APP_ID;
 		about.application_name = "Folio";
 		about.developers = {"Greg Ross <greg@toolstack.com>", "Zagura"};
@@ -171,7 +171,6 @@ rene-coty
 		about.license_type = Gtk.License.GPL_3_0;
 		about.version = Config.VERSION;
 		about.website = "https://github.com/toolstack/Folio";
-		about.transient_for = this.active_window;
 		about.set_release_notes ("""
         <p>Changes:</p>
 <ul>
@@ -185,16 +184,13 @@ rene-coty
 </ul>
 """
 		);
-		about.present ();
+		about.present (this.active_window);
 	}
 
 	private void on_preferences_action () {
 		activate ();
-		var w = new PreferencesWindow (this);
-		w.destroy_with_parent = true;
-		w.transient_for = active_window;
-		w.modal = true;
-		w.present ();
+		var w = new PreferencesWindow (this, active_window);
+		w.present (active_window);
 	}
 
 	private void on_quit_action () {
@@ -204,10 +200,7 @@ rene-coty
 
 	private void on_markdown_cheatsheet () {
 		var w = new MarkdownCheatsheet (this);
-		w.destroy_with_parent = true;
-		w.transient_for = active_window;
-		w.modal = true;
-		w.present ();
+		w.present (active_window);
 	}
 
 	private void on_empty_trash () {

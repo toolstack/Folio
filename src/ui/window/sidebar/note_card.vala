@@ -41,6 +41,7 @@ public class Folio.NoteCard : Gtk.Box {
 	private Window _window;
 	private Note _note;
 	private Gtk.Popover? current_popover = null;
+	private bool clickthrough = false;
 
 	construct {
 		var long_press = new Gtk.GestureLongPress ();
@@ -66,6 +67,7 @@ public class Folio.NoteCard : Gtk.Box {
 		var double_click = new Gtk.GestureClick ();
 		double_click.button = Gdk.BUTTON_PRIMARY;
 		double_click.pressed.connect (check_double_click);
+		double_click.released.connect (note_navigate);
 		add_controller (double_click);
 
 		button_edit.clicked.connect (request_rename);
@@ -81,11 +83,26 @@ public class Folio.NoteCard : Gtk.Box {
 	}
 
 	public void check_double_click (int n_press, double x, double y) {
+		clickthrough = true;
 		if (n_press == 2) {
-			// We can't just call the rename request here as after this code runs the default
-			// handler will run and steal the focus away again.  So instead, just add a slight
-			//delay to get the default handler to run before calling the rename request.
-			GLib.Timeout.add_once (100, () => { request_rename (); });
+				// We can't just call the rename request here as after this code runs the default
+				// handler will run and steal the focus away again.  So instead, just add a slight
+				// delay to get the default handler to run before calling the rename request.
+			GLib.Timeout.add_once (100, () => {
+				clickthrough = false;
+				request_rename ();
+			});
+		}
+	}
+
+	public void note_navigate (int n_press, double x, double y) {
+		print (n_press.to_string ());
+		if (n_press == 1 && clickthrough) {
+			GLib.Timeout.add_once (175, () => {
+				if (clickthrough) {
+					_window.navigate_to_edit_view ();
+				}
+			});
 		}
 	}
 
@@ -123,6 +140,7 @@ public class Folio.NoteCard : Gtk.Box {
 	}
 
 	private void show_popup (double x, double y) {
+		clickthrough = false;
 		if (current_popover != null) {
 			current_popover.popdown();
 		}

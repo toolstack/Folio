@@ -16,6 +16,6 @@
 
 @define-color borders alpha(shade(@theme_color, 1.6), 0.25);
 
-window:not(.tiled-left):not(.tiled-right):not(.tiled-bottom) {
+window:not(.tiled-left):not(.tiled-right):not(.tiled-bottom), dialog {
   outline: solid 1px @borders;
 }

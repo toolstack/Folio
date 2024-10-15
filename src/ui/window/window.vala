@@ -27,9 +27,10 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	public WindowModel window_model = new WindowModel ();
 
-	[GtkChild] unowned Adw.Leaflet leaflet;
-	[GtkChild] unowned Adw.LeafletPage sidebar;
-	[GtkChild] unowned Adw.LeafletPage edit_view_page;
+	[GtkChild] unowned Adw.Breakpoint breakpoint;
+	[GtkChild] unowned Adw.NavigationSplitView leaflet;
+	[GtkChild] unowned Adw.NavigationPage sidebar;
+	[GtkChild] unowned Adw.NavigationPage edit_view_page;
 	[GtkChild] unowned NotebooksBar notebooks_bar;
 
 	[GtkChild] unowned Gtk.Revealer sidebar_revealer;
@@ -42,7 +43,6 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	[GtkChild] unowned Gtk.Button button_create_note;
 	[GtkChild] unowned Gtk.Button button_empty_trash;
-	[GtkChild] unowned Gtk.Button button_back;
 	[GtkChild] unowned Gtk.MenuButton button_more_menu;
 	[GtkChild] unowned Gtk.Button button_open_in_notebook;
 	[GtkChild] unowned Gtk.Button button_md_cheatsheet_headerbar;
@@ -55,6 +55,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 	[GtkChild] unowned Gtk.Revealer headerbar_edit_view_revealer;
 
 	[GtkChild] unowned EditView edit_view;
+	[GtkChild] unowned Gtk.ToggleButton toggle_sidebar;
 	[GtkChild] unowned Gtk.Box text_view_empty_notebook;
 	[GtkChild] unowned Gtk.Box external_file_type_notebook;
 	[GtkChild] unowned Gtk.Box text_view_empty_trash;
@@ -64,6 +65,13 @@ public class Folio.Window : Adw.ApplicationWindow {
 	[GtkChild] unowned Adw.ToastOverlay toast_overlay;
 
 	private Gtk.CssProvider? last_css_provider = null;
+	private bool is_breakpoint = false;
+
+	// Breakpoint conditions with and without 3-pane mode.
+	private Adw.BreakpointCondition[] breakpoint_conditions = {
+		Adw.BreakpointCondition.parse ("max-width: 600sp"),
+		Adw.BreakpointCondition.parse ("max-width: 720sp")
+	};
 
 	private ActionEntry[] ACTIONS = {
 		{ "format-bold", on_format_bold },
@@ -86,6 +94,8 @@ public class Folio.Window : Adw.ApplicationWindow {
 	construct {
 		window_model.note_changed.connect (on_update_note);
 		window_model.state_changed.connect (on_update_state);
+		window_model.present_dialog.connect (on_present_dialog);
+		window_model.navigate_to_notes.connect (navigate_to_notes);
 		window_model.notify["notes-model"].connect (() => {
 			notebook_notes_list.model = window_model.notes_model;
 			if (window_model.state == WindowModel.State.TRASH) {
@@ -113,8 +123,6 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 		set_text_view_state (TextViewState.NO_NOTEBOOK);
 
-		button_back.clicked.connect (() => navigate_to_notes ());
-
 		window_model.search_sorter.changed.connect ((change) => {
 			notebook_notes_list_scroller.vadjustment.@value = 0;
 		});
@@ -127,6 +135,12 @@ public class Folio.Window : Adw.ApplicationWindow {
 		window_model.notify["is-unsaved"].connect (() => {
 			save_indicator.visible = window_model.is_unsaved;
 		});
+
+		breakpoint.apply.connect (() => { is_breakpoint = true; });
+		breakpoint.unapply.connect (() => { is_breakpoint = false; });
+
+		leaflet.notify["collapsed"].connect (() => { toggle_sidebar_visibility (); });
+		toggle_sidebar.clicked.connect (() => { toggle_sidebar_visibility_action (); });
 	}
 
 	public Window (Application app) {
@@ -139,11 +153,10 @@ public class Folio.Window : Adw.ApplicationWindow {
 		app.style_manager.notify["dark"].connect (() => edit_view.on_dark_changed (app.style_manager.dark));
 		edit_view.on_dark_changed (app.style_manager.dark);
 
-		leaflet.notify["folded"].connect (() => {
+		leaflet.notify["collapsed"].connect (() => {
 			update_title_buttons ();
-			if (leaflet.folded) {
+			if (leaflet.collapsed) {
 				update_editability ();
-				navigate_to_edit_view ();
 			} else {
 				update_editability ();
 				window_model.select_note (window_model.note);
@@ -198,12 +211,9 @@ public class Folio.Window : Adw.ApplicationWindow {
 		notify["note-sort-order"].connect (update_note_sort_order);
 		notify["notebook-sort-order"].connect (update_notebook_sort_order);
 
-		if (settings.get_boolean ("enable-autosave")) {
-			GLib.Timeout.add (5000, () => {
-				window_model.save_note (this);
-				return true;
-			}, 0 );
-		}
+		this.on_3_pane_change (settings.get_boolean ("enable-3-pane"));
+
+		leaflet.show_content = false; // Don't start in note view.
 	}
 
 	private void toggle_fullscreen () {
@@ -218,10 +228,22 @@ public class Folio.Window : Adw.ApplicationWindow {
 		edit_view.zoom_out ();
 	}
 
+	public void on_3_pane_change (bool state) {
+		if (state) {
+			notebooks_bar.width_request = 160;
+			breakpoint.set_condition (breakpoint_conditions[1]);
+			this.width_request = 385;
+		} else {
+			notebooks_bar.width_request = 50;
+			breakpoint.set_condition (breakpoint_conditions[0]);
+			this.width_request = 360;
+		}
+	}
+
 	public void on_update_note (Note? note) {
-		if (leaflet.folded) {
+		if (leaflet.collapsed) {
 			if (note == null) navigate_to_notes ();
-			else navigate_to_edit_view ();
+
 		}
 		update_note_title ();
 		update_editability ();
@@ -269,8 +291,17 @@ public class Folio.Window : Adw.ApplicationWindow {
 		toast_overlay.add_toast (toast);
 	}
 
+	public void on_present_dialog (Adw.Dialog dialog) {
+		dialog.present (this);
+	}
+
 	public void toggle_sidebar_visibility () {
-		sidebar_revealer.reveal_child = !sidebar_revealer.reveal_child;
+		if (!is_breakpoint) leaflet.show_content = true;
+	}
+
+	public void toggle_sidebar_visibility_action () {
+		if (!is_breakpoint) leaflet.show_content = true;
+		leaflet.collapsed = !leaflet.collapsed;
 	}
 
 	public void toggle_search () {
@@ -288,13 +319,13 @@ public class Folio.Window : Adw.ApplicationWindow {
 	}
 
 	public void navigate_to_notes () {
-		leaflet.visible_child = sidebar.child;
-		if (leaflet.folded) {
+		leaflet.show_content = false;
+		if (leaflet.collapsed) {
 			window_model.select_note (null);
 		}
 	}
 
-	public void navigate_to_edit_view () { leaflet.visible_child = edit_view_page.child; }
+	public void navigate_to_edit_view () { leaflet.show_content = true; }
 
 	public void update_cheatsheet_visibility () {
 		button_md_cheatsheet_headerbar.visible = cheatsheet_enabled && edit_view.toolbar.compacted;
@@ -363,20 +394,20 @@ public class Folio.Window : Adw.ApplicationWindow {
 	}
 
 	private void update_title_buttons () {
-		var is_sidebar_hidden = leaflet.folded || !sidebar_revealer.reveal_child;
+		var is_sidebar_hidden = leaflet.collapsed || !sidebar_revealer.reveal_child;
 		headerbar_edit_view.show_start_title_buttons = is_sidebar_hidden;
 		update_note_title ();
 	}
 
 	private void update_note_title () {
-		var is_sidebar_hidden = leaflet.folded || !sidebar_revealer.reveal_child;
+		var is_sidebar_hidden = leaflet.collapsed || !sidebar_revealer.reveal_child;
 		var note = window_model.note;
 		var show = is_sidebar_hidden && note != null;
 		note_subtitle.label = show ? note.notebook.name : null;
 		note_subtitle.visible = show;
 	}
 
-	private void on_update_state (WindowModel.State state, NoteContainer? container) {
+	private void on_update_state (WindowModel.State state, NoteContainer? container, bool is_note_clicked = false) {
 		button_create_note.visible = state == WindowModel.State.NOTEBOOK;
 		button_empty_trash.visible = state == WindowModel.State.TRASH;
 
@@ -458,9 +489,8 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	public void request_edit_note (Note note) {
 		var popup = new NoteCreatePopup (this, note);
-		popup.transient_for = this;
 		popup.title = Strings.RENAME_NOTE;
-		popup.present ();
+		popup.present (this);
 	}
 
 	public void request_move_note (Note note) {
@@ -473,15 +503,14 @@ public class Folio.Window : Adw.ApplicationWindow {
 					toast (Strings.NOTE_X_ALREADY_EXISTS_IN_X.printf (note.name, dest_notebook.name));
 			}
 		);
-		popup.transient_for = this;
-		popup.present ();
+		popup.present (this);
 	}
 
-	public void request_delete_note (Note note) {
+	public void request_delete_note (Note note, bool is_trash = false) {
 		show_confirmation_popup (
 			Strings.DELETE_NOTE,
 			Strings.DELETE_NOTE_CONFIRMATION.printf (note.name),
-			() => try_delete_note (note)
+			() => try_delete_note (note, is_trash)
 		);
 	}
 
@@ -498,16 +527,14 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	public void request_new_notebook () {
 		var popup = new NotebookCreatePopup (this);
-		popup.transient_for = this;
 		popup.title = Strings.NEW_NOTEBOOK;
-		popup.present ();
+		popup.present (this);
 	}
 
 	public void request_edit_notebook (Notebook notebook) {
 		var popup = new NotebookCreatePopup (this, notebook);
-		popup.transient_for = this;
 		popup.title = Strings.EDIT_NOTEBOOK;
-		popup.present ();
+		popup.present (this);
 	}
 
 	public void request_delete_notebook (Notebook notebook) {
@@ -573,7 +600,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 		}
 	}
 
-	public void try_delete_note (Note note) {
+	public void try_delete_note (Note note, bool is_trash = false) {
 		try {
 			window_model.update_note (null, this);
 			//upon deletion of a note, we will select the next note DOWN the list (or none).
@@ -599,6 +626,8 @@ public class Folio.Window : Adw.ApplicationWindow {
 				window_model.select_note_at (idx);
 
 			window_model.update_selected_note ();
+
+			if (!is_trash) toast (Strings.NOTE_TRASHED.printf (note.name));
 		} catch (ProviderError e) {
 			if (e is ProviderError.COULDNT_DELETE)
 				toast (Strings.COULDNT_DELETE_NOTE);
@@ -629,6 +658,8 @@ public class Folio.Window : Adw.ApplicationWindow {
 					window_model.update_notebooks ();
 				}
 			}
+
+			toast (Strings.NOTE_RESTORED.printf (note.name));
 			window_model.select_notebook (note.notebook);
 		} catch (ProviderError e) {
 			if (e is ProviderError.COULDNT_MOVE) {
@@ -699,8 +730,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 		string action_description,
 		owned Runnable callback
 	) {
-		var dialog = new Adw.MessageDialog (
-			this,
+		var dialog = new Adw.AlertDialog (
 			action_title,
 			action_description
 		);
@@ -717,7 +747,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 			}
 			dialog.close ();
 		});
-		dialog.present ();
+		dialog.present (this);
 	}
 
 	public void resize_toolbar () {

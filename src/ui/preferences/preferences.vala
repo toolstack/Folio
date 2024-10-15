@@ -1,6 +1,7 @@
 
 [GtkTemplate (ui = "/com/toolstack/Folio/preferences.ui")]
-public class Folio.PreferencesWindow : Adw.PreferencesWindow {
+public class Folio.PreferencesWindow : Adw.PreferencesDialog {
+	public signal void three_pane_changed (bool is_three_pane);
 
 	[GtkChild] unowned Gtk.FontDialogButton font_button;
 	[GtkChild] unowned Gtk.FontDialogButton font_button_monospace;
@@ -25,7 +26,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 	[GtkChild] unowned Adw.ComboRow notebook_sort_order;
 	[GtkChild] unowned Adw.ComboRow line_spacing;
 
-	public PreferencesWindow (Application app) {
+	public PreferencesWindow (Application app, Gtk.Window window) {
 		Object ();
 
 		var settings = new Settings (Config.APP_ID);
@@ -107,6 +108,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 		enable_3_pane.active = settings.get_boolean ("enable-3-pane");
 		enable_3_pane.state_set.connect ((state) => {
 			settings.set_boolean ("enable-3-pane", state);
+			three_pane_changed (state);
 			return false;
 		});
 
@@ -163,7 +165,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 			chooser.set_modal (true);
 			chooser.set_title (Strings.PICK_NOTES_DIR);
 			chooser.set_initial_folder (File.new_for_path (notes_dir));
-			chooser.select_folder.begin (this, null, (obj, res) => {
+			chooser.select_folder.begin (window, null, (obj, res) => {
                 try {
                     var folder = chooser.select_folder.end(res);
 					if (folder.query_exists ()) {
@@ -190,7 +192,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 			chooser.set_modal (true);
 			chooser.set_title (Strings.PICK_TRASH_DIR);
 			chooser.set_initial_folder (File.new_for_path (trash_dir));
-			chooser.select_folder.begin (this, null, (obj, res) => {
+			chooser.select_folder.begin (window, null, (obj, res) => {
                 try {
                     var folder = chooser.select_folder.end(res);
 					if (folder.query_exists ()) {
@@ -229,6 +231,8 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
         notebook_sort_order.notify["selected-item"].connect (() => {
             settings.set_int ("notebook-sort-order", (int)notebook_sort_order.get_selected ());
         });
+
+ 		this.three_pane_changed.connect (((Folio.Window) window).on_3_pane_change);
 	}
 }
 
