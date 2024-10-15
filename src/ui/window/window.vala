@@ -29,7 +29,6 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	[GtkChild] unowned Adw.Breakpoint breakpoint;
 	[GtkChild] unowned Adw.NavigationSplitView leaflet;
-	[GtkChild] unowned Adw.NavigationPage sidebar;
 	[GtkChild] unowned Adw.NavigationPage edit_view_page;
 	[GtkChild] unowned NotebooksBar notebooks_bar;
 
