@@ -145,26 +145,31 @@ public class Folio.Application : Adw.Application {
 		about.application_name = "Folio";
 		about.developers = {"Greg Ross <greg@toolstack.com>", "Zagura"};
 		about.translator_credits = """
-Zagura <me@zagura.one>
-Jan Krings <liquidsky42@gmail.com>
-Jürgen Benvenuti <gastornis@posteo.org>
-Sergio Varela <sergiovg01@outlook.com>
-MohammadSaleh Kamyab <mskf1383@envs.net>
-Iikka Hauhio <fergusq@kaivos.org>
-Irénée Thirion <irenee.thirion@e.email>
-Fran Dieguez <frandieguez@gnome.org>
-Musiclover382 <musiclover382@protonmail.com>
-Albano Battistella <albano_battistella@hotmail.com>
-TokaiTeio
-Gregory <gregorydk@proton.me>
+Albano Battistella
+Amereyeu
+Fran Dieguez
+Filipe Motta
+Gregory
+Guoyi Zhang
+Iikka Hauhio
+Iramosu
+Irénée Thirion
+Jan Krings
+Juliano Dorneles dos Santos
+Jürgen Benvenuti
+Марко М. Костић
+Marcin Wolski
+Marko Kostic
+MohammadSaleh Kamyab
+Musiclover382
+Mykyta Opanasiuk
 Quentin PAGÈS
-Marcin Wolski <martinwolski04@gmail.com>
-Juliano Dorneles dos Santos <juliano.dorneles@gmail.com>
-Марко М. Костић <marko.m.kostic@gmail.com>
-Sabri Ünal <libreajans@gmail.com>
-Mykyta Opanasiuk <nikitaopanassiuk@outlook.com>
-Guoyi Zhang <guoyizhang@malacology.net>
 rene-coty
+Sabri Ünal
+Scrambled777
+Sergio Varela
+TokaiTeio
+Zagura
 """;
 		about.translator_credits = about.translator_credits.chomp ().chug ();
 		about.issue_url = "https://github.com/toolstack/Folio/issues";
@@ -173,15 +178,27 @@ rene-coty
 		about.website = "https://github.com/toolstack/Folio";
 		about.set_release_notes ("""
         <p>Changes:</p>
-<ul>
-	<li>Added a double click action on a note to rename the note</li>
-	<li>Replace multiple deprecated GTK/Adwaita widgets/functions (build warnings down from 58 to 18)</li>
-	<li>Switch to display names for files/folder system calls so cloud drive providers like Google work correctly</li>
-	<li>Fix incorrect template display when the trash was empty</li>
-	<li>Fix headerbar styling in edit window</li>
-	<li>Fix inverted sorting for notebooks</li>
-	<li>Other minor fixes</li>
-</ul>
+        <ul>
+			<li>Added support for opening URI as files</li>
+			<li>Added option to open non-text files in system handler (also avoids corrupting them)</li>
+			<li>Added custom text for notebook icons (including emojis)</li>
+			<li>Added requirement of periods after ordered lists to avoid false positives</li>
+			<li>Added option to set the URL detection level</li>
+			<li>Added option to set linespacing</li>
+			<li>Added natural sort order for notebooks/notes</li>
+			<li>Fixed styling of elements inside of links</li>
+			<li>Fixed Ctrl-Scroll getting stuck sometimes</li>
+			<li>Fixed stray formatting tags from URLs when opening them</li>
+			<li>Fixed Ctrl-Click behaviour when window loses focus</li>
+			<li>Fixed deleting notebooks when duplicates in the trash already exist</li>
+			<li>Fixed zero size trash items not displaying</li>
+			<li>Fixed crash when opening notes from the command line (or Gnome Search)</li>
+			<li>Removed selection of the text in the rename box automatically</li>
+			<li>Moved to Gnome 47 runtime (thanks @drpetrikov)</li>
+			<li>Moved to newer Gnome widgets (thanks @turlegarden)</li>
+			<li>Translation updates</li>
+			<li>Other minor fixes</li>
+        </ul>
 """
 		);
 		about.present (this.active_window);
