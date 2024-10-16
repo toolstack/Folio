@@ -1,3 +1,4 @@
+
 public class Folio.Strings {
 	public static string APP_NAME { get { return _("Folio"); } }
 	public static string TRASH { get { return _("Trash"); } }
