@@ -79,7 +79,7 @@
     <key name="url-detection-level" type="i">
       <default>0</default>
       <summary>URL detection level</summary>
-      <description>How agressive to look for URLs in markdown text</description>
+      <description>How aggressive to look for URLs in markdown text</description>
     </key>
     <key name="line-spacing" type="s">
       <default>'1.0'</default>
