@@ -164,13 +164,14 @@ public class Folio.EditView : Gtk.Box {
 		scrolled_window.get_vscrollbar ().margin_top = 48;
 
 		settings.bind ("toolbar-enabled", this, "toolbar-enabled", SettingsBindFlags.DEFAULT);
-		settings.bind ("note-font-monospace", markdown_view, "font-monospace", SettingsBindFlags.DEFAULT);
 		settings.bind ("url-detection-level", markdown_view, "url-detection-level", SettingsBindFlags.DEFAULT);
 		settings.changed["note-font"].connect(() => set_note_font (settings.get_string ("note-font"), settings.get_string ("line-spacing")));
 		settings.changed["line-spacing"].connect(() => set_note_font (settings.get_string ("note-font"), settings.get_string ("line-spacing")));
 		settings.changed["note-max-width"].connect(() => set_max_width (settings.get_int ("note-max-width")));
 
 		var window_state = new Settings (@"$(Config.APP_ID).WindowState");
+		var prefs_scale = window_state.get_int ("text-scale");
+		scale = prefs_scale;
 		window_state.bind ("text-scale", this, "scale", SettingsBindFlags.DEFAULT);
 
 		notify["toolbar-enabled"].connect (update_toolbar_visibility);
@@ -400,6 +401,7 @@ public class Folio.EditView : Gtk.Box {
 	public void set_font_scale () {
 		font_scale_provider.load_from_string (@"textview{font-size:$(scale / 100f)em;}");
 		markdown_view.get_style_context ().add_provider (font_scale_provider, -1);
+		markdown_view.scale = scale;
 	}
 
 	private void set_note_font (string font, string line_spacing) {
