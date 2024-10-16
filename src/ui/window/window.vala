@@ -82,7 +82,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 		{ "insert-code-span", on_insert_code_span },
 		{ "insert-horizontal-rule", on_insert_horizontal_rule },
 
-		{ "toggle-sidebar", toggle_sidebar_visibility },
+		{ "toggle-sidebar", toggle_sidebar_visibility_action },
 		{ "search-notes", toggle_search },
 		{ "save-note", save_current_note },
 		{ "toggle-fullscreen", toggle_fullscreen },
