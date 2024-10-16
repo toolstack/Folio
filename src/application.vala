@@ -170,6 +170,7 @@ Scrambled777
 Sergio Varela
 TokaiTeio
 Zagura
+Sunniva Løvstad
 """;
 		about.translator_credits = about.translator_credits.chomp ().chug ();
 		about.issue_url = "https://github.com/toolstack/Folio/issues";
