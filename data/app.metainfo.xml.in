@@ -37,6 +37,7 @@
 			<li>Fixed deleting notebooks when duplicates in the trash already exist</li>
 			<li>Fixed zero size trash items not displaying</li>
 			<li>Fixed crash when opening notes from the command line (or Gnome Search)</li>
+			<li>Fixed zooming of monospace fonts</li>
 			<li>Removed selection of the text in the rename box automatically</li>
 			<li>Moved to Gnome 47 runtime (thanks @drpetrikov)</li>
 			<li>Moved to newer Gnome widgets (thanks @turlegarden)</li>
