@@ -91,6 +91,7 @@ Flatpak build requires flatpak-building installed.
  - create the directory `AppImage` (if it already exists, ensure to remove all of its contents)
  - change into the build directory
  - set the `DESTDIR` environment variable as follows: `export DESTDIR=../AppImage`
+ - set the `NO_STRIP` environment variable as follows: `export NO_STRIP=true`
  - run build/install with `ninja install`
  - change to the `AppImage` directory
  - use linuxdeploy to build the AppImage: `linuxdeploy --appdir=. -d usr/local/share/applications/com.toolstack.Folio.desktop  -i usr/local/share/icons/hicolor/scalable/apps/com.toolstack.Folio.svg -e usr/local/bin/com.toolstack.Folio --output appimage`
@@ -131,7 +132,7 @@ Now do the releases on Flathub and Snapcraft.
  - get a clone of the flathub repo: `https://github.com/flathub/com.toolstack.Folio.git`
  - create a new branch labeled "YY.XX"
  - switch to the new branch
- - edit `com.toolstack.Folio.json` and update both the `tag` and `commit` lines to reflect the new release
+ - edit `com.toolstack.Folio.json` and update both the `tag` and `commit` lines to reflect the new release as well as any other changes since the last release (ie. runtime version, etc.)
  - commit the changes
  - go to github and create a new PR to merge the branch into master
  - commit the PR
@@ -147,6 +148,14 @@ Now do the releases on Flathub and Snapcraft.
 ### Snap release (new way)
  - after build, login to your snapcraft account `snapcraft login`
  - upload the build `snapcraft upload --release=stable folio_YY.##_amd64.snap`
+
+### Snap release (new, new way)
+ - login to your snapcraft [account](https://snapcraft.io)
+ - go to the folio builds page
+ - wait for builds to complete
+ - go to the releases page
+ - find the current release and select "Promote/close" (hover over the release line to see the button)
+ - select latest/stable
 
 ## Generate translation POT
  Folio uses POT/PO files for it's translations, the POT file defines all the strings that are used by Folio.
