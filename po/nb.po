@@ -1,22 +1,342 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the com.toolstack.Folio package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
-#, fuzzy
+# Translation of Folio in Norwegian (Bokmål)
+# This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"Project-Id-Version: com.toolstack.Folio\n"
-"Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-10-15 21:36-0400\n"
-"PO-Revision-Date: 2024-10-16 13:18+0200\n"
-"Last-Translator: Sunniva Løvstad <turtle@turtle.garden>\n"
-"Language-Team: \n"
-"Language: nb\n"
+"PO-Revision-Date: 2024-10-16 20:46:29+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.5\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/4.0.1\n"
+"Language: nb_NO\n"
+"Project-Id-Version: Folio\n"
+
+#: data/app.gschema.xml:81
+msgid "URL detection level"
+msgstr "URL-gjenkjennelsesnivå"
+
+#: data/app.gschema.xml:82
+msgid "How aggressive to look for URLs in markdown text"
+msgstr "Hvor aggressivt Folio skal lete etter URL-er i tekst"
+
+#: data/app.gschema.xml:86
+msgid "Line spacing"
+msgstr "Linjemellomrom"
+
+#: data/app.gschema.xml:87 src/ui/preferences/preferences.blp:74
+msgid "The line spacing for the note text"
+msgstr "Linjemellomrommet for notatteksten"
+
+#: src/ui/preferences/preferences.blp:31
+msgid "Markdown URL Detection"
+msgstr "Markdown URL-gjenkjenning"
+
+#: src/ui/preferences/preferences.blp:32
+msgid ""
+"Determines the level of detection of URLs in\n"
+"free form text is used:\n"
+" - Aggressive tries to find all URLs\n"
+" - Strict requires a protocol identifier (ie http://)\n"
+" - Disabled turns detection off."
+msgstr ""
+"Hvor mye Folio skal lete etter URL-er i\n"
+"tekst. Nivåene er slik:\n"
+"- Aggressiv prøver å finne alle URL-er\n"
+"- Streng leter etter et protokolkjennetegn (t.d. http://)\n"
+"- Deaktivert leter ikke etter URL-er."
+
+#: src/ui/preferences/preferences.blp:39
+msgid "Fonts"
+msgstr "Skrifttyper"
+
+#: src/ui/preferences/preferences.blp:73
+msgid "Line Spacing"
+msgstr "Linjemellomrom"
+
+#: src/ui/strings.vala:24
+msgid "Note names cannot contain a “/”"
+msgstr "Notatnavn kan ikke inneholde en skråstrek («/»)"
+
+#: src/ui/strings.vala:25
+msgid "Note names cannot be blank"
+msgstr "Notatnavn kan ikke være tomme"
+
+#: src/ui/strings.vala:33
+msgid "Notebook names cannot contain a “/”"
+msgstr "Notisboknavn kan ikke inneholde en skråstrek («/»)"
+
+#: src/ui/strings.vala:34
+msgid "Notebook names cannot be blank"
+msgstr "Notisboknavn kan ikke være tomme"
+
+#: src/ui/strings.vala:66
+msgid "Natural - Ascending"
+msgstr "Naturlig - Stigende"
+
+#: src/ui/strings.vala:67
+msgid "Natural - Descending"
+msgstr "Naturlig - Fallende"
+
+#: src/ui/strings.vala:68
+msgid "Unable to launch external application for file %s."
+msgstr "Kunne ikke lansere ekstern applikasjon for filen «%s»."
+
+#: src/ui/strings.vala:69
+msgid "Aggressive"
+msgstr "Aggressiv"
+
+#: src/ui/strings.vala:70
+msgid "Strict"
+msgstr "Streng"
+
+#: src/ui/strings.vala:71
+msgid "Disabled"
+msgstr "Deaktivert"
+
+#: src/ui/strings.vala:72
+msgid "“%s” moved to trash"
+msgstr "«%s» flyttet til papirskurven"
+
+#: src/ui/strings.vala:73
+msgid "“%s” restored"
+msgstr "«%s» gjenopprettet"
+
+#: src/ui/window/app_menu/app_menu.blp:43
+msgid "_About Folio"
+msgstr "_Om Folio"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:11
+msgid "Custom"
+msgstr "Tilpasset"
+
+#: src/ui/window/window.blp:157
+msgid "Open file in external application"
+msgstr "Åpne fil i ekstern applikasjon"
+
+#: src/ui/window/window.blp:165
+msgid "Open file"
+msgstr "Åpne fil"
+
+#: data/app.gschema.xml:76
+msgid "Notebook sort order"
+msgstr "Sorteringsrekkefølge for notisbøker"
+
+#: data/app.gschema.xml:77
+msgid "The sort order of the notebook list"
+msgstr "Sorteringsrekkefølge for notisboklisten"
+
+#: src/ui/preferences/preferences.blp:167
+msgid "Sort Order For Notebooks"
+msgstr "Sorteringsrekkefølge for notisbøker"
+
+#: data/app.gschema.xml:71
+msgid "Note sort order"
+msgstr "Sorteringsrekkefølge for notater"
+
+#: data/app.gschema.xml:72
+msgid "The sort order of the note list"
+msgstr "Sorteringsrekkefølge for notatlisten"
+
+#: src/ui/preferences/preferences.blp:172
+msgid "Sort Order For Notes"
+msgstr "Sorteringsrekkefølge for notater"
+
+#: src/ui/strings.vala:62
+msgid "Modified Time - Ascending"
+msgstr "Sist endret - Stigende"
+
+#: src/ui/strings.vala:63
+msgid "Modified Time - Descending"
+msgstr "Sist endret - Fallende"
+
+#: src/ui/strings.vala:64
+msgid "Alphabetical - Ascending"
+msgstr "Alfabetisk - Stigende"
+
+#: src/ui/strings.vala:65
+msgid "Alphabetical - Descending"
+msgstr "Alfabetisk - Fallende"
+
+#: src/ui/popup/shortcut_window.blp:114
+msgid "Display"
+msgstr "Visning"
+
+#: src/ui/popup/shortcut_window.blp:117
+msgid "Full Screen"
+msgstr "Fullskjermmodus"
+
+#: src/ui/popup/shortcut_window.blp:122
+msgid "Zoom In"
+msgstr "Forstørr"
+
+#: src/ui/popup/shortcut_window.blp:127
+msgid "Zoom Out"
+msgstr "Forminsk"
+
+#: src/ui/strings.vala:52
+msgid "Pick primary font for notes"
+msgstr "Velg primær skrifttype for notater"
+
+#: src/ui/strings.vala:53
+msgid "Pick monospace font for code"
+msgstr "Velg skrifttype med fast bredde for kode"
+
+#: src/ui/strings.vala:54
+msgid "File Changed On Disk"
+msgstr "Fil endret på disk"
+
+#: src/ui/strings.vala:55
+msgid ""
+"The file has changed on disk since it was last saved/loaded by Folio.\n"
+"\n"
+"You may do one of the following:\n"
+"\n"
+" • Reload the file (discarding any changes you have made in Folio)\n"
+" • Overwrite the file (discarding any changes made outside of Folio)\n"
+" • Cancel the operation and manually resolve the issue\n"
+"\n"
+"Note: Canceling the save if you have already moved to a new note/notebook will discard your changes."
+msgstr ""
+"Filen har blitt endret på disken siden den var sist lagret/lastet inn av Folio.\n"
+"\n"
+"Du kan enten laste inn filen på nytt (og forkaste endringene dine i Folio), skrive over filen (og forkaste endringene utført utenfor Folio), eller avbryte operasjonen og fikse feilet for hånd."
+
+#: src/ui/strings.vala:56
+msgid "Reload"
+msgstr "Last inn på nytt"
+
+#: src/ui/strings.vala:57
+msgid "Overwrite"
+msgstr "Skriv over"
+
+#: src/ui/strings.vala:59
+msgid ""
+"The file has changed on disk by another application.\n"
+"\n"
+"You may do one of the following:\n"
+"\n"
+" • Reload the file (discarding any changes you have made in Folio)\n"
+" • Overwrite the file (discarding any changes made outside of Folio)"
+msgstr ""
+"Filen har blitt endret på disken av en annen app.\n"
+"\n"
+"Du kan enten laste inn filen på nytt (og forkaste endringene dine i Folio) eller skrive over filen (og forkaste endringene utført utenfor Folio)."
+
+#: src/ui/strings.vala:61
+msgid "Note %i"
+msgstr "Notat %i"
+
+#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:235
+msgid "Trash Storage Location"
+msgstr "Lagringssted for papirkurven"
+
+#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:236
+msgid "Where the trash folder is located (requires app restart)"
+msgstr "Der papirkurvmappen ligger (endring krever omstart)"
+
+#: src/ui/strings.vala:46
+msgid "Pick where the trash can will be stored"
+msgstr "Velg hvor papirkurven skal lagres"
+
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:150
+msgid "Use Fixed Width For Notes"
+msgstr "Bruk fast bredde for notat"
+
+#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:151
+msgid "Use a fixed width for the text area of a note"
+msgstr "Bruk fast bredde for tekstområdet av et notat"
+
+#: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:140
+msgid "Expands the notebook list to include the notebook name"
+msgstr "Utvider notisboklisten for å inkludere notisboknavnene"
+
+#: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:87
+msgid "Show line numbers"
+msgstr "Vis linjenummer"
+
+#: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:88
+msgid "Displays line numbers at the left of the note"
+msgstr "Viser linjenummer til venstre på notatet"
+
+#: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:98
+msgid "Show all notes"
+msgstr "Vis alle notater"
+
+#: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:99
+msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
+msgstr "Viser «Alle notater»-notisboken øverst på notisboklisten"
+
+#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:185
+msgid "Enable autosave"
+msgstr "Slå på automatisk lagring"
+
+#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:186
+msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
+msgstr "Lagrer det nåværende notat hver 30. sekund om innholdet har blitt endret (endring krever omstart)"
+
+#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:196
+msgid "Don't hide the Trash folder"
+msgstr "Ikke skjul papirkurvmappen"
+
+#: data/app.gschema.xml:67
+msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
+msgstr "Papirkurvmappen er skjult som standard, denne innstillingen gjør den synlig"
+
+#: data/app.metainfo.xml.in:419
+msgid "Main Folio window in light mode"
+msgstr "Hovedvinduet til Folio i lys drakt"
+
+#: data/app.metainfo.xml.in:423
+msgid "Main Folio window in dark mode"
+msgstr "Hovedvinduet til Folio på mørk drakt"
+
+#: data/app.metainfo.xml.in:427
+msgid "Folio on small/mobile screens"
+msgstr "Folio på en liten skjerm"
+
+#: data/app.metainfo.xml.in:431
+msgid "Folio preferences screen"
+msgstr "Folios brukervalgdialogboks"
+
+#: data/app.metainfo.xml.in:435
+msgid "Folio in three pane mode"
+msgstr "Folio i trerutersmodus"
+
+#: src/ui/preferences/preferences.blp:81
+msgid "Tools"
+msgstr "Verktøy"
+
+#: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:110
+msgid "Displays the formatting toolbar at the bottom of the note"
+msgstr "Viser formateringsverktøylinjen på bunnsiden av notatet"
+
+#: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:121
+msgid "Adds a button to the markdown reference sheet on the right of the formatting toolbar"
+msgstr "Legger en knapp til på formateringsverktøylinjen som viser et Markdown-referanseark"
+
+#: src/ui/preferences/preferences.blp:133
+msgid "Layout"
+msgstr "Oppsett"
+
+#: src/ui/preferences/preferences.blp:161
+msgid "Fixed Width To Use For Notes"
+msgstr "Bredden brukt for notater"
+
+#: src/ui/preferences/preferences.blp:162
+msgid "Sets the fixed width size of a note in px"
+msgstr "Stiller inn den faste bredden brukt (i piksler)"
+
+#: src/ui/preferences/preferences.blp:179
+msgid "Files"
+msgstr "Filer"
+
+#: src/ui/preferences/preferences.blp:197
+msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
+msgstr "Papirkurvmappen er skjult som standard, denne innstillingen gjør den synlig (endring krever omstart)"
+
+#: src/ui/strings.vala:51
+msgid "Unable to recognize URI"
+msgstr "Kunne ikke gjenkjenne URI"
 
 #: data/app.desktop.in:9 src/ui/strings.vala:3
 msgid "Folio"
@@ -70,138 +390,9 @@ msgstr "Skrifttype med fast bredde"
 msgid "The font code will be displayed in"
 msgstr "Skrifttypen kode vises på"
 
-#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:150
-msgid "Use Fixed Width For Notes"
-msgstr "Bruk fast bredde for notat"
-
-#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:151
-msgid "Use a fixed width for the text area of a note"
-msgstr "Bruk fast bredde for tekstområdet av et notat"
-
 #: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:18
 msgid "OLED Mode"
 msgstr "OLED-modus"
-
-#: data/app.gschema.xml:22 src/ui/preferences/preferences.blp:19
-msgid "Makes the dark theme pitch black"
-msgstr "Gjør den mørke drakten bekmørk"
-
-#: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:109
-msgid "Enable Toolbar"
-msgstr "Slå på verktøyinje"
-
-#: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:110
-msgid "Displays the formatting toolbar at the bottom of the note"
-msgstr "Viser formateringsverktøylinjen på bunnsiden av notatet"
-
-#: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:120
-msgid "Enable Cheatsheet"
-msgstr "Slå på referanseark"
-
-#: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:121
-msgid ""
-"Adds a button to the markdown reference sheet on the right of the formatting "
-"toolbar"
-msgstr ""
-"Legger en knapp til på formateringsverktøylinjen som viser et Markdown-"
-"referanseark"
-
-#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:139
-msgid "3-Pane Layout"
-msgstr "3-rutersoppsett"
-
-#: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:140
-msgid "Expands the notebook list to include the notebook name"
-msgstr "Utvider notisboklisten for å inkludere notisboknavnene"
-
-#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:207
-msgid "Notes Storage Location"
-msgstr "Lagringssted for notater"
-
-#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:208
-msgid "Where the notebooks are stored (requires app restart)"
-msgstr "Der notisbøkene blir lagret (endring krever omstart)"
-
-#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:235
-msgid "Trash Storage Location"
-msgstr "Lagringssted for papirkurven"
-
-#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:236
-msgid "Where the trash folder is located (requires app restart)"
-msgstr "Der papirkurvmappen ligger (endring krever omstart)"
-
-#: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:87
-msgid "Show line numbers"
-msgstr "Vis linjenummer"
-
-#: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:88
-msgid "Displays line numbers at the left of the note"
-msgstr "Viser linjenummer til venstre på notatet"
-
-#: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:98
-msgid "Show all notes"
-msgstr "Vis alle notater"
-
-#: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:99
-msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
-msgstr "Viser «Alle notater»-notisboken øverst på notisboklisten"
-
-#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:185
-msgid "Enable autosave"
-msgstr "Slå på automatisk lagring"
-
-#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:186
-msgid ""
-"Automatically saves the current note every 30 seconds if the contents have "
-"changed (requires app restart)"
-msgstr ""
-"Lagrer det nåværende notat hver 30. sekund om innholdet har blitt endret "
-"(endring krever omstart)"
-
-#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:196
-msgid "Don't hide the Trash folder"
-msgstr "Ikke skjul papirkurvmappen"
-
-#: data/app.gschema.xml:67
-msgid ""
-"The trash folder is set as a hidden folder by default, this option makes it "
-"visible"
-msgstr ""
-"Papirkurvmappen er skjult som standard, denne innstillingen gjør den synlig"
-
-#: data/app.gschema.xml:71
-msgid "Note sort order"
-msgstr "Sorteringsrekkefølge for notater"
-
-#: data/app.gschema.xml:72
-msgid "The sort order of the note list"
-msgstr "Sorteringsrekkefølge for notatlisten"
-
-#: data/app.gschema.xml:76
-msgid "Notebook sort order"
-msgstr "Sorteringsrekkefølge for notisbøker"
-
-#: data/app.gschema.xml:77
-msgid "The sort order of the notebook list"
-msgstr "Sorteringsrekkefølge for notisboklisten"
-
-#: data/app.gschema.xml:81
-msgid "URL detection level"
-msgstr "URL-gjenkjennelsesnivå"
-
-#: data/app.gschema.xml:82
-#, fuzzy
-#| msgid "How agressive to look for URLs in markdown text"
-msgid "How aggressive to look for URLs in markdown text"
-msgstr "Hvor aggressivt Folio skal lete etter URL-er i tekst"
-
-#: data/app.gschema.xml:86
-msgid "Line spacing"
-msgstr "Linjemellomrom"
-
-#: data/app.gschema.xml:87 src/ui/preferences/preferences.blp:74
-msgid "The line spacing for the note text"
-msgstr "Linjemellomrommet for notatteksten"
 
 #: data/app.metainfo.xml.in:5
 msgid "Take notes in Markdown"
@@ -234,26 +425,6 @@ msgstr "Appdrakt basert på notisbokfarge"
 #: data/app.metainfo.xml.in:14
 msgid "Trash can"
 msgstr "Papirkurv"
-
-#: data/app.metainfo.xml.in:419
-msgid "Main Folio window in light mode"
-msgstr "Hovedvinduet til Folio i lys drakt"
-
-#: data/app.metainfo.xml.in:423
-msgid "Main Folio window in dark mode"
-msgstr "Hovedvinduet til Folio på mørk drakt"
-
-#: data/app.metainfo.xml.in:427
-msgid "Folio on small/mobile screens"
-msgstr "Folio på en liten skjerm"
-
-#: data/app.metainfo.xml.in:431
-msgid "Folio preferences screen"
-msgstr "Folios brukervalgdialogboks"
-
-#: data/app.metainfo.xml.in:435
-msgid "Folio in three pane mode"
-msgstr "Folio i trerutersmodus"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:6
 #: src/ui/widgets/markdown/heading_popover.blp:48
@@ -396,83 +567,29 @@ msgstr "Vis/skjul sidefeltet"
 msgid "Search Notes"
 msgstr "Søk gjennom notater"
 
-#: src/ui/popup/shortcut_window.blp:114
-msgid "Display"
-msgstr "Visning"
+#: data/app.gschema.xml:22 src/ui/preferences/preferences.blp:19
+msgid "Makes the dark theme pitch black"
+msgstr "Gjør den mørke drakten bekmørk"
 
-#: src/ui/popup/shortcut_window.blp:117
-msgid "Full Screen"
-msgstr "Fullskjermmodus"
+#: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:109
+msgid "Enable Toolbar"
+msgstr "Slå på verktøyinje"
 
-#: src/ui/popup/shortcut_window.blp:122
-msgid "Zoom In"
-msgstr "Forstørr"
+#: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:120
+msgid "Enable Cheatsheet"
+msgstr "Slå på referanseark"
 
-#: src/ui/popup/shortcut_window.blp:127
-msgid "Zoom Out"
-msgstr "Forminsk"
+#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:139
+msgid "3-Pane Layout"
+msgstr "3-rutersoppsett"
 
-#: src/ui/preferences/preferences.blp:31
-msgid "Markdown URL Detection"
-msgstr "Markdown URL-gjenkjenning"
+#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:207
+msgid "Notes Storage Location"
+msgstr "Lagringssted for notater"
 
-#: src/ui/preferences/preferences.blp:32
-msgid ""
-"Determines the level of detection of URLs in\n"
-"free form text is used:\n"
-" - Aggressive tries to find all URLs\n"
-" - Strict requires a protocol identifier (ie http://)\n"
-" - Disabled turns detection off."
-msgstr ""
-"Hvor mye Folio skal lete etter URL-er i\n"
-"tekst. Nivåene er slik:\n"
-"- Aggressiv prøver å finne alle URL-er\n"
-"- Streng leter etter et protokolkjennetegn (t.d. http://)\n"
-"- Deaktivert leter ikke etter URL-er."
-
-#: src/ui/preferences/preferences.blp:39
-msgid "Fonts"
-msgstr "Skrifttyper"
-
-#: src/ui/preferences/preferences.blp:73
-msgid "Line Spacing"
-msgstr "Linjemellomrom"
-
-#: src/ui/preferences/preferences.blp:81
-msgid "Tools"
-msgstr "Verktøy"
-
-#: src/ui/preferences/preferences.blp:133
-msgid "Layout"
-msgstr "Oppsett"
-
-#: src/ui/preferences/preferences.blp:161
-msgid "Fixed Width To Use For Notes"
-msgstr "Bredden brukt for notater"
-
-#: src/ui/preferences/preferences.blp:162
-msgid "Sets the fixed width size of a note in px"
-msgstr "Stiller inn den faste bredden brukt (i piksler)"
-
-#: src/ui/preferences/preferences.blp:167
-msgid "Sort Order For Notebooks"
-msgstr "Sorteringsrekkefølge for notisbøker"
-
-#: src/ui/preferences/preferences.blp:172
-msgid "Sort Order For Notes"
-msgstr "Sorteringsrekkefølge for notater"
-
-#: src/ui/preferences/preferences.blp:179
-msgid "Files"
-msgstr "Filer"
-
-#: src/ui/preferences/preferences.blp:197
-msgid ""
-"The trash folder is set as a hidden folder by default, this option makes it "
-"visible (requires app restart)"
-msgstr ""
-"Papirkurvmappen er skjult som standard, denne innstillingen gjør den synlig "
-"(endring krever omstart)"
+#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:208
+msgid "Where the notebooks are stored (requires app restart)"
+msgstr "Der notisbøkene blir lagret (endring krever omstart)"
 
 #: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:129
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:171
@@ -480,7 +597,6 @@ msgid "Trash"
 msgstr "Papirkurv"
 
 #: src/ui/strings.vala:5
-#, c-format
 msgid "%d Notes"
 msgstr "%d notater"
 
@@ -525,12 +641,10 @@ msgid "Move"
 msgstr "Flytt"
 
 #: src/ui/strings.vala:18
-#, c-format
 msgid "Note “%s” already exists in notebook “%s”"
 msgstr "Notat «%s» finns allerede i notisbok «%s»"
 
 #: src/ui/strings.vala:19
-#, c-format
 msgid "Are you sure you want to delete the note “%s”?"
 msgstr "Er du sikker på at du vil slette notatet «%s»?"
 
@@ -539,7 +653,6 @@ msgid "Delete Note"
 msgstr "Slett notat"
 
 #: src/ui/strings.vala:21
-#, c-format
 msgid "Are you sure you want to delete the notebook “%s”?"
 msgstr "Er du sikker på at du vil slette notisboken «%s»?"
 
@@ -547,16 +660,7 @@ msgstr "Er du sikker på at du vil slette notisboken «%s»?"
 msgid "Delete Notebook"
 msgstr "Slett notisbok"
 
-#: src/ui/strings.vala:24
-msgid "Note names cannot contain a “/”"
-msgstr "Notatnavn kan ikke inneholde en skråstrek («/»)"
-
-#: src/ui/strings.vala:25
-msgid "Note names cannot be blank"
-msgstr "Notatnavn kan ikke være tomme"
-
 #: src/ui/strings.vala:26
-#, c-format
 msgid "Note “%s” already exists"
 msgstr "Notat «%s» finnes allerede"
 
@@ -577,7 +681,6 @@ msgid "Could not restore note"
 msgstr "Kunne ikke gjenopprette notat"
 
 #: src/ui/strings.vala:31
-#, c-format
 msgid "Saved “%s” to “%s”"
 msgstr "Lagret «%s» til «%s»"
 
@@ -585,16 +688,7 @@ msgstr "Lagret «%s» til «%s»"
 msgid "Unknown error"
 msgstr "Ukjent feil"
 
-#: src/ui/strings.vala:33
-msgid "Notebook names cannot contain a “/”"
-msgstr "Notisboknavn kan ikke inneholde en skråstrek («/»)"
-
-#: src/ui/strings.vala:34
-msgid "Notebook names cannot be blank"
-msgstr "Notisboknavn kan ikke være tomme"
-
 #: src/ui/strings.vala:35
-#, c-format
 msgid "Notebook “%s” already exists"
 msgstr "Notisbok «%s» finnes allerede"
 
@@ -630,10 +724,6 @@ msgstr "Bruk"
 msgid "Pick where the notebooks will be stored"
 msgstr "Velg hvor notisbøkene skal lagres"
 
-#: src/ui/strings.vala:46
-msgid "Pick where the trash can will be stored"
-msgstr "Velg hvor papirkurven skal lagres"
-
 #: src/ui/strings.vala:47 src/ui/window/notebooks_bar/notebooks_bar.blp:59
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:101
 msgid "All Notes"
@@ -646,120 +736,6 @@ msgstr "Sist endret"
 #: src/ui/strings.vala:50
 msgid "Extension"
 msgstr "Tillegg"
-
-#: src/ui/strings.vala:51
-msgid "Unable to recognize URI"
-msgstr "Kunne ikke gjenkjenne URI"
-
-#: src/ui/strings.vala:52
-msgid "Pick primary font for notes"
-msgstr "Velg primær skrifttype for notater"
-
-#: src/ui/strings.vala:53
-msgid "Pick monospace font for code"
-msgstr "Velg skrifttype med fast bredde for kode"
-
-#: src/ui/strings.vala:54
-msgid "File Changed On Disk"
-msgstr "Fil endret på disk"
-
-#: src/ui/strings.vala:55
-msgid ""
-"The file has changed on disk since it was last saved/loaded by Folio.\n"
-"\n"
-"You may do one of the following:\n"
-"\n"
-" • Reload the file (discarding any changes you have made in Folio)\n"
-" • Overwrite the file (discarding any changes made outside of Folio)\n"
-" • Cancel the operation and manually resolve the issue\n"
-"\n"
-"Note: Canceling the save if you have already moved to a new note/notebook "
-"will discard your changes."
-msgstr ""
-"Filen har blitt endret på disken siden den var sist lagret/lastet inn av "
-"Folio.\n"
-"\n"
-"Du kan enten laste inn filen på nytt (og forkaste endringene dine i Folio), "
-"skrive over filen (og forkaste endringene utført utenfor Folio), eller "
-"avbryte operasjonen og fikse feilet for hånd."
-
-#: src/ui/strings.vala:56
-msgid "Reload"
-msgstr "Last inn på nytt"
-
-#: src/ui/strings.vala:57
-msgid "Overwrite"
-msgstr "Skriv over"
-
-#: src/ui/strings.vala:59
-msgid ""
-"The file has changed on disk by another application.\n"
-"\n"
-"You may do one of the following:\n"
-"\n"
-" • Reload the file (discarding any changes you have made in Folio)\n"
-" • Overwrite the file (discarding any changes made outside of Folio)"
-msgstr ""
-"Filen har blitt endret på disken av en annen app.\n"
-"\n"
-"Du kan enten laste inn filen på nytt (og forkaste endringene dine i Folio) "
-"eller skrive over filen (og forkaste endringene utført utenfor Folio)."
-
-#: src/ui/strings.vala:61
-#, c-format
-msgid "Note %i"
-msgstr "Notat %i"
-
-#: src/ui/strings.vala:62
-msgid "Modified Time - Ascending"
-msgstr "Sist endret - Stigende"
-
-#: src/ui/strings.vala:63
-msgid "Modified Time - Descending"
-msgstr "Sist endret - Fallende"
-
-#: src/ui/strings.vala:64
-msgid "Alphabetical - Ascending"
-msgstr "Alfabetisk - Stigende"
-
-#: src/ui/strings.vala:65
-msgid "Alphabetical - Descending"
-msgstr "Alfabetisk - Fallende"
-
-#: src/ui/strings.vala:66
-msgid "Natural - Ascending"
-msgstr "Naturlig - Stigende"
-
-#: src/ui/strings.vala:67
-msgid "Natural - Descending"
-msgstr "Naturlig - Fallende"
-
-#: src/ui/strings.vala:68
-#, c-format
-msgid "Unable to launch external application for file %s."
-msgstr "Kunne ikke lansere ekstern applikasjon for filen «%s»."
-
-#: src/ui/strings.vala:69
-msgid "Aggressive"
-msgstr "Aggressiv"
-
-#: src/ui/strings.vala:70
-msgid "Strict"
-msgstr "Streng"
-
-#: src/ui/strings.vala:71
-msgid "Disabled"
-msgstr "Deaktivert"
-
-#: src/ui/strings.vala:72
-#, c-format
-msgid "“%s” moved to trash"
-msgstr "«%s» flyttet til papirskurven"
-
-#: src/ui/strings.vala:73
-#, c-format
-msgid "“%s” restored"
-msgstr "«%s» gjenopprettet"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
 msgid "Follow system style"
@@ -789,9 +765,13 @@ msgstr "_Brukervalg"
 msgid "_Keyboard Shortcuts"
 msgstr "_Tastatursnarveier"
 
-#: src/ui/window/app_menu/app_menu.blp:43
-msgid "_About Folio"
-msgstr "_Om Folio"
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:58
+msgid "Notebook Name"
+msgstr "Notisboknavn"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:70
+msgid "Duplicate notebook names are not allowed!"
+msgstr "Duplikatnavn tillates ikke!"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:6
 msgid "First Characters"
@@ -813,21 +793,9 @@ msgstr "Initialer: slange_notasjon"
 msgid "Icon"
 msgstr "Ikon"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:11
-msgid "Custom"
-msgstr "Tilpasset"
-
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:16
 msgid "Notebook Color"
 msgstr "Notisbokfarge"
-
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:58
-msgid "Notebook Name"
-msgstr "Notisboknavn"
-
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:70
-msgid "Duplicate notebook names are not allowed!"
-msgstr "Duplikatnavn tillates ikke!"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:126
 msgid "Create Notebook"
@@ -876,14 +844,6 @@ msgstr "Åpne inneholdende mappe"
 #: src/ui/window/window.blp:128
 msgid "Get started writing"
 msgstr "Kom i gang med å skrive"
-
-#: src/ui/window/window.blp:157
-msgid "Open file in external application"
-msgstr "Åpne fil i ekstern applikasjon"
-
-#: src/ui/window/window.blp:165
-msgid "Open file"
-msgstr "Åpne fil"
 
 #: src/ui/window/window.blp:186
 msgid "Create a notebook"

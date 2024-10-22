@@ -7,9 +7,110 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/4.0.0\n"
+"X-Generator: GlotPress/4.0.1\n"
 "Language: cat\n"
 "Project-Id-Version: Folio\n"
+
+#: data/app.gschema.xml:81
+msgid "URL detection level"
+msgstr ""
+
+#: data/app.gschema.xml:82
+msgid "How aggressive to look for URLs in markdown text"
+msgstr ""
+
+#: data/app.gschema.xml:86
+msgid "Line spacing"
+msgstr ""
+
+#: data/app.gschema.xml:87 src/ui/preferences/preferences.blp:74
+msgid "The line spacing for the note text"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:31
+msgid "Markdown URL Detection"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:32
+msgid ""
+"Determines the level of detection of URLs in\n"
+"free form text is used:\n"
+" - Aggressive tries to find all URLs\n"
+" - Strict requires a protocol identifier (ie http://)\n"
+" - Disabled turns detection off."
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:39
+msgid "Fonts"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:73
+msgid "Line Spacing"
+msgstr ""
+
+#: src/ui/strings.vala:24
+msgid "Note names cannot contain a “/”"
+msgstr ""
+
+#: src/ui/strings.vala:25
+msgid "Note names cannot be blank"
+msgstr ""
+
+#: src/ui/strings.vala:33
+msgid "Notebook names cannot contain a “/”"
+msgstr ""
+
+#: src/ui/strings.vala:34
+msgid "Notebook names cannot be blank"
+msgstr ""
+
+#: src/ui/strings.vala:66
+msgid "Natural - Ascending"
+msgstr ""
+
+#: src/ui/strings.vala:67
+msgid "Natural - Descending"
+msgstr ""
+
+#: src/ui/strings.vala:68
+msgid "Unable to launch external application for file %s."
+msgstr ""
+
+#: src/ui/strings.vala:69
+msgid "Aggressive"
+msgstr ""
+
+#: src/ui/strings.vala:70
+msgid "Strict"
+msgstr ""
+
+#: src/ui/strings.vala:71
+msgid "Disabled"
+msgstr ""
+
+#: src/ui/strings.vala:72
+msgid "“%s” moved to trash"
+msgstr ""
+
+#: src/ui/strings.vala:73
+msgid "“%s” restored"
+msgstr ""
+
+#: src/ui/window/app_menu/app_menu.blp:43
+msgid "_About Folio"
+msgstr ""
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:11
+msgid "Custom"
+msgstr ""
+
+#: src/ui/window/window.blp:157
+msgid "Open file in external application"
+msgstr ""
+
+#: src/ui/window/window.blp:165
+msgid "Open file"
+msgstr ""
 
 #: data/app.gschema.xml:76
 msgid "Notebook sort order"
@@ -19,7 +120,7 @@ msgstr "Ordre de classificació del quadern"
 msgid "The sort order of the notebook list"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:145
+#: src/ui/preferences/preferences.blp:167
 msgid "Sort Order For Notebooks"
 msgstr ""
 
@@ -31,7 +132,7 @@ msgstr ""
 msgid "The sort order of the note list"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:150
+#: src/ui/preferences/preferences.blp:172
 msgid "Sort Order For Notes"
 msgstr ""
 
@@ -114,11 +215,11 @@ msgstr ""
 msgid "Note %i"
 msgstr ""
 
-#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:213
+#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:235
 msgid "Trash Storage Location"
 msgstr ""
 
-#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:214
+#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:236
 msgid "Where the trash folder is located (requires app restart)"
 msgstr ""
 
@@ -126,43 +227,43 @@ msgstr ""
 msgid "Pick where the trash can will be stored"
 msgstr ""
 
-#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:128
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:150
 msgid "Use Fixed Width For Notes"
 msgstr ""
 
-#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:129
+#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:151
 msgid "Use a fixed width for the text area of a note"
 msgstr ""
 
-#: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:118
+#: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:140
 msgid "Expands the notebook list to include the notebook name"
 msgstr ""
 
-#: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:65
+#: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:87
 msgid "Show line numbers"
 msgstr ""
 
-#: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:66
+#: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:88
 msgid "Displays line numbers at the left of the note"
 msgstr ""
 
-#: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:76
+#: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:98
 msgid "Show all notes"
 msgstr ""
 
-#: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:77
+#: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:99
 msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
 msgstr ""
 
-#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:163
+#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:185
 msgid "Enable autosave"
 msgstr ""
 
-#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:164
+#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:186
 msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
 msgstr ""
 
-#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:174
+#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:196
 msgid "Don't hide the Trash folder"
 msgstr ""
 
@@ -170,55 +271,55 @@ msgstr ""
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
 msgstr ""
 
-#: data/app.metainfo.xml.in:367
+#: data/app.metainfo.xml.in:419
 msgid "Main Folio window in light mode"
 msgstr ""
 
-#: data/app.metainfo.xml.in:371
+#: data/app.metainfo.xml.in:423
 msgid "Main Folio window in dark mode"
 msgstr ""
 
-#: data/app.metainfo.xml.in:375
+#: data/app.metainfo.xml.in:427
 msgid "Folio on small/mobile screens"
 msgstr ""
 
-#: data/app.metainfo.xml.in:379
+#: data/app.metainfo.xml.in:431
 msgid "Folio preferences screen"
 msgstr ""
 
-#: data/app.metainfo.xml.in:383
+#: data/app.metainfo.xml.in:435
 msgid "Folio in three pane mode"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:59
+#: src/ui/preferences/preferences.blp:81
 msgid "Tools"
 msgstr ""
 
-#: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:88
+#: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:110
 msgid "Displays the formatting toolbar at the bottom of the note"
 msgstr ""
 
-#: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:99
+#: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:121
 msgid "Adds a button to the markdown reference sheet on the right of the formatting toolbar"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:111
+#: src/ui/preferences/preferences.blp:133
 msgid "Layout"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:139
+#: src/ui/preferences/preferences.blp:161
 msgid "Fixed Width To Use For Notes"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:140
+#: src/ui/preferences/preferences.blp:162
 msgid "Sets the fixed width size of a note in px"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:157
+#: src/ui/preferences/preferences.blp:179
 msgid "Files"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:175
+#: src/ui/preferences/preferences.blp:197
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
 msgstr ""
 
@@ -243,18 +344,18 @@ msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
 msgstr "Lquadern;Nota;Notes;Text;Markdown;Notepad;Escriu;Cole;Col·legi;Post-it;Sticky;"
 
 #: data/app.desktop.in:22 src/ui/popup/shortcut_window.blp:17
-#: src/ui/strings.vala:8 src/ui/window/window.blp:47
-#: src/ui/window/window.blp:124
+#: src/ui/strings.vala:8 src/ui/window/window.blp:57
+#: src/ui/window/window.blp:136
 msgid "New Note"
 msgstr "Nota Nova"
 
 #: data/app.desktop.in:26 src/ui/popup/shortcut_window.blp:37
-#: src/ui/strings.vala:14 src/ui/window/window.blp:149
+#: src/ui/strings.vala:14 src/ui/window/window.blp:194
 msgid "New Notebook"
 msgstr "Quadern Nou"
 
-#: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:90
-#: src/ui/strings.vala:39 src/ui/window/window.blp:245
+#: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:92
+#: src/ui/strings.vala:39 src/ui/window/window.blp:296
 msgid "Markdown Cheatsheet"
 msgstr "Chuleta de Markdown"
 
@@ -262,23 +363,23 @@ msgstr "Chuleta de Markdown"
 msgid "Preferences"
 msgstr "Preferencies"
 
-#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:18
+#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:45
 msgid "Note Font"
 msgstr "Font de Notas"
 
-#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:19
+#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:46
 msgid "The font notes will be displayed in"
 msgstr "La font en la qual es mostraran les notes"
 
-#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:31
+#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:58
 msgid "Monospace Font"
 msgstr "Font de Codi"
 
-#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:32
+#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:59
 msgid "The font code will be displayed in"
 msgstr "La font en la qual es mostrarà el codi"
 
-#: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:46
+#: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:18
 msgid "OLED Mode"
 msgstr "Mode OLED"
 
@@ -314,103 +415,96 @@ msgstr ""
 msgid "Trash can"
 msgstr "Paperera"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:23
-#: src/ui/edit_view/toolbar/toolbar.blp:131
+#: src/ui/edit_view/toolbar/toolbar.blp:6
 #: src/ui/widgets/markdown/heading_popover.blp:48
 msgid "Plain Text"
 msgstr "Text Simple"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:24
-#: src/ui/edit_view/toolbar/toolbar.blp:132
+#: src/ui/edit_view/toolbar/toolbar.blp:7
 #: src/ui/widgets/markdown/heading_popover.blp:12
 msgid "Heading 1"
 msgstr "Encapçalat 1"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:25
-#: src/ui/edit_view/toolbar/toolbar.blp:133
+#: src/ui/edit_view/toolbar/toolbar.blp:8
 #: src/ui/widgets/markdown/heading_popover.blp:18
 msgid "Heading 2"
 msgstr "Encapçalat 2"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:26
-#: src/ui/edit_view/toolbar/toolbar.blp:134
+#: src/ui/edit_view/toolbar/toolbar.blp:9
 #: src/ui/widgets/markdown/heading_popover.blp:24
 msgid "Heading 3"
 msgstr "Encapçalat 3"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:27
-#: src/ui/edit_view/toolbar/toolbar.blp:135
+#: src/ui/edit_view/toolbar/toolbar.blp:10
 #: src/ui/widgets/markdown/heading_popover.blp:30
 msgid "Heading 4"
 msgstr "Encapçalat 4"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:28
-#: src/ui/edit_view/toolbar/toolbar.blp:136
+#: src/ui/edit_view/toolbar/toolbar.blp:11
 #: src/ui/widgets/markdown/heading_popover.blp:36
 msgid "Heading 5"
 msgstr "Encapçalat 5"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:29
-#: src/ui/edit_view/toolbar/toolbar.blp:137
+#: src/ui/edit_view/toolbar/toolbar.blp:12
 #: src/ui/widgets/markdown/heading_popover.blp:42
 msgid "Heading 6"
 msgstr "Encapçalat 6"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:39
-#: src/ui/edit_view/toolbar/toolbar.blp:104
-#: src/ui/edit_view/toolbar/toolbar.blp:148
-#: src/ui/edit_view/toolbar/toolbar.blp:201 src/ui/popup/shortcut_window.blp:72
+#: src/ui/edit_view/toolbar/toolbar.blp:41
+#: src/ui/edit_view/toolbar/toolbar.blp:107
+#: src/ui/edit_view/toolbar/toolbar.blp:142
+#: src/ui/edit_view/toolbar/toolbar.blp:195 src/ui/popup/shortcut_window.blp:72
 msgid "Bold"
 msgstr "Negreta"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:45
-#: src/ui/edit_view/toolbar/toolbar.blp:111
-#: src/ui/edit_view/toolbar/toolbar.blp:155
-#: src/ui/edit_view/toolbar/toolbar.blp:202 src/ui/popup/shortcut_window.blp:77
+#: src/ui/edit_view/toolbar/toolbar.blp:47
+#: src/ui/edit_view/toolbar/toolbar.blp:114
+#: src/ui/edit_view/toolbar/toolbar.blp:149
+#: src/ui/edit_view/toolbar/toolbar.blp:196 src/ui/popup/shortcut_window.blp:77
 msgid "Italic"
 msgstr "Itàlic"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:51
-#: src/ui/edit_view/toolbar/toolbar.blp:162
-#: src/ui/edit_view/toolbar/toolbar.blp:203 src/ui/popup/shortcut_window.blp:82
+#: src/ui/edit_view/toolbar/toolbar.blp:53
+#: src/ui/edit_view/toolbar/toolbar.blp:156
+#: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:82
 msgid "Strikethrough"
 msgstr "Ratllat"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:57
-#: src/ui/edit_view/toolbar/toolbar.blp:169
-#: src/ui/edit_view/toolbar/toolbar.blp:204 src/ui/popup/shortcut_window.blp:87
+#: src/ui/edit_view/toolbar/toolbar.blp:59
+#: src/ui/edit_view/toolbar/toolbar.blp:163
+#: src/ui/edit_view/toolbar/toolbar.blp:198 src/ui/popup/shortcut_window.blp:87
 msgid "Highlight"
 msgstr "Subratllat"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:67
-#: src/ui/edit_view/toolbar/toolbar.blp:193 src/ui/popup/shortcut_window.blp:92
+#: src/ui/edit_view/toolbar/toolbar.blp:69
+#: src/ui/edit_view/toolbar/toolbar.blp:187 src/ui/popup/shortcut_window.blp:92
 msgid "Insert Link"
 msgstr "Inserir Enllaç"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:73
-#: src/ui/edit_view/toolbar/toolbar.blp:194
+#: src/ui/edit_view/toolbar/toolbar.blp:75
+#: src/ui/edit_view/toolbar/toolbar.blp:188
 msgid "Insert Code"
 msgstr "Inserir Codi"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:79
-#: src/ui/edit_view/toolbar/toolbar.blp:195
+#: src/ui/edit_view/toolbar/toolbar.blp:81
+#: src/ui/edit_view/toolbar/toolbar.blp:189
 msgid "Insert Horizontal Rule"
 msgstr "Inserir Separació horitzontal"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:118
+#: src/ui/edit_view/toolbar/toolbar.blp:121
 msgid "Format"
 msgstr "Format"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:181
+#: src/ui/edit_view/toolbar/toolbar.blp:175
 msgid "Insert"
 msgstr "Inserir"
 
-#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:34
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:18
 #: src/ui/strings.vala:44 src/ui/strings.vala:58
 msgid "Cancel"
 msgstr "Cancel·lar"
 
-#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:23
 msgid "Confirm"
 msgstr "Confirmar"
 
@@ -454,35 +548,35 @@ msgstr "Format"
 msgid "Navigation"
 msgstr "Navegació"
 
-#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:216
+#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:273
 msgid "Toggle Sidebar"
 msgstr "Alternar Barra Lateral"
 
-#: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:63
+#: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:73
 msgid "Search Notes"
 msgstr "Cercar Notes"
 
-#: data/app.gschema.xml:22 src/ui/preferences/preferences.blp:47
+#: data/app.gschema.xml:22 src/ui/preferences/preferences.blp:19
 msgid "Makes the dark theme pitch black"
 msgstr "Fa el tema fosc de color negre"
 
-#: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:87
+#: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:109
 msgid "Enable Toolbar"
 msgstr "Activar la barra d'eines"
 
-#: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:98
+#: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:120
 msgid "Enable Cheatsheet"
 msgstr ""
 
-#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:117
+#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:139
 msgid "3-Pane Layout"
 msgstr "Disseny de 3 panells"
 
-#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:185
+#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:207
 msgid "Notes Storage Location"
 msgstr "Emmagatzematge de Notes"
 
-#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:186
+#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:208
 msgid "Where the notebooks are stored (requires app restart)"
 msgstr "On s'emmagatzemen els quaderns (requereix reiniciar la app)"
 
@@ -499,7 +593,7 @@ msgstr "%d Notes"
 msgid "Are you sure you want to delete everything in the trash?"
 msgstr "De veritat vol eliminar-ho tot en la paperera?"
 
-#: src/ui/strings.vala:7 src/ui/window/window.blp:54
+#: src/ui/strings.vala:7 src/ui/window/window.blp:64
 msgid "Empty Trash"
 msgstr "Buidar Paperera"
 
@@ -555,33 +649,25 @@ msgstr "De veritat vol eliminar el quadern “%s”?"
 msgid "Delete Notebook"
 msgstr "Eliminar Quadern"
 
-#: src/ui/strings.vala:24
-msgid "Note name shouldn’t contain “.” or “/”"
-msgstr "Noms de notes no han de contenir “.” o “/”"
-
-#: src/ui/strings.vala:25
-msgid "Note name shouldn’t be blank"
-msgstr "Noms de notes no han de ser buits"
-
 #: src/ui/strings.vala:26
 msgid "Note “%s” already exists"
 msgstr "Nota “%s” ja existeix"
 
 #: src/ui/strings.vala:27
-msgid "Couldn’t create note"
-msgstr "Nota no es va poder crear"
+msgid "Could not create note"
+msgstr ""
 
 #: src/ui/strings.vala:28
-msgid "Couldn’t change note"
-msgstr "Nota no es va poder cambiar"
+msgid "Could not change note"
+msgstr ""
 
 #: src/ui/strings.vala:29
-msgid "Couldn’t delete note"
-msgstr "Nota no es va poder borrar"
+msgid "Could not delete note"
+msgstr ""
 
 #: src/ui/strings.vala:30
-msgid "Couldn’t restore note"
-msgstr "Nota no es va poder recuperar"
+msgid "Could not restore note"
+msgstr ""
 
 #: src/ui/strings.vala:31
 msgid "Saved “%s” to “%s”"
@@ -591,29 +677,21 @@ msgstr "“%s” se guardó en “%s”"
 msgid "Unknown error"
 msgstr "Error desconocido"
 
-#: src/ui/strings.vala:33
-msgid "Notebook name shouldn’t contain “.” or “/”"
-msgstr "Noms de quaderns no han de contenir “.” o “/”"
-
-#: src/ui/strings.vala:34
-msgid "Notebook name shouldn’t be blank"
-msgstr "Noms de quaderns no han de ser buits"
-
 #: src/ui/strings.vala:35
 msgid "Notebook “%s” already exists"
 msgstr "Quadern “%s” ja existeix"
 
 #: src/ui/strings.vala:36
-msgid "Couldn’t create notebook"
-msgstr "Quadern es va poder crear"
+msgid "Could not create notebook"
+msgstr ""
 
 #: src/ui/strings.vala:37
-msgid "Couldn’t change notebook"
-msgstr "Quadern es va poder cambiar"
+msgid "Could not change notebook"
+msgstr ""
 
 #: src/ui/strings.vala:38
-msgid "Couldn’t delete notebook"
-msgstr "Quadern es va poder borrar"
+msgid "Could not delete notebook"
+msgstr ""
 
 #: src/ui/strings.vala:40
 msgid "Search"
@@ -624,7 +702,7 @@ msgid "Rename"
 msgstr "Reanomenar"
 
 #: src/ui/strings.vala:42
-msgid "Couldn’t find an app to handle file URIs"
+msgid "Could not find an app to handle file URIs"
 msgstr ""
 
 #: src/ui/strings.vala:43
@@ -676,39 +754,35 @@ msgstr "_Preferències"
 msgid "_Keyboard Shortcuts"
 msgstr "_Dreceres"
 
-#: src/ui/window/app_menu/app_menu.blp:43
-msgid "_About"
-msgstr "_Sobre Paper"
-
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:54
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:58
 msgid "Notebook Name"
 msgstr "Nom del Quadern"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:66
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:70
 msgid "Duplicate notebook names are not allowed!"
 msgstr ""
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:82
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:6
 msgid "First Characters"
 msgstr "Primers Caràcters"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:83
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:7
 msgid "Initials"
 msgstr "Inicials"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:84
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:8
 msgid "Initials: camelCase"
 msgstr "Inicials: camelCase"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:85
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:9
 msgid "Initials: snake_case"
 msgstr "Inicials: snake_case"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:86
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:10
 msgid "Icon"
 msgstr "Icona"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:116
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:16
 msgid "Notebook Color"
 msgstr "Color del Quadern"
 
@@ -728,11 +802,11 @@ msgstr "Moure tot a la Paperera"
 msgid "Notebooks"
 msgstr ""
 
-#: src/ui/window/sidebar/note_create_popup.blp:37
+#: src/ui/window/sidebar/note_create_popup.blp:25
 msgid "Note Name"
 msgstr "Nom de Nota"
 
-#: src/ui/window/sidebar/note_create_popup.blp:45
+#: src/ui/window/sidebar/note_create_popup.blp:33
 msgid "Create Note"
 msgstr "Crear Nota"
 
@@ -756,30 +830,26 @@ msgstr "Moure a la Paperera"
 msgid "Open Containing Folder"
 msgstr "Veure en Carpeta"
 
-#: src/ui/window/window.blp:118
+#: src/ui/window/window.blp:128
 msgid "Get started writing"
 msgstr "Comença a escribir"
 
-#: src/ui/window/window.blp:143
+#: src/ui/window/window.blp:186
 msgid "Create a notebook"
 msgstr "Crea un quadern"
 
-#: src/ui/window/window.blp:168
+#: src/ui/window/window.blp:215
 msgid "Trash is empty"
 msgstr "La paperera está buida"
 
-#: src/ui/window/window.blp:224
-msgid "Back"
-msgstr "Tornar"
-
-#: src/ui/window/window.blp:239
+#: src/ui/window/window.blp:290
 msgid "Open in Notebook"
 msgstr "Obrir al Quadern"
 
-#: src/ui/window/window.blp:264
+#: src/ui/window/window.blp:317
 msgid "_Rename Note"
 msgstr "_Reanomenar Nota"
 
-#: src/ui/window/window.blp:270
+#: src/ui/window/window.blp:324
 msgid "_Export Note"
 msgstr "_Exportar Nota"
