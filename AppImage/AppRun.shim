@@ -1,0 +1,14 @@
+#! /usr/bin/env bash
+
+# Shamelessly stolen from the linuxdeploy gtk plugin
+
+# make sure errors in sourced scripts will cause this script to stop
+set -e
+
+# we need to tell gnome where to look for the Folio settings schema
+# since it's not in the system directory.  Instead use the one we have
+# packaged with the appimage.
+this_dir="$(readlink -f "$(dirname "$0")")"
+export GSETTINGS_SCHEMA_DIR=${this_dir}/usr/local/share/glib-2.0/schemas/
+
+exec "$this_dir"/usr/bin/com.toolstack.Folio "$@"

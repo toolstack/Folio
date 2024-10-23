@@ -87,15 +87,9 @@ Flatpak build requires flatpak-building installed.
 
 ### AppImage builds
  - Install linuxdeploy if not already installed
- - change into the top level source directory
- - create the directory `AppImage` (if it already exists, ensure to remove all of its contents)
- - change into the build directory
- - set the `DESTDIR` environment variable as follows: `export DESTDIR=../AppImage`
- - set the `NO_STRIP` environment variable as follows: `export NO_STRIP=true`
- - run build/install with `ninja install`
- - change to the `AppImage` directory
- - use linuxdeploy to build the AppImage: `linuxdeploy --appdir=. -d usr/local/share/applications/com.toolstack.Folio.desktop  -i usr/local/share/icons/hicolor/scalable/apps/com.toolstack.Folio.svg -e usr/local/bin/com.toolstack.Folio --output appimage`
- - to launch the AppImage, run `Folio-x86_64.AppImage`
+ - change into the AppImage directory in the main Folio directory
+ - run AppImage script `./folio.build.appimage.sh`
+ - to launch the AppImage, run `./Folio-x86_64.AppImage`
 
 ## Release instructions
 Folio uses a YY.## version format string, where YY is the two digit year (aka 23, 24, 25, etc) and ## is the release number of the year (aka 01 for the first release, 02 for the second release, etc., not the month number).

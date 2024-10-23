@@ -5,4 +5,4 @@ _build
 .var
 .flatpak-builder
 flatpak
-AppImage
+AppImage/build
