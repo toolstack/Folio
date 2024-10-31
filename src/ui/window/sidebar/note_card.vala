@@ -25,6 +25,13 @@ public class Folio.NoteCard : Gtk.Box {
 					? accessible_time_string
 					: @"$(accessible_time_string), $(Strings.NOTEBOOK) $(value.notebook.name)";
  				subtitle.update_property (Gtk.AccessibleProperty.LABEL, accessible_description, -1);
+
+				var settings = new Settings (Config.APP_ID);
+				if (settings.get_boolean ("long-note-names") == true) {
+					label.set_ellipsize (Pango.EllipsizeMode.NONE);
+				} else {
+					label.set_ellipsize (Pango.EllipsizeMode.END);
+				}
 			}
 		}
 	}
