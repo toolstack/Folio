@@ -86,6 +86,16 @@
       <summary>Line spacing</summary>
       <description>The line spacing for the note text</description>
     </key>
+    <key name="long-notebook-names" type="b">
+      <default>false</default>
+      <summary>Allow long notebook names</summary>
+      <description>The notebook column will expand to the width of the longest notebook name</description>
+    </key>
+    <key name="long-note-names" type="b">
+      <default>false</default>
+      <summary>Allow long note names</summary>
+      <description>The note list column will expand to the width of the longest note name</description>
+    </key>
   </schema>
   <enum id="com.toolstack.Folio.ThemeVariantEnum">
     <value nick="default" value="0"/>

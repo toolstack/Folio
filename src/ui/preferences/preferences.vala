@@ -17,6 +17,8 @@ public class Folio.PreferencesWindow : Adw.PreferencesDialog {
 	[GtkChild] unowned Gtk.Button trash_dir_button_reset;
 	[GtkChild] unowned Gtk.Label trash_dir_label;
 	[GtkChild] unowned Gtk.Switch limit_note_width;
+	[GtkChild] unowned Gtk.Switch long_notebook_names;
+	[GtkChild] unowned Gtk.Switch long_note_names;
 	[GtkChild] unowned Adw.SpinRow custom_note_width;
 	[GtkChild] unowned Gtk.Switch show_line_numbers;
 	[GtkChild] unowned Gtk.Switch show_all_notes;
@@ -148,6 +150,18 @@ public class Folio.PreferencesWindow : Adw.PreferencesDialog {
 			custom_note_width.set_sensitive (false);
 			note_width = 720;
 		}
+
+		long_notebook_names.active = settings.get_boolean ("long-notebook-names");
+		long_notebook_names.state_set.connect ((state) => {
+			settings.set_boolean ("long-notebook-names", state);
+			return false;
+		});
+
+		long_note_names.active = settings.get_boolean ("long-note-names");
+		long_note_names.state_set.connect ((state) => {
+			settings.set_boolean ("long-note-names", state);
+			return false;
+		});
 
 		var width_adjustment = new Gtk.Adjustment (note_width, 100, 2000, 1.0, 100.0, 1.0);
 		custom_note_width.set_adjustment (width_adjustment);
