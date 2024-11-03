@@ -2,34 +2,37 @@
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-09-13 02:08:37+0000\n"
+"Project-Id-Version: Folio\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2024-11-03 07:30+0100\n"
+"Last-Translator: Amerey <info@amerey.eu>\n"
+"Language-Team: \n"
+"Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n >= 2 && n <= 4) ? 1 : 2);\n"
-"X-Generator: GlotPress/4.0.1\n"
-"Language: cs_CZ\n"
-"Project-Id-Version: Folio\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: data/app.gschema.xml:81
 msgid "URL detection level"
-msgstr ""
+msgstr "Úroveň detekce URL"
 
 #: data/app.gschema.xml:82
 msgid "How aggressive to look for URLs in markdown text"
-msgstr ""
+msgstr "Jakým způsobem hledat adresy URL v textu"
 
 #: data/app.gschema.xml:86
 msgid "Line spacing"
-msgstr ""
+msgstr "Řádkování"
 
 #: data/app.gschema.xml:87 src/ui/preferences/preferences.blp:74
 msgid "The line spacing for the note text"
-msgstr ""
+msgstr "Řádkování textu poznámky"
 
 #: src/ui/preferences/preferences.blp:31
 msgid "Markdown URL Detection"
-msgstr ""
+msgstr "Zjišťování adresy URL"
 
 #: src/ui/preferences/preferences.blp:32
 msgid ""
@@ -39,78 +42,83 @@ msgid ""
 " - Strict requires a protocol identifier (ie http://)\n"
 " - Disabled turns detection off."
 msgstr ""
+"Určuje úroveň detekce adres URL\n"
+"používá se volný text:\n"
+" - Agresivní se snaží najít všechny adresy URL\n"
+" - Striktní vyžaduje identifikátor protokolu (např. http://)\n"
+" - Vypnuto vypne detekci."
 
 #: src/ui/preferences/preferences.blp:39
 msgid "Fonts"
-msgstr ""
+msgstr "Fonty"
 
 #: src/ui/preferences/preferences.blp:73
 msgid "Line Spacing"
-msgstr ""
+msgstr "Řádkování"
 
 #: src/ui/strings.vala:24
 msgid "Note names cannot contain a “/”"
-msgstr ""
+msgstr "Názvy poznámek nemohou obsahovat znak „/“"
 
 #: src/ui/strings.vala:25
 msgid "Note names cannot be blank"
-msgstr ""
+msgstr "Názvy poznámek nemohou být prázdné"
 
 #: src/ui/strings.vala:33
 msgid "Notebook names cannot contain a “/”"
-msgstr ""
+msgstr "Názvy sešitů nemohou obsahovat znak „/“"
 
 #: src/ui/strings.vala:34
 msgid "Notebook names cannot be blank"
-msgstr ""
+msgstr "Názvy sešitů nemohou být prázdné"
 
 #: src/ui/strings.vala:66
 msgid "Natural - Ascending"
-msgstr ""
+msgstr "Vzestupně"
 
 #: src/ui/strings.vala:67
 msgid "Natural - Descending"
-msgstr ""
+msgstr "Sestupně"
 
 #: src/ui/strings.vala:68
 msgid "Unable to launch external application for file %s."
-msgstr ""
+msgstr "Nelze spustit externí aplikaci pro soubor %s."
 
 #: src/ui/strings.vala:69
 msgid "Aggressive"
-msgstr ""
+msgstr "Agresivní"
 
 #: src/ui/strings.vala:70
 msgid "Strict"
-msgstr ""
+msgstr "Striktní"
 
 #: src/ui/strings.vala:71
 msgid "Disabled"
-msgstr ""
+msgstr "Vypnuto"
 
 #: src/ui/strings.vala:72
 msgid "“%s” moved to trash"
-msgstr ""
+msgstr "„%s“ byl přesunut do koše"
 
 #: src/ui/strings.vala:73
 msgid "“%s” restored"
-msgstr ""
+msgstr "\"%s\" byl obnoven"
 
 #: src/ui/window/app_menu/app_menu.blp:43
 msgid "_About Folio"
-msgstr ""
+msgstr "_O aplikaci Folio"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:11
 msgid "Custom"
-msgstr ""
+msgstr "Vlastní"
 
 #: src/ui/window/window.blp:157
 msgid "Open file in external application"
-msgstr ""
+msgstr "Otevření souboru v externí aplikaci"
 
 #: src/ui/window/window.blp:165
 msgid "Open file"
-msgstr ""
+msgstr "Otevřít soubor"
 
 #: data/app.gschema.xml:76
 msgid "Notebook sort order"
@@ -240,7 +248,7 @@ msgstr "Kde je umístěna složka koše (vyžaduje restartování aplikace)"
 
 #: src/ui/strings.vala:46
 msgid "Pick where the trash can will be stored"
-msgstr "Vyberte místo, kde bude uložen odpadkový koš"
+msgstr "Vyberte místo, kde bude uložen koš"
 
 #: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:150
 msgid "Use Fixed Width For Notes"
@@ -670,19 +678,19 @@ msgstr "Poznámka „%s“ již existuje"
 
 #: src/ui/strings.vala:27
 msgid "Could not create note"
-msgstr ""
+msgstr "Nepodařilo se vytvořit poznámku"
 
 #: src/ui/strings.vala:28
 msgid "Could not change note"
-msgstr ""
+msgstr "Nepodařilo se změnit poznámku"
 
 #: src/ui/strings.vala:29
 msgid "Could not delete note"
-msgstr ""
+msgstr "Nepodařilo se smazat poznámku"
 
 #: src/ui/strings.vala:30
 msgid "Could not restore note"
-msgstr ""
+msgstr "Nepodařilo se obnovit poznámku"
 
 #: src/ui/strings.vala:31
 msgid "Saved “%s” to “%s”"
@@ -698,15 +706,15 @@ msgstr "Sešit „%s“ již existuje"
 
 #: src/ui/strings.vala:36
 msgid "Could not create notebook"
-msgstr ""
+msgstr "Sešit se nepodařilo vytvořit"
 
 #: src/ui/strings.vala:37
 msgid "Could not change notebook"
-msgstr ""
+msgstr "Sešit se nepodařilo změnit"
 
 #: src/ui/strings.vala:38
 msgid "Could not delete notebook"
-msgstr ""
+msgstr "Sešit se nepodařilo smazat"
 
 #: src/ui/strings.vala:40
 msgid "Search"
@@ -718,7 +726,7 @@ msgstr "Přejmenovat"
 
 #: src/ui/strings.vala:42
 msgid "Could not find an app to handle file URIs"
-msgstr ""
+msgstr "Nebyla nalezena aplikace pro zpracování identifikátorů URI souborů"
 
 #: src/ui/strings.vala:43
 msgid "Apply"
