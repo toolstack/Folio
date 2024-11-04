@@ -683,7 +683,6 @@ public class GtkMarkdown.View : GtkSource.View {
 		return buffer_text;
 	}
 
-	// TODO: Remove the parameter.
 	private void restyle_text_format (bool only_changed_line = false) {
 		if (text_mode) return;
 		renderer.queue_draw ();
@@ -731,6 +730,7 @@ public class GtkMarkdown.View : GtkSource.View {
 		string filtered_buffer_text = create_filtered_buffer (buffer_text);
 
 		try {
+			// TODO: Adapt this to only_changed_line parameter?
 			format_code_block_format (filtered_buffer_text);
 		} catch (Error e) {}
 	}
@@ -784,7 +784,8 @@ public class GtkMarkdown.View : GtkSource.View {
 	}
 
 	private void restyle_text_all_after_paste (Gdk.Clipboard _) {
-		restyle_text_partial ();
+		// TODO: Make this to only restyle the pasted text?
+		restyle_text_all ();
 	}
 
 	private void restyle_text_partial () {
