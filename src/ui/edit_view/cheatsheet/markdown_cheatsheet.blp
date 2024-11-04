@@ -1,42 +1,33 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $FolioMarkdownCheatsheet : Gtk.Window {
+template $FolioMarkdownCheatsheet : Adw.Dialog {
+  styles [ "cheatsheet" ]
+  content-width: 500;
+  content-height: 440;
 
-  default-width: 500;
-  default-height: 440;
-  titlebar: Adw.HeaderBar {};
+  child: Adw.ToolbarView {
 
-  ShortcutController {
+    [top]
+    Adw.HeaderBar {}
 
-    scope: managed;
+    content: ScrolledWindow {
+      $GtkMarkdownView text_view {
+        tab-width: 4;
+        auto-indent: true;
+        wrap-mode: word-char;
+        bottom-margin: 18;
+        left-margin: 18;
+        right-margin: 18;
+        top-margin: 18;
+        hexpand: true;
+        vexpand: true;
+        editable: false;
+        cursor-visible: false;
+        show-gutter: false;
 
-    Shortcut {
-      trigger: "Escape";
-      action: "action(window.close)";
-    }
-  }
-
-  Adw.StatusPage {
-
-    css-name: _("status_page");
-
-    $GtkMarkdownView text_view {
-
-      tab-width: 4;
-      auto-indent: true;
-      wrap-mode: word-char;
-      bottom-margin: 18;
-      left-margin: 18;
-      right-margin: 18;
-      top-margin: 18;
-      hexpand: true;
-      vexpand: true;
-      editable: false;
-      cursor-visible: false;
-      show-gutter: false;
-
-      styles ["note-font"]
-    }
-  }
+        styles ["note-font"]
+      }
+    };
+  };
 }

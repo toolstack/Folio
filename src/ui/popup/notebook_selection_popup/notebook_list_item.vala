@@ -14,6 +14,13 @@ public class Folio.NotebookListItem : Gtk.Box {
 			this._notebook = value;
 			label.label = value.name;
 			icon.notebook_info = value.info;
+
+			var settings = new Settings (Config.APP_ID);
+			if (settings.get_boolean ("long-notebook-names") == true) {
+				label.set_ellipsize (Pango.EllipsizeMode.NONE);
+			} else {
+				label.set_ellipsize (Pango.EllipsizeMode.END);
+			}
 		}
 	}
 

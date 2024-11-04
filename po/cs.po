@@ -1,35 +1,38 @@
-# Translation of Folio in Serbian
+# Translation of Folio in Czech
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-03-02 17:00:32+0000\n"
+"Project-Id-Version: Folio\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2024-11-03 07:30+0100\n"
+"Last-Translator: Amerey <info@amerey.eu>\n"
+"Language-Team: \n"
+"Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 1 : 2);\n"
-"X-Generator: GlotPress/4.0.1\n"
-"Language: sr\n"
-"Project-Id-Version: Folio\n"
+"Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n >= 2 && n <= 4) ? 1 : 2);\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: data/app.gschema.xml:81
 msgid "URL detection level"
-msgstr ""
+msgstr "Úroveň detekce URL"
 
 #: data/app.gschema.xml:82
 msgid "How aggressive to look for URLs in markdown text"
-msgstr ""
+msgstr "Jakým způsobem hledat adresy URL v textu"
 
 #: data/app.gschema.xml:86
 msgid "Line spacing"
-msgstr ""
+msgstr "Řádkování"
 
 #: data/app.gschema.xml:87 src/ui/preferences/preferences.blp:74
 msgid "The line spacing for the note text"
-msgstr ""
+msgstr "Řádkování textu poznámky"
 
 #: src/ui/preferences/preferences.blp:31
 msgid "Markdown URL Detection"
-msgstr ""
+msgstr "Zjišťování adresy URL"
 
 #: src/ui/preferences/preferences.blp:32
 msgid ""
@@ -39,146 +42,151 @@ msgid ""
 " - Strict requires a protocol identifier (ie http://)\n"
 " - Disabled turns detection off."
 msgstr ""
+"Určuje úroveň detekce adres URL\n"
+"používá se volný text:\n"
+" - Agresivní se snaží najít všechny adresy URL\n"
+" - Striktní vyžaduje identifikátor protokolu (např. http://)\n"
+" - Vypnuto vypne detekci."
 
 #: src/ui/preferences/preferences.blp:39
 msgid "Fonts"
-msgstr ""
+msgstr "Fonty"
 
 #: src/ui/preferences/preferences.blp:73
 msgid "Line Spacing"
-msgstr ""
+msgstr "Řádkování"
 
 #: src/ui/strings.vala:24
 msgid "Note names cannot contain a “/”"
-msgstr ""
+msgstr "Názvy poznámek nemohou obsahovat znak „/“"
 
 #: src/ui/strings.vala:25
 msgid "Note names cannot be blank"
-msgstr ""
+msgstr "Názvy poznámek nemohou být prázdné"
 
 #: src/ui/strings.vala:33
 msgid "Notebook names cannot contain a “/”"
-msgstr ""
+msgstr "Názvy sešitů nemohou obsahovat znak „/“"
 
 #: src/ui/strings.vala:34
 msgid "Notebook names cannot be blank"
-msgstr ""
+msgstr "Názvy sešitů nemohou být prázdné"
 
 #: src/ui/strings.vala:66
 msgid "Natural - Ascending"
-msgstr ""
+msgstr "Vzestupně"
 
 #: src/ui/strings.vala:67
 msgid "Natural - Descending"
-msgstr ""
+msgstr "Sestupně"
 
 #: src/ui/strings.vala:68
 msgid "Unable to launch external application for file %s."
-msgstr ""
+msgstr "Nelze spustit externí aplikaci pro soubor %s."
 
 #: src/ui/strings.vala:69
 msgid "Aggressive"
-msgstr ""
+msgstr "Agresivní"
 
 #: src/ui/strings.vala:70
 msgid "Strict"
-msgstr ""
+msgstr "Striktní"
 
 #: src/ui/strings.vala:71
 msgid "Disabled"
-msgstr ""
+msgstr "Vypnuto"
 
 #: src/ui/strings.vala:72
 msgid "“%s” moved to trash"
-msgstr ""
+msgstr "„%s“ byl přesunut do koše"
 
 #: src/ui/strings.vala:73
 msgid "“%s” restored"
-msgstr ""
+msgstr "\"%s\" byl obnoven"
 
 #: src/ui/window/app_menu/app_menu.blp:43
 msgid "_About Folio"
-msgstr ""
+msgstr "_O aplikaci Folio"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:11
 msgid "Custom"
-msgstr ""
+msgstr "Vlastní"
 
 #: src/ui/window/window.blp:157
 msgid "Open file in external application"
-msgstr ""
+msgstr "Otevření souboru v externí aplikaci"
 
 #: src/ui/window/window.blp:165
 msgid "Open file"
-msgstr ""
+msgstr "Otevřít soubor"
 
 #: data/app.gschema.xml:76
 msgid "Notebook sort order"
-msgstr ""
+msgstr "Pořadí řazení sešitů"
 
 #: data/app.gschema.xml:77
 msgid "The sort order of the notebook list"
-msgstr ""
+msgstr "Pořadí řazení seznamu sešitů"
 
 #: src/ui/preferences/preferences.blp:167
 msgid "Sort Order For Notebooks"
-msgstr ""
+msgstr "Řazení sešitů"
 
 #: data/app.gschema.xml:71
 msgid "Note sort order"
-msgstr ""
+msgstr "Poznámka: pořadí řazení"
 
 #: data/app.gschema.xml:72
 msgid "The sort order of the note list"
-msgstr ""
+msgstr "Pořadí řazení seznamu poznámek"
 
 #: src/ui/preferences/preferences.blp:172
 msgid "Sort Order For Notes"
-msgstr ""
+msgstr "Řazení poznámek"
 
 #: src/ui/strings.vala:62
 msgid "Modified Time - Ascending"
-msgstr ""
+msgstr "Modifikovaný čas – vzestupně"
 
 #: src/ui/strings.vala:63
 msgid "Modified Time - Descending"
-msgstr ""
+msgstr "Modifikovaný čas – sestupně"
 
 #: src/ui/strings.vala:64
 msgid "Alphabetical - Ascending"
-msgstr ""
+msgstr "Abecedně – vzestupně"
 
 #: src/ui/strings.vala:65
 msgid "Alphabetical - Descending"
-msgstr ""
+msgstr "Abecedně - sestupně"
 
 #: src/ui/popup/shortcut_window.blp:114
 msgid "Display"
-msgstr ""
+msgstr "Zobrazení"
 
 #: src/ui/popup/shortcut_window.blp:117
 msgid "Full Screen"
-msgstr ""
+msgstr "Celá obrazovka"
 
 #: src/ui/popup/shortcut_window.blp:122
 msgid "Zoom In"
-msgstr ""
+msgstr "Přiblížit"
 
 #: src/ui/popup/shortcut_window.blp:127
 msgid "Zoom Out"
-msgstr ""
+msgstr "Oddálit"
 
 #: src/ui/strings.vala:52
 msgid "Pick primary font for notes"
-msgstr ""
+msgstr "Vyberte primární písmo pro poznámky"
 
 #: src/ui/strings.vala:53
 msgid "Pick monospace font for code"
-msgstr ""
+msgstr "Vyberte monospace písmo pro kód"
 
 #: src/ui/strings.vala:54
 msgid "File Changed On Disk"
-msgstr ""
+msgstr "Soubor změněn na disku"
 
 #: src/ui/strings.vala:55
 msgid ""
@@ -192,14 +200,23 @@ msgid ""
 "\n"
 "Note: Canceling the save if you have already moved to a new note/notebook will discard your changes."
 msgstr ""
+"Soubor se na disku od posledního uložení/načtení aplikací Folio změnil.\n"
+"\n"
+"Můžete provést jednu z následujících akcí:\n"
+"\n"
+" • Znovu načtěte soubor (zrušte všechny změny provedené ve Folio)\n"
+" • Přepište soubor (zruší se všechny změny provedené mimo Folio)\n"
+" • Zrušte operaci a problém vyřešte ručně\n"
+"\n"
+"Poznámka: Zrušením uložení, pokud jste se již přesunuli do nové poznámky/zápisníku, se provedené změny zruší."
 
 #: src/ui/strings.vala:56
 msgid "Reload"
-msgstr ""
+msgstr "Načíst znovu"
 
 #: src/ui/strings.vala:57
 msgid "Overwrite"
-msgstr ""
+msgstr "Přepsat"
 
 #: src/ui/strings.vala:59
 msgid ""
@@ -210,646 +227,652 @@ msgid ""
 " • Reload the file (discarding any changes you have made in Folio)\n"
 " • Overwrite the file (discarding any changes made outside of Folio)"
 msgstr ""
+"Soubor byl na disku změněn jinou aplikací.\n"
+"\n"
+"Můžete provést jednu z následujících akcí:\n"
+"\n"
+" • Znovu načtěte soubor (zrušte všechny změny provedené ve Folio)\n"
+" • Přepište soubor (zruší se všechny změny provedené mimo Folio)"
 
 #: src/ui/strings.vala:61
 msgid "Note %i"
-msgstr ""
+msgstr "Poznámka %i"
 
 #: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:235
 msgid "Trash Storage Location"
-msgstr ""
+msgstr "Umístění koše"
 
 #: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:236
 msgid "Where the trash folder is located (requires app restart)"
-msgstr ""
+msgstr "Kde je umístěna složka koše (vyžaduje restartování aplikace)"
 
 #: src/ui/strings.vala:46
 msgid "Pick where the trash can will be stored"
-msgstr ""
+msgstr "Vyberte místo, kde bude uložen koš"
 
 #: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:150
 msgid "Use Fixed Width For Notes"
-msgstr ""
+msgstr "Použít pevnou šířku pro poznámky"
 
 #: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:151
 msgid "Use a fixed width for the text area of a note"
-msgstr ""
+msgstr "Pro textovou oblast poznámky použijte pevnou šířku"
 
 #: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:140
 msgid "Expands the notebook list to include the notebook name"
-msgstr ""
+msgstr "Seznam zápisníků bude obsahovat i jejich jméno"
 
 #: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:87
 msgid "Show line numbers"
-msgstr ""
+msgstr "Zobrazit čísla řádků"
 
 #: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:88
 msgid "Displays line numbers at the left of the note"
-msgstr ""
+msgstr "Zobrazí čísla řádků na levé straně poznámky"
 
 #: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:98
 msgid "Show all notes"
-msgstr ""
+msgstr "Zobrazit všechny poznámky"
 
 #: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:99
 msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
-msgstr ""
+msgstr "Zobrazí \"Všechny poznámky\" v horní části seznamu zápisníků"
 
 #: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:185
 msgid "Enable autosave"
-msgstr ""
+msgstr "Povolit automatické ukládání"
 
 #: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:186
 msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
-msgstr ""
+msgstr "Automaticky uloží aktuální poznámku každých 30 sekund, pokud se obsah změnil (vyžaduje restart aplikace)"
 
 #: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:196
 msgid "Don't hide the Trash folder"
-msgstr ""
+msgstr "Neskrývat složku Koš"
 
 #: data/app.gschema.xml:67
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
-msgstr ""
+msgstr "Složka koše je standardně nastavena jako skrytá, tato možnost ji zviditelní"
 
 #: data/app.metainfo.xml.in:419
 msgid "Main Folio window in light mode"
-msgstr ""
+msgstr "Hlavní okno ve světlém režimu"
 
 #: data/app.metainfo.xml.in:423
 msgid "Main Folio window in dark mode"
-msgstr ""
+msgstr "Hlavní okno v tmavém režimu"
 
 #: data/app.metainfo.xml.in:427
 msgid "Folio on small/mobile screens"
-msgstr ""
+msgstr "Folio na malých/mobilních obrazovkách"
 
 #: data/app.metainfo.xml.in:431
 msgid "Folio preferences screen"
-msgstr ""
+msgstr "Obrazovka předvoleb"
 
 #: data/app.metainfo.xml.in:435
 msgid "Folio in three pane mode"
-msgstr ""
+msgstr "Folio v režimu tří panelů"
 
 #: src/ui/preferences/preferences.blp:81
 msgid "Tools"
-msgstr ""
+msgstr "Nástroje"
 
 #: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:110
 msgid "Displays the formatting toolbar at the bottom of the note"
-msgstr ""
+msgstr "Zobrazí panel nástrojů pro formátování v dolní části poznámky"
 
 #: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:121
 msgid "Adds a button to the markdown reference sheet on the right of the formatting toolbar"
-msgstr ""
+msgstr "Na pravé straně panelu nástrojů přidá tlačítko s markdown nápovědou"
 
 #: src/ui/preferences/preferences.blp:133
 msgid "Layout"
-msgstr ""
+msgstr "Rozložení"
 
 #: src/ui/preferences/preferences.blp:161
 msgid "Fixed Width To Use For Notes"
-msgstr ""
+msgstr "Pevná šířka pro poznámky"
 
 #: src/ui/preferences/preferences.blp:162
 msgid "Sets the fixed width size of a note in px"
-msgstr ""
+msgstr "Nastaví pevnou šířku poznámky v pixelech"
 
 #: src/ui/preferences/preferences.blp:179
 msgid "Files"
-msgstr ""
+msgstr "Soubory"
 
 #: src/ui/preferences/preferences.blp:197
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
-msgstr ""
+msgstr "Složka koše je ve výchozím nastavení nastavena jako skrytá složka, tato možnost ji zviditelní (vyžaduje restart aplikace)"
 
 #: src/ui/strings.vala:51
 msgid "Unable to recognize URI"
-msgstr ""
+msgstr "Identifikátor URI nelze rozpoznat"
 
 #: data/app.desktop.in:9 src/ui/strings.vala:3
 msgid "Folio"
-msgstr "Папир"
+msgstr "Folio"
 
 #: data/app.desktop.in:10
 msgid "Notes Manager"
-msgstr "Управник белешки"
+msgstr "Správce poznámek"
 
 #: data/app.desktop.in:11
 msgid "Take notes"
-msgstr "Стварајте белешке"
+msgstr "Dělejte si poznámky"
 
 #: data/app.desktop.in:13
 msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
-msgstr "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;Бележница;Белешка;Белешке;Текст;Маркдаун;Ноутпад;Писање;Школа;Лепљиво;Beležnica;Beleška;Beleške;Tekst;Markdaun;Noutpad;Pisanje;Škola;Skola;Lepljivo;"
+msgstr "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;Poznámka;Poznámky;Poznámkový blok;Psaní;Škola;"
 
 #: data/app.desktop.in:22 src/ui/popup/shortcut_window.blp:17
 #: src/ui/strings.vala:8 src/ui/window/window.blp:57
 #: src/ui/window/window.blp:136
 msgid "New Note"
-msgstr "Нова белешка"
+msgstr "Nová poznámka"
 
 #: data/app.desktop.in:26 src/ui/popup/shortcut_window.blp:37
 #: src/ui/strings.vala:14 src/ui/window/window.blp:194
 msgid "New Notebook"
-msgstr "Нова бележница"
+msgstr "Nový sešit"
 
 #: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:92
 #: src/ui/strings.vala:39 src/ui/window/window.blp:296
 msgid "Markdown Cheatsheet"
-msgstr "Маркдаун подсетник"
+msgstr "Markdown nápověda"
 
 #: data/app.desktop.in:34 src/ui/popup/shortcut_window.blp:62
 msgid "Preferences"
-msgstr "Поставке"
+msgstr "Předvolby"
 
 #: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:45
 msgid "Note Font"
-msgstr "Фонт белешке"
+msgstr "Poznámka: Font"
 
 #: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:46
 msgid "The font notes will be displayed in"
-msgstr "Фонт за приказ белешке"
+msgstr "Poznámky budou zobrazeny písmem"
 
 #: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:58
 msgid "Monospace Font"
-msgstr "Фонт утврђене ширине"
+msgstr "Monospace: Font"
 
 #: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:59
 msgid "The font code will be displayed in"
-msgstr "Фонт за приказ кода"
+msgstr "Kód bude zobrazen písmem"
 
 #: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:18
 msgid "OLED Mode"
-msgstr "ОЛЕД режим"
+msgstr "Režim OLED"
 
 #: data/app.metainfo.xml.in:5
 msgid "Take notes in Markdown"
-msgstr "Пишите белешке у Маркдауну"
+msgstr "Dělejte si poznámky v Markdown"
 
 #: data/app.metainfo.xml.in:7
 msgid "Create notebooks, take notes in markdown"
-msgstr "Стварајте бележнице, пишите белешке у Маркдауну"
+msgstr "Vytvářejte sešity, dělejte si poznámky v markdown"
 
 #: data/app.metainfo.xml.in:8
 msgid "Features:"
-msgstr "Могућности:"
+msgstr "Vlastnosti:"
 
 #: data/app.metainfo.xml.in:10
 msgid "Almost WYSIWYG markdown rendering"
-msgstr "Скоро потпуно WYSIWYG исцртавање маркдауна"
+msgstr "Téměř WYSIWYG vykreslování markdown"
 
 #: data/app.metainfo.xml.in:11
 msgid "Searchable through GNOME search"
-msgstr "Претраживање текста кроз Гномову претрагу"
+msgstr "Lze prohledávat pomocí vyhledávání v GNOME"
 
 #: data/app.metainfo.xml.in:12
 msgid "Highlight and strikethrough text formatting"
-msgstr ""
+msgstr "Formátování textu zvýrazněním a přeškrtnutím"
 
 #: data/app.metainfo.xml.in:13
 msgid "App themeing based on notebook color"
-msgstr ""
+msgstr "Motiv aplikace založený na barvě sešitu"
 
 #: data/app.metainfo.xml.in:14
 msgid "Trash can"
-msgstr "Канта за смеће"
+msgstr "Koš"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:6
 #: src/ui/widgets/markdown/heading_popover.blp:48
 msgid "Plain Text"
-msgstr "Обичан текст"
+msgstr "Prostý text"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:7
 #: src/ui/widgets/markdown/heading_popover.blp:12
 msgid "Heading 1"
-msgstr "Заглавље 1"
+msgstr "Nadpis 1"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:8
 #: src/ui/widgets/markdown/heading_popover.blp:18
 msgid "Heading 2"
-msgstr "Заглавље 2"
+msgstr "Nadpis 2"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:9
 #: src/ui/widgets/markdown/heading_popover.blp:24
 msgid "Heading 3"
-msgstr "Заглавље 3"
+msgstr "Nadpis 3"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:10
 #: src/ui/widgets/markdown/heading_popover.blp:30
 msgid "Heading 4"
-msgstr "Заглавље 4"
+msgstr "Nadpis 4"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:11
 #: src/ui/widgets/markdown/heading_popover.blp:36
 msgid "Heading 5"
-msgstr "Заглавље 5"
+msgstr "Nadpis 5"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:12
 #: src/ui/widgets/markdown/heading_popover.blp:42
 msgid "Heading 6"
-msgstr "Заглавље 6"
+msgstr "Nadpis 6"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:41
 #: src/ui/edit_view/toolbar/toolbar.blp:107
 #: src/ui/edit_view/toolbar/toolbar.blp:142
 #: src/ui/edit_view/toolbar/toolbar.blp:195 src/ui/popup/shortcut_window.blp:72
 msgid "Bold"
-msgstr "Подебљано"
+msgstr "Tučné"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:47
 #: src/ui/edit_view/toolbar/toolbar.blp:114
 #: src/ui/edit_view/toolbar/toolbar.blp:149
 #: src/ui/edit_view/toolbar/toolbar.blp:196 src/ui/popup/shortcut_window.blp:77
 msgid "Italic"
-msgstr "Искошено"
+msgstr "Kurzíva"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:53
 #: src/ui/edit_view/toolbar/toolbar.blp:156
 #: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:82
 msgid "Strikethrough"
-msgstr "Прецртано"
+msgstr "Přeškrtnutí"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:59
 #: src/ui/edit_view/toolbar/toolbar.blp:163
 #: src/ui/edit_view/toolbar/toolbar.blp:198 src/ui/popup/shortcut_window.blp:87
 msgid "Highlight"
-msgstr "Истакнуто"
+msgstr "Zvýraznění"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:69
 #: src/ui/edit_view/toolbar/toolbar.blp:187 src/ui/popup/shortcut_window.blp:92
 msgid "Insert Link"
-msgstr "Убаци везу"
+msgstr "Vložit odkaz"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:75
 #: src/ui/edit_view/toolbar/toolbar.blp:188
 msgid "Insert Code"
-msgstr "Убаци код"
+msgstr "Vložit kód"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:81
 #: src/ui/edit_view/toolbar/toolbar.blp:189
 msgid "Insert Horizontal Rule"
-msgstr "Убаци линију"
+msgstr "Vložit vodorovnou čáru"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:121
 msgid "Format"
-msgstr "Облик"
+msgstr "Formátovat"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:175
 msgid "Insert"
-msgstr "Убаци"
+msgstr "Vložit"
 
 #: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:18
 #: src/ui/strings.vala:44 src/ui/strings.vala:58
 msgid "Cancel"
-msgstr "Откажи"
+msgstr "Zrušit"
 
 #: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:23
 msgid "Confirm"
-msgstr "Потврди"
+msgstr "Potvrdit"
 
 #: src/ui/popup/shortcut_window.blp:14 src/ui/strings.vala:60
 msgid "Note"
-msgstr "Белешка"
+msgstr "Poznámka"
 
 #: src/ui/popup/shortcut_window.blp:22
 msgid "Edit Note"
-msgstr "Уреди белешку"
+msgstr "Upravit poznámku"
 
 #: src/ui/popup/shortcut_window.blp:27
 msgid "Save Note"
-msgstr "Сачувај белешку"
+msgstr "Uložit poznámku"
 
 #: src/ui/popup/shortcut_window.blp:34 src/ui/strings.vala:48
 msgid "Notebook"
-msgstr "Бележница"
+msgstr "Sešit"
 
 #: src/ui/popup/shortcut_window.blp:42 src/ui/strings.vala:23
 msgid "Edit Notebook"
-msgstr "Уреди бележницу"
+msgstr "Upravit sešit"
 
 #: src/ui/popup/shortcut_window.blp:49 src/ui/preferences/preferences.blp:12
 msgid "General"
-msgstr "Опште"
+msgstr "Obecné"
 
 #: src/ui/popup/shortcut_window.blp:52
 msgid "Show Keyboard Shortcuts"
-msgstr "Прикажи пречице на тастатури"
+msgstr "Zobrazit klávesové zkratky"
 
 #: src/ui/popup/shortcut_window.blp:57
 msgid "Quit"
-msgstr "Излаз"
+msgstr "Konec"
 
 #: src/ui/popup/shortcut_window.blp:69
 msgid "Formatting"
-msgstr "Форматирање"
+msgstr "Formátování"
 
 #: src/ui/popup/shortcut_window.blp:99
 msgid "Navigation"
-msgstr "Навигација"
+msgstr "Navigace"
 
 #: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:273
 msgid "Toggle Sidebar"
-msgstr "Окини бочну површ"
+msgstr "Přepnout postranní panel"
 
 #: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:73
 msgid "Search Notes"
-msgstr "Претраживање белешки"
+msgstr "Hledat v poznámkách"
 
 #: data/app.gschema.xml:22 src/ui/preferences/preferences.blp:19
 msgid "Makes the dark theme pitch black"
-msgstr "Учини тамну тему веома тамном"
+msgstr "Tmavé téma se změní na černé"
 
 #: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:109
 msgid "Enable Toolbar"
-msgstr "Омогући алатницу"
+msgstr "Povolit Panel nástrojů"
 
 #: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:120
 msgid "Enable Cheatsheet"
-msgstr ""
+msgstr "Povolit nápovědu"
 
 #: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:139
 msgid "3-Pane Layout"
-msgstr "Распоред са три површи"
+msgstr "3-panelové rozvržení"
 
 #: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:207
 msgid "Notes Storage Location"
-msgstr "Место складиштења белешки"
+msgstr "Umístění úložiště poznámek"
 
 #: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:208
 msgid "Where the notebooks are stored (requires app restart)"
-msgstr "Где се чувају бележнице (захтева поновно покретање програма)"
+msgstr "Kde jsou uloženy zápisníky (vyžaduje restart aplikace)"
 
 #: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:129
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:171
 msgid "Trash"
-msgstr "Смеће"
+msgstr "Koš"
 
 #: src/ui/strings.vala:5
 msgid "%d Notes"
-msgstr "%d бележница"
+msgstr "Poznámky: %d"
 
 #: src/ui/strings.vala:6
 msgid "Are you sure you want to delete everything in the trash?"
-msgstr "Да ли сте сигурни да желите обрисати све из смећа?"
+msgstr "Opravdu chcete smazat vše v koši?"
 
 #: src/ui/strings.vala:7 src/ui/window/window.blp:64
 msgid "Empty Trash"
-msgstr "Избаци смеће"
+msgstr "Vyprázdnit koš"
 
 #: src/ui/strings.vala:9
 msgid "Create/choose a notebook before creating a note"
-msgstr "Направите или изаберите бележницу пре писања белешке"
+msgstr "Před vytvořením poznámky vytvořte/vyberte sešit"
 
 #: src/ui/strings.vala:10
 msgid "Please, select a note to edit"
-msgstr "Изаберите белешку коју желите изменити"
+msgstr "Vyberte prosím poznámku, kterou chcete upravit"
 
 #: src/ui/strings.vala:11
 msgid "Please, select a note to delete"
-msgstr "Изаберите белешку коју желите обрисати"
+msgstr "Vyberte prosím poznámku, kterou chcete smazat"
 
 #: src/ui/strings.vala:12
 msgid "Export Note"
-msgstr "Извези белешку"
+msgstr "Exportovat poznámku"
 
 #: src/ui/strings.vala:13
 msgid "Export"
-msgstr "Извези"
+msgstr "Export"
 
 #: src/ui/strings.vala:15
 msgid "Rename Note"
-msgstr "Преименуј белешку"
+msgstr "Přejmenovat poznámku"
 
 #: src/ui/strings.vala:16
 msgid "Move to Notebook"
-msgstr "Премести у бележницу"
+msgstr "Přesunout do sešitu"
 
 #: src/ui/strings.vala:17
 msgid "Move"
-msgstr "Премести"
+msgstr "Přesunout"
 
 #: src/ui/strings.vala:18
 msgid "Note “%s” already exists in notebook “%s”"
-msgstr "Белешка „%s“ већ постоји у бележници „%s“"
+msgstr "Poznámka „%s“ již existuje v sešitu „%s“"
 
 #: src/ui/strings.vala:19
 msgid "Are you sure you want to delete the note “%s”?"
-msgstr "Да ли сте сигурни да желите обрисати белешку „%s“?"
+msgstr "Opravdu chcete smazat poznámku „%s“?"
 
 #: src/ui/strings.vala:20
 msgid "Delete Note"
-msgstr "Обриши белешку"
+msgstr "Smazat poznámku"
 
 #: src/ui/strings.vala:21
 msgid "Are you sure you want to delete the notebook “%s”?"
-msgstr "Да ли сте сигурни да желите обрисати бележницу „%s“?Да"
+msgstr "Opravdu chcete smazat sešit „%s“?"
 
 #: src/ui/strings.vala:22
 msgid "Delete Notebook"
-msgstr "Обриши бележницу"
+msgstr "Smazat sešit"
 
 #: src/ui/strings.vala:26
 msgid "Note “%s” already exists"
-msgstr "Белешка „%s“ већ постоји"
+msgstr "Poznámka „%s“ již existuje"
 
 #: src/ui/strings.vala:27
 msgid "Could not create note"
-msgstr ""
+msgstr "Nepodařilo se vytvořit poznámku"
 
 #: src/ui/strings.vala:28
 msgid "Could not change note"
-msgstr ""
+msgstr "Nepodařilo se změnit poznámku"
 
 #: src/ui/strings.vala:29
 msgid "Could not delete note"
-msgstr ""
+msgstr "Nepodařilo se smazat poznámku"
 
 #: src/ui/strings.vala:30
 msgid "Could not restore note"
-msgstr ""
+msgstr "Nepodařilo se obnovit poznámku"
 
 #: src/ui/strings.vala:31
 msgid "Saved “%s” to “%s”"
-msgstr "„%s“ сачувано у „%s“"
+msgstr "„%s“ bylo uloženo do „%s“"
 
 #: src/ui/strings.vala:32
 msgid "Unknown error"
-msgstr "Непозната грешка"
+msgstr "Neznámá chyba"
 
 #: src/ui/strings.vala:35
 msgid "Notebook “%s” already exists"
-msgstr "Бележница „%s“ већ постоји"
+msgstr "Sešit „%s“ již existuje"
 
 #: src/ui/strings.vala:36
 msgid "Could not create notebook"
-msgstr ""
+msgstr "Sešit se nepodařilo vytvořit"
 
 #: src/ui/strings.vala:37
 msgid "Could not change notebook"
-msgstr ""
+msgstr "Sešit se nepodařilo změnit"
 
 #: src/ui/strings.vala:38
 msgid "Could not delete notebook"
-msgstr ""
+msgstr "Sešit se nepodařilo smazat"
 
 #: src/ui/strings.vala:40
 msgid "Search"
-msgstr "Претрага"
+msgstr "Hledat"
 
 #: src/ui/strings.vala:41 src/ui/window/sidebar/note_menu.blp:36
 msgid "Rename"
-msgstr "Преименуј"
+msgstr "Přejmenovat"
 
 #: src/ui/strings.vala:42
 msgid "Could not find an app to handle file URIs"
-msgstr ""
+msgstr "Nebyla nalezena aplikace pro zpracování identifikátorů URI souborů"
 
 #: src/ui/strings.vala:43
 msgid "Apply"
-msgstr "Примени"
+msgstr "Použít"
 
 #: src/ui/strings.vala:45
 msgid "Pick where the notebooks will be stored"
-msgstr "Изабери место за складиштење белешки"
+msgstr "Vyberte místo, kde budou uloženy sešity"
 
 #: src/ui/strings.vala:47 src/ui/window/notebooks_bar/notebooks_bar.blp:59
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:101
 msgid "All Notes"
-msgstr "Све белешке"
+msgstr "Všechny poznámky"
 
 #: src/ui/strings.vala:49
 msgid "Last Modified"
-msgstr ""
+msgstr "Naposledy změněno"
 
 #: src/ui/strings.vala:50
 msgid "Extension"
-msgstr ""
+msgstr "Rozšíření"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
 msgid "Follow system style"
-msgstr "Прати системски стил"
+msgstr "Motiv systému"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:23
 msgid "Light style"
-msgstr "Светли стил"
+msgstr "Světlý motiv"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:32
 msgid "Dark style"
-msgstr "Тамни стил"
+msgstr "Tmavý motiv"
 
 #: src/ui/window/app_menu/app_menu.blp:25
 msgid "_New Notebook"
-msgstr "_Нова бележница"
+msgstr "_Nový sešit"
 
 #: src/ui/window/app_menu/app_menu.blp:29
 msgid "_Edit Notebook"
-msgstr "Ур_еди бележницу"
+msgstr "_Upravit sešit"
 
 #: src/ui/window/app_menu/app_menu.blp:35
 msgid "_Preferences"
-msgstr "_Поставке"
+msgstr "_Předvolby"
 
 #: src/ui/window/app_menu/app_menu.blp:39
 msgid "_Keyboard Shortcuts"
-msgstr "П_речице на тастатури"
+msgstr "_Klávesové zkratky"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:58
 msgid "Notebook Name"
-msgstr "Назив бележнице"
+msgstr "Název sešitu"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:70
 msgid "Duplicate notebook names are not allowed!"
-msgstr ""
+msgstr "Duplicitní názvy sešitů nejsou povoleny!"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:6
 msgid "First Characters"
-msgstr "Први знакови"
+msgstr "První znaky"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:7
 msgid "Initials"
-msgstr "Иницијали"
+msgstr "Iniciály"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:8
 msgid "Initials: camelCase"
-msgstr "Иницијали: камилаСтил"
+msgstr "Iniciály: camelCase"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:9
 msgid "Initials: snake_case"
-msgstr "Иницијали: змијски_стил"
+msgstr "Iniciály: snake_case"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:10
 msgid "Icon"
-msgstr "Иконица"
+msgstr "Ikona"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:16
 msgid "Notebook Color"
-msgstr "Боја бележнице"
+msgstr "Barva sešitu"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:126
 msgid "Create Notebook"
-msgstr "Направи бележницу"
+msgstr "Vytvořit sešit"
 
 #: src/ui/window/notebooks_bar/notebook_menu.blp:16
 msgid "Edit"
-msgstr "Уреди"
+msgstr "Upravit"
 
 #: src/ui/window/notebooks_bar/notebook_menu.blp:26
 msgid "Move all to Trash"
-msgstr "Премести све у смеће"
+msgstr "Přesunout vše do koše"
 
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:113
 msgid "Notebooks"
-msgstr ""
+msgstr "Sešity"
 
 #: src/ui/window/sidebar/note_create_popup.blp:25
 msgid "Note Name"
-msgstr "Назив белешке"
+msgstr "Název poznámky"
 
 #: src/ui/window/sidebar/note_create_popup.blp:33
 msgid "Create Note"
-msgstr "Направи белешку"
+msgstr "Vytvořit poznámku"
 
 #: src/ui/window/sidebar/note_menu.blp:16
 msgid "Restore from Trash"
-msgstr "Врати из смећа"
+msgstr "Obnovit z koše"
 
 #: src/ui/window/sidebar/note_menu.blp:26
 msgid "Delete from Trash"
-msgstr "Избриши из смећа"
+msgstr "Smazat z koše"
 
 #: src/ui/window/sidebar/note_menu.blp:46
 msgid "Move to Notebook…"
-msgstr "Премести у бележницу…"
+msgstr "Přesunout do sešitu…"
 
 #: src/ui/window/sidebar/note_menu.blp:56
 msgid "Move to Trash"
-msgstr "Премести у смеће"
+msgstr "Přesunout do koše"
 
 #: src/ui/window/sidebar/note_menu.blp:66
 msgid "Open Containing Folder"
-msgstr "Отвори припадајућу фасциклу"
+msgstr "Otevřít nadřazenou složku"
 
 #: src/ui/window/window.blp:128
 msgid "Get started writing"
-msgstr "Започните писање"
+msgstr "Začněte psát"
 
 #: src/ui/window/window.blp:186
 msgid "Create a notebook"
-msgstr "Направи бележницу"
+msgstr "Vytvořte sešit"
 
 #: src/ui/window/window.blp:215
 msgid "Trash is empty"
-msgstr "Нема ставки у смећу"
+msgstr "Koš je prázdný"
 
 #: src/ui/window/window.blp:290
 msgid "Open in Notebook"
-msgstr "Отвори у бележници"
+msgstr "Otevřít v sešitu"
 
 #: src/ui/window/window.blp:317
 msgid "_Rename Note"
-msgstr "П_реименуј белешку"
+msgstr "_Přejmenovat poznámku"
 
 #: src/ui/window/window.blp:324
 msgid "_Export Note"
-msgstr "Изв_ези белешку"
+msgstr "_Exportovat poznámku"

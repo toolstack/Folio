@@ -1,16 +1,43 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $FolioPreferencesWindow : Adw.PreferencesWindow {
+template $FolioPreferencesWindow : Adw.PreferencesDialog {
 
-  default-width: 560;
-  default-height: 430;
-  search-enabled: false;
-  modal: true;
+  content-width: 560;
+  content-height: 560;
+  search-enabled: true;
+
 
   Adw.PreferencesPage {
     title: _("General");
     icon-name: "icon-settings-symbolic";
+
+    Adw.PreferencesGroup {
+      Adw.ActionRow {
+
+        title: _("OLED Mode");
+        subtitle: _("Makes the dark theme pitch black");
+        icon-name: "dark-mode-symbolic";
+        activatable-widget: oled_mode;
+
+        Switch oled_mode {
+          valign: center;
+        }
+      }
+    }
+    Adw.PreferencesGroup {
+      Adw.ComboRow url_detection_level {
+
+        title: _("Markdown URL Detection");
+        subtitle: _("Determines the level of detection of URLs in\nfree form text is used:\n - Aggressive tries to find all URLs\n - Strict requires a protocol identifier (ie http://)\n - Disabled turns detection off.");
+        icon-name: "icon-code-symbolic";
+      }
+    }
+  }
+
+  Adw.PreferencesPage {
+    title: _("Fonts");
+    icon-name: "font-x-generic-symbolic";
 
     Adw.PreferencesGroup {
       Adw.ActionRow {
@@ -41,16 +68,11 @@ template $FolioPreferencesWindow : Adw.PreferencesWindow {
       }
     }
     Adw.PreferencesGroup {
-      Adw.ActionRow {
+        Adw.ComboRow line_spacing {
 
-        title: _("OLED Mode");
-        subtitle: _("Makes the dark theme pitch black");
-        icon-name: "dark-mode-symbolic";
-        activatable-widget: oled_mode;
-
-        Switch oled_mode {
-          valign: center;
-        }
+        title: _("Line Spacing");
+        subtitle: _("The line spacing for the note text");
+        icon-name: "insert-horizontal-rule-symbolic";
       }
     }
   }
@@ -139,6 +161,28 @@ template $FolioPreferencesWindow : Adw.PreferencesWindow {
         title: _("Fixed Width To Use For Notes");
         subtitle: _("Sets the fixed width size of a note in px");
         icon-name: "object-flip-horizontal-symbolic";
+      }
+      Adw.ActionRow {
+
+        title: _("Allow Long Notebook Names");
+        subtitle: _("The notebook column will expand to the width of the longest notebook name (requires notebook selection change to take effect).");
+        icon-name: "icon-code-symbolic";
+        activatable-widget: long_notebook_names;
+
+        Switch long_notebook_names {
+          valign: center;
+        }
+      }
+      Adw.ActionRow {
+
+        title: _("Allow Long Note Names");
+        subtitle: _("The note list column will expand to the width of the longest note name (requires notebook selection change to take effect).");
+        icon-name: "icon-code-symbolic";
+        activatable-widget: long_note_names;
+
+        Switch long_note_names {
+          valign: center;
+        }
       }
       Adw.ComboRow notebook_sort_order {
 

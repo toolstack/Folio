@@ -1,279 +1,306 @@
 using Gtk 4.0;
 using Adw 1;
 
-template $FolioWindow : Adw.ApplicationWindow {
-
-  styles ["transparent"]
+template $FolioWindow: Adw.ApplicationWindow {
+  styles [
+    "transparent"
+  ]
 
   Adw.ToastOverlay toast_overlay {
+    Adw.BreakpointBin {
+      width-request: 360;
+      height-request: 360;
 
-    Adw.Leaflet leaflet {
 
-      Adw.LeafletPage sidebar {
+      Adw.Breakpoint breakpoint {
+        setters {
+          leaflet.collapsed: true;
+          toggle_sidebar.visible: false;
+          headerbar_edit_view.show-back-button: true;
+          leaflet.show-content: true;
+        }
+      }
 
-        navigatable: false;
+      child: Adw.NavigationSplitView leaflet {
+        min-sidebar-width: 264;
 
-        child: Revealer sidebar_revealer {
+        [sidebar]
+        Adw.NavigationPage sidebar {
+          title: "Sidebar";
 
-          transition-type: slide_right;
-          reveal-child: true;
+          child: Revealer sidebar_revealer {
+            transition-type: slide_right;
+            reveal-child: true;
 
-          child: Box {
+            child: Adw.ToolbarView {
+              content: Box {
+                $FolioNotebooksBar notebooks_bar {}
 
-            orientation: horizontal;
-            hexpand: false;
+                Box {
+                  width-request: 225;
+                  orientation: vertical;
+                  hexpand: true;
+                  vexpand: true;
+
+                  styles [
+                    "notebook-sidebar"
+                  ]
+
+                  Adw.HeaderBar headerbar_sidebar {
+                    show-start-title-buttons: bind notebooks_bar.paned inverted;
+                    show-end-title-buttons: bind leaflet.collapsed;
+
+                    [start]
+                    Button button_create_note {
+                      icon-name: "list-add-symbolic";
+                      action-name: "app.new-note";
+                      tooltip-text: _("New Note");
+                    }
+
+                    [start]
+                    Button button_empty_trash {
+                      icon-name: "empty-trash-symbolic";
+                      action-name: "app.empty-trash";
+                      tooltip-text: _("Empty Trash");
+                    }
+
+                    [title]
+                    Adw.WindowTitle notebook_title {}
+
+                    [end]
+                    ToggleButton {
+                      icon-name: "system-search-symbolic";
+                      tooltip-text: _("Search Notes");
+                      active: bind notes_search_bar.search-mode-enabled bidirectional;
+                    }
+                  }
+
+                  SearchBar notes_search_bar {
+                    SearchEntry notes_search_entry {}
+                  }
+
+                  ScrolledWindow notebook_notes_list_scroller {
+                    hexpand: true;
+                    vexpand: true;
+                    hscrollbar-policy: never;
+                    vscrollbar-policy: automatic;
+
+                    ListView notebook_notes_list {
+                      accessibility {
+                        labelled-by: notebook_title;
+                      }
+                    }
+                  }
+                }
+              };
+            };
+          };
+        }
+
+        [content]
+        Adw.NavigationPage edit_view_page {
+          title: "Edit View";
+
+          child: Overlay {
+            hexpand: true;
             vexpand: true;
-            width-request: 224;
+            width-request: 320;
 
-            $FolioNotebooksBar notebooks_bar {}
+            styles [
+              "text-area"
+            ]
 
-            Box {
-
-              orientation: vertical;
+            [overlay]
+            $FolioEditView edit_view {
               hexpand: true;
               vexpand: true;
+            }
 
-              styles ["notebook-sidebar"]
+            [overlay]
+            Box text_view_empty_notebook {
+              hexpand: true;
+              vexpand: true;
+              orientation: vertical;
+              halign: center;
+              valign: center;
 
-              Adw.HeaderBar headerbar_sidebar {
+              Label {
+                label: _("Get started writing");
 
-                show-start-title-buttons: bind notebooks_bar.paned inverted;
-                show-end-title-buttons: bind leaflet.folded;
+                styles [
+                  "title-1"
+                ]
+              }
 
-                [start]
-                Button button_create_note {
-                  icon-name: "list-add-symbolic";
-                  action-name: "app.new-note";
-                  tooltip-text: _("New Note");
-                }
+              Button {
+                label: _("New Note");
+                action-name: "app.new-note";
+                margin-bottom: 32;
+                margin-top: 32;
 
-                [start]
-                Button button_empty_trash {
-                  icon-name: "empty-trash-symbolic";
-                  action-name: "app.empty-trash";
-                  tooltip-text: _("Empty Trash");
-                }
+                styles [
+                  "pill",
+                  "suggested-action"
+                ]
+              }
+            }
+
+            [overlay]
+            Box external_file_type_notebook {
+              hexpand: true;
+              vexpand: true;
+              orientation: vertical;
+              halign: center;
+              valign: center;
+
+              Label {
+                label: _("Open file in external application");
+
+                styles [
+                  "title-1"
+                ]
+              }
+
+              Button {
+                label: _("Open file");
+                action-name: "app.open-external-file";
+                margin-bottom: 32;
+                margin-top: 32;
+
+                styles [
+                  "pill",
+                  "suggested-action"
+                ]
+              }
+            }
+
+            [overlay]
+            Box text_view_no_notebook {
+              hexpand: true;
+              vexpand: true;
+              orientation: vertical;
+              halign: center;
+              valign: center;
+
+              Label {
+                label: _("Create a notebook");
+
+                styles [
+                  "title-1"
+                ]
+              }
+
+              Button {
+                label: _("New Notebook");
+                action-name: "app.new-notebook";
+                margin-bottom: 32;
+                margin-top: 32;
+
+                styles [
+                  "pill",
+                  "suggested-action"
+                ]
+              }
+            }
+
+            [overlay]
+            Box text_view_empty_trash {
+              hexpand: true;
+              vexpand: true;
+              orientation: vertical;
+              halign: center;
+              valign: center;
+
+              Label {
+                label: _("Trash is empty");
+
+                styles [
+                  "title-1"
+                ]
+              }
+            }
+
+            [overlay]
+            Revealer headerbar_edit_view_revealer {
+              valign: start;
+              reveal-child: true;
+              transition-type: crossfade;
+
+              child: Adw.HeaderBar headerbar_edit_view {
+                hexpand: true;
+                vexpand: false;
+                visible: true;
+                show-back-button: false;
 
                 [title]
-                Adw.WindowTitle notebook_title {}
+                Box {
+                  orientation: vertical;
+                  valign: center;
+
+                  CenterBox {
+                    orientation: horizontal;
+                    halign: center;
+
+                    styles [
+                      "title"
+                    ]
+
+                    [start]
+                    Label save_indicator {
+                      label: "•";
+                      visible: false;
+                      hexpand: false;
+                      halign: end;
+                      margin-end: 6;
+                    }
+
+                    [center]
+                    Label note_title {
+                      halign: fill;
+                    }
+                  }
+
+                  Label note_subtitle {
+                    styles [
+                      "subtitle"
+                    ]
+                  }
+                }
+
+                [start]
+                ToggleButton toggle_sidebar {
+                  icon-name: "sidebar-show-symbolic";
+                  tooltip-text: _("Toggle Sidebar");
+                  active: bind leaflet.collapsed inverted;
+                  visible: true;
+                }
 
                 [end]
-                ToggleButton {
-                  icon-name: "system-search-symbolic";
-                  tooltip-text: _("Search Notes");
-                  active: bind notes_search_bar.search-mode-enabled bidirectional;
+                MenuButton button_more_menu {
+                  icon-name: "view-more-symbolic";
+
+                  popover: PopoverMenu more_popover {
+                    menu-model: more_menu;
+                  };
                 }
-              }
 
-              SearchBar notes_search_bar {
-                SearchEntry notes_search_entry {}
-              }
-
-              ScrolledWindow notebook_notes_list_scroller {
-
-                hexpand: true;
-                vexpand: true;
-                hscrollbar-policy: never;
-                vscrollbar-policy: automatic;
-
-                ListView notebook_notes_list {
-                  accessibility {
-                    labelled-by: notebook_title;
-                  }
+                [end]
+                Button button_open_in_notebook {
+                  icon-name: "document-edit-symbolic";
+                  tooltip-text: _("Open in Notebook");
                 }
-              }
+
+                [end]
+                Button button_md_cheatsheet_headerbar {
+                  icon-name: "dialog-information-symbolic";
+                  tooltip-text: _("Markdown Cheatsheet");
+                  action-name: "app.markdown-cheatsheet";
+                }
+              };
             }
           };
-        };
-      }
-
-      Adw.LeafletPage edit_view_page {
-
-        navigatable: true;
-
-        child: Overlay {
-
-          hexpand: true;
-          vexpand: true;
-          width-request: 320;
-
-          styles ["text-area"]
-
-          [overlay]
-          $FolioEditView edit_view {
-            hexpand: true;
-            vexpand: true;
-          }
-
-          [overlay]
-          Box text_view_empty_notebook {
-
-            hexpand: true;
-            vexpand: true;
-            orientation: vertical;
-            halign: center;
-            valign: center;
-
-            Label {
-              label: _("Get started writing");
-              styles ["title-1"]
-            }
-
-            Button {
-
-              label: _("New Note");
-              action-name: "app.new-note";
-              margin-bottom: 32;
-              margin-top: 32;
-
-              styles ["pill", "suggested-action"]
-            }
-          }
-
-          [overlay]
-          Box external_file_type_notebook {
-
-            hexpand: true;
-            vexpand: true;
-            orientation: vertical;
-            halign: center;
-            valign: center;
-
-            Label {
-              label: _("Open file in external application");
-              styles ["title-1"]
-            }
-
-            Button {
-
-              label: _("Open file");
-              action-name: "app.open-external-file";
-              margin-bottom: 32;
-              margin-top: 32;
-
-              styles ["pill", "suggested-action"]
-            }
-          }
-
-          [overlay]
-          Box text_view_no_notebook {
-
-            hexpand: true;
-            vexpand: true;
-            orientation: vertical;
-            halign: center;
-            valign: center;
-
-            Label {
-              label: _("Create a notebook");
-              styles ["title-1"]
-            }
-
-            Button {
-
-              label: _("New Notebook");
-              action-name: "app.new-notebook";
-              margin-bottom: 32;
-              margin-top: 32;
-
-              styles ["pill", "suggested-action"]
-            }
-          }
-
-          [overlay]
-          Box text_view_empty_trash {
-
-            hexpand: true;
-            vexpand: true;
-            orientation: vertical;
-            halign: center;
-            valign: center;
-
-            Label {
-              label: _("Trash is empty");
-              styles ["title-1"]
-            }
-          }
-
-          [overlay]
-          Revealer headerbar_edit_view_revealer {
-            valign: start;
-            reveal-child: true;
-            transition-type: crossfade;
-
-            child: Adw.HeaderBar headerbar_edit_view {
-
-              hexpand: true;
-              vexpand: false;
-              visible: true;
-
-              [title]
-              Box {
-                orientation: vertical;
-                valign: center;
-                CenterBox {
-                  orientation: horizontal;
-                  halign: center;
-
-                  styles ["title"]
-
-                  [start]
-                  Label save_indicator {
-                    label: "•";
-                    visible: false;
-                    hexpand: false;
-                    halign: end;
-                    margin-end: 6;
-                  }
-                  [center]
-                  Label note_title {
-                    halign: fill;
-                  }
-                }
-                Label note_subtitle {
-                  styles ["subtitle"]
-                }
-              }
-
-              [start]
-              ToggleButton {
-                icon-name: "sidebar-show-symbolic";
-                tooltip-text: _("Toggle Sidebar");
-                active: bind sidebar_revealer.reveal-child bidirectional;
-                visible: bind leaflet.folded inverted;
-              }
-
-              [start]
-              Button button_back {
-                icon-name: "go-previous-symbolic";
-                tooltip-text: _("Back");
-                visible: bind leaflet.folded;
-              }
-
-              [end]
-              MenuButton button_more_menu {
-                icon-name: "view-more-symbolic";
-                popover: PopoverMenu more_popover {
-                  menu-model: more_menu;
-                };
-              }
-
-              [end]
-              Button button_open_in_notebook {
-                icon-name: "document-edit-symbolic";
-                tooltip-text: _("Open in Notebook");
-              }
-
-              [end]
-              Button button_md_cheatsheet_headerbar {
-                icon-name: "dialog-information-symbolic";
-                tooltip-text: _("Markdown Cheatsheet");
-                action-name: "app.markdown-cheatsheet";
-              }
-            };
-          }
-        };
-      }
+        }
+      };
     }
   }
 }
@@ -284,12 +311,14 @@ menu more_menu {
       custom: "font-scale";
     }
   }
+
   section {
     item {
       label: _("_Rename Note");
       action: "app.edit-note";
     }
   }
+
   section {
     item {
       label: _("_Export Note");

@@ -2,14 +2,120 @@
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-03-23 22:50:27+0000\n"
+"PO-Revision-Date: 2024-10-18 22:14:28+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: GlotPress/4.0.0\n"
+"X-Generator: GlotPress/4.0.1\n"
 "Language: tr\n"
 "Project-Id-Version: Folio\n"
+
+#: data/app.gschema.xml:81
+msgid "URL detection level"
+msgstr "URL algılama düzeyi"
+
+#: data/app.gschema.xml:82
+msgid "How aggressive to look for URLs in markdown text"
+msgstr "Markdown metninde URL'lerin ne kadar sıkı aranacağı"
+
+#: data/app.gschema.xml:86
+msgid "Line spacing"
+msgstr "Satır aralığı"
+
+#: data/app.gschema.xml:87 src/ui/preferences/preferences.blp:74
+msgid "The line spacing for the note text"
+msgstr "Not metni için satır aralığı"
+
+#: src/ui/preferences/preferences.blp:31
+msgid "Markdown URL Detection"
+msgstr "Markdown URL Algılama"
+
+#: src/ui/preferences/preferences.blp:32
+msgid ""
+"Determines the level of detection of URLs in\n"
+"free form text is used:\n"
+" - Aggressive tries to find all URLs\n"
+" - Strict requires a protocol identifier (ie http://)\n"
+" - Disabled turns detection off."
+msgstr ""
+"Serbest biçimli metin kullanılırken↵\n"
+"URL'lerin algılanma düzeyini belirle:r↵\n"
+" - Sıkı: tüm URL'leri bulmaya çalışır↵\n"
+" - Katı: iletişim kuralı tanımlayıcı gerektirir (http:// gibi)↵\n"
+" - Devre dışı: algılamayı kapatır."
+
+#: src/ui/preferences/preferences.blp:39
+msgid "Fonts"
+msgstr "Yazı Tipleri"
+
+#: src/ui/preferences/preferences.blp:73
+msgid "Line Spacing"
+msgstr "Satır Aralığı"
+
+#: src/ui/strings.vala:24
+msgid "Note names cannot contain a “/”"
+msgstr "Not adları “/” içeremez"
+
+#: src/ui/strings.vala:25
+msgid "Note names cannot be blank"
+msgstr "Not adları boş olamaz"
+
+#: src/ui/strings.vala:33
+msgid "Notebook names cannot contain a “/”"
+msgstr "Not defteri adları “/” içeremez"
+
+#: src/ui/strings.vala:34
+msgid "Notebook names cannot be blank"
+msgstr "Not defteri adları boş olamaz"
+
+#: src/ui/strings.vala:66
+msgid "Natural - Ascending"
+msgstr "Doğal - Artan"
+
+#: src/ui/strings.vala:67
+msgid "Natural - Descending"
+msgstr "Doğal - Alçalan"
+
+#: src/ui/strings.vala:68
+msgid "Unable to launch external application for file %s."
+msgstr "%s dosyası için dış uygulama başlatılamadı."
+
+#: src/ui/strings.vala:69
+msgid "Aggressive"
+msgstr "Sıkı"
+
+#: src/ui/strings.vala:70
+msgid "Strict"
+msgstr "Katı"
+
+#: src/ui/strings.vala:71
+msgid "Disabled"
+msgstr "Devre Dışı"
+
+#: src/ui/strings.vala:72
+msgid "“%s” moved to trash"
+msgstr "“%s” çöpe taşındı"
+
+#: src/ui/strings.vala:73
+msgid "“%s” restored"
+msgstr "“%s” geri yüklendi"
+
+#: src/ui/window/app_menu/app_menu.blp:43
+msgid "_About Folio"
+msgstr "Folio _Hakkında"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:11
+msgid "Custom"
+msgstr "Özel"
+
+#: src/ui/window/window.blp:157
+msgid "Open file in external application"
+msgstr "Dosyası dış uygulamada aç"
+
+#: src/ui/window/window.blp:165
+msgid "Open file"
+msgstr "Dosya Aç"
 
 #: data/app.gschema.xml:76
 msgid "Notebook sort order"
@@ -19,7 +125,7 @@ msgstr "Not defteri sıralama düzeni"
 msgid "The sort order of the notebook list"
 msgstr "Not defteri listelerinin sıralama düzeni"
 
-#: src/ui/preferences/preferences.blp:145
+#: src/ui/preferences/preferences.blp:167
 msgid "Sort Order For Notebooks"
 msgstr "Not defterleri için sıralama düzeni"
 
@@ -31,7 +137,7 @@ msgstr "Not sıralama düzeni"
 msgid "The sort order of the note list"
 msgstr "Not listesinin sıralama düzeni"
 
-#: src/ui/preferences/preferences.blp:150
+#: src/ui/preferences/preferences.blp:172
 msgid "Sort Order For Notes"
 msgstr "Not listesinin sıralama düzeni"
 
@@ -129,11 +235,11 @@ msgstr ""
 msgid "Note %i"
 msgstr "Not %i"
 
-#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:213
+#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:235
 msgid "Trash Storage Location"
 msgstr "Çöp Depolama Konumu"
 
-#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:214
+#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:236
 msgid "Where the trash folder is located (requires app restart)"
 msgstr "Çöp kutusu klasörünün konumu (uygulamanın yeniden başlatılmasını gerektirir)"
 
@@ -141,43 +247,43 @@ msgstr "Çöp kutusu klasörünün konumu (uygulamanın yeniden başlatılmasın
 msgid "Pick where the trash can will be stored"
 msgstr "Çöp kutusunun nerede depolanacağını seçin"
 
-#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:128
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:150
 msgid "Use Fixed Width For Notes"
 msgstr "Notlar İçin Sabit Genişlik Kullan"
 
-#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:129
+#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:151
 msgid "Use a fixed width for the text area of a note"
 msgstr "Notun metin alanı için sabit genişlik kullan"
 
-#: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:118
+#: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:140
 msgid "Expands the notebook list to include the notebook name"
 msgstr "Not defteri listesini not defteri adını içerecek şekilde genişletir"
 
-#: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:65
+#: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:87
 msgid "Show line numbers"
 msgstr "Satır numaralarını göster"
 
-#: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:66
+#: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:88
 msgid "Displays line numbers at the left of the note"
 msgstr "Notun solunda satır numaralarını gösterir"
 
-#: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:76
+#: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:98
 msgid "Show all notes"
 msgstr "Tüm notları göster"
 
-#: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:77
+#: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:99
 msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
 msgstr "\"Tüm Notlar\" not defterini not defteri listesinin en üstünde gösterir"
 
-#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:163
+#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:185
 msgid "Enable autosave"
 msgstr "Kendiliğinden kaydetmeyi etkinleştir"
 
-#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:164
+#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:186
 msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
 msgstr "İçerik değiştiyse var olan notu 30 saniyede bir kendiliğinden kaydeder (uygulamanın yeniden başlatılmasını gerektirir)"
 
-#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:174
+#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:196
 msgid "Don't hide the Trash folder"
 msgstr "Çöp Kutusu klasörünü gizleme"
 
@@ -185,55 +291,55 @@ msgstr "Çöp Kutusu klasörünü gizleme"
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
 msgstr "Çöp klasörü öntanımlı olarak gizlidir, bu seçenek onu görünür hale getirir"
 
-#: data/app.metainfo.xml.in:367
+#: data/app.metainfo.xml.in:419
 msgid "Main Folio window in light mode"
 msgstr "Açık kipte Folio ana penceresi"
 
-#: data/app.metainfo.xml.in:371
+#: data/app.metainfo.xml.in:423
 msgid "Main Folio window in dark mode"
 msgstr "Koyu kipte Folio ana penceresi"
 
-#: data/app.metainfo.xml.in:375
+#: data/app.metainfo.xml.in:427
 msgid "Folio on small/mobile screens"
 msgstr "Küçük/mobil ekranda Folio"
 
-#: data/app.metainfo.xml.in:379
+#: data/app.metainfo.xml.in:431
 msgid "Folio preferences screen"
 msgstr "Folio tercihler penceresi"
 
-#: data/app.metainfo.xml.in:383
+#: data/app.metainfo.xml.in:435
 msgid "Folio in three pane mode"
 msgstr "Folio üç bölmeli kipte"
 
-#: src/ui/preferences/preferences.blp:59
+#: src/ui/preferences/preferences.blp:81
 msgid "Tools"
 msgstr "Araçlar"
 
-#: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:88
+#: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:110
 msgid "Displays the formatting toolbar at the bottom of the note"
 msgstr "Notun altındaki biçimlendirme araç çubuğunu gösterir"
 
-#: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:99
+#: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:121
 msgid "Adds a button to the markdown reference sheet on the right of the formatting toolbar"
 msgstr "Biçimlendirme araç çubuğunun sağındaki markdown referans sayfasına düğme ekler"
 
-#: src/ui/preferences/preferences.blp:111
+#: src/ui/preferences/preferences.blp:133
 msgid "Layout"
 msgstr "Düzen"
 
-#: src/ui/preferences/preferences.blp:139
+#: src/ui/preferences/preferences.blp:161
 msgid "Fixed Width To Use For Notes"
 msgstr "Notlar İçin Kullanılacak Sabit Genişlik"
 
-#: src/ui/preferences/preferences.blp:140
+#: src/ui/preferences/preferences.blp:162
 msgid "Sets the fixed width size of a note in px"
 msgstr "Notun sabit genişlik boyutunu px cinsinden ayarlar"
 
-#: src/ui/preferences/preferences.blp:157
+#: src/ui/preferences/preferences.blp:179
 msgid "Files"
 msgstr "Dosyalar"
 
-#: src/ui/preferences/preferences.blp:175
+#: src/ui/preferences/preferences.blp:197
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
 msgstr "Çöp klasörü öntanımlı olarak gizlidir, bu seçenek onu görünür hale getirir (uygulamanın yeniden başlatılmasını gerektirir)"
 
@@ -258,18 +364,18 @@ msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
 msgstr "Not defteri;not;notlar;metin;markdown;not defteri;yaz;okul;post-it;yapışkan not;yapışkan;"
 
 #: data/app.desktop.in:22 src/ui/popup/shortcut_window.blp:17
-#: src/ui/strings.vala:8 src/ui/window/window.blp:47
-#: src/ui/window/window.blp:124
+#: src/ui/strings.vala:8 src/ui/window/window.blp:57
+#: src/ui/window/window.blp:136
 msgid "New Note"
 msgstr "Yeni Not"
 
 #: data/app.desktop.in:26 src/ui/popup/shortcut_window.blp:37
-#: src/ui/strings.vala:14 src/ui/window/window.blp:149
+#: src/ui/strings.vala:14 src/ui/window/window.blp:194
 msgid "New Notebook"
 msgstr "Yeni Not Defteri"
 
-#: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:90
-#: src/ui/strings.vala:39 src/ui/window/window.blp:245
+#: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:92
+#: src/ui/strings.vala:39 src/ui/window/window.blp:296
 msgid "Markdown Cheatsheet"
 msgstr "Markdown İpucu Sayfası"
 
@@ -277,23 +383,23 @@ msgstr "Markdown İpucu Sayfası"
 msgid "Preferences"
 msgstr "Tercihler"
 
-#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:18
+#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:45
 msgid "Note Font"
 msgstr "Not Yazı Tipi"
 
-#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:19
+#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:46
 msgid "The font notes will be displayed in"
 msgstr "Notların görüntüleneceği yazı tipi"
 
-#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:31
+#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:58
 msgid "Monospace Font"
 msgstr "Eş Aralıklı Yazı Tipi"
 
-#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:32
+#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:59
 msgid "The font code will be displayed in"
 msgstr "Kodların görüntüleneceği yazı tipi"
 
-#: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:46
+#: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:18
 msgid "OLED Mode"
 msgstr "OLED Kipi"
 
@@ -329,103 +435,96 @@ msgstr "Not defteri rengine göre uygulama renklendirme"
 msgid "Trash can"
 msgstr "Çöp kutusu"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:23
-#: src/ui/edit_view/toolbar/toolbar.blp:131
+#: src/ui/edit_view/toolbar/toolbar.blp:6
 #: src/ui/widgets/markdown/heading_popover.blp:48
 msgid "Plain Text"
 msgstr "Düz Metin"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:24
-#: src/ui/edit_view/toolbar/toolbar.blp:132
+#: src/ui/edit_view/toolbar/toolbar.blp:7
 #: src/ui/widgets/markdown/heading_popover.blp:12
 msgid "Heading 1"
 msgstr "Başlık 1"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:25
-#: src/ui/edit_view/toolbar/toolbar.blp:133
+#: src/ui/edit_view/toolbar/toolbar.blp:8
 #: src/ui/widgets/markdown/heading_popover.blp:18
 msgid "Heading 2"
 msgstr "Başlık 2"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:26
-#: src/ui/edit_view/toolbar/toolbar.blp:134
+#: src/ui/edit_view/toolbar/toolbar.blp:9
 #: src/ui/widgets/markdown/heading_popover.blp:24
 msgid "Heading 3"
 msgstr "Başlık 3"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:27
-#: src/ui/edit_view/toolbar/toolbar.blp:135
+#: src/ui/edit_view/toolbar/toolbar.blp:10
 #: src/ui/widgets/markdown/heading_popover.blp:30
 msgid "Heading 4"
 msgstr "Başlık 4"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:28
-#: src/ui/edit_view/toolbar/toolbar.blp:136
+#: src/ui/edit_view/toolbar/toolbar.blp:11
 #: src/ui/widgets/markdown/heading_popover.blp:36
 msgid "Heading 5"
 msgstr "Başlık 5"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:29
-#: src/ui/edit_view/toolbar/toolbar.blp:137
+#: src/ui/edit_view/toolbar/toolbar.blp:12
 #: src/ui/widgets/markdown/heading_popover.blp:42
 msgid "Heading 6"
 msgstr "Başlık 6"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:39
-#: src/ui/edit_view/toolbar/toolbar.blp:104
-#: src/ui/edit_view/toolbar/toolbar.blp:148
-#: src/ui/edit_view/toolbar/toolbar.blp:201 src/ui/popup/shortcut_window.blp:72
+#: src/ui/edit_view/toolbar/toolbar.blp:41
+#: src/ui/edit_view/toolbar/toolbar.blp:107
+#: src/ui/edit_view/toolbar/toolbar.blp:142
+#: src/ui/edit_view/toolbar/toolbar.blp:195 src/ui/popup/shortcut_window.blp:72
 msgid "Bold"
 msgstr "Kalın"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:45
-#: src/ui/edit_view/toolbar/toolbar.blp:111
-#: src/ui/edit_view/toolbar/toolbar.blp:155
-#: src/ui/edit_view/toolbar/toolbar.blp:202 src/ui/popup/shortcut_window.blp:77
+#: src/ui/edit_view/toolbar/toolbar.blp:47
+#: src/ui/edit_view/toolbar/toolbar.blp:114
+#: src/ui/edit_view/toolbar/toolbar.blp:149
+#: src/ui/edit_view/toolbar/toolbar.blp:196 src/ui/popup/shortcut_window.blp:77
 msgid "Italic"
 msgstr "Eğik"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:51
-#: src/ui/edit_view/toolbar/toolbar.blp:162
-#: src/ui/edit_view/toolbar/toolbar.blp:203 src/ui/popup/shortcut_window.blp:82
+#: src/ui/edit_view/toolbar/toolbar.blp:53
+#: src/ui/edit_view/toolbar/toolbar.blp:156
+#: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:82
 msgid "Strikethrough"
 msgstr "Üstü çizili"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:57
-#: src/ui/edit_view/toolbar/toolbar.blp:169
-#: src/ui/edit_view/toolbar/toolbar.blp:204 src/ui/popup/shortcut_window.blp:87
+#: src/ui/edit_view/toolbar/toolbar.blp:59
+#: src/ui/edit_view/toolbar/toolbar.blp:163
+#: src/ui/edit_view/toolbar/toolbar.blp:198 src/ui/popup/shortcut_window.blp:87
 msgid "Highlight"
 msgstr "Vurgula"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:67
-#: src/ui/edit_view/toolbar/toolbar.blp:193 src/ui/popup/shortcut_window.blp:92
+#: src/ui/edit_view/toolbar/toolbar.blp:69
+#: src/ui/edit_view/toolbar/toolbar.blp:187 src/ui/popup/shortcut_window.blp:92
 msgid "Insert Link"
 msgstr "Bağlantı Ekle"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:73
-#: src/ui/edit_view/toolbar/toolbar.blp:194
+#: src/ui/edit_view/toolbar/toolbar.blp:75
+#: src/ui/edit_view/toolbar/toolbar.blp:188
 msgid "Insert Code"
 msgstr "Kod Ekle"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:79
-#: src/ui/edit_view/toolbar/toolbar.blp:195
+#: src/ui/edit_view/toolbar/toolbar.blp:81
+#: src/ui/edit_view/toolbar/toolbar.blp:189
 msgid "Insert Horizontal Rule"
 msgstr "Yatay Çizgi Ekle"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:118
+#: src/ui/edit_view/toolbar/toolbar.blp:121
 msgid "Format"
 msgstr "Biçim"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:181
+#: src/ui/edit_view/toolbar/toolbar.blp:175
 msgid "Insert"
 msgstr "Ekle"
 
-#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:34
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:18
 #: src/ui/strings.vala:44 src/ui/strings.vala:58
 msgid "Cancel"
 msgstr "İptal Et"
 
-#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:39
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:23
 msgid "Confirm"
 msgstr "Doğrula"
 
@@ -469,35 +568,35 @@ msgstr "Biçimlendirme"
 msgid "Navigation"
 msgstr "Gezinti"
 
-#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:216
+#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:273
 msgid "Toggle Sidebar"
 msgstr "Kenar Çubuğunu Aç/Kapa"
 
-#: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:63
+#: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:73
 msgid "Search Notes"
 msgstr "Notları Ara"
 
-#: data/app.gschema.xml:22 src/ui/preferences/preferences.blp:47
+#: data/app.gschema.xml:22 src/ui/preferences/preferences.blp:19
 msgid "Makes the dark theme pitch black"
 msgstr "Koyu temayı zifiri karanlık yapar"
 
-#: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:87
+#: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:109
 msgid "Enable Toolbar"
 msgstr "Araç Çubuğunu Etkinleştir"
 
-#: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:98
+#: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:120
 msgid "Enable Cheatsheet"
 msgstr "İpucu Sayfasını Etkinleştir"
 
-#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:117
+#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:139
 msgid "3-Pane Layout"
 msgstr "3 Bölmeli Düzen"
 
-#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:185
+#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:207
 msgid "Notes Storage Location"
 msgstr "Not Depolama Konumu"
 
-#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:186
+#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:208
 msgid "Where the notebooks are stored (requires app restart)"
 msgstr "Notların depolanacağı dizin (uygulama yeniden başlatma gerektirir)"
 
@@ -514,7 +613,7 @@ msgstr "%d Not"
 msgid "Are you sure you want to delete everything in the trash?"
 msgstr "Çöp kutusundaki her şeyi silmek istediğinizden emin misiniz?"
 
-#: src/ui/strings.vala:7 src/ui/window/window.blp:54
+#: src/ui/strings.vala:7 src/ui/window/window.blp:64
 msgid "Empty Trash"
 msgstr "Çöpü Boşalt"
 
@@ -570,32 +669,24 @@ msgstr "“%s” not defterini silmek istediğinizden emin misiniz?"
 msgid "Delete Notebook"
 msgstr "Not Defterini Sil"
 
-#: src/ui/strings.vala:24
-msgid "Note name shouldn’t contain “.” or “/”"
-msgstr "Not adı “.” veya “/” içeremez"
-
-#: src/ui/strings.vala:25
-msgid "Note name shouldn’t be blank"
-msgstr "Not adı boş olamaz"
-
 #: src/ui/strings.vala:26
 msgid "Note “%s” already exists"
 msgstr "“%s” notu zaten var"
 
 #: src/ui/strings.vala:27
-msgid "Couldn’t create note"
+msgid "Could not create note"
 msgstr "Not oluşturulamadı"
 
 #: src/ui/strings.vala:28
-msgid "Couldn’t change note"
+msgid "Could not change note"
 msgstr "Not değiştirilemedi"
 
 #: src/ui/strings.vala:29
-msgid "Couldn’t delete note"
+msgid "Could not delete note"
 msgstr "Not silinemedi"
 
 #: src/ui/strings.vala:30
-msgid "Couldn’t restore note"
+msgid "Could not restore note"
 msgstr "Not geri yüklenemedi"
 
 #: src/ui/strings.vala:31
@@ -606,28 +697,20 @@ msgstr "“%s”, “%s” içine kaydedildi"
 msgid "Unknown error"
 msgstr "Bilinmeyen hata"
 
-#: src/ui/strings.vala:33
-msgid "Notebook name shouldn’t contain “.” or “/”"
-msgstr "Not defteri adı “.” veya “/” içeremez"
-
-#: src/ui/strings.vala:34
-msgid "Notebook name shouldn’t be blank"
-msgstr "Not defteri adı boş olamaz"
-
 #: src/ui/strings.vala:35
 msgid "Notebook “%s” already exists"
 msgstr "“%s” not defteri zaten var"
 
 #: src/ui/strings.vala:36
-msgid "Couldn’t create notebook"
+msgid "Could not create notebook"
 msgstr "Not defteri oluşturulamadı"
 
 #: src/ui/strings.vala:37
-msgid "Couldn’t change notebook"
+msgid "Could not change notebook"
 msgstr "Not defteri değiştirilemedi"
 
 #: src/ui/strings.vala:38
-msgid "Couldn’t delete notebook"
+msgid "Could not delete notebook"
 msgstr "Not defteri silinemedi"
 
 #: src/ui/strings.vala:40
@@ -639,8 +722,8 @@ msgid "Rename"
 msgstr "Yeniden Adlandır"
 
 #: src/ui/strings.vala:42
-msgid "Couldn’t find an app to handle file URIs"
-msgstr "Dosya URI'lerin işlemek için uygulama bulunamadı"
+msgid "Could not find an app to handle file URIs"
+msgstr "Dosya URI'leri işlemek için uygulama bulunamadı"
 
 #: src/ui/strings.vala:43
 msgid "Apply"
@@ -691,39 +774,35 @@ msgstr "_Tercihler"
 msgid "_Keyboard Shortcuts"
 msgstr "_Klavye Kısayolları"
 
-#: src/ui/window/app_menu/app_menu.blp:43
-msgid "_About"
-msgstr "_Hakkında"
-
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:54
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:58
 msgid "Notebook Name"
 msgstr "Not Defteri Adı"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:66
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:70
 msgid "Duplicate notebook names are not allowed!"
 msgstr "Yinelenen not defteri adlarına izin verilmiyor!"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:82
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:6
 msgid "First Characters"
 msgstr "İlk Karakterler"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:83
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:7
 msgid "Initials"
 msgstr "Baş harfler"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:84
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:8
 msgid "Initials: camelCase"
 msgstr "Baş harfler: deveDüzeni"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:85
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:9
 msgid "Initials: snake_case"
 msgstr "Baş harfler: yılan_düzeni"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:86
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:10
 msgid "Icon"
 msgstr "Simge"
 
-#: src/ui/window/notebooks_bar/notebook_create_popup.blp:116
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:16
 msgid "Notebook Color"
 msgstr "Not Defteri Rengi"
 
@@ -743,11 +822,11 @@ msgstr "Tümünü Çöpe Taşı"
 msgid "Notebooks"
 msgstr "Not Defterleri"
 
-#: src/ui/window/sidebar/note_create_popup.blp:37
+#: src/ui/window/sidebar/note_create_popup.blp:25
 msgid "Note Name"
 msgstr "Not Adı"
 
-#: src/ui/window/sidebar/note_create_popup.blp:45
+#: src/ui/window/sidebar/note_create_popup.blp:33
 msgid "Create Note"
 msgstr "Not Oluştur"
 
@@ -771,30 +850,26 @@ msgstr "Çöpe Taşı"
 msgid "Open Containing Folder"
 msgstr "İçeren Klasörü Aç"
 
-#: src/ui/window/window.blp:118
+#: src/ui/window/window.blp:128
 msgid "Get started writing"
 msgstr "Yazmaya başla"
 
-#: src/ui/window/window.blp:143
+#: src/ui/window/window.blp:186
 msgid "Create a notebook"
 msgstr "Not defteri oluştur"
 
-#: src/ui/window/window.blp:168
+#: src/ui/window/window.blp:215
 msgid "Trash is empty"
 msgstr "Çöp boş"
 
-#: src/ui/window/window.blp:224
-msgid "Back"
-msgstr "Geri"
-
-#: src/ui/window/window.blp:239
+#: src/ui/window/window.blp:290
 msgid "Open in Notebook"
 msgstr "Not Defterinde Aç"
 
-#: src/ui/window/window.blp:264
+#: src/ui/window/window.blp:317
 msgid "_Rename Note"
 msgstr "Notu Yeniden _Adlandır"
 
-#: src/ui/window/window.blp:270
+#: src/ui/window/window.blp:324
 msgid "_Export Note"
 msgstr "Notu Dışa _Aktar"

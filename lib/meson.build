@@ -14,4 +14,5 @@ lib_sources = files(
   'util/fuzzy_matching.vala',
   'util/file_utils.vala',
   'util/sugar.vala',
+  'util/NaturalCollate.vala',
 )

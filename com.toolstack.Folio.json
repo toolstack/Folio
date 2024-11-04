@@ -1,7 +1,7 @@
 {
     "app-id" : "com.toolstack.Folio",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "45",
+    "runtime-version" : "47",
     "sdk" : "org.gnome.Sdk",
     "command" : "com.toolstack.Folio",
     "finish-args" : [
@@ -44,8 +44,8 @@
             "sources" : [{
                 "type" : "git",
                 "url" : "https://github.com/toolstack/Folio",
-                "tag" : "24.11",
-                "commit" : "c4a7680eb7d92446b0c5cdb9dabd366443249d49"
+                "tag" : "24.12",
+                "commit" : "819ecd8d24e54a88fc2b18dd32a8600a4d907e56"
             }]
         }
     ]

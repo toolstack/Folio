@@ -1,5 +1,5 @@
 name: folio
-base: core22
+base: core24
 adopt-info: folio
 grade: stable
 confinement: strict
@@ -8,7 +8,7 @@ parts:
   folio:
     plugin: meson
     source: https://github.com/toolstack/Folio.git
-    source-tag: '24.11'
+    source-tag: '24.12-snap'
     source-depth: 1
     build-snaps:
       - blueprint-compiler
@@ -41,7 +41,7 @@ apps:
     extensions: [gnome]
     plugs: *folio
 
-architectures:
-    - build-on: amd64
-    - build-on: arm64
-    - build-on: armhf
+platforms:
+  amd64:
+  arm64:
+  armhf:

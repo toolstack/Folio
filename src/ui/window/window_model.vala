@@ -1,8 +1,10 @@
 
 public class Folio.WindowModel : Object {
 
-	public signal void state_changed (State state, NoteContainer? container);
+	public signal void state_changed (State state, NoteContainer? container, bool is_clicked = false);
 	public signal void note_changed (Note? note);
+	public signal void present_dialog (Adw.Dialog dialog);
+	public signal void navigate_to_notes ();
 
 	public Provider notebook_provider;
 
@@ -93,30 +95,23 @@ public class Folio.WindowModel : Object {
 			bool result = note.validate_save ();
 
 			if (!result) {
-				var confirm = new Gtk.AlertDialog ("");
-				confirm.set_message (Strings.FILE_CHANGED_ON_DISK);
-				confirm.set_detail (Strings.FILE_CHANGED_DIALOG_TRIPLE);
-				confirm.set_buttons ({
-					Strings.FILE_CHANGED_RELOAD,
-					Strings.FILE_CHANGED_OVERWRITE,
-					Strings.FILE_CHANGED_CANCEL
-					});
-				confirm.set_cancel_button (2);
-				confirm.set_default_button (2);
-				confirm.set_modal (true);
-				confirm.choose.begin (window, null, (obj, res) => {
-					int button_result = 2;
-					try {
-						button_result = confirm.choose.end (res);
-					} catch (Error e) {}
-
-					switch (button_result) {
-						case 0:
+				var confirm = new Adw.AlertDialog (
+					Strings.FILE_CHANGED_ON_DISK,
+					Strings.FILE_CHANGED_DIALOG_TRIPLE);
+				confirm.add_responses (
+					"reload", Strings.FILE_CHANGED_RELOAD,
+					"overwrite", Strings.FILE_CHANGED_OVERWRITE,
+					"cancel", Strings.FILE_CHANGED_CANCEL);
+				confirm.set_default_response ("reload");
+				confirm.set_close_response ("cancel");
+				confirm.response.connect (response => {
+					switch (response) {
+						case "reload":
 							note.save (note.load_text());
 							is_unsaved = false;
 							_update_note_list_item_timestamp (window);
 							break;
-						case 1:
+						case "overwrite":
 							note.save (current_buffer.get_all_text ());
 							is_unsaved = false;
 							_update_note_list_item_timestamp (window);
@@ -125,6 +120,7 @@ public class Folio.WindowModel : Object {
 							break;
 					}
 				});
+				present_dialog (confirm);
 			} else {
 				note.save (current_buffer.get_all_text ());
 				is_unsaved = false;
@@ -135,7 +131,10 @@ public class Folio.WindowModel : Object {
 
 	public void select_note_at (uint i) requires (notes_model != null) {
 		if (i == -1) notes_model.unselect_item (notes_model.selected);
-		else notes_model.select_item (i, true);
+		else {
+			notes_model.select_item (i, true);
+			navigate_to_notes ();
+		}
 	}
 
 	public void select_notebook_at (uint i) requires (notebooks_model != null) {
@@ -166,6 +165,7 @@ public class Folio.WindowModel : Object {
 			.first_match ((it) => it.name == note.name);
 		int i = note_container.loaded_notes.index_of (n);
 		select_note_at (i);
+		navigate_to_notes ();
 	}
 
 	public void update_selected_note () requires (notes_model != null) {
@@ -253,24 +253,17 @@ public class Folio.WindowModel : Object {
 								if (!note.time_modified.equal (file_time)) {
 									if (is_unsaved) {
 										is_unsaved = false;
-										var confirm = new Gtk.AlertDialog ("");
-										confirm.set_message (Strings.FILE_CHANGED_ON_DISK);
-										confirm.set_detail (Strings.FILE_CHANGED_DIALOG_DOUBLE);
-										confirm.set_buttons ({
-											Strings.FILE_CHANGED_RELOAD,
-											Strings.FILE_CHANGED_OVERWRITE
-											});
-										confirm.set_cancel_button (1);
-										confirm.set_default_button (1);
-										confirm.set_modal (true);
-										confirm.choose.begin (window, null, (obj, res) => {
-											int button_result = 1;
-											try {
-												button_result = confirm.choose.end (res);
-											} catch (Error e) {}
-
-											switch (button_result) {
-												case 0:
+										var confirm = new Adw.AlertDialog (
+											Strings.FILE_CHANGED_ON_DISK,
+											Strings.FILE_CHANGED_DIALOG_DOUBLE);
+										confirm.add_responses (
+											"reload", Strings.FILE_CHANGED_RELOAD,
+											"overwrite", Strings.FILE_CHANGED_OVERWRITE);
+										confirm.close_response = "overwrite";
+										confirm.default_response = "overwrite";
+										confirm.response.connect (response => {
+											switch (response) {
+												case "reload":
 													current_buffer = new GtkMarkdown.Buffer (note.load_text ());
 													note.update_note_time ();
 													_update_note_list_item_timestamp (window);
@@ -282,6 +275,7 @@ public class Folio.WindowModel : Object {
 													break;
 											}
 										});
+										present_dialog (confirm);
 									} else {
 										current_buffer = new GtkMarkdown.Buffer (note.load_text ());
 										note.update_note_time ();
@@ -420,7 +414,7 @@ public class Folio.WindowModel : Object {
 		notebook.load ();
 		var note_name = note_data[1];
 		return notebook.loaded_notes
-			.first_match ((it) => it.name == note_name);
+			.first_match ((it) => it.file_name == note_name);
 	}
 
 	public string generate_new_note_name (int i = 0, string? full_name = null) requires (notebook != null) {

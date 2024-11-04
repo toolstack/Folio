@@ -1,35 +1,35 @@
-# Translation of Folio in Serbian
+# Translation of Folio in Arabic
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-03-02 17:00:32+0000\n"
+"PO-Revision-Date: 2024-10-17 07:49:46+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 1 : 2);\n"
+"Plural-Forms: nplurals=6; plural=(n == 0) ? 0 : ((n == 1) ? 1 : ((n == 2) ? 2 : ((n % 100 >= 3 && n % 100 <= 10) ? 3 : ((n % 100 >= 11 && n % 100 <= 99) ? 4 : 5))));\n"
 "X-Generator: GlotPress/4.0.1\n"
-"Language: sr\n"
+"Language: ar\n"
 "Project-Id-Version: Folio\n"
 
 #: data/app.gschema.xml:81
 msgid "URL detection level"
-msgstr ""
+msgstr "مستوى كشف المسار"
 
 #: data/app.gschema.xml:82
 msgid "How aggressive to look for URLs in markdown text"
-msgstr ""
+msgstr "مستوى شدة البحث عن المسارات في نصوص ماركداون"
 
 #: data/app.gschema.xml:86
 msgid "Line spacing"
-msgstr ""
+msgstr "مباعدة السطر"
 
 #: data/app.gschema.xml:87 src/ui/preferences/preferences.blp:74
 msgid "The line spacing for the note text"
-msgstr ""
+msgstr "مباعدة السطر لنص الملاحظة"
 
 #: src/ui/preferences/preferences.blp:31
 msgid "Markdown URL Detection"
-msgstr ""
+msgstr "كشف مسار ماركداون"
 
 #: src/ui/preferences/preferences.blp:32
 msgid ""
@@ -39,146 +39,151 @@ msgid ""
 " - Strict requires a protocol identifier (ie http://)\n"
 " - Disabled turns detection off."
 msgstr ""
+"يُحدِّد مستوى كشف المسارات عند استخدام\n"
+"النص الحر:\n"
+" - «شديد» يحاول إيجاد جميع المسارات\n"
+" - «صارم» يتطلب مُعرف ميفاق (مثال http://)\n"
+" - «مُعَطَّل» يطفئ التعقب."
 
 #: src/ui/preferences/preferences.blp:39
 msgid "Fonts"
-msgstr ""
+msgstr "الخطوط"
 
 #: src/ui/preferences/preferences.blp:73
 msgid "Line Spacing"
-msgstr ""
+msgstr "مباعدة السطر"
 
 #: src/ui/strings.vala:24
 msgid "Note names cannot contain a “/”"
-msgstr ""
+msgstr "لا يمكن أن تتضمن أسماء الملاحظات علامة «/»"
 
 #: src/ui/strings.vala:25
 msgid "Note names cannot be blank"
-msgstr ""
+msgstr "لا يمكن أن تكون أسماء الملاحظات فارغة"
 
 #: src/ui/strings.vala:33
 msgid "Notebook names cannot contain a “/”"
-msgstr ""
+msgstr "لا يمكن أن تتضمن أسماء الدفاتر علامة «/»"
 
 #: src/ui/strings.vala:34
 msgid "Notebook names cannot be blank"
-msgstr ""
+msgstr "لا يمكن أن تكون أسماء الدفاتر فارغة"
 
 #: src/ui/strings.vala:66
 msgid "Natural - Ascending"
-msgstr ""
+msgstr "طبيعي – تصاعدي"
 
 #: src/ui/strings.vala:67
 msgid "Natural - Descending"
-msgstr ""
+msgstr "طبيعي – تنازلي"
 
 #: src/ui/strings.vala:68
 msgid "Unable to launch external application for file %s."
-msgstr ""
+msgstr "تعذّر إطلاق التطبيق الخارجي للملف %s."
 
 #: src/ui/strings.vala:69
 msgid "Aggressive"
-msgstr ""
+msgstr "شديد"
 
 #: src/ui/strings.vala:70
 msgid "Strict"
-msgstr ""
+msgstr "صارم"
 
 #: src/ui/strings.vala:71
 msgid "Disabled"
-msgstr ""
+msgstr "مُعَطَّل"
 
 #: src/ui/strings.vala:72
 msgid "“%s” moved to trash"
-msgstr ""
+msgstr "نُقِل «%s» إلى المهملات"
 
 #: src/ui/strings.vala:73
 msgid "“%s” restored"
-msgstr ""
+msgstr "استعيد «%s»"
 
 #: src/ui/window/app_menu/app_menu.blp:43
 msgid "_About Folio"
-msgstr ""
+msgstr "_عَنْ «مطوية»"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:11
 msgid "Custom"
-msgstr ""
+msgstr "مُخَصَّص"
 
 #: src/ui/window/window.blp:157
 msgid "Open file in external application"
-msgstr ""
+msgstr "افتح الملف بتطبيق خارجي"
 
 #: src/ui/window/window.blp:165
 msgid "Open file"
-msgstr ""
+msgstr "افتح الملف"
 
 #: data/app.gschema.xml:76
 msgid "Notebook sort order"
-msgstr ""
+msgstr "ترتيب فرز الدفاتر"
 
 #: data/app.gschema.xml:77
 msgid "The sort order of the notebook list"
-msgstr ""
+msgstr "ترتيب الفرز لقائمة الدفاتر"
 
 #: src/ui/preferences/preferences.blp:167
 msgid "Sort Order For Notebooks"
-msgstr ""
+msgstr "ترتيب الفرز للدفاتر"
 
 #: data/app.gschema.xml:71
 msgid "Note sort order"
-msgstr ""
+msgstr "ترتيب فرز الملاحظات"
 
 #: data/app.gschema.xml:72
 msgid "The sort order of the note list"
-msgstr ""
+msgstr "ترتيب الفرز لقائمة الملاحظات"
 
 #: src/ui/preferences/preferences.blp:172
 msgid "Sort Order For Notes"
-msgstr ""
+msgstr "ترتيب الفرز للملاحظات"
 
 #: src/ui/strings.vala:62
 msgid "Modified Time - Ascending"
-msgstr ""
+msgstr "زمن التعديل - تصاعديًا"
 
 #: src/ui/strings.vala:63
 msgid "Modified Time - Descending"
-msgstr ""
+msgstr "زمن التعديل - تنازليًا"
 
 #: src/ui/strings.vala:64
 msgid "Alphabetical - Ascending"
-msgstr ""
+msgstr "أبجدي - تصاعديًا"
 
 #: src/ui/strings.vala:65
 msgid "Alphabetical - Descending"
-msgstr ""
+msgstr "أبجدي - تنازليًا"
 
 #: src/ui/popup/shortcut_window.blp:114
 msgid "Display"
-msgstr ""
+msgstr "العرض"
 
 #: src/ui/popup/shortcut_window.blp:117
 msgid "Full Screen"
-msgstr ""
+msgstr "ملء الشاشة"
 
 #: src/ui/popup/shortcut_window.blp:122
 msgid "Zoom In"
-msgstr ""
+msgstr "كبِّر"
 
 #: src/ui/popup/shortcut_window.blp:127
 msgid "Zoom Out"
-msgstr ""
+msgstr "صغِّر"
 
 #: src/ui/strings.vala:52
 msgid "Pick primary font for notes"
-msgstr ""
+msgstr "اختر الخط الأساسي للملاحظات"
 
 #: src/ui/strings.vala:53
 msgid "Pick monospace font for code"
-msgstr ""
+msgstr "اختر خطًا ثابت العرض للترميز"
 
 #: src/ui/strings.vala:54
 msgid "File Changed On Disk"
-msgstr ""
+msgstr "غُيِّر الملف على القرص"
 
 #: src/ui/strings.vala:55
 msgid ""
@@ -192,14 +197,23 @@ msgid ""
 "\n"
 "Note: Canceling the save if you have already moved to a new note/notebook will discard your changes."
 msgstr ""
+"غُيِّر الملف على القرص منذ آخر مرة حُفِظ/حُمِل بواسطة «مطوية».\n"
+"\n"
+"يمكنك القيام بأحد الأمور التالية:\n"
+"\n"
+" - أعِد تحميل الملف (تجاهل أي تغييرات أجريتها في «مطوية»)\n"
+" - اكتب فوق الملف (تجاهل أي تغييرات أجريت خارج «مطوية»)\n"
+" - ألغِ العملية وحل المشكلة يدويًا\n"
+"\n"
+"ملاحظة: في حال انتقلت إلى ملاحظة/دفتر جديد، فستتجاهل تغييراتك عند الحفظ."
 
 #: src/ui/strings.vala:56
 msgid "Reload"
-msgstr ""
+msgstr "أعِد التحميل"
 
 #: src/ui/strings.vala:57
 msgid "Overwrite"
-msgstr ""
+msgstr "اكتب فوق"
 
 #: src/ui/strings.vala:59
 msgid ""
@@ -210,646 +224,652 @@ msgid ""
 " • Reload the file (discarding any changes you have made in Folio)\n"
 " • Overwrite the file (discarding any changes made outside of Folio)"
 msgstr ""
+"غُيِّر الملف على القرص من قبل تطبيق آخر.\n"
+"\n"
+"يمكنك القيام بأحد الأمور التالية:\n"
+"\n"
+" - أعِد تحميل الملف (تجاهل أي تغييرات أجريتها في «مطوية»)\n"
+" - اكتب فوق الملف (تجاهل أي تغييرات أجريتها خارج «مطوية»)"
 
 #: src/ui/strings.vala:61
 msgid "Note %i"
-msgstr ""
+msgstr "ملاحظة %i"
 
 #: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:235
 msgid "Trash Storage Location"
-msgstr ""
+msgstr "موضع تخزين المهملات"
 
 #: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:236
 msgid "Where the trash folder is located (requires app restart)"
-msgstr ""
+msgstr "موضع مجلد المهملات (يتطلب إعادة تشغيل التطبيق)"
 
 #: src/ui/strings.vala:46
 msgid "Pick where the trash can will be stored"
-msgstr ""
+msgstr "اختر أين تخزن سلة المهملات"
 
 #: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:150
 msgid "Use Fixed Width For Notes"
-msgstr ""
+msgstr "استخدام العرض الثابت للملاحظات"
 
 #: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:151
 msgid "Use a fixed width for the text area of a note"
-msgstr ""
+msgstr "استخدام العرض الثابت لمساحة النص في الملاحظة"
 
 #: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:140
 msgid "Expands the notebook list to include the notebook name"
-msgstr ""
+msgstr "وَسِّع قائمة الدفاتر لتشمل اسم الدفتر"
 
 #: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:87
 msgid "Show line numbers"
-msgstr ""
+msgstr "أظهِر أرقام الأسطر"
 
 #: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:88
 msgid "Displays line numbers at the left of the note"
-msgstr ""
+msgstr "عرض أرقام الأسطر على يسار الملاحظة"
 
 #: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:98
 msgid "Show all notes"
-msgstr ""
+msgstr "أظهِر جميع الملاحظات"
 
 #: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:99
 msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
-msgstr ""
+msgstr "اعرض دفتر «جميع الملاحظات» فوق كافة الدفاتر في القائمة"
 
 #: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:185
 msgid "Enable autosave"
-msgstr ""
+msgstr "فَعِّل الحفظ الآلي"
 
 #: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:186
 msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
-msgstr ""
+msgstr "احفظ الملاحظة الحالية كل 30 ثانية عند تغيير محتواها (يتطلب إعادة تشغيل التطبيق)"
 
 #: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:196
 msgid "Don't hide the Trash folder"
-msgstr ""
+msgstr "لا تخفي مجلد المهملات"
 
 #: data/app.gschema.xml:67
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
-msgstr ""
+msgstr "مجلد المهملات مخفي مبدئيًا، لكن هذا الخيار يجعله مرئيًأ"
 
 #: data/app.metainfo.xml.in:419
 msgid "Main Folio window in light mode"
-msgstr ""
+msgstr "نافذة «مطوية» الرئيسة في الوضع الفاتح"
 
 #: data/app.metainfo.xml.in:423
 msgid "Main Folio window in dark mode"
-msgstr ""
+msgstr "نافذة «مطوية» الرئيسة في الوضع الداكن"
 
 #: data/app.metainfo.xml.in:427
 msgid "Folio on small/mobile screens"
-msgstr ""
+msgstr "«مطوية» على الشاشات الصغيرة/المحمولة"
 
 #: data/app.metainfo.xml.in:431
 msgid "Folio preferences screen"
-msgstr ""
+msgstr "شاشة تفضيلات «مطوية»"
 
 #: data/app.metainfo.xml.in:435
 msgid "Folio in three pane mode"
-msgstr ""
+msgstr "«مطوية» في وضع الألواح الثلاثة"
 
 #: src/ui/preferences/preferences.blp:81
 msgid "Tools"
-msgstr ""
+msgstr "الأدوات"
 
 #: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:110
 msgid "Displays the formatting toolbar at the bottom of the note"
-msgstr ""
+msgstr "يعرض شريط أدوات التنسيق أسفل الملاحظة"
 
 #: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:121
 msgid "Adds a button to the markdown reference sheet on the right of the formatting toolbar"
-msgstr ""
+msgstr "يضيف زرًا لعرض مرجع «ماركداون» على يمين شريط أدوات التنسيق"
 
 #: src/ui/preferences/preferences.blp:133
 msgid "Layout"
-msgstr ""
+msgstr "التخطيط"
 
 #: src/ui/preferences/preferences.blp:161
 msgid "Fixed Width To Use For Notes"
-msgstr ""
+msgstr "العرض الثابت للاستخدام في الملاحظات"
 
 #: src/ui/preferences/preferences.blp:162
 msgid "Sets the fixed width size of a note in px"
-msgstr ""
+msgstr "يعين حجم العرض الثابت للملاحظة بالبكسل"
 
 #: src/ui/preferences/preferences.blp:179
 msgid "Files"
-msgstr ""
+msgstr "الملفات"
 
 #: src/ui/preferences/preferences.blp:197
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
-msgstr ""
+msgstr "مجلد المهملات مخفي مبدئيًا، لكن هذا الخيار يجعله مرئيًا (يتطلب إعادة تشغيل التطبيق)"
 
 #: src/ui/strings.vala:51
 msgid "Unable to recognize URI"
-msgstr ""
+msgstr "تعذر التعرف على معرف المورد النظامي (URI)"
 
 #: data/app.desktop.in:9 src/ui/strings.vala:3
 msgid "Folio"
-msgstr "Папир"
+msgstr "مطوية"
 
 #: data/app.desktop.in:10
 msgid "Notes Manager"
-msgstr "Управник белешки"
+msgstr "مدير ملاحظات"
 
 #: data/app.desktop.in:11
 msgid "Take notes"
-msgstr "Стварајте белешке"
+msgstr "دوِّن الملاحظات"
 
 #: data/app.desktop.in:13
 msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
-msgstr "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;Бележница;Белешка;Белешке;Текст;Маркдаун;Ноутпад;Писање;Школа;Лепљиво;Beležnica;Beleška;Beleške;Tekst;Markdaun;Noutpad;Pisanje;Škola;Skola;Lepljivo;"
+msgstr "دفتر;ملاحظة;ملاحظات;دفتر ملاحظات;ماركداون;كتابة;اكتب;مدرسة;كراسة;كشكول;فوليو;"
 
 #: data/app.desktop.in:22 src/ui/popup/shortcut_window.blp:17
 #: src/ui/strings.vala:8 src/ui/window/window.blp:57
 #: src/ui/window/window.blp:136
 msgid "New Note"
-msgstr "Нова белешка"
+msgstr "ملاحظة جديدة"
 
 #: data/app.desktop.in:26 src/ui/popup/shortcut_window.blp:37
 #: src/ui/strings.vala:14 src/ui/window/window.blp:194
 msgid "New Notebook"
-msgstr "Нова бележница"
+msgstr "دفتر جديد"
 
 #: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:92
 #: src/ui/strings.vala:39 src/ui/window/window.blp:296
 msgid "Markdown Cheatsheet"
-msgstr "Маркдаун подсетник"
+msgstr "ورقة غش «ماركداون»"
 
 #: data/app.desktop.in:34 src/ui/popup/shortcut_window.blp:62
 msgid "Preferences"
-msgstr "Поставке"
+msgstr "التفضيلات"
 
 #: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:45
 msgid "Note Font"
-msgstr "Фонт белешке"
+msgstr "خط الملاحظات"
 
 #: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:46
 msgid "The font notes will be displayed in"
-msgstr "Фонт за приказ белешке"
+msgstr "الخط المستخدم لعرض الملاحظات"
 
 #: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:58
 msgid "Monospace Font"
-msgstr "Фонт утврђене ширине"
+msgstr "الخط ثابت العرض"
 
 #: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:59
 msgid "The font code will be displayed in"
-msgstr "Фонт за приказ кода"
+msgstr "الخط المستخدم لعرض الترميز"
 
 #: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:18
 msgid "OLED Mode"
-msgstr "ОЛЕД режим"
+msgstr "وضع ثنائي مساري عضوي باعث للضوء (OLED)"
 
 #: data/app.metainfo.xml.in:5
 msgid "Take notes in Markdown"
-msgstr "Пишите белешке у Маркдауну"
+msgstr "دوِّن الملاحظات بـ«ماركداون»"
 
 #: data/app.metainfo.xml.in:7
 msgid "Create notebooks, take notes in markdown"
-msgstr "Стварајте бележнице, пишите белешке у Маркдауну"
+msgstr "أنشِئ الدفاتر، ودوِّن الملاحظات بـ«ماركداون»"
 
 #: data/app.metainfo.xml.in:8
 msgid "Features:"
-msgstr "Могућности:"
+msgstr "المزايا:"
 
 #: data/app.metainfo.xml.in:10
 msgid "Almost WYSIWYG markdown rendering"
-msgstr "Скоро потпуно WYSIWYG исцртавање маркдауна"
+msgstr "تَصْيير ما تراه هو ما تحصل عليه (WYSIWYG) جزئي لـ«ماركداون»"
 
 #: data/app.metainfo.xml.in:11
 msgid "Searchable through GNOME search"
-msgstr "Претраживање текста кроз Гномову претрагу"
+msgstr "قابل للبحث من خلال بحث جنوم"
 
 #: data/app.metainfo.xml.in:12
 msgid "Highlight and strikethrough text formatting"
-msgstr ""
+msgstr "تنسيق الإبراز والخط الوسطي للنص"
 
 #: data/app.metainfo.xml.in:13
 msgid "App themeing based on notebook color"
-msgstr ""
+msgstr "سمة التطبيق استنادًا إلى لون الدفتر"
 
 #: data/app.metainfo.xml.in:14
 msgid "Trash can"
-msgstr "Канта за смеће"
+msgstr "سلة المهملات"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:6
 #: src/ui/widgets/markdown/heading_popover.blp:48
 msgid "Plain Text"
-msgstr "Обичан текст"
+msgstr "نص عادي"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:7
 #: src/ui/widgets/markdown/heading_popover.blp:12
 msgid "Heading 1"
-msgstr "Заглавље 1"
+msgstr "عنوان 1"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:8
 #: src/ui/widgets/markdown/heading_popover.blp:18
 msgid "Heading 2"
-msgstr "Заглавље 2"
+msgstr "عنوان 2"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:9
 #: src/ui/widgets/markdown/heading_popover.blp:24
 msgid "Heading 3"
-msgstr "Заглавље 3"
+msgstr "عنوان 3"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:10
 #: src/ui/widgets/markdown/heading_popover.blp:30
 msgid "Heading 4"
-msgstr "Заглавље 4"
+msgstr "عنوان 4"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:11
 #: src/ui/widgets/markdown/heading_popover.blp:36
 msgid "Heading 5"
-msgstr "Заглавље 5"
+msgstr "عنوان 5"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:12
 #: src/ui/widgets/markdown/heading_popover.blp:42
 msgid "Heading 6"
-msgstr "Заглавље 6"
+msgstr "عنوان 6"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:41
 #: src/ui/edit_view/toolbar/toolbar.blp:107
 #: src/ui/edit_view/toolbar/toolbar.blp:142
 #: src/ui/edit_view/toolbar/toolbar.blp:195 src/ui/popup/shortcut_window.blp:72
 msgid "Bold"
-msgstr "Подебљано"
+msgstr "غليظ"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:47
 #: src/ui/edit_view/toolbar/toolbar.blp:114
 #: src/ui/edit_view/toolbar/toolbar.blp:149
 #: src/ui/edit_view/toolbar/toolbar.blp:196 src/ui/popup/shortcut_window.blp:77
 msgid "Italic"
-msgstr "Искошено"
+msgstr "مائل"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:53
 #: src/ui/edit_view/toolbar/toolbar.blp:156
 #: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:82
 msgid "Strikethrough"
-msgstr "Прецртано"
+msgstr "سطر وسطي"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:59
 #: src/ui/edit_view/toolbar/toolbar.blp:163
 #: src/ui/edit_view/toolbar/toolbar.blp:198 src/ui/popup/shortcut_window.blp:87
 msgid "Highlight"
-msgstr "Истакнуто"
+msgstr "بارز"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:69
 #: src/ui/edit_view/toolbar/toolbar.blp:187 src/ui/popup/shortcut_window.blp:92
 msgid "Insert Link"
-msgstr "Убаци везу"
+msgstr "أدرج رابطًا"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:75
 #: src/ui/edit_view/toolbar/toolbar.blp:188
 msgid "Insert Code"
-msgstr "Убаци код"
+msgstr "أدرج رمزًا"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:81
 #: src/ui/edit_view/toolbar/toolbar.blp:189
 msgid "Insert Horizontal Rule"
-msgstr "Убаци линију"
+msgstr "أدرج قاعدة أفقية"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:121
 msgid "Format"
-msgstr "Облик"
+msgstr "التنسيق"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:175
 msgid "Insert"
-msgstr "Убаци"
+msgstr "أدرج"
 
 #: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:18
 #: src/ui/strings.vala:44 src/ui/strings.vala:58
 msgid "Cancel"
-msgstr "Откажи"
+msgstr "ألغِ"
 
 #: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:23
 msgid "Confirm"
-msgstr "Потврди"
+msgstr "أكِد"
 
 #: src/ui/popup/shortcut_window.blp:14 src/ui/strings.vala:60
 msgid "Note"
-msgstr "Белешка"
+msgstr "ملاحظة"
 
 #: src/ui/popup/shortcut_window.blp:22
 msgid "Edit Note"
-msgstr "Уреди белешку"
+msgstr "عَدِّل الملاحظة"
 
 #: src/ui/popup/shortcut_window.blp:27
 msgid "Save Note"
-msgstr "Сачувај белешку"
+msgstr "احفظ الملاحظة"
 
 #: src/ui/popup/shortcut_window.blp:34 src/ui/strings.vala:48
 msgid "Notebook"
-msgstr "Бележница"
+msgstr "الدفتر"
 
 #: src/ui/popup/shortcut_window.blp:42 src/ui/strings.vala:23
 msgid "Edit Notebook"
-msgstr "Уреди бележницу"
+msgstr "عَدِّل الدفتر"
 
 #: src/ui/popup/shortcut_window.blp:49 src/ui/preferences/preferences.blp:12
 msgid "General"
-msgstr "Опште"
+msgstr "عام"
 
 #: src/ui/popup/shortcut_window.blp:52
 msgid "Show Keyboard Shortcuts"
-msgstr "Прикажи пречице на тастатури"
+msgstr "أظهِر اختصارات لوحة المفاتيح"
 
 #: src/ui/popup/shortcut_window.blp:57
 msgid "Quit"
-msgstr "Излаз"
+msgstr "أنهِ"
 
 #: src/ui/popup/shortcut_window.blp:69
 msgid "Formatting"
-msgstr "Форматирање"
+msgstr "التنسيق"
 
 #: src/ui/popup/shortcut_window.blp:99
 msgid "Navigation"
-msgstr "Навигација"
+msgstr "التصفح"
 
 #: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:273
 msgid "Toggle Sidebar"
-msgstr "Окини бочну површ"
+msgstr "بَدِّل الشريط الجانبي"
 
 #: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:73
 msgid "Search Notes"
-msgstr "Претраживање белешки"
+msgstr "ابحث الملاحظات"
 
 #: data/app.gschema.xml:22 src/ui/preferences/preferences.blp:19
 msgid "Makes the dark theme pitch black"
-msgstr "Учини тамну тему веома тамном"
+msgstr "يجعل السمة المظلمة سوداء قاتمة"
 
 #: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:109
 msgid "Enable Toolbar"
-msgstr "Омогући алатницу"
+msgstr "فَعِّل شريط الأدوات"
 
 #: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:120
 msgid "Enable Cheatsheet"
-msgstr ""
+msgstr "فَعِّل ورقة الغش"
 
 #: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:139
 msgid "3-Pane Layout"
-msgstr "Распоред са три површи"
+msgstr "تخطيط 3 ألواح"
 
 #: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:207
 msgid "Notes Storage Location"
-msgstr "Место складиштења белешки"
+msgstr "موضع تخزين الملاحظات"
 
 #: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:208
 msgid "Where the notebooks are stored (requires app restart)"
-msgstr "Где се чувају бележнице (захтева поновно покретање програма)"
+msgstr "حيث تخزن الدفاتر (يتطلب إعادة تشغيل التطبيق)"
 
 #: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:129
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:171
 msgid "Trash"
-msgstr "Смеће"
+msgstr "المهملات"
 
 #: src/ui/strings.vala:5
 msgid "%d Notes"
-msgstr "%d бележница"
+msgstr "%d ملاحظات"
 
 #: src/ui/strings.vala:6
 msgid "Are you sure you want to delete everything in the trash?"
-msgstr "Да ли сте сигурни да желите обрисати све из смећа?"
+msgstr "أمتأكد من إفراغ سلة المهملات؟"
 
 #: src/ui/strings.vala:7 src/ui/window/window.blp:64
 msgid "Empty Trash"
-msgstr "Избаци смеће"
+msgstr "سلة المهملات الفارغة"
 
 #: src/ui/strings.vala:9
 msgid "Create/choose a notebook before creating a note"
-msgstr "Направите или изаберите бележницу пре писања белешке"
+msgstr "أنشئ/اختر دفترًا قبل إنشاء ملاحظة"
 
 #: src/ui/strings.vala:10
 msgid "Please, select a note to edit"
-msgstr "Изаберите белешку коју желите изменити"
+msgstr "من فضلك، حدد ملاحظة لأعدلها"
 
 #: src/ui/strings.vala:11
 msgid "Please, select a note to delete"
-msgstr "Изаберите белешку коју желите обрисати"
+msgstr "من فضلك، حدد ملاحظة لأحذفها"
 
 #: src/ui/strings.vala:12
 msgid "Export Note"
-msgstr "Извези белешку"
+msgstr "صَدِّر الملاحظة"
 
 #: src/ui/strings.vala:13
 msgid "Export"
-msgstr "Извези"
+msgstr "صَدِّر"
 
 #: src/ui/strings.vala:15
 msgid "Rename Note"
-msgstr "Преименуј белешку"
+msgstr "أعِد تسمية الملاحظة"
 
 #: src/ui/strings.vala:16
 msgid "Move to Notebook"
-msgstr "Премести у бележницу"
+msgstr "انقل إلى الدفتر"
 
 #: src/ui/strings.vala:17
 msgid "Move"
-msgstr "Премести"
+msgstr "انقل"
 
 #: src/ui/strings.vala:18
 msgid "Note “%s” already exists in notebook “%s”"
-msgstr "Белешка „%s“ већ постоји у бележници „%s“"
+msgstr "الملاحظة «%s» موجودة بالفعل في الدفتر «%s»"
 
 #: src/ui/strings.vala:19
 msgid "Are you sure you want to delete the note “%s”?"
-msgstr "Да ли сте сигурни да желите обрисати белешку „%s“?"
+msgstr "أمتأكد من حذف الملاحظة «%s»؟"
 
 #: src/ui/strings.vala:20
 msgid "Delete Note"
-msgstr "Обриши белешку"
+msgstr "احذف الملاحظة"
 
 #: src/ui/strings.vala:21
 msgid "Are you sure you want to delete the notebook “%s”?"
-msgstr "Да ли сте сигурни да желите обрисати бележницу „%s“?Да"
+msgstr "أمتأكد من حذف الدفتر «%s»؟"
 
 #: src/ui/strings.vala:22
 msgid "Delete Notebook"
-msgstr "Обриши бележницу"
+msgstr "احذف الدفتر"
 
 #: src/ui/strings.vala:26
 msgid "Note “%s” already exists"
-msgstr "Белешка „%s“ већ постоји"
+msgstr "الملاحظة «%s» موجودة بالفعل"
 
 #: src/ui/strings.vala:27
 msgid "Could not create note"
-msgstr ""
+msgstr "تعذر إنشاء الملاحظة"
 
 #: src/ui/strings.vala:28
 msgid "Could not change note"
-msgstr ""
+msgstr "تعذر تغيير الملاحظة"
 
 #: src/ui/strings.vala:29
 msgid "Could not delete note"
-msgstr ""
+msgstr "تعذر حذف الملاحظة"
 
 #: src/ui/strings.vala:30
 msgid "Could not restore note"
-msgstr ""
+msgstr "تعذرت استعادة الملاحظة"
 
 #: src/ui/strings.vala:31
 msgid "Saved “%s” to “%s”"
-msgstr "„%s“ сачувано у „%s“"
+msgstr "حُفِظ «%s» إلى «%s»"
 
 #: src/ui/strings.vala:32
 msgid "Unknown error"
-msgstr "Непозната грешка"
+msgstr "خطأ غير معروف"
 
 #: src/ui/strings.vala:35
 msgid "Notebook “%s” already exists"
-msgstr "Бележница „%s“ већ постоји"
+msgstr "الدفتر «%s» موجود بالفعل"
 
 #: src/ui/strings.vala:36
 msgid "Could not create notebook"
-msgstr ""
+msgstr "تعذر إنشاء الدفتر"
 
 #: src/ui/strings.vala:37
 msgid "Could not change notebook"
-msgstr ""
+msgstr "تعذر تغيير الدفتر"
 
 #: src/ui/strings.vala:38
 msgid "Could not delete notebook"
-msgstr ""
+msgstr "تعذر حذف الدفتر"
 
 #: src/ui/strings.vala:40
 msgid "Search"
-msgstr "Претрага"
+msgstr "ابحث"
 
 #: src/ui/strings.vala:41 src/ui/window/sidebar/note_menu.blp:36
 msgid "Rename"
-msgstr "Преименуј"
+msgstr "أعِد التسمية"
 
 #: src/ui/strings.vala:42
 msgid "Could not find an app to handle file URIs"
-msgstr ""
+msgstr "تعذر العثور على تطبيق للتعامل مع معرف المورد النظامي (URI) للملف"
 
 #: src/ui/strings.vala:43
 msgid "Apply"
-msgstr "Примени"
+msgstr "طَبِّق"
 
 #: src/ui/strings.vala:45
 msgid "Pick where the notebooks will be stored"
-msgstr "Изабери место за складиштење белешки"
+msgstr "اختر موضع تخزين الدفاتر"
 
 #: src/ui/strings.vala:47 src/ui/window/notebooks_bar/notebooks_bar.blp:59
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:101
 msgid "All Notes"
-msgstr "Све белешке"
+msgstr "جميع الملاحظات"
 
 #: src/ui/strings.vala:49
 msgid "Last Modified"
-msgstr ""
+msgstr "آخر تعديل"
 
 #: src/ui/strings.vala:50
 msgid "Extension"
-msgstr ""
+msgstr "الامتداد"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
 msgid "Follow system style"
-msgstr "Прати системски стил"
+msgstr "اتبع أسلوب النظام"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:23
 msgid "Light style"
-msgstr "Светли стил"
+msgstr "الأسلوب الفاتح"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:32
 msgid "Dark style"
-msgstr "Тамни стил"
+msgstr "الأسلوب الداكن"
 
 #: src/ui/window/app_menu/app_menu.blp:25
 msgid "_New Notebook"
-msgstr "_Нова бележница"
+msgstr "دفتر _جديد"
 
 #: src/ui/window/app_menu/app_menu.blp:29
 msgid "_Edit Notebook"
-msgstr "Ур_еди бележницу"
+msgstr "عَ_دِّل الدفتر"
 
 #: src/ui/window/app_menu/app_menu.blp:35
 msgid "_Preferences"
-msgstr "_Поставке"
+msgstr "ال_تفضيلات"
 
 #: src/ui/window/app_menu/app_menu.blp:39
 msgid "_Keyboard Shortcuts"
-msgstr "П_речице на тастатури"
+msgstr "ا_ختصارات لوحة المفاتيح"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:58
 msgid "Notebook Name"
-msgstr "Назив бележнице"
+msgstr "اسم الدفتر"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:70
 msgid "Duplicate notebook names are not allowed!"
-msgstr ""
+msgstr "لا يسمح استخدام أسماء دفاتر مكررة!"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:6
 msgid "First Characters"
-msgstr "Први знакови"
+msgstr "الأحرف الأولى"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:7
 msgid "Initials"
-msgstr "Иницијали"
+msgstr "الأحرف البادئة"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:8
 msgid "Initials: camelCase"
-msgstr "Иницијали: камилаСтил"
+msgstr "الأحرف البادئة: camelCase"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:9
 msgid "Initials: snake_case"
-msgstr "Иницијали: змијски_стил"
+msgstr "الأحرف البادئة: snake_case"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:10
 msgid "Icon"
-msgstr "Иконица"
+msgstr "الأيقونة"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:16
 msgid "Notebook Color"
-msgstr "Боја бележнице"
+msgstr "لون الدفتر"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:126
 msgid "Create Notebook"
-msgstr "Направи бележницу"
+msgstr "أنشئ دفترًا"
 
 #: src/ui/window/notebooks_bar/notebook_menu.blp:16
 msgid "Edit"
-msgstr "Уреди"
+msgstr "عَدِّل"
 
 #: src/ui/window/notebooks_bar/notebook_menu.blp:26
 msgid "Move all to Trash"
-msgstr "Премести све у смеће"
+msgstr "انقل الجميع إلى المهملات"
 
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:113
 msgid "Notebooks"
-msgstr ""
+msgstr "الدفاتر"
 
 #: src/ui/window/sidebar/note_create_popup.blp:25
 msgid "Note Name"
-msgstr "Назив белешке"
+msgstr "اسم الملاحظة"
 
 #: src/ui/window/sidebar/note_create_popup.blp:33
 msgid "Create Note"
-msgstr "Направи белешку"
+msgstr "أنشئ ملاحظة"
 
 #: src/ui/window/sidebar/note_menu.blp:16
 msgid "Restore from Trash"
-msgstr "Врати из смећа"
+msgstr "استَعِد من المهملات"
 
 #: src/ui/window/sidebar/note_menu.blp:26
 msgid "Delete from Trash"
-msgstr "Избриши из смећа"
+msgstr "احذف من المهملات"
 
 #: src/ui/window/sidebar/note_menu.blp:46
 msgid "Move to Notebook…"
-msgstr "Премести у бележницу…"
+msgstr "انقل إلى الدفتر…"
 
 #: src/ui/window/sidebar/note_menu.blp:56
 msgid "Move to Trash"
-msgstr "Премести у смеће"
+msgstr "انقل إلى المهملات"
 
 #: src/ui/window/sidebar/note_menu.blp:66
 msgid "Open Containing Folder"
-msgstr "Отвори припадајућу фасциклу"
+msgstr "فتح المجلد المتضمن"
 
 #: src/ui/window/window.blp:128
 msgid "Get started writing"
-msgstr "Започните писање"
+msgstr "ابدأ بالكتابة"
 
 #: src/ui/window/window.blp:186
 msgid "Create a notebook"
-msgstr "Направи бележницу"
+msgstr "أنشئ دفترًا"
 
 #: src/ui/window/window.blp:215
 msgid "Trash is empty"
-msgstr "Нема ставки у смећу"
+msgstr "سلة المهملات فارغة"
 
 #: src/ui/window/window.blp:290
 msgid "Open in Notebook"
-msgstr "Отвори у бележници"
+msgstr "افتح في الدفتر"
 
 #: src/ui/window/window.blp:317
 msgid "_Rename Note"
-msgstr "П_реименуј белешку"
+msgstr "أ_عِد تسمية الملاحظة"
 
 #: src/ui/window/window.blp:324
 msgid "_Export Note"
-msgstr "Изв_ези белешку"
+msgstr "_صَدِّر الملاحظة"

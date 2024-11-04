@@ -36,7 +36,7 @@ public class Folio.NoteMenuPopover : Gtk.Popover {
 			});
 			button_delete.clicked.connect (() => {
 				popdown ();
-				window.request_delete_note (note);
+				window.request_delete_note (note, true);
 			});
 		} else {
 			button_recover.visible = false;

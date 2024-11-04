@@ -1,10 +1,12 @@
 
 [GtkTemplate (ui = "/com/toolstack/Folio/preferences.ui")]
-public class Folio.PreferencesWindow : Adw.PreferencesWindow {
+public class Folio.PreferencesWindow : Adw.PreferencesDialog {
+	public signal void three_pane_changed (bool is_three_pane);
 
 	[GtkChild] unowned Gtk.FontDialogButton font_button;
 	[GtkChild] unowned Gtk.FontDialogButton font_button_monospace;
 	[GtkChild] unowned Gtk.Switch oled_mode;
+	[GtkChild] unowned Adw.ComboRow url_detection_level;
 	[GtkChild] unowned Gtk.Switch enable_toolbar;
 	[GtkChild] unowned Gtk.Switch enable_cheatsheet;
 	[GtkChild] unowned Gtk.Switch enable_3_pane;
@@ -15,6 +17,8 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 	[GtkChild] unowned Gtk.Button trash_dir_button_reset;
 	[GtkChild] unowned Gtk.Label trash_dir_label;
 	[GtkChild] unowned Gtk.Switch limit_note_width;
+	[GtkChild] unowned Gtk.Switch long_notebook_names;
+	[GtkChild] unowned Gtk.Switch long_note_names;
 	[GtkChild] unowned Adw.SpinRow custom_note_width;
 	[GtkChild] unowned Gtk.Switch show_line_numbers;
 	[GtkChild] unowned Gtk.Switch show_all_notes;
@@ -22,8 +26,9 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 	[GtkChild] unowned Gtk.Switch disable_hidden_trash;
 	[GtkChild] unowned Adw.ComboRow note_sort_order;
 	[GtkChild] unowned Adw.ComboRow notebook_sort_order;
+	[GtkChild] unowned Adw.ComboRow line_spacing;
 
-	public PreferencesWindow (Application app) {
+	public PreferencesWindow (Application app, Gtk.Window window) {
 		Object ();
 
 		var settings = new Settings (Config.APP_ID);
@@ -59,6 +64,37 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 			return false;
 		});
 
+		url_detection_level.model = new Gtk.StringList ({
+			Strings.URL_DETECTION_AGGRESSIVE,
+			Strings.URL_DETECTION_STRICT,
+			Strings.URL_DETECTION_DISABLED
+			});
+		var selected_url_detection_level = settings.get_int ("url-detection-level");
+		url_detection_level.set_selected ((int)selected_url_detection_level);
+        url_detection_level.notify["selected-item"].connect (() => {
+            settings.set_int ("url-detection-level", (int)url_detection_level.get_selected ());
+        });
+
+		line_spacing.model = new Gtk.StringList ({
+			"1.0",
+			"1.5",
+			"2.0"
+			});
+		line_spacing.set_selected (0);
+		var line_spacing_setting = settings.get_string ("line-spacing");
+		for (var i = 0; i < line_spacing.model.get_n_items (); i++) {
+			if( ((Gtk.StringList)line_spacing.model).get_string (i) == line_spacing_setting ) {
+					line_spacing.set_selected (i);
+			}
+		}
+        line_spacing.notify["selected-item"].connect (() => {
+			for (var i = 0; i < line_spacing.model.get_n_items (); i++) {
+				if( (int)line_spacing.get_selected () == i ) {
+			        	settings.set_string ("line-spacing", ((Gtk.StringList)line_spacing.model).get_string (i));
+				}
+			}
+        });
+
 		enable_toolbar.active = settings.get_boolean ("toolbar-enabled");
 		enable_toolbar.state_set.connect ((state) => {
 			settings.set_boolean ("toolbar-enabled", state);
@@ -74,6 +110,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 		enable_3_pane.active = settings.get_boolean ("enable-3-pane");
 		enable_3_pane.state_set.connect ((state) => {
 			settings.set_boolean ("enable-3-pane", state);
+			three_pane_changed (state);
 			return false;
 		});
 
@@ -114,6 +151,18 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 			note_width = 720;
 		}
 
+		long_notebook_names.active = settings.get_boolean ("long-notebook-names");
+		long_notebook_names.state_set.connect ((state) => {
+			settings.set_boolean ("long-notebook-names", state);
+			return false;
+		});
+
+		long_note_names.active = settings.get_boolean ("long-note-names");
+		long_note_names.state_set.connect ((state) => {
+			settings.set_boolean ("long-note-names", state);
+			return false;
+		});
+
 		var width_adjustment = new Gtk.Adjustment (note_width, 100, 2000, 1.0, 100.0, 1.0);
 		custom_note_width.set_adjustment (width_adjustment);
         custom_note_width.notify["value"].connect (() => {
@@ -130,7 +179,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 			chooser.set_modal (true);
 			chooser.set_title (Strings.PICK_NOTES_DIR);
 			chooser.set_initial_folder (File.new_for_path (notes_dir));
-			chooser.select_folder.begin (this, null, (obj, res) => {
+			chooser.select_folder.begin (window, null, (obj, res) => {
                 try {
                     var folder = chooser.select_folder.end(res);
 					if (folder.query_exists ()) {
@@ -157,7 +206,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 			chooser.set_modal (true);
 			chooser.set_title (Strings.PICK_TRASH_DIR);
 			chooser.set_initial_folder (File.new_for_path (trash_dir));
-			chooser.select_folder.begin (this, null, (obj, res) => {
+			chooser.select_folder.begin (window, null, (obj, res) => {
                 try {
                     var folder = chooser.select_folder.end(res);
 					if (folder.query_exists ()) {
@@ -180,7 +229,9 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
 			Strings.NOTE_SORT_ORDER_TIME_DSC,
 			Strings.NOTE_SORT_ORDER_TIME_ASC,
 			Strings.NOTE_SORT_ORDER_ALPHA_ASC,
-			Strings.NOTE_SORT_ORDER_ALPHA_DSC
+			Strings.NOTE_SORT_ORDER_ALPHA_DSC,
+			Strings.NOTE_SORT_ORDER_NATURAL_ASC,
+			Strings.NOTE_SORT_ORDER_NATURAL_DSC
 			});
 		var selected_sort_order = settings.get_int ("note-sort-order");
 		note_sort_order.set_selected ((int)selected_sort_order);
@@ -194,6 +245,8 @@ public class Folio.PreferencesWindow : Adw.PreferencesWindow {
         notebook_sort_order.notify["selected-item"].connect (() => {
             settings.set_int ("notebook-sort-order", (int)notebook_sort_order.get_selected ());
         });
+
+ 		this.three_pane_changed.connect (((Folio.Window) window).on_3_pane_change);
 	}
 }
 

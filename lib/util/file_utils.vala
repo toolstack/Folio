@@ -31,4 +31,50 @@ namespace FileUtils {
 			error (e.message);
 		}
 	}
+
+	// Recursively delete a directory and all of it's contents.
+	public void recursive_delete (File path) {
+		// Enumerate the children of the path we're deleting.
+		GLib.FileEnumerator enumerator;
+		try {
+			enumerator = path.enumerate_children (FileAttribute.STANDARD_NAME + "," + FileAttribute.STANDARD_DISPLAY_NAME, FileQueryInfoFlags.NOFOLLOW_SYMLINKS);
+		} catch (Error e) {
+			error (e.message);
+		}
+
+		FileInfo file_info;
+
+		try {
+			file_info = enumerator.next_file ();
+		} catch (Error e) {
+			file_info = null;
+		}
+
+		// Loop through the children.
+		while (file_info != null) {
+			// Get a handle to the child.
+			var child = enumerator.get_child (file_info);
+
+			// If the child is a directory, descend into it.
+			// Otherwise just delete it.
+			if (file_info.get_file_type() == FileType.DIRECTORY) {
+				recursive_delete (child);
+			} else {
+				try {
+					child.@delete ();
+				} catch (Error e) {}
+			}
+
+			try {
+				file_info = enumerator.next_file ();
+			} catch (Error e) {
+				file_info = null;
+			}
+		}
+
+		// Once we're done, delete the root.
+		try {
+			path.@delete ();
+		} catch (Error e) {}
+	}
 }

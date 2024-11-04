@@ -6,6 +6,11 @@ public class GtkMarkdown.View : GtkSource.View {
 	public bool dark { get; set; default = false; }
 	public Gdk.RGBA theme_color { get; set; }
 	public string font_monospace { get; set; default = "Monospace 10"; }
+	public int url_detection_level { get; set; default = 0; }
+
+	private int base_font_monospace_size { get; set; default = 10; }
+
+	public int scale { get; set; default = 100; }
 
 	public Gdk.RGBA h6_color {
 		get {
@@ -148,11 +153,20 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	public bool check_if_bare_link (string text) {
 		MatchInfo matches;
+
 		try {
-			if( is_bare_link.match_full (text, text.length, 0, 0, out matches) ) {
-				return true;
+			var matches_found = false;
+
+			// Check for bare links
+			if (this.url_detection_level == 0 ) {
+				matches_found = is_bare_link.match_full (text, text.length, 0, 0, out matches);
+			} else if( this.url_detection_level == 1 ) {
+				matches_found = is_bare_link_strick.match_full (text, text.length, 0, 0, out matches);
 			}
+
+			return matches_found;
 		} catch (Error e) {}
+
 		return false;
 	}
 
@@ -312,6 +326,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	private Regex is_link;
 	private Regex is_bare_link;
+	private Regex is_bare_link_strick;
 	private Regex is_email_link;
 	private Regex is_escape;
 	private Regex is_blockquote;
@@ -339,7 +354,8 @@ public class GtkMarkdown.View : GtkSource.View {
 		try {
 			var f = RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS;
 			is_link = new Regex ("\\[([^\\[]*?)\\](\\([^\\)\\n]*?\\))", f, 0);
-			is_bare_link = new Regex ("((?:http|ftp|https):\\/\\/)?([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:\\/~+#-]*[\\w@?^=%&\\/~+#-])", f, 0);
+			is_bare_link = new Regex ("((?:http|ftp|https|file):\\/\\/)?([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:\\/~+#-]*[\\w@?^=%&\\/~+#-])", f, 0);
+			is_bare_link_strick = new Regex ("((?:http|ftp|https|file):\\/\\/)+([\\w_-]+(?:(?:\\.[\\w_-]+)+))([\\w.,@?^=%&:\\/~+#-]*[\\w@?^=%&\\/~+#-])", f, 0);
 			is_email_link = new Regex ("[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*", f, 0);
 			is_escape = new Regex ("\\\\[\\\\`*_{}\\[\\]()#+\\-.!]", f, 0);
 
@@ -364,7 +380,7 @@ public class GtkMarkdown.View : GtkSource.View {
 			 * * list item
 			 * 0. list item
 			 */
-			is_list_row = new Regex ("^[\\t ]*([-*+]|[.0-9])+[\\t ]+", f | RegexCompileFlags.MULTILINE, 0);
+			is_list_row = new Regex ("^[\\t ]*([-*+]|[0-9]\\.)+[\\t ]+", f | RegexCompileFlags.MULTILINE, 0);
 
 			/* Examples:
 			 * |column 1|column 2|
@@ -435,22 +451,31 @@ public class GtkMarkdown.View : GtkSource.View {
 			}
 		}
 
+		var settings = new Settings (Config.APP_ID);
+		var prefs_font_monospace = settings.get_string ("note-font-monospace");
+		if (prefs_font_monospace != font_monospace) {
+			font_monospace = prefs_font_monospace;
+		}
+
+		settings.changed["note-font-monospace"].connect(() => change_font ());
+
+		var window_state = new Settings (@"$(Config.APP_ID).WindowState");
+		var prefs_scale = window_state.get_int ("text-scale");
+
+		scale = prefs_scale;
+
 		notify["dark"].connect ((s, p) => update_color_scheme ());
 		notify["theme-color"].connect ((s, p) => update_color_scheme ());
 		notify["font-monospace"].connect ((s, p) => update_font ());
+		notify["url-detection-level"].connect ((s, p) => update_url_detection ());
 
 		var font_desc = Pango.FontDescription.from_string (font_monospace);
-		var font_size = font_desc.get_size ();
-		if (!font_desc.get_size_is_absolute ()) {
-			font_size = font_size / Pango.SCALE;
-		}
-		if (font_size < 3) {
-			font_desc.set_size (10 * Pango.SCALE);
-			font_monospace = font_desc.to_string ();
-		}
+		base_font_monospace_size = font_desc.get_size ();
 
 		update_color_scheme ();
 		update_font ();
+
+		notify["scale"].connect(update_scale);
 
 		{
 			var gutter = get_gutter (Gtk.TextWindowType.LEFT);
@@ -603,16 +628,38 @@ public class GtkMarkdown.View : GtkSource.View {
 		}
 	}
 
-	private void update_font () {
-		var font_desc = Pango.FontDescription.from_string (font_monospace);
-		var font_size = font_desc.get_size ();
+	private int calculate_scaled_font_size (Pango.FontDescription font_desc) {
+		var font_size = base_font_monospace_size;
+
 		if (!font_desc.get_size_is_absolute ()) {
-			font_size = font_size / Pango.SCALE;
+			font_size = ((font_size / Pango.SCALE) * scale ) / 100;
 		}
-		if (font_size < 3) {
-			font_desc.set_size (10 * Pango.SCALE);
-			font_monospace = font_desc.to_string ();
+
+		if (font_size < 4) { font_size = 4; }
+
+		return font_size;
+	}
+
+	private void update_scale () {
+		var font_desc = Pango.FontDescription.from_string (font_monospace);
+		var font_size = calculate_scaled_font_size (font_desc);
+
+		font_desc.set_size (font_size * Pango.SCALE);
+		font_monospace = font_desc.to_string ();
+	}
+
+	private void change_font () {
+		var settings = new Settings (Config.APP_ID);
+		var prefs_font_monospace = settings.get_string ("note-font-monospace");
+		if (prefs_font_monospace != font_monospace) {
+			font_monospace = prefs_font_monospace;
 		}
+
+		update_font ();
+	}
+
+	private void update_font () {
+		update_scale ();
 
 		text_tag_around = get_or_create_tag ("markdown-code-block-around");
 		text_tag_around.font = font_monospace;
@@ -625,6 +672,10 @@ public class GtkMarkdown.View : GtkSource.View {
 
 		text_tag_table = get_or_create_tag ("markdown-table");
 		text_tag_table.font = font_monospace;
+	}
+
+	private void update_url_detection () {
+		restyle_text_all ();
 	}
 
 	private void remove_tags_format (Gtk.TextIter start, Gtk.TextIter end) {
