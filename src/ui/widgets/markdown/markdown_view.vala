@@ -712,6 +712,12 @@ public class GtkMarkdown.View : GtkSource.View {
 			int changed_line = cursor_iter.get_line ();
 
             format_line (changed_line);
+
+			// If a new line is inserted, then also re-format the previous line, as it might be
+			// inside a style
+			if (cursor_iter.get_line_offset () == 0) {
+				format_line (changed_line - 1);
+			}
 		} else {
 			var lines = buffer.get_line_count ();
 			for (var line = 0; line < lines; line++) {
