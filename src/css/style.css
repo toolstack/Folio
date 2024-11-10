@@ -1,6 +1,8 @@
 
 @define-color view_fg_color @window_fg_color;
 
+@define-color theme_color #3584E4;
+
 @define-color accent_color shade(@theme_color, 0.8);
 @define-color accent_bg_color @theme_color;
 
