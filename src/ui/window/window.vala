@@ -210,6 +210,13 @@ public class Folio.Window : Adw.ApplicationWindow {
 		notify["note-sort-order"].connect (update_note_sort_order);
 		notify["notebook-sort-order"].connect (update_notebook_sort_order);
 
+		if (settings.get_boolean ("enable-autosave")) {
+			GLib.Timeout.add (5000, () => {
+				window_model.save_note (this);
+				return true;
+			}, 0 );
+		}
+
 		this.on_3_pane_change (settings.get_boolean ("enable-3-pane"));
 
 		leaflet.show_content = false; // Don't start in note view.
