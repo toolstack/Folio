@@ -43,7 +43,7 @@ public class Folio.Application : Adw.Application {
 
 	private Window? main_window = null;
 
-	public WindowModel window_model { get { return main_window.window_model; } }
+	public WindowModel window_model { get { return main_window == null ? null : main_window.window_model; } }
 
 	private Gtk.CssProvider? black_css_provider = null;
 	private Gtk.CssProvider? black_hc_css_provider = null;
