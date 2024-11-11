@@ -99,18 +99,17 @@ public class Folio.Application : Adw.Application {
 		// settings does use it.
 		{
 			var settings = new Settings (Config.APP_ID);
-
 			var notes_dir = settings.get_string ("notes-dir");
 			var trash_dir = settings.get_string ("trash-dir");
 			var expanded_notes_dir = FileUtils.expand_home_directory (notes_dir);
 			var expanded_trash_dir = FileUtils.expand_home_directory (trash_dir);
 
 			if (notes_dir != expanded_notes_dir) {
-				settings.set_string ("notes-dir", notes_dir);
+				settings.set_string ("notes-dir", expanded_notes_dir);
 			}
 
 			if (trash_dir != expanded_trash_dir) {
-				settings.set_string ("trash-dir", trash_dir);
+				settings.set_string ("trash-dir", expanded_trash_dir);
 			}
 		}
 	}
