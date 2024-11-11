@@ -200,7 +200,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesDialog {
 
 		var trash_dir = settings.get_string ("trash-dir");
 		trash_dir_label.label = settings.get_string ("trash-dir");
-		trash_dir_label.tooltip_text = notes_dir;
+		trash_dir_label.tooltip_text = trash_dir;
 		trash_dir_button.clicked.connect (() => {
 			var chooser = new Gtk.FileDialog ();
 			chooser.set_modal (true);
