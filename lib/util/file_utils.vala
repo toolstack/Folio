@@ -77,4 +77,19 @@ namespace FileUtils {
 			path.@delete ();
 		} catch (Error e) {}
 	}
+
+	// Expand the ~ operator in file names/paths.
+	public string expand_home_directory (string path) {
+		if (path[0] == '~') {
+			var user_home = GLib.Environment.get_home_dir ();
+
+			if (path[1] != '/' || path[1] != '/') {
+				return user_home + "/" + path.substring (1, -1);
+			} else {
+				return user_home + path.substring (1, -1);
+			}
+		}
+
+		return path;
+	}
 }
