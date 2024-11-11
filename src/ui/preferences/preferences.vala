@@ -193,7 +193,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesDialog {
 		});
 		notes_dir_button_reset.clicked.connect (() => {
 			settings.reset ("notes-dir");
-			notes_dir = settings.get_string ("notes-dir");
+			notes_dir = FileUtils.expand_home_directory (settings.get_string ("notes-dir"));
 			notes_dir_label.label = notes_dir;
 			notes_dir_label.tooltip_text = notes_dir;
 		});
@@ -220,7 +220,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesDialog {
 		});
 		trash_dir_button_reset.clicked.connect (() => {
 			settings.reset ("trash-dir");
-			trash_dir = settings.get_string ("trash-dir");
+			trash_dir = FileUtils.expand_home_directory (settings.get_string ("trash-dir"));
 			trash_dir_label.label = trash_dir;
 			trash_dir_label.tooltip_text = trash_dir;
 		});

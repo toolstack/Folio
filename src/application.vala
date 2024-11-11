@@ -92,6 +92,27 @@ public class Folio.Application : Adw.Application {
 
 		style_manager.notify["dark"].connect (() => update_theme ());
 		style_manager.notify["high-contrast"].connect (() => update_theme ());
+
+		// Check to see if either the notes dir or the trash dir are using the ~ home directory
+		// character, and if so, replace it now with the proper home path for the current user.
+		// This is done as many functions don't understand the ~ but the default path in our
+		// settings does use it.
+		{
+			var settings = new Settings (Config.APP_ID);
+
+			var notes_dir = settings.get_string ("notes-dir");
+			var trash_dir = settings.get_string ("trash-dir");
+			var expanded_notes_dir = FileUtils.expand_home_directory (notes_dir);
+			var expanded_trash_dir = FileUtils.expand_home_directory (trash_dir);
+
+			if (notes_dir != expanded_notes_dir) {
+				settings.set_string ("notes-dir", notes_dir);
+			}
+
+			if (trash_dir != expanded_trash_dir) {
+				settings.set_string ("trash-dir", trash_dir);
+			}
+		}
 	}
 
 	public override void activate () {
