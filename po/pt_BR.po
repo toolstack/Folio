@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-10-17 23:40:16+0000\n"
+"PO-Revision-Date: 2024-11-10 07:04:14+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,66 @@ msgstr ""
 "X-Generator: GlotPress/4.0.1\n"
 "Language: pt_BR\n"
 "Project-Id-Version: Folio\n"
+
+#: data/app.gschema.xml:91
+msgid "Allow long notebook names"
+msgstr "Permitir nomes longos para cadernos"
+
+#: data/app.gschema.xml:92
+msgid "The notebook column will expand to the width of the longest notebook name"
+msgstr "A coluna de cadernos irá se expandir até a largura do nome de caderno mais longo"
+
+#: data/app.gschema.xml:96
+msgid "Allow long note names"
+msgstr "Permitir nomes longos para notas"
+
+#: data/app.gschema.xml:97
+msgid "The note list column will expand to the width of the longest note name"
+msgstr "A coluna da lista de notas irá se expandir até a largura do nome de nota mais longo"
+
+#: data/app.metainfo.xml.in:5
+msgid "A beautiful markdown note-taking app for GNOME"
+msgstr "Um lindo aplicativo de notas em Markdown para o GNOME"
+
+#: data/app.metainfo.xml.in:8
+msgid "Some features include:"
+msgstr "Suas funcionalidades incluem:"
+
+#: data/app.metainfo.xml.in:16
+msgid "Optional line numbers"
+msgstr "Números de linha opcionais"
+
+#: data/app.metainfo.xml.in:17
+msgid "Optional auto save"
+msgstr "Salvamento automático opcional"
+
+#: data/app.metainfo.xml.in:18
+msgid "Open links with Control-Click"
+msgstr "Abrir links com Ctrl + clique"
+
+#: data/app.metainfo.xml.in:19
+msgid "Link to other notes in Folio"
+msgstr "Criar links para outras notas no Folio"
+
+#: data/app.metainfo.xml.in:20
+msgid "Automatically create links for bare URL's and e-mail addresses"
+msgstr "Criar automaticamente links para URLs e endereços de e-mail escritos como texto"
+
+#: src/ui/preferences/preferences.blp:167
+msgid "Allow Long Notebook Names"
+msgstr "Permitir nomes longos para cadernos"
+
+#: src/ui/preferences/preferences.blp:168
+msgid "The notebook column will expand to the width of the longest notebook name (requires notebook selection change to take effect)."
+msgstr "A coluna de cadernos irá se expandir até a largura do nome de caderno mais longo (requer alteração na seleção de caderno para fazer efeito)."
+
+#: src/ui/preferences/preferences.blp:178
+msgid "Allow Long Note Names"
+msgstr "Permitir nomes longos para notas"
+
+#: src/ui/preferences/preferences.blp:179
+msgid "The note list column will expand to the width of the longest note name (requires notebook selection change to take effect)."
+msgstr "A coluna da lista de notas irá se expandir até a largura do nome de nota mais longo (requer alteração na seleção de caderno para fazer efeito)."
 
 #: data/app.gschema.xml:81
 msgid "URL detection level"
@@ -125,7 +185,7 @@ msgstr "Ordem de classificação dos cadernos"
 msgid "The sort order of the notebook list"
 msgstr "A ordem de classificação da lista de cadernos"
 
-#: src/ui/preferences/preferences.blp:167
+#: src/ui/preferences/preferences.blp:189
 msgid "Sort Order For Notebooks"
 msgstr "Ordem de classificação para os cadernos"
 
@@ -137,7 +197,7 @@ msgstr "Ordem de classificação das notas"
 msgid "The sort order of the note list"
 msgstr "A ordem de classificação da lista de notas"
 
-#: src/ui/preferences/preferences.blp:172
+#: src/ui/preferences/preferences.blp:194
 msgid "Sort Order For Notes"
 msgstr "Ordem de classificação para as notas"
 
@@ -235,11 +295,11 @@ msgstr ""
 msgid "Note %i"
 msgstr "Nota %i"
 
-#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:235
+#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:257
 msgid "Trash Storage Location"
 msgstr "Local de armazenamento da lixeira"
 
-#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:236
+#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:258
 msgid "Where the trash folder is located (requires app restart)"
 msgstr "Onde a pasta da lixeira está localizada (requer reinício do aplicativo)"
 
@@ -275,15 +335,15 @@ msgstr "Mostrar todas as notas"
 msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
 msgstr "Mostra o caderno \"Todas as notas\" no topo da lista de cadernos"
 
-#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:185
+#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:207
 msgid "Enable autosave"
 msgstr "Ativar salvamento automático"
 
-#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:186
+#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:208
 msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
 msgstr "Salva automaticamente a nota atual a cada 30 segundos, se o conteúdo tiver sido alterado (requer reinício do aplicativo)"
 
-#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:196
+#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:218
 msgid "Don't hide the Trash folder"
 msgstr "Não ocultar a pasta da lixeira"
 
@@ -291,23 +351,23 @@ msgstr "Não ocultar a pasta da lixeira"
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
 msgstr "A pasta da lixeira é ocultada por padrão; esta opção a torna visível"
 
-#: data/app.metainfo.xml.in:419
+#: data/app.metainfo.xml.in:425
 msgid "Main Folio window in light mode"
 msgstr "Janela principal do Folio no tema clato"
 
-#: data/app.metainfo.xml.in:423
+#: data/app.metainfo.xml.in:429
 msgid "Main Folio window in dark mode"
 msgstr "Janela principal do Folio no tema escuro"
 
-#: data/app.metainfo.xml.in:427
+#: data/app.metainfo.xml.in:433
 msgid "Folio on small/mobile screens"
 msgstr "Folio em telas pequenas/de dispositivos móveis"
 
-#: data/app.metainfo.xml.in:431
+#: data/app.metainfo.xml.in:437
 msgid "Folio preferences screen"
 msgstr "Tela de preferências do Folio"
 
-#: data/app.metainfo.xml.in:435
+#: data/app.metainfo.xml.in:441
 msgid "Folio in three pane mode"
 msgstr "Folio no modo de três painéis"
 
@@ -335,11 +395,11 @@ msgstr "Largura fixa a ser usada para as notas"
 msgid "Sets the fixed width size of a note in px"
 msgstr "Determina o tamanho da largura fixa de uma nota em pixels (px)"
 
-#: src/ui/preferences/preferences.blp:179
+#: src/ui/preferences/preferences.blp:201
 msgid "Files"
 msgstr "Arquivos"
 
-#: src/ui/preferences/preferences.blp:197
+#: src/ui/preferences/preferences.blp:219
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
 msgstr "A pasta da lixeira é ocultada por padrão; esta opção a torna visível (requer reinício do aplicativo)"
 
@@ -403,17 +463,9 @@ msgstr "Fonte na qual trechos de código serão exibidos"
 msgid "OLED Mode"
 msgstr "Modo OLED"
 
-#: data/app.metainfo.xml.in:5
-msgid "Take notes in Markdown"
-msgstr "Tome notas em Markdown"
-
 #: data/app.metainfo.xml.in:7
-msgid "Create notebooks, take notes in markdown"
-msgstr "Crie cadernos, tome notas em Markdown"
-
-#: data/app.metainfo.xml.in:8
-msgid "Features:"
-msgstr "Funcionalidades:"
+msgid "Create notebooks and take notes in markdown"
+msgstr "Crie cadernos e tome notas em Markdown"
 
 #: data/app.metainfo.xml.in:10
 msgid "Almost WYSIWYG markdown rendering"
@@ -434,6 +486,10 @@ msgstr "Tematização do aplicativo com base na cor de cada caderno"
 #: data/app.metainfo.xml.in:14
 msgid "Trash can"
 msgstr "Lixeira"
+
+#: data/app.metainfo.xml.in:15
+msgid "Markdown document"
+msgstr "Documento markdown"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:6
 #: src/ui/widgets/markdown/heading_popover.blp:48
@@ -592,11 +648,11 @@ msgstr "Ativar dicas de Markdown"
 msgid "3-Pane Layout"
 msgstr "Layout de 3 painéis"
 
-#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:207
+#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:229
 msgid "Notes Storage Location"
 msgstr "Local de armazenamento das notas"
 
-#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:208
+#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:230
 msgid "Where the notebooks are stored (requires app restart)"
 msgstr "Onde os cadernos são armazenados (requer reinício do aplicativo)"
 

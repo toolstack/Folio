@@ -11,6 +11,66 @@ msgstr ""
 "Language: nl\n"
 "Project-Id-Version: Folio\n"
 
+#: data/app.gschema.xml:91
+msgid "Allow long notebook names"
+msgstr ""
+
+#: data/app.gschema.xml:92
+msgid "The notebook column will expand to the width of the longest notebook name"
+msgstr ""
+
+#: data/app.gschema.xml:96
+msgid "Allow long note names"
+msgstr ""
+
+#: data/app.gschema.xml:97
+msgid "The note list column will expand to the width of the longest note name"
+msgstr ""
+
+#: data/app.metainfo.xml.in:5
+msgid "A beautiful markdown note-taking app for GNOME"
+msgstr ""
+
+#: data/app.metainfo.xml.in:8
+msgid "Some features include:"
+msgstr ""
+
+#: data/app.metainfo.xml.in:16
+msgid "Optional line numbers"
+msgstr ""
+
+#: data/app.metainfo.xml.in:17
+msgid "Optional auto save"
+msgstr ""
+
+#: data/app.metainfo.xml.in:18
+msgid "Open links with Control-Click"
+msgstr ""
+
+#: data/app.metainfo.xml.in:19
+msgid "Link to other notes in Folio"
+msgstr ""
+
+#: data/app.metainfo.xml.in:20
+msgid "Automatically create links for bare URL's and e-mail addresses"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:167
+msgid "Allow Long Notebook Names"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:168
+msgid "The notebook column will expand to the width of the longest notebook name (requires notebook selection change to take effect)."
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:178
+msgid "Allow Long Note Names"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:179
+msgid "The note list column will expand to the width of the longest note name (requires notebook selection change to take effect)."
+msgstr ""
+
 #: data/app.gschema.xml:81
 msgid "URL detection level"
 msgstr ""
@@ -120,7 +180,7 @@ msgstr ""
 msgid "The sort order of the notebook list"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:167
+#: src/ui/preferences/preferences.blp:189
 msgid "Sort Order For Notebooks"
 msgstr ""
 
@@ -132,7 +192,7 @@ msgstr ""
 msgid "The sort order of the note list"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:172
+#: src/ui/preferences/preferences.blp:194
 msgid "Sort Order For Notes"
 msgstr ""
 
@@ -215,11 +275,11 @@ msgstr ""
 msgid "Note %i"
 msgstr ""
 
-#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:235
+#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:257
 msgid "Trash Storage Location"
 msgstr ""
 
-#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:236
+#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:258
 msgid "Where the trash folder is located (requires app restart)"
 msgstr ""
 
@@ -255,15 +315,15 @@ msgstr ""
 msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
 msgstr ""
 
-#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:185
+#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:207
 msgid "Enable autosave"
 msgstr ""
 
-#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:186
+#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:208
 msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
 msgstr ""
 
-#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:196
+#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:218
 msgid "Don't hide the Trash folder"
 msgstr ""
 
@@ -271,23 +331,23 @@ msgstr ""
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
 msgstr ""
 
-#: data/app.metainfo.xml.in:419
+#: data/app.metainfo.xml.in:425
 msgid "Main Folio window in light mode"
 msgstr ""
 
-#: data/app.metainfo.xml.in:423
+#: data/app.metainfo.xml.in:429
 msgid "Main Folio window in dark mode"
 msgstr ""
 
-#: data/app.metainfo.xml.in:427
+#: data/app.metainfo.xml.in:433
 msgid "Folio on small/mobile screens"
 msgstr ""
 
-#: data/app.metainfo.xml.in:431
+#: data/app.metainfo.xml.in:437
 msgid "Folio preferences screen"
 msgstr ""
 
-#: data/app.metainfo.xml.in:435
+#: data/app.metainfo.xml.in:441
 msgid "Folio in three pane mode"
 msgstr ""
 
@@ -315,11 +375,11 @@ msgstr ""
 msgid "Sets the fixed width size of a note in px"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:179
+#: src/ui/preferences/preferences.blp:201
 msgid "Files"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:197
+#: src/ui/preferences/preferences.blp:219
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
 msgstr ""
 
@@ -383,17 +443,9 @@ msgstr ""
 msgid "OLED Mode"
 msgstr "OLED-modus"
 
-#: data/app.metainfo.xml.in:5
-msgid "Take notes in Markdown"
-msgstr "Notities maken in Markdown"
-
 #: data/app.metainfo.xml.in:7
-msgid "Create notebooks, take notes in markdown"
-msgstr "Maak notitieboeken, neem notities in Markdown"
-
-#: data/app.metainfo.xml.in:8
-msgid "Features:"
-msgstr "Functies:"
+msgid "Create notebooks and take notes in markdown"
+msgstr ""
 
 #: data/app.metainfo.xml.in:10
 msgid "Almost WYSIWYG markdown rendering"
@@ -414,6 +466,10 @@ msgstr ""
 #: data/app.metainfo.xml.in:14
 msgid "Trash can"
 msgstr "Prullenbak"
+
+#: data/app.metainfo.xml.in:15
+msgid "Markdown document"
+msgstr "Markdown-document"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:6
 #: src/ui/widgets/markdown/heading_popover.blp:48
@@ -572,11 +628,11 @@ msgstr ""
 msgid "3-Pane Layout"
 msgstr ""
 
-#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:207
+#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:229
 msgid "Notes Storage Location"
 msgstr "Notities opslaglocatie"
 
-#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:208
+#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:230
 msgid "Where the notebooks are stored (requires app restart)"
 msgstr "Waar de notitieboeken worden opgeslagen (vereist opnieuw opstarten van de app)"
 

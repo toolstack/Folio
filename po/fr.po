@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-10-16 07:36:35+0000\n"
+"PO-Revision-Date: 2024-11-10 08:10:36+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,66 @@ msgstr ""
 "X-Generator: GlotPress/4.0.1\n"
 "Language: fr\n"
 "Project-Id-Version: Folio\n"
+
+#: data/app.gschema.xml:91
+msgid "Allow long notebook names"
+msgstr "Autoriser des noms de carnets longs"
+
+#: data/app.gschema.xml:92
+msgid "The notebook column will expand to the width of the longest notebook name"
+msgstr "La colonne des carnets s’ajustera à la longueur du plus long nom de carnet"
+
+#: data/app.gschema.xml:96
+msgid "Allow long note names"
+msgstr "Autoriser des noms de notes longs"
+
+#: data/app.gschema.xml:97
+msgid "The note list column will expand to the width of the longest note name"
+msgstr "La colonne des notes s’ajustera à la longueur du plus long nom de note"
+
+#: data/app.metainfo.xml.in:5
+msgid "A beautiful markdown note-taking app for GNOME"
+msgstr "Une belle application de prise de notes Markdown pour GNOME"
+
+#: data/app.metainfo.xml.in:8
+msgid "Some features include:"
+msgstr "Quelques fonctionnalités inclues :"
+
+#: data/app.metainfo.xml.in:16
+msgid "Optional line numbers"
+msgstr "Numérotation des lignes optionnelle"
+
+#: data/app.metainfo.xml.in:17
+msgid "Optional auto save"
+msgstr "Enregistrement automatique optionnel"
+
+#: data/app.metainfo.xml.in:18
+msgid "Open links with Control-Click"
+msgstr "Ouverture des liens avec Ctrl + Clic"
+
+#: data/app.metainfo.xml.in:19
+msgid "Link to other notes in Folio"
+msgstr "Lien vers d’autres notes dans Folio"
+
+#: data/app.metainfo.xml.in:20
+msgid "Automatically create links for bare URL's and e-mail addresses"
+msgstr "Création automatique de liens pour les adresses URL et e-mail"
+
+#: src/ui/preferences/preferences.blp:167
+msgid "Allow Long Notebook Names"
+msgstr "Autoriser des noms de carnets longs"
+
+#: src/ui/preferences/preferences.blp:168
+msgid "The notebook column will expand to the width of the longest notebook name (requires notebook selection change to take effect)."
+msgstr "La colonne des carnets s’ajustera à la longueur du plus long nom de carnet (requiert la sélection d’un carnet pour prendre effet)."
+
+#: src/ui/preferences/preferences.blp:178
+msgid "Allow Long Note Names"
+msgstr "Autoriser des noms de notes longs"
+
+#: src/ui/preferences/preferences.blp:179
+msgid "The note list column will expand to the width of the longest note name (requires notebook selection change to take effect)."
+msgstr "La colonne des notes s’ajustera à la longueur du plus long nom de note (requiert la sélection d’un carnet pour prendre effet)."
 
 #: data/app.gschema.xml:81
 msgid "URL detection level"
@@ -39,10 +99,9 @@ msgid ""
 " - Strict requires a protocol identifier (ie http://)\n"
 " - Disabled turns detection off."
 msgstr ""
-"Détermine le niveau de détection\n"
-"des URLs dans le texte :\n"
-" - Agressif : essaye de trouver toutes les URLs\n"
-" - Strict : requiert un identifiant de protocole (http://)\n"
+"Détermine le niveau de détection des URLs dans le texte :\n"
+" - Poussé : essaye de trouver toutes les URLs\n"
+" - Restreint : requiert un identifiant de protocole (http://)\n"
 " - Désactivé : désactive la détection."
 
 #: src/ui/preferences/preferences.blp:39
@@ -125,7 +184,7 @@ msgstr "Ordre de tri des carnets de notes"
 msgid "The sort order of the notebook list"
 msgstr "L’ordre de tri de la liste des carnets de notes"
 
-#: src/ui/preferences/preferences.blp:167
+#: src/ui/preferences/preferences.blp:189
 msgid "Sort Order For Notebooks"
 msgstr "Ordre de tri des carnets de notes"
 
@@ -137,17 +196,17 @@ msgstr "Ordre de tri des notes"
 msgid "The sort order of the note list"
 msgstr "L’ordre de tri de la liste des notes"
 
-#: src/ui/preferences/preferences.blp:172
+#: src/ui/preferences/preferences.blp:194
 msgid "Sort Order For Notes"
 msgstr "Ordre de tri des notes"
 
 #: src/ui/strings.vala:62
 msgid "Modified Time - Ascending"
-msgstr "Date de modification - Croissant"
+msgstr "Modification - Croissant"
 
 #: src/ui/strings.vala:63
 msgid "Modified Time - Descending"
-msgstr "Date de modification - Décroissant"
+msgstr "Modification - Décroissant"
 
 #: src/ui/strings.vala:64
 msgid "Alphabetical - Ascending"
@@ -235,11 +294,11 @@ msgstr ""
 msgid "Note %i"
 msgstr "Note %i"
 
-#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:235
+#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:257
 msgid "Trash Storage Location"
 msgstr "Emplacement de stockage de la corbeille"
 
-#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:236
+#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:258
 msgid "Where the trash folder is located (requires app restart)"
 msgstr "Où le dossier de la corbeille est stocké (requiert un redémarrage de l’appli)"
 
@@ -275,15 +334,15 @@ msgstr "Afficher toutes les notes"
 msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
 msgstr "Affiche le carne « Toutes les notes » en haut de la liste des carnets"
 
-#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:185
+#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:207
 msgid "Enable autosave"
 msgstr "Activer l’enregistrement automatique"
 
-#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:186
+#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:208
 msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
 msgstr "Enregistre automatiquement la note actuelle toutes les 30 secondes si le contenu est modifié (nécessite un redémarrage de l’application)"
 
-#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:196
+#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:218
 msgid "Don't hide the Trash folder"
 msgstr "Ne pas masquer la corbeille"
 
@@ -291,23 +350,23 @@ msgstr "Ne pas masquer la corbeille"
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
 msgstr "Le dossier de la corbeille est masqué par défaut, cette option le rend visible"
 
-#: data/app.metainfo.xml.in:419
+#: data/app.metainfo.xml.in:425
 msgid "Main Folio window in light mode"
 msgstr "Fenêtre principale de Folio en mode clair"
 
-#: data/app.metainfo.xml.in:423
+#: data/app.metainfo.xml.in:429
 msgid "Main Folio window in dark mode"
 msgstr "Fenêtre principale de Folio en mode sombre"
 
-#: data/app.metainfo.xml.in:427
+#: data/app.metainfo.xml.in:433
 msgid "Folio on small/mobile screens"
 msgstr "Folio sur écran format mobile"
 
-#: data/app.metainfo.xml.in:431
+#: data/app.metainfo.xml.in:437
 msgid "Folio preferences screen"
 msgstr "Écran des préférences de Folio"
 
-#: data/app.metainfo.xml.in:435
+#: data/app.metainfo.xml.in:441
 msgid "Folio in three pane mode"
 msgstr "Folio en mode 3 panneaux"
 
@@ -335,11 +394,11 @@ msgstr "Largeur fixe à utiliser pour les notes"
 msgid "Sets the fixed width size of a note in px"
 msgstr "Largeur d’une note en px"
 
-#: src/ui/preferences/preferences.blp:179
+#: src/ui/preferences/preferences.blp:201
 msgid "Files"
 msgstr "Fichiers"
 
-#: src/ui/preferences/preferences.blp:197
+#: src/ui/preferences/preferences.blp:219
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
 msgstr "Le dossier de la corbeille est masqué par défaut, cette option le rend visible (nécessite un redémarrage de l’application)"
 
@@ -403,17 +462,9 @@ msgstr "Le code de la police sera affiché en"
 msgid "OLED Mode"
 msgstr "Mode OLED"
 
-#: data/app.metainfo.xml.in:5
-msgid "Take notes in Markdown"
-msgstr "Application de prise de notes"
-
 #: data/app.metainfo.xml.in:7
-msgid "Create notebooks, take notes in markdown"
-msgstr "Créez des carnets de notes, prenez des notes en markdown"
-
-#: data/app.metainfo.xml.in:8
-msgid "Features:"
-msgstr "Fonctionnalités :"
+msgid "Create notebooks and take notes in markdown"
+msgstr "Créez des carnets de notes et prenez des notes en markdown"
 
 #: data/app.metainfo.xml.in:10
 msgid "Almost WYSIWYG markdown rendering"
@@ -434,6 +485,10 @@ msgstr "Coloration de l’application selon la couleur du carnet de notes"
 #: data/app.metainfo.xml.in:14
 msgid "Trash can"
 msgstr "Corbeille"
+
+#: data/app.metainfo.xml.in:15
+msgid "Markdown document"
+msgstr "Document Markdown"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:6
 #: src/ui/widgets/markdown/heading_popover.blp:48
@@ -592,11 +647,11 @@ msgstr "Activer la fiche technique"
 msgid "3-Pane Layout"
 msgstr "Disposition en 3 volets"
 
-#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:207
+#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:229
 msgid "Notes Storage Location"
 msgstr "Emplacement de stockage des notes"
 
-#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:208
+#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:230
 msgid "Where the notebooks are stored (requires app restart)"
 msgstr "Où les carnets de notes sont stockés (requiert un redémarrage de l’appli)"
 
