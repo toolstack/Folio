@@ -24,6 +24,22 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
+    <release type="stable" version="24.13" date="2024-11-12">
+      <description translate="no">
+        <p>Changes:</p>
+        <ul>
+          <li>Added support to display long notebook/note names in the UI</li>
+          <li>Perforamce improvements for large markdown files, thanks @machitgarha</li>
+          <li>Fixed AppImage support</li>
+          <li>Fixed highlighting of text when opening an outside file in Folio</li>
+          <li>Fixed crash when opening files/notes from the command line</li>
+          <li>Fixed autosave not functioning</li>
+          <li>Fixed more issues with deleting notebooks</li>
+          <li>Translation updates</li>
+          <li>Other minor fixes</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="24.12" date="2024-10-21">
       <description translate="no">
         <p>Changes:</p>

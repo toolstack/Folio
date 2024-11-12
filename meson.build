@@ -1,7 +1,7 @@
 project(
   'com.toolstack.Folio',
   ['c', 'vala'],
-  version: '24.12',
+  version: '24.13',
   meson_version: '>= 0.59.4',
   default_options: [
     'warning_level=2',

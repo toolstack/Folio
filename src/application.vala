@@ -189,6 +189,7 @@ Sabri Ünal
 Scrambled777
 Sergio Varela
 TokaiTeio
+Turtlegarden
 Zagura
 Sunniva Løvstad
 """;
@@ -200,26 +201,15 @@ Sunniva Løvstad
 		about.set_release_notes ("""
         <p>Changes:</p>
         <ul>
-			<li>Added support for opening URI as files</li>
-			<li>Added option to open non-text files in system handler (also avoids corrupting them)</li>
-			<li>Added custom text for notebook icons (including emojis)</li>
-			<li>Added requirement of periods after ordered lists to avoid false positives</li>
-			<li>Added option to set the URL detection level</li>
-			<li>Added option to set linespacing</li>
-			<li>Added natural sort order for notebooks/notes</li>
-			<li>Fixed styling of elements inside of links</li>
-			<li>Fixed Ctrl-Scroll getting stuck sometimes</li>
-			<li>Fixed stray formatting tags from URLs when opening them</li>
-			<li>Fixed Ctrl-Click behaviour when window loses focus</li>
-			<li>Fixed deleting notebooks when duplicates in the trash already exist</li>
-			<li>Fixed zero size trash items not displaying</li>
-			<li>Fixed crash when opening notes from the command line (or Gnome Search)</li>
-			<li>Fixed zooming of monospace fonts</li>
-			<li>Removed selection of the text in the rename box automatically</li>
-			<li>Moved to Gnome 47 runtime (thanks @drpetrikov)</li>
-			<li>Moved to newer Gnome widgets (thanks @turlegarden)</li>
-			<li>Translation updates</li>
-			<li>Other minor fixes</li>
+            <li>Added support to display long notebook/note names in the UI</li>
+            <li>Perforamce improvements for large markdown files, thanks @machitgarha</li>
+            <li>Fixed AppImage support</li>
+            <li>Fixed highlighting of text when opening an outside file in Folio</li>
+            <li>Fixed crash when opening files/notes from the command line</li>
+            <li>Fixed autosave not functioning</li>
+            <li>Fixed more issues with deleting notebooks</li>
+            <li>Translation updates</li>
+            <li>Other minor fixes</li>
         </ul>
 """
 		);
