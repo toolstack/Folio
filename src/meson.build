@@ -85,7 +85,8 @@ executable(
   meson.project_name(),
   folio_sources,
   c_args: [
-	'-DGETTEXT_PACKAGE="' + app_id + '"'
+	'-DGETTEXT_PACKAGE="' + app_id + '"',
+  '-DG_LOG_DOMAIN="Folio"'
   ],
   vala_args: [
 	meson.project_source_root() + '/src/config.vapi',
