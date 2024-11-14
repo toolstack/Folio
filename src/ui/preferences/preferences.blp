@@ -136,7 +136,7 @@ template $FolioPreferencesWindow : Adw.PreferencesDialog {
     Adw.PreferencesGroup {
       Adw.ActionRow {
 
-        title: _("3-Pane Layout");
+        title: _("Expanded Notebook List");
         subtitle: _("Expands the notebook list to include the notebook name");
         icon-name: "sidebar-show-symbolic";
         activatable-widget: enable_3_pane;
@@ -144,23 +144,6 @@ template $FolioPreferencesWindow : Adw.PreferencesDialog {
         Switch enable_3_pane {
           valign: center;
         }
-      }
-      Adw.ActionRow {
-
-        title: _("Use Fixed Width For Notes");
-        subtitle: _("Use a fixed width for the text area of a note");
-        icon-name: "stretch-horizontal-symbolic";
-        activatable-widget: limit_note_width;
-
-        Switch limit_note_width {
-          valign: center;
-        }
-      }
-      Adw.SpinRow custom_note_width {
-
-        title: _("Fixed Width To Use For Notes");
-        subtitle: _("Sets the fixed width size of a note in px");
-        icon-name: "object-flip-horizontal-symbolic";
       }
       Adw.ActionRow {
 
@@ -183,6 +166,23 @@ template $FolioPreferencesWindow : Adw.PreferencesDialog {
         Switch long_note_names {
           valign: center;
         }
+      }
+      Adw.ActionRow {
+
+        title: _("Use Fixed Width For Notes");
+        subtitle: _("Use a fixed width for the text area of a note");
+        icon-name: "stretch-horizontal-symbolic";
+        activatable-widget: limit_note_width;
+
+        Switch limit_note_width {
+          valign: center;
+        }
+      }
+      Adw.SpinRow custom_note_width {
+
+        title: _("Fixed Width To Use For Notes");
+        subtitle: _("Sets the fixed width size of a note in px");
+        icon-name: "object-flip-horizontal-symbolic";
       }
       Adw.ComboRow notebook_sort_order {
 
