@@ -32,17 +32,18 @@ public class Folio.PreferencesWindow : Adw.PreferencesDialog {
 	[GtkChild] unowned Adw.ComboRow notebook_sort_order;
 	[GtkChild] unowned Adw.ComboRow line_spacing;
 
-	Settings settings;
-	Application app;
-	Gtk.Window window;
-	string notes_dir;
-	string trash_dir;
+	private Settings settings;
+	private Application app;
+	private Gtk.Window window;
+	private string notes_dir;
+	private string trash_dir;
+
 	public PreferencesWindow (Application app, Gtk.Window window) {
 		Object ();
 		this.app = app;
 		this.window = window;
+		this.settings = new Settings (Config.APP_ID);
 
-		settings = new Settings (Config.APP_ID);
 		var font_dialog = new Gtk.FontDialog ();
 		var font_desc = Pango.FontDescription.from_string (settings.get_string ("note-font"));
 
