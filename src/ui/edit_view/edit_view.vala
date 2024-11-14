@@ -333,25 +333,43 @@ public class Folio.EditView : Gtk.Box {
 				end_mark = buffer.create_mark (null, selection_end, true);
 			}
 
+			var no_text = selection_start.compare (selection_end) == 0;
+
+			// Insert the prepending characters.
 			{
 				buffer.get_iter_at_mark (out selection_start, start_mark);
 				if (url_found) {
+					// If there is a url, insert an empty link text brace set and the opening url brace.
 					buffer.insert (ref selection_start, "[](", 3);
 				} else {
-					buffer.insert (ref selection_start, "[", 1);
+					if (no_text) {
+						// If start and end are the same (aka no text selected), insert a complete link set.
+						buffer.insert (ref selection_start, "[Link]()", 8);
+					} else {
+						// Otherwise, just insert the opening link text brace set.
+						buffer.insert (ref selection_start, "[", 1);
+					}
 				}
 			}
+
+			// Insert the postpending characters.
 			{
 				buffer.get_iter_at_mark (out selection_end, end_mark);
 				if (url_found) {
+					// If there is a url, insert the closing url brace.
 					buffer.insert (ref selection_end, ")", 1);
 				} else {
-					buffer.insert (ref selection_end, "]()", 3);
+					// If start and end are not the same (aka some text selected), insert the closing url brace.
+					// We don't have to handle the other case here as for no text selected we have already insert
+					// the complete brace set.
+					if (!no_text) {
+						buffer.insert (ref selection_end, "]()", 3);
+					}
 				}
 			}
 			buffer.get_iter_at_mark (out selection_start, start_mark);
 			buffer.get_iter_at_mark (out selection_end, end_mark);
-			if (url_found) {
+			if (url_found || no_text) {
 				selection_start.forward_char ();
 				buffer.place_cursor (selection_start);
 			} else {
