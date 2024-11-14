@@ -2,7 +2,7 @@
 <component type="desktop-application">
   <id>@app_id@</id>
   <name translate="no">Folio</name>
-  <summary>A beautiful markdown note-taking app for GNOME</summary>
+  <summary>Beautiful markdown note-taking app</summary>
   <description>
     <p>Create notebooks and take notes in markdown</p>
     <p>Some features include:</p>
