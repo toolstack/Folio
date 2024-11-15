@@ -229,7 +229,7 @@ You can use Folio with cloud storage providers like Google Drive, however there 
 - Google Drive's integration in GNOME does not use display names on disk, but instead file hashes, so when selecting the notes folder you will see the display names, but after selecting the folder the hash values will be displayed in the file location box on the preferences screen.  Display names will be used in the notebook and notes list.
 - Performance may be impacted as the display names must be retrieved from the cloud, which is of course slow in comparison to local file names.
 
-### Nextcloud Integration with GNOME
+#### Nextcloud Integration with GNOME
 - GNOME's integration with Nextcloud is effectively a WebDAV connection so all data is keep in the cloud.  This may impact performance.
 
 #### Non GNOME Integrated Cloud Providers
