@@ -22,10 +22,14 @@ public class Folio.MarkdownCheatsheet : Adw.Dialog {
 	[GtkChild]
 	unowned GtkMarkdown.View text_view;
 
+	private Application app;
+
 	public MarkdownCheatsheet (Application app) {
 		Object (
 			title: Strings.MARKDOWN_CHEATSHEET
 		);
+
+		this.app = app;
 
 		try {
 			var buffer = new GtkMarkdown.Buffer ();
@@ -36,8 +40,11 @@ public class Folio.MarkdownCheatsheet : Adw.Dialog {
 			text_view.buffer = buffer;
 		} catch (Error e) {}
 
-		app.style_manager.notify["dark"].connect (() => text_view.dark = app.style_manager.dark);
+		app.style_manager.notify["dark"].connect (on_dark_mode_enabled);
+		text_view.dark = app.style_manager.dark;
+	}
+
+	private void on_dark_mode_enabled () {
 		text_view.dark = app.style_manager.dark;
 	}
 }
-
