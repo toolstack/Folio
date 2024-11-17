@@ -94,7 +94,7 @@ public class GtkMarkdown.View : GtkSource.View {
 			prev_cursor = buffer.create_mark ("prev-cursor", buffer_start_iter, true);
 
 			buffer.changed.connect (restyle_text_partial);
-			buffer.paste_done.connect (restyle_text_all_after_paste); 
+			buffer.paste_done.connect (restyle_text_all_after_paste);
 			buffer.notify["cursor-position"].connect (restyle_text_cursor_partial);
 			restyle_text_all ();
 		}
@@ -120,35 +120,50 @@ public class GtkMarkdown.View : GtkSource.View {
 		var old_title_level = get_title_level (line);
 		if (old_title_level == level) return;
 		if (level > old_title_level) {
+			Gtk.TextIter start;
+			buffer.get_iter_at_line (out start, (int) line);
+
+			var header_str = string.nfill(level - old_title_level, '#');
+
 			if (old_title_level == 0) {
-				Gtk.TextIter start;
-				buffer.get_iter_at_line (out start, (int) line);
 				var end = start.copy ();
 				end.forward_chars (1);
 				var str = start.get_text (end);
 				if (str[0] != ' ') {
-					buffer.insert (ref start, " ", 1);
+					header_str = header_str + " ";
 				}
 			}
-			Gtk.TextIter start;
-			buffer.get_iter_at_line (out start, (int) line);
-			var str = string.nfill(level - old_title_level, '#');
-			buffer.insert (ref start, str, str.length);
+
+			buffer.insert (ref start, header_str, header_str.length);
 		} else {
 			Gtk.TextIter start;
+
 			buffer.get_iter_at_line (out start, (int) line);
+
 			var end = start.copy ();
 			end.forward_chars ((int) (old_title_level - level));
-			buffer.@delete (ref start, ref end);
+
+			// If we're back to normal text, remove the extra space as well.
 			if (level == 0) {
 				var e = end.copy ();
 				e.forward_chars (1);
 				var str = end.get_text (e);
 				if (str[0] == ' ') {
-					buffer.@delete (ref end, ref e);
+					end.forward_chars (1);
 				}
 			}
+
+			buffer.@delete (ref start, ref end);
 		}
+
+		// We need to set the is_unsaved flag in the window model so that if the user doesn't do anything
+		// else, the note can still be saved properly.
+		var window = (Folio.Window)get_ancestor (typeof (Folio.Window));
+		var app = (Folio.Application)window.get_application ();
+		var window_model = app.window_model;
+		window_model.is_unsaved = true;
+
+
 	}
 
 	public bool check_if_bare_link (string text) {
@@ -785,10 +800,10 @@ public class GtkMarkdown.View : GtkSource.View {
 			format_code_block_format (filtered_buffer_text);
 		} catch (Error e) {}
 	}
-	
+
 	private void restyle_text_cursor_partial () {
 		restyle_text_cursor (true);
-	
+
 		// Update the previous cursor position
 		Gtk.TextMark current_cursor = buffer.get_insert ();
 		Gtk.TextIter current_cursor_iter;
@@ -936,9 +951,9 @@ public class GtkMarkdown.View : GtkSource.View {
 		if (line_start.get_char () == '\n') {
 			line_start.forward_char ();
 		}
-	
+
         string line_text = buffer.get_text (line_start, line_end, true);
-	
+
 		remove_tags_cursor (line_start, line_end);
 
 		format_heading_cursor (line_start, line_end);
@@ -952,7 +967,7 @@ public class GtkMarkdown.View : GtkSource.View {
 			do_formatting_pass_cursor (is_strikethrough_0, line_start, line_end, cursor_location, ref line_text);
 			do_formatting_pass_cursor (is_strikethrough_1, line_start, line_end, cursor_location, ref line_text);
 			do_formatting_pass_cursor (is_highlight, line_start, line_end, cursor_location, ref line_text);
-			
+
 			format_escape_cursor (line_start, line_end, cursor_location, ref line_text);
 
 			// Create a filtered buffer that replaces some characters we don't want to match on.
@@ -989,7 +1004,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	void format_horizontal_rule (
         Gtk.TextIter line_start,
-        Gtk.TextIter line_end, 
+        Gtk.TextIter line_end,
 		ref string line_text
 	) throws RegexError {
 		if (is_horizontal_rule.match (line_text)) {
@@ -999,7 +1014,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	void format_blockquote (
         Gtk.TextIter line_start,
-        Gtk.TextIter line_end, 
+        Gtk.TextIter line_end,
 		ref string line_text
 	) throws RegexError {
         GLib.MatchInfo matches;
@@ -1027,7 +1042,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
     void format_link (
         Gtk.TextIter line_start,
-        Gtk.TextIter line_end, 
+        Gtk.TextIter line_end,
         ref string line_text
     ) throws RegexError {
         // Check for links
@@ -1060,7 +1075,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	void format_link_cursor (
         Gtk.TextIter line_start,
-        Gtk.TextIter line_end, 
+        Gtk.TextIter line_end,
 		Gtk.TextIter cursor_location,
         ref string line_text
 	) throws RegexError {
@@ -1103,7 +1118,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
     void format_bare_link (
         Gtk.TextIter line_start,
-        Gtk.TextIter line_end, 
+        Gtk.TextIter line_end,
         ref string line_text
     ) throws RegexError {
         // Check for bare links
@@ -1131,7 +1146,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
     void format_list_row (
         Gtk.TextIter line_start,
-        Gtk.TextIter line_end, 
+        Gtk.TextIter line_end,
         ref string line_text
     ) throws RegexError {
         // Check lists
@@ -1159,7 +1174,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
     void format_table_row (
         Gtk.TextIter line_start,
-        Gtk.TextIter line_end, 
+        Gtk.TextIter line_end,
         ref string line_text
     ) throws RegexError {
         // Check tables
@@ -1187,7 +1202,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
     void format_email_link (
         Gtk.TextIter line_start,
-        Gtk.TextIter line_end, 
+        Gtk.TextIter line_end,
         ref string line_text
     ) throws RegexError {
         // Check for email links
@@ -1215,7 +1230,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	void format_escape (
         Gtk.TextIter line_start,
-        Gtk.TextIter line_end, 
+        Gtk.TextIter line_end,
 		string line_text
 	) throws RegexError {
 		// Check for escapes
@@ -1240,7 +1255,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 	void format_escape_cursor (
         Gtk.TextIter line_start,
-        Gtk.TextIter line_end, 
+        Gtk.TextIter line_end,
 		Gtk.TextIter cursor_location,
         ref string line_text
 	) throws RegexError {
