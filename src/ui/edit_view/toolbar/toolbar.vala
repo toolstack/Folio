@@ -19,20 +19,26 @@ public class Folio.Toolbar : Gtk.Box {
 	[GtkChild] unowned Gtk.DropDown format_heading_type_mobile;
 
 	construct {
-		notify["heading-i"].connect (() => {
-			format_heading_type.set_selected (heading_i);
-			format_heading_type_mobile.set_selected (heading_i);
-		});
+		notify["heading-i"].connect (on_heading_changed);
 		format_heading_type.set_selected (heading_i);
 		format_heading_type_mobile.set_selected (heading_i);
-		format_heading_type.notify["selected-item"].connect (() => {
-			heading_i_changed((int)format_heading_type.get_selected ());
-		});
-		format_heading_type_mobile.notify["selected-item"].connect (() => {
-			heading_i_changed((int)format_heading_type_mobile.get_selected ());
-		});
+		format_heading_type.notify["selected-item"].connect (on_heading_type_selected_item_changed);
+		format_heading_type_mobile.notify["selected-item"].connect (on_heading_type_mobile_selected_item_changed);
 		var settings = new Settings (Config.APP_ID);
 		settings.bind ("cheatsheet-enabled", this, "cheatsheet-enabled", SettingsBindFlags.DEFAULT);
+	}
+
+	private void on_heading_changed () {
+		format_heading_type.set_selected (heading_i);
+		format_heading_type_mobile.set_selected (heading_i);
+	}
+
+	private void on_heading_type_selected_item_changed () {
+		heading_i_changed((int)format_heading_type.get_selected ());
+	}
+
+	private void on_heading_type_mobile_selected_item_changed () {
+		heading_i_changed((int)format_heading_type_mobile.get_selected ());
 	}
 
 	public void resize_toolbar () {

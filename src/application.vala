@@ -90,8 +90,8 @@ public class Folio.Application : Adw.Application {
 			settings.bind ("variant", style_manager, "color-scheme", SettingsBindFlags.DEFAULT);
 		}
 
-		style_manager.notify["dark"].connect (() => update_theme ());
-		style_manager.notify["high-contrast"].connect (() => update_theme ());
+		style_manager.notify["dark"].connect (update_theme);
+		style_manager.notify["high-contrast"].connect (update_theme);
 
 		// Check to see if either the notes dir or the trash dir are using the ~ home directory
 		// character, and if so, replace it now with the proper home path for the current user.
@@ -114,6 +114,15 @@ public class Folio.Application : Adw.Application {
 		}
 	}
 
+	private void on_default_width_changed () {
+		main_window.resize_toolbar ();
+	}
+
+	private void on_window_maximize () {
+		// We have to add a delay here as the event fires before the resize happens.
+		GLib.Timeout.add_once (100, on_default_width_changed);
+	}
+
 	public override void activate () {
 		base.activate ();
 		var win = this.active_window;
@@ -126,18 +135,13 @@ public class Folio.Application : Adw.Application {
 		win.present ();
 
 		// Watch for the window to be resized and reset the toolbar.
-		main_window.notify["default-width"].connect ((window) => {
-			main_window.resize_toolbar ();
-		});
+		main_window.notify["default-width"].connect (on_default_width_changed);
 		// Also watch for maximize/minimize events.
-		main_window.notify["maximized"].connect ((window) => {
-			// We have to add a delay here as the event fires before the resize happens.
-			GLib.Timeout.add_once (100, () => { main_window.resize_toolbar (); });
-		});
+		main_window.notify["maximized"].connect (on_window_maximize);
 
 		// Add a delay before resizing the toolbar for the first time as the window hasn't been
 		// drawn yet.
-		GLib.Timeout.add_once (100, () => { main_window.resize_toolbar (); });
+		GLib.Timeout.add_once (100, on_default_width_changed);
 	}
 
 	private void execute_temp_command () {
@@ -278,19 +282,22 @@ Sunniva Løvstad
 		}
 	}
 
-	private void on_export_note () {
-		var chooser = new Gtk.FileDialog ();
-		chooser.set_modal (true);
-		chooser.set_title (Strings.EXPORT_NOTE);
-		//chooser.set_initial_folder (File.new_for_path (trash_dir));
-		chooser.save.begin (active_window, null, (obj, res) => {
+	private void on_export_file_dialog_close (Object? obj, AsyncResult res) {
 			try {
+				var chooser = (Gtk.FileDialog)obj;
 				var file = chooser.save.end(res);
 				if (file != null && window_model.note != null) {
 					main_window.try_export_note (window_model.note, file);
 				}
 			} catch (Error error) {}
-		});
+	}
+
+	private void on_export_note () {
+		var chooser = new Gtk.FileDialog ();
+		chooser.set_modal (true);
+		chooser.set_title (Strings.EXPORT_NOTE);
+		//chooser.set_initial_folder (File.new_for_path (trash_dir));
+		chooser.save.begin (active_window, null, on_export_file_dialog_close);
 	}
 
 	private void on_new_notebook () {
