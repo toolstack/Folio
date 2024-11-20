@@ -9,8 +9,8 @@ public class Folio.FontScale : Gtk.Box {
 	private EditView edit_view;
 
 	construct {
-		dec.clicked.connect(() => edit_view.zoom_out ());
-		inc.clicked.connect(() => edit_view.zoom_in ());
+		dec.clicked.connect(edit_view.zoom_out);
+		inc.clicked.connect(edit_view.zoom_in);
 	}
 
 	public FontScale (EditView edit_view) {
