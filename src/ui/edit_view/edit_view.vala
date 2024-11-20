@@ -35,12 +35,14 @@ public class Folio.EditView : Gtk.Box {
 	[GtkChild] public unowned Gtk.ScrolledWindow scrolled_window;
 
 	private Adw.ToastOverlay toast_overlay = null;
-
 	private Gtk.CssProvider note_font_provider = new Gtk.CssProvider ();
 	private Gtk.CssProvider font_scale_provider = new Gtk.CssProvider ();
+	private Gtk.GestureClick click_controller;
+	private Settings settings;
+	private Gtk.EventControllerScroll scroll_controller;
 
 	construct {
-		var settings = new Settings (Config.APP_ID);
+		settings = new Settings (Config.APP_ID);
 
 		set_note_font (settings.get_string ("note-font"), settings.get_string ("line-spacing"));
  		set_max_width (settings.get_int ("note-max-width"));
@@ -48,116 +50,14 @@ public class Folio.EditView : Gtk.Box {
 
 		markdown_view.notify["text-mode"].connect (update_toolbar_visibility);
 
-		markdown_view.notify["buffer"].connect (() => markdown_view.buffer.notify["cursor-position"].connect (() => {
-			var ins = markdown_view.buffer.get_insert ();
-			Gtk.TextIter cur;
-			markdown_view.buffer.get_iter_at_mark (out cur, ins);
-			toolbar.heading_i = (int) markdown_view.get_title_level (cur.get_line ());
-		}));
-		toolbar.heading_i_changed.connect ((i) => {
-			var ins = markdown_view.buffer.get_insert ();
-			Gtk.TextIter cur;
-			markdown_view.buffer.get_iter_at_mark (out cur, ins);
-			markdown_view.set_title_level (cur.get_line (), i);
-		});
+		markdown_view.notify["buffer"].connect (on_buffer_change);
+		toolbar.heading_i_changed.connect (on_heading_i_changed);
 
-		Gtk.GestureClick click_controller;
 		click_controller = new Gtk.GestureClick () {
 			button = Gdk.BUTTON_PRIMARY
 		};
 
-		click_controller.released.connect ((n, x, y) => {
-			var state = click_controller.get_current_event_state ();
-			if ((state & Gdk.ModifierType.CONTROL_MASK) != 0) {
-				var ins = markdown_view.buffer.get_insert ();
-				Gtk.TextIter cur;
-				markdown_view.buffer.get_iter_at_mark (out cur, ins);
-				var text_tag_url = markdown_view.buffer.tag_table.lookup ("markdown-link");
-
-				if (cur.has_tag (text_tag_url)) {
-					Gtk.TextIter start_url, end_url;
-					string url_text = "";
-					if (!markdown_view.check_if_in_link (markdown_view, out url_text)) {
-						start_url = cur;
-						end_url = cur;
-						start_url.backward_to_tag_toggle (text_tag_url);
-						end_url.forward_to_tag_toggle (text_tag_url);
-
-						url_text = markdown_view.buffer.get_slice (start_url, end_url, true);
-						url_text = url_text.chomp ().chug ();
-
-						var last_one = url_text.substring (-1, 1);
-						var last_two = url_text.substring (-2, 2);
-
-						// Strip off any markdown formatting tags from the end of the url.
-						if (last_two == "**" || last_two == "__" || last_two == "~~" || last_two == "==") {
-							url_text = url_text.substring (0, url_text.length - 2);
-						}
-						if (last_two == "*" || last_two == "_") {
-							url_text = url_text.substring (0, url_text.length - 1);
-						}
-					}
-
-					// Check to see if we have an e-mail link to open.
-					// check_if_email_link will validate a real url for us.
-					if (markdown_view.check_if_email_link (url_text)) {
-						if (!url_text.contains ("://"))
-							url_text = "mailto:" + url_text;
-
-						try {
-							GLib.AppInfo.launch_default_for_uri (url_text, null);
-						} catch (Error e) {
-							toast (Strings.COULDNT_FIND_APP_TO_HANDLE_URIS);
-						}
-					} else if ( ( url_text.substring (0,2) == "./" ) ||
-						( url_text.substring (0, 3) == "../" ) ||
-						( url_text.down ().substring (0, 9) == "file://./" ) ||
-						( url_text.down ().substring (0, 10) == "file://../" )
-						) {
-						if (url_text.down ().substring (0, 7) == "file://" ) {
-							url_text = url_text.substring (7, -1);
-						}
-						var window = (Folio.Window)get_ancestor (typeof (Folio.Window));
-						var app = (Folio.Application)window.get_application ();
-						var window_model = app.window_model;
-						// Is this a link to another note in the current notebook?
-						if ( ( url_text[0] == '.' && url_text[1] == '/' ) ) {
-							url_text = window_model.notebook.name + url_text.substring (1, -1);
-						}
-						// Is this a link to another note in another notebook?
-						if ( ( url_text[0] == '.' && url_text[1] == '.' && url_text[2] == '/' ) ) {
-							url_text = url_text.substring (3, -1);
-						}
-						// Trim off the .md extension if it exists.
-						if (url_text.substring (-3, -1) == ".md") {
-							url_text = url_text.substring (0, url_text.length - 3);
-						}
-						// Try and get the note object.
-						var note = window_model.try_get_note_from_path (url_text);
-						if (note != null)
-							window_model.open_note_in_notebook (note);
-						else
-							toast ("Failed to find note!");
-					}
-					else {
-						// Since it wasn't an e-mail address, check to see if we have a valid url
-						// to open.  check_if_bare_link will validate a real url for us.
-						if (markdown_view.check_if_bare_link (url_text)) {
-							// If it's bare, add in http by default.
-							if (!url_text.contains ("://"))
-								url_text = "http://" + url_text;
-							try {
-								GLib.AppInfo.launch_default_for_uri (url_text, null);
-							} catch (Error e) {
-								toast (Strings.COULDNT_FIND_APP_TO_HANDLE_URIS);
-							}
-						} else {
-							toast (Strings.COULDNT_FIND_APP_TO_HANDLE_URIS);
-						}
-					}
-				}
-			}
-		});
+		click_controller.released.connect (click_controller_released);
 
 		markdown_view.add_controller (click_controller);
 
@@ -165,9 +65,9 @@ public class Folio.EditView : Gtk.Box {
 
 		settings.bind ("toolbar-enabled", this, "toolbar-enabled", SettingsBindFlags.DEFAULT);
 		settings.bind ("url-detection-level", markdown_view, "url-detection-level", SettingsBindFlags.DEFAULT);
-		settings.changed["note-font"].connect(() => set_note_font (settings.get_string ("note-font"), settings.get_string ("line-spacing")));
-		settings.changed["line-spacing"].connect(() => set_note_font (settings.get_string ("note-font"), settings.get_string ("line-spacing")));
-		settings.changed["note-max-width"].connect(() => set_max_width (settings.get_int ("note-max-width")));
+		settings.changed["note-font"].connect (on_settings_line_spacing_changed);
+		settings.changed["line-spacing"].connect (on_settings_line_spacing_changed);
+		settings.changed["note-max-width"].connect (on_settings_note_max_width_change);
 
 		var window_state = new Settings (@"$(Config.APP_ID).WindowState");
 		var prefs_scale = window_state.get_int ("text-scale");
@@ -175,26 +75,149 @@ public class Folio.EditView : Gtk.Box {
 		window_state.bind ("text-scale", this, "scale", SettingsBindFlags.DEFAULT);
 
 		notify["toolbar-enabled"].connect (update_toolbar_visibility);
-		notify["is-editable"].connect (() => {
-			update_toolbar_visibility ();
-			markdown_view.sensitive = is_editable;
-		});
+		notify["is-editable"].connect (on_is_editable_changed);
 		update_toolbar_visibility ();
 
 		notify["scale"].connect(set_font_scale);
 
-		var scroll_controller = new Gtk.EventControllerScroll (Gtk.EventControllerScrollFlags.DISCRETE | Gtk.EventControllerScrollFlags.VERTICAL);
-		scroll_controller.scroll.connect ((dx, dy) => {
-			var state = scroll_controller.get_current_event_state ();
-			if ((state & Gdk.ModifierType.CONTROL_MASK) != 0) {
-				if (dy < 0)
-					zoom_in ();
-				else zoom_out ();
-				return true;
-			}
-			return false;
-		});
+		scroll_controller = new Gtk.EventControllerScroll (Gtk.EventControllerScrollFlags.DISCRETE | Gtk.EventControllerScrollFlags.VERTICAL);
+		scroll_controller.scroll.connect (on_scroll_controller_change);
 		markdown_view.add_controller (scroll_controller);
+	}
+
+	private void on_is_editable_changed () {
+		update_toolbar_visibility ();
+		markdown_view.sensitive = is_editable;
+	}
+
+	private bool on_scroll_controller_change (double dx, double dy) {
+		var state = scroll_controller.get_current_event_state ();
+		if ((state & Gdk.ModifierType.CONTROL_MASK) != 0) {
+			if (dy < 0)
+				zoom_in ();
+			else zoom_out ();
+			return true;
+		}
+		return false;
+	}
+
+	private void on_buffer_change () {
+		markdown_view.buffer.notify["cursor-position"].connect (on_buffer_and_cursor_position_change);
+	}
+
+	private void on_buffer_and_cursor_position_change () {
+		var ins = markdown_view.buffer.get_insert ();
+		Gtk.TextIter cur;
+		markdown_view.buffer.get_iter_at_mark (out cur, ins);
+		toolbar.heading_i = (int) markdown_view.get_title_level (cur.get_line ());
+	}
+
+	private void on_heading_i_changed (int i) {
+		var ins = markdown_view.buffer.get_insert ();
+		Gtk.TextIter cur;
+		markdown_view.buffer.get_iter_at_mark (out cur, ins);
+		markdown_view.set_title_level (cur.get_line (), i);
+	}
+
+	private void click_controller_released () {
+		var state = click_controller.get_current_event_state ();
+		if ((state & Gdk.ModifierType.CONTROL_MASK) != 0) {
+			var ins = markdown_view.buffer.get_insert ();
+			Gtk.TextIter cur;
+			markdown_view.buffer.get_iter_at_mark (out cur, ins);
+			var text_tag_url = markdown_view.buffer.tag_table.lookup ("markdown-link");
+
+			if (cur.has_tag (text_tag_url)) {
+				Gtk.TextIter start_url, end_url;
+				string url_text = "";
+				if (!markdown_view.check_if_in_link (markdown_view, out url_text)) {
+					start_url = cur;
+					end_url = cur;
+					start_url.backward_to_tag_toggle (text_tag_url);
+					end_url.forward_to_tag_toggle (text_tag_url);
+
+					url_text = markdown_view.buffer.get_slice (start_url, end_url, true);
+					url_text = url_text.chomp ().chug ();
+
+					//var last_one = url_text.substring (-1, 1);
+					var last_two = url_text.substring (-2, 2);
+
+					// Strip off any markdown formatting tags from the end of the url.
+					if (last_two == "**" || last_two == "__" || last_two == "~~" || last_two == "==") {
+						url_text = url_text.substring (0, url_text.length - 2);
+					}
+					if (last_two == "*" || last_two == "_") {
+						url_text = url_text.substring (0, url_text.length - 1);
+					}
+				}
+
+				// Check to see if we have an e-mail link to open.
+				// check_if_email_link will validate a real url for us.
+				if (markdown_view.check_if_email_link (url_text)) {
+					if (!url_text.contains ("://"))
+						url_text = "mailto:" + url_text;
+
+					try {
+						GLib.AppInfo.launch_default_for_uri (url_text, null);
+					} catch (Error e) {
+						toast (Strings.COULDNT_FIND_APP_TO_HANDLE_URIS);
+					}
+				} else if ( ( url_text.substring (0,2) == "./" ) ||
+					( url_text.substring (0, 3) == "../" ) ||
+					( url_text.down ().substring (0, 9) == "file://./" ) ||
+					( url_text.down ().substring (0, 10) == "file://../" )
+					) {
+					if (url_text.down ().substring (0, 7) == "file://" ) {
+						url_text = url_text.substring (7, -1);
+					}
+					var window = (Folio.Window)get_ancestor (typeof (Folio.Window));
+					var app = (Folio.Application)window.get_application ();
+					var window_model = app.window_model;
+					// Is this a link to another note in the current notebook?
+					if ( ( url_text[0] == '.' && url_text[1] == '/' ) ) {
+						url_text = window_model.notebook.name + url_text.substring (1, -1);
+					}
+					// Is this a link to another note in another notebook?
+					if ( ( url_text[0] == '.' && url_text[1] == '.' && url_text[2] == '/' ) ) {
+						url_text = url_text.substring (3, -1);
+					}
+					// Trim off the .md extension if it exists.
+					if (url_text.substring (-3, -1) == ".md") {
+						url_text = url_text.substring (0, url_text.length - 3);
+					}
+					// Try and get the note object.
+					var note = window_model.try_get_note_from_path (url_text);
+					if (note != null)
+						window_model.open_note_in_notebook (note);
+					else
+						toast ("Failed to find note!");
+				}
+				else {
+					// Since it wasn't an e-mail address, check to see if we have a valid url
+					// to open.  check_if_bare_link will validate a real url for us.
+					if (markdown_view.check_if_bare_link (url_text)) {
+						// If it's bare, add in http by default.
+						if (!url_text.contains ("://"))
+							url_text = "http://" + url_text;
+						try {
+							GLib.AppInfo.launch_default_for_uri (url_text, null);
+						} catch (Error e) {
+							toast (Strings.COULDNT_FIND_APP_TO_HANDLE_URIS);
+						}
+					} else {
+						toast (Strings.COULDNT_FIND_APP_TO_HANDLE_URIS);
+					}
+				}
+			}
+		}
+	}
+
+	private void on_settings_line_spacing_changed () {
+		set_note_font (settings.get_string ("note-font"), settings.get_string ("line-spacing"));
+	}
+
+	private void on_settings_note_max_width_change () {
+		set_max_width (settings.get_int ("note-max-width"));
 	}
 
 	public void resize_toolbar () {

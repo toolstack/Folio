@@ -441,23 +441,7 @@ public class GtkMarkdown.View : GtkSource.View {
 			error (e.message);
 		}
 
-		notify["text-mode"].connect (() => {
-			if (text_mode) {
-				Gtk.TextIter buffer_start, buffer_end;
-				buffer.get_bounds (out buffer_start, out buffer_end);
-				remove_tags_format (buffer_start, buffer_end);
-				remove_tags_cursor (buffer_start, buffer_end);
-			} else {
-				update_color_scheme ();
-				if (buffer is GtkSource.Buffer) {
-					var buf = buffer as GtkSource.Buffer;
-					if (buf != null ) {
-						buf.language = GtkSource.LanguageManager.get_default ().get_language ("markdownpp");
-					}
-				}
-				restyle_text_all ();
-			}
-		});
+		notify["text-mode"].connect (on_text_mode_changed);
 
 		if (buffer is GtkSource.Buffer) {
 			var buf = buffer as GtkSource.Buffer;
@@ -472,17 +456,17 @@ public class GtkMarkdown.View : GtkSource.View {
 			font_monospace = prefs_font_monospace;
 		}
 
-		settings.changed["note-font-monospace"].connect(() => change_font ());
+		settings.changed["note-font-monospace"].connect (change_font);
 
 		var window_state = new Settings (@"$(Config.APP_ID).WindowState");
 		var prefs_scale = window_state.get_int ("text-scale");
 
 		scale = prefs_scale;
 
-		notify["dark"].connect ((s, p) => update_color_scheme ());
-		notify["theme-color"].connect ((s, p) => update_color_scheme ());
-		notify["font-monospace"].connect ((s, p) => update_font ());
-		notify["url-detection-level"].connect ((s, p) => update_url_detection ());
+		notify["dark"].connect (update_color_scheme);
+		notify["theme-color"].connect (update_color_scheme);
+		notify["font-monospace"].connect (update_font);
+		notify["url-detection-level"].connect (update_url_detection);
 
 		var font_desc = Pango.FontDescription.from_string (font_monospace);
 		base_font_monospace_size = font_desc.get_size ();
@@ -497,29 +481,55 @@ public class GtkMarkdown.View : GtkSource.View {
 			renderer = new GtkSource.GutterRendererText ();
 			renderer.xalign = 0.5f;
 			renderer.yalign = 0.5f;
-			renderer.query_data.connect ((lines, line) => {
-				var title_level = get_title_level (line);
-				if (title_level != 0 && show_gutter && !text_mode) {
-					renderer.text = @"H$title_level";
-				} else {
-					renderer.text = null;
-				}
-			});
-			renderer.query_activatable.connect ((iter, area) => true);
-			renderer.activate.connect ((iter, area, button, state, n_presses) => {
-				if (button != 1) return;
-				var line = iter.get_line ();
-				var title_level = get_title_level (line);
-				if (title_level == 0) return;
-				var popover = new HeadingPopover(this, line);
-				popover.autohide = true;
-				popover.has_arrow = true;
-				popover.position = Gtk.PositionType.LEFT;
-				popover.set_parent (this);
-				popover.pointing_to = area;
-				popover.popup ();
-			});
+			renderer.query_data.connect (on_renderer_connect);
+			renderer.query_activatable.connect (on_renderer_query_activatable);
+			renderer.activate.connect (on_renderer_activate_connect);
 			gutter.insert (renderer, 0);
+		}
+	}
+
+	private bool on_renderer_query_activatable (Gtk.TextIter iter, Gdk.Rectangle area) {
+		return true;
+	}
+
+	private void on_renderer_activate_connect (Gtk.TextIter iter, Gdk.Rectangle area, uint button, Gdk.ModifierType state, int n_presses ) {
+		if (button != 1) return;
+		var line = iter.get_line ();
+		var title_level = get_title_level (line);
+		if (title_level == 0) return;
+		var popover = new HeadingPopover(this, line);
+		popover.autohide = true;
+		popover.has_arrow = true;
+		popover.position = Gtk.PositionType.LEFT;
+		popover.set_parent (this);
+		popover.pointing_to = area;
+		popover.popup ();
+	}
+
+	private void on_renderer_connect (Object lines, uint line) {
+		var title_level = get_title_level (line);
+		if (title_level != 0 && show_gutter && !text_mode) {
+			renderer.text = @"H$title_level";
+		} else {
+			renderer.text = null;
+		}
+	}
+
+	private void on_text_mode_changed () {
+		if (text_mode) {
+			Gtk.TextIter buffer_start, buffer_end;
+			buffer.get_bounds (out buffer_start, out buffer_end);
+			remove_tags_format (buffer_start, buffer_end);
+			remove_tags_cursor (buffer_start, buffer_end);
+		} else {
+			update_color_scheme ();
+			if (buffer is GtkSource.Buffer) {
+				var buf = buffer as GtkSource.Buffer;
+				if (buf != null ) {
+					buf.language = GtkSource.LanguageManager.get_default ().get_language ("markdownpp");
+				}
+			}
+			restyle_text_all ();
 		}
 	}
 

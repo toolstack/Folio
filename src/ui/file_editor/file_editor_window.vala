@@ -27,6 +27,7 @@ public class Folio.FileEditorWindow : Adw.ApplicationWindow {
 
 	private GtkMarkdown.Buffer current_buffer;
 	private File current_file;
+	private Application app;
 
 	construct {
 		add_action_entries (ACTIONS, this);
@@ -41,9 +42,11 @@ public class Folio.FileEditorWindow : Adw.ApplicationWindow {
 			icon_name: Config.APP_ID
 		);
 
+		this.app = app;
+
 		current_file = file;
 		edit_view.on_dark_changed(app.style_manager.dark);
-		app.style_manager.notify["dark"].connect (() => edit_view.on_dark_changed(app.style_manager.dark));
+		app.style_manager.notify["dark"].connect (on_style_manager_change);
 
 		file_title.label = file.get_basename ();
 		file_subtitle.label = file.get_path ();
@@ -62,24 +65,34 @@ public class Folio.FileEditorWindow : Adw.ApplicationWindow {
 		edit_view.buffer = current_buffer;
 		edit_view.is_editable = true;
 
-		close_request.connect (() => {
-			save_file ();
-			return false;
-		});
+		close_request.connect (on_close_request);
 
-		edit_view.scrolled_window.vadjustment.notify["value"].connect (() => {
-			var v = edit_view.scrolled_window.vadjustment.value;
-			if (v == 0) headerbar.remove_css_class ("overlaid");
-			else headerbar.add_css_class ("overlaid");
-		});
+		edit_view.scrolled_window.vadjustment.notify["value"].connect (on_scrolled_window_vadjustment_changed);
 
 		recolor (Color.RGB ());
 
-		current_buffer.begin_user_action.connect (() => {
-			save_indicator.visible = true;
-		});
+		current_buffer.begin_user_action.connect (on_begin_user_action_change);
 
 		save_indicator.visible = false;
+	}
+
+	private void on_begin_user_action_change () {
+		save_indicator.visible = true;
+	}
+
+	private void on_scrolled_window_vadjustment_changed () {
+		var v = edit_view.scrolled_window.vadjustment.value;
+		if (v == 0) headerbar.remove_css_class ("overlaid");
+		else headerbar.add_css_class ("overlaid");
+	}
+
+	private void on_style_manager_change () {
+		edit_view.on_dark_changed(app.style_manager.dark);
+	}
+
+	private bool on_close_request () {
+		save_file ();
+		return false;
 	}
 
 	public void save_file () {
