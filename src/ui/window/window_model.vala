@@ -33,7 +33,9 @@ public class Folio.WindowModel : Object {
 			new Gtk.PropertyExpression (typeof (Note), null, "name")); }
 
 	private SimpleNoteContainer all_notes;
-
+	private Window window;
+	private string search_for_notebook;
+	private string search_for_note;
 
 	construct {
 		{
@@ -65,6 +67,7 @@ public class Folio.WindowModel : Object {
 		// timestamp (which also resorts the list), otherwise we have to do a hacky way.  The hack
 		// should never be required but is left in place just in case.
 		if (window != null) {
+			this.window = window;
 			window.update_note_sort_order();
 		} else {
 			// Need to force the item in the notes list to get an updated timestamp, the only way
@@ -91,6 +94,10 @@ public class Folio.WindowModel : Object {
 	}
 
 	public void save_note ( Window? window = null) {
+		if (window != null) {
+			this.window = window;
+		}
+
 		if (note != null && is_unsaved) {
 			bool result = note.validate_save ();
 
@@ -104,28 +111,30 @@ public class Folio.WindowModel : Object {
 					"cancel", Strings.FILE_CHANGED_CANCEL);
 				confirm.set_default_response ("reload");
 				confirm.set_close_response ("cancel");
-				confirm.response.connect (response => {
-					switch (response) {
-						case "reload":
-							note.save (note.load_text());
-							is_unsaved = false;
-							_update_note_list_item_timestamp (window);
-							break;
-						case "overwrite":
-							note.save (current_buffer.get_all_text ());
-							is_unsaved = false;
-							_update_note_list_item_timestamp (window);
-							break;
-						default:
-							break;
-					}
-				});
+				confirm.response.connect (on_confirm_response_changed);
 				present_dialog (confirm);
 			} else {
 				note.save (current_buffer.get_all_text ());
 				is_unsaved = false;
 				_update_note_list_item_timestamp (window);
 			}
+		}
+	}
+
+	private void on_confirm_response_changed (string response) {
+		switch (response) {
+			case "reload":
+				note.save (note.load_text());
+				is_unsaved = false;
+				_update_note_list_item_timestamp (window);
+				break;
+			case "overwrite":
+				note.save (current_buffer.get_all_text ());
+				is_unsaved = false;
+				_update_note_list_item_timestamp (window);
+				break;
+			default:
+				break;
 		}
 	}
 
@@ -142,30 +151,44 @@ public class Folio.WindowModel : Object {
 		else notebooks_model.select_item (i, true);
 	}
 
-	public void select_notebook (Notebook? notebook) requires (notebooks_model != null) {
-		if (notebook == null) {
+	public void select_notebook (Notebook? notebook_to_select) requires (notebooks_model != null) {
+		if (notebook_to_select == null) {
 			select_notebook_at (-1);
 			return;
 		}
+
+		this.search_for_notebook = notebook_to_select.name;
+
 		var n = notebook_provider.notebooks
-			.first_match ((it) => it.name == notebook.name);
+			.first_match (match_notebook_name);
 		int i = notebook_provider.notebooks.index_of (n);
 		select_notebook_at (i);
 	}
 
-	public void select_note (Note? note)
+	private bool match_notebook_name (Notebook it) {
+		return it.name == this.search_for_notebook;
+	}
+
+	public void select_note (Note? note_to_select)
 		requires (note_container != null)
 		requires (note_container.loaded_notes != null)
 		requires (notes_model != null) {
-		if (note == null) {
+		if (note_to_select == null) {
 			select_note_at (-1);
 			return;
 		}
+
+		this.search_for_note = note.name;
+
 		var n = note_container.loaded_notes
-			.first_match ((it) => it.name == note.name);
+			.first_match (match_note_name);
 		int i = note_container.loaded_notes.index_of (n);
 		select_note_at (i);
 		navigate_to_notes ();
+	}
+
+	private bool match_note_name (Note it) {
+		return it.name == search_for_note;
 	}
 
 	public void update_selected_note () requires (notes_model != null) {
@@ -203,14 +226,7 @@ public class Folio.WindowModel : Object {
 				new Gtk.SortListModel (container, search_sorter)
 			);
 			model.can_unselect = true;
-			model.selection_changed.connect (() => {
-				var i = model.selected;
-				if (i < container.loaded_notes.size && i != -1) {
-					var note = model.get_item (i) as Note;
-					update_note (note);
-				}
-				else update_note (null);
-			});
+			model.selection_changed.connect (on_model_selection_changed);
 			notes_model = model;
 		} else {
 			notes_model = null;
@@ -225,9 +241,22 @@ public class Folio.WindowModel : Object {
 			last_container.unload ();
 	}
 
+	private void on_model_selection_changed () {
+		var i = notes_model.selected;
+		if (i < note_container.loaded_notes.size && i != -1) {
+			var note = notes_model.get_item (i) as Note;
+			update_note (note);
+		}
+		else update_note (null);
+	}
+
 	private FileMonitor _monitor = null;
 
 	private void _monitor_note (Note note, Window? window) {
+		if (window != null) {
+			this.window = window;
+		}
+
 		File file = File.new_for_path (note.path);
 
 		if (_monitor != null) {
@@ -238,71 +267,79 @@ public class Folio.WindowModel : Object {
 		if (file != null) {
 			try {
 				_monitor = file.monitor_file (FileMonitorFlags.WATCH_HARD_LINKS);
-				_monitor.changed.connect ((monitor, file, other, event) => {
-						switch (event) {
-							case FileMonitorEvent.CHANGES_DONE_HINT:
-								FileInfo file_info;
-								DateTime file_time;
-								try {
-									file_info = file.query_info (FileAttribute.TIME_MODIFIED, FileQueryInfoFlags.NONE);
-									file_time = file_info.get_modification_date_time ();
-								} catch (Error e) {
-									file_time = new DateTime.now ();
-								}
-
-								if (!note.time_modified.equal (file_time)) {
-									if (is_unsaved) {
-										is_unsaved = false;
-										var confirm = new Adw.AlertDialog (
-											Strings.FILE_CHANGED_ON_DISK,
-											Strings.FILE_CHANGED_DIALOG_DOUBLE);
-										confirm.add_responses (
-											"reload", Strings.FILE_CHANGED_RELOAD,
-											"overwrite", Strings.FILE_CHANGED_OVERWRITE);
-										confirm.close_response = "overwrite";
-										confirm.default_response = "overwrite";
-										confirm.response.connect (response => {
-											switch (response) {
-												case "reload":
-													current_buffer = new GtkMarkdown.Buffer (note.load_text ());
-													note.update_note_time ();
-													_update_note_list_item_timestamp (window);
-													break;
-												default:
-													note.save (current_buffer.get_all_text ());
-													note.update_note_time ();
-													_update_note_list_item_timestamp (window);
-													break;
-											}
-										});
-										present_dialog (confirm);
-									} else {
-										current_buffer = new GtkMarkdown.Buffer (note.load_text ());
-										note.update_note_time ();
-										_update_note_list_item_timestamp (window);
-									}
-								}
-
-								break;
-							case FileMonitorEvent.CREATED:
-							case FileMonitorEvent.ATTRIBUTE_CHANGED:
-							case FileMonitorEvent.PRE_UNMOUNT:
-							case FileMonitorEvent.UNMOUNTED:
-							case FileMonitorEvent.MOVED:
-							case FileMonitorEvent.RENAMED:
-							case FileMonitorEvent.CHANGED:
-							case FileMonitorEvent.DELETED:
-							case FileMonitorEvent.MOVED_IN:
-							case FileMonitorEvent.MOVED_OUT:
-							default:
-								break;
-						}
-				});
+				_monitor.changed.connect (on_monitor_changed);
 			} catch (Error e) {}
 		}
 	}
 
+	private void on_monitor_changed (FileMonitor monitor, File file, File? other, FileMonitorEvent event) {
+		switch (event) {
+			case FileMonitorEvent.CHANGES_DONE_HINT:
+				FileInfo file_info;
+				DateTime file_time;
+				try {
+					file_info = file.query_info (FileAttribute.TIME_MODIFIED, FileQueryInfoFlags.NONE);
+					file_time = file_info.get_modification_date_time ();
+				} catch (Error e) {
+					file_time = new DateTime.now ();
+				}
+
+				if (!note.time_modified.equal (file_time)) {
+					if (is_unsaved) {
+						is_unsaved = false;
+						var confirm = new Adw.AlertDialog (
+							Strings.FILE_CHANGED_ON_DISK,
+							Strings.FILE_CHANGED_DIALOG_DOUBLE);
+						confirm.add_responses (
+							"reload", Strings.FILE_CHANGED_RELOAD,
+							"overwrite", Strings.FILE_CHANGED_OVERWRITE);
+						confirm.close_response = "overwrite";
+						confirm.default_response = "overwrite";
+						confirm.response.connect (on_confirm_response);
+						present_dialog (confirm);
+					} else {
+						current_buffer = new GtkMarkdown.Buffer (note.load_text ());
+						note.update_note_time ();
+						_update_note_list_item_timestamp (window);
+					}
+				}
+
+				break;
+			case FileMonitorEvent.CREATED:
+			case FileMonitorEvent.ATTRIBUTE_CHANGED:
+			case FileMonitorEvent.PRE_UNMOUNT:
+			case FileMonitorEvent.UNMOUNTED:
+			case FileMonitorEvent.MOVED:
+			case FileMonitorEvent.RENAMED:
+			case FileMonitorEvent.CHANGED:
+			case FileMonitorEvent.DELETED:
+			case FileMonitorEvent.MOVED_IN:
+			case FileMonitorEvent.MOVED_OUT:
+			default:
+				break;
+		}
+	}
+
+	private void on_confirm_response (string response) {
+		switch (response) {
+			case "reload":
+				current_buffer = new GtkMarkdown.Buffer (note.load_text ());
+				note.update_note_time ();
+				_update_note_list_item_timestamp (window);
+				break;
+			default:
+				note.save (current_buffer.get_all_text ());
+				note.update_note_time ();
+				_update_note_list_item_timestamp (window);
+				break;
+		}
+	}
+
 	public GtkMarkdown.Buffer? update_note (Note? note, Window? window = null) {
+		if (window != null) {
+			this.window = window;
+		}
+
 		if (this.note == note) return current_buffer;
 		save_note (window);
 		this.note = note;
@@ -406,15 +443,15 @@ public class Folio.WindowModel : Object {
 		var note_data = path.split ("/");
 		if (note_data.length != 2)
 			return null;
-		var notebook_name = note_data[0];
+		search_for_notebook = note_data[0];
 		var notebook = notebook_provider.notebooks
-			.first_match ((it) => it.name == notebook_name);
+			.first_match (match_notebook_name);
 		if (notebook == null)
 			return null;
 		notebook.load ();
-		var note_name = note_data[1];
+		search_for_note = note_data[1];
 		return notebook.loaded_notes
-			.first_match ((it) => it.file_name == note_name);
+			.first_match (match_note_name);
 	}
 
 	public string generate_new_note_name (int i = 0, string? full_name = null) requires (notebook != null) {
@@ -439,14 +476,16 @@ public class Folio.WindowModel : Object {
 	public void update_notebooks () {
 		var model = new Gtk.SingleSelection (notebook_provider);
 		model.can_unselect = true;
-		model.selection_changed.connect (() => {
-			var i = model.selected;
-			var notebooks = notebook_provider.notebooks;
-			if (i <= notebooks.size && i != -1) {
-				set_notebook (notebooks[(int) i]);
-			}
-		});
+		model.selection_changed.connect (on_notebook_model_selection_changed);
 		notebooks_model = model;
 		update_selected_notebook ();
+	}
+
+	private void on_notebook_model_selection_changed () {
+		var i = notebooks_model.selected;
+		var notebooks = notebook_provider.notebooks;
+		if (i <= notebooks.size && i != -1) {
+			set_notebook (notebooks[(int) i]);
+		}
 	}
 }

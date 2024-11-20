@@ -8,27 +8,33 @@ public class Folio.NoteCreatePopup : Adw.Dialog {
 	[GtkChild]
 	unowned Gtk.Button button_create;
 
+	private Window window;
+	private Note? note;
+
 	public NoteCreatePopup (Window window, Note? note = null) {
 		Object ();
+
+		this.window = window;
+		this.note = note;
 
 		if (note != null) {
 			button_create.label = Strings.RENAME;
 			entry.text = note.name;
-			entry.activate.connect (() => change (window, note));
-			button_create.clicked.connect (() => change (window, note));
+			entry.activate.connect (change);
+			button_create.clicked.connect (change);
 		} else {
-			entry.activate.connect (() => create (window));
-			button_create.clicked.connect (() => create (window));
+			entry.activate.connect (create);
+			button_create.clicked.connect (create);
 		}
 	}
 
-	private void create (Window window) {
+	private void create () {
 		var name = entry.text;
 		close ();
 		window.try_create_note (name);
 	}
 
-	private void change (Window window, Note note) {
+	private void change () {
 		var file_name = entry.text;
 		close ();
 		window.try_rename_note (note, file_name);
