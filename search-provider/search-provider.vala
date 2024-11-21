@@ -6,11 +6,12 @@ public class SearchProvider : Object {
 	Folio.Provider notebook_provider = new Folio.Provider ();
 
 	public SearchProvider () {
-		settings.changed["notes-dir"].connect (() => {
-			try {
-				update_storage_dir ();
-			} catch (Error e) {}
-		});
+		settings.changed["notes-dir"].connect (on_settings_notes_dir_change);
+
+		on_settings_notes_dir_change ();
+	}
+
+	private void on_settings_notes_dir_change () {
 		try {
 			update_storage_dir ();
 		} catch (Error e) {}

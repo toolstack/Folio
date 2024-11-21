@@ -65,6 +65,13 @@ public class Folio.Window : Adw.ApplicationWindow {
 
 	private Gtk.CssProvider? last_css_provider = null;
 	private bool is_breakpoint = false;
+	private Settings window_state;
+	private Application app;
+	private double motion_x;
+	private double motion_y;
+	private Notebook current_notebook;
+	private Note current_note;
+	private bool current_note_in_trash;
 
 	// Breakpoint conditions with and without 3-pane mode.
 	private Adw.BreakpointCondition[] breakpoint_conditions = {
@@ -95,51 +102,33 @@ public class Folio.Window : Adw.ApplicationWindow {
 		window_model.state_changed.connect (on_update_state);
 		window_model.present_dialog.connect (on_present_dialog);
 		window_model.navigate_to_notes.connect (navigate_to_notes);
-		window_model.notify["notes-model"].connect (() => {
-			notebook_notes_list.model = window_model.notes_model;
-			if (window_model.state == WindowModel.State.TRASH) {
-				window_model.notes_model.items_changed.connect (() => {
-					notebook_title.subtitle = Strings.X_NOTES.printf (window_model.note_container.get_n_items ());
-				});
-			}
-		});
+		window_model.notify["notes-model"].connect (on_window_model_notes_model_change);
 		window_model.set_notebook (null);
 
 		add_action_entries (ACTIONS, this);
 
-		var window_state = new Settings (@"$(Config.APP_ID).WindowState");
+		window_state = new Settings (@"$(Config.APP_ID).WindowState");
 		set_default_size (window_state.get_int ("width"), window_state.get_int ("height"));
 		maximized = window_state.get_boolean ("maximized");
 
-		close_request.connect (() => {
-			window_state.set_int ("width", default_width);
-			window_state.set_int ("height", default_height);
-			window_state.set_boolean ("maximized", maximized);
-			return false;
-		});
+		close_request.connect (on_close_request);
 
 		Gtk.IconTheme.get_for_display (display).add_resource_path ("/com/toolstack/Folio/graphics/");
 
 		set_text_view_state (TextViewState.NO_NOTEBOOK);
 
-		window_model.search_sorter.changed.connect ((change) => {
-			notebook_notes_list_scroller.vadjustment.@value = 0;
-		});
-		notes_search_entry.search_changed.connect (() => {
-			window_model.search (notes_search_entry.text);
-		});
+		window_model.search_sorter.changed.connect (on_window_model_search_sorter_changed);
+		notes_search_entry.search_changed.connect (on_notes_search_entry_search_changed);
 		var font_scale = new FontScale (edit_view);
 		more_popover.add_child (font_scale, "font-scale");
 
-		window_model.notify["is-unsaved"].connect (() => {
-			save_indicator.visible = window_model.is_unsaved;
-		});
+		window_model.notify["is-unsaved"].connect (on_window_model_change);
 
-		breakpoint.apply.connect (() => { is_breakpoint = true; });
-		breakpoint.unapply.connect (() => { is_breakpoint = false; });
+		breakpoint.apply.connect (on_breakpoint_apply);
+		breakpoint.unapply.connect (on_breakpoint_unapply);
 
-		leaflet.notify["collapsed"].connect (() => { toggle_sidebar_visibility (); });
-		toggle_sidebar.clicked.connect (() => { toggle_sidebar_visibility_action (); });
+		leaflet.notify["collapsed"].connect (toggle_sidebar_visibility);
+		toggle_sidebar.clicked.connect (toggle_sidebar_visibility_action);
 	}
 
 	public Window (Application app) {
@@ -149,48 +138,27 @@ public class Folio.Window : Adw.ApplicationWindow {
 			icon_name: Config.APP_ID
 		);
 
-		app.style_manager.notify["dark"].connect (() => edit_view.on_dark_changed (app.style_manager.dark));
+		this.app = app;
+
+		app.style_manager.notify["dark"].connect (on_style_manager_dark_applied);
 		edit_view.on_dark_changed (app.style_manager.dark);
 
-		leaflet.notify["collapsed"].connect (() => {
-			update_title_buttons ();
-			if (leaflet.collapsed) {
-				update_editability ();
-			} else {
-				update_editability ();
-				window_model.select_note (window_model.note);
-			}
-		});
+		leaflet.notify["collapsed"].connect (on_leaflet_change);
 		sidebar_revealer.notify["reveal-child"].connect (update_title_buttons);
 		update_title_buttons ();
 
-		edit_view.scrolled_window.vadjustment.notify["value"].connect (() => {
-			var v = edit_view.scrolled_window.vadjustment.value;
-			if (v == 0) headerbar_edit_view.remove_css_class ("overlaid");
-			else headerbar_edit_view.add_css_class ("overlaid");
-		});
+		edit_view.scrolled_window.vadjustment.notify["value"].connect (on_edit_view_scrolled_window_vadjustment);
 
-		button_open_in_notebook.clicked.connect (() => window_model.open_note_in_notebook (window_model.note));
+		button_open_in_notebook.clicked.connect (on_button_open_in_notebook_clicked);
 
 		notebook_notes_list_scroller.vadjustment.notify["value"].connect (update_sidebar_scroll);
-		notes_search_bar.notify["search-mode-enabled"].connect (() => on_searchbar_mode_changed (notes_search_bar.search_mode_enabled));
+		notes_search_bar.notify["search-mode-enabled"].connect (on_searchbar_mode_changed);
 
 		var motion_controller = new Gtk.EventControllerMotion ();
-		double x = 0, y = 0;
-		motion_controller.enter.connect ((_x, _y) => {
-			x = _x;
-			y = _y;
-		});
-		motion_controller.motion.connect ((_x, _y) => {
-			// Only hide in desktop no sidebar mode
-			if (!sidebar_revealer.reveal_child) {
-				var dx = _x - x, dy = _y - y;
-				if (dx != 0 || dy != 0)
-					headerbar_edit_view_revealer.reveal_child = true;
-			}
-			x = _x;
-			y = _y;
-		});
+		motion_x = 0;
+		motion_y = 0;
+		motion_controller.enter.connect (on_motion_controller_enter);
+		motion_controller.motion.connect (on_montion_controller_motion);
 		edit_view_page.child.add_controller (motion_controller);
 
 		var settings = new Settings (Config.APP_ID);
@@ -211,15 +179,95 @@ public class Folio.Window : Adw.ApplicationWindow {
 		notify["notebook-sort-order"].connect (update_notebook_sort_order);
 
 		if (settings.get_boolean ("enable-autosave")) {
-			GLib.Timeout.add (5000, () => {
-				window_model.save_note (this);
-				return true;
-			}, 0 );
+			GLib.Timeout.add (5000, on_auto_save, 0 );
 		}
 
 		this.on_3_pane_change (settings.get_boolean ("enable-3-pane"));
 
 		leaflet.show_content = false; // Don't start in note view.
+	}
+
+	private bool on_auto_save () {
+		window_model.save_note (this);
+		return true;
+	}
+
+	private void on_window_model_notes_model_change () {
+		notebook_notes_list.model = window_model.notes_model;
+		if (window_model.state == WindowModel.State.TRASH) {
+			window_model.notes_model.items_changed.connect (on_window_model_notes_model_items_changed);
+		}
+	}
+
+	private void on_window_model_notes_model_items_changed  () {
+		notebook_title.subtitle = Strings.X_NOTES.printf (window_model.note_container.get_n_items ());
+	}
+
+	private bool on_close_request () {
+		window_state.set_int ("width", default_width);
+		window_state.set_int ("height", default_height);
+		window_state.set_boolean ("maximized", maximized);
+		return false;
+	}
+
+	private void on_window_model_search_sorter_changed () {
+		notebook_notes_list_scroller.vadjustment.@value = 0;
+	}
+
+	private void on_notes_search_entry_search_changed () {
+		window_model.search (notes_search_entry.text);
+	}
+
+	private void on_window_model_change () {
+		save_indicator.visible = window_model.is_unsaved;
+	}
+
+	private void on_breakpoint_apply () {
+		is_breakpoint = true;
+	}
+
+	private void on_breakpoint_unapply () {
+		is_breakpoint = false;
+	}
+
+	private void on_style_manager_dark_applied () {
+		edit_view.on_dark_changed (app.style_manager.dark);
+	}
+
+	private void on_leaflet_change () {
+		update_title_buttons ();
+		if (leaflet.collapsed) {
+			update_editability ();
+		} else {
+			update_editability ();
+			window_model.select_note (window_model.note);
+		}
+	}
+
+	private void on_edit_view_scrolled_window_vadjustment () {
+		var v = edit_view.scrolled_window.vadjustment.value;
+		if (v == 0) headerbar_edit_view.remove_css_class ("overlaid");
+		else headerbar_edit_view.add_css_class ("overlaid");
+	}
+
+	private void on_button_open_in_notebook_clicked () {
+		window_model.open_note_in_notebook (window_model.note);
+	}
+
+	private void on_motion_controller_enter (double _x, double _y) {
+		motion_x = _x;
+		motion_y = _y;
+	}
+
+	private void on_montion_controller_motion (double _x, double _y){
+		// Only hide in desktop no sidebar mode
+		if (!sidebar_revealer.reveal_child) {
+			var dx = _x - motion_x, dy = _y - motion_y;
+			if (dx != 0 || dy != 0)
+				headerbar_edit_view_revealer.reveal_child = true;
+		}
+		motion_x = _x;
+		motion_y = _y;
 	}
 
 	private void toggle_fullscreen () {
@@ -279,17 +327,19 @@ public class Folio.Window : Adw.ApplicationWindow {
 			}
 			// Zen mode
 			// Autohide headerbar_edit_view when typing in desktop no sidebar mode
-			window_model.current_buffer.begin_user_action.connect (() => {
-				// Only hide in desktop no sidebar mode
-				if (!sidebar_revealer.reveal_child)
-					headerbar_edit_view_revealer.reveal_child = false;
-				window_model.is_unsaved = true;
-			});
+			window_model.current_buffer.begin_user_action.connect (on_window_model_current_buffer_being_user_action);
 		} else {
 			note_title.label = null;
 			set_text_view_state (window_model.state == WindowModel.State.TRASH ? TextViewState.EMPTY_TRASH : TextViewState.EMPTY_NOTEBOOK);
 			window_model.select_note_at (-1);
 		}
+	}
+
+	private void on_window_model_current_buffer_being_user_action () {
+		// Only hide in desktop no sidebar mode
+		if (!sidebar_revealer.reveal_child)
+			headerbar_edit_view_revealer.reveal_child = false;
+		window_model.is_unsaved = true;
 	}
 
 	public void toast (string text) {
@@ -383,7 +433,8 @@ public class Folio.Window : Adw.ApplicationWindow {
 		else notes_search_bar.add_css_class ("overlaid");
 	}
 
-	private void on_searchbar_mode_changed (bool enabled) {
+	private void on_searchbar_mode_changed () {
+		var enabled = notes_search_bar.search_mode_enabled;
 		update_sidebar_scroll ();
 		notebooks_bar.all_button_enabled = enabled;
 		if (!enabled && window_model.state == WindowModel.State.ALL) {
@@ -428,20 +479,8 @@ public class Folio.Window : Adw.ApplicationWindow {
 			notebook_title.update_property (Gtk.AccessibleProperty.LABEL, container.name, -1);
 
 			var factory = new Gtk.SignalListItemFactory ();
-			factory.setup.connect (obj => {
-				var widget = new NoteCard ();
-				widget.window = this;
-				var li = obj as Gtk.ListItem;
-				if (li != null ) {
-			  		li.child = widget;
-				}
-			});
-			factory.bind.connect (obj => {
-				var list_item = obj as Gtk.ListItem;
-				var widget = list_item.child as NoteCard;
-				var item = list_item.item as Note;
-				widget.note = item;
-			});
+			factory.setup.connect (on_notebook_notes_list_factory_setup);
+			factory.bind.connect (on_notebook_notes_list_factory_bind);
 			notebook_notes_list.factory = factory;
 
 			navigate_to_notes ();
@@ -451,6 +490,22 @@ public class Folio.Window : Adw.ApplicationWindow {
 			notebook_title.subtitle = null;
 			set_text_view_state (TextViewState.NO_NOTEBOOK);
 		}
+	}
+
+	private void on_notebook_notes_list_factory_setup (Object obj) {
+		var widget = new NoteCard ();
+		widget.window = this;
+		var li = obj as Gtk.ListItem;
+		if (li != null ) {
+			li.child = widget;
+		}
+	}
+
+	private void on_notebook_notes_list_factory_bind (Object obj) {
+		var list_item = obj as Gtk.ListItem;
+		var widget = list_item.child as NoteCard;
+		var item = list_item.item as Note;
+		widget.note = item;
 	}
 
 	private enum TextViewState {
@@ -500,35 +555,47 @@ public class Folio.Window : Adw.ApplicationWindow {
 	}
 
 	public void request_move_note (Note note) {
+		current_note = note;
 		var popup = new NotebookSelectionPopup (
 			window_model.notebook_provider,
 			Strings.MOVE_TO_NOTEBOOK,
 			Strings.MOVE,
-			(dest_notebook) => {
-				if (!window_model.move_note (note, dest_notebook))
-					toast (Strings.NOTE_X_ALREADY_EXISTS_IN_X.printf (note.name, dest_notebook.name));
-			}
+			on_notebook_selection_popup
 		);
 		popup.present (this);
 	}
 
+	private void on_notebook_selection_popup (Notebook dest_notebook) {
+		if (!window_model.move_note (current_note, dest_notebook))
+			toast (Strings.NOTE_X_ALREADY_EXISTS_IN_X.printf (current_note.name, dest_notebook.name));
+	}
+
 	public void request_delete_note (Note note, bool is_trash = false) {
+		current_note = note;
+		current_note_in_trash = is_trash;
+
 		show_confirmation_popup (
 			Strings.DELETE_NOTE,
 			Strings.DELETE_NOTE_CONFIRMATION.printf (note.name),
-			() => try_delete_note (note, is_trash)
+			on_request_delete_note
 		);
+	}
+
+	private void on_request_delete_note () {
+		try_delete_note (current_note, current_note_in_trash);
 	}
 
 	public void request_empty_trash () {
 		show_confirmation_popup (
 			Strings.EMPTY_TRASH,
 			Strings.EMPTY_TRASH_CONFIRMATION,
-			() => {
-				window_model.update_note (null, this);
-				window_model.empty_trash ();
-			}
+			on_request_empty_trash
 		);
+	}
+
+	private void on_request_empty_trash () {
+		window_model.update_note (null, this);
+		window_model.empty_trash ();
 	}
 
 	public void request_new_notebook () {
@@ -544,11 +611,17 @@ public class Folio.Window : Adw.ApplicationWindow {
 	}
 
 	public void request_delete_notebook (Notebook notebook) {
+		current_notebook = notebook;
+
 		show_confirmation_popup (
 			Strings.DELETE_NOTEBOOK,
 			Strings.DELETE_NOTEBOOK_CONFIRMATION.printf (notebook.name),
-			() => try_delete_notebook (notebook)
+			on_request_delete_notebook
 		);
+	}
+
+	private void on_request_delete_notebook () {
+		try_delete_notebook (current_notebook);
 	}
 
 	public void try_create_note (string name) {
@@ -747,6 +820,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 		dialog.add_response ("do", action_title);
 		dialog.set_response_appearance ("do", Adw.ResponseAppearance.DESTRUCTIVE);
 
+		// Leave this lambda in place as we can't copy a delegate function (aka the callback) to use in another function.
 		dialog.response.connect ((response_id) => {
 			if (response_id == "do") {
 				callback ();
