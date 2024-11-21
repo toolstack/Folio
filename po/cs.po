@@ -2,74 +2,77 @@
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-11-03 15:09:10+0000\n"
+"Project-Id-Version: Folio\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2024-11-21 19:14+0100\n"
+"Last-Translator: Amerey <info@amerey.eu>\n"
+"Language-Team: \n"
+"Language: cs_CZ\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n >= 2 && n <= 4) ? 1 : 2);\n"
-"X-Generator: GlotPress/4.0.1\n"
-"Language: cs_CZ\n"
-"Project-Id-Version: Folio\n"
+"X-Generator: Poedit 3.4.4\n"
 
 #: data/app.gschema.xml:91
 msgid "Allow long notebook names"
-msgstr ""
+msgstr "Povolit dlouhé názvy sešitů"
 
 #: data/app.gschema.xml:92
 msgid "The notebook column will expand to the width of the longest notebook name"
-msgstr ""
+msgstr "Sloupec sešitu se rozšíří na šířku nejdelšího názvu sešitu"
 
 #: data/app.gschema.xml:96
 msgid "Allow long note names"
-msgstr ""
+msgstr "Povolit dlouhé názvy poznámek"
 
 #: data/app.gschema.xml:97
 msgid "The note list column will expand to the width of the longest note name"
-msgstr ""
+msgstr "Sloupec sešitu se rozšíří na šířku nejdelšího názvu poznámky"
 
 #: data/app.metainfo.xml.in:5
 msgid "A beautiful markdown note-taking app for GNOME"
-msgstr ""
+msgstr "Krásná aplikace na psaní poznámek pro GNOME"
 
 #: data/app.metainfo.xml.in:8
 msgid "Some features include:"
-msgstr ""
+msgstr "Mezi některé funkce patří:"
 
 #: data/app.metainfo.xml.in:16
 msgid "Optional line numbers"
-msgstr ""
+msgstr "Volitelná čísla řádků"
 
 #: data/app.metainfo.xml.in:17
 msgid "Optional auto save"
-msgstr ""
+msgstr "Volitelné automatické ukládání"
 
 #: data/app.metainfo.xml.in:18
 msgid "Open links with Control-Click"
-msgstr ""
+msgstr "Odkazy otevřete pomocí klávesy CTRL a kliknutí"
 
 #: data/app.metainfo.xml.in:19
 msgid "Link to other notes in Folio"
-msgstr ""
+msgstr "Odkaz na další poznámky v aplikaci Folio"
 
 #: data/app.metainfo.xml.in:20
 msgid "Automatically create links for bare URL's and e-mail addresses"
-msgstr ""
+msgstr "Automaticky vytvářet odkazy pro URL a e-mailové adresy"
 
 #: src/ui/preferences/preferences.blp:167
 msgid "Allow Long Notebook Names"
-msgstr ""
+msgstr "Povolit dlouhé názvy sešitů"
 
 #: src/ui/preferences/preferences.blp:168
 msgid "The notebook column will expand to the width of the longest notebook name (requires notebook selection change to take effect)."
-msgstr ""
+msgstr "Sloupec sešitu se rozšíří na šířku nejdelšího názvu sešitu (vyžaduje restartování aplikace)."
 
 #: src/ui/preferences/preferences.blp:178
 msgid "Allow Long Note Names"
-msgstr ""
+msgstr "Povolit dlouhé názvy poznámek"
 
 #: src/ui/preferences/preferences.blp:179
 msgid "The note list column will expand to the width of the longest note name (requires notebook selection change to take effect)."
-msgstr ""
+msgstr "Sloupec sešitu se rozšíří na šířku nejdelšího názvu poznámky (vyžaduje restartování aplikace)."
 
 #: data/app.gschema.xml:81
 msgid "URL detection level"
@@ -465,7 +468,7 @@ msgstr "Režim OLED"
 
 #: data/app.metainfo.xml.in:7
 msgid "Create notebooks and take notes in markdown"
-msgstr ""
+msgstr "Vytvářejte sešity a dělejte si poznámky v markdown"
 
 #: data/app.metainfo.xml.in:10
 msgid "Almost WYSIWYG markdown rendering"
@@ -489,7 +492,7 @@ msgstr "Koš"
 
 #: data/app.metainfo.xml.in:15
 msgid "Markdown document"
-msgstr ""
+msgstr "Dokument Markdown"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:6
 #: src/ui/widgets/markdown/heading_popover.blp:48
