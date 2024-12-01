@@ -205,15 +205,15 @@ Sunniva Løvstad
 		about.set_release_notes ("""
         <p>Changes:</p>
         <ul>
-            <li>Added support to display long notebook/note names in the UI</li>
-            <li>Perforamce improvements for large markdown files, thanks @machitgarha</li>
-            <li>Fixed AppImage support</li>
-            <li>Fixed highlighting of text when opening an outside file in Folio</li>
-            <li>Fixed crash when opening files/notes from the command line</li>
-            <li>Fixed autosave not functioning</li>
-            <li>Fixed more issues with deleting notebooks</li>
-            <li>Translation updates</li>
-            <li>Other minor fixes</li>
+			<li>Added tooltips to more controls.</li>
+			<li>Fixed memory leaks in preferences page, thanks @GeopJr</li>
+			<li>Fixed more memory leaks throughout the codebase.</li>
+			<li>Fixed padding in new/edit notebook dialog.</li>
+			<li>Fixed inserting empty link tags properly.</li>
+			<li>Fixed title level selector in the toolbar.</li>
+			<li>Fixed saving notes overwriting symlinks.</li>
+			<li>Translation updates</li>
+			<li>Other minor fixes</li>
         </ul>
 """
 		);

@@ -24,6 +24,22 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
+    <release type="stable" version="24.14" date="2024-12-01">
+      <description translate="no">
+        <p>Changes:</p>
+        <ul>
+          <li>Added tooltips to more controls.</li>
+          <li>Fixed memory leaks in preferences page, thanks @GeopJr</li>
+          <li>Fixed more memory leaks throughout the codebase.</li>
+          <li>Fixed padding in new/edit notebook dialog.</li>
+          <li>Fixed inserting empty link tags properly.</li>
+          <li>Fixed title level selector in the toolbar.</li>
+          <li>Fixed saving notes overwriting symlinks.</li>
+          <li>Translation updates</li>
+          <li>Other minor fixes</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="24.13" date="2024-11-12">
       <description translate="no">
         <p>Changes:</p>
