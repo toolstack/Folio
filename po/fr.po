@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-11-10 08:10:36+0000\n"
+"PO-Revision-Date: 2024-11-29 10:08:51+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,22 @@ msgstr ""
 "X-Generator: GlotPress/4.0.1\n"
 "Language: fr\n"
 "Project-Id-Version: Folio\n"
+
+#: data/app.metainfo.xml.in:5
+msgid "Beautiful markdown note-taking app"
+msgstr "Une belle application de prise de notes markdown"
+
+#: src/ui/preferences/preferences.blp:139
+msgid "Expanded Notebook List"
+msgstr "Liste étendue de carnets de notes"
+
+#: src/ui/window/app_menu/app_menu.blp:10
+msgid "Main Menu"
+msgstr "Menu principal"
+
+#: src/ui/window/window.blp:281
+msgid "Note Menu"
+msgstr "Menu de la note"
 
 #: data/app.gschema.xml:91
 msgid "Allow long notebook names"
@@ -26,10 +42,6 @@ msgstr "Autoriser des noms de notes longs"
 #: data/app.gschema.xml:97
 msgid "The note list column will expand to the width of the longest note name"
 msgstr "La colonne des notes s’ajustera à la longueur du plus long nom de note"
-
-#: data/app.metainfo.xml.in:5
-msgid "A beautiful markdown note-taking app for GNOME"
-msgstr "Une belle application de prise de notes Markdown pour GNOME"
 
 #: data/app.metainfo.xml.in:8
 msgid "Some features include:"
@@ -55,19 +67,19 @@ msgstr "Lien vers d’autres notes dans Folio"
 msgid "Automatically create links for bare URL's and e-mail addresses"
 msgstr "Création automatique de liens pour les adresses URL et e-mail"
 
-#: src/ui/preferences/preferences.blp:167
+#: src/ui/preferences/preferences.blp:150
 msgid "Allow Long Notebook Names"
 msgstr "Autoriser des noms de carnets longs"
 
-#: src/ui/preferences/preferences.blp:168
+#: src/ui/preferences/preferences.blp:151
 msgid "The notebook column will expand to the width of the longest notebook name (requires notebook selection change to take effect)."
 msgstr "La colonne des carnets s’ajustera à la longueur du plus long nom de carnet (requiert la sélection d’un carnet pour prendre effet)."
 
-#: src/ui/preferences/preferences.blp:178
+#: src/ui/preferences/preferences.blp:161
 msgid "Allow Long Note Names"
 msgstr "Autoriser des noms de notes longs"
 
-#: src/ui/preferences/preferences.blp:179
+#: src/ui/preferences/preferences.blp:162
 msgid "The note list column will expand to the width of the longest note name (requires notebook selection change to take effect)."
 msgstr "La colonne des notes s’ajustera à la longueur du plus long nom de note (requiert la sélection d’un carnet pour prendre effet)."
 
@@ -160,7 +172,7 @@ msgstr "« %s » mis à la corbeille"
 msgid "“%s” restored"
 msgstr "« %s » restauré"
 
-#: src/ui/window/app_menu/app_menu.blp:43
+#: src/ui/window/app_menu/app_menu.blp:44
 msgid "_About Folio"
 msgstr "À _propos de Folio"
 
@@ -306,11 +318,11 @@ msgstr "Où le dossier de la corbeille est stocké (requiert un redémarrage de 
 msgid "Pick where the trash can will be stored"
 msgstr "Choisissez l’emplacement de stockage de la corbeille"
 
-#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:150
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:172
 msgid "Use Fixed Width For Notes"
 msgstr "Utiliser une largeur fixe pour les notes"
 
-#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:151
+#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:173
 msgid "Use a fixed width for the text area of a note"
 msgstr "Utiliser une largeur maximale pour la zone de texte d’une note"
 
@@ -350,23 +362,23 @@ msgstr "Ne pas masquer la corbeille"
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
 msgstr "Le dossier de la corbeille est masqué par défaut, cette option le rend visible"
 
-#: data/app.metainfo.xml.in:425
+#: data/app.metainfo.xml.in:441
 msgid "Main Folio window in light mode"
 msgstr "Fenêtre principale de Folio en mode clair"
 
-#: data/app.metainfo.xml.in:429
+#: data/app.metainfo.xml.in:445
 msgid "Main Folio window in dark mode"
 msgstr "Fenêtre principale de Folio en mode sombre"
 
-#: data/app.metainfo.xml.in:433
+#: data/app.metainfo.xml.in:449
 msgid "Folio on small/mobile screens"
 msgstr "Folio sur écran format mobile"
 
-#: data/app.metainfo.xml.in:437
+#: data/app.metainfo.xml.in:453
 msgid "Folio preferences screen"
 msgstr "Écran des préférences de Folio"
 
-#: data/app.metainfo.xml.in:441
+#: data/app.metainfo.xml.in:457
 msgid "Folio in three pane mode"
 msgstr "Folio en mode 3 panneaux"
 
@@ -386,11 +398,11 @@ msgstr "Ajoute un bouton vers la feuille de référence Markdown sur la droite d
 msgid "Layout"
 msgstr "Affichage"
 
-#: src/ui/preferences/preferences.blp:161
+#: src/ui/preferences/preferences.blp:183
 msgid "Fixed Width To Use For Notes"
 msgstr "Largeur fixe à utiliser pour les notes"
 
-#: src/ui/preferences/preferences.blp:162
+#: src/ui/preferences/preferences.blp:184
 msgid "Sets the fixed width size of a note in px"
 msgstr "Largeur d’une note en px"
 
@@ -434,7 +446,7 @@ msgid "New Notebook"
 msgstr "Nouveau carnet de note"
 
 #: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:92
-#: src/ui/strings.vala:39 src/ui/window/window.blp:296
+#: src/ui/strings.vala:39 src/ui/window/window.blp:297
 msgid "Markdown Cheatsheet"
 msgstr "Feuille technique Markdown"
 
@@ -643,7 +655,7 @@ msgstr "Activer la barre d’outils"
 msgid "Enable Cheatsheet"
 msgstr "Activer la fiche technique"
 
-#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:139
+#: data/app.gschema.xml:36
 msgid "3-Pane Layout"
 msgstr "Disposition en 3 volets"
 
@@ -813,19 +825,19 @@ msgstr "Thème clair"
 msgid "Dark style"
 msgstr "Thème sombre"
 
-#: src/ui/window/app_menu/app_menu.blp:25
+#: src/ui/window/app_menu/app_menu.blp:26
 msgid "_New Notebook"
 msgstr "_Nouveau carnet de notes"
 
-#: src/ui/window/app_menu/app_menu.blp:29
+#: src/ui/window/app_menu/app_menu.blp:30
 msgid "_Edit Notebook"
 msgstr "_Modifier le carnet de notes"
 
-#: src/ui/window/app_menu/app_menu.blp:35
+#: src/ui/window/app_menu/app_menu.blp:36
 msgid "_Preferences"
 msgstr "_Préférences"
 
-#: src/ui/window/app_menu/app_menu.blp:39
+#: src/ui/window/app_menu/app_menu.blp:40
 msgid "_Keyboard Shortcuts"
 msgstr "_Raccourcis clavier"
 
@@ -917,14 +929,14 @@ msgstr "Créer un carnet de notes"
 msgid "Trash is empty"
 msgstr "Corbeille vide"
 
-#: src/ui/window/window.blp:290
+#: src/ui/window/window.blp:291
 msgid "Open in Notebook"
 msgstr "Ouvrir dans le carnet de notes"
 
-#: src/ui/window/window.blp:317
+#: src/ui/window/window.blp:318
 msgid "_Rename Note"
 msgstr "_Renommer la note"
 
-#: src/ui/window/window.blp:324
+#: src/ui/window/window.blp:325
 msgid "_Export Note"
 msgstr "_Exporter la note"

@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-11-10 13:56:27+0000\n"
+"PO-Revision-Date: 2024-11-28 18:37:49+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,22 @@ msgstr ""
 "X-Generator: GlotPress/4.0.1\n"
 "Language: tr\n"
 "Project-Id-Version: Folio\n"
+
+#: data/app.metainfo.xml.in:5
+msgid "Beautiful markdown note-taking app"
+msgstr "Güzel markdown not alma uygulaması"
+
+#: src/ui/preferences/preferences.blp:139
+msgid "Expanded Notebook List"
+msgstr "Not Defteri Listesi Genişletildi"
+
+#: src/ui/window/app_menu/app_menu.blp:10
+msgid "Main Menu"
+msgstr "Ana Menü"
+
+#: src/ui/window/window.blp:281
+msgid "Note Menu"
+msgstr "Not Menüsü"
 
 #: data/app.gschema.xml:91
 msgid "Allow long notebook names"
@@ -26,10 +42,6 @@ msgstr "Uzun not adlarına izin ver"
 #: data/app.gschema.xml:97
 msgid "The note list column will expand to the width of the longest note name"
 msgstr "Not listesi sütunu en uzun not adı genişliğine göre uzar"
-
-#: data/app.metainfo.xml.in:5
-msgid "A beautiful markdown note-taking app for GNOME"
-msgstr "GNOME için güzel bir markdown not alma uygulaması"
 
 #: data/app.metainfo.xml.in:8
 msgid "Some features include:"
@@ -55,19 +67,19 @@ msgstr "Folio içindeki diğer notlara bağlantı"
 msgid "Automatically create links for bare URL's and e-mail addresses"
 msgstr "Temel URL ve e-posta adreslerinden kendiliğinden bağlantılar oluştur"
 
-#: src/ui/preferences/preferences.blp:167
+#: src/ui/preferences/preferences.blp:150
 msgid "Allow Long Notebook Names"
 msgstr "Uzun Not Defteri Adlarına İzin Ver"
 
-#: src/ui/preferences/preferences.blp:168
+#: src/ui/preferences/preferences.blp:151
 msgid "The notebook column will expand to the width of the longest notebook name (requires notebook selection change to take effect)."
 msgstr "Not defteri sütunu en uzun not defteri adı genişliği kadar genişler (etkili olması için not defteri seçimin değiştirilmesi gerekir)."
 
-#: src/ui/preferences/preferences.blp:178
+#: src/ui/preferences/preferences.blp:161
 msgid "Allow Long Note Names"
 msgstr "Uzun Not Adlarına İzin Ver"
 
-#: src/ui/preferences/preferences.blp:179
+#: src/ui/preferences/preferences.blp:162
 msgid "The note list column will expand to the width of the longest note name (requires notebook selection change to take effect)."
 msgstr "Not listesi sütunu en uzun not adının genişliği kadar genişler (etkili olması için not defteri seçiminin değiştirilmesi gerekir)."
 
@@ -161,7 +173,7 @@ msgstr "“%s” çöpe taşındı"
 msgid "“%s” restored"
 msgstr "“%s” geri yüklendi"
 
-#: src/ui/window/app_menu/app_menu.blp:43
+#: src/ui/window/app_menu/app_menu.blp:44
 msgid "_About Folio"
 msgstr "Folio _Hakkında"
 
@@ -307,11 +319,11 @@ msgstr "Çöp kutusu klasörünün konumu (uygulamanın yeniden başlatılmasın
 msgid "Pick where the trash can will be stored"
 msgstr "Çöp kutusunun nerede depolanacağını seçin"
 
-#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:150
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:172
 msgid "Use Fixed Width For Notes"
 msgstr "Notlar İçin Sabit Genişlik Kullan"
 
-#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:151
+#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:173
 msgid "Use a fixed width for the text area of a note"
 msgstr "Notun metin alanı için sabit genişlik kullan"
 
@@ -351,23 +363,23 @@ msgstr "Çöp Kutusu klasörünü gizleme"
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
 msgstr "Çöp klasörü öntanımlı olarak gizlidir, bu seçenek onu görünür hale getirir"
 
-#: data/app.metainfo.xml.in:425
+#: data/app.metainfo.xml.in:441
 msgid "Main Folio window in light mode"
 msgstr "Açık kipte Folio ana penceresi"
 
-#: data/app.metainfo.xml.in:429
+#: data/app.metainfo.xml.in:445
 msgid "Main Folio window in dark mode"
 msgstr "Koyu kipte Folio ana penceresi"
 
-#: data/app.metainfo.xml.in:433
+#: data/app.metainfo.xml.in:449
 msgid "Folio on small/mobile screens"
 msgstr "Küçük/mobil ekranda Folio"
 
-#: data/app.metainfo.xml.in:437
+#: data/app.metainfo.xml.in:453
 msgid "Folio preferences screen"
 msgstr "Folio tercihler penceresi"
 
-#: data/app.metainfo.xml.in:441
+#: data/app.metainfo.xml.in:457
 msgid "Folio in three pane mode"
 msgstr "Folio üç bölmeli kipte"
 
@@ -387,11 +399,11 @@ msgstr "Biçimlendirme araç çubuğunun sağındaki markdown referans sayfasın
 msgid "Layout"
 msgstr "Düzen"
 
-#: src/ui/preferences/preferences.blp:161
+#: src/ui/preferences/preferences.blp:183
 msgid "Fixed Width To Use For Notes"
 msgstr "Notlar İçin Kullanılacak Sabit Genişlik"
 
-#: src/ui/preferences/preferences.blp:162
+#: src/ui/preferences/preferences.blp:184
 msgid "Sets the fixed width size of a note in px"
 msgstr "Notun sabit genişlik boyutunu px cinsinden ayarlar"
 
@@ -435,7 +447,7 @@ msgid "New Notebook"
 msgstr "Yeni Not Defteri"
 
 #: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:92
-#: src/ui/strings.vala:39 src/ui/window/window.blp:296
+#: src/ui/strings.vala:39 src/ui/window/window.blp:297
 msgid "Markdown Cheatsheet"
 msgstr "Markdown İpucu Sayfası"
 
@@ -644,7 +656,7 @@ msgstr "Araç Çubuğunu Etkinleştir"
 msgid "Enable Cheatsheet"
 msgstr "İpucu Sayfasını Etkinleştir"
 
-#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:139
+#: data/app.gschema.xml:36
 msgid "3-Pane Layout"
 msgstr "3 Bölmeli Düzen"
 
@@ -814,19 +826,19 @@ msgstr "Açık biçem"
 msgid "Dark style"
 msgstr "Koyu biçem"
 
-#: src/ui/window/app_menu/app_menu.blp:25
+#: src/ui/window/app_menu/app_menu.blp:26
 msgid "_New Notebook"
 msgstr "_Yeni Not Defteri"
 
-#: src/ui/window/app_menu/app_menu.blp:29
+#: src/ui/window/app_menu/app_menu.blp:30
 msgid "_Edit Notebook"
 msgstr "Not Defterini _Düzenle"
 
-#: src/ui/window/app_menu/app_menu.blp:35
+#: src/ui/window/app_menu/app_menu.blp:36
 msgid "_Preferences"
 msgstr "_Tercihler"
 
-#: src/ui/window/app_menu/app_menu.blp:39
+#: src/ui/window/app_menu/app_menu.blp:40
 msgid "_Keyboard Shortcuts"
 msgstr "_Klavye Kısayolları"
 
@@ -918,14 +930,14 @@ msgstr "Not defteri oluştur"
 msgid "Trash is empty"
 msgstr "Çöp boş"
 
-#: src/ui/window/window.blp:290
+#: src/ui/window/window.blp:291
 msgid "Open in Notebook"
 msgstr "Not Defterinde Aç"
 
-#: src/ui/window/window.blp:317
+#: src/ui/window/window.blp:318
 msgid "_Rename Note"
 msgstr "Notu Yeniden _Adlandır"
 
-#: src/ui/window/window.blp:324
+#: src/ui/window/window.blp:325
 msgid "_Export Note"
 msgstr "Notu Dışa _Aktar"

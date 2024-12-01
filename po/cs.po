@@ -2,17 +2,30 @@
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Folio\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2024-11-21 19:14+0100\n"
-"Last-Translator: Amerey <info@amerey.eu>\n"
-"Language-Team: \n"
-"Language: cs_CZ\n"
+"PO-Revision-Date: 2024-11-21 18:48:41+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n >= 2 && n <= 4) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: GlotPress/4.0.1\n"
+"Language: cs_CZ\n"
+"Project-Id-Version: Folio\n"
+
+#: data/app.metainfo.xml.in:5
+msgid "Beautiful markdown note-taking app"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:139
+msgid "Expanded Notebook List"
+msgstr ""
+
+#: src/ui/window/app_menu/app_menu.blp:10
+msgid "Main Menu"
+msgstr ""
+
+#: src/ui/window/window.blp:281
+msgid "Note Menu"
+msgstr ""
 
 #: data/app.gschema.xml:91
 msgid "Allow long notebook names"
@@ -29,10 +42,6 @@ msgstr "Povolit dlouhé názvy poznámek"
 #: data/app.gschema.xml:97
 msgid "The note list column will expand to the width of the longest note name"
 msgstr "Sloupec sešitu se rozšíří na šířku nejdelšího názvu poznámky"
-
-#: data/app.metainfo.xml.in:5
-msgid "A beautiful markdown note-taking app for GNOME"
-msgstr "Krásná aplikace na psaní poznámek pro GNOME"
 
 #: data/app.metainfo.xml.in:8
 msgid "Some features include:"
@@ -58,19 +67,19 @@ msgstr "Odkaz na další poznámky v aplikaci Folio"
 msgid "Automatically create links for bare URL's and e-mail addresses"
 msgstr "Automaticky vytvářet odkazy pro URL a e-mailové adresy"
 
-#: src/ui/preferences/preferences.blp:167
+#: src/ui/preferences/preferences.blp:150
 msgid "Allow Long Notebook Names"
 msgstr "Povolit dlouhé názvy sešitů"
 
-#: src/ui/preferences/preferences.blp:168
+#: src/ui/preferences/preferences.blp:151
 msgid "The notebook column will expand to the width of the longest notebook name (requires notebook selection change to take effect)."
 msgstr "Sloupec sešitu se rozšíří na šířku nejdelšího názvu sešitu (vyžaduje restartování aplikace)."
 
-#: src/ui/preferences/preferences.blp:178
+#: src/ui/preferences/preferences.blp:161
 msgid "Allow Long Note Names"
 msgstr "Povolit dlouhé názvy poznámek"
 
-#: src/ui/preferences/preferences.blp:179
+#: src/ui/preferences/preferences.blp:162
 msgid "The note list column will expand to the width of the longest note name (requires notebook selection change to take effect)."
 msgstr "Sloupec sešitu se rozšíří na šířku nejdelšího názvu poznámky (vyžaduje restartování aplikace)."
 
@@ -164,7 +173,7 @@ msgstr "„%s“ byl přesunut do koše"
 msgid "“%s” restored"
 msgstr "\"%s\" byl obnoven"
 
-#: src/ui/window/app_menu/app_menu.blp:43
+#: src/ui/window/app_menu/app_menu.blp:44
 msgid "_About Folio"
 msgstr "_O aplikaci Folio"
 
@@ -310,11 +319,11 @@ msgstr "Kde je umístěna složka koše (vyžaduje restartování aplikace)"
 msgid "Pick where the trash can will be stored"
 msgstr "Vyberte místo, kde bude uložen koš"
 
-#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:150
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:172
 msgid "Use Fixed Width For Notes"
 msgstr "Použít pevnou šířku pro poznámky"
 
-#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:151
+#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:173
 msgid "Use a fixed width for the text area of a note"
 msgstr "Pro textovou oblast poznámky použijte pevnou šířku"
 
@@ -354,23 +363,23 @@ msgstr "Neskrývat složku Koš"
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
 msgstr "Složka koše je standardně nastavena jako skrytá, tato možnost ji zviditelní"
 
-#: data/app.metainfo.xml.in:425
+#: data/app.metainfo.xml.in:441
 msgid "Main Folio window in light mode"
 msgstr "Hlavní okno ve světlém režimu"
 
-#: data/app.metainfo.xml.in:429
+#: data/app.metainfo.xml.in:445
 msgid "Main Folio window in dark mode"
 msgstr "Hlavní okno v tmavém režimu"
 
-#: data/app.metainfo.xml.in:433
+#: data/app.metainfo.xml.in:449
 msgid "Folio on small/mobile screens"
 msgstr "Folio na malých/mobilních obrazovkách"
 
-#: data/app.metainfo.xml.in:437
+#: data/app.metainfo.xml.in:453
 msgid "Folio preferences screen"
 msgstr "Obrazovka předvoleb"
 
-#: data/app.metainfo.xml.in:441
+#: data/app.metainfo.xml.in:457
 msgid "Folio in three pane mode"
 msgstr "Folio v režimu tří panelů"
 
@@ -390,11 +399,11 @@ msgstr "Na pravé straně panelu nástrojů přidá tlačítko s markdown nápov
 msgid "Layout"
 msgstr "Rozložení"
 
-#: src/ui/preferences/preferences.blp:161
+#: src/ui/preferences/preferences.blp:183
 msgid "Fixed Width To Use For Notes"
 msgstr "Pevná šířka pro poznámky"
 
-#: src/ui/preferences/preferences.blp:162
+#: src/ui/preferences/preferences.blp:184
 msgid "Sets the fixed width size of a note in px"
 msgstr "Nastaví pevnou šířku poznámky v pixelech"
 
@@ -438,7 +447,7 @@ msgid "New Notebook"
 msgstr "Nový sešit"
 
 #: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:92
-#: src/ui/strings.vala:39 src/ui/window/window.blp:296
+#: src/ui/strings.vala:39 src/ui/window/window.blp:297
 msgid "Markdown Cheatsheet"
 msgstr "Markdown nápověda"
 
@@ -647,7 +656,7 @@ msgstr "Povolit Panel nástrojů"
 msgid "Enable Cheatsheet"
 msgstr "Povolit nápovědu"
 
-#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:139
+#: data/app.gschema.xml:36
 msgid "3-Pane Layout"
 msgstr "3-panelové rozvržení"
 
@@ -817,19 +826,19 @@ msgstr "Světlý motiv"
 msgid "Dark style"
 msgstr "Tmavý motiv"
 
-#: src/ui/window/app_menu/app_menu.blp:25
+#: src/ui/window/app_menu/app_menu.blp:26
 msgid "_New Notebook"
 msgstr "_Nový sešit"
 
-#: src/ui/window/app_menu/app_menu.blp:29
+#: src/ui/window/app_menu/app_menu.blp:30
 msgid "_Edit Notebook"
 msgstr "_Upravit sešit"
 
-#: src/ui/window/app_menu/app_menu.blp:35
+#: src/ui/window/app_menu/app_menu.blp:36
 msgid "_Preferences"
 msgstr "_Předvolby"
 
-#: src/ui/window/app_menu/app_menu.blp:39
+#: src/ui/window/app_menu/app_menu.blp:40
 msgid "_Keyboard Shortcuts"
 msgstr "_Klávesové zkratky"
 
@@ -921,14 +930,14 @@ msgstr "Vytvořte sešit"
 msgid "Trash is empty"
 msgstr "Koš je prázdný"
 
-#: src/ui/window/window.blp:290
+#: src/ui/window/window.blp:291
 msgid "Open in Notebook"
 msgstr "Otevřít v sešitu"
 
-#: src/ui/window/window.blp:317
+#: src/ui/window/window.blp:318
 msgid "_Rename Note"
 msgstr "_Přejmenovat poznámku"
 
-#: src/ui/window/window.blp:324
+#: src/ui/window/window.blp:325
 msgid "_Export Note"
 msgstr "_Exportovat poznámku"

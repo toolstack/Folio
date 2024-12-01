@@ -11,6 +11,22 @@ msgstr ""
 "Language: ko_KR\n"
 "Project-Id-Version: Folio\n"
 
+#: data/app.metainfo.xml.in:5
+msgid "Beautiful markdown note-taking app"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:139
+msgid "Expanded Notebook List"
+msgstr ""
+
+#: src/ui/window/app_menu/app_menu.blp:10
+msgid "Main Menu"
+msgstr ""
+
+#: src/ui/window/window.blp:281
+msgid "Note Menu"
+msgstr ""
+
 #: data/app.gschema.xml:91
 msgid "Allow long notebook names"
 msgstr ""
@@ -25,10 +41,6 @@ msgstr ""
 
 #: data/app.gschema.xml:97
 msgid "The note list column will expand to the width of the longest note name"
-msgstr ""
-
-#: data/app.metainfo.xml.in:5
-msgid "A beautiful markdown note-taking app for GNOME"
 msgstr ""
 
 #: data/app.metainfo.xml.in:8
@@ -55,19 +67,19 @@ msgstr ""
 msgid "Automatically create links for bare URL's and e-mail addresses"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:167
+#: src/ui/preferences/preferences.blp:150
 msgid "Allow Long Notebook Names"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:168
+#: src/ui/preferences/preferences.blp:151
 msgid "The notebook column will expand to the width of the longest notebook name (requires notebook selection change to take effect)."
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:178
+#: src/ui/preferences/preferences.blp:161
 msgid "Allow Long Note Names"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:179
+#: src/ui/preferences/preferences.blp:162
 msgid "The note list column will expand to the width of the longest note name (requires notebook selection change to take effect)."
 msgstr ""
 
@@ -156,7 +168,7 @@ msgstr ""
 msgid "“%s” restored"
 msgstr ""
 
-#: src/ui/window/app_menu/app_menu.blp:43
+#: src/ui/window/app_menu/app_menu.blp:44
 msgid "_About Folio"
 msgstr ""
 
@@ -287,11 +299,11 @@ msgstr ""
 msgid "Pick where the trash can will be stored"
 msgstr ""
 
-#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:150
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:172
 msgid "Use Fixed Width For Notes"
 msgstr ""
 
-#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:151
+#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:173
 msgid "Use a fixed width for the text area of a note"
 msgstr ""
 
@@ -331,23 +343,23 @@ msgstr ""
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
 msgstr ""
 
-#: data/app.metainfo.xml.in:425
+#: data/app.metainfo.xml.in:441
 msgid "Main Folio window in light mode"
 msgstr ""
 
-#: data/app.metainfo.xml.in:429
+#: data/app.metainfo.xml.in:445
 msgid "Main Folio window in dark mode"
 msgstr ""
 
-#: data/app.metainfo.xml.in:433
+#: data/app.metainfo.xml.in:449
 msgid "Folio on small/mobile screens"
 msgstr ""
 
-#: data/app.metainfo.xml.in:437
+#: data/app.metainfo.xml.in:453
 msgid "Folio preferences screen"
 msgstr ""
 
-#: data/app.metainfo.xml.in:441
+#: data/app.metainfo.xml.in:457
 msgid "Folio in three pane mode"
 msgstr ""
 
@@ -367,11 +379,11 @@ msgstr ""
 msgid "Layout"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:161
+#: src/ui/preferences/preferences.blp:183
 msgid "Fixed Width To Use For Notes"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:162
+#: src/ui/preferences/preferences.blp:184
 msgid "Sets the fixed width size of a note in px"
 msgstr ""
 
@@ -415,7 +427,7 @@ msgid "New Notebook"
 msgstr "새 필기장"
 
 #: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:92
-#: src/ui/strings.vala:39 src/ui/window/window.blp:296
+#: src/ui/strings.vala:39 src/ui/window/window.blp:297
 msgid "Markdown Cheatsheet"
 msgstr "마크다운 치트시트"
 
@@ -624,7 +636,7 @@ msgstr ""
 msgid "Enable Cheatsheet"
 msgstr ""
 
-#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:139
+#: data/app.gschema.xml:36
 msgid "3-Pane Layout"
 msgstr ""
 
@@ -794,19 +806,19 @@ msgstr ""
 msgid "Dark style"
 msgstr ""
 
-#: src/ui/window/app_menu/app_menu.blp:25
+#: src/ui/window/app_menu/app_menu.blp:26
 msgid "_New Notebook"
 msgstr "새 필기장(_N)"
 
-#: src/ui/window/app_menu/app_menu.blp:29
+#: src/ui/window/app_menu/app_menu.blp:30
 msgid "_Edit Notebook"
 msgstr "필기장 편집(_E)"
 
-#: src/ui/window/app_menu/app_menu.blp:35
+#: src/ui/window/app_menu/app_menu.blp:36
 msgid "_Preferences"
 msgstr "기본 설정(_P)"
 
-#: src/ui/window/app_menu/app_menu.blp:39
+#: src/ui/window/app_menu/app_menu.blp:40
 msgid "_Keyboard Shortcuts"
 msgstr "키보드 바로 가기(_K)"
 
@@ -898,14 +910,14 @@ msgstr "필기장 만들기"
 msgid "Trash is empty"
 msgstr "휴지통이 비어 있음"
 
-#: src/ui/window/window.blp:290
+#: src/ui/window/window.blp:291
 msgid "Open in Notebook"
 msgstr "필기장에서 열기"
 
-#: src/ui/window/window.blp:317
+#: src/ui/window/window.blp:318
 msgid "_Rename Note"
 msgstr "노트 이름 바꾸기(_R)"
 
-#: src/ui/window/window.blp:324
+#: src/ui/window/window.blp:325
 msgid "_Export Note"
 msgstr "노트 내보내기(_E)"

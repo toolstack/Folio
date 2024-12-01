@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-11-10 09:42:47+0000\n"
+"PO-Revision-Date: 2024-11-13 20:26:13+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -10,6 +10,22 @@ msgstr ""
 "X-Generator: GlotPress/4.0.1\n"
 "Language: ar\n"
 "Project-Id-Version: Folio\n"
+
+#: data/app.metainfo.xml.in:5
+msgid "Beautiful markdown note-taking app"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:139
+msgid "Expanded Notebook List"
+msgstr ""
+
+#: src/ui/window/app_menu/app_menu.blp:10
+msgid "Main Menu"
+msgstr ""
+
+#: src/ui/window/window.blp:281
+msgid "Note Menu"
+msgstr ""
 
 #: data/app.gschema.xml:91
 msgid "Allow long notebook names"
@@ -26,10 +42,6 @@ msgstr "السماح بأسماء الملاحظات الطويلة"
 #: data/app.gschema.xml:97
 msgid "The note list column will expand to the width of the longest note name"
 msgstr "يوسع عرض حقل الملاحظات ليسع اسم أطول ملاحظة"
-
-#: data/app.metainfo.xml.in:5
-msgid "A beautiful markdown note-taking app for GNOME"
-msgstr "تطبيق تدوين ملاحظات ماركداون جميل لجنوم"
 
 #: data/app.metainfo.xml.in:8
 msgid "Some features include:"
@@ -55,19 +67,19 @@ msgstr "الربط بالملاحظات الأخرى في «مطوية»"
 msgid "Automatically create links for bare URL's and e-mail addresses"
 msgstr "إنشاء الروابط آليًا للمسارات وعناوين البريد الإلكتروني"
 
-#: src/ui/preferences/preferences.blp:167
+#: src/ui/preferences/preferences.blp:150
 msgid "Allow Long Notebook Names"
 msgstr "السماح بأسماء الدفاتر الطويلة"
 
-#: src/ui/preferences/preferences.blp:168
+#: src/ui/preferences/preferences.blp:151
 msgid "The notebook column will expand to the width of the longest notebook name (requires notebook selection change to take effect)."
 msgstr "يوسع عرض حقل الدفاتر ليسع اسم أطول دفتر (يتطلب تغيير الدفتر المحدد كي يطبَّق)."
 
-#: src/ui/preferences/preferences.blp:178
+#: src/ui/preferences/preferences.blp:161
 msgid "Allow Long Note Names"
 msgstr "السماح بأسماء الملاحظات الطويلة"
 
-#: src/ui/preferences/preferences.blp:179
+#: src/ui/preferences/preferences.blp:162
 msgid "The note list column will expand to the width of the longest note name (requires notebook selection change to take effect)."
 msgstr "يوسع عرض حقل الملاحظات ليسع اسم أطول ملاحظة (يتطلب تغيير الدفتر المحدد كي يطبَّق)."
 
@@ -161,7 +173,7 @@ msgstr "نُقِل «%s» إلى المهملات"
 msgid "“%s” restored"
 msgstr "استعيد «%s»"
 
-#: src/ui/window/app_menu/app_menu.blp:43
+#: src/ui/window/app_menu/app_menu.blp:44
 msgid "_About Folio"
 msgstr "_عَنْ «مطوية»"
 
@@ -307,11 +319,11 @@ msgstr "موضع مجلد المهملات (يتطلب إعادة تشغيل ا�
 msgid "Pick where the trash can will be stored"
 msgstr "اختر أين تخزن سلة المهملات"
 
-#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:150
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:172
 msgid "Use Fixed Width For Notes"
 msgstr "استخدام العرض الثابت للملاحظات"
 
-#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:151
+#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:173
 msgid "Use a fixed width for the text area of a note"
 msgstr "استخدام العرض الثابت لمساحة النص في الملاحظة"
 
@@ -351,23 +363,23 @@ msgstr "عدم إخفاء مجلد المهملات"
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
 msgstr "مجلد المهملات مخفي مبدئيًا، لكن هذا الخيار يجعله مرئيًأ"
 
-#: data/app.metainfo.xml.in:425
+#: data/app.metainfo.xml.in:441
 msgid "Main Folio window in light mode"
 msgstr "نافذة «مطوية» الرئيسة في الوضع الفاتح"
 
-#: data/app.metainfo.xml.in:429
+#: data/app.metainfo.xml.in:445
 msgid "Main Folio window in dark mode"
 msgstr "نافذة «مطوية» الرئيسة في الوضع الداكن"
 
-#: data/app.metainfo.xml.in:433
+#: data/app.metainfo.xml.in:449
 msgid "Folio on small/mobile screens"
 msgstr "«مطوية» على الشاشات الصغيرة/المحمولة"
 
-#: data/app.metainfo.xml.in:437
+#: data/app.metainfo.xml.in:453
 msgid "Folio preferences screen"
 msgstr "شاشة تفضيلات «مطوية»"
 
-#: data/app.metainfo.xml.in:441
+#: data/app.metainfo.xml.in:457
 msgid "Folio in three pane mode"
 msgstr "«مطوية» في وضع الألواح الثلاثة"
 
@@ -387,11 +399,11 @@ msgstr "يضيف زرًا لعرض مرجع «ماركداون» على يمين
 msgid "Layout"
 msgstr "التخطيط"
 
-#: src/ui/preferences/preferences.blp:161
+#: src/ui/preferences/preferences.blp:183
 msgid "Fixed Width To Use For Notes"
 msgstr "العرض الثابت للاستخدام في الملاحظات"
 
-#: src/ui/preferences/preferences.blp:162
+#: src/ui/preferences/preferences.blp:184
 msgid "Sets the fixed width size of a note in px"
 msgstr "يعين حجم العرض الثابت للملاحظة بالبكسل"
 
@@ -435,7 +447,7 @@ msgid "New Notebook"
 msgstr "دفتر جديد"
 
 #: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:92
-#: src/ui/strings.vala:39 src/ui/window/window.blp:296
+#: src/ui/strings.vala:39 src/ui/window/window.blp:297
 msgid "Markdown Cheatsheet"
 msgstr "ورقة غش «ماركداون»"
 
@@ -461,7 +473,7 @@ msgstr "الخط المستخدم لعرض الترميز"
 
 #: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:18
 msgid "OLED Mode"
-msgstr "وضع ثنائي مساري عضوي باعث للضوء (OLED)"
+msgstr "الوضع الثنائي المساري العضوي الباعث للضوء (OLED)"
 
 #: data/app.metainfo.xml.in:7
 msgid "Create notebooks and take notes in markdown"
@@ -644,7 +656,7 @@ msgstr "تفعيل شريط الأدوات"
 msgid "Enable Cheatsheet"
 msgstr "تفعيل ورقة الغش"
 
-#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:139
+#: data/app.gschema.xml:36
 msgid "3-Pane Layout"
 msgstr "تخطيط 3 ألواح"
 
@@ -814,19 +826,19 @@ msgstr "الأسلوب الفاتح"
 msgid "Dark style"
 msgstr "الأسلوب الداكن"
 
-#: src/ui/window/app_menu/app_menu.blp:25
+#: src/ui/window/app_menu/app_menu.blp:26
 msgid "_New Notebook"
 msgstr "دفتر _جديد"
 
-#: src/ui/window/app_menu/app_menu.blp:29
+#: src/ui/window/app_menu/app_menu.blp:30
 msgid "_Edit Notebook"
 msgstr "عَ_دِّل الدفتر"
 
-#: src/ui/window/app_menu/app_menu.blp:35
+#: src/ui/window/app_menu/app_menu.blp:36
 msgid "_Preferences"
 msgstr "ال_تفضيلات"
 
-#: src/ui/window/app_menu/app_menu.blp:39
+#: src/ui/window/app_menu/app_menu.blp:40
 msgid "_Keyboard Shortcuts"
 msgstr "ا_ختصارات لوحة المفاتيح"
 
@@ -918,14 +930,14 @@ msgstr "أنشئ دفترًا"
 msgid "Trash is empty"
 msgstr "سلة المهملات فارغة"
 
-#: src/ui/window/window.blp:290
+#: src/ui/window/window.blp:291
 msgid "Open in Notebook"
 msgstr "افتح في الدفتر"
 
-#: src/ui/window/window.blp:317
+#: src/ui/window/window.blp:318
 msgid "_Rename Note"
 msgstr "أ_عِد تسمية الملاحظة"
 
-#: src/ui/window/window.blp:324
+#: src/ui/window/window.blp:325
 msgid "_Export Note"
 msgstr "_صَدِّر الملاحظة"

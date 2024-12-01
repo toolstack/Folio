@@ -11,6 +11,22 @@ msgstr ""
 "Language: hi_IN\n"
 "Project-Id-Version: Folio\n"
 
+#: data/app.metainfo.xml.in:5
+msgid "Beautiful markdown note-taking app"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:139
+msgid "Expanded Notebook List"
+msgstr ""
+
+#: src/ui/window/app_menu/app_menu.blp:10
+msgid "Main Menu"
+msgstr ""
+
+#: src/ui/window/window.blp:281
+msgid "Note Menu"
+msgstr ""
+
 #: data/app.gschema.xml:91
 msgid "Allow long notebook names"
 msgstr ""
@@ -25,10 +41,6 @@ msgstr ""
 
 #: data/app.gschema.xml:97
 msgid "The note list column will expand to the width of the longest note name"
-msgstr ""
-
-#: data/app.metainfo.xml.in:5
-msgid "A beautiful markdown note-taking app for GNOME"
 msgstr ""
 
 #: data/app.metainfo.xml.in:8
@@ -55,19 +67,19 @@ msgstr ""
 msgid "Automatically create links for bare URL's and e-mail addresses"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:167
+#: src/ui/preferences/preferences.blp:150
 msgid "Allow Long Notebook Names"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:168
+#: src/ui/preferences/preferences.blp:151
 msgid "The notebook column will expand to the width of the longest notebook name (requires notebook selection change to take effect)."
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:178
+#: src/ui/preferences/preferences.blp:161
 msgid "Allow Long Note Names"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:179
+#: src/ui/preferences/preferences.blp:162
 msgid "The note list column will expand to the width of the longest note name (requires notebook selection change to take effect)."
 msgstr ""
 
@@ -156,7 +168,7 @@ msgstr ""
 msgid "“%s” restored"
 msgstr ""
 
-#: src/ui/window/app_menu/app_menu.blp:43
+#: src/ui/window/app_menu/app_menu.blp:44
 msgid "_About Folio"
 msgstr ""
 
@@ -302,11 +314,11 @@ msgstr "जहां रद्दी फोल्डर संग्रहीत
 msgid "Pick where the trash can will be stored"
 msgstr "चुनें कि कूड़ादान कहां रखें"
 
-#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:150
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:172
 msgid "Use Fixed Width For Notes"
 msgstr "नोट्स के लिए निश्चित चौड़ाई का उपयोग करें"
 
-#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:151
+#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:173
 msgid "Use a fixed width for the text area of a note"
 msgstr "नोट के पाठ क्षेत्र के लिए एक निश्चित चौड़ाई का उपयोग करें"
 
@@ -346,23 +358,23 @@ msgstr "रद्दी फोल्डर को नहीं छुपाए�
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
 msgstr "रद्दी फोल्डर तयशुदा रूप से एक छिपे हुए फोल्डर के रूप में निर्धारित होता है, यह विकल्प इसे दृश्यमान बनाता है"
 
-#: data/app.metainfo.xml.in:425
+#: data/app.metainfo.xml.in:441
 msgid "Main Folio window in light mode"
 msgstr "मुख्य फोलियो विंडो हल्के मोड में"
 
-#: data/app.metainfo.xml.in:429
+#: data/app.metainfo.xml.in:445
 msgid "Main Folio window in dark mode"
 msgstr "मुख्य फोलियो विंडो गहरे मोड में"
 
-#: data/app.metainfo.xml.in:433
+#: data/app.metainfo.xml.in:449
 msgid "Folio on small/mobile screens"
 msgstr "छोटे/मोबाइल स्क्रीन पर फोलियो"
 
-#: data/app.metainfo.xml.in:437
+#: data/app.metainfo.xml.in:453
 msgid "Folio preferences screen"
 msgstr "फोलियो की प्राथमिकता स्क्रीन"
 
-#: data/app.metainfo.xml.in:441
+#: data/app.metainfo.xml.in:457
 msgid "Folio in three pane mode"
 msgstr "तीन फलक मोड में फोलियो"
 
@@ -382,11 +394,11 @@ msgstr "प्रारूपण टूलबार के दाईं ओर �
 msgid "Layout"
 msgstr "अभिन्यास"
 
-#: src/ui/preferences/preferences.blp:161
+#: src/ui/preferences/preferences.blp:183
 msgid "Fixed Width To Use For Notes"
 msgstr "नोट्स के लिए उपयोग हेतु निश्चित चौड़ाई"
 
-#: src/ui/preferences/preferences.blp:162
+#: src/ui/preferences/preferences.blp:184
 msgid "Sets the fixed width size of a note in px"
 msgstr "किसी नोट की निश्चित चौड़ाई का आकार px में निर्धारित करता है"
 
@@ -430,7 +442,7 @@ msgid "New Notebook"
 msgstr "नई नोटबुक"
 
 #: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:92
-#: src/ui/strings.vala:39 src/ui/window/window.blp:296
+#: src/ui/strings.vala:39 src/ui/window/window.blp:297
 msgid "Markdown Cheatsheet"
 msgstr "मार्कडाउन चीटशीट"
 
@@ -639,7 +651,7 @@ msgstr "टूलबार सक्षम करें"
 msgid "Enable Cheatsheet"
 msgstr "चीटशीट सक्षम करें"
 
-#: data/app.gschema.xml:36 src/ui/preferences/preferences.blp:139
+#: data/app.gschema.xml:36
 msgid "3-Pane Layout"
 msgstr "3-फलक अभिन्यास"
 
@@ -809,19 +821,19 @@ msgstr "हल्की शैली"
 msgid "Dark style"
 msgstr "गहरी शैली"
 
-#: src/ui/window/app_menu/app_menu.blp:25
+#: src/ui/window/app_menu/app_menu.blp:26
 msgid "_New Notebook"
 msgstr "नई नोटबुक (_N)"
 
-#: src/ui/window/app_menu/app_menu.blp:29
+#: src/ui/window/app_menu/app_menu.blp:30
 msgid "_Edit Notebook"
 msgstr "नोटबुक संपादित करें (_E)"
 
-#: src/ui/window/app_menu/app_menu.blp:35
+#: src/ui/window/app_menu/app_menu.blp:36
 msgid "_Preferences"
 msgstr "प्राथमिकताएं (_P)"
 
-#: src/ui/window/app_menu/app_menu.blp:39
+#: src/ui/window/app_menu/app_menu.blp:40
 msgid "_Keyboard Shortcuts"
 msgstr "कीबोर्ड शॉर्टकट (_K)"
 
@@ -913,14 +925,14 @@ msgstr "एक नोटबुक बनाएं"
 msgid "Trash is empty"
 msgstr "रद्दी खाली है"
 
-#: src/ui/window/window.blp:290
+#: src/ui/window/window.blp:291
 msgid "Open in Notebook"
 msgstr "नोटबुक में खोलें"
 
-#: src/ui/window/window.blp:317
+#: src/ui/window/window.blp:318
 msgid "_Rename Note"
 msgstr "नोट का नाम बदलें (_R)"
 
-#: src/ui/window/window.blp:324
+#: src/ui/window/window.blp:325
 msgid "_Export Note"
 msgstr "नोट निर्यात करें (_E)"
