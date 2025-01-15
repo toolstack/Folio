@@ -1,107 +1,122 @@
 # Translation of Folio in Russian
 # This file is distributed under the same license as the Folio package.
+# SPDX-FileCopyrightText: 2025 Alevtina <karashokovaaa@basealt.ru>
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-03-02 17:00:09+0000\n"
+"PO-Revision-Date: 2025-01-15 09:06+0300\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : ((n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 1 : 2);\n"
-"X-Generator: GlotPress/4.0.1\n"
+"Plural-Forms: nplurals=3; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : ((n %"
+" 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14)) ? 1 : 2);\n"
+"X-Generator: Lokalize 23.08.5\n"
 "Language: ru\n"
 "Project-Id-Version: Folio\n"
+"Last-Translator: Alevtina <karashokovaaa@basealt.ru>\n"
+"Language-Team: Basealt Translation Team\n"
 
 #: data/app.metainfo.xml.in:5
 msgid "Beautiful markdown note-taking app"
-msgstr ""
+msgstr "Отличное приложение для создания заметок в формате Markdown"
 
 #: src/ui/preferences/preferences.blp:139
 msgid "Expanded Notebook List"
-msgstr ""
+msgstr "Расширенный список блокнотов"
 
 #: src/ui/window/app_menu/app_menu.blp:10
 msgid "Main Menu"
-msgstr ""
+msgstr "Главное меню"
 
 #: src/ui/window/window.blp:281
 msgid "Note Menu"
-msgstr ""
+msgstr "Меню заметок"
 
 #: data/app.gschema.xml:91
 msgid "Allow long notebook names"
-msgstr ""
+msgstr "Разрешить длинные имена блокнотов"
 
 #: data/app.gschema.xml:92
-msgid "The notebook column will expand to the width of the longest notebook name"
+msgid ""
+"The notebook column will expand to the width of the longest notebook name"
 msgstr ""
+"Столбец блокнотов будет раздвинут до ширины самого длинного имени блокнота"
 
 #: data/app.gschema.xml:96
 msgid "Allow long note names"
-msgstr ""
+msgstr "Разрешить длинные имена заметок"
 
 #: data/app.gschema.xml:97
 msgid "The note list column will expand to the width of the longest note name"
 msgstr ""
+"Столбец списка заметок будет раздвинут до ширины самого длинного имени заметки"
 
 #: data/app.metainfo.xml.in:8
 msgid "Some features include:"
-msgstr ""
+msgstr "Некоторые возможности включают:"
 
 #: data/app.metainfo.xml.in:16
 msgid "Optional line numbers"
-msgstr ""
+msgstr "Возможность нумерации строк"
 
 #: data/app.metainfo.xml.in:17
 msgid "Optional auto save"
-msgstr ""
+msgstr "Возможность автосохранения"
 
 #: data/app.metainfo.xml.in:18
 msgid "Open links with Control-Click"
-msgstr ""
+msgstr "Открытие ссылок щелчком при нажатой клавише Control"
 
 #: data/app.metainfo.xml.in:19
 msgid "Link to other notes in Folio"
-msgstr ""
+msgstr "Ссылка на другие заметки в Folio"
 
 #: data/app.metainfo.xml.in:20
 msgid "Automatically create links for bare URL's and e-mail addresses"
-msgstr ""
+msgstr "Автоматическое создание ссылок для URL- и e-mail-адресов"
 
 #: src/ui/preferences/preferences.blp:150
 msgid "Allow Long Notebook Names"
-msgstr ""
+msgstr "Разрешить длинные имена блокнотов"
 
 #: src/ui/preferences/preferences.blp:151
-msgid "The notebook column will expand to the width of the longest notebook name (requires notebook selection change to take effect)."
+msgid ""
+"The notebook column will expand to the width of the longest notebook name"
+" (requires notebook selection change to take effect)."
 msgstr ""
+"Столбец блокнотов будет раздвинут до ширины самого длинного имени блокнота"
+" (для этого необходимо изменить выбор блокнота)."
 
 #: src/ui/preferences/preferences.blp:161
 msgid "Allow Long Note Names"
-msgstr ""
+msgstr "Разрешить длинные имена заметок"
 
 #: src/ui/preferences/preferences.blp:162
-msgid "The note list column will expand to the width of the longest note name (requires notebook selection change to take effect)."
+msgid ""
+"The note list column will expand to the width of the longest note name"
+" (requires notebook selection change to take effect)."
 msgstr ""
+"Столбец списка заметок будет раздвинут до ширины самого длинного имени"
+" заметки (для этого необходимо изменить выбор заметки)."
 
 #: data/app.gschema.xml:81
 msgid "URL detection level"
-msgstr ""
+msgstr "Уровень обнаружения URL-адресов"
 
 #: data/app.gschema.xml:82
 msgid "How aggressive to look for URLs in markdown text"
-msgstr ""
+msgstr "Насколько активно искать URL-адреса в тексте с разметкой Markdown"
 
 #: data/app.gschema.xml:86
 msgid "Line spacing"
-msgstr ""
+msgstr "Межстрочный интервал"
 
 #: data/app.gschema.xml:87 src/ui/preferences/preferences.blp:74
 msgid "The line spacing for the note text"
-msgstr ""
+msgstr "Межстрочный интервал для текста заметок"
 
 #: src/ui/preferences/preferences.blp:31
 msgid "Markdown URL Detection"
-msgstr ""
+msgstr "Обнаружение URL-адреса в разметке Markdown"
 
 #: src/ui/preferences/preferences.blp:32
 msgid ""
@@ -111,146 +126,151 @@ msgid ""
 " - Strict requires a protocol identifier (ie http://)\n"
 " - Disabled turns detection off."
 msgstr ""
+"Определяет уровень обнаружения URL-адресов.\n"
+"Используется текст в свободной форме:\n"
+" - «Активный» пытается найти все URL-адреса\n"
+" - «Строгий» требует идентификатор протокола (т.е. http://)\n"
+" - «Отключено» отключает обнаружение."
 
 #: src/ui/preferences/preferences.blp:39
 msgid "Fonts"
-msgstr ""
+msgstr "Шрифты"
 
 #: src/ui/preferences/preferences.blp:73
 msgid "Line Spacing"
-msgstr ""
+msgstr "Межстрочный интервал"
 
 #: src/ui/strings.vala:24
 msgid "Note names cannot contain a “/”"
-msgstr ""
+msgstr "Имя заметки не может содержать «/»"
 
 #: src/ui/strings.vala:25
 msgid "Note names cannot be blank"
-msgstr ""
+msgstr "Имя заметки не может быть пустым"
 
 #: src/ui/strings.vala:33
 msgid "Notebook names cannot contain a “/”"
-msgstr ""
+msgstr "Имя блокнота не может содержать «/»"
 
 #: src/ui/strings.vala:34
 msgid "Notebook names cannot be blank"
-msgstr ""
+msgstr "Имя блокнота не может быть пустым"
 
 #: src/ui/strings.vala:66
 msgid "Natural - Ascending"
-msgstr ""
+msgstr "Естественный — по возрастанию"
 
 #: src/ui/strings.vala:67
 msgid "Natural - Descending"
-msgstr ""
+msgstr "Естественный — по убыванию"
 
 #: src/ui/strings.vala:68
 msgid "Unable to launch external application for file %s."
-msgstr ""
+msgstr "Не удалось запустить внешнее приложение для файла %s."
 
 #: src/ui/strings.vala:69
 msgid "Aggressive"
-msgstr ""
+msgstr "Активный"
 
 #: src/ui/strings.vala:70
 msgid "Strict"
-msgstr ""
+msgstr "Строгий"
 
 #: src/ui/strings.vala:71
 msgid "Disabled"
-msgstr ""
+msgstr "Отключено"
 
 #: src/ui/strings.vala:72
 msgid "“%s” moved to trash"
-msgstr ""
+msgstr "«%s» перемещена в корзину"
 
 #: src/ui/strings.vala:73
 msgid "“%s” restored"
-msgstr ""
+msgstr "«%s» восстановлена"
 
 #: src/ui/window/app_menu/app_menu.blp:44
 msgid "_About Folio"
-msgstr ""
+msgstr "_О программе Folio"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:11
 msgid "Custom"
-msgstr ""
+msgstr "Другое"
 
 #: src/ui/window/window.blp:157
 msgid "Open file in external application"
-msgstr ""
+msgstr "Открыть файл во внешнем приложении"
 
 #: src/ui/window/window.blp:165
 msgid "Open file"
-msgstr ""
+msgstr "Открыть файл"
 
 #: data/app.gschema.xml:76
 msgid "Notebook sort order"
-msgstr ""
+msgstr "Порядок сортировки блокнотов"
 
 #: data/app.gschema.xml:77
 msgid "The sort order of the notebook list"
-msgstr ""
+msgstr "Порядок сортировки списка блокнотов"
 
 #: src/ui/preferences/preferences.blp:189
 msgid "Sort Order For Notebooks"
-msgstr ""
+msgstr "Порядок сортировки блокнотов"
 
 #: data/app.gschema.xml:71
 msgid "Note sort order"
-msgstr ""
+msgstr "Порядок сортировки заметок"
 
 #: data/app.gschema.xml:72
 msgid "The sort order of the note list"
-msgstr ""
+msgstr "Порядок сортировки списка заметок"
 
 #: src/ui/preferences/preferences.blp:194
 msgid "Sort Order For Notes"
-msgstr ""
+msgstr "Порядок сортировки заметок"
 
 #: src/ui/strings.vala:62
 msgid "Modified Time - Ascending"
-msgstr ""
+msgstr "Время изменения — по возрастанию"
 
 #: src/ui/strings.vala:63
 msgid "Modified Time - Descending"
-msgstr ""
+msgstr "Время изменения — по убыванию"
 
 #: src/ui/strings.vala:64
 msgid "Alphabetical - Ascending"
-msgstr ""
+msgstr "По алфавиту — по возрастанию"
 
 #: src/ui/strings.vala:65
 msgid "Alphabetical - Descending"
-msgstr ""
+msgstr "По алфавиту — по убыванию"
 
 #: src/ui/popup/shortcut_window.blp:114
 msgid "Display"
-msgstr ""
+msgstr "Отображение"
 
 #: src/ui/popup/shortcut_window.blp:117
 msgid "Full Screen"
-msgstr ""
+msgstr "Во весь экран"
 
 #: src/ui/popup/shortcut_window.blp:122
 msgid "Zoom In"
-msgstr ""
+msgstr "Приблизить"
 
 #: src/ui/popup/shortcut_window.blp:127
 msgid "Zoom Out"
-msgstr ""
+msgstr "Отдалить"
 
 #: src/ui/strings.vala:52
 msgid "Pick primary font for notes"
-msgstr ""
+msgstr "Выберите основной шрифт для заметок"
 
 #: src/ui/strings.vala:53
 msgid "Pick monospace font for code"
-msgstr ""
+msgstr "Выберите моноширинный шрифт для кода"
 
 #: src/ui/strings.vala:54
 msgid "File Changed On Disk"
-msgstr ""
+msgstr "Файл был изменён на диске"
 
 #: src/ui/strings.vala:55
 msgid ""
@@ -262,16 +282,27 @@ msgid ""
 " • Overwrite the file (discarding any changes made outside of Folio)\n"
 " • Cancel the operation and manually resolve the issue\n"
 "\n"
-"Note: Canceling the save if you have already moved to a new note/notebook will discard your changes."
+"Note: Canceling the save if you have already moved to a new note/notebook"
+" will discard your changes."
 msgstr ""
+"Файл был изменён на диске с момента последнего сохранения/загрузки в Folio.\n"
+"\n"
+"Вы можете выполнить одно из следующих действий:\n"
+"\n"
+" • Повторно загрузить файл (отменив все изменения, сделанные в Folio)\n"
+" • Перезаписать файл (отменив все изменения, сделанные вне Folio)\n"
+" • Отменить операцию и вручную решить проблему\n"
+"\n"
+"Примечание: отмена сохранения, если вы уже перешли к новой заметке/блокноту,"
+" приведёт к удалению изменений."
 
 #: src/ui/strings.vala:56
 msgid "Reload"
-msgstr ""
+msgstr "Загрузить повторно"
 
 #: src/ui/strings.vala:57
 msgid "Overwrite"
-msgstr ""
+msgstr "Перезаписать"
 
 #: src/ui/strings.vala:59
 msgid ""
@@ -282,122 +313,141 @@ msgid ""
 " • Reload the file (discarding any changes you have made in Folio)\n"
 " • Overwrite the file (discarding any changes made outside of Folio)"
 msgstr ""
+"Файл был изменён на диске другим приложением.\n"
+"\n"
+"Вы можете выполнить следующее:\n"
+"\n"
+" • Повторно загрузить файл (отменив все изменения, сделанные в Folio)\n"
+" • Перезаписать файл (отменив все изменения, сделанные вне Folio)"
 
 #: src/ui/strings.vala:61
 msgid "Note %i"
-msgstr ""
+msgstr "Заметка %i"
 
 #: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:257
 msgid "Trash Storage Location"
-msgstr ""
+msgstr "Место хранения корзины"
 
 #: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:258
 msgid "Where the trash folder is located (requires app restart)"
-msgstr ""
+msgstr "Место расположения папки «Корзина» (требуется перезапуск приложения)"
 
 #: src/ui/strings.vala:46
 msgid "Pick where the trash can will be stored"
-msgstr ""
+msgstr "Выберите место, где будет храниться корзина"
 
 #: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:172
 msgid "Use Fixed Width For Notes"
-msgstr ""
+msgstr "Использовать фиксированную ширину для заметок"
 
 #: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:173
 msgid "Use a fixed width for the text area of a note"
-msgstr ""
+msgstr "Использовать фиксированную ширину для текстовой области заметки"
 
 #: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:140
 msgid "Expands the notebook list to include the notebook name"
-msgstr ""
+msgstr "Расширяет список блокнотов, чтобы включить имя блокнота"
 
 #: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:87
 msgid "Show line numbers"
-msgstr ""
+msgstr "Показывать номера строк"
 
 #: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:88
 msgid "Displays line numbers at the left of the note"
-msgstr ""
+msgstr "Отображает номера строк слева от заметки"
 
 #: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:98
 msgid "Show all notes"
-msgstr ""
+msgstr "Показывать все заметки"
 
 #: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:99
 msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
-msgstr ""
+msgstr "Отображает блокнот «Все заметки» в верхней части списка блокнотов"
 
 #: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:207
 msgid "Enable autosave"
-msgstr ""
+msgstr "Включить автосохранение"
 
 #: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:208
-msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
+msgid ""
+"Automatically saves the current note every 30 seconds if the contents have"
+" changed (requires app restart)"
 msgstr ""
+"Автоматически сохраняет текущую заметку каждые 30 секунд, если её содержимое"
+" было изменено (требуется перезапуск приложения)"
 
 #: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:218
 msgid "Don't hide the Trash folder"
-msgstr ""
+msgstr "Не скрывать папку «Корзина»"
 
 #: data/app.gschema.xml:67
-msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
+msgid ""
+"The trash folder is set as a hidden folder by default, this option makes it"
+" visible"
 msgstr ""
+"По умолчанию папка «Корзина» не показывается, этот параметр делает её видимой"
 
 #: data/app.metainfo.xml.in:441
 msgid "Main Folio window in light mode"
-msgstr ""
+msgstr "Главное окно Folio в светлом режиме"
 
 #: data/app.metainfo.xml.in:445
 msgid "Main Folio window in dark mode"
-msgstr ""
+msgstr "Главное окно Folio в тёмном режиме"
 
 #: data/app.metainfo.xml.in:449
 msgid "Folio on small/mobile screens"
-msgstr ""
+msgstr "Folio на маленьких экранах/экранах мобильного тел."
 
 #: data/app.metainfo.xml.in:453
 msgid "Folio preferences screen"
-msgstr ""
+msgstr "Экран параметров Folio"
 
 #: data/app.metainfo.xml.in:457
 msgid "Folio in three pane mode"
-msgstr ""
+msgstr "Folio в трёхпанельном режиме"
 
 #: src/ui/preferences/preferences.blp:81
 msgid "Tools"
-msgstr ""
+msgstr "Инструменты"
 
 #: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:110
 msgid "Displays the formatting toolbar at the bottom of the note"
-msgstr ""
+msgstr "Отображает панель инструментов форматирования в нижней части заметки"
 
 #: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:121
-msgid "Adds a button to the markdown reference sheet on the right of the formatting toolbar"
-msgstr ""
+msgid ""
+"Adds a button to the markdown reference sheet on the right of the formatting"
+" toolbar"
+msgstr "Добавляет кнопку шпаргалки Markdown в правой части панели инструментов"
 
 #: src/ui/preferences/preferences.blp:133
 msgid "Layout"
-msgstr ""
+msgstr "Внешний вид"
 
 #: src/ui/preferences/preferences.blp:183
 msgid "Fixed Width To Use For Notes"
-msgstr ""
+msgstr "Фиксированная ширина, используемая для заметок"
 
 #: src/ui/preferences/preferences.blp:184
 msgid "Sets the fixed width size of a note in px"
-msgstr ""
+msgstr "Устанавливает фиксированную ширину заметки в пкс"
 
 #: src/ui/preferences/preferences.blp:201
 msgid "Files"
-msgstr ""
+msgstr "Файлы"
 
 #: src/ui/preferences/preferences.blp:219
-msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
+msgid ""
+"The trash folder is set as a hidden folder by default, this option makes it"
+" visible (requires app restart)"
 msgstr ""
+"По умолчанию папка «Корзина» не показывается, этот параметр делает её видимой"
+" (требуется перезапуск приложения)"
 
 #: src/ui/strings.vala:51
 msgid "Unable to recognize URI"
-msgstr ""
+msgstr "Не удалось распознать URI"
 
 #: data/app.desktop.in:9 src/ui/strings.vala:3
 msgid "Folio"
@@ -441,7 +491,7 @@ msgstr "Шрифт заметок"
 
 #: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:46
 msgid "The font notes will be displayed in"
-msgstr "Шрифт, которым будут отображатся заметки"
+msgstr "Шрифт, которым будут отображаться заметки"
 
 #: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:58
 msgid "Monospace Font"
@@ -449,7 +499,7 @@ msgstr "Шрифт кода"
 
 #: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:59
 msgid "The font code will be displayed in"
-msgstr "Шрифт, которым будет отображатся код"
+msgstr "Шрифт, которым будет отображаться код"
 
 #: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:18
 msgid "OLED Mode"
@@ -457,7 +507,7 @@ msgstr "Режим OLED"
 
 #: data/app.metainfo.xml.in:7
 msgid "Create notebooks and take notes in markdown"
-msgstr ""
+msgstr "Создавайте блокноты и делайте заметки в формате Markdown"
 
 #: data/app.metainfo.xml.in:10
 msgid "Almost WYSIWYG markdown rendering"
@@ -469,11 +519,11 @@ msgstr "Доступен для поиска через поиск GNOME"
 
 #: data/app.metainfo.xml.in:12
 msgid "Highlight and strikethrough text formatting"
-msgstr ""
+msgstr "Форматирование текста с помощью выделения и зачёркивания"
 
 #: data/app.metainfo.xml.in:13
 msgid "App themeing based on notebook color"
-msgstr ""
+msgstr "Оформление темы приложения в зависимости от цвета блокнота"
 
 #: data/app.metainfo.xml.in:14
 msgid "Trash can"
@@ -536,7 +586,7 @@ msgstr "Курсив"
 #: src/ui/edit_view/toolbar/toolbar.blp:156
 #: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:82
 msgid "Strikethrough"
-msgstr "Зачеркнутый"
+msgstr "Зачёркнутый"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:59
 #: src/ui/edit_view/toolbar/toolbar.blp:163
@@ -602,7 +652,7 @@ msgstr "Общее"
 
 #: src/ui/popup/shortcut_window.blp:52
 msgid "Show Keyboard Shortcuts"
-msgstr "Показать Комбинации клавиш"
+msgstr "Показать комбинации клавиш"
 
 #: src/ui/popup/shortcut_window.blp:57
 msgid "Quit"
@@ -618,7 +668,7 @@ msgstr "Навигация"
 
 #: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:273
 msgid "Toggle Sidebar"
-msgstr "Переключить боковую панель"
+msgstr "Показать или скрыть боковую панель"
 
 #: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:73
 msgid "Search Notes"
@@ -634,7 +684,7 @@ msgstr "Включить панель инструментов"
 
 #: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:120
 msgid "Enable Cheatsheet"
-msgstr ""
+msgstr "Включить шпаргалку"
 
 #: data/app.gschema.xml:36
 msgid "3-Pane Layout"
@@ -646,7 +696,7 @@ msgstr "Место хранения заметок"
 
 #: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:230
 msgid "Where the notebooks are stored (requires app restart)"
-msgstr "То, где хранятся блокноты (требует перезапуск приложения)"
+msgstr "Место, где хранятся блокноты (требует перезапуск приложения)"
 
 #: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:129
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:171
@@ -663,7 +713,7 @@ msgstr "Вы уверены что хотите удалить всё из ко�
 
 #: src/ui/strings.vala:7 src/ui/window/window.blp:64
 msgid "Empty Trash"
-msgstr "Очистить Корзину"
+msgstr "Очистить корзину"
 
 #: src/ui/strings.vala:9
 msgid "Create/choose a notebook before creating a note"
@@ -671,11 +721,11 @@ msgstr "Создайте/выберите блокнот прежде чем д�
 
 #: src/ui/strings.vala:10
 msgid "Please, select a note to edit"
-msgstr "Пожалуйста, выберите заметку для редактирования"
+msgstr "Выберите заметку для редактирования"
 
 #: src/ui/strings.vala:11
 msgid "Please, select a note to delete"
-msgstr "Пожалуйста, выберите заметку для удаления"
+msgstr "Выберите заметку для удаления"
 
 #: src/ui/strings.vala:12
 msgid "Export Note"
@@ -699,11 +749,11 @@ msgstr "Переместить"
 
 #: src/ui/strings.vala:18
 msgid "Note “%s” already exists in notebook “%s”"
-msgstr "Заметка “%s” уже существует в блокноте “%s”"
+msgstr "Заметка «%s» уже существует в блокноте «%s»"
 
 #: src/ui/strings.vala:19
 msgid "Are you sure you want to delete the note “%s”?"
-msgstr "Вы уверены что хотите удалить заметку “%s”?"
+msgstr "Вы уверены что хотите удалить заметку «%s»?"
 
 #: src/ui/strings.vala:20
 msgid "Delete Note"
@@ -711,7 +761,7 @@ msgstr "Удалить заметку"
 
 #: src/ui/strings.vala:21
 msgid "Are you sure you want to delete the notebook “%s”?"
-msgstr "Вы уверены что хотите удалить блокнот “%s”?"
+msgstr "Вы уверены что хотите удалить блокнот «%s»?"
 
 #: src/ui/strings.vala:22
 msgid "Delete Notebook"
@@ -719,27 +769,27 @@ msgstr "Удалить блокнот"
 
 #: src/ui/strings.vala:26
 msgid "Note “%s” already exists"
-msgstr "Заметка “%s” уже существует"
+msgstr "Заметка «%s» уже существует"
 
 #: src/ui/strings.vala:27
 msgid "Could not create note"
-msgstr ""
+msgstr "Не удалось создать заметку"
 
 #: src/ui/strings.vala:28
 msgid "Could not change note"
-msgstr ""
+msgstr "Не удалось изменить заметку"
 
 #: src/ui/strings.vala:29
 msgid "Could not delete note"
-msgstr ""
+msgstr "Не удалось удалить заметку"
 
 #: src/ui/strings.vala:30
 msgid "Could not restore note"
-msgstr ""
+msgstr "Не удалось восстановить заметку"
 
 #: src/ui/strings.vala:31
 msgid "Saved “%s” to “%s”"
-msgstr "Сохранено “%s” в “%s”"
+msgstr "Сохранено «%s» в «%s»"
 
 #: src/ui/strings.vala:32
 msgid "Unknown error"
@@ -747,19 +797,19 @@ msgstr "Неизвестная ошибка"
 
 #: src/ui/strings.vala:35
 msgid "Notebook “%s” already exists"
-msgstr "Блокнот “%s” уже существует"
+msgstr "Блокнот «%s» уже существует"
 
 #: src/ui/strings.vala:36
 msgid "Could not create notebook"
-msgstr ""
+msgstr "Не удалось создать блокнот"
 
 #: src/ui/strings.vala:37
 msgid "Could not change notebook"
-msgstr ""
+msgstr "Не удалось изменить блокнот"
 
 #: src/ui/strings.vala:38
 msgid "Could not delete notebook"
-msgstr ""
+msgstr "Не удалось удалить блокнот"
 
 #: src/ui/strings.vala:40
 msgid "Search"
@@ -771,7 +821,7 @@ msgstr "Переименовать"
 
 #: src/ui/strings.vala:42
 msgid "Could not find an app to handle file URIs"
-msgstr ""
+msgstr "Не удалось найти приложение для обработки URI файлов"
 
 #: src/ui/strings.vala:43
 msgid "Apply"
@@ -779,7 +829,7 @@ msgstr "Применить"
 
 #: src/ui/strings.vala:45
 msgid "Pick where the notebooks will be stored"
-msgstr "Выберите где будут хранится блокноты"
+msgstr "Выберите, где будут храниться блокноты"
 
 #: src/ui/strings.vala:47 src/ui/window/notebooks_bar/notebooks_bar.blp:59
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:101
@@ -788,15 +838,15 @@ msgstr "Все заметки"
 
 #: src/ui/strings.vala:49
 msgid "Last Modified"
-msgstr ""
+msgstr "Последнее изменение"
 
 #: src/ui/strings.vala:50
 msgid "Extension"
-msgstr ""
+msgstr "Расширение"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
 msgid "Follow system style"
-msgstr "Следовать системному стилю"
+msgstr "Придерживаться системного стиля"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:23
 msgid "Light style"
@@ -804,7 +854,7 @@ msgstr "Светлый стиль"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:32
 msgid "Dark style"
-msgstr "Темный стиль"
+msgstr "Тёмный стиль"
 
 #: src/ui/window/app_menu/app_menu.blp:26
 msgid "_New Notebook"
@@ -828,7 +878,7 @@ msgstr "Имя блокнота"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:70
 msgid "Duplicate notebook names are not allowed!"
-msgstr ""
+msgstr "Дублирование имён блокнотов не допускается."
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:6
 msgid "First Characters"
@@ -868,7 +918,7 @@ msgstr "Переместить всё в корзину"
 
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:113
 msgid "Notebooks"
-msgstr ""
+msgstr "Блокноты"
 
 #: src/ui/window/sidebar/note_create_popup.blp:25
 msgid "Note Name"
@@ -921,3 +971,4 @@ msgstr "_Переименовать заметку"
 #: src/ui/window/window.blp:325
 msgid "_Export Note"
 msgstr "_Экспортировать заметку"
+
