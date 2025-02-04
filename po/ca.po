@@ -8,7 +8,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: GlotPress/4.0.1\n"
-"Language: cat\n"
+"Language: ca\n"
 "Project-Id-Version: Folio\n"
 
 #: data/app.metainfo.xml.in:5
