@@ -659,9 +659,11 @@ public class Folio.Window : Adw.ApplicationWindow {
 			return false;
 		}
 		try {
-			// Check to see if the note we're renaming is the current note displayed, if so, update
-			// The note title and note display, otherwise just update the note on disk.
+			// Check to see if the note we're renaming is the current note displayed, if so, save
+			// the current note before rename, then update the note title and note display,
+			// otherwise just update the note on disk.
 			if (window_model.note == note) {
+				save_current_note();
 				window_model.change_note (note, name, extension, true);
 				note_title.label = (note.is_markdown) ? note.name : note.file_name;
 			} else {
