@@ -76,7 +76,7 @@ public class Folio.Note : Object {
 		if (text_data.length > 0) {
 			return (string)text_data;
 		}
-		return null;
+		return "";
 	}
 
 	public bool validate_save () {
