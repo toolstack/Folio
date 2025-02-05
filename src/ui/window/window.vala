@@ -802,8 +802,10 @@ public class Folio.Window : Adw.ApplicationWindow {
 		try {
 			window_model.delete_notebook (notebook);
 		} catch (ProviderError e) {
-			if (e is ProviderError.COULDNT_DELETE)
+			if (e is ProviderError.COULDNT_DELETE) {
 				toast (Strings.COULDNT_DELETE_NOTEBOOK);
+				message (e.message);
+			}
 			else
 				toast (Strings.UNKNOWN_ERROR);
 		}
