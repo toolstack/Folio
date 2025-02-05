@@ -205,15 +205,12 @@ Sunniva Løvstad
 		about.set_release_notes ("""
         <p>Changes:</p>
         <ul>
-			<li>Added tooltips to more controls.</li>
-			<li>Fixed memory leaks in preferences page, thanks @GeopJr</li>
-			<li>Fixed more memory leaks throughout the codebase.</li>
-			<li>Fixed padding in new/edit notebook dialog.</li>
-			<li>Fixed inserting empty link tags properly.</li>
-			<li>Fixed title level selector in the toolbar.</li>
-			<li>Fixed saving notes overwriting symlinks.</li>
-			<li>Translation updates</li>
-			<li>Other minor fixes</li>
+          <li>Fixed renaming a note causing data loss for unsaved notes.</li>
+          <li>Fixed new notes contain garbage instead of being blank.</li>
+          <li>Fixed Catalan country code for translations.</li>
+          <li>Fixed sidebar opening when saving a note with it closed.</li>
+          <li>Translation updates</li>
+          <li>Other minor fixes</li>
         </ul>
 """
 		);

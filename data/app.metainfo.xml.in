@@ -24,6 +24,19 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
+    <release type="stable" version="25.01" date="2025-02-04">
+      <description translate="no">
+        <p>Changes:</p>
+        <ul>
+          <li>Fixed renaming a note causing data loss for unsaved notes.</li>
+          <li>Fixed new notes contain garbage instead of being blank.</li>
+          <li>Fixed Catalan country code for translations.</li>
+          <li>Fixed sidebar opening when saving a note with it closed.</li>
+          <li>Translation updates</li>
+          <li>Other minor fixes</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="24.14" date="2024-12-01">
       <description translate="no">
         <p>Changes:</p>
