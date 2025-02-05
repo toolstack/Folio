@@ -58,7 +58,7 @@ but that can be changed in preferences
 ## Translations
 Folio has been translated into several different languages by users.  Previously this was done by submitting pull requests to add the various language files.
 
-Folio now has an online [localization portal](https://localize.toolstack.com/glotpress), if you would like to participate in translating Folio, send an [e-mail](mailto://greg@toolstack.com) and request access for the language you would like to translate.
+Folio now has an online [localization portal](https://localize.toolstack.com/projects/folio/), if you would like to participate in translating Folio, send an [e-mail](mailto://greg@toolstack.com) and request access for the language you would like to translate.
 
 ## Build Instructions
 Flatpak build requires flatpak-building installed.
