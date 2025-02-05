@@ -399,7 +399,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 	public void update_note_sort_order () {
 		var settings = new Settings (Config.APP_ID);
 		var notebook = window_model.notebook;
-		if (notebook != null) {
+		if (notebook != null && !is_sidebar_hidden ()) {
 			notebook.sort_notes (settings.get_int ("note-sort-order"));
 			notebook_notes_list.model = null;
 			notebook_notes_list.model = window_model.notes_model;
@@ -450,16 +450,19 @@ public class Folio.Window : Adw.ApplicationWindow {
 		edit_view.is_editable = window_model.note != null && window_model.state == WindowModel.State.NOTEBOOK;
 	}
 
+	private bool is_sidebar_hidden() {
+		return leaflet.collapsed || !sidebar_revealer.reveal_child;
+
+	}
+
 	private void update_title_buttons () {
-		var is_sidebar_hidden = leaflet.collapsed || !sidebar_revealer.reveal_child;
-		headerbar_edit_view.show_start_title_buttons = is_sidebar_hidden;
+		headerbar_edit_view.show_start_title_buttons = is_sidebar_hidden ();
 		update_note_title ();
 	}
 
 	private void update_note_title () {
-		var is_sidebar_hidden = leaflet.collapsed || !sidebar_revealer.reveal_child;
 		var note = window_model.note;
-		var show = is_sidebar_hidden && note != null;
+		var show = is_sidebar_hidden () && note != null;
 		note_subtitle.label = show ? note.notebook.name : null;
 		note_subtitle.visible = show;
 	}
