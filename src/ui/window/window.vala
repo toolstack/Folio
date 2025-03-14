@@ -204,6 +204,7 @@ public class Folio.Window : Adw.ApplicationWindow {
 	}
 
 	private bool on_close_request () {
+		save_current_note ();
 		window_state.set_int ("width", default_width);
 		window_state.set_int ("height", default_height);
 		window_state.set_boolean ("maximized", maximized);
