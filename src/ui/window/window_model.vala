@@ -476,6 +476,7 @@ public class Folio.WindowModel : Object {
 	public void update_notebooks () {
 		var model = new Gtk.SingleSelection (notebook_provider);
 		model.can_unselect = true;
+		model.autoselect = false;
 		model.selection_changed.connect (on_notebook_model_selection_changed);
 		notebooks_model = model;
 		update_selected_notebook ();
