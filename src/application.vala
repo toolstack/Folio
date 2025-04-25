@@ -205,12 +205,12 @@ Sunniva Løvstad
 		about.set_release_notes ("""
         <p>Changes:</p>
         <ul>
-          <li>Fixed renaming a note causing data loss for unsaved notes.</li>
-          <li>Fixed new notes contain garbage instead of being blank.</li>
-          <li>Fixed Catalan country code for translations.</li>
-          <li>Fixed sidebar opening when saving a note with it closed.</li>
-          <li>Translation updates</li>
-          <li>Other minor fixes</li>
+          <li>Fixed more renaming a note causing data loss.</li>
+          <li>Fixed not saving note on exit.</li>
+          <li>Fixed Gtk.init() called early for Gnome 48 compatibility.</li>
+          <li>Fixed zoom buttons in overflow menu.</li>
+          <li>Fixed being unable to select last note after going to the trash.</li>
+          <li>Moved to Gnome 48.</li>
         </ul>
 """
 		);

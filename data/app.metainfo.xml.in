@@ -24,6 +24,19 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
+    <release type="stable" version="25.02" date="TBD">
+      <description translate="no">
+        <p>Changes:</p>
+        <ul>
+          <li>Fixed more renaming a note causing data loss.</li>
+          <li>Fixed not saving note on exit.</li>
+          <li>Fixed Gtk.init() called early for Gnome 48 compatibility.</li>
+          <li>Fixed zoom buttons in overflow menu.</li>
+          <li>Fixed being unable to select last note after going to the trash.</li>
+          <li>Moved to Gnome 48.</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="25.01" date="2025-02-04">
       <description translate="no">
         <p>Changes:</p>
