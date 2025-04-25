@@ -119,8 +119,10 @@ public class Folio.Note : Object {
 	public void save (string text) {
 		// Lets make sure the file hasn't changed on disk before saving it.
 		var file_handle = File.new_for_path (path);
+
 		// Save the file.
 		FileUtils.save_to (file_handle, text);
+
 		// Now get the updated file time and store it in the note.
 		update_note_time ();
 	}

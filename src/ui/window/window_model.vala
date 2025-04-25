@@ -226,6 +226,7 @@ public class Folio.WindowModel : Object {
 				new Gtk.SortListModel (container, search_sorter)
 			);
 			model.can_unselect = true;
+			model.autoselect = false;
 			model.selection_changed.connect (on_model_selection_changed);
 			notes_model = model;
 		} else {
