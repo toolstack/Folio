@@ -673,6 +673,13 @@ public class Folio.Window : Adw.ApplicationWindow {
 			} else {
 				window_model.change_note (note, name, extension, false);
 			}
+
+			// Since the note has changed, let's reselect it so we get the right buffer.
+			uint current_selected;
+			current_selected = window_model.notes_model.selected;
+			window_model.select_note_at (-1);
+			window_model.select_note_at (current_selected);
+
 			return true;
 		} catch (ProviderError e) {
 			if (e is ProviderError.ALREADY_EXISTS)
