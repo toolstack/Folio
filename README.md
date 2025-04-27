@@ -86,7 +86,7 @@ Flatpak build requires flatpak-building installed.
  - to launch the snap, run `folio`
 
 ### AppImage builds
- - Install linuxdeploy if not already installed
+ - Install [linuxdeploy](https://github.com/linuxdeploy/linuxdeploy) if not already installed
  - change into the AppImage directory in the main Folio directory
  - run AppImage script `./folio.build.appimage.sh`
  - to launch the AppImage, run `./Folio-x86_64.AppImage`
