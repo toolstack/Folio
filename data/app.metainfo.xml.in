@@ -24,7 +24,7 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
-    <release type="stable" version="25.02" date="TBD">
+    <release type="stable" version="25.02" date="2025-04-27">
       <description translate="no">
         <p>Changes:</p>
         <ul>
