@@ -1,0 +1,981 @@
+# Copyright (C) 2024 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.toolstack.Folio package.
+# AnmiTaliDev <anmitali198@gmail.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: com.toolstack.Folio\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-11-28 13:21-0500\n"
+"PO-Revision-Date: 2025-06-17 12:00+0600\n"
+"Last-Translator: AnmiTaliDev <anmitali198@gmail.com>\n"
+"Language-Team: kk\n"
+"Language: kk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Manual Translation\n"
+
+#: data/app.desktop.in:9 src/ui/strings.vala:3
+msgid "Folio"
+msgstr "Folio"
+
+#: data/app.desktop.in:10
+msgid "Notes Manager"
+msgstr "Жазбалар менеджері"
+
+#: data/app.desktop.in:11
+msgid "Take notes"
+msgstr "Жазба жасау"
+
+#: data/app.desktop.in:13
+msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
+msgstr "Дәптер;Жазба;Жазбалар;Мәтін;Markdown;Блокнот;Жазу;Мектеп;Жапсырма;"
+
+#: data/app.desktop.in:22 src/ui/popup/shortcut_window.blp:17
+#: src/ui/strings.vala:8 src/ui/window/window.blp:57
+#: src/ui/window/window.blp:136
+msgid "New Note"
+msgstr "Жаңа жазба"
+
+#: data/app.desktop.in:26 src/ui/popup/shortcut_window.blp:37
+#: src/ui/strings.vala:14 src/ui/window/window.blp:194
+msgid "New Notebook"
+msgstr "Жаңа дәптер"
+
+#: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:92
+#: src/ui/strings.vala:39 src/ui/window/window.blp:297
+msgid "Markdown Cheatsheet"
+msgstr "Markdown анықтамасы"
+
+#: data/app.desktop.in:34 src/ui/popup/shortcut_window.blp:62
+msgid "Preferences"
+msgstr "Баптаулар"
+
+#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:45
+msgid "Note Font"
+msgstr "Жазба қарібі"
+
+#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:46
+msgid "The font notes will be displayed in"
+msgstr "Жазбалар көрсетілетін қаріп"
+
+#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:58
+msgid "Monospace Font"
+msgstr "Бірдей ені бар қаріп"
+
+#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:59
+msgid "The font code will be displayed in"
+msgstr "Код көрсетілетін қаріп"
+
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:172
+msgid "Use Fixed Width For Notes"
+msgstr "Жазбалар үшін тұрақты ені қолдану"
+
+#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:173
+msgid "Use a fixed width for the text area of a note"
+msgstr "Жазба мәтіні аймағы үшін тұрақты ені қолдану"
+
+#: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:18
+msgid "OLED Mode"
+msgstr "OLED режимі"
+
+#: data/app.gschema.xml:22 src/ui/preferences/preferences.blp:19
+msgid "Makes the dark theme pitch black"
+msgstr "Қараңғы тақырыпты толығымен қара етеді"
+
+#: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:109
+msgid "Enable Toolbar"
+msgstr "Құралдар тақтасын қосу"
+
+#: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:110
+msgid "Displays the formatting toolbar at the bottom of the note"
+msgstr "Жазба түбінде пішімдеу құралдар тақтасын көрсетеді"
+
+#: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:120
+msgid "Enable Cheatsheet"
+msgstr "Анықтаманы қосу"
+
+#: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:121
+msgid ""
+"Adds a button to the markdown reference sheet on the right of the formatting "
+"toolbar"
+msgstr "Пішімдеу құралдар тақтасының оң жағына markdown анықтамасына өту батырмасын қосады"
+
+#: data/app.gschema.xml:36
+msgid "3-Pane Layout"
+msgstr "3 панельді орналасу"
+
+#: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:140
+msgid "Expands the notebook list to include the notebook name"
+msgstr "Дәптер тізімін дәптер атауын қосу үшін кеңейтеді"
+
+#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:229
+msgid "Notes Storage Location"
+msgstr "Жазбалар сақтау орны"
+
+#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:230
+msgid "Where the notebooks are stored (requires app restart)"
+msgstr "Дәптерлер сақталатын орын (қолданбаны қайта іске қосуды талап етеді)"
+
+#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:257
+msgid "Trash Storage Location"
+msgstr "Қоқыс шелегі сақтау орны"
+
+#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:258
+msgid "Where the trash folder is located (requires app restart)"
+msgstr "Қоқыс шелегі қалтасының орналасқан жері (қолданбаны қайта іске қосуды талап етеді)"
+
+#: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:87
+msgid "Show line numbers"
+msgstr "Жол нөмірлерін көрсету"
+
+#: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:88
+msgid "Displays line numbers at the left of the note"
+msgstr "Жазбаның сол жағында жол нөмірлерін көрсетеді"
+
+#: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:98
+msgid "Show all notes"
+msgstr "Барлық жазбаларды көрсету"
+
+#: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:99
+msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
+msgstr "Дәптерлер тізімінің үстінде \"Барлық жазбалар\" дәптерін көрсетеді"
+
+#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:207
+msgid "Enable autosave"
+msgstr "Автосақтауды қосу"
+
+#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:208
+msgid ""
+"Automatically saves the current note every 30 seconds if the contents have "
+"changed (requires app restart)"
+msgstr "Мазмұны өзгерген жағдайда ағымдағы жазбаны әр 30 секунд сайын автоматты сақтайды (қолданбаны қайта іске қосуды талап етеді)"
+
+#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:218
+msgid "Don't hide the Trash folder"
+msgstr "Қоқыс шелегі қалтасын жасырмау"
+
+#: data/app.gschema.xml:67
+msgid ""
+"The trash folder is set as a hidden folder by default, this option makes it "
+"visible"
+msgstr "Қоқыс шелегі қалтасы әдепкі бойынша жасырын етіп орнатылған, бұл опция оны көрінетін етеді"
+
+#: data/app.gschema.xml:71
+msgid "Note sort order"
+msgstr "Жазбаларды сұрыптау тәртібі"
+
+#: data/app.gschema.xml:72
+msgid "The sort order of the note list"
+msgstr "Жазбалар тізімінің сұрыптау тәртібі"
+
+#: data/app.gschema.xml:76
+msgid "Notebook sort order"
+msgstr "Дәптерлерді сұрыптау тәртібі"
+
+#: data/app.gschema.xml:77
+msgid "The sort order of the notebook list"
+msgstr "Дәптерлер тізімінің сұрыптау тәртібі"
+
+#: data/app.gschema.xml:81
+msgid "URL detection level"
+msgstr "URL анықтау деңгейі"
+
+#: data/app.gschema.xml:82
+msgid "How aggressive to look for URLs in markdown text"
+msgstr "Markdown мәтінінде URL-дерді қаншалықты белсенді іздеу"
+
+#: data/app.gschema.xml:86
+msgid "Line spacing"
+msgstr "Жолдар арасындағы аралық"
+
+#: data/app.gschema.xml:87 src/ui/preferences/preferences.blp:74
+msgid "The line spacing for the note text"
+msgstr "Жазба мәтініндегі жолдар арасындағы аралық"
+
+#: data/app.gschema.xml:91
+msgid "Allow long notebook names"
+msgstr "Ұзын дәптер атауларына рұқсат беру"
+
+#: data/app.gschema.xml:92
+msgid ""
+"The notebook column will expand to the width of the longest notebook name"
+msgstr "Дәптер бағаны ең ұзын дәптер атауының еніне дейін кеңейеді"
+
+#: data/app.gschema.xml:96
+msgid "Allow long note names"
+msgstr "Ұзын жазба атауларына рұқсат беру"
+
+#: data/app.gschema.xml:97
+msgid "The note list column will expand to the width of the longest note name"
+msgstr "Жазбалар тізімі бағаны ең ұзын жазба атауының еніне дейін кеңейеді"
+
+#: data/app.metainfo.xml.in:5
+msgid "Beautiful markdown note-taking app"
+msgstr "Әдемі markdown жазба жасау қолданбасы"
+
+#: data/app.metainfo.xml.in:7
+msgid "Create notebooks and take notes in markdown"
+msgstr "Дәптерлер жасаңыз және markdown форматында жазбалар жазыңыз"
+
+#: data/app.metainfo.xml.in:8
+msgid "Some features include:"
+msgstr "Кейбір мүмкіндіктер:"
+
+#: data/app.metainfo.xml.in:10
+msgid "Almost WYSIWYG markdown rendering"
+msgstr "WYSIWYG-ға жуық markdown көрсету"
+
+#: data/app.metainfo.xml.in:11
+msgid "Searchable through GNOME search"
+msgstr "GNOME іздеу арқылы іздеуге болады"
+
+#: data/app.metainfo.xml.in:12
+msgid "Highlight and strikethrough text formatting"
+msgstr "Мәтінді бөлектеу және сызып тастау пішімдеуі"
+
+#: data/app.metainfo.xml.in:13
+msgid "App themeing based on notebook color"
+msgstr "Дәптер түсіне негізделген қолданба тақырыбы"
+
+#: data/app.metainfo.xml.in:14
+msgid "Trash can"
+msgstr "Қоқыс шелегі"
+
+#: data/app.metainfo.xml.in:15
+msgid "Markdown document"
+msgstr "Markdown құжаты"
+
+#: data/app.metainfo.xml.in:16
+msgid "Optional line numbers"
+msgstr "Міндетті емес жол нөмірлері"
+
+#: data/app.metainfo.xml.in:17
+msgid "Optional auto save"
+msgstr "Міндетті емес автосақтау"
+
+#: data/app.metainfo.xml.in:18
+msgid "Open links with Control-Click"
+msgstr "Сілтемелерді Ctrl+Click арқылы ашу"
+
+#: data/app.metainfo.xml.in:19
+msgid "Link to other notes in Folio"
+msgstr "Folio-дағы басқа жазбаларға сілтеме"
+
+#: data/app.metainfo.xml.in:20
+msgid "Automatically create links for bare URL's and e-mail addresses"
+msgstr "Жай URL мен электрондық пошта мекенжайларына автоматты сілтемелер жасау"
+
+#: data/app.metainfo.xml.in:441
+msgid "Main Folio window in light mode"
+msgstr "Ашық режимдегі негізгі Folio терезесі"
+
+#: data/app.metainfo.xml.in:445
+msgid "Main Folio window in dark mode"
+msgstr "Қараңғы режимдегі негізгі Folio терезесі"
+
+#: data/app.metainfo.xml.in:449
+msgid "Folio on small/mobile screens"
+msgstr "Кіші/мобильді экрандардағы Folio"
+
+#: data/app.metainfo.xml.in:453
+msgid "Folio preferences screen"
+msgstr "Folio баптаулар экраны"
+
+#: data/app.metainfo.xml.in:457
+msgid "Folio in three pane mode"
+msgstr "Үш панельді режимдегі Folio"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:6
+#: src/ui/widgets/markdown/heading_popover.blp:48
+msgid "Plain Text"
+msgstr "Қарапайым мәтін"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:7
+#: src/ui/widgets/markdown/heading_popover.blp:12
+msgid "Heading 1"
+msgstr "Тақырып 1"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:8
+#: src/ui/widgets/markdown/heading_popover.blp:18
+msgid "Heading 2"
+msgstr "Тақырып 2"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:9
+#: src/ui/widgets/markdown/heading_popover.blp:24
+msgid "Heading 3"
+msgstr "Тақырып 3"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:10
+#: src/ui/widgets/markdown/heading_popover.blp:30
+msgid "Heading 4"
+msgstr "Тақырып 4"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:11
+#: src/ui/widgets/markdown/heading_popover.blp:36
+msgid "Heading 5"
+msgstr "Тақырып 5"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:12
+#: src/ui/widgets/markdown/heading_popover.blp:42
+msgid "Heading 6"
+msgstr "Тақырып 6"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:41
+#: src/ui/edit_view/toolbar/toolbar.blp:107
+#: src/ui/edit_view/toolbar/toolbar.blp:142
+#: src/ui/edit_view/toolbar/toolbar.blp:195 src/ui/popup/shortcut_window.blp:72
+msgid "Bold"
+msgstr "Жуан"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:47
+#: src/ui/edit_view/toolbar/toolbar.blp:114
+#: src/ui/edit_view/toolbar/toolbar.blp:149
+#: src/ui/edit_view/toolbar/toolbar.blp:196 src/ui/popup/shortcut_window.blp:77
+msgid "Italic"
+msgstr "Көлбеу"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:53
+#: src/ui/edit_view/toolbar/toolbar.blp:156
+#: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:82
+msgid "Strikethrough"
+msgstr "Сызып тастау"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:59
+#: src/ui/edit_view/toolbar/toolbar.blp:163
+#: src/ui/edit_view/toolbar/toolbar.blp:198 src/ui/popup/shortcut_window.blp:87
+msgid "Highlight"
+msgstr "Бөлектеу"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:69
+#: src/ui/edit_view/toolbar/toolbar.blp:187 src/ui/popup/shortcut_window.blp:92
+msgid "Insert Link"
+msgstr "Сілтеме қою"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:75
+#: src/ui/edit_view/toolbar/toolbar.blp:188
+msgid "Insert Code"
+msgstr "Код қою"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:81
+#: src/ui/edit_view/toolbar/toolbar.blp:189
+msgid "Insert Horizontal Rule"
+msgstr "Горизонталь сызық қою"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:121
+msgid "Format"
+msgstr "Пішім"
+
+#: src/ui/edit_view/toolbar/toolbar.blp:175
+msgid "Insert"
+msgstr "Қою"
+
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:18
+#: src/ui/strings.vala:44 src/ui/strings.vala:58
+msgid "Cancel"
+msgstr "Болдырмау"
+
+#: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:23
+msgid "Confirm"
+msgstr "Растау"
+
+#: src/ui/popup/shortcut_window.blp:14 src/ui/strings.vala:60
+msgid "Note"
+msgstr "Жазба"
+
+#: src/ui/popup/shortcut_window.blp:22
+msgid "Edit Note"
+msgstr "Жазбаны өңдеу"
+
+#: src/ui/popup/shortcut_window.blp:27
+msgid "Save Note"
+msgstr "Жазбаны сақтау"
+
+#: src/ui/popup/shortcut_window.blp:34 src/ui/strings.vala:48
+msgid "Notebook"
+msgstr "Дәптер"
+
+#: src/ui/popup/shortcut_window.blp:42 src/ui/strings.vala:23
+msgid "Edit Notebook"
+msgstr "Дәптерді өңдеу"
+
+#: src/ui/popup/shortcut_window.blp:49 src/ui/preferences/preferences.blp:12
+msgid "General"
+msgstr "Жалпы"
+
+#: src/ui/popup/shortcut_window.blp:52
+msgid "Show Keyboard Shortcuts"
+msgstr "Пернетақта тіркесімдерін көрсету"
+
+#: src/ui/popup/shortcut_window.blp:57
+msgid "Quit"
+msgstr "Шығу"
+
+#: src/ui/popup/shortcut_window.blp:69
+msgid "Formatting"
+msgstr "Пішімдеу"
+
+#: src/ui/popup/shortcut_window.blp:99
+msgid "Navigation"
+msgstr "Навигация"
+
+#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:273
+msgid "Toggle Sidebar"
+msgstr "Бүйір тақтаны ауыстыру"
+
+#: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:73
+msgid "Search Notes"
+msgstr "Жазбаларды іздеу"
+
+#: src/ui/popup/shortcut_window.blp:114
+msgid "Display"
+msgstr "Көрсету"
+
+#: src/ui/popup/shortcut_window.blp:117
+msgid "Full Screen"
+msgstr "Толық экран"
+
+#: src/ui/popup/shortcut_window.blp:122
+msgid "Zoom In"
+msgstr "Үлкейту"
+
+#: src/ui/popup/shortcut_window.blp:127
+msgid "Zoom Out"
+msgstr "Кішірейту"
+
+#: src/ui/preferences/preferences.blp:31
+msgid "Markdown URL Detection"
+msgstr "Markdown URL анықтау"
+
+#: src/ui/preferences/preferences.blp:32
+msgid ""
+"Determines the level of detection of URLs in\n"
+"free form text is used:\n"
+" - Aggressive tries to find all URLs\n"
+" - Strict requires a protocol identifier (ie http://)\n"
+" - Disabled turns detection off."
+msgstr ""
+"Еркін түрдегі мәтіндегі URL-дерді анықтау \n"
+"деңгейін анықтайды:\n"
+" - Белсенді - барлық URL-дерді табуға тырысады\n"
+" - Қатаң - протокол идентификаторын талап етеді (мысалы http://)\n"
+" - Өшірілген - анықтауды өшіреді."
+
+#: src/ui/preferences/preferences.blp:39
+msgid "Fonts"
+msgstr "Қаріптер"
+
+#: src/ui/preferences/preferences.blp:73
+msgid "Line Spacing"
+msgstr "Жолдар арасындағы аралық"
+
+#: src/ui/preferences/preferences.blp:81
+msgid "Tools"
+msgstr "Құралдар"
+
+#: src/ui/preferences/preferences.blp:133
+msgid "Layout"
+msgstr "Орналасу"
+
+#: src/ui/preferences/preferences.blp:139
+msgid "Expanded Notebook List"
+msgstr "Кеңейтілген дәптерлер тізімі"
+
+#: src/ui/preferences/preferences.blp:150
+msgid "Allow Long Notebook Names"
+msgstr "Ұзын дәптер атауларына рұқсат беру"
+
+#: src/ui/preferences/preferences.blp:151
+msgid ""
+"The notebook column will expand to the width of the longest notebook name "
+"(requires notebook selection change to take effect)."
+msgstr ""
+"Дәптер бағаны ең ұзын дәптер атауының еніне дейін кеңейеді "
+"(күшіне ену үшін дәптер таңдауын өзгерту керек)."
+
+#: src/ui/preferences/preferences.blp:161
+msgid "Allow Long Note Names"
+msgstr "Ұзын жазба атауларына рұқсат беру"
+
+#: src/ui/preferences/preferences.blp:162
+msgid ""
+"The note list column will expand to the width of the longest note name "
+"(requires notebook selection change to take effect)."
+msgstr ""
+"Жазбалар тізімі бағаны ең ұзын жазба атауының еніне дейін кеңейеді "
+"(күшіне ену үшін дәптер таңдауын өзгерту керек)."
+
+#: src/ui/preferences/preferences.blp:183
+msgid "Fixed Width To Use For Notes"
+msgstr "Жазбалар үшін қолданылатын тұрақты ені"
+
+#: src/ui/preferences/preferences.blp:184
+msgid "Sets the fixed width size of a note in px"
+msgstr "Жазбаның тұрақты енінің мөлшерін пиксельмен орнатады"
+
+#: src/ui/preferences/preferences.blp:189
+msgid "Sort Order For Notebooks"
+msgstr "Дәптерлерді сұрыптау тәртібі"
+
+#: src/ui/preferences/preferences.blp:194
+msgid "Sort Order For Notes"
+msgstr "Жазбаларды сұрыптау тәртібі"
+
+#: src/ui/preferences/preferences.blp:201
+msgid "Files"
+msgstr "Файлдар"
+
+#: src/ui/preferences/preferences.blp:219
+msgid ""
+"The trash folder is set as a hidden folder by default, this option makes it "
+"visible (requires app restart)"
+msgstr ""
+"Қоқыс шелегі қалтасы әдепкі бойынша жасырын етіп орнатылған, бұл опция оны "
+"көрінетін етеді (қолданбаны қайта іске қосуды талап етеді)"
+
+#: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:129
+#: src/ui/window/notebooks_bar/notebooks_bar.blp:171
+msgid "Trash"
+msgstr "Қоқыс шелегі"
+
+#: src/ui/strings.vala:5
+#, c-format
+msgid "%d Notes"
+msgstr "%d жазба"
+
+#: src/ui/strings.vala:6
+msgid "Are you sure you want to delete everything in the trash?"
+msgstr "Қоқыс шелегіндегі барлық нәрсені жоюды қалайсыз ба?"
+
+#: src/ui/strings.vala:7 src/ui/window/window.blp:64
+msgid "Empty Trash"
+msgstr "Қоқыс шелегін босату"
+
+#: src/ui/strings.vala:9
+msgid "Create/choose a notebook before creating a note"
+msgstr "Жазба жасау алдында дәптер жасаңыз/таңдаңыз"
+
+#: src/ui/strings.vala:10
+msgid "Please, select a note to edit"
+msgstr "Өңдеу үшін жазбаны таңдаңыз"
+
+#: src/ui/strings.vala:11
+msgid "Please, select a note to delete"
+msgstr "Жою үшін жазбаны таңдаңыз"
+
+#: src/ui/strings.vala:12
+msgid "Export Note"
+msgstr "Жазбаны экспорттау"
+
+#: src/ui/strings.vala:13
+msgid "Export"
+msgstr "Экспорттау"
+
+#: src/ui/strings.vala:15
+msgid "Rename Note"
+msgstr "Жазбаны қайта атау"
+
+#: src/ui/strings.vala:16
+msgid "Move to Notebook"
+msgstr "Дәптерге жылжыту"
+
+#: src/ui/strings.vala:17
+msgid "Move"
+msgstr "Жылжыту"
+
+#: src/ui/strings.vala:18
+#, c-format
+msgid "Note "%s" already exists in notebook "%s""
+msgstr "\"%s\" жазбасы \"%s\" дәптерінде бұрыннан бар"
+
+#: src/ui/strings.vala:19
+#, c-format
+msgid "Are you sure you want to delete the note "%s"?"
+msgstr "\"%s\" жазбасын жоюды қалайсыз ба?"
+
+#: src/ui/strings.vala:20
+msgid "Delete Note"
+msgstr "Жазбаны жою"
+
+#: src/ui/strings.vala:21
+#, c-format
+msgid "Are you sure you want to delete the notebook "%s"?"
+msgstr "\"%s\" дәптерін жоюды қалайсыз ба?"
+
+#: src/ui/strings.vala:22
+msgid "Delete Notebook"
+msgstr "Дәптерді жою"
+
+#: src/ui/strings.vala:24
+msgid "Note names cannot contain a "/""
+msgstr "Жазба атауларында \"/\" болмауы керек"
+
+#: src/ui/strings.vala:25
+msgid "Note names cannot be blank"
+msgstr "Жазба атаулары бос болмауы керек"
+
+#: src/ui/strings.vala:26
+#, c-format
+msgid "Note "%s" already exists"
+msgstr "\"%s\" жазбасы бұрыннан бар"
+
+#: src/ui/strings.vala:27
+msgid "Could not create note"
+msgstr "Жазба жасау мүмкін болмады"
+
+#: src/ui/strings.vala:28
+msgid "Could not change note"
+msgstr "Жазбаны өзгерту мүмкін болмады"
+
+#: src/ui/strings.vala:29
+msgid "Could not delete note"
+msgstr "Жазбаны жою мүмкін болмады"
+
+#: src/ui/strings.vala:30
+msgid "Could not restore note"
+msgstr "Жазбаны қалпына келтіру мүмкін болмады"
+
+#: src/ui/strings.vala:31
+#, c-format
+msgid "Saved "%s" to "%s""
+msgstr "\"%s\" дегенді \"%s\" деп сақталды"
+
+#: src/ui/strings.vala:32
+msgid "Unknown error"
+msgstr "Белгісіз қате"
+
+#: src/ui/strings.vala:33
+msgid "Notebook names cannot contain a "/""
+msgstr "Дәптер атауларында \"/\" болмауы керек"
+
+#: src/ui/strings.vala:34
+msgid "Notebook names cannot be blank"
+msgstr "Дәптер атаулары бос болмауы керек"
+
+#: src/ui/strings.vala:35
+#, c-format
+msgid "Notebook "%s" already exists"
+msgstr "\"%s\" дәптері бұрыннан бар"
+
+#: src/ui/strings.vala:36
+msgid "Could not create notebook"
+msgstr "Дәптер жасау мүмкін болмады"
+
+#: src/ui/strings.vala:37
+msgid "Could not change notebook"
+msgstr "Дәптерді өзгерту мүмкін болмады"
+
+#: src/ui/strings.vala:38
+msgid "Could not delete notebook"
+msgstr "Дәптерді жою мүмкін болмады"
+
+#: src/ui/strings.vala:40
+msgid "Search"
+msgstr "Іздеу"
+
+#: src/ui/strings.vala:41 src/ui/window/sidebar/note_menu.blp:36
+msgid "Rename"
+msgstr "Қайта атау"
+
+#: src/ui/strings.vala:42
+msgid "Could not find an app to handle file URIs"
+msgstr "Файл URI-лерін өңдейтін қолданба табылмады"
+
+#: src/ui/strings.vala:43
+msgid "Apply"
+msgstr "Қолдану"
+
+#: src/ui/strings.vala:45
+msgid "Pick where the notebooks will be stored"
+msgstr "Дәптерлер сақталатын жерді таңдаңыз"
+
+#: src/ui/strings.vala:46
+msgid "Pick where the trash can will be stored"
+msgstr "Қоқыс шелегі сақталатын жерді таңдаңыз"
+
+#: src/ui/strings.vala:47 src/ui/window/notebooks_bar/notebooks_bar.blp:59
+#: src/ui/window/notebooks_bar/notebooks_bar.blp:101
+msgid "All Notes"
+msgstr "Барлық жазбалар"
+
+#: src/ui/strings.vala:49
+msgid "Last Modified"
+msgstr "Соңғы өзгерту"
+
+#: src/ui/strings.vala:50
+msgid "Extension"
+msgstr "Кеңейту"
+
+#: src/ui/strings.vala:51
+msgid "Unable to recognize URI"
+msgstr "URI-ді тану мүмкін емес"
+
+#: src/ui/strings.vala:52
+msgid "Pick primary font for notes"
+msgstr "Жазбалар үшін негізгі қарпін таңдаңыз"
+
+#: src/ui/strings.vala:53
+msgid "Pick monospace font for code"
+msgstr "Код үшін бірдей ені бар қарпін таңдаңыз"
+
+#: src/ui/strings.vala:54
+msgid "File Changed On Disk"
+msgstr "Файл дискіде өзгертілді"
+
+#: src/ui/strings.vala:55
+msgid ""
+"The file has changed on disk since it was last saved/loaded by Folio.\n"
+"\n"
+"You may do one of the following:\n"
+"\n"
+" • Reload the file (discarding any changes you have made in Folio)\n"
+" • Overwrite the file (discarding any changes made outside of Folio)\n"
+" • Cancel the operation and manually resolve the issue\n"
+"\n"
+"Note: Canceling the save if you have already moved to a new note/notebook "
+"will discard your changes."
+msgstr ""
+"Файл дискіде Folio соңғы рет сақтаған/жүктегеннен бері өзгерді.\n"
+"\n"
+"Мына әрекеттердің бірін орындауға болады:\n"
+"\n"
+" • Файлды қайта жүктеу (Folio-да жасаған өзгерістеріңізді жоғалту)\n"
+" • Файлды үстінен жазу (Folio-дан тыс жасалған өзгерістерді жоғалту)\n"
+" • Операцияны болдырмау және мәселені қолмен шешу\n"
+"\n"
+"Ескерту: Жаңа жазба/дәптерге көшкеннен кейін сақтауды болдырсаңыз, "
+"өзгерістеріңіз жоғалады."
+
+#: src/ui/strings.vala:56
+msgid "Reload"
+msgstr "Қайта жүктеу"
+
+#: src/ui/strings.vala:57
+msgid "Overwrite"
+msgstr "Үстінен жазу"
+
+#: src/ui/strings.vala:59
+msgid ""
+"The file has changed on disk by another application.\n"
+"\n"
+"You may do one of the following:\n"
+"\n"
+" • Reload the file (discarding any changes you have made in Folio)\n"
+" • Overwrite the file (discarding any changes made outside of Folio)"
+msgstr ""
+"Файл дискіде басқа қолданба арқылы өзгертілді.\n"
+"\n"
+"Мына әрекеттердің бірін орындауға болады:\n"
+"\n"
+" • Файлды қайта жүктеу (Folio-да жасаған өзгерістеріңізді жоғалту)\n"
+" • Файлды үстінен жазу (Folio-дан тыс жасалған өзгерістерді жоғалту)"
+
+#: src/ui/strings.vala:61
+#, c-format
+msgid "Note %i"
+msgstr "Жазба %i"
+
+#: src/ui/strings.vala:62
+msgid "Modified Time - Ascending"
+msgstr "Өзгерту уақыты - Өсу ретімен"
+
+#: src/ui/strings.vala:63
+msgid "Modified Time - Descending"
+msgstr "Өзгерту уақыты - Кему ретімен"
+
+#: src/ui/strings.vala:64
+msgid "Alphabetical - Ascending"
+msgstr "Әліпби ретімен - Өсу ретімен"
+
+#: src/ui/strings.vala:65
+msgid "Alphabetical - Descending"
+msgstr "Әліпби ретімен - Кему ретімен"
+
+#: src/ui/strings.vala:66
+msgid "Natural - Ascending"
+msgstr "Табиғи - Өсу ретімен"
+
+#: src/ui/strings.vala:67
+msgid "Natural - Descending"
+msgstr "Табиғи - Кему ретімен"
+
+#: src/ui/strings.vala:68
+#, c-format
+msgid "Unable to launch external application for file %s."
+msgstr "%s файлы үшін сыртқы қолданбаны іске қосу мүмкін емес."
+
+#: src/ui/strings.vala:69
+msgid "Aggressive"
+msgstr "Белсенді"
+
+#: src/ui/strings.vala:70
+msgid "Strict"
+msgstr "Қатаң"
+
+#: src/ui/strings.vala:71
+msgid "Disabled"
+msgstr "Өшірілген"
+
+#: src/ui/strings.vala:72
+#, c-format
+msgid ""%s" moved to trash"
+msgstr "\"%s\" қоқыс шелегіне жылжытылды"
+
+#: src/ui/strings.vala:73
+#, c-format
+msgid ""%s" restored"
+msgstr "\"%s\" қалпына келтірілді"
+
+#: src/ui/widgets/theme_selector/theme_selector.blp:15
+msgid "Follow system style"
+msgstr "Жүйе стилін орындау"
+
+#: src/ui/widgets/theme_selector/theme_selector.blp:23
+msgid "Light style"
+msgstr "Ашық стиль"
+
+#: src/ui/widgets/theme_selector/theme_selector.blp:32
+msgid "Dark style"
+msgstr "Қараңғы стиль"
+
+#: src/ui/window/app_menu/app_menu.blp:10
+msgid "Main Menu"
+msgstr "Негізгі мәзір"
+
+#: src/ui/window/app_menu/app_menu.blp:26
+msgid "_New Notebook"
+msgstr "_Жаңа дәптер"
+
+#: src/ui/window/app_menu/app_menu.blp:30
+msgid "_Edit Notebook"
+msgstr "_Дәптерді өңдеу"
+
+#: src/ui/window/app_menu/app_menu.blp:36
+msgid "_Preferences"
+msgstr "_Баптаулар"
+
+#: src/ui/window/app_menu/app_menu.blp:40
+msgid "_Keyboard Shortcuts"
+msgstr "_Пернетақта тіркесімдері"
+
+#: src/ui/window/app_menu/app_menu.blp:44
+msgid "_About Folio"
+msgstr "_Folio туралы"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:6
+msgid "First Characters"
+msgstr "Алғашқы таңбалар"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:7
+msgid "Initials"
+msgstr "Бас әріптер"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:8
+msgid "Initials: camelCase"
+msgstr "Бас әріптер: camelCase"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:9
+msgid "Initials: snake_case"
+msgstr "Бас әріптер: snake_case"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:10
+msgid "Icon"
+msgstr "Белгіше"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:11
+msgid "Custom"
+msgstr "Жеке"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:16
+msgid "Notebook Color"
+msgstr "Дәптер түсі"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:58
+msgid "Notebook Name"
+msgstr "Дәптер атауы"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:70
+msgid "Duplicate notebook names are not allowed!"
+msgstr "Қайталанатын дәптер атауларына рұқсат етілмейді!"
+
+#: src/ui/window/notebooks_bar/notebook_create_popup.blp:126
+msgid "Create Notebook"
+msgstr "Дәптер жасау"
+
+#: src/ui/window/notebooks_bar/notebook_menu.blp:16
+msgid "Edit"
+msgstr "Өңдеу"
+
+#: src/ui/window/notebooks_bar/notebook_menu.blp:26
+msgid "Move all to Trash"
+msgstr "Барлығын қоқыс шелегіне жылжыту"
+
+#: src/ui/window/notebooks_bar/notebooks_bar.blp:113
+msgid "Notebooks"
+msgstr "Дәптерлер"
+
+#: src/ui/window/sidebar/note_create_popup.blp:25
+msgid "Note Name"
+msgstr "Жазба атауы"
+
+#: src/ui/window/sidebar/note_create_popup.blp:33
+msgid "Create Note"
+msgstr "Жазба жасау"
+
+#: src/ui/window/sidebar/note_menu.blp:16
+msgid "Restore from Trash"
+msgstr "Қоқыс шелегінен қалпына келтіру"
+
+#: src/ui/window/sidebar/note_menu.blp:26
+msgid "Delete from Trash"
+msgstr "Қоқыс шелегінен жою"
+
+#: src/ui/window/sidebar/note_menu.blp:46
+msgid "Move to Notebook…"
+msgstr "Дәптерге жылжыту…"
+
+#: src/ui/window/sidebar/note_menu.blp:56
+msgid "Move to Trash"
+msgstr "Қоқыс шелегіне жылжыту"
+
+#: src/ui/window/sidebar/note_menu.blp:66
+msgid "Open Containing Folder"
+msgstr "Орналасқан қалтаны ашу"
+
+#: src/ui/window/window.blp:128
+msgid "Get started writing"
+msgstr "Жазуды бастау"
+
+#: src/ui/window/window.blp:157
+msgid "Open file in external application"
+msgstr "Файлды сыртқы қолданбада ашу"
+
+#: src/ui/window/window.blp:165
+msgid "Open file"
+msgstr "Файлды ашу"
+
+#: src/ui/window/window.blp:186
+msgid "Create a notebook"
+msgstr "Дәптер жасау"
+
+#: src/ui/window/window.blp:215
+msgid "Trash is empty"
+msgstr "Қоқыс шелегі бос"
+
+#: src/ui/window/window.blp:281
+msgid "Note Menu"
+msgstr "Жазба мәзірі"
+
+#: src/ui/window/window.blp:291
+msgid "Open in Notebook"
+msgstr "Дәптерде ашу"
+
+#: src/ui/window/window.blp:318
+msgid "_Rename Note"
+msgstr "_Жазбаны қайта атау"
+
+#: src/ui/window/window.blp:325
+msgid "_Export Note"
+msgstr "_Жазбаны экспорттау"
