@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Terminal=false
-Exec=@app_id@ --file %u
+Exec=@bindir@/@app_id@ --file %u
 NoDisplay=true
 
 Name=Folio
@@ -9,3 +9,4 @@ Name=Folio
 Icon=@app_id@
 StartupNotify=true
 MimeType=text/x-markdown;text/markdown;
+
