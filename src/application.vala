@@ -368,6 +368,7 @@ Sunniva Løvstad
 			{ "open-note", 'n', 0, OptionArg.STRING, ref open_note, "Open a note", null },
 			{ "launch-search", 's', 0, OptionArg.STRING, ref launch_search, "Search notes", null },
 			{ "file", 'f', 0, OptionArg.FILENAME, ref file, "Edit file", null },
+			null
 		};
 
 
