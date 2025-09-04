@@ -66,12 +66,6 @@ public class Folio.Note : Object {
 			} else {
 				string etag_out;
 				file.load_contents (null, out text_data, out etag_out);
-				// Make sure the last character of the file is a return, otherwise some of the regex's will break.
-				if (text_data.length > 0 && text_data[text_data.length - 1] != 10) {
-					text_data += 10;
-				}
-				// Ensure null terminated
-				text_data += 0;
 			}
 			update_note_time ();
 		} catch (Error e) {
