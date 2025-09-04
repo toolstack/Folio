@@ -70,6 +70,8 @@ public class Folio.Note : Object {
 				if (text_data.length > 0 && text_data[text_data.length - 1] != 10) {
 					text_data += 10;
 				}
+				// Ensure null terminated
+				text_data += 0;
 			}
 			update_note_time ();
 		} catch (Error e) {
