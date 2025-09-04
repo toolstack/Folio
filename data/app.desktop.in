@@ -1,7 +1,7 @@
 [Desktop Entry]
 Type=Application
 Terminal=false
-Exec=@app_id@
+Exec=@bindir@/@app_id@
 DBusActivatable=true
 StartupWMClass=@app_id@
 
@@ -19,16 +19,16 @@ Actions=new-note;new-notebook;markdown-cheatsheet;preferences;
 
 [Desktop Action new-note]
 Name=New Note
-Exec=@app_id@ --new-note
+Exec=@bindir@/@app_id@ --new-note
 
 [Desktop Action new-notebook]
 Name=New Notebook
-Exec=@app_id@ --new-notebook
+Exec=@bindir@/@app_id@ --new-notebook
 
 [Desktop Action markdown-cheatsheet]
 Name=Markdown Cheatsheet
-Exec=@app_id@ --markdown-cheatsheet
+Exec=@bindir@/@app_id@ --markdown-cheatsheet
 
 [Desktop Action preferences]
 Name=Preferences
-Exec=@app_id@ --preferences
+Exec=@bindir@/@app_id@ --preferences
