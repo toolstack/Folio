@@ -646,7 +646,12 @@ public class GtkMarkdown.View : GtkSource.View {
 			text_tag_code_block.indent = 16;
 
 			text_tag_hidden = get_or_create_tag ("hidden-character");
-			text_tag_hidden.invisible = true;
+
+			// Ideally we would set invisible = true, but this seems to cause
+			// crashes in GTK when the note contains formatting and does not
+			// end in a new line. As a workaround, set the size to zero
+			// instead.
+			text_tag_hidden.size = 0;
 
 			text_tag_invisible = get_or_create_tag ("invisible-character");
 			text_tag_invisible.foreground = "rgba(0,0,0,0.001)";
