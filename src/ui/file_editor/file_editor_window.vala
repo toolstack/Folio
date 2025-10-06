@@ -60,7 +60,6 @@ public class Folio.FileEditorWindow : Adw.ApplicationWindow {
 			return;
 		}
 		// Make sure the last character of the file is a return, otherwise some of the regex's will break.
-		if (text_data[text_data.length - 1] != 10) { text_data += 10; }
 		current_buffer = new GtkMarkdown.Buffer ((string) text_data);
 		edit_view.buffer = current_buffer;
 		edit_view.is_editable = true;

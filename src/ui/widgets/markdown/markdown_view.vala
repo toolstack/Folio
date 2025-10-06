@@ -434,7 +434,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 			is_code_span = new Regex ("(?<!`)(`)([^`]+(?:`{2,}[^`]+)*)(`)(?!`)", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS | RegexCompileFlags.MULTILINE, 0);
 			is_code_span_double = new Regex ("(``)(.*)(``)", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS | RegexCompileFlags.MULTILINE | RegexCompileFlags.UNGREEDY, 0);
-			is_code_block = new Regex ("(?<![^\\n])(```[^`\\n]*)\\n([^`]*)(```)(?=\\n)", f, 0);
+			is_code_block = new Regex ("^(```[^`\\n]*)\\n([^`]*)(```)$", RegexCompileFlags.OPTIMIZE | RegexCompileFlags.CASELESS | RegexCompileFlags.MULTILINE, 0);
 
 			filter_escapes = new Regex ("(\\\\\\\\|\\\\`|\\\\\\*|\\\\_|\\\\\\{|\\\\\\}|\\\\\\[|\\\\\\]|\\\\\\(|\\\\\\)|\\\\#|\\\\\\+|\\\\-|\\\\\\.|\\\\!)", f, 0);
 		} catch (RegexError e) {
@@ -646,7 +646,12 @@ public class GtkMarkdown.View : GtkSource.View {
 			text_tag_code_block.indent = 16;
 
 			text_tag_hidden = get_or_create_tag ("hidden-character");
-			text_tag_hidden.invisible = true;
+
+			// Ideally we would set invisible = true, but this seems to cause
+			// crashes in GTK when the note contains formatting and does not
+			// end in a new line. As a workaround, set the size to zero
+			// instead.
+			text_tag_hidden.size = 0;
 
 			text_tag_invisible = get_or_create_tag ("invisible-character");
 			text_tag_invisible.foreground = "rgba(0,0,0,0.001)";
@@ -764,22 +769,6 @@ public class GtkMarkdown.View : GtkSource.View {
 		renderer.queue_draw ();
 		Gtk.TextIter buffer_start, buffer_end;
 		buffer.get_bounds (out buffer_start, out buffer_end);
-
-		// Check to see if the last character in the buffer is a LF, if not, add it, otherwise
-		// some of the tagging operations will crash.
-		var buffer_end_minus_one = buffer_end.copy ();
-		buffer_end_minus_one.backward_char ();
-		string end_text = buffer.get_text (buffer_end_minus_one, buffer_end, true);
-		if (end_text != "\n") {
-			var cursor = buffer.get_insert ();
-			Gtk.TextIter cursor_location;
-			buffer.get_iter_at_mark (out cursor_location, cursor);
-			var cursor_mark = buffer.create_mark (null, cursor_location, true);
-			buffer.insert (ref buffer_end, "\n", 1);
-			buffer.get_iter_at_mark (out cursor_location, cursor_mark);
-			buffer.place_cursor (cursor_location);
-			buffer.get_bounds (out buffer_start, out buffer_end);
-		}
 
 		if (only_changed_line) {
 			Gtk.TextIter cursor_iter;
