@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-03-02 17:14:42+0000\n"
+"PO-Revision-Date: 2025-10-06 00:14:33+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,95 +13,95 @@ msgstr ""
 
 #: data/app.metainfo.xml.in:5
 msgid "Beautiful markdown note-taking app"
-msgstr ""
+msgstr "یک برنامه یادداشت‌برداری زیبا بر پایه مارک‌داون"
 
 #: src/ui/preferences/preferences.blp:139
 msgid "Expanded Notebook List"
-msgstr ""
+msgstr "بازکردن فهرست دفترچه‌ها"
 
 #: src/ui/window/app_menu/app_menu.blp:10
 msgid "Main Menu"
-msgstr ""
+msgstr "منوی اصلی"
 
 #: src/ui/window/window.blp:281
 msgid "Note Menu"
-msgstr ""
+msgstr "منوی یادداشت‌"
 
 #: data/app.gschema.xml:91
 msgid "Allow long notebook names"
-msgstr ""
+msgstr "استفاده از عنوان‌های طولانی برای دفترچه‌ها را مجاز کنید"
 
 #: data/app.gschema.xml:92
 msgid "The notebook column will expand to the width of the longest notebook name"
-msgstr ""
+msgstr "ستون دفترچه‌ها به اندازه عرض طولانی‌ترین نام دفترچه گسترش می‌یابد."
 
 #: data/app.gschema.xml:96
 msgid "Allow long note names"
-msgstr ""
+msgstr "استفاده از عنوان‌های طولانی برای یادداشت‌ها را مجاز کنید"
 
 #: data/app.gschema.xml:97
 msgid "The note list column will expand to the width of the longest note name"
-msgstr ""
+msgstr "ستون لیست یاددادشت‌ها به اندازه عرض طولانی‌ترین عنوان یادداشت گسترش می‌یابد."
 
 #: data/app.metainfo.xml.in:8
 msgid "Some features include:"
-msgstr ""
+msgstr "برخی از ویژگی‌ها:"
 
 #: data/app.metainfo.xml.in:16
 msgid "Optional line numbers"
-msgstr ""
+msgstr "شماره سطر دلخواه"
 
 #: data/app.metainfo.xml.in:17
 msgid "Optional auto save"
-msgstr ""
+msgstr "ذخیره خوکار دلخواه"
 
 #: data/app.metainfo.xml.in:18
 msgid "Open links with Control-Click"
-msgstr ""
+msgstr "با کنترل-کلیک لینک‌ها را باز کنید"
 
 #: data/app.metainfo.xml.in:19
 msgid "Link to other notes in Folio"
-msgstr ""
+msgstr "لینک به سایر یادداشت‌ها در فولیو"
 
 #: data/app.metainfo.xml.in:20
 msgid "Automatically create links for bare URL's and e-mail addresses"
-msgstr ""
+msgstr "ایجاد خودکار لینک برای آدرس‌های اینترنتی ساده و آدرس‌های ایمیل"
 
 #: src/ui/preferences/preferences.blp:150
 msgid "Allow Long Notebook Names"
-msgstr ""
+msgstr "عنوان‌ها طولانی برای دفترچه مجاز است"
 
 #: src/ui/preferences/preferences.blp:151
 msgid "The notebook column will expand to the width of the longest notebook name (requires notebook selection change to take effect)."
-msgstr ""
+msgstr "ستون دفترچه به اندازه عرض طولانی‌ترین عنوان دفترچه گسترش می‌یابد (برای اعمال تغییر در انتخاب دفترچه، باید آن را تغییر دهید)."
 
 #: src/ui/preferences/preferences.blp:161
 msgid "Allow Long Note Names"
-msgstr ""
+msgstr "استفاده از عنوان‌های طولانی برای یادداشت‌ها را مجاز کنید"
 
 #: src/ui/preferences/preferences.blp:162
 msgid "The note list column will expand to the width of the longest note name (requires notebook selection change to take effect)."
-msgstr ""
+msgstr "ستون فهرست یادداشت‌ها به اندازه‌ی عرض طولانی‌ترین عنوان یادداشت گسترش می‌یابد (برای اعمال تغییر در انتخاب دفترچه، باید آن را تغییر دهید)."
 
 #: data/app.gschema.xml:81
 msgid "URL detection level"
-msgstr ""
+msgstr "سطح تشخیص URL"
 
 #: data/app.gschema.xml:82
 msgid "How aggressive to look for URLs in markdown text"
-msgstr ""
+msgstr "چقدر باید در متن‌های نشانه‌گذاری شده به دنبال آدرس‌های اینترنتی گشت؟"
 
 #: data/app.gschema.xml:86
 msgid "Line spacing"
-msgstr ""
+msgstr "فاصله بین سطرها"
 
 #: data/app.gschema.xml:87 src/ui/preferences/preferences.blp:74
 msgid "The line spacing for the note text"
-msgstr ""
+msgstr "فاصله سطرها برای متن یادداشت"
 
 #: src/ui/preferences/preferences.blp:31
 msgid "Markdown URL Detection"
-msgstr ""
+msgstr "تشخیص URL مارک‌داون"
 
 #: src/ui/preferences/preferences.blp:32
 msgid ""
@@ -111,146 +111,151 @@ msgid ""
 " - Strict requires a protocol identifier (ie http://)\n"
 " - Disabled turns detection off."
 msgstr ""
+"سطح تشخیص URLها را که در\n"
+"در متن فرم آزاد استفاده می‌شود تعیین می‌کند:\n"
+" - تهاجمی سعی می‌کند همه URLها را پیدا کند\n"
+" - سختگیرانه به یک شناسه پروتکل نیاز دارد (مثلاً http://)\n"
+" - غیرفعال، تشخیص را خاموش می‌کند."
 
 #: src/ui/preferences/preferences.blp:39
 msgid "Fonts"
-msgstr ""
+msgstr "قلم‌ها"
 
 #: src/ui/preferences/preferences.blp:73
 msgid "Line Spacing"
-msgstr ""
+msgstr "فاصله بین سطرها"
 
 #: src/ui/strings.vala:24
 msgid "Note names cannot contain a “/”"
-msgstr ""
+msgstr "عنوان یادداشت‌ها نمی‌تواند شامل کاراکتر «/» باشد"
 
 #: src/ui/strings.vala:25
 msgid "Note names cannot be blank"
-msgstr ""
+msgstr "عنوان یادداشت‌ها نمی‌تواند خالی باشد"
 
 #: src/ui/strings.vala:33
 msgid "Notebook names cannot contain a “/”"
-msgstr ""
+msgstr "عنوان دفترچه‌ها نمی‌تواند شامل کاراکتر «/» باشد"
 
 #: src/ui/strings.vala:34
 msgid "Notebook names cannot be blank"
-msgstr ""
+msgstr "عنوان دفترچه‌ها نمی‌تواند خالی باشد"
 
 #: src/ui/strings.vala:66
 msgid "Natural - Ascending"
-msgstr ""
+msgstr "طبیعی - صعودی"
 
 #: src/ui/strings.vala:67
 msgid "Natural - Descending"
-msgstr ""
+msgstr "طبیعی - نزولی"
 
 #: src/ui/strings.vala:68
 msgid "Unable to launch external application for file %s."
-msgstr ""
+msgstr "قادر به اجرای برنامه خارجی برای فایل %s نیست."
 
 #: src/ui/strings.vala:69
 msgid "Aggressive"
-msgstr ""
+msgstr "تهاجمی"
 
 #: src/ui/strings.vala:70
 msgid "Strict"
-msgstr ""
+msgstr "سخت‌گیر"
 
 #: src/ui/strings.vala:71
 msgid "Disabled"
-msgstr ""
+msgstr "غیرفعال"
 
 #: src/ui/strings.vala:72
 msgid "“%s” moved to trash"
-msgstr ""
+msgstr "\"%s\" به سطل زباله منتقل شد"
 
 #: src/ui/strings.vala:73
 msgid "“%s” restored"
-msgstr ""
+msgstr "\"%s\" بازیابی شد"
 
 #: src/ui/window/app_menu/app_menu.blp:44
 msgid "_About Folio"
-msgstr ""
+msgstr "_درباره فولیو"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:11
 msgid "Custom"
-msgstr ""
+msgstr "دلخواه"
 
 #: src/ui/window/window.blp:157
 msgid "Open file in external application"
-msgstr ""
+msgstr "باز کردن فایل در برنامه جانبی"
 
 #: src/ui/window/window.blp:165
 msgid "Open file"
-msgstr ""
+msgstr "بازکردن  فایل"
 
 #: data/app.gschema.xml:76
 msgid "Notebook sort order"
-msgstr ""
+msgstr "ترتیب مرتب‌سازی دفترچه‌ها"
 
 #: data/app.gschema.xml:77
 msgid "The sort order of the notebook list"
-msgstr ""
+msgstr "ترتیب مرتب‌سازی برای فهرست دفترچه‌ها"
 
 #: src/ui/preferences/preferences.blp:189
 msgid "Sort Order For Notebooks"
-msgstr ""
+msgstr "ترتیب مرتب‌سازی برای دفترچه‌ها"
 
 #: data/app.gschema.xml:71
 msgid "Note sort order"
-msgstr ""
+msgstr "ترتیب مرتب‌سازی یادداشت‌ها"
 
 #: data/app.gschema.xml:72
 msgid "The sort order of the note list"
-msgstr ""
+msgstr "ترتیب مرتب‌سازی برای فهرست یادداشت‌ها"
 
 #: src/ui/preferences/preferences.blp:194
 msgid "Sort Order For Notes"
-msgstr ""
+msgstr "ترتیب مرتب‌سازی برای یادداشت‌ها"
 
 #: src/ui/strings.vala:62
 msgid "Modified Time - Ascending"
-msgstr ""
+msgstr "زمان تغییر - صعودی"
 
 #: src/ui/strings.vala:63
 msgid "Modified Time - Descending"
-msgstr ""
+msgstr "زمان تغییر - نزولی"
 
 #: src/ui/strings.vala:64
 msgid "Alphabetical - Ascending"
-msgstr ""
+msgstr "الفبایی - صعودی"
 
 #: src/ui/strings.vala:65
 msgid "Alphabetical - Descending"
-msgstr ""
+msgstr "الفبایی - نزولی"
 
 #: src/ui/popup/shortcut_window.blp:114
 msgid "Display"
-msgstr ""
+msgstr "نمایش"
 
 #: src/ui/popup/shortcut_window.blp:117
 msgid "Full Screen"
-msgstr ""
+msgstr "تمام‌صفحه"
 
 #: src/ui/popup/shortcut_window.blp:122
 msgid "Zoom In"
-msgstr ""
+msgstr "بزرگ‌نمایی"
 
 #: src/ui/popup/shortcut_window.blp:127
 msgid "Zoom Out"
-msgstr ""
+msgstr "کوچک‌نمایی"
 
 #: src/ui/strings.vala:52
 msgid "Pick primary font for notes"
-msgstr ""
+msgstr "انتخاب فونت اصلی برای یادداشت‌ها"
 
 #: src/ui/strings.vala:53
 msgid "Pick monospace font for code"
-msgstr ""
+msgstr "انتخاب فونت تک‌فاصله برای متن‌های کد"
 
 #: src/ui/strings.vala:54
 msgid "File Changed On Disk"
-msgstr ""
+msgstr "فایل در دیسک تغییر کرد"
 
 #: src/ui/strings.vala:55
 msgid ""
@@ -264,14 +269,23 @@ msgid ""
 "\n"
 "Note: Canceling the save if you have already moved to a new note/notebook will discard your changes."
 msgstr ""
+"این فایل از آخرین باری که توسط فولیو ذخیره/بارگذاری شده، روی دیسک تغییر کرده است.\n"
+"\n"
+"شما می‌توانید یکی از کارهای زیر را انجام دهید:\n"
+"\n"
+" • فایل را دوباره بارگذاری کنید (هر تغییری که در فولیو ایجاد کرده‌اید را نادیده بگیرید)\n"
+" • فایل را بازنویسی کنید (هر تغییری که خارج از فولیو ایجاد شده است را نادیده بگیرید)\n"
+" • عملیات را لغو کنید و مشکل را به صورت دستی حل کنید\n"
+"\n"
+"توجه: با لغو، اگر قبلاً به یادداشت/دفترچه جدیدی منتقل شده‌اید، تغییرات شما از بین می‌رود."
 
 #: src/ui/strings.vala:56
 msgid "Reload"
-msgstr ""
+msgstr "بازنشانی"
 
 #: src/ui/strings.vala:57
 msgid "Overwrite"
-msgstr ""
+msgstr "بازنویسی"
 
 #: src/ui/strings.vala:59
 msgid ""
@@ -282,122 +296,128 @@ msgid ""
 " • Reload the file (discarding any changes you have made in Folio)\n"
 " • Overwrite the file (discarding any changes made outside of Folio)"
 msgstr ""
+"فایل روی دیسک توسط برنامه دیگری تغییر کرده است.\n"
+"\n"
+"شما می‌توانید یکی از کارهای زیر را انجام دهید:\n"
+"\n"
+"• فایل را دوباره بارگذاری کنید (هر تغییری که در فولیو ایجاد کرده‌اید را نادیده بگیرید)\n"
+"• فایل را بازنویسی کنید (هر تغییری که خارج از فولیو ایجاد شده است را نادیده بگیرید)"
 
 #: src/ui/strings.vala:61
 msgid "Note %i"
-msgstr ""
+msgstr "یادداشت %i"
 
 #: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:257
 msgid "Trash Storage Location"
-msgstr ""
+msgstr "مکان سطل زباله"
 
 #: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:258
 msgid "Where the trash folder is located (requires app restart)"
-msgstr ""
+msgstr "محل قرارگیری پوشه سطل زباله (نیاز به راه‌اندازی مجدد برنامه دارد)"
 
 #: src/ui/strings.vala:46
 msgid "Pick where the trash can will be stored"
-msgstr ""
+msgstr "مشخص کنید که سطل زباله کجا ذخیره شود"
 
 #: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:172
 msgid "Use Fixed Width For Notes"
-msgstr ""
+msgstr "استفاده از عرض ثابت برای یادداشت‌ها"
 
 #: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:173
 msgid "Use a fixed width for the text area of a note"
-msgstr ""
+msgstr "استفاده از عرض ثابت برای ناحیه متن یادداشت"
 
 #: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:140
 msgid "Expands the notebook list to include the notebook name"
-msgstr ""
+msgstr "لیست دفترچه‌ها را گسترش می‌دهد تا عنوان دفترچه را نیز شامل شود."
 
 #: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:87
 msgid "Show line numbers"
-msgstr ""
+msgstr "نمایش شماره سطرها"
 
 #: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:88
 msgid "Displays line numbers at the left of the note"
-msgstr ""
+msgstr "شماره خطوط را در سمت چپ یادداشت نمایش می‌دهد"
 
 #: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:98
 msgid "Show all notes"
-msgstr ""
+msgstr "نمایش تمام یادداشت‌ها"
 
 #: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:99
 msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
-msgstr ""
+msgstr "دفترچهٔ «همه یادداشت‌ها» را در بالای لیست دفترچه‌ها نمایش می‌دهد"
 
 #: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:207
 msgid "Enable autosave"
-msgstr ""
+msgstr "فعال‌سازی ذخیره‌سازی خودکار"
 
 #: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:208
 msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
-msgstr ""
+msgstr "در صورت تغییر محتوا، یادداشت فعلی هر 30 ثانیه به طور خودکار ذخیره می‌شود (نیاز به راه‌اندازی مجدد برنامه دارد)"
 
 #: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:218
 msgid "Don't hide the Trash folder"
-msgstr ""
+msgstr "پوشه‌ی سطل زباله را پنهان نکنید"
 
 #: data/app.gschema.xml:67
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
-msgstr ""
+msgstr "پوشه سطل زباله به طور پیش فرض به عنوان یک پوشه پنهان تنظیم شده است، این گزینه آن را قابل مشاهده می کند"
 
 #: data/app.metainfo.xml.in:441
 msgid "Main Folio window in light mode"
-msgstr ""
+msgstr "پنجره اصلی فولیو در حالت روشن"
 
 #: data/app.metainfo.xml.in:445
 msgid "Main Folio window in dark mode"
-msgstr ""
+msgstr "پنجره اصلی فولیو در حالت تاریک"
 
 #: data/app.metainfo.xml.in:449
 msgid "Folio on small/mobile screens"
-msgstr ""
+msgstr "فولیو روی صفحه نمایش‌های کوچک/موبایل"
 
 #: data/app.metainfo.xml.in:453
 msgid "Folio preferences screen"
-msgstr ""
+msgstr "صفحه تنظیمات فولیو"
 
 #: data/app.metainfo.xml.in:457
 msgid "Folio in three pane mode"
-msgstr ""
+msgstr "فولیو در حالت سه پنجره‌ای"
 
 #: src/ui/preferences/preferences.blp:81
 msgid "Tools"
-msgstr ""
+msgstr "ابزارها"
 
 #: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:110
 msgid "Displays the formatting toolbar at the bottom of the note"
-msgstr ""
+msgstr "نوار ابزار قالب‌بندی را در پایین یادداشت نمایش می‌دهد"
 
 #: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:121
 msgid "Adds a button to the markdown reference sheet on the right of the formatting toolbar"
-msgstr ""
+msgstr "یک دکمه به برگه رفرنس مارک‌داون در سمت راست نوار ابزار قالب‌بندی اضافه می‌کند."
 
 #: src/ui/preferences/preferences.blp:133
 msgid "Layout"
-msgstr ""
+msgstr "چارچوب"
 
 #: src/ui/preferences/preferences.blp:183
 msgid "Fixed Width To Use For Notes"
-msgstr ""
+msgstr "عرض ثابت در استفاده برای یادداشت‌ها"
 
 #: src/ui/preferences/preferences.blp:184
 msgid "Sets the fixed width size of a note in px"
-msgstr ""
+msgstr "اندازه عرض ثابت یک یادداشت را بر حسب پیکسل تنظیم می‌کند"
 
 #: src/ui/preferences/preferences.blp:201
 msgid "Files"
-msgstr ""
+msgstr "فایل‌ها"
 
 #: src/ui/preferences/preferences.blp:219
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
-msgstr ""
+msgstr "پوشه سطل زباله به طور پیش‌فرض به عنوان یک پوشه مخفی تنظیم شده است، این گزینه آن را قابل مشاهده می‌کند (نیاز به راه‌اندازی مجدد برنامه دارد)"
 
 #: src/ui/strings.vala:51
 msgid "Unable to recognize URI"
-msgstr ""
+msgstr "قادر به شناسایی URI نیست"
 
 #: data/app.desktop.in:9 src/ui/strings.vala:3
 msgid "Folio"
@@ -457,7 +477,7 @@ msgstr "حالت اُلِد"
 
 #: data/app.metainfo.xml.in:7
 msgid "Create notebooks and take notes in markdown"
-msgstr ""
+msgstr "ایجاد دفترچه، یادداشت‌برداری به روش مارک‌داون"
 
 #: data/app.metainfo.xml.in:10
 msgid "Almost WYSIWYG markdown rendering"
@@ -469,11 +489,11 @@ msgstr "جست‌وجوپذیر از جست‌وجوی گنوم"
 
 #: data/app.metainfo.xml.in:12
 msgid "Highlight and strikethrough text formatting"
-msgstr ""
+msgstr "قالب‌بندی متن برجسته و خط خورده"
 
 #: data/app.metainfo.xml.in:13
 msgid "App themeing based on notebook color"
-msgstr ""
+msgstr "تم‌بندی برنامه بر اساس رنگ دفترچه"
 
 #: data/app.metainfo.xml.in:14
 msgid "Trash can"
@@ -634,7 +654,7 @@ msgstr "به کار انداختن جعبه‌ابزار"
 
 #: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:120
 msgid "Enable Cheatsheet"
-msgstr ""
+msgstr "فعال کردن چیت‌شیت"
 
 #: data/app.gschema.xml:36
 msgid "3-Pane Layout"
@@ -723,19 +743,19 @@ msgstr "یادداشت «%s» هم‌اکنون وجود دارد"
 
 #: src/ui/strings.vala:27
 msgid "Could not create note"
-msgstr ""
+msgstr "نمی‌توان یادداشت را ایجاد کرد"
 
 #: src/ui/strings.vala:28
 msgid "Could not change note"
-msgstr ""
+msgstr "نمی‌توان یادداشت را تغییر داد"
 
 #: src/ui/strings.vala:29
 msgid "Could not delete note"
-msgstr ""
+msgstr "نمی‌توان یادداشت را حذف کرد"
 
 #: src/ui/strings.vala:30
 msgid "Could not restore note"
-msgstr ""
+msgstr "نمی‌توان یادداشت را بازیابی کرد"
 
 #: src/ui/strings.vala:31
 msgid "Saved “%s” to “%s”"
@@ -751,15 +771,15 @@ msgstr "دفترچهٔ «%s» هم‌اکنون وجود دارد"
 
 #: src/ui/strings.vala:36
 msgid "Could not create notebook"
-msgstr ""
+msgstr "نمی‌توان دفترچه را ایجاد کرد"
 
 #: src/ui/strings.vala:37
 msgid "Could not change notebook"
-msgstr ""
+msgstr "نمی‌توان دفترچه را تغییر داد"
 
 #: src/ui/strings.vala:38
 msgid "Could not delete notebook"
-msgstr ""
+msgstr "نمی‌توان دفترچه را حذف کرد"
 
 #: src/ui/strings.vala:40
 msgid "Search"
@@ -767,11 +787,11 @@ msgstr "جست‌وجو"
 
 #: src/ui/strings.vala:41 src/ui/window/sidebar/note_menu.blp:36
 msgid "Rename"
-msgstr "تغییر نام"
+msgstr "تغییر عنوان"
 
 #: src/ui/strings.vala:42
 msgid "Could not find an app to handle file URIs"
-msgstr ""
+msgstr "نمی‌توان برنامه‌ای برای رسیدگی به uri فایل‌ها یافت"
 
 #: src/ui/strings.vala:43
 msgid "Apply"
@@ -788,11 +808,11 @@ msgstr "تمامی یادداشت‌ها"
 
 #: src/ui/strings.vala:49
 msgid "Last Modified"
-msgstr ""
+msgstr "آخرین تغییر"
 
 #: src/ui/strings.vala:50
 msgid "Extension"
-msgstr ""
+msgstr "افزونه"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
 msgid "Follow system style"
@@ -824,11 +844,11 @@ msgstr "_میان‌برهای صفحه‌کلید"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:58
 msgid "Notebook Name"
-msgstr "نام دفترچه"
+msgstr "عنوان دفترچه"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:70
 msgid "Duplicate notebook names are not allowed!"
-msgstr ""
+msgstr "نام تکراری برای دفترچه قابل پذیرش نیست!"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:6
 msgid "First Characters"
@@ -868,11 +888,11 @@ msgstr "انتقال همه به زباله‌دان"
 
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:113
 msgid "Notebooks"
-msgstr ""
+msgstr "دفترچه‌ها"
 
 #: src/ui/window/sidebar/note_create_popup.blp:25
 msgid "Note Name"
-msgstr "نام یادداشت"
+msgstr "عنوان یادداشت"
 
 #: src/ui/window/sidebar/note_create_popup.blp:33
 msgid "Create Note"
