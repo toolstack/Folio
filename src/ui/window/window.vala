@@ -674,10 +674,14 @@ public class Folio.Window : Adw.ApplicationWindow {
 				window_model.change_note (note, name, extension, false);
 			}
 
-			// Since the note has changed, let's reselect it so we get the right buffer.
-			uint current_selected;
+			// Since the note has changed, let's reselect both the notebook (in case of a rename)
+			// and the note itself so we get the right buffer and list names.
+			uint current_selected, current_notebook;
 			current_selected = window_model.notes_model.selected;
+			current_notebook = window_model.notebooks_model.selected;
 			window_model.select_note_at (-1);
+			window_model.select_notebook_at(-1);
+			window_model.select_notebook_at(current_notebook);
 			window_model.select_note_at (current_selected);
 
 			return true;
