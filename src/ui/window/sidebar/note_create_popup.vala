@@ -19,7 +19,7 @@ public class Folio.NoteCreatePopup : Adw.Dialog {
 
 		if (note != null) {
 			button_create.label = Strings.RENAME;
-			entry.text = note.name;
+			entry.text = note.file_name;
 			entry.activate.connect (change);
 			button_create.clicked.connect (change);
 		} else {
