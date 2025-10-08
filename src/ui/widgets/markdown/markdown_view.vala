@@ -592,6 +592,7 @@ public class GtkMarkdown.View : GtkSource.View {
 
 			var block_color = block_color;
 			var tinted_foreground = tinted_foreground;
+			var text_dir = this.get_direction();
 
 			update_title_styling ();
 
@@ -620,7 +621,11 @@ public class GtkMarkdown.View : GtkSource.View {
 			text_tag_table.font = font_monospace;
 
 			text_tag_list = get_or_create_tag ("markdown-list");
-			text_tag_list.indent = 16;
+			if (text_dir == Gtk.TextDirection.RTL) {
+				text_tag_list.right_margin = 16;
+			} else {
+				text_tag_list.left_margin = 16;
+			}
 
 			text_tag_bold = get_or_create_tag ("markdown-bold");
 			text_tag_bold.weight = 700;
@@ -643,7 +648,11 @@ public class GtkMarkdown.View : GtkSource.View {
 			text_tag_code_span.background_rgba = block_color;
 
 			text_tag_code_block = get_or_create_tag ("markdown-code-block");
-			text_tag_code_block.indent = 16;
+			if (text_dir == Gtk.TextDirection.RTL) {
+				text_tag_code_block.right_margin = 16;
+			} else {
+				text_tag_code_block.left_margin = 16;
+			}
 
 			text_tag_hidden = get_or_create_tag ("hidden-character");
 
