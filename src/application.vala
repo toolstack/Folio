@@ -363,6 +363,9 @@ Sunniva Løvstad
 	}
 
 	public void update_settings () {
+		// TODO: This function, or parts of it, can be removed once these
+		// settings are deleted, not just deprecated.
+
 		var settings = new Settings (Config.APP_ID);
 
 		// Update long-note-names to long-note-names-handling
@@ -376,6 +379,7 @@ Sunniva Løvstad
 				long_note_names_handling = 0;  // Ellipsize
 			}
 			settings.set_int ("long-note-names-handling", (int)long_note_names_handling);
+			settings.reset ("long-note-names");
 		}
 	}
 

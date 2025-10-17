@@ -94,12 +94,12 @@
     <key name="long-note-names" type="b">
       <default>false</default>
       <summary>Allow long note names</summary>
-      <description>The note list column will expand to the width of the longest note name</description>
+      <description>DEPRECATED: use long-note-names-handling instead</description>
     </key>
     <key name="long-note-names-handling" type="i">
       <default>-1</default>
       <summary>Long note name handling</summary>
-      <description>Ellipsize to fit, wrap to fit, or expand the width of the note list column to the longest note name</description>
+      <description>Truncate, multi-line, or expand the note list column to the width of longest note name</description>
     </key>
   </schema>
   <enum id="com.toolstack.Folio.ThemeVariantEnum">
