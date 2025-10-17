@@ -112,6 +112,9 @@ public class Folio.Application : Adw.Application {
 				settings.set_string ("trash-dir", expanded_trash_dir);
 			}
 		}
+
+		// Update any old settings
+		update_settings();
 	}
 
 	private void on_default_width_changed () {
@@ -356,6 +359,27 @@ Sunniva Løvstad
 			if (black_hc_css_provider != null)
 				Gtk.StyleContext.remove_provider_for_display (display, black_hc_css_provider);
 			black_hc_css_provider = null;
+		}
+	}
+
+	public void update_settings () {
+		// TODO: This function, or parts of it, can be removed once these
+		// settings are deleted, not just deprecated.
+
+		var settings = new Settings (Config.APP_ID);
+
+		// Update long-note-names to long-note-names-handling
+		var long_note_names_handling = settings.get_int ("long-note-names-handling");
+		if (long_note_names_handling == -1) {
+			// Default value for new setting, import the old setting
+			var long_note_names = settings.get_boolean ("long-note-names");
+			if (long_note_names) {
+				long_note_names_handling = 2;  // Expand notes column
+			} else {
+				long_note_names_handling = 0;  // Ellipsize
+			}
+			settings.set_int ("long-note-names-handling", (int)long_note_names_handling);
+			settings.reset ("long-note-names");
 		}
 	}
 

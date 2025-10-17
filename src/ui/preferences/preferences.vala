@@ -22,7 +22,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesDialog {
 	[GtkChild] unowned Gtk.Label trash_dir_label;
 	[GtkChild] unowned Gtk.Switch limit_note_width;
 	[GtkChild] unowned Gtk.Switch long_notebook_names;
-	[GtkChild] unowned Gtk.Switch long_note_names;
+	[GtkChild] unowned Adw.ComboRow long_note_names;
 	[GtkChild] unowned Adw.SpinRow custom_note_width;
 	[GtkChild] unowned Gtk.Switch show_line_numbers;
 	[GtkChild] unowned Gtk.Switch show_all_notes;
@@ -122,8 +122,14 @@ public class Folio.PreferencesWindow : Adw.PreferencesDialog {
 		long_notebook_names.active = settings.get_boolean ("long-notebook-names");
 		long_notebook_names.state_set.connect (on_long_notebook_names_state_changed);
 
-		long_note_names.active = settings.get_boolean ("long-note-names");
-		long_note_names.state_set.connect (on_long_note_names_state_changed);
+		long_note_names.model = new Gtk.StringList ({
+			Strings.LONG_NAMES_HANDLING_ELLIPSIZE,
+			Strings.LONG_NAMES_HANDLING_WRAP,
+			Strings.LONG_NAMES_HANDLING_EXPAND
+			});
+		var selected_long_note_names = settings.get_int ("long-note-names-handling");
+		long_note_names.set_selected ((int)selected_long_note_names);
+		long_note_names.notify["selected-item"].connect (on_long_note_names_selected_item);
 
 		var width_adjustment = new Gtk.Adjustment (note_width, 100, 2000, 1.0, 100.0, 1.0);
 		custom_note_width.set_adjustment (width_adjustment);
@@ -295,6 +301,10 @@ public class Folio.PreferencesWindow : Adw.PreferencesDialog {
 		trash_dir = FileUtils.expand_home_directory (settings.get_string ("trash-dir"));
 		trash_dir_label.label = trash_dir;
 		trash_dir_label.tooltip_text = trash_dir;
+	}
+
+	private void on_long_note_names_selected_item () {
+		settings.set_int ("long-note-names-handling", (int)long_note_names.get_selected ());
 	}
 
 	private void on_note_sort_order_selected_item () {

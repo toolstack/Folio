@@ -71,4 +71,7 @@ public class Folio.Strings {
 	public abstract const string URL_DETECTION_DISABLED = _("Disabled");
 	public abstract const string NOTE_TRASHED = _("“%s” moved to trash");
 	public abstract const string NOTE_RESTORED = _("“%s” restored");
+	public abstract const string LONG_NAMES_HANDLING_ELLIPSIZE = _("Truncate");
+	public abstract const string LONG_NAMES_HANDLING_WRAP = _("Multi-line");
+	public abstract const string LONG_NAMES_HANDLING_EXPAND = _("Expand");
 }

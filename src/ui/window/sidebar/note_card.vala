@@ -27,10 +27,16 @@ public class Folio.NoteCard : Gtk.Box {
  				subtitle.update_property (Gtk.AccessibleProperty.LABEL, accessible_description, -1);
 
 				var settings = new Settings (Config.APP_ID);
-				if (settings.get_boolean ("long-note-names") == true) {
-					label.set_ellipsize (Pango.EllipsizeMode.NONE);
-				} else {
+				var long_note_names_handling = settings.get_int ("long-note-names-handling");
+				if (long_note_names_handling == 0) {
 					label.set_ellipsize (Pango.EllipsizeMode.END);
+					label.set_wrap (false);
+				} else if (long_note_names_handling == 1) {
+					label.set_ellipsize (Pango.EllipsizeMode.NONE);
+					label.set_wrap (true);
+				} else {
+					label.set_ellipsize (Pango.EllipsizeMode.NONE);
+					label.set_wrap (false);
 				}
 			}
 		}
