@@ -156,16 +156,11 @@ template $FolioPreferencesWindow : Adw.PreferencesDialog {
           valign: center;
         }
       }
-      Adw.ActionRow {
+      Adw.ComboRow long_note_names {
 
-        title: _("Allow Long Note Names");
-        subtitle: _("The note list column will expand to the width of the longest note name (requires notebook selection change to take effect).");
+        title: _("Long Note Names Handling");
+        subtitle: _("Truncate, multi-line, or expand the note list column to the width of longest note name (requires notebook selection change to take effect).");
         icon-name: "icon-code-symbolic";
-        activatable-widget: long_note_names;
-
-        Switch long_note_names {
-          valign: center;
-        }
       }
       Adw.ActionRow {
 
