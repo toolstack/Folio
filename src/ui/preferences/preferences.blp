@@ -200,13 +200,19 @@ template $FolioPreferencesWindow : Adw.PreferencesDialog {
       Adw.ActionRow {
 
         title: _("Enable autosave");
-        subtitle: _("Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)");
+        subtitle: _("Automatically saves the current note at an interval if the contents have changed");
         icon-name: "document-save-symbolic";
         activatable-widget: enable_autosave;
 
         Switch enable_autosave {
           valign: center;
         }
+      }
+      Adw.ComboRow autosave_interval {
+
+        title: _("Autosave interval");
+        subtitle: _("The interval to trigger an automatic save of the note on (in seconds)");
+        icon-name: "alarm-symbolic";
       }
       Adw.ActionRow {
 

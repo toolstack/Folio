@@ -72,6 +72,8 @@ public class Folio.Window : Adw.ApplicationWindow {
 	private Notebook current_notebook;
 	private Note current_note;
 	private bool current_note_in_trash;
+	private int autosave_interval;
+	private bool disable_autosave_on_next_call;
 
 	// Breakpoint conditions with and without 3-pane mode.
 	private Adw.BreakpointCondition[] breakpoint_conditions = {
@@ -178,16 +180,48 @@ public class Folio.Window : Adw.ApplicationWindow {
 		notify["note-sort-order"].connect (update_note_sort_order);
 		notify["notebook-sort-order"].connect (update_notebook_sort_order);
 
-		if (settings.get_boolean ("enable-autosave")) {
-			GLib.Timeout.add (5000, on_auto_save, 0 );
-		}
+		setup_autosave ();
 
 		this.on_3_pane_change (settings.get_boolean ("enable-3-pane"));
 
 		leaflet.show_content = false; // Don't start in note view.
 	}
 
+	public void disable_autosave () {
+		disable_autosave_on_next_call = true;
+	}
+
+	public void enable_autosave () {
+		setup_autosave ();
+	}
+
+	private void setup_autosave () {
+		var settings = new Settings (Config.APP_ID);
+		if (settings.get_boolean ("enable-autosave")) {
+			autosave_interval = settings.get_int("autosave-interval");
+
+			if( autosave_interval < 1 ) {
+				autosave_interval = 5;
+			}
+
+			GLib.Timeout.add_seconds (autosave_interval, on_auto_save);
+		}
+	}
+
 	private bool on_auto_save () {
+		var settings = new Settings (Config.APP_ID);
+		var timer = settings.get_int("autosave-interval");
+
+		if (autosave_interval != timer) {
+			setup_autosave ();
+			return GLib.Source.REMOVE;
+		}
+
+		if (disable_autosave_on_next_call == true) {
+			disable_autosave_on_next_call = false;
+			return GLib.Source.REMOVE;
+		}
+
 		window_model.save_note (this);
 		return true;
 	}

@@ -31,6 +31,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesDialog {
 	[GtkChild] unowned Adw.ComboRow note_sort_order;
 	[GtkChild] unowned Adw.ComboRow notebook_sort_order;
 	[GtkChild] unowned Adw.ComboRow line_spacing;
+	[GtkChild] unowned Adw.ComboRow autosave_interval;
 
 	private Settings settings;
 	private Application app;
@@ -106,6 +107,23 @@ public class Folio.PreferencesWindow : Adw.PreferencesDialog {
 
 		enable_autosave.active = settings.get_boolean ("enable-autosave");
 		enable_autosave.state_set.connect (on_enable_autosave_state_changed);
+
+		autosave_interval.set_sensitive (enable_autosave.active);
+		autosave_interval.model = new Gtk.StringList ({
+			"1",
+			"5",
+			"10",
+			"30",
+			"60"
+			});
+		autosave_interval.set_selected (3);
+		var autosave_interval_setting = settings.get_int ("autosave-interval");
+		for (var i = 0; i < autosave_interval.model.get_n_items (); i++) {
+			if( int.parse(((Gtk.StringList)autosave_interval.model).get_string (i)) == autosave_interval_setting ) {
+					autosave_interval.set_selected (i);
+			}
+		}
+        autosave_interval.notify["selected-item"].connect (on_update_autosave_interval_selected_item);
 
 		disable_hidden_trash.active = settings.get_boolean ("disable-hidden-trash");
 		disable_hidden_trash.state_set.connect (on_disable_hidden_trash_state_changed);
@@ -195,6 +213,14 @@ public class Folio.PreferencesWindow : Adw.PreferencesDialog {
 		}
 	}
 
+	private void on_update_autosave_interval_selected_item () {
+		for (var i = 0; i < autosave_interval.model.get_n_items (); i++) {
+			if( (int)autosave_interval.get_selected () == i ) {
+					settings.set_int ("autosave-interval", int.parse(((Gtk.StringList)autosave_interval.model).get_string (i)));
+			}
+		}
+	}
+
 	private bool on_enable_toolbar_state_changed (bool state) {
 		settings.set_boolean ("toolbar-enabled", state);
 		return false;
@@ -223,6 +249,14 @@ public class Folio.PreferencesWindow : Adw.PreferencesDialog {
 
 	private bool on_enable_autosave_state_changed (bool state) {
 		settings.set_boolean ("enable-autosave", state);
+		autosave_interval.set_sensitive (state);
+
+		if (state == false) {
+			((Folio.Window) window).disable_autosave ();
+		} else {
+			((Folio.Window) window).enable_autosave ();
+		}
+
 		return false;
 	}
 
