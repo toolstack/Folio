@@ -113,8 +113,27 @@ public class Folio.Application : Adw.Application {
 			}
 		}
 
+		// Set the default fonts before anything uses them.
+		set_default_fonts ();
+
 		// Update any old settings
 		update_settings();
+	}
+
+	// Set the default fonts to the system fonts for first run.
+	private void set_default_fonts () {
+		var settings = new Settings (Config.APP_ID);
+		var syssetting = new Settings ("org.gnome.desktop.interface");
+
+		stdout.printf ("note-font: %s\n", settings.get_string ("note-font"));
+
+		if (settings.get_string ("note-font") == "") {
+			settings.set_string ("note-font", syssetting.get_string ("document-font-name"));
+		}
+
+		if (settings.get_string ("note-font-monospace") == "") {
+			settings.set_string ("note-font-monospace", syssetting.get_string ("monospace-font-name"));
+		}
 	}
 
 	private void on_default_width_changed () {
