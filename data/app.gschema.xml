@@ -62,7 +62,7 @@
       <description>Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)</description>
     </key>
     <key name="autosave-interval" type="i">
-      <default>30</default>
+      <default>5</default>
       <summary>Autosave interval</summary>
       <description>The interval to trigger an automatic save of the note on (in seconds)</description>
     </key>
