@@ -1,7 +1,7 @@
 {
     "app-id" : "com.toolstack.Folio",
     "runtime" : "org.gnome.Platform",
-    "runtime-version" : "48",
+    "runtime-version" : "50",
     "sdk" : "org.gnome.Sdk",
     "command" : "com.toolstack.Folio",
     "finish-args" : [
@@ -11,32 +11,7 @@
         "--socket=wayland",
         "--filesystem=home"
     ],
-    "cleanup" : [
-        "/include",
-        "/lib/pkgconfig",
-        "/man",
-        "/share/doc",
-        "/share/gtk-doc",
-        "/share/man",
-        "/share/pkgconfig",
-        "/share/vala",
-        "*.la",
-        "*.a"
-    ],
     "modules": [
-        {
-            "name" : "blueprint-compiler",
-            "buildsystem" : "meson",
-            "cleanup": [
-                "*"
-            ],
-             "sources" : [{
-                "type" : "git",
-                "url" : "https://gitlab.gnome.org/jwestman/blueprint-compiler.git",
-                "tag" : "v0.16.0",
-                "commit" : "04ef0944db56ab01307a29aaa7303df6067cb3c0"
-            }]
-        },
         {
             "name" : "Folio",
             "builddir" : true,
