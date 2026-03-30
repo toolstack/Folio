@@ -1,0 +1,39 @@
+name: Check commits for Lint errors
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install System Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            meson ninja-build valac \
+            libgtk-4-dev libadwaita-1-dev \
+            libgranite-7-dev libgee-0.8-dev \
+            libglib2.0-dev dbus-x11 libvala-0.56-dev libjson-glib-dev libjson-glib-1.0-0
+
+      - name: Build vala-lint
+        run: |
+          git clone https://github.com/elementary/vala-lint.git --depth 1
+          cd vala-lint
+          meson setup builddir --prefix=/usr
+          meson compile -C builddir
+          sudo meson install -C builddir
+          cd ..
+
+      - name: Lint Code
+        shell: bash
+        env:
+          GIO_USE_VFS: local
+        run: |
+          dbus-run-session -- io.elementary.vala-lint src/ lib/
+
+
