@@ -2,17 +2,58 @@
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Folio\n"
-"POT-Creation-Date: \n"
-"PO-Revision-Date: 2024-12-04 23:25+0100\n"
-"Last-Translator: Amerey <info@amerey.eu>\n"
-"Language-Team: \n"
-"Language: cs_CZ\n"
+"PO-Revision-Date: 2024-12-04 22:42:48+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n == 1) ? 0 : ((n >= 2 && n <= 4) ? 1 : 2);\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: GlotPress/4.0.3\n"
+"Language: cs_CZ\n"
+"Project-Id-Version: Folio\n"
+
+#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:213
+msgid "Autosave interval"
+msgstr ""
+
+#: data/app.gschema.xml:67 src/ui/preferences/preferences.blp:214
+msgid "The interval to trigger an automatic save of the note on (in seconds)"
+msgstr ""
+
+#: data/app.gschema.xml:102
+msgid "DEPRECATED: use long-note-names-handling instead"
+msgstr ""
+
+#: data/app.gschema.xml:106
+msgid "Long note name handling"
+msgstr ""
+
+#: data/app.gschema.xml:107
+msgid "Truncate, multi-line, or expand the note list column to the width of longest note name"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:161
+msgid "Long Note Names Handling"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:162
+msgid "Truncate, multi-line, or expand the note list column to the width of longest note name (requires notebook selection change to take effect)."
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:203
+msgid "Automatically saves the current note at an interval if the contents have changed"
+msgstr ""
+
+#: src/ui/strings.vala:74
+msgid "Truncate"
+msgstr ""
+
+#: src/ui/strings.vala:75
+msgid "Multi-line"
+msgstr ""
+
+#: src/ui/strings.vala:76
+msgid "Expand"
+msgstr ""
 
 #: data/app.metainfo.xml.in:5
 msgid "Beautiful markdown note-taking app"
@@ -26,25 +67,21 @@ msgstr "Rozšířený seznam poznámek"
 msgid "Main Menu"
 msgstr "Hlavní menu"
 
-#: src/ui/window/window.blp:281
+#: src/ui/window/window.blp:282
 msgid "Note Menu"
 msgstr "Nabídka poznámka"
 
-#: data/app.gschema.xml:91
+#: data/app.gschema.xml:96
 msgid "Allow long notebook names"
 msgstr "Povolit dlouhé názvy sešitů"
 
-#: data/app.gschema.xml:92
+#: data/app.gschema.xml:97
 msgid "The notebook column will expand to the width of the longest notebook name"
 msgstr "Sloupec sešitu se rozšíří na šířku nejdelšího názvu sešitu"
 
-#: data/app.gschema.xml:96
+#: data/app.gschema.xml:101
 msgid "Allow long note names"
 msgstr "Povolit dlouhé názvy poznámek"
-
-#: data/app.gschema.xml:97
-msgid "The note list column will expand to the width of the longest note name"
-msgstr "Sloupec sešitu se rozšíří na šířku nejdelšího názvu poznámky"
 
 #: data/app.metainfo.xml.in:8
 msgid "Some features include:"
@@ -78,27 +115,19 @@ msgstr "Povolit dlouhé názvy sešitů"
 msgid "The notebook column will expand to the width of the longest notebook name (requires notebook selection change to take effect)."
 msgstr "Sloupec sešitu se rozšíří na šířku nejdelšího názvu sešitu (vyžaduje restartování aplikace)."
 
-#: src/ui/preferences/preferences.blp:161
-msgid "Allow Long Note Names"
-msgstr "Povolit dlouhé názvy poznámek"
-
-#: src/ui/preferences/preferences.blp:162
-msgid "The note list column will expand to the width of the longest note name (requires notebook selection change to take effect)."
-msgstr "Sloupec sešitu se rozšíří na šířku nejdelšího názvu poznámky (vyžaduje restartování aplikace)."
-
-#: data/app.gschema.xml:81
+#: data/app.gschema.xml:86
 msgid "URL detection level"
 msgstr "Úroveň detekce URL"
 
-#: data/app.gschema.xml:82
+#: data/app.gschema.xml:87
 msgid "How aggressive to look for URLs in markdown text"
 msgstr "Jakým způsobem hledat adresy URL v textu"
 
-#: data/app.gschema.xml:86
+#: data/app.gschema.xml:91
 msgid "Line spacing"
 msgstr "Řádkování"
 
-#: data/app.gschema.xml:87 src/ui/preferences/preferences.blp:74
+#: data/app.gschema.xml:92 src/ui/preferences/preferences.blp:74
 msgid "The line spacing for the note text"
 msgstr "Řádkování textu poznámky"
 
@@ -192,27 +221,27 @@ msgstr "Otevření souboru v externí aplikaci"
 msgid "Open file"
 msgstr "Otevřít soubor"
 
-#: data/app.gschema.xml:76
+#: data/app.gschema.xml:81
 msgid "Notebook sort order"
 msgstr "Pořadí řazení sešitů"
 
-#: data/app.gschema.xml:77
+#: data/app.gschema.xml:82
 msgid "The sort order of the notebook list"
 msgstr "Pořadí řazení seznamu sešitů"
 
-#: src/ui/preferences/preferences.blp:189
+#: src/ui/preferences/preferences.blp:184
 msgid "Sort Order For Notebooks"
 msgstr "Řazení sešitů"
 
-#: data/app.gschema.xml:71
+#: data/app.gschema.xml:76
 msgid "Note sort order"
 msgstr "Poznámka: pořadí řazení"
 
-#: data/app.gschema.xml:72
+#: data/app.gschema.xml:77
 msgid "The sort order of the note list"
 msgstr "Pořadí řazení seznamu poznámek"
 
-#: src/ui/preferences/preferences.blp:194
+#: src/ui/preferences/preferences.blp:189
 msgid "Sort Order For Notes"
 msgstr "Řazení poznámek"
 
@@ -310,11 +339,11 @@ msgstr ""
 msgid "Note %i"
 msgstr "Poznámka %i"
 
-#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:257
+#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:258
 msgid "Trash Storage Location"
 msgstr "Umístění koše"
 
-#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:258
+#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:259
 msgid "Where the trash folder is located (requires app restart)"
 msgstr "Kde je umístěna složka koše (vyžaduje restartování aplikace)"
 
@@ -322,11 +351,11 @@ msgstr "Kde je umístěna složka koše (vyžaduje restartování aplikace)"
 msgid "Pick where the trash can will be stored"
 msgstr "Vyberte místo, kde bude uložen koš"
 
-#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:172
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:167
 msgid "Use Fixed Width For Notes"
 msgstr "Použít pevnou šířku pro poznámky"
 
-#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:173
+#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:168
 msgid "Use a fixed width for the text area of a note"
 msgstr "Pro textovou oblast poznámky použijte pevnou šířku"
 
@@ -350,39 +379,39 @@ msgstr "Zobrazit všechny poznámky"
 msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
 msgstr "Zobrazí \"Všechny poznámky\" v horní části seznamu zápisníků"
 
-#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:207
+#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:202
 msgid "Enable autosave"
 msgstr "Povolit automatické ukládání"
 
-#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:208
+#: data/app.gschema.xml:62
 msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
 msgstr "Automaticky uloží aktuální poznámku každých 30 sekund, pokud se obsah změnil (vyžaduje restart aplikace)"
 
-#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:218
+#: data/app.gschema.xml:71 src/ui/preferences/preferences.blp:219
 msgid "Don't hide the Trash folder"
 msgstr "Neskrývat složku Koš"
 
-#: data/app.gschema.xml:67
+#: data/app.gschema.xml:72
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
 msgstr "Složka koše je standardně nastavena jako skrytá, tato možnost ji zviditelní"
 
-#: data/app.metainfo.xml.in:441
+#: data/app.metainfo.xml.in:483
 msgid "Main Folio window in light mode"
 msgstr "Hlavní okno ve světlém režimu"
 
-#: data/app.metainfo.xml.in:445
+#: data/app.metainfo.xml.in:487
 msgid "Main Folio window in dark mode"
 msgstr "Hlavní okno v tmavém režimu"
 
-#: data/app.metainfo.xml.in:449
+#: data/app.metainfo.xml.in:491
 msgid "Folio on small/mobile screens"
 msgstr "Folio na malých/mobilních obrazovkách"
 
-#: data/app.metainfo.xml.in:453
+#: data/app.metainfo.xml.in:495
 msgid "Folio preferences screen"
 msgstr "Obrazovka předvoleb"
 
-#: data/app.metainfo.xml.in:457
+#: data/app.metainfo.xml.in:499
 msgid "Folio in three pane mode"
 msgstr "Folio v režimu tří panelů"
 
@@ -402,19 +431,19 @@ msgstr "Na pravé straně panelu nástrojů přidá tlačítko s markdown nápov
 msgid "Layout"
 msgstr "Rozložení"
 
-#: src/ui/preferences/preferences.blp:183
+#: src/ui/preferences/preferences.blp:178
 msgid "Fixed Width To Use For Notes"
 msgstr "Pevná šířka pro poznámky"
 
-#: src/ui/preferences/preferences.blp:184
+#: src/ui/preferences/preferences.blp:179
 msgid "Sets the fixed width size of a note in px"
 msgstr "Nastaví pevnou šířku poznámky v pixelech"
 
-#: src/ui/preferences/preferences.blp:201
+#: src/ui/preferences/preferences.blp:196
 msgid "Files"
 msgstr "Soubory"
 
-#: src/ui/preferences/preferences.blp:219
+#: src/ui/preferences/preferences.blp:220
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
 msgstr "Složka koše je ve výchozím nastavení nastavena jako skrytá složka, tato možnost ji zviditelní (vyžaduje restart aplikace)"
 
@@ -422,39 +451,39 @@ msgstr "Složka koše je ve výchozím nastavení nastavena jako skrytá složka
 msgid "Unable to recognize URI"
 msgstr "Identifikátor URI nelze rozpoznat"
 
-#: data/app.desktop.in:9 src/ui/strings.vala:3
+#: data/app.desktop.in:8 src/ui/strings.vala:3
 msgid "Folio"
 msgstr "Folio"
 
-#: data/app.desktop.in:10
+#: data/app.desktop.in:9
 msgid "Notes Manager"
 msgstr "Správce poznámek"
 
-#: data/app.desktop.in:11
+#: data/app.desktop.in:10
 msgid "Take notes"
 msgstr "Dělejte si poznámky"
 
-#: data/app.desktop.in:13
+#: data/app.desktop.in:12
 msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
 msgstr "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;Poznámka;Poznámky;Poznámkový blok;Psaní;Škola;"
 
-#: data/app.desktop.in:22 src/ui/popup/shortcut_window.blp:17
+#: data/app.desktop.in:21 src/ui/popup/shortcut_window.blp:17
 #: src/ui/strings.vala:8 src/ui/window/window.blp:57
 #: src/ui/window/window.blp:136
 msgid "New Note"
 msgstr "Nová poznámka"
 
-#: data/app.desktop.in:26 src/ui/popup/shortcut_window.blp:37
+#: data/app.desktop.in:25 src/ui/popup/shortcut_window.blp:37
 #: src/ui/strings.vala:14 src/ui/window/window.blp:194
 msgid "New Notebook"
 msgstr "Nový sešit"
 
-#: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:92
-#: src/ui/strings.vala:39 src/ui/window/window.blp:297
+#: data/app.desktop.in:29 src/ui/edit_view/toolbar/toolbar.blp:91
+#: src/ui/strings.vala:39 src/ui/window/window.blp:298
 msgid "Markdown Cheatsheet"
 msgstr "Markdown nápověda"
 
-#: data/app.desktop.in:34 src/ui/popup/shortcut_window.blp:62
+#: data/app.desktop.in:33 src/ui/popup/shortcut_window.blp:62
 msgid "Preferences"
 msgstr "Předvolby"
 
@@ -506,87 +535,87 @@ msgstr "Koš"
 msgid "Markdown document"
 msgstr "Dokument Markdown"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:6
+#: src/ui/edit_view/toolbar/toolbar.blp:5
 #: src/ui/widgets/markdown/heading_popover.blp:48
 msgid "Plain Text"
 msgstr "Prostý text"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:7
+#: src/ui/edit_view/toolbar/toolbar.blp:6
 #: src/ui/widgets/markdown/heading_popover.blp:12
 msgid "Heading 1"
 msgstr "Nadpis 1"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:8
+#: src/ui/edit_view/toolbar/toolbar.blp:7
 #: src/ui/widgets/markdown/heading_popover.blp:18
 msgid "Heading 2"
 msgstr "Nadpis 2"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:9
+#: src/ui/edit_view/toolbar/toolbar.blp:8
 #: src/ui/widgets/markdown/heading_popover.blp:24
 msgid "Heading 3"
 msgstr "Nadpis 3"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:10
+#: src/ui/edit_view/toolbar/toolbar.blp:9
 #: src/ui/widgets/markdown/heading_popover.blp:30
 msgid "Heading 4"
 msgstr "Nadpis 4"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:11
+#: src/ui/edit_view/toolbar/toolbar.blp:10
 #: src/ui/widgets/markdown/heading_popover.blp:36
 msgid "Heading 5"
 msgstr "Nadpis 5"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:12
+#: src/ui/edit_view/toolbar/toolbar.blp:11
 #: src/ui/widgets/markdown/heading_popover.blp:42
 msgid "Heading 6"
 msgstr "Nadpis 6"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:41
-#: src/ui/edit_view/toolbar/toolbar.blp:107
-#: src/ui/edit_view/toolbar/toolbar.blp:142
-#: src/ui/edit_view/toolbar/toolbar.blp:195 src/ui/popup/shortcut_window.blp:72
+#: src/ui/edit_view/toolbar/toolbar.blp:40
+#: src/ui/edit_view/toolbar/toolbar.blp:106
+#: src/ui/edit_view/toolbar/toolbar.blp:141
+#: src/ui/edit_view/toolbar/toolbar.blp:194 src/ui/popup/shortcut_window.blp:72
 msgid "Bold"
 msgstr "Tučné"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:47
-#: src/ui/edit_view/toolbar/toolbar.blp:114
-#: src/ui/edit_view/toolbar/toolbar.blp:149
-#: src/ui/edit_view/toolbar/toolbar.blp:196 src/ui/popup/shortcut_window.blp:77
+#: src/ui/edit_view/toolbar/toolbar.blp:46
+#: src/ui/edit_view/toolbar/toolbar.blp:113
+#: src/ui/edit_view/toolbar/toolbar.blp:148
+#: src/ui/edit_view/toolbar/toolbar.blp:195 src/ui/popup/shortcut_window.blp:77
 msgid "Italic"
 msgstr "Kurzíva"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:53
-#: src/ui/edit_view/toolbar/toolbar.blp:156
-#: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:82
+#: src/ui/edit_view/toolbar/toolbar.blp:52
+#: src/ui/edit_view/toolbar/toolbar.blp:155
+#: src/ui/edit_view/toolbar/toolbar.blp:196 src/ui/popup/shortcut_window.blp:82
 msgid "Strikethrough"
 msgstr "Přeškrtnutí"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:59
-#: src/ui/edit_view/toolbar/toolbar.blp:163
-#: src/ui/edit_view/toolbar/toolbar.blp:198 src/ui/popup/shortcut_window.blp:87
+#: src/ui/edit_view/toolbar/toolbar.blp:58
+#: src/ui/edit_view/toolbar/toolbar.blp:162
+#: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:87
 msgid "Highlight"
 msgstr "Zvýraznění"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:69
-#: src/ui/edit_view/toolbar/toolbar.blp:187 src/ui/popup/shortcut_window.blp:92
+#: src/ui/edit_view/toolbar/toolbar.blp:68
+#: src/ui/edit_view/toolbar/toolbar.blp:186 src/ui/popup/shortcut_window.blp:92
 msgid "Insert Link"
 msgstr "Vložit odkaz"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:75
-#: src/ui/edit_view/toolbar/toolbar.blp:188
+#: src/ui/edit_view/toolbar/toolbar.blp:74
+#: src/ui/edit_view/toolbar/toolbar.blp:187
 msgid "Insert Code"
 msgstr "Vložit kód"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:81
-#: src/ui/edit_view/toolbar/toolbar.blp:189
+#: src/ui/edit_view/toolbar/toolbar.blp:80
+#: src/ui/edit_view/toolbar/toolbar.blp:188
 msgid "Insert Horizontal Rule"
 msgstr "Vložit vodorovnou čáru"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:121
+#: src/ui/edit_view/toolbar/toolbar.blp:120
 msgid "Format"
 msgstr "Formátovat"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:175
+#: src/ui/edit_view/toolbar/toolbar.blp:174
 msgid "Insert"
 msgstr "Vložit"
 
@@ -639,7 +668,7 @@ msgstr "Formátování"
 msgid "Navigation"
 msgstr "Navigace"
 
-#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:273
+#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:274
 msgid "Toggle Sidebar"
 msgstr "Přepnout postranní panel"
 
@@ -663,11 +692,11 @@ msgstr "Povolit nápovědu"
 msgid "3-Pane Layout"
 msgstr "3-panelové rozvržení"
 
-#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:229
+#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:230
 msgid "Notes Storage Location"
 msgstr "Umístění úložiště poznámek"
 
-#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:230
+#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:231
 msgid "Where the notebooks are stored (requires app restart)"
 msgstr "Kde jsou uloženy zápisníky (vyžaduje restart aplikace)"
 
@@ -933,14 +962,22 @@ msgstr "Vytvořte sešit"
 msgid "Trash is empty"
 msgstr "Koš je prázdný"
 
-#: src/ui/window/window.blp:291
+#: src/ui/window/window.blp:292
 msgid "Open in Notebook"
 msgstr "Otevřít v sešitu"
 
-#: src/ui/window/window.blp:318
+#. Translators: The underscore at the begining of the english label represents
+#. the hotkey
+#. for the menu item, but it can occur anywhere in the text of the translation
+#. as appropriate.
+#: src/ui/window/window.blp:321
 msgid "_Rename Note"
 msgstr "_Přejmenovat poznámku"
 
-#: src/ui/window/window.blp:325
+#. Translators: The underscore at the begining of the english label represents
+#. the hotkey
+#. for the menu item, but it can occur anywhere in the text of the translation
+#. as appropriate.
+#: src/ui/window/window.blp:330
 msgid "_Export Note"
 msgstr "_Exportovat poznámku"

@@ -7,9 +7,53 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: GlotPress/4.0.1\n"
+"X-Generator: GlotPress/4.0.3\n"
 "Language: gl\n"
 "Project-Id-Version: Folio\n"
+
+#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:213
+msgid "Autosave interval"
+msgstr ""
+
+#: data/app.gschema.xml:67 src/ui/preferences/preferences.blp:214
+msgid "The interval to trigger an automatic save of the note on (in seconds)"
+msgstr ""
+
+#: data/app.gschema.xml:102
+msgid "DEPRECATED: use long-note-names-handling instead"
+msgstr ""
+
+#: data/app.gschema.xml:106
+msgid "Long note name handling"
+msgstr ""
+
+#: data/app.gschema.xml:107
+msgid "Truncate, multi-line, or expand the note list column to the width of longest note name"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:161
+msgid "Long Note Names Handling"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:162
+msgid "Truncate, multi-line, or expand the note list column to the width of longest note name (requires notebook selection change to take effect)."
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:203
+msgid "Automatically saves the current note at an interval if the contents have changed"
+msgstr ""
+
+#: src/ui/strings.vala:74
+msgid "Truncate"
+msgstr ""
+
+#: src/ui/strings.vala:75
+msgid "Multi-line"
+msgstr ""
+
+#: src/ui/strings.vala:76
+msgid "Expand"
+msgstr ""
 
 #: data/app.metainfo.xml.in:5
 msgid "Beautiful markdown note-taking app"
@@ -23,24 +67,20 @@ msgstr ""
 msgid "Main Menu"
 msgstr ""
 
-#: src/ui/window/window.blp:281
+#: src/ui/window/window.blp:282
 msgid "Note Menu"
 msgstr ""
 
-#: data/app.gschema.xml:91
+#: data/app.gschema.xml:96
 msgid "Allow long notebook names"
 msgstr ""
 
-#: data/app.gschema.xml:92
+#: data/app.gschema.xml:97
 msgid "The notebook column will expand to the width of the longest notebook name"
 msgstr ""
 
-#: data/app.gschema.xml:96
+#: data/app.gschema.xml:101
 msgid "Allow long note names"
-msgstr ""
-
-#: data/app.gschema.xml:97
-msgid "The note list column will expand to the width of the longest note name"
 msgstr ""
 
 #: data/app.metainfo.xml.in:8
@@ -75,27 +115,19 @@ msgstr ""
 msgid "The notebook column will expand to the width of the longest notebook name (requires notebook selection change to take effect)."
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:161
-msgid "Allow Long Note Names"
-msgstr ""
-
-#: src/ui/preferences/preferences.blp:162
-msgid "The note list column will expand to the width of the longest note name (requires notebook selection change to take effect)."
-msgstr ""
-
-#: data/app.gschema.xml:81
+#: data/app.gschema.xml:86
 msgid "URL detection level"
 msgstr ""
 
-#: data/app.gschema.xml:82
+#: data/app.gschema.xml:87
 msgid "How aggressive to look for URLs in markdown text"
 msgstr ""
 
-#: data/app.gschema.xml:86
+#: data/app.gschema.xml:91
 msgid "Line spacing"
 msgstr ""
 
-#: data/app.gschema.xml:87 src/ui/preferences/preferences.blp:74
+#: data/app.gschema.xml:92 src/ui/preferences/preferences.blp:74
 msgid "The line spacing for the note text"
 msgstr ""
 
@@ -184,27 +216,27 @@ msgstr ""
 msgid "Open file"
 msgstr ""
 
-#: data/app.gschema.xml:76
+#: data/app.gschema.xml:81
 msgid "Notebook sort order"
 msgstr ""
 
-#: data/app.gschema.xml:77
+#: data/app.gschema.xml:82
 msgid "The sort order of the notebook list"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:189
+#: src/ui/preferences/preferences.blp:184
 msgid "Sort Order For Notebooks"
 msgstr ""
 
-#: data/app.gschema.xml:71
+#: data/app.gschema.xml:76
 msgid "Note sort order"
 msgstr ""
 
-#: data/app.gschema.xml:72
+#: data/app.gschema.xml:77
 msgid "The sort order of the note list"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:194
+#: src/ui/preferences/preferences.blp:189
 msgid "Sort Order For Notes"
 msgstr ""
 
@@ -287,11 +319,11 @@ msgstr ""
 msgid "Note %i"
 msgstr ""
 
-#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:257
+#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:258
 msgid "Trash Storage Location"
 msgstr ""
 
-#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:258
+#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:259
 msgid "Where the trash folder is located (requires app restart)"
 msgstr ""
 
@@ -299,11 +331,11 @@ msgstr ""
 msgid "Pick where the trash can will be stored"
 msgstr ""
 
-#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:172
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:167
 msgid "Use Fixed Width For Notes"
 msgstr ""
 
-#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:173
+#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:168
 msgid "Use a fixed width for the text area of a note"
 msgstr ""
 
@@ -327,39 +359,39 @@ msgstr ""
 msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
 msgstr ""
 
-#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:207
+#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:202
 msgid "Enable autosave"
 msgstr ""
 
-#: data/app.gschema.xml:62 src/ui/preferences/preferences.blp:208
+#: data/app.gschema.xml:62
 msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
 msgstr ""
 
-#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:218
+#: data/app.gschema.xml:71 src/ui/preferences/preferences.blp:219
 msgid "Don't hide the Trash folder"
 msgstr ""
 
-#: data/app.gschema.xml:67
+#: data/app.gschema.xml:72
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
 msgstr ""
 
-#: data/app.metainfo.xml.in:441
+#: data/app.metainfo.xml.in:483
 msgid "Main Folio window in light mode"
 msgstr ""
 
-#: data/app.metainfo.xml.in:445
+#: data/app.metainfo.xml.in:487
 msgid "Main Folio window in dark mode"
 msgstr ""
 
-#: data/app.metainfo.xml.in:449
+#: data/app.metainfo.xml.in:491
 msgid "Folio on small/mobile screens"
 msgstr ""
 
-#: data/app.metainfo.xml.in:453
+#: data/app.metainfo.xml.in:495
 msgid "Folio preferences screen"
 msgstr ""
 
-#: data/app.metainfo.xml.in:457
+#: data/app.metainfo.xml.in:499
 msgid "Folio in three pane mode"
 msgstr ""
 
@@ -379,19 +411,19 @@ msgstr ""
 msgid "Layout"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:183
+#: src/ui/preferences/preferences.blp:178
 msgid "Fixed Width To Use For Notes"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:184
+#: src/ui/preferences/preferences.blp:179
 msgid "Sets the fixed width size of a note in px"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:201
+#: src/ui/preferences/preferences.blp:196
 msgid "Files"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:219
+#: src/ui/preferences/preferences.blp:220
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
 msgstr ""
 
@@ -399,39 +431,39 @@ msgstr ""
 msgid "Unable to recognize URI"
 msgstr ""
 
-#: data/app.desktop.in:9 src/ui/strings.vala:3
+#: data/app.desktop.in:8 src/ui/strings.vala:3
 msgid "Folio"
 msgstr "Folio"
 
-#: data/app.desktop.in:10
+#: data/app.desktop.in:9
 msgid "Notes Manager"
 msgstr "Xestor de notas"
 
-#: data/app.desktop.in:11
+#: data/app.desktop.in:10
 msgid "Take notes"
 msgstr "Tomar notas"
 
-#: data/app.desktop.in:13
+#: data/app.desktop.in:12
 msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
 msgstr "Caderno;Nota;Notas;Texto;Markdown;Notepad;Escribir;Escola;Post-it;Pegañento;"
 
-#: data/app.desktop.in:22 src/ui/popup/shortcut_window.blp:17
+#: data/app.desktop.in:21 src/ui/popup/shortcut_window.blp:17
 #: src/ui/strings.vala:8 src/ui/window/window.blp:57
 #: src/ui/window/window.blp:136
 msgid "New Note"
 msgstr "Nova nota"
 
-#: data/app.desktop.in:26 src/ui/popup/shortcut_window.blp:37
+#: data/app.desktop.in:25 src/ui/popup/shortcut_window.blp:37
 #: src/ui/strings.vala:14 src/ui/window/window.blp:194
 msgid "New Notebook"
 msgstr "Novo caderno"
 
-#: data/app.desktop.in:30 src/ui/edit_view/toolbar/toolbar.blp:92
-#: src/ui/strings.vala:39 src/ui/window/window.blp:297
+#: data/app.desktop.in:29 src/ui/edit_view/toolbar/toolbar.blp:91
+#: src/ui/strings.vala:39 src/ui/window/window.blp:298
 msgid "Markdown Cheatsheet"
 msgstr "Guía de Markdown"
 
-#: data/app.desktop.in:34 src/ui/popup/shortcut_window.blp:62
+#: data/app.desktop.in:33 src/ui/popup/shortcut_window.blp:62
 msgid "Preferences"
 msgstr "Preferencias"
 
@@ -483,87 +515,87 @@ msgstr "Lixo"
 msgid "Markdown document"
 msgstr "Documento Markdown"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:6
+#: src/ui/edit_view/toolbar/toolbar.blp:5
 #: src/ui/widgets/markdown/heading_popover.blp:48
 msgid "Plain Text"
 msgstr "Texto plano"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:7
+#: src/ui/edit_view/toolbar/toolbar.blp:6
 #: src/ui/widgets/markdown/heading_popover.blp:12
 msgid "Heading 1"
 msgstr "Cabeceira 1"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:8
+#: src/ui/edit_view/toolbar/toolbar.blp:7
 #: src/ui/widgets/markdown/heading_popover.blp:18
 msgid "Heading 2"
 msgstr "Cabeceira 2"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:9
+#: src/ui/edit_view/toolbar/toolbar.blp:8
 #: src/ui/widgets/markdown/heading_popover.blp:24
 msgid "Heading 3"
 msgstr "Cabeceira 3"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:10
+#: src/ui/edit_view/toolbar/toolbar.blp:9
 #: src/ui/widgets/markdown/heading_popover.blp:30
 msgid "Heading 4"
 msgstr "Cabeceira 4"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:11
+#: src/ui/edit_view/toolbar/toolbar.blp:10
 #: src/ui/widgets/markdown/heading_popover.blp:36
 msgid "Heading 5"
 msgstr "Cabeceira 5"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:12
+#: src/ui/edit_view/toolbar/toolbar.blp:11
 #: src/ui/widgets/markdown/heading_popover.blp:42
 msgid "Heading 6"
 msgstr "Cabeceira 6"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:41
-#: src/ui/edit_view/toolbar/toolbar.blp:107
-#: src/ui/edit_view/toolbar/toolbar.blp:142
-#: src/ui/edit_view/toolbar/toolbar.blp:195 src/ui/popup/shortcut_window.blp:72
+#: src/ui/edit_view/toolbar/toolbar.blp:40
+#: src/ui/edit_view/toolbar/toolbar.blp:106
+#: src/ui/edit_view/toolbar/toolbar.blp:141
+#: src/ui/edit_view/toolbar/toolbar.blp:194 src/ui/popup/shortcut_window.blp:72
 msgid "Bold"
 msgstr "Negriña"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:47
-#: src/ui/edit_view/toolbar/toolbar.blp:114
-#: src/ui/edit_view/toolbar/toolbar.blp:149
-#: src/ui/edit_view/toolbar/toolbar.blp:196 src/ui/popup/shortcut_window.blp:77
+#: src/ui/edit_view/toolbar/toolbar.blp:46
+#: src/ui/edit_view/toolbar/toolbar.blp:113
+#: src/ui/edit_view/toolbar/toolbar.blp:148
+#: src/ui/edit_view/toolbar/toolbar.blp:195 src/ui/popup/shortcut_window.blp:77
 msgid "Italic"
 msgstr "Cursiva"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:53
-#: src/ui/edit_view/toolbar/toolbar.blp:156
-#: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:82
+#: src/ui/edit_view/toolbar/toolbar.blp:52
+#: src/ui/edit_view/toolbar/toolbar.blp:155
+#: src/ui/edit_view/toolbar/toolbar.blp:196 src/ui/popup/shortcut_window.blp:82
 msgid "Strikethrough"
 msgstr "Riscado"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:59
-#: src/ui/edit_view/toolbar/toolbar.blp:163
-#: src/ui/edit_view/toolbar/toolbar.blp:198 src/ui/popup/shortcut_window.blp:87
+#: src/ui/edit_view/toolbar/toolbar.blp:58
+#: src/ui/edit_view/toolbar/toolbar.blp:162
+#: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:87
 msgid "Highlight"
 msgstr "Realzado"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:69
-#: src/ui/edit_view/toolbar/toolbar.blp:187 src/ui/popup/shortcut_window.blp:92
+#: src/ui/edit_view/toolbar/toolbar.blp:68
+#: src/ui/edit_view/toolbar/toolbar.blp:186 src/ui/popup/shortcut_window.blp:92
 msgid "Insert Link"
 msgstr "Inserir ligazón"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:75
-#: src/ui/edit_view/toolbar/toolbar.blp:188
+#: src/ui/edit_view/toolbar/toolbar.blp:74
+#: src/ui/edit_view/toolbar/toolbar.blp:187
 msgid "Insert Code"
 msgstr "Inserir código"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:81
-#: src/ui/edit_view/toolbar/toolbar.blp:189
+#: src/ui/edit_view/toolbar/toolbar.blp:80
+#: src/ui/edit_view/toolbar/toolbar.blp:188
 msgid "Insert Horizontal Rule"
 msgstr "Inserir regra horizontal"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:121
+#: src/ui/edit_view/toolbar/toolbar.blp:120
 msgid "Format"
 msgstr "Formatado"
 
-#: src/ui/edit_view/toolbar/toolbar.blp:175
+#: src/ui/edit_view/toolbar/toolbar.blp:174
 msgid "Insert"
 msgstr "Inserir"
 
@@ -616,7 +648,7 @@ msgstr "Formatado"
 msgid "Navigation"
 msgstr "Navegación"
 
-#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:273
+#: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:274
 msgid "Toggle Sidebar"
 msgstr "Trocar barra lateral"
 
@@ -640,11 +672,11 @@ msgstr ""
 msgid "3-Pane Layout"
 msgstr "Disposición de 3 paneis"
 
-#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:229
+#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:230
 msgid "Notes Storage Location"
 msgstr "Localización do almacenamento das notas"
 
-#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:230
+#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:231
 msgid "Where the notebooks are stored (requires app restart)"
 msgstr "Onde se almacenan os cadernos (require reiniciar a aplicación)"
 
@@ -910,14 +942,22 @@ msgstr "Crear un caderno"
 msgid "Trash is empty"
 msgstr "O lixo está baleiro"
 
-#: src/ui/window/window.blp:291
+#: src/ui/window/window.blp:292
 msgid "Open in Notebook"
 msgstr "Abrir no caderno"
 
-#: src/ui/window/window.blp:318
+#. Translators: The underscore at the begining of the english label represents
+#. the hotkey
+#. for the menu item, but it can occur anywhere in the text of the translation
+#. as appropriate.
+#: src/ui/window/window.blp:321
 msgid "_Rename Note"
 msgstr "_Renamear nota"
 
-#: src/ui/window/window.blp:325
+#. Translators: The underscore at the begining of the english label represents
+#. the hotkey
+#. for the menu item, but it can occur anywhere in the text of the translation
+#. as appropriate.
+#: src/ui/window/window.blp:330
 msgid "_Export Note"
 msgstr "_Exportar nota"
