@@ -227,12 +227,19 @@ Sunniva Løvstad
 		about.set_release_notes ("""
         <p>Changes:</p>
         <ul>
-          <li>Fixed more renaming a note causing data loss.</li>
-          <li>Fixed not saving note on exit.</li>
-          <li>Fixed Gtk.init() called early for Gnome 48 compatibility.</li>
-          <li>Fixed zoom buttons in overflow menu.</li>
-          <li>Fixed being unable to select last note after going to the trash.</li>
-          <li>Moved to Gnome 48.</li>
+		  <li>Added ellipses to long note titles (thanks @diegopvlk).</li>
+		  <li>Added option for wrapping long note titles (thanks @lawmurry).</li>
+		  <li>Add option to set auto-save interval.</li>
+          <li>Fixed matching lists with more than single digits.</li>
+		  <li>Fixed several memory leaks (thanks @lawmurray).</li>
+		  <li>Fixed edge case with desktop files (thanks @lawmurray).</li>
+		  <li>Fixed required newline at end of file (thanks @lawmurry).</li>
+		  <li>Fixed issue with renaming a note with popup.</li>
+		  <li>Fixed scroll issue when switching from longer to shorter notes (thanks @lawmurry).</li>
+		  <li>Converted indents to margins to fix formatting issues.</li>
+		  <li>Use system default fonts for initial setup.</li>
+		  <li>Updated translations, thanks to all the translators!</li>
+          <li>Moved to Gnome 50 (thanks @yakushabb).</li>
         </ul>
 """
 		);

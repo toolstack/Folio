@@ -24,6 +24,26 @@
   <launchable type="desktop-id">@app_id@.desktop</launchable>
 
   <releases>
+    <release type="stable" version="26.01" date="2026-04-16">
+      <description translate="no">
+        <p>Changes:</p>
+        <ul>
+		  <li>Added ellipses to long note titles (thanks @diegopvlk).</li>
+		  <li>Added option for wrapping long note titles (thanks @lawmurry).</li>
+		  <li>Add option to set auto-save interval.</li>
+          <li>Fixed matching lists with more than single digits.</li>
+		  <li>Fixed several memory leaks (thanks @lawmurray).</li>
+		  <li>Fixed edge case with desktop files (thanks @lawmurray).</li>
+		  <li>Fixed required newline at end of file (thanks @lawmurry).</li>
+		  <li>Fixed issue with renaming a note with popup.</li>
+		  <li>Fixed scroll issue when switching from longer to shorter notes (thanks @lawmurry).</li>
+		  <li>Converted indents to margins to fix formatting issues.</li>
+		  <li>Use system default fonts for initial setup.</li>
+		  <li>Updated translations, thanks to all the translators!</li>
+          <li>Moved to Gnome 50 (thanks @yakushabb).</li>
+        </ul>
+      </description>
+    </release>
     <release type="stable" version="25.02" date="2025-04-27">
       <description translate="no">
         <p>Changes:</p>
