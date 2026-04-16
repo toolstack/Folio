@@ -74,9 +74,7 @@ Flatpak build requires flatpak-building installed.
 ### Flatpak builds
  - install flatpak-builder if not already installed
  - change into the top level source directory
- - to build the flatpak, run `flatpak-builder --force-clean flatpak com.toolstack.Folio.json`
- - to build and install the flatpak, run `flatpak-builder --user --install --force-clean flatpak com.toolstack.Folio.json`
- - to launch the flatpak, run `flatpak run com.toolstack.Folio`
+ - run `build.flatpak.sh`
 
 ### Snap builds
  - Install snapcraft if not already installed
