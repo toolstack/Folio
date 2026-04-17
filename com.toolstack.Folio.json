@@ -19,7 +19,8 @@
             "sources" : [{
                 "type" : "git",
                 "url" : "https://github.com/toolstack/Folio",
-                "tag" : "26.01"
+                "tag" : "26.01",
+                "commit" : "0035dcec1ceccb286897cb5b83423edda6ac661c"
             }]
         }
     ]
