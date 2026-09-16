@@ -2,118 +2,121 @@
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-02-24 23:16:54+0000\n"
+"Project-Id-Version: Folio\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2026-09-03 15:38+0200\n"
+"Last-Translator: Ekaterine Papava <papava.e@gtu.ge>\n"
+"Language-Team: Georgian <(nothing)>\n"
+"Language: ka_GE\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: GlotPress/4.0.3\n"
-"Language: ka_GE\n"
-"Project-Id-Version: Folio\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.9\n"
 
 #: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:213
 msgid "Autosave interval"
-msgstr ""
+msgstr "ავტომატური შენახვის ინტერვალი"
 
 #: data/app.gschema.xml:67 src/ui/preferences/preferences.blp:214
 msgid "The interval to trigger an automatic save of the note on (in seconds)"
-msgstr ""
+msgstr "ინტერვალი, რომლის შემდეგაც ავტოშენახვა დატრიგერდება (წმ)"
 
 #: data/app.gschema.xml:102
 msgid "DEPRECATED: use long-note-names-handling instead"
-msgstr ""
+msgstr "მოძველებულია: გამოიყენეთ ამის მაგიერ long-note-names-handling"
 
 #: data/app.gschema.xml:106
 msgid "Long note name handling"
-msgstr ""
+msgstr "გრძელი შენიშვნების სახელის დამუშავება"
 
 #: data/app.gschema.xml:107
 msgid "Truncate, multi-line, or expand the note list column to the width of longest note name"
-msgstr ""
+msgstr "შენიშვნების სიის სვეტი წაიკვეთება, გამრავალხაზიანდება, ან გაფართოვდება უგრძესი შენიშვნის სახელის"
 
 #: src/ui/preferences/preferences.blp:161
 msgid "Long Note Names Handling"
-msgstr ""
+msgstr "გრძელი შენიშვნების სახელების დამუშავება"
 
 #: src/ui/preferences/preferences.blp:162
 msgid "Truncate, multi-line, or expand the note list column to the width of longest note name (requires notebook selection change to take effect)."
-msgstr ""
+msgstr "შენიშვნების სიის სვეტის წაკვეთა, გამრავალხაზიანება, ან გაფართოება უგრძესი შენიშვნის სახელის სიგანემდე (ძალაში შესასვლელად სჭირდება ბლოკნოტის მონიშვნის ცვლილება)."
 
 #: src/ui/preferences/preferences.blp:203
 msgid "Automatically saves the current note at an interval if the contents have changed"
-msgstr ""
+msgstr "ავტომატურად შეინახავს მიმდინარე შენიშვნას მითითებული ინტერვალით, თუ მისი შემცველობა შეიცვლება"
 
 #: src/ui/strings.vala:74
 msgid "Truncate"
-msgstr ""
+msgstr "გასუფთავება"
 
 #: src/ui/strings.vala:75
 msgid "Multi-line"
-msgstr ""
+msgstr "მრავალსტრიქონიანი"
 
 #: src/ui/strings.vala:76
 msgid "Expand"
-msgstr ""
+msgstr "გაშლა"
 
 #: data/app.metainfo.xml.in:5
 msgid "Beautiful markdown note-taking app"
-msgstr ""
+msgstr "ლამაზი Markdown-ის შენიშვნების გაკეთების აპლიკაცია"
 
 #: src/ui/preferences/preferences.blp:139
 msgid "Expanded Notebook List"
-msgstr ""
+msgstr "გაფართოებული ბლოკნოტების სია"
 
 #: src/ui/window/app_menu/app_menu.blp:10
 msgid "Main Menu"
-msgstr ""
+msgstr "მთავარი მენიუ"
 
 #: src/ui/window/window.blp:282
 msgid "Note Menu"
-msgstr ""
+msgstr "შენიშვნის მენიუ"
 
 #: data/app.gschema.xml:96
 msgid "Allow long notebook names"
-msgstr ""
+msgstr "ბლოკნოტის გრძელი სახელების დაშვება"
 
 #: data/app.gschema.xml:97
 msgid "The notebook column will expand to the width of the longest notebook name"
-msgstr ""
+msgstr "ბლოკნოტის სვეტი გაფართოვდება უგრძესი ბლოკნოტის სახელის სიგანემდე"
 
 #: data/app.gschema.xml:101
 msgid "Allow long note names"
-msgstr ""
+msgstr "შენიშვნის გრძელი სახელების ჩვენება"
 
 #: data/app.metainfo.xml.in:8
 msgid "Some features include:"
-msgstr ""
+msgstr "ზოგიერთი ფუნქცია სეუცავს:"
 
 #: data/app.metainfo.xml.in:16
 msgid "Optional line numbers"
-msgstr ""
+msgstr "არასავალდებულო ხაზის ნომრები"
 
 #: data/app.metainfo.xml.in:17
 msgid "Optional auto save"
-msgstr ""
+msgstr "არასავალდებულო ავტოშენახვა"
 
 #: data/app.metainfo.xml.in:18
 msgid "Open links with Control-Click"
-msgstr ""
+msgstr "ბმულების გახსნა Ctrl+წკაპით"
 
 #: data/app.metainfo.xml.in:19
 msgid "Link to other notes in Folio"
-msgstr ""
+msgstr "ბმული Folio-ში სხვა შენიშვნებზე"
 
 #: data/app.metainfo.xml.in:20
 msgid "Automatically create links for bare URL's and e-mail addresses"
-msgstr ""
+msgstr "ბმულების ავტომატური შექმნა უბრალო URL-ებისთვის და ელფოსტის მისამართებისთვის"
 
 #: src/ui/preferences/preferences.blp:150
 msgid "Allow Long Notebook Names"
-msgstr ""
+msgstr "ბლოკნოტის გრძელი სახელების ჩვენება"
 
 #: src/ui/preferences/preferences.blp:151
 msgid "The notebook column will expand to the width of the longest notebook name (requires notebook selection change to take effect)."
-msgstr ""
+msgstr "ბლოკნოტის სვეტი გაფართოვდება უგრძესი ბლოკნოტის სახელის სიგანემდე (ძალაში შესასვლელად სჭირდება ბლოკნოტის მონიშვნის ცვლილება)."
 
 #: data/app.gschema.xml:86
 msgid "URL detection level"
@@ -121,15 +124,15 @@ msgstr "URL-ის დადგენის დონე"
 
 #: data/app.gschema.xml:87
 msgid "How aggressive to look for URLs in markdown text"
-msgstr ""
+msgstr "რამდენად აგრესიულად უნდა ვეძებო URL-ები Markdown-ის ტექსტში"
 
 #: data/app.gschema.xml:91
 msgid "Line spacing"
-msgstr ""
+msgstr "დაშორება ხაზებს შორის"
 
 #: data/app.gschema.xml:92 src/ui/preferences/preferences.blp:74
 msgid "The line spacing for the note text"
-msgstr ""
+msgstr "ხაზებს შორის დაშორება შენიშვნის ტექსტისთვის"
 
 #: src/ui/preferences/preferences.blp:31
 msgid "Markdown URL Detection"
@@ -143,54 +146,59 @@ msgid ""
 " - Strict requires a protocol identifier (ie http://)\n"
 " - Disabled turns detection off."
 msgstr ""
+"განსაზღვრავს URL-ების აღმოჩენის დონეს,\n"
+"ტექსტში:\n"
+" - აგრესიული ყველა URL-ის პოვნას ეცდება\n"
+" - მკაცრი პროტოკოლის იდენტიფიკატორს ითხოვს (http://)\n"
+" - გამორთული - გამორთავს დადგენას."
 
 #: src/ui/preferences/preferences.blp:39
 msgid "Fonts"
-msgstr ""
+msgstr "ფონტები"
 
 #: src/ui/preferences/preferences.blp:73
 msgid "Line Spacing"
-msgstr ""
+msgstr "ხაზებს შუა მანძილი"
 
 #: src/ui/strings.vala:24
 msgid "Note names cannot contain a “/”"
-msgstr ""
+msgstr "შენიშვნის სახელი არ შეიძლება, \"/\"-ს შეიცავდეს"
 
 #: src/ui/strings.vala:25
 msgid "Note names cannot be blank"
-msgstr ""
+msgstr "შენიშვნის სახელი ცარიელი ვერ იქნება"
 
 #: src/ui/strings.vala:33
 msgid "Notebook names cannot contain a “/”"
-msgstr ""
+msgstr "ბლოკნოტის სახელი არ შეიძლება, \"/\"-ს შეიცავდეს"
 
 #: src/ui/strings.vala:34
 msgid "Notebook names cannot be blank"
-msgstr ""
+msgstr "ბლოკნოტის სახელი ცარიელი ვერ იქნება"
 
 #: src/ui/strings.vala:66
 msgid "Natural - Ascending"
-msgstr ""
+msgstr "ბუნებრივი - აღმავალი"
 
 #: src/ui/strings.vala:67
 msgid "Natural - Descending"
-msgstr ""
+msgstr "ბუნებრივი - დაღმავალი"
 
 #: src/ui/strings.vala:68
 msgid "Unable to launch external application for file %s."
-msgstr ""
+msgstr "ფაილისთვის %s გარე აპლიკაციის გაშვება შეუძლებელია."
 
 #: src/ui/strings.vala:69
 msgid "Aggressive"
-msgstr ""
+msgstr "აგრესიული"
 
 #: src/ui/strings.vala:70
 msgid "Strict"
-msgstr ""
+msgstr "მკაცრი"
 
 #: src/ui/strings.vala:71
 msgid "Disabled"
-msgstr ""
+msgstr "გათიშულია"
 
 #: src/ui/strings.vala:72
 msgid "“%s” moved to trash"
@@ -206,83 +214,83 @@ msgstr "Folio-ის შეს_ახებ"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:11
 msgid "Custom"
-msgstr ""
+msgstr "მომხმარებლის"
 
 #: src/ui/window/window.blp:157
 msgid "Open file in external application"
-msgstr ""
+msgstr "ფაილის გახსნა გარე აპლიკაციაში"
 
 #: src/ui/window/window.blp:165
 msgid "Open file"
-msgstr ""
+msgstr "ფაილის გახსნა"
 
 #: data/app.gschema.xml:81
 msgid "Notebook sort order"
-msgstr ""
+msgstr "ბლოკნოტების დალაგების წესი"
 
 #: data/app.gschema.xml:82
 msgid "The sort order of the notebook list"
-msgstr ""
+msgstr "ბლოკნოტების სიის დალაგების წესი"
 
 #: src/ui/preferences/preferences.blp:184
 msgid "Sort Order For Notebooks"
-msgstr ""
+msgstr "ბლოკნოტების დალაგების პირობა"
 
 #: data/app.gschema.xml:76
 msgid "Note sort order"
-msgstr ""
+msgstr "შენიშვნების დალაგების მიმდევრობა"
 
 #: data/app.gschema.xml:77
 msgid "The sort order of the note list"
-msgstr ""
+msgstr "შენიშვნების სიის დალაგების მიმდევრობა"
 
 #: src/ui/preferences/preferences.blp:189
 msgid "Sort Order For Notes"
-msgstr ""
+msgstr "შენიშვნების დალაგების პირობა"
 
 #: src/ui/strings.vala:62
 msgid "Modified Time - Ascending"
-msgstr ""
+msgstr "ცვლილების დრო - აღმავალი"
 
 #: src/ui/strings.vala:63
 msgid "Modified Time - Descending"
-msgstr ""
+msgstr "ცვლილების დრო - დაღმავალი"
 
 #: src/ui/strings.vala:64
 msgid "Alphabetical - Ascending"
-msgstr ""
+msgstr "ანბანით - აღმავალი"
 
 #: src/ui/strings.vala:65
 msgid "Alphabetical - Descending"
-msgstr ""
+msgstr "ანბანით - დაღმავალი"
 
 #: src/ui/popup/shortcut_window.blp:114
 msgid "Display"
-msgstr ""
+msgstr "ჩვენება"
 
 #: src/ui/popup/shortcut_window.blp:117
 msgid "Full Screen"
-msgstr ""
+msgstr "სრული ეკრანი"
 
 #: src/ui/popup/shortcut_window.blp:122
 msgid "Zoom In"
-msgstr ""
+msgstr "გადიდება"
 
 #: src/ui/popup/shortcut_window.blp:127
 msgid "Zoom Out"
-msgstr ""
+msgstr "დაპატარავება"
 
 #: src/ui/strings.vala:52
 msgid "Pick primary font for notes"
-msgstr ""
+msgstr "აირჩიეთ ძირითადი ფონტი შენიშვნებისთვის"
 
 #: src/ui/strings.vala:53
 msgid "Pick monospace font for code"
-msgstr ""
+msgstr "აირჩიეთ მონოგანივი ფონტი კოდისთვის"
 
 #: src/ui/strings.vala:54
 msgid "File Changed On Disk"
-msgstr ""
+msgstr "ფაილი შეიცვალა დისკზე"
 
 #: src/ui/strings.vala:55
 msgid ""
@@ -296,14 +304,23 @@ msgid ""
 "\n"
 "Note: Canceling the save if you have already moved to a new note/notebook will discard your changes."
 msgstr ""
+"ფაილი შეიცვალა დისკზე Folio-ის მიერ ბოლო შენახვის/ჩატვირთვის სემდეგ.\n"
+"\n"
+"შეგიძლიათ, ქნათ ერთ-ერთი:\n"
+"\n"
+" • თავიდან ჩატვირთოთ ფაილი (Folio-ში შეტანილი ცვლილებები დაიკარგება)\n"
+" • თავზე გადააწეროთ ფაილს (მოცილებული იქნება Folio-ის გარეთ შეტანილი ცვლილებები)\n"
+" • გააუქმოთ ოპერაცია და ხელით გადაჭრათ პრობლემა\n"
+"\n"
+"შენიშვნა: შენახვის გაუქმებას, თუ თქვენ უკვე გადახვედით ახალ შენიშვნაზე/ბლოკნოტზე, თქვენს ცვლილებებს წაშლის."
 
 #: src/ui/strings.vala:56
 msgid "Reload"
-msgstr ""
+msgstr "გადატვირთვა"
 
 #: src/ui/strings.vala:57
 msgid "Overwrite"
-msgstr ""
+msgstr "გადაწერა"
 
 #: src/ui/strings.vala:59
 msgid ""
@@ -314,66 +331,72 @@ msgid ""
 " • Reload the file (discarding any changes you have made in Folio)\n"
 " • Overwrite the file (discarding any changes made outside of Folio)"
 msgstr ""
+"ფაილი დისკზე სხვა აპლიკაციამ შეცვალა.\n"
+"\n"
+"შეგიძლიათ, ქნათ ერთ-ერთი:\n"
+"\n"
+" • თავიდან ჩატვირთოთ ფაილი (წაიშლება Folio-ში შეტანილი ცვლილებები)\n"
+" • თავზე გადააწეროთ ფაილს (წაიშლება Folio-ს გარეთ შეტანილი ცვლილებები)"
 
 #: src/ui/strings.vala:61
 msgid "Note %i"
-msgstr ""
+msgstr "შენიშვნა %i"
 
 #: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:258
 msgid "Trash Storage Location"
-msgstr ""
+msgstr "ნაგვის ყუთის საცავის მდებარეობა"
 
 #: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:259
 msgid "Where the trash folder is located (requires app restart)"
-msgstr ""
+msgstr "სადაა მოთავსებული ნაგვის ყუთი (საჭიროა აპის რესტარტი)"
 
 #: src/ui/strings.vala:46
 msgid "Pick where the trash can will be stored"
-msgstr ""
+msgstr "აირჩიეთ, სად გნებავთ ნაგვის ყუთის დამახსოვრება"
 
 #: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:167
 msgid "Use Fixed Width For Notes"
-msgstr ""
+msgstr "მუდმივი სიგანის გამოყენება შენიშვნებისთვის"
 
 #: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:168
 msgid "Use a fixed width for the text area of a note"
-msgstr ""
+msgstr "ფიქსირებული სიგანის გამოყენება შენიშვნის ტექსტის არესთვის"
 
 #: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:140
 msgid "Expands the notebook list to include the notebook name"
-msgstr ""
+msgstr "გააფართოებს ბლოკნოტების სიას, რომ სახელს შეიცავდეს"
 
 #: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:87
 msgid "Show line numbers"
-msgstr ""
+msgstr "ხაზის ნომრების ჩვენება"
 
 #: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:88
 msgid "Displays line numbers at the left of the note"
-msgstr ""
+msgstr "აჩვენებს ხაზის ნომრებს შენიშვნის მარცხენა მხარეს"
 
 #: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:98
 msgid "Show all notes"
-msgstr ""
+msgstr "ყველა შენიშვნის ჩვენება"
 
 #: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:99
 msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
-msgstr ""
+msgstr "აჩვენებს \"ყველა შენიშვნის\" ბლოკნოტს ბლოკნოტების სიის თავში"
 
 #: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:202
 msgid "Enable autosave"
-msgstr ""
+msgstr "ავტოშენახვის ჩართვა"
 
 #: data/app.gschema.xml:62
 msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
-msgstr ""
+msgstr "ავტომატურად ინახავს მიმდინარე შენიშვნას ყოველ 30 წამში, თუ შემცველობა შეიცვალა (სჭირდება აპის თავიდან გაშვება)"
 
 #: data/app.gschema.xml:71 src/ui/preferences/preferences.blp:219
 msgid "Don't hide the Trash folder"
-msgstr ""
+msgstr "ნაგვის საქაღალდე არ დაიმალება"
 
 #: data/app.gschema.xml:72
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
-msgstr ""
+msgstr "ნაგვის ყუთის საქაღალდე ნაგულისხმევად დამალული საქაღალდეა. ეს პარამეტრი მას ხილულს გახდის"
 
 #: data/app.metainfo.xml.in:483
 msgid "Main Folio window in light mode"
@@ -397,35 +420,35 @@ msgstr "Folio სამპანელიან რეჟიმში"
 
 #: src/ui/preferences/preferences.blp:81
 msgid "Tools"
-msgstr ""
+msgstr "ხელსაწყოები"
 
 #: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:110
 msgid "Displays the formatting toolbar at the bottom of the note"
-msgstr ""
+msgstr "აჩვენებს დაფორმატების პანელს შენიშვნის ბოლოში"
 
 #: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:121
 msgid "Adds a button to the markdown reference sheet on the right of the formatting toolbar"
-msgstr ""
+msgstr "დაამატებს ღილაკს Markdown-ის მიმართვის ფურცელს დაფორმატების პანელის მარჯვენა მხარეს"
 
 #: src/ui/preferences/preferences.blp:133
 msgid "Layout"
-msgstr ""
+msgstr "განლაგება"
 
 #: src/ui/preferences/preferences.blp:178
 msgid "Fixed Width To Use For Notes"
-msgstr ""
+msgstr "ფიქსირებული სიგანე შენიშვნებისთვის"
 
 #: src/ui/preferences/preferences.blp:179
 msgid "Sets the fixed width size of a note in px"
-msgstr ""
+msgstr "დააყენებს შენიშვნის ფიქსირებულ სიგანეს პიქსელებში"
 
 #: src/ui/preferences/preferences.blp:196
 msgid "Files"
-msgstr ""
+msgstr "ფაილები"
 
 #: src/ui/preferences/preferences.blp:220
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
-msgstr ""
+msgstr "ნაგვის ყუთის საქაღალდე ნაგულისხმევად დამალული საქაღალდეა. ეს პარამეტრი მას ხილულს გახდის (სჭირდება აპის თავიდან გაშვება)"
 
 #: src/ui/strings.vala:51
 msgid "Unable to recognize URI"
@@ -433,15 +456,15 @@ msgstr "URI-ის ამოცნობა შეუძლებელია"
 
 #: data/app.desktop.in:8 src/ui/strings.vala:3
 msgid "Folio"
-msgstr ""
+msgstr "ფოლიო"
 
 #: data/app.desktop.in:9
 msgid "Notes Manager"
-msgstr ""
+msgstr "შენიშვნების მმართველი"
 
 #: data/app.desktop.in:10
 msgid "Take notes"
-msgstr ""
+msgstr "ჩაინიშნეთ"
 
 #: data/app.desktop.in:12
 msgid "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;"
@@ -451,12 +474,12 @@ msgstr "Notebook;Note;Notes;Text;Markdown;Notepad;Write;School;Post-it;Sticky;�
 #: src/ui/strings.vala:8 src/ui/window/window.blp:57
 #: src/ui/window/window.blp:136
 msgid "New Note"
-msgstr ""
+msgstr "ახალი შენიშვნა"
 
 #: data/app.desktop.in:25 src/ui/popup/shortcut_window.blp:37
 #: src/ui/strings.vala:14 src/ui/window/window.blp:194
 msgid "New Notebook"
-msgstr ""
+msgstr "ახალი წიგნაკი"
 
 #: data/app.desktop.in:29 src/ui/edit_view/toolbar/toolbar.blp:91
 #: src/ui/strings.vala:39 src/ui/window/window.blp:298
@@ -465,23 +488,23 @@ msgstr "Markdown-ის შპარგალკა"
 
 #: data/app.desktop.in:33 src/ui/popup/shortcut_window.blp:62
 msgid "Preferences"
-msgstr ""
+msgstr "მორგება"
 
 #: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:45
 msgid "Note Font"
-msgstr ""
+msgstr "შენიშვნის ფონტი"
 
 #: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:46
 msgid "The font notes will be displayed in"
-msgstr ""
+msgstr "ფონტი, რომლითაც შენიშვნები გამოჩნდება"
 
 #: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:58
 msgid "Monospace Font"
-msgstr ""
+msgstr "ერთსიგანიან ფონტი"
 
 #: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:59
 msgid "The font code will be displayed in"
-msgstr ""
+msgstr "ფონტი, რომლითაც კოდი გამოჩნდება"
 
 #: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:18
 msgid "OLED Mode"
@@ -489,7 +512,7 @@ msgstr "OLED რეჟიმი"
 
 #: data/app.metainfo.xml.in:7
 msgid "Create notebooks and take notes in markdown"
-msgstr ""
+msgstr "შექმენით ბლოკნოტები და შენიშვნები Markdown-ში"
 
 #: data/app.metainfo.xml.in:10
 msgid "Almost WYSIWYG markdown rendering"
@@ -497,19 +520,19 @@ msgstr "Markdown-ის თითქმის WYSIWYG რენდერი"
 
 #: data/app.metainfo.xml.in:11
 msgid "Searchable through GNOME search"
-msgstr ""
+msgstr "ძებნადი GNOME-ის ძებნიდან"
 
 #: data/app.metainfo.xml.in:12
 msgid "Highlight and strikethrough text formatting"
-msgstr ""
+msgstr "გამოკვეთილი და გადახაზული ტექსტის დაფორმატება"
 
 #: data/app.metainfo.xml.in:13
 msgid "App themeing based on notebook color"
-msgstr ""
+msgstr "აპის თემა ბლოკნოტის ფერის მიხედვით"
 
 #: data/app.metainfo.xml.in:14
 msgid "Trash can"
-msgstr ""
+msgstr "ნაგვის ყუთი"
 
 #: data/app.metainfo.xml.in:15
 msgid "Markdown document"
@@ -518,68 +541,68 @@ msgstr "Markdown-ის დოკუმენტი"
 #: src/ui/edit_view/toolbar/toolbar.blp:5
 #: src/ui/widgets/markdown/heading_popover.blp:48
 msgid "Plain Text"
-msgstr ""
+msgstr "უბრალო ტექსტი"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:6
 #: src/ui/widgets/markdown/heading_popover.blp:12
 msgid "Heading 1"
-msgstr ""
+msgstr "სათაური 1"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:7
 #: src/ui/widgets/markdown/heading_popover.blp:18
 msgid "Heading 2"
-msgstr ""
+msgstr "სათაური 2"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:8
 #: src/ui/widgets/markdown/heading_popover.blp:24
 msgid "Heading 3"
-msgstr ""
+msgstr "სათაური 3"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:9
 #: src/ui/widgets/markdown/heading_popover.blp:30
 msgid "Heading 4"
-msgstr ""
+msgstr "სათაური 4"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:10
 #: src/ui/widgets/markdown/heading_popover.blp:36
 msgid "Heading 5"
-msgstr ""
+msgstr "სათაური 5"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:11
 #: src/ui/widgets/markdown/heading_popover.blp:42
 msgid "Heading 6"
-msgstr ""
+msgstr "სათაური 6"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:40
 #: src/ui/edit_view/toolbar/toolbar.blp:106
 #: src/ui/edit_view/toolbar/toolbar.blp:141
 #: src/ui/edit_view/toolbar/toolbar.blp:194 src/ui/popup/shortcut_window.blp:72
 msgid "Bold"
-msgstr ""
+msgstr "სქელი"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:46
 #: src/ui/edit_view/toolbar/toolbar.blp:113
 #: src/ui/edit_view/toolbar/toolbar.blp:148
 #: src/ui/edit_view/toolbar/toolbar.blp:195 src/ui/popup/shortcut_window.blp:77
 msgid "Italic"
-msgstr ""
+msgstr "კურსივი"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:52
 #: src/ui/edit_view/toolbar/toolbar.blp:155
 #: src/ui/edit_view/toolbar/toolbar.blp:196 src/ui/popup/shortcut_window.blp:82
 msgid "Strikethrough"
-msgstr ""
+msgstr "გადახაზული"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:58
 #: src/ui/edit_view/toolbar/toolbar.blp:162
 #: src/ui/edit_view/toolbar/toolbar.blp:197 src/ui/popup/shortcut_window.blp:87
 msgid "Highlight"
-msgstr ""
+msgstr "გამოკვეთა"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:68
 #: src/ui/edit_view/toolbar/toolbar.blp:186 src/ui/popup/shortcut_window.blp:92
 msgid "Insert Link"
-msgstr ""
+msgstr "ბმულის ჩასმა"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:74
 #: src/ui/edit_view/toolbar/toolbar.blp:187
@@ -589,84 +612,84 @@ msgstr "Ჩაწერეთ კოდი"
 #: src/ui/edit_view/toolbar/toolbar.blp:80
 #: src/ui/edit_view/toolbar/toolbar.blp:188
 msgid "Insert Horizontal Rule"
-msgstr ""
+msgstr "ჰორიზონტალური გამყოფის ჩასმა"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:120
 msgid "Format"
-msgstr ""
+msgstr "ფორმატი"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:174
 msgid "Insert"
-msgstr ""
+msgstr "ჩამატება"
 
 #: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:18
 #: src/ui/strings.vala:44 src/ui/strings.vala:58
 msgid "Cancel"
-msgstr ""
+msgstr "გაუქმება"
 
 #: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:23
 msgid "Confirm"
-msgstr ""
+msgstr "დადასტურება"
 
 #: src/ui/popup/shortcut_window.blp:14 src/ui/strings.vala:60
 msgid "Note"
-msgstr ""
+msgstr "შენიშვნა"
 
 #: src/ui/popup/shortcut_window.blp:22
 msgid "Edit Note"
-msgstr ""
+msgstr "შენიშვნის ჩასწორება"
 
 #: src/ui/popup/shortcut_window.blp:27
 msgid "Save Note"
-msgstr ""
+msgstr "შენიშვნის შენახვა"
 
 #: src/ui/popup/shortcut_window.blp:34 src/ui/strings.vala:48
 msgid "Notebook"
-msgstr ""
+msgstr "ნოუთბუქი"
 
 #: src/ui/popup/shortcut_window.blp:42 src/ui/strings.vala:23
 msgid "Edit Notebook"
-msgstr ""
+msgstr "წიგნაკის ჩასწორება"
 
 #: src/ui/popup/shortcut_window.blp:49 src/ui/preferences/preferences.blp:12
 msgid "General"
-msgstr ""
+msgstr "ზოგადი"
 
 #: src/ui/popup/shortcut_window.blp:52
 msgid "Show Keyboard Shortcuts"
-msgstr ""
+msgstr "კლავიატურის მალსახმობების ჩვენება"
 
 #: src/ui/popup/shortcut_window.blp:57
 msgid "Quit"
-msgstr ""
+msgstr "გასვლა"
 
 #: src/ui/popup/shortcut_window.blp:69
 msgid "Formatting"
-msgstr ""
+msgstr "დაფორმატება"
 
 #: src/ui/popup/shortcut_window.blp:99
 msgid "Navigation"
-msgstr ""
+msgstr "ნავიგაცია"
 
 #: src/ui/popup/shortcut_window.blp:102 src/ui/window/window.blp:274
 msgid "Toggle Sidebar"
-msgstr ""
+msgstr "გვერდითი პანელის გადართვა"
 
 #: src/ui/popup/shortcut_window.blp:107 src/ui/window/window.blp:73
 msgid "Search Notes"
-msgstr ""
+msgstr "შენიშვნების ძებნა"
 
 #: data/app.gschema.xml:22 src/ui/preferences/preferences.blp:19
 msgid "Makes the dark theme pitch black"
-msgstr ""
+msgstr "მუქი თემის შავად გამოჩენა"
 
 #: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:109
 msgid "Enable Toolbar"
-msgstr ""
+msgstr "ხელსაწყოთა პანელის ჩართვა"
 
 #: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:120
 msgid "Enable Cheatsheet"
-msgstr ""
+msgstr "შპარგალკის ჩართვა"
 
 #: data/app.gschema.xml:36
 msgid "3-Pane Layout"
@@ -674,16 +697,16 @@ msgstr "3 პანელიანი განლაგება"
 
 #: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:230
 msgid "Notes Storage Location"
-msgstr ""
+msgstr "შენიშვნების საცავის მდებარეობა"
 
 #: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:231
 msgid "Where the notebooks are stored (requires app restart)"
-msgstr ""
+msgstr "სად ხდება ბლოკნოტების დამახსოვრება (საჭიროა აპის რესტარტი)"
 
 #: src/ui/strings.vala:4 src/ui/window/notebooks_bar/notebooks_bar.blp:129
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:171
 msgid "Trash"
-msgstr ""
+msgstr "ნაგვის ყუთი"
 
 #: src/ui/strings.vala:5
 msgid "%d Notes"
@@ -691,83 +714,83 @@ msgstr "%d შენიშვნა"
 
 #: src/ui/strings.vala:6
 msgid "Are you sure you want to delete everything in the trash?"
-msgstr ""
+msgstr "დარწმუნებული ბრძანდებით, რომ გნებავთ ნაგვის ყუთში ყველაფრის წაშლა?"
 
 #: src/ui/strings.vala:7 src/ui/window/window.blp:64
 msgid "Empty Trash"
-msgstr ""
+msgstr "ნაგვის ყუთის დაცარიელება"
 
 #: src/ui/strings.vala:9
 msgid "Create/choose a notebook before creating a note"
-msgstr ""
+msgstr "აირჩიეთ/შექმნით ბლოკნოტი შენიშვნის შექმნამდე"
 
 #: src/ui/strings.vala:10
 msgid "Please, select a note to edit"
-msgstr ""
+msgstr "აირჩიეთ ჩასასწორებელი შენიშვნა"
 
 #: src/ui/strings.vala:11
 msgid "Please, select a note to delete"
-msgstr ""
+msgstr "აირჩიეთ წასაშლელი შენიშვნა"
 
 #: src/ui/strings.vala:12
 msgid "Export Note"
-msgstr ""
+msgstr "შენიშვნის გატანა"
 
 #: src/ui/strings.vala:13
 msgid "Export"
-msgstr ""
+msgstr "გატანა"
 
 #: src/ui/strings.vala:15
 msgid "Rename Note"
-msgstr ""
+msgstr "შენიშვნის სახელის გადარქმევა"
 
 #: src/ui/strings.vala:16
 msgid "Move to Notebook"
-msgstr ""
+msgstr "გადატანა ბლოკნოტში"
 
 #: src/ui/strings.vala:17
 msgid "Move"
-msgstr ""
+msgstr "გადაადგილება"
 
 #: src/ui/strings.vala:18
 msgid "Note “%s” already exists in notebook “%s”"
-msgstr ""
+msgstr "შენიშვნა '%s\" უკვე არსებობს ბლოკნოტში \"%s\""
 
 #: src/ui/strings.vala:19
 msgid "Are you sure you want to delete the note “%s”?"
-msgstr ""
+msgstr "მართლა გნებავთ, წაშალოთ შენიშვნა \"%s\"?"
 
 #: src/ui/strings.vala:20
 msgid "Delete Note"
-msgstr ""
+msgstr "შენიშვნის წაშლა"
 
 #: src/ui/strings.vala:21
 msgid "Are you sure you want to delete the notebook “%s”?"
-msgstr ""
+msgstr "მართლა გნებავთ, წაშალოთ ბლოკნოტი \"%s\"?"
 
 #: src/ui/strings.vala:22
 msgid "Delete Notebook"
-msgstr ""
+msgstr "წიგნაკის წაშლა"
 
 #: src/ui/strings.vala:26
 msgid "Note “%s” already exists"
-msgstr ""
+msgstr "შენიშვნა “%s” უკვე არსებობს"
 
 #: src/ui/strings.vala:27
 msgid "Could not create note"
-msgstr ""
+msgstr "შენიშვნის შექმნა შეუძლებელია"
 
 #: src/ui/strings.vala:28
 msgid "Could not change note"
-msgstr ""
+msgstr "შენიშვნის შეცვლა შეუძლებელია"
 
 #: src/ui/strings.vala:29
 msgid "Could not delete note"
-msgstr ""
+msgstr "შენიშვნის წაშლა შეუძლებელია"
 
 #: src/ui/strings.vala:30
 msgid "Could not restore note"
-msgstr ""
+msgstr "შენიშვნის აღდგენა შეუძლებელია"
 
 #: src/ui/strings.vala:31
 msgid "Saved “%s” to “%s”"
@@ -775,68 +798,68 @@ msgstr "“%s” შენახულია “%s”-ში"
 
 #: src/ui/strings.vala:32
 msgid "Unknown error"
-msgstr ""
+msgstr "უცნობი შეცდომა"
 
 #: src/ui/strings.vala:35
 msgid "Notebook “%s” already exists"
-msgstr ""
+msgstr "ბლოკნოტი \"%s\" უკვე არსებობს"
 
 #: src/ui/strings.vala:36
 msgid "Could not create notebook"
-msgstr ""
+msgstr "ბლოკნოტის შექმნის შეცდომა"
 
 #: src/ui/strings.vala:37
 msgid "Could not change notebook"
-msgstr ""
+msgstr "ბლოკნოტის შეცვლის შეცდომა"
 
 #: src/ui/strings.vala:38
 msgid "Could not delete notebook"
-msgstr ""
+msgstr "ბლოკნოტის წაშლის შეცდომა"
 
 #: src/ui/strings.vala:40
 msgid "Search"
-msgstr ""
+msgstr "ძებნა"
 
 #: src/ui/strings.vala:41 src/ui/window/sidebar/note_menu.blp:36
 msgid "Rename"
-msgstr ""
+msgstr "სახელის გადარქმევა"
 
 #: src/ui/strings.vala:42
 msgid "Could not find an app to handle file URIs"
-msgstr ""
+msgstr "ფაილის URI-ების გამხსნელი აპი აღმოჩენილი არაა"
 
 #: src/ui/strings.vala:43
 msgid "Apply"
-msgstr ""
+msgstr "გადატარება"
 
 #: src/ui/strings.vala:45
 msgid "Pick where the notebooks will be stored"
-msgstr ""
+msgstr "აირჩიეთ, სად გნებავთ ბლოკნოტების დამახსოვრება"
 
 #: src/ui/strings.vala:47 src/ui/window/notebooks_bar/notebooks_bar.blp:59
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:101
 msgid "All Notes"
-msgstr ""
+msgstr "ყველა შენიშვნა"
 
 #: src/ui/strings.vala:49
 msgid "Last Modified"
-msgstr ""
+msgstr "ბოლო ცვლილება"
 
 #: src/ui/strings.vala:50
 msgid "Extension"
-msgstr ""
+msgstr "გაფართოება"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
 msgid "Follow system style"
-msgstr ""
+msgstr "სისტემის სტილის მიყოლა"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:23
 msgid "Light style"
-msgstr ""
+msgstr "ღია სტილი"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:32
 msgid "Dark style"
-msgstr ""
+msgstr "მუქი სტილი"
 
 #: src/ui/window/app_menu/app_menu.blp:26
 msgid "_New Notebook"
@@ -856,95 +879,95 @@ msgstr "_კლავიატურის მალსახმობები"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:58
 msgid "Notebook Name"
-msgstr ""
+msgstr "წიგნაკის სახელი"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:70
 msgid "Duplicate notebook names are not allowed!"
-msgstr ""
+msgstr "დუბლირებული ბლოკნოტის სახელები დაშვებული არაა!"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:6
 msgid "First Characters"
-msgstr ""
+msgstr "პირველი სიმბოლოები"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:7
 msgid "Initials"
-msgstr ""
+msgstr "ინიციალები"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:8
 msgid "Initials: camelCase"
-msgstr ""
+msgstr "ინიციალები: camelCase"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:9
 msgid "Initials: snake_case"
-msgstr ""
+msgstr "ინიციალები: snake_case"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:10
 msgid "Icon"
-msgstr ""
+msgstr "ხატულა"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:16
 msgid "Notebook Color"
-msgstr ""
+msgstr "ბლოკნოტის ფერი"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:126
 msgid "Create Notebook"
-msgstr ""
+msgstr "წიგნაკის შექმნა"
 
 #: src/ui/window/notebooks_bar/notebook_menu.blp:16
 msgid "Edit"
-msgstr ""
+msgstr "ჩასწორება"
 
 #: src/ui/window/notebooks_bar/notebook_menu.blp:26
 msgid "Move all to Trash"
-msgstr ""
+msgstr "ყველას გადატანა ნაგვის ყუთში"
 
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:113
 msgid "Notebooks"
-msgstr ""
+msgstr "წიგნაკები"
 
 #: src/ui/window/sidebar/note_create_popup.blp:25
 msgid "Note Name"
-msgstr ""
+msgstr "შენიშვნის სახელი"
 
 #: src/ui/window/sidebar/note_create_popup.blp:33
 msgid "Create Note"
-msgstr ""
+msgstr "შენიშვნის შექმნა"
 
 #: src/ui/window/sidebar/note_menu.blp:16
 msgid "Restore from Trash"
-msgstr ""
+msgstr "სანაგვე ყუთიდან აღდგენა"
 
 #: src/ui/window/sidebar/note_menu.blp:26
 msgid "Delete from Trash"
-msgstr ""
+msgstr "სანაგვე ყუთიდან წაშლა"
 
 #: src/ui/window/sidebar/note_menu.blp:46
 msgid "Move to Notebook…"
-msgstr ""
+msgstr "გადატანა ბლოკნოტში…"
 
 #: src/ui/window/sidebar/note_menu.blp:56
 msgid "Move to Trash"
-msgstr ""
+msgstr "ნაგვის ყუთში გადატანა"
 
 #: src/ui/window/sidebar/note_menu.blp:66
 msgid "Open Containing Folder"
-msgstr ""
+msgstr "შემცველი საქაღალდის გახსნა"
 
 #: src/ui/window/window.blp:128
 msgid "Get started writing"
-msgstr ""
+msgstr "დაიწყეთ წერა"
 
 #: src/ui/window/window.blp:186
 msgid "Create a notebook"
-msgstr ""
+msgstr "ბლოკნოტის შექმნა"
 
 #: src/ui/window/window.blp:215
 msgid "Trash is empty"
-msgstr ""
+msgstr "ურნა ცარიელია"
 
 #: src/ui/window/window.blp:292
 msgid "Open in Notebook"
-msgstr ""
+msgstr "ბლოკნოტში გახსნა"
 
 #. Translators: The underscore at the begining of the english label represents
 #. the hotkey
