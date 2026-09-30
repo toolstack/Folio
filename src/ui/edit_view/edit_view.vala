@@ -40,6 +40,7 @@ public class Folio.EditView : Gtk.Box {
 	private Gtk.GestureClick click_controller;
 	private Settings settings;
 	private Gtk.EventControllerScroll scroll_controller;
+	private GtkMarkdown.ListIndenter list_indenter;
 
 	construct {
 		settings = new Settings (Config.APP_ID);
@@ -63,6 +64,10 @@ public class Folio.EditView : Gtk.Box {
 
 		scrolled_window.get_vscrollbar ().margin_top = 48;
 
+		list_indenter = new GtkMarkdown.ListIndenter ();
+		markdown_view.indenter = list_indenter;
+
+		settings.bind ("automatic-lists", list_indenter, "automatic-lists", SettingsBindFlags.DEFAULT);
 		settings.bind ("toolbar-enabled", this, "toolbar-enabled", SettingsBindFlags.DEFAULT);
 		settings.bind ("url-detection-level", markdown_view, "url-detection-level", SettingsBindFlags.DEFAULT);
 		settings.changed["note-font"].connect (on_settings_line_spacing_changed);

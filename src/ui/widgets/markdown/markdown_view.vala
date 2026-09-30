@@ -349,6 +349,7 @@ public class GtkMarkdown.View : GtkSource.View {
 	private Regex is_horizontal_rule;
 
 	private Regex is_list_row;
+	private Regex is_ordered_list_marker;
 	private Regex is_table_row;
 
 	private Regex is_bold_0;
@@ -396,6 +397,12 @@ public class GtkMarkdown.View : GtkSource.View {
 			 * 0. list item
 			 */
 			is_list_row = new Regex ("^[\\t ]*([-*+]|[0-9]+\\.)+[\\t ]+", f | RegexCompileFlags.MULTILINE, 0);
+
+			/* Examples:
+			 * 1.
+			 *     3.
+			 */
+			is_ordered_list_marker = new Regex ("^([\\t ]*)([0-9]+)(\\.[\\t ]+)$", f, 0);
 
 			/* Examples:
 			 * |column 1|column 2|
@@ -1152,6 +1159,34 @@ public class GtkMarkdown.View : GtkSource.View {
         }
     }
 
+    // Determines the marker to repeat on the next line if `line_text` is a list item.
+    public bool try_get_list_continuation (string line_text, out string continuation, out bool is_empty_item) {
+        continuation = "";
+        is_empty_item = false;
+
+        GLib.MatchInfo matches;
+        if (!is_list_row.match_full (line_text, line_text.length, 0, 0, out matches))
+            return false;
+
+        int start_pos, end_pos;
+        matches.fetch_pos (0, out start_pos, out end_pos);
+        var marker = line_text[start_pos:end_pos];
+
+        is_empty_item = line_text[end_pos:line_text.length].strip () == "";
+
+        GLib.MatchInfo ordered_match;
+        if (is_ordered_list_marker.match_full (marker, marker.length, 0, 0, out ordered_match)) {
+            var indent = ordered_match.fetch (1);
+            var number = int.parse (ordered_match.fetch (2)) + 1;
+            var suffix = ordered_match.fetch (3);
+            continuation = @"$indent$number$suffix";
+        } else {
+            continuation = marker;
+        }
+
+        return true;
+    }
+
     void format_list_row (
         Gtk.TextIter line_start,
         Gtk.TextIter line_end,
@@ -1503,5 +1538,61 @@ public class GtkMarkdown.View : GtkSource.View {
 				}
 			} while (matches.next ());
 		}
+	}
+}
+
+// GtkSourceView's indenter interface: called after Enter has already inserted the
+// newline, with `iter` placed right after it, letting us insert the continuation marker.
+public class GtkMarkdown.ListIndenter : GLib.Object, GtkSource.Indenter {
+
+	public bool automatic_lists { get; set; default = false; }
+
+	public bool is_trigger (GtkSource.View view, Gtk.TextIter location, Gdk.ModifierType state, uint keyval) {
+		if (!automatic_lists) return false;
+		if ((state & Gdk.ModifierType.SHIFT_MASK) != 0) return false;
+		return keyval == Gdk.Key.Return || keyval == Gdk.Key.KP_Enter;
+	}
+
+	public void indent (GtkSource.View view, ref Gtk.TextIter iter) {
+		var markdown_view = view as GtkMarkdown.View;
+		if (markdown_view == null) return;
+
+		var buffer = view.buffer;
+		var prev_line = iter.get_line () - 1;
+		if (prev_line < 0) return;
+
+		Gtk.TextIter prev_start, prev_end;
+		buffer.get_iter_at_line (out prev_start, prev_line);
+		prev_end = prev_start.copy ();
+		prev_end.forward_to_line_end ();
+		var prev_line_text = buffer.get_slice (prev_start, prev_end, true);
+
+		var cursor_mark = buffer.create_mark (null, iter, true);
+
+		string continuation;
+		bool is_empty_item;
+		if (!markdown_view.try_get_list_continuation (prev_line_text, out continuation, out is_empty_item)) {
+			// Not a list line; replicate the default auto-indent behaviour we're replacing.
+			var leading_whitespace = get_leading_whitespace (prev_line_text);
+			if (leading_whitespace != "") {
+				buffer.get_iter_at_mark (out iter, cursor_mark);
+				buffer.insert (ref iter, leading_whitespace, leading_whitespace.length);
+			}
+		} else if (is_empty_item) {
+			// Enter on an empty list item ("- ") clears the marker and exits the list.
+			buffer.@delete (ref prev_start, ref prev_end);
+		} else {
+			buffer.get_iter_at_mark (out iter, cursor_mark);
+			buffer.insert (ref iter, continuation, continuation.length);
+		}
+
+		buffer.get_iter_at_mark (out iter, cursor_mark);
+		buffer.delete_mark (cursor_mark);
+	}
+
+	private string get_leading_whitespace (string line_text) {
+		int i = 0;
+		while (i < line_text.length && (line_text[i] == ' ' || line_text[i] == '\t')) i++;
+		return line_text[0:i];
 	}
 }
