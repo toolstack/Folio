@@ -33,6 +33,20 @@ template $FolioPreferencesWindow : Adw.PreferencesDialog {
         icon-name: "icon-code-symbolic";
       }
     }
+
+    Adw.PreferencesGroup {
+      Adw.ActionRow {
+
+        title: _("Automatic Lists");
+        subtitle: _("Automatically continue unordered or numbered lists in notes");
+        icon-name: "view-list-bullet-symbolic";
+        activatable-widget: automatic_lists;
+
+        Switch automatic_lists {
+          valign: center;
+        }
+      }
+    }
   }
 
   Adw.PreferencesPage {
