@@ -1187,6 +1187,86 @@ public class GtkMarkdown.View : GtkSource.View {
         return true;
     }
 
+    // Tab on an empty list item ("- ") nests it one level deeper. Returns true if handled.
+    public bool try_indent_empty_list_item () {
+        Gtk.TextIter cursor, line_start, line_end;
+        buffer.get_iter_at_mark (out cursor, buffer.get_insert ());
+        buffer.get_iter_at_line (out line_start, cursor.get_line ());
+        line_end = line_start.copy ();
+        if (!line_end.ends_line ()) line_end.forward_to_line_end ();
+        if (!cursor.equal (line_end)) return false;
+
+        var line_text = buffer.get_slice (line_start, line_end, true);
+        string continuation;
+        bool is_empty_item;
+        if (!try_get_list_continuation (line_text, out continuation, out is_empty_item) || !is_empty_item)
+            return false;
+
+        GLib.MatchInfo m;
+        string new_text;
+        if (is_ordered_list_marker.match_full (line_text, line_text.length, 0, 0, out m)) {
+            new_text = @"$(m.fetch (1))   1$(m.fetch (3))";
+        } else {
+            // Cycle the bullet symbol per nesting level: - -> * -> + -> -
+            int i = 0;
+            while (i < line_text.length && (line_text[i] == ' ' || line_text[i] == '\t')) i++;
+            string bullet = line_text[i:i + 1];
+            string next_bullet = bullet == "-" ? "*" : bullet == "*" ? "+" : "-";
+            new_text = "  " + line_text[0:i] + next_bullet + line_text[i + 1:line_text.length];
+        }
+
+        new_text = new_text.chomp () + " ";
+
+        buffer.begin_user_action ();
+        buffer.@delete (ref line_start, ref line_end);
+        buffer.insert (ref line_start, new_text, new_text.length);
+        buffer.place_cursor (line_start);
+        buffer.end_user_action ();
+        return true;
+    }
+
+    // Backspace on an empty nested list item moves it one level up. Returns false for
+    // top-level items so the default backspace behaviour applies.
+    public bool try_outdent_empty_list_item () {
+        Gtk.TextIter cursor, line_start, line_end;
+        buffer.get_iter_at_mark (out cursor, buffer.get_insert ());
+        buffer.get_iter_at_line (out line_start, cursor.get_line ());
+        line_end = line_start.copy ();
+        if (!line_end.ends_line ()) line_end.forward_to_line_end ();
+        if (!cursor.equal (line_end)) return false;
+
+        var line_text = buffer.get_slice (line_start, line_end, true);
+        string continuation;
+        bool is_empty_item;
+        if (!try_get_list_continuation (line_text, out continuation, out is_empty_item) || !is_empty_item)
+            return false;
+
+        int i = 0;
+        while (i < line_text.length && (line_text[i] == ' ' || line_text[i] == '\t')) i++;
+        if (i == 0) return false;
+
+        int remove = line_text[0] == '\t' ? 1 : int.min (i, 3);
+        var rest = line_text[remove:line_text.length];
+        int j = i - remove;
+
+        GLib.MatchInfo m;
+        if (!is_ordered_list_marker.match_full (line_text, line_text.length, 0, 0, out m)) {
+            // Reverse of the bullet cycle used when nesting.
+            string bullet = rest[j:j + 1];
+            string prev_bullet = bullet == "-" ? "+" : bullet == "*" ? "-" : "*";
+            rest = rest[0:j] + prev_bullet + rest[j + 1:rest.length];
+        }
+
+        rest = rest.chomp () + " ";
+
+        buffer.begin_user_action ();
+        buffer.@delete (ref line_start, ref line_end);
+        buffer.insert (ref line_start, rest, rest.length);
+        buffer.place_cursor (line_start);
+        buffer.end_user_action ();
+        return true;
+    }
+
     void format_list_row (
         Gtk.TextIter line_start,
         Gtk.TextIter line_end,
