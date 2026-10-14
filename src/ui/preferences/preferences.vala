@@ -26,6 +26,7 @@ public class Folio.PreferencesWindow : Adw.PreferencesDialog {
 	[GtkChild] unowned Adw.SpinRow custom_note_width;
 	[GtkChild] unowned Gtk.Switch show_line_numbers;
 	[GtkChild] unowned Gtk.Switch show_all_notes;
+	[GtkChild] unowned Gtk.Switch automatic_lists;
 	[GtkChild] unowned Gtk.Switch enable_autosave;
 	[GtkChild] unowned Gtk.Switch disable_hidden_trash;
 	[GtkChild] unowned Adw.ComboRow note_sort_order;
@@ -104,6 +105,9 @@ public class Folio.PreferencesWindow : Adw.PreferencesDialog {
 
 		show_all_notes.active = settings.get_boolean ("show-all-notes");
 		show_all_notes.state_set.connect (on_show_all_notes_state_changed);
+
+		automatic_lists.active = settings.get_boolean ("automatic-lists");
+		automatic_lists.state_set.connect (on_automatic_lists_state_changed);
 
 		enable_autosave.active = settings.get_boolean ("enable-autosave");
 		enable_autosave.state_set.connect (on_enable_autosave_state_changed);
@@ -244,6 +248,11 @@ public class Folio.PreferencesWindow : Adw.PreferencesDialog {
 
 	private bool on_show_all_notes_state_changed (bool state) {
 		settings.set_boolean ("show-all-notes", state);
+		return false;
+	}
+
+	private bool on_automatic_lists_state_changed (bool state) {
+		settings.set_boolean ("automatic-lists", state);
 		return false;
 	}
 
