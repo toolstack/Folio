@@ -2,138 +2,140 @@
 # This file is distributed under the same license as the Folio package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-03-02 16:55:21+0000\n"
+"PO-Revision-Date: 2026-11-13 20:00+0800\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: GlotPress/4.0.3\n"
 "Language: zh_CN\n"
+"Last-Translator: guiyan <380177470@qq.com>\n"
+"Language-Team: Chinese (Simplified)\n"
 "Project-Id-Version: Folio\n"
 
 #: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:213
 msgid "Autosave interval"
-msgstr ""
+msgstr "自动保存间隔"
 
 #: data/app.gschema.xml:67 src/ui/preferences/preferences.blp:214
 msgid "The interval to trigger an automatic save of the note on (in seconds)"
-msgstr ""
+msgstr "自动保存笔记的间隔时间（秒）"
 
 #: data/app.gschema.xml:102
 msgid "DEPRECATED: use long-note-names-handling instead"
-msgstr ""
+msgstr "已弃用：请改用 long-note-names-handling"
 
 #: data/app.gschema.xml:106
 msgid "Long note name handling"
-msgstr ""
+msgstr "长笔记名处理方式"
 
 #: data/app.gschema.xml:107
 msgid "Truncate, multi-line, or expand the note list column to the width of longest note name"
-msgstr ""
+msgstr "截断、多行显示，或将笔记列表列宽扩展到最长笔记名"
 
 #: src/ui/preferences/preferences.blp:161
 msgid "Long Note Names Handling"
-msgstr ""
+msgstr "长笔记名处理方式"
 
 #: src/ui/preferences/preferences.blp:162
 msgid "Truncate, multi-line, or expand the note list column to the width of longest note name (requires notebook selection change to take effect)."
-msgstr ""
+msgstr "截断、多行显示，或将笔记列表列宽扩展到最长笔记名（需切换笔记本后生效）"
 
 #: src/ui/preferences/preferences.blp:203
 msgid "Automatically saves the current note at an interval if the contents have changed"
-msgstr ""
+msgstr "内容有变化时，按间隔自动保存当前笔记"
 
 #: src/ui/strings.vala:74
 msgid "Truncate"
-msgstr ""
+msgstr "截断"
 
 #: src/ui/strings.vala:75
 msgid "Multi-line"
-msgstr ""
+msgstr "多行"
 
 #: src/ui/strings.vala:76
 msgid "Expand"
-msgstr ""
+msgstr "展开"
 
 #: data/app.metainfo.xml.in:5
 msgid "Beautiful markdown note-taking app"
-msgstr ""
+msgstr "漂亮的 Markdown 笔记应用"
 
 #: src/ui/preferences/preferences.blp:139
 msgid "Expanded Notebook List"
-msgstr ""
+msgstr "展开的笔记本列表"
 
 #: src/ui/window/app_menu/app_menu.blp:10
 msgid "Main Menu"
-msgstr ""
+msgstr "主菜单"
 
 #: src/ui/window/window.blp:282
 msgid "Note Menu"
-msgstr ""
+msgstr "笔记菜单"
 
 #: data/app.gschema.xml:96
 msgid "Allow long notebook names"
-msgstr ""
+msgstr "允许长笔记本名"
 
 #: data/app.gschema.xml:97
 msgid "The notebook column will expand to the width of the longest notebook name"
-msgstr ""
+msgstr "笔记本列将扩展到最长笔记本名的宽度"
 
 #: data/app.gschema.xml:101
 msgid "Allow long note names"
-msgstr ""
+msgstr "允许长笔记名"
 
 #: data/app.metainfo.xml.in:8
 msgid "Some features include:"
-msgstr ""
+msgstr "部分功能包括："
 
 #: data/app.metainfo.xml.in:16
 msgid "Optional line numbers"
-msgstr ""
+msgstr "可选行号"
 
 #: data/app.metainfo.xml.in:17
 msgid "Optional auto save"
-msgstr ""
+msgstr "可选自动保存"
 
 #: data/app.metainfo.xml.in:18
 msgid "Open links with Control-Click"
-msgstr ""
+msgstr "按住 Ctrl 点击打开链接"
 
 #: data/app.metainfo.xml.in:19
 msgid "Link to other notes in Folio"
-msgstr ""
+msgstr "在 Folio 内链接到其他笔记"
 
 #: data/app.metainfo.xml.in:20
 msgid "Automatically create links for bare URL's and e-mail addresses"
-msgstr ""
+msgstr "自动为裸 URL 和电子邮件地址创建链接"
 
 #: src/ui/preferences/preferences.blp:150
 msgid "Allow Long Notebook Names"
-msgstr ""
+msgstr "允许长笔记本名"
 
 #: src/ui/preferences/preferences.blp:151
 msgid "The notebook column will expand to the width of the longest notebook name (requires notebook selection change to take effect)."
-msgstr ""
+msgstr "笔记本列将扩展到最长笔记本名的宽度（需切换笔记本后生效）"
 
 #: data/app.gschema.xml:86
 msgid "URL detection level"
-msgstr ""
+msgstr "URL 检测级别"
 
 #: data/app.gschema.xml:87
 msgid "How aggressive to look for URLs in markdown text"
-msgstr ""
+msgstr "在 Markdown 文本中查找 URL 的激进程度"
 
 #: data/app.gschema.xml:91
 msgid "Line spacing"
-msgstr ""
+msgstr "行距"
 
 #: data/app.gschema.xml:92 src/ui/preferences/preferences.blp:74
 msgid "The line spacing for the note text"
-msgstr ""
+msgstr "笔记正文的行距"
 
 #: src/ui/preferences/preferences.blp:31
 msgid "Markdown URL Detection"
-msgstr ""
+msgstr "Markdown 链接检测"
 
 #: src/ui/preferences/preferences.blp:32
 msgid ""
@@ -142,147 +144,147 @@ msgid ""
 " - Aggressive tries to find all URLs\n"
 " - Strict requires a protocol identifier (ie http://)\n"
 " - Disabled turns detection off."
-msgstr ""
+msgstr "设置自由文本中 URL 的检测级别：\n - 激进：尝试找出所有 URL\n - 严格：要求带协议标识（如 http://）\n - 关闭：不进行检测"
 
 #: src/ui/preferences/preferences.blp:39
 msgid "Fonts"
-msgstr ""
+msgstr "字体"
 
 #: src/ui/preferences/preferences.blp:73
 msgid "Line Spacing"
-msgstr ""
+msgstr "行距"
 
 #: src/ui/strings.vala:24
 msgid "Note names cannot contain a “/”"
-msgstr ""
+msgstr "笔记名不能包含“/”"
 
 #: src/ui/strings.vala:25
 msgid "Note names cannot be blank"
-msgstr ""
+msgstr "笔记名不能为空"
 
 #: src/ui/strings.vala:33
 msgid "Notebook names cannot contain a “/”"
-msgstr ""
+msgstr "笔记本名不能包含“/”"
 
 #: src/ui/strings.vala:34
 msgid "Notebook names cannot be blank"
-msgstr ""
+msgstr "笔记本名不能为空"
 
 #: src/ui/strings.vala:66
 msgid "Natural - Ascending"
-msgstr ""
+msgstr "自然顺序 - 升序"
 
 #: src/ui/strings.vala:67
 msgid "Natural - Descending"
-msgstr ""
+msgstr "自然顺序 - 降序"
 
 #: src/ui/strings.vala:68
 msgid "Unable to launch external application for file %s."
-msgstr ""
+msgstr "无法为文件 %s 启动外部应用。"
 
 #: src/ui/strings.vala:69
 msgid "Aggressive"
-msgstr ""
+msgstr "激进"
 
 #: src/ui/strings.vala:70
 msgid "Strict"
-msgstr ""
+msgstr "严格"
 
 #: src/ui/strings.vala:71
 msgid "Disabled"
-msgstr ""
+msgstr "关闭"
 
 #: src/ui/strings.vala:72
 msgid "“%s” moved to trash"
-msgstr ""
+msgstr "“%s”已移至垃圾桶"
 
 #: src/ui/strings.vala:73
 msgid "“%s” restored"
-msgstr ""
+msgstr "“%s”已恢复"
 
 #: src/ui/window/app_menu/app_menu.blp:44
 msgid "_About Folio"
-msgstr ""
+msgstr "_关于 Folio"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:11
 msgid "Custom"
-msgstr ""
+msgstr "自定义"
 
 #: src/ui/window/window.blp:157
 msgid "Open file in external application"
-msgstr ""
+msgstr "用外部应用打开文件"
 
 #: src/ui/window/window.blp:165
 msgid "Open file"
-msgstr ""
+msgstr "打开文件"
 
 #: data/app.gschema.xml:81
 msgid "Notebook sort order"
-msgstr ""
+msgstr "笔记本排序方式"
 
 #: data/app.gschema.xml:82
 msgid "The sort order of the notebook list"
-msgstr ""
+msgstr "笔记本列表的排序方式"
 
 #: src/ui/preferences/preferences.blp:184
 msgid "Sort Order For Notebooks"
-msgstr ""
+msgstr "笔记本排序方式"
 
 #: data/app.gschema.xml:76
 msgid "Note sort order"
-msgstr ""
+msgstr "笔记排序方式"
 
 #: data/app.gschema.xml:77
 msgid "The sort order of the note list"
-msgstr ""
+msgstr "笔记列表的排序方式"
 
 #: src/ui/preferences/preferences.blp:189
 msgid "Sort Order For Notes"
-msgstr ""
+msgstr "笔记排序方式"
 
 #: src/ui/strings.vala:62
 msgid "Modified Time - Ascending"
-msgstr ""
+msgstr "修改时间 - 升序"
 
 #: src/ui/strings.vala:63
 msgid "Modified Time - Descending"
-msgstr ""
+msgstr "修改时间 - 降序"
 
 #: src/ui/strings.vala:64
 msgid "Alphabetical - Ascending"
-msgstr ""
+msgstr "字母顺序 - 升序"
 
 #: src/ui/strings.vala:65
 msgid "Alphabetical - Descending"
-msgstr ""
+msgstr "字母顺序 - 降序"
 
 #: src/ui/popup/shortcut_window.blp:114
 msgid "Display"
-msgstr ""
+msgstr "显示"
 
 #: src/ui/popup/shortcut_window.blp:117
 msgid "Full Screen"
-msgstr ""
+msgstr "全屏"
 
 #: src/ui/popup/shortcut_window.blp:122
 msgid "Zoom In"
-msgstr ""
+msgstr "放大"
 
 #: src/ui/popup/shortcut_window.blp:127
 msgid "Zoom Out"
-msgstr ""
+msgstr "缩小"
 
 #: src/ui/strings.vala:52
 msgid "Pick primary font for notes"
-msgstr ""
+msgstr "选择笔记正文字体"
 
 #: src/ui/strings.vala:53
 msgid "Pick monospace font for code"
-msgstr ""
+msgstr "选择代码等宽字体"
 
 #: src/ui/strings.vala:54
 msgid "File Changed On Disk"
-msgstr ""
+msgstr "磁盘上的文件已更改"
 
 #: src/ui/strings.vala:55
 msgid ""
@@ -295,15 +297,15 @@ msgid ""
 " • Cancel the operation and manually resolve the issue\n"
 "\n"
 "Note: Canceling the save if you have already moved to a new note/notebook will discard your changes."
-msgstr ""
+msgstr "该文件在 Folio 上次保存/加载后已在磁盘上被更改。\n\n您可以选择：\n\n • 重新加载文件（丢弃您在 Folio 中所做的更改）\n • 覆盖文件（丢弃 Folio 之外所做的更改）\n • 取消操作并手动解决\n\n注意：如果您已切换到新的笔记/笔记本后取消保存，您的更改将被丢弃。"
 
 #: src/ui/strings.vala:56
 msgid "Reload"
-msgstr ""
+msgstr "重新加载"
 
 #: src/ui/strings.vala:57
 msgid "Overwrite"
-msgstr ""
+msgstr "覆盖"
 
 #: src/ui/strings.vala:59
 msgid ""
@@ -313,127 +315,127 @@ msgid ""
 "\n"
 " • Reload the file (discarding any changes you have made in Folio)\n"
 " • Overwrite the file (discarding any changes made outside of Folio)"
-msgstr ""
+msgstr "该文件已被其他应用在磁盘上更改。\n\n您可以选择：\n\n • 重新加载文件（丢弃您在 Folio 中所做的更改）\n • 覆盖文件（丢弃 Folio 之外所做的更改）"
 
 #: src/ui/strings.vala:61
 msgid "Note %i"
-msgstr ""
+msgstr "笔记 %i"
 
 #: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:258
 msgid "Trash Storage Location"
-msgstr ""
+msgstr "垃圾桶存储位置"
 
 #: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:259
 msgid "Where the trash folder is located (requires app restart)"
-msgstr ""
+msgstr "垃圾桶文件夹的位置（需要重启应用）"
 
 #: src/ui/strings.vala:46
 msgid "Pick where the trash can will be stored"
-msgstr ""
+msgstr "选择垃圾桶的存储位置"
 
 #: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:167
 msgid "Use Fixed Width For Notes"
-msgstr ""
+msgstr "笔记使用固定宽度"
 
 #: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:168
 msgid "Use a fixed width for the text area of a note"
-msgstr ""
+msgstr "笔记文本区域使用固定宽度"
 
 #: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:140
 msgid "Expands the notebook list to include the notebook name"
-msgstr ""
+msgstr "展开笔记本列表以显示笔记本名称"
 
 #: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:87
 msgid "Show line numbers"
-msgstr ""
+msgstr "显示行号"
 
 #: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:88
 msgid "Displays line numbers at the left of the note"
-msgstr ""
+msgstr "在笔记左侧显示行号"
 
 #: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:98
 msgid "Show all notes"
-msgstr ""
+msgstr "显示所有笔记"
 
 #: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:99
 msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
-msgstr ""
+msgstr "在笔记本列表顶部显示“所有笔记”"
 
 #: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:202
 msgid "Enable autosave"
-msgstr ""
+msgstr "启用自动保存"
 
 #: data/app.gschema.xml:62
 msgid "Automatically saves the current note every 30 seconds if the contents have changed (requires app restart)"
-msgstr ""
+msgstr "内容有变化时每 30 秒自动保存当前笔记（需要重启应用）"
 
 #: data/app.gschema.xml:71 src/ui/preferences/preferences.blp:219
 msgid "Don't hide the Trash folder"
-msgstr ""
+msgstr "不隐藏垃圾桶文件夹"
 
 #: data/app.gschema.xml:72
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible"
-msgstr ""
+msgstr "垃圾桶默认是隐藏文件夹，此选项使其可见"
 
 #: data/app.metainfo.xml.in:483
 msgid "Main Folio window in light mode"
-msgstr ""
+msgstr "Folio 主窗口（浅色模式）"
 
 #: data/app.metainfo.xml.in:487
 msgid "Main Folio window in dark mode"
-msgstr ""
+msgstr "Folio 主窗口（深色模式）"
 
 #: data/app.metainfo.xml.in:491
 msgid "Folio on small/mobile screens"
-msgstr ""
+msgstr "小屏/移动设备上的 Folio"
 
 #: data/app.metainfo.xml.in:495
 msgid "Folio preferences screen"
-msgstr ""
+msgstr "Folio 设置界面"
 
 #: data/app.metainfo.xml.in:499
 msgid "Folio in three pane mode"
-msgstr ""
+msgstr "三栏模式下的 Folio"
 
 #: src/ui/preferences/preferences.blp:81
 msgid "Tools"
-msgstr ""
+msgstr "工具"
 
 #: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:110
 msgid "Displays the formatting toolbar at the bottom of the note"
-msgstr ""
+msgstr "在笔记底部显示格式工具栏"
 
 #: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:121
 msgid "Adds a button to the markdown reference sheet on the right of the formatting toolbar"
-msgstr ""
+msgstr "在格式工具栏右侧添加 Markdown 备忘录按钮"
 
 #: src/ui/preferences/preferences.blp:133
 msgid "Layout"
-msgstr ""
+msgstr "布局"
 
 #: src/ui/preferences/preferences.blp:178
 msgid "Fixed Width To Use For Notes"
-msgstr ""
+msgstr "笔记固定宽度值"
 
 #: src/ui/preferences/preferences.blp:179
 msgid "Sets the fixed width size of a note in px"
-msgstr ""
+msgstr "设置笔记固定宽度（像素）"
 
 #: src/ui/preferences/preferences.blp:196
 msgid "Files"
-msgstr ""
+msgstr "文件"
 
 #: src/ui/preferences/preferences.blp:220
 msgid "The trash folder is set as a hidden folder by default, this option makes it visible (requires app restart)"
-msgstr ""
+msgstr "垃圾桶默认是隐藏文件夹，此选项使其可见（需要重启应用）"
 
 #: src/ui/strings.vala:51
 msgid "Unable to recognize URI"
-msgstr ""
+msgstr "无法识别 URI"
 
 #: data/app.desktop.in:8 src/ui/strings.vala:3
 msgid "Folio"
-msgstr ""
+msgstr "Folio"
 
 #: data/app.desktop.in:9
 msgid "Notes Manager"
@@ -477,11 +479,11 @@ msgstr "这个字体将会展示在"
 
 #: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:58
 msgid "Monospace Font"
-msgstr ""
+msgstr "等宽字体"
 
 #: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:59
 msgid "The font code will be displayed in"
-msgstr ""
+msgstr "代码显示所用的字体"
 
 #: data/app.gschema.xml:21 src/ui/preferences/preferences.blp:18
 msgid "OLED Mode"
@@ -489,7 +491,7 @@ msgstr "OLED 模式"
 
 #: data/app.metainfo.xml.in:7
 msgid "Create notebooks and take notes in markdown"
-msgstr ""
+msgstr "用 Markdown 创建笔记本和笔记"
 
 #: data/app.metainfo.xml.in:10
 msgid "Almost WYSIWYG markdown rendering"
@@ -501,11 +503,11 @@ msgstr "GNOME search 可搜索"
 
 #: data/app.metainfo.xml.in:12
 msgid "Highlight and strikethrough text formatting"
-msgstr ""
+msgstr "高亮与删除线文本格式"
 
 #: data/app.metainfo.xml.in:13
 msgid "App themeing based on notebook color"
-msgstr ""
+msgstr "根据笔记本颜色改变应用主题"
 
 #: data/app.metainfo.xml.in:14
 msgid "Trash can"
@@ -589,15 +591,15 @@ msgstr "插入代码"
 #: src/ui/edit_view/toolbar/toolbar.blp:80
 #: src/ui/edit_view/toolbar/toolbar.blp:188
 msgid "Insert Horizontal Rule"
-msgstr ""
+msgstr "插入分隔线"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:120
 msgid "Format"
-msgstr ""
+msgstr "格式"
 
 #: src/ui/edit_view/toolbar/toolbar.blp:174
 msgid "Insert"
-msgstr ""
+msgstr "插入"
 
 #: src/ui/popup/notebook_selection_popup/notebook_selection_popup.blp:18
 #: src/ui/strings.vala:44 src/ui/strings.vala:58
@@ -618,7 +620,7 @@ msgstr "编辑笔记"
 
 #: src/ui/popup/shortcut_window.blp:27
 msgid "Save Note"
-msgstr ""
+msgstr "保存笔记"
 
 #: src/ui/popup/shortcut_window.blp:34 src/ui/strings.vala:48
 msgid "Notebook"
@@ -662,15 +664,15 @@ msgstr "使暗黑主题颜色更深"
 
 #: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:109
 msgid "Enable Toolbar"
-msgstr ""
+msgstr "启用工具栏"
 
 #: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:120
 msgid "Enable Cheatsheet"
-msgstr ""
+msgstr "启用备忘录"
 
 #: data/app.gschema.xml:36
 msgid "3-Pane Layout"
-msgstr ""
+msgstr "三栏布局"
 
 #: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:230
 msgid "Notes Storage Location"
@@ -755,19 +757,19 @@ msgstr "笔记 “%s” 已经存在"
 
 #: src/ui/strings.vala:27
 msgid "Could not create note"
-msgstr ""
+msgstr "无法创建笔记"
 
 #: src/ui/strings.vala:28
 msgid "Could not change note"
-msgstr ""
+msgstr "无法修改笔记"
 
 #: src/ui/strings.vala:29
 msgid "Could not delete note"
-msgstr ""
+msgstr "无法删除笔记"
 
 #: src/ui/strings.vala:30
 msgid "Could not restore note"
-msgstr ""
+msgstr "无法恢复笔记"
 
 #: src/ui/strings.vala:31
 msgid "Saved “%s” to “%s”"
@@ -783,15 +785,15 @@ msgstr "笔记本 “%s” 已经存在"
 
 #: src/ui/strings.vala:36
 msgid "Could not create notebook"
-msgstr ""
+msgstr "无法创建笔记本"
 
 #: src/ui/strings.vala:37
 msgid "Could not change notebook"
-msgstr ""
+msgstr "无法修改笔记本"
 
 #: src/ui/strings.vala:38
 msgid "Could not delete notebook"
-msgstr ""
+msgstr "无法删除笔记本"
 
 #: src/ui/strings.vala:40
 msgid "Search"
@@ -803,7 +805,7 @@ msgstr "重命名"
 
 #: src/ui/strings.vala:42
 msgid "Could not find an app to handle file URIs"
-msgstr ""
+msgstr "找不到可处理文件 URI 的应用"
 
 #: src/ui/strings.vala:43
 msgid "Apply"
@@ -820,23 +822,23 @@ msgstr "所有笔记"
 
 #: src/ui/strings.vala:49
 msgid "Last Modified"
-msgstr ""
+msgstr "最后修改"
 
 #: src/ui/strings.vala:50
 msgid "Extension"
-msgstr ""
+msgstr "扩展名"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:15
 msgid "Follow system style"
-msgstr ""
+msgstr "跟随系统样式"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:23
 msgid "Light style"
-msgstr ""
+msgstr "浅色样式"
 
 #: src/ui/widgets/theme_selector/theme_selector.blp:32
 msgid "Dark style"
-msgstr ""
+msgstr "深色样式"
 
 #: src/ui/window/app_menu/app_menu.blp:26
 msgid "_New Notebook"
@@ -860,7 +862,7 @@ msgstr "笔记本名称"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:70
 msgid "Duplicate notebook names are not allowed!"
-msgstr ""
+msgstr "不允许重复的笔记本名！"
 
 #: src/ui/window/notebooks_bar/notebook_create_popup.blp:6
 msgid "First Characters"
@@ -900,7 +902,7 @@ msgstr "移动所有的笔记到垃圾桶"
 
 #: src/ui/window/notebooks_bar/notebooks_bar.blp:113
 msgid "Notebooks"
-msgstr ""
+msgstr "笔记本"
 
 #: src/ui/window/sidebar/note_create_popup.blp:25
 msgid "Note Name"
@@ -961,3 +963,10 @@ msgstr "_重命名笔记"
 #: src/ui/window/window.blp:330
 msgid "_Export Note"
 msgstr "_导出笔记"
+#: src/ui/preferences/preferences.blp
+msgid "Automatic Lists"
+msgstr "自动列表"
+
+#: src/ui/preferences/preferences.blp
+msgid "Automatically continue unordered or numbered lists in notes"
+msgstr "在笔记中自动延续无序或有序列表"
