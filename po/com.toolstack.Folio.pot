@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.toolstack.Folio\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-24 19:47-0500\n"
+"POT-Creation-Date: 2026-09-30 04:56-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -53,27 +53,27 @@ msgstr ""
 msgid "Preferences"
 msgstr ""
 
-#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:45
+#: data/app.gschema.xml:6 src/ui/preferences/preferences.blp:59
 msgid "Note Font"
 msgstr ""
 
-#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:46
+#: data/app.gschema.xml:7 src/ui/preferences/preferences.blp:60
 msgid "The font notes will be displayed in"
 msgstr ""
 
-#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:58
+#: data/app.gschema.xml:11 src/ui/preferences/preferences.blp:72
 msgid "Monospace Font"
 msgstr ""
 
-#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:59
+#: data/app.gschema.xml:12 src/ui/preferences/preferences.blp:73
 msgid "The font code will be displayed in"
 msgstr ""
 
-#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:167
+#: data/app.gschema.xml:16 src/ui/preferences/preferences.blp:181
 msgid "Use Fixed Width For Notes"
 msgstr ""
 
-#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:168
+#: data/app.gschema.xml:17 src/ui/preferences/preferences.blp:182
 msgid "Use a fixed width for the text area of a note"
 msgstr ""
 
@@ -85,19 +85,19 @@ msgstr ""
 msgid "Makes the dark theme pitch black"
 msgstr ""
 
-#: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:109
+#: data/app.gschema.xml:26 src/ui/preferences/preferences.blp:123
 msgid "Enable Toolbar"
 msgstr ""
 
-#: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:110
+#: data/app.gschema.xml:27 src/ui/preferences/preferences.blp:124
 msgid "Displays the formatting toolbar at the bottom of the note"
 msgstr ""
 
-#: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:120
+#: data/app.gschema.xml:31 src/ui/preferences/preferences.blp:134
 msgid "Enable Cheatsheet"
 msgstr ""
 
-#: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:121
+#: data/app.gschema.xml:32 src/ui/preferences/preferences.blp:135
 msgid ""
 "Adds a button to the markdown reference sheet on the right of the formatting "
 "toolbar"
@@ -107,43 +107,43 @@ msgstr ""
 msgid "3-Pane Layout"
 msgstr ""
 
-#: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:140
+#: data/app.gschema.xml:37 src/ui/preferences/preferences.blp:154
 msgid "Expands the notebook list to include the notebook name"
 msgstr ""
 
-#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:230
+#: data/app.gschema.xml:41 src/ui/preferences/preferences.blp:244
 msgid "Notes Storage Location"
 msgstr ""
 
-#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:231
+#: data/app.gschema.xml:42 src/ui/preferences/preferences.blp:245
 msgid "Where the notebooks are stored (requires app restart)"
 msgstr ""
 
-#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:258
+#: data/app.gschema.xml:46 src/ui/preferences/preferences.blp:272
 msgid "Trash Storage Location"
 msgstr ""
 
-#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:259
+#: data/app.gschema.xml:47 src/ui/preferences/preferences.blp:273
 msgid "Where the trash folder is located (requires app restart)"
 msgstr ""
 
-#: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:87
+#: data/app.gschema.xml:51 src/ui/preferences/preferences.blp:101
 msgid "Show line numbers"
 msgstr ""
 
-#: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:88
+#: data/app.gschema.xml:52 src/ui/preferences/preferences.blp:102
 msgid "Displays line numbers at the left of the note"
 msgstr ""
 
-#: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:98
+#: data/app.gschema.xml:56 src/ui/preferences/preferences.blp:112
 msgid "Show all notes"
 msgstr ""
 
-#: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:99
+#: data/app.gschema.xml:57 src/ui/preferences/preferences.blp:113
 msgid "Displays the \"All Notes\" notebook at the top of the notebook list"
 msgstr ""
 
-#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:202
+#: data/app.gschema.xml:61 src/ui/preferences/preferences.blp:216
 msgid "Enable autosave"
 msgstr ""
 
@@ -153,15 +153,15 @@ msgid ""
 "changed (requires app restart)"
 msgstr ""
 
-#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:213
+#: data/app.gschema.xml:66 src/ui/preferences/preferences.blp:227
 msgid "Autosave interval"
 msgstr ""
 
-#: data/app.gschema.xml:67 src/ui/preferences/preferences.blp:214
+#: data/app.gschema.xml:67 src/ui/preferences/preferences.blp:228
 msgid "The interval to trigger an automatic save of the note on (in seconds)"
 msgstr ""
 
-#: data/app.gschema.xml:71 src/ui/preferences/preferences.blp:219
+#: data/app.gschema.xml:71 src/ui/preferences/preferences.blp:233
 msgid "Don't hide the Trash folder"
 msgstr ""
 
@@ -199,7 +199,7 @@ msgstr ""
 msgid "Line spacing"
 msgstr ""
 
-#: data/app.gschema.xml:92 src/ui/preferences/preferences.blp:74
+#: data/app.gschema.xml:92 src/ui/preferences/preferences.blp:88
 msgid "The line spacing for the note text"
 msgstr ""
 
@@ -228,6 +228,14 @@ msgstr ""
 msgid ""
 "Truncate, multi-line, or expand the note list column to the width of longest "
 "note name"
+msgstr ""
+
+#: data/app.gschema.xml:111
+msgid "Automatic lists"
+msgstr ""
+
+#: data/app.gschema.xml:112 src/ui/preferences/preferences.blp:41
+msgid "Automatically continue unordered or numbered lists in notes"
 msgstr ""
 
 #: data/app.metainfo.xml.in:5
@@ -286,23 +294,23 @@ msgstr ""
 msgid "Automatically create links for bare URL's and e-mail addresses"
 msgstr ""
 
-#: data/app.metainfo.xml.in:483
+#: data/app.metainfo.xml.in:503
 msgid "Main Folio window in light mode"
 msgstr ""
 
-#: data/app.metainfo.xml.in:487
+#: data/app.metainfo.xml.in:507
 msgid "Main Folio window in dark mode"
 msgstr ""
 
-#: data/app.metainfo.xml.in:491
+#: data/app.metainfo.xml.in:511
 msgid "Folio on small/mobile screens"
 msgstr ""
 
-#: data/app.metainfo.xml.in:495
+#: data/app.metainfo.xml.in:515
 msgid "Folio preferences screen"
 msgstr ""
 
-#: data/app.metainfo.xml.in:499
+#: data/app.metainfo.xml.in:519
 msgid "Folio in three pane mode"
 msgstr ""
 
@@ -476,73 +484,77 @@ msgid ""
 " - Disabled turns detection off."
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:39
+#: src/ui/preferences/preferences.blp:40
+msgid "Automatic Lists"
+msgstr ""
+
+#: src/ui/preferences/preferences.blp:53
 msgid "Fonts"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:73
+#: src/ui/preferences/preferences.blp:87
 msgid "Line Spacing"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:81
+#: src/ui/preferences/preferences.blp:95
 msgid "Tools"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:133
+#: src/ui/preferences/preferences.blp:147
 msgid "Layout"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:139
+#: src/ui/preferences/preferences.blp:153
 msgid "Expanded Notebook List"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:150
+#: src/ui/preferences/preferences.blp:164
 msgid "Allow Long Notebook Names"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:151
+#: src/ui/preferences/preferences.blp:165
 msgid ""
 "The notebook column will expand to the width of the longest notebook name "
 "(requires notebook selection change to take effect)."
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:161
+#: src/ui/preferences/preferences.blp:175
 msgid "Long Note Names Handling"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:162
+#: src/ui/preferences/preferences.blp:176
 msgid ""
 "Truncate, multi-line, or expand the note list column to the width of longest "
 "note name (requires notebook selection change to take effect)."
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:178
+#: src/ui/preferences/preferences.blp:192
 msgid "Fixed Width To Use For Notes"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:179
+#: src/ui/preferences/preferences.blp:193
 msgid "Sets the fixed width size of a note in px"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:184
+#: src/ui/preferences/preferences.blp:198
 msgid "Sort Order For Notebooks"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:189
+#: src/ui/preferences/preferences.blp:203
 msgid "Sort Order For Notes"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:196
+#: src/ui/preferences/preferences.blp:210
 msgid "Files"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:203
+#: src/ui/preferences/preferences.blp:217
 msgid ""
 "Automatically saves the current note at an interval if the contents have "
 "changed"
 msgstr ""
 
-#: src/ui/preferences/preferences.blp:220
+#: src/ui/preferences/preferences.blp:234
 msgid ""
 "The trash folder is set as a hidden folder by default, this option makes it "
 "visible (requires app restart)"
