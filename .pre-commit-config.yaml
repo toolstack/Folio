@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: vala-lint
+        name: Vala-Lint
+        entry: env LD_LIBRARY_PATH=/usr/local/lib64 GIO_USE_VFS=local dbus-run-session -- io.elementary.vala-lint -c vala-lint.conf --fix src/ lib/ 
+        language: system
+        files: \.(vala|gs)$
+
